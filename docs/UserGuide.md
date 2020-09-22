@@ -94,17 +94,80 @@ StonksBook is a **desktop app for managing contacts, optimized for use via a Com
 
 #### Adding a scheduled appointment: `appointment add`
 
+Adds a scheduled appointment with the specified contact in StonksBook.
+
+Format: `appointment add CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION`
+
+* Adds a scheduled appointment with the contact at the specified `CONTACT_INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index must be a positive integer 1, 2, 3, …​
+* The start datetime must be in the format `YYYY-MM-DD HH:mm`
+* The duration is specified in hours and must be a positive number (not necessarily an integer).
+
+Examples:
+* `appointment add 2 t/Follow-up appointment s/2020-10-30 15:00 d/1` Adds a 1-hour long appointment titled `Follow-up appointment` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
+* `appointment add 3 t/Call to finalise details s/2020-10-30 08:00 d/0.5` Adds a 30-minute long appointment titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
+
 #### Listing all appointments: `appointment list`
 
+Shows a list of all appointments. By default, the list only shows upcoming appointments. This list is sorted in increasing order based on the date the appointment is scheduled.
+
+![result for 'appointment list'](images/appointmentListMockup.png)
+
+Format: `appointments list [CONTACT_INDEX] [a/]`
+
+* When an index is specified, the list will only show appointments associated with the contact at the specified index.
+* You can show all appointments, including those that have passed, by typing `a/`.
+
 #### Deleting an appointment: `appointment delete`
+
+Deletes the specified appointment from StonksBook.
+
+Format: `appointment delete INDEX`
+
+* Deletes the schedule at the specified `INDEX`.
+* The index refers to the index number shown in the displayed appointments list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `appointment list 5` followed by `appointment delete 2` deletes the 2nd appointment that is associated with the 5th contact in StonksBook.
 
 ### Reminders
 
 #### Adding reminders: `reminder add`
 
+Adds a reminder scheduled on a particular date that is associated with the specified contact to StonksBook.
+
+Format: `reminder add CONTACT_INDEX m/MESSAGE d/DATETIME`
+
+* Adds a reminder associated with the contact at the specified `CONTACT_INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index must be a positive integer 1, 2, 3, …​
+* The datetime must be in the format `YYYY-MM-DD HH:mm`
+
+Examples:
+* `reminder add 2 m/Send follow-up email d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact that is scheduled for 30th October 2020 3PM, with the message `Send follow-up email`
+
 #### Listing all reminders: `reminder list`
 
+Shows a list of all reminders created, sorted in increasing order based on the date the reminder is scheduled.
+
+![result for 'reminder list'](images/reminderListMockup.png)
+
+Format: `reminder list`
+
 #### Deleting a reminder: `reminder delete`
+
+Deletes the specified reminder from StonksBook.
+
+Format: `reminder delete INDEX`
+
+* Deletes the reminder at the specified `INDEX`.
+* The index refers to the index number shown in the displayed reminders list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
 
 ### Miscellaneous
 
