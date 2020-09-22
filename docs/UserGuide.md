@@ -3,18 +3,18 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps. 
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick start (WIP)
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `addressbook.jar` from [here](https://github.com/AY2021S1-CS2103T-T11-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -57,6 +57,66 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 </div>
+
+### Contacts
+
+#### Adding a contact: `contact add`
+
+#### Editing a contact: `contact edit`
+
+#### Listing all contacts: `contact list`
+
+#### Locating contacts by name: `contact find`
+
+#### Deleting a contact: `contact delete`
+
+### Tags
+
+#### Adding a tag: `tag add`
+
+#### Listing all tags: `tag list`
+
+#### Editing a tag: `tag edit`
+
+#### Deleting a tag: `tag delete`
+
+#### Retrieving entries by tag: `tag find`
+
+### Sales
+
+#### Adding a sale to a customer: `sale add`
+
+#### Listing all sales items: `sale list`
+
+#### Deleting a sales item: `sale delete`
+
+### Scheduled Appointments
+
+#### Adding a scheduled appointment: `appointment add`
+
+#### Listing all appointments: `appointment list`
+
+#### Deleting an appointment: `appointment delete`
+
+### Reminders
+
+#### Adding reminders: `reminder add`
+
+#### Listing all reminders: `reminder list`
+
+#### Deleting a reminder: `reminder delete`
+
+### Miscellaneous
+
+#### Viewing help: `help`
+
+#### Clearing all past interactions: `clear`
+
+#### Removing all data: `purge`
+
+#### Exiting the program: `exit`
+
+
 
 ### Viewing help : `help`
 
@@ -158,7 +218,7 @@ _{explain the feature here}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## FAQ (WIP)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
