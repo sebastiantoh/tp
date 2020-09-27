@@ -99,18 +99,18 @@ Examples:
 
 #### Editing a tag: `tag edit`
 
-Edits an existing tag in the StonkBook to the specified tag name. All entries previously associated with this tag will be updated to associated with the updated tag.
+Edits an existing tag in StonksBook to the specified tag name. All entries previously associated with this tag will be updated to associated with the updated tag.
 
 Format: `tag edit INDEX n/NAME`
 
 * Edits the name of the tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `NAME` and `INDEX` fields must be provided.
-* All contacts that have been previously associated with this tag will be updated automatically to associate with the updated tag.
+* All contacts that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
 
 Examples:
 
-* `tag edit 1 n/close friends` updates the tag `friends` to `close friends`.
+* `tag edit 1 n/friends` updates the name of the first tag to `close friends`.
 
 #### Deleting a tag: `tag delete`
 
@@ -125,7 +125,7 @@ Format: `tag delete INDEX`
 
 Examples:
 
-* `tag delete 1` deletes the tag `friends` from the tag list.
+* `tag delete 1` deletes the first tag from the tag list.
 
 #### Retrieving entries by tag: `tag find`
 
