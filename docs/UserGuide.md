@@ -3,18 +3,18 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps. 
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick start (WIP)
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `addressbook.jar` from [here](https://github.com/AY2021S1-CS2103T-T11-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -58,107 +58,191 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 </div>
 
-### Viewing help : `help`
+### Contacts
 
-Shows a message explaning how to access the help page.
+#### Adding a contact: `contact add`
 
-![help message](images/helpMessage.png)
+#### Editing a contact: `contact edit`
 
-Format: `help`
+#### Listing all contacts: `contact list`
 
+#### Locating contacts by name: `contact find`
 
-### Adding a person: `add`
+#### Deleting a contact: `contact delete`
 
-Adds a person to the address book.
+### Tags
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+#### Adding a tag: `tag add`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Adds a new customised tag of the specified name. If there is an existing tag with this name, this command will not result in any change in state.
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+Format: `tag add t/TAG`
 
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* Adds a tag with the specified `TAG` as name. If this tag name already exists in the tag list, there will be no change in the program state. 
+* The `TAG` field must be provided.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+* `tag add t/friends` adds the tag `friends` to the tag list in StonksBook.
 
-Finds persons whose names contain any of the given keywords.
+#### Listing all tags: `tag list`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Displays a list of all tags created so far.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+![result for 'tag list'](images/tagListMockup.png)
+
+Format: `tag list`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+* `tag list` displays all tags available in StonksBook.
 
-Deletes the specified person from the address book.
+#### Editing a tag: `tag edit`
 
-Format: `delete INDEX`
+Edits an existing tag in StonksBook to the specified tag name. All entries previously associated with this tag will be updated to associated with the updated tag.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `tag edit INDEX n/NAME`
+
+* Edits the name of the tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
+* The `INDEX` must be a positive integer 1, 2, 3, ...
+* The `NAME` and `INDEX` fields must be provided.
+* All contacts that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+* `tag edit 1 n/friends` updates the name of the first tag to `close friends`.
 
-Clears all entries from the address book.
+#### Deleting a tag: `tag delete`
 
-Format: `clear`
+Deletes the specified tag from the tag list. The tag information in all entries previously associated with this tag will also be cleared.
 
-### Exiting the program : `exit`
+Format: `tag delete INDEX`
+
+* Deletes the name of the tag at the specified `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
+* The `INDEX` must be a positive integer 1, 2, 3, ...
+* The `INDEX` field must be provided.
+* All contacts that have been previously associated with this tag will be updated so that their associations with this tag will be cleared.
+
+Examples:
+
+* `tag delete 1` deletes the first tag from the tag list.
+
+#### Retrieving entries by tag: `tag find`
+
+Displays all entries (including contacts, items, etc.) that are associated with the specified tag.
+
+![result for 'tag find'](images/tagFindMockup.png)
+
+Format: `tag find INDEX [MODEL]`
+
+* Displays all entries of `[MODEL]` (optional, see point 3 below) associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command and `[MODEL]` refers to the model to search for (i.e. contacts, sales, etc.).
+* The `INDEX` must be a positive integer 1, 2, 3, ...
+* The `INDEX` field must be provided and the `[MODEL]` field is optional; when not provided, this command will display all entries that have been associated with the specified tag.
+
+### Sales
+
+#### Adding a sale to a customer: `sale add`
+
+#### Listing all sales items: `sale list`
+
+#### Deleting a sales item: `sale delete`
+
+### Scheduled Appointments
+
+#### Adding a scheduled appointment: `appointment add`
+
+Adds a scheduled appointment with the specified contact in StonksBook.
+
+Format: `appointment add CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION`
+
+* Adds a scheduled appointment with the contact at the specified `CONTACT_INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index must be a positive integer 1, 2, 3, …​
+* The start datetime must be in the format `YYYY-MM-DD HH:mm`
+* The duration is specified in hours and must be a positive number (not necessarily an integer).
+
+Examples:
+* `appointment add 2 t/Follow-up appointment s/2020-10-30 15:00 d/1` Adds a 1-hour long appointment titled `Follow-up appointment` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
+* `appointment add 3 t/Call to finalise details s/2020-10-30 08:00 d/0.5` Adds a 30-minute long appointment titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
+
+#### Listing all appointments: `appointment list`
+
+Shows a list of all appointments. By default, the list only shows upcoming appointments. This list is sorted in increasing order based on the date the appointment is scheduled.
+
+![result for 'appointment list'](images/appointmentListMockup.png)
+
+Format: `appointments list [CONTACT_INDEX] [a/]`
+
+* When an index is specified, the list will only show appointments associated with the contact at the specified index.
+* You can show all appointments, including those that have passed, by typing `a/`.
+
+#### Deleting an appointment: `appointment delete`
+
+Deletes the specified appointment from StonksBook.
+
+Format: `appointment delete INDEX`
+
+* Deletes the schedule at the specified `INDEX`.
+* The index refers to the index number shown in the displayed appointments list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `appointment list 5` followed by `appointment delete 2` deletes the 2nd appointment that is associated with the 5th contact in StonksBook.
+
+### Reminders
+
+#### Adding reminders: `reminder add`
+
+Adds a reminder scheduled on a particular date that is associated with the specified contact to StonksBook.
+
+Format: `reminder add CONTACT_INDEX m/MESSAGE d/DATETIME`
+
+* Adds a reminder associated with the contact at the specified `CONTACT_INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index must be a positive integer 1, 2, 3, …​
+* The datetime must be in the format `YYYY-MM-DD HH:mm`
+
+Examples:
+* `reminder add 2 m/Send follow-up email d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact that is scheduled for 30th October 2020 3PM, with the message `Send follow-up email`
+
+#### Listing all reminders: `reminder list`
+
+Shows a list of all reminders created, sorted in increasing order based on the date the reminder is scheduled.
+
+![result for 'reminder list'](images/reminderListMockup.png)
+
+Format: `reminder list`
+
+#### Deleting a reminder: `reminder delete`
+
+Deletes the specified reminder from StonksBook.
+
+Format: `reminder delete INDEX`
+
+* Deletes the reminder at the specified `INDEX`.
+* The index refers to the index number shown in the displayed reminders list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
+
+### Miscellaneous
+
+#### Viewing help: `help`
+
+#### Clearing all past interactions: `clear`
+
+#### Removing all data: `purge`
+
+#### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
-
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## FAQ (WIP)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
