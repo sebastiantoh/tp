@@ -74,13 +74,66 @@ StonksBook is a **desktop app for managing contacts, optimized for use via a Com
 
 #### Adding a tag: `tag add`
 
+Adds a new customised tag of the specified name. If there is an existing tag with this name, this command will not result in any change in state.
+
+Format: `tag add t/TAG`
+
+* Adds a tag with the specified `TAG` as name. If this tag name already exists in the tag list, there will be no change in the program state. 
+* The `TAG` field must be provided.
+
+Examples:
+
+* `tag add t/friends` adds the tag `friends` to the tag list in StonksBook.
+
 #### Listing all tags: `tag list`
+
+Displays a list of all tags created so far.
+
+Format: `tag list`
+
+Examples:
+
+* `tag list` displays all tags available in StonksBook.
 
 #### Editing a tag: `tag edit`
 
+Edits an existing tag in the StonkBook to the specified tag name. All entries previously associated with this tag will be updated to associated with the updated tag.
+
+Format: `tag edit INDEX n/NAME`
+
+* Edits the name of the tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
+* The `INDEX` must be a positive integer 1, 2, 3, ...
+* The `NAME` and `INDEX` fields must be provided.
+* All contacts that have been previously associated with this tag will be updated automatically to associate with the updated tag.
+
+Examples:
+
+* `tag edit 1 n/close friends` updates the tag `friends` to `close friends`.
+
 #### Deleting a tag: `tag delete`
 
+Deletes the specified tag from the tag list. The tag information in all entries previously associated with this tag will also be cleared.
+
+Format: `tag delete INDEX`
+
+* Deletes the name of the tag at the specified `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
+* The `INDEX` must be a positive integer 1, 2, 3, ...
+* The `INDEX` field must be provided.
+* All contacts that have been previously associated with this tag will be updated so that their associations with this tag will be cleared.
+
+Examples:
+
+* `tag delete 1` deletes the tag `friends` from the tag list.
+
 #### Retrieving entries by tag: `tag find`
+
+Displays all entries (including contacts, items, etc.) that are associated with the specified tag.
+
+Format: `tag find INDEX [MODEL]`
+
+* Displays all entries of `[MODEL]` (optional, see point 3 below) associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command and `[MODEL]` refers to the model to search for (i.e. contacts, sales, etc.).
+* The `INDEX` must be a positive integer 1, 2, 3, ...
+* The `INDEX` field must be provided and the `[MODEL]` field is optional; when not provided, this command will display all entries that have been associated with the specified tag.
 
 ### Sales
 
