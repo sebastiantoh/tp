@@ -89,6 +89,8 @@ Examples:
 
 Displays a list of all tags created so far.
 
+![result for 'tag list'](images/tagListMockup.png)
+
 Format: `tag list`
 
 Examples:
@@ -128,6 +130,8 @@ Examples:
 #### Retrieving entries by tag: `tag find`
 
 Displays all entries (including contacts, items, etc.) that are associated with the specified tag.
+
+![result for 'tag find'](images/tagFindMockup.png)
 
 Format: `tag find INDEX [MODEL]`
 
