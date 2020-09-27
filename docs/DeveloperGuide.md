@@ -268,10 +268,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons.
-2.  AddressBook shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  AddressBook deletes the person.
+1.  User requests to list persons
+2.  AddressBook shows a list of persons
+3.  User requests to delete a specific person in the list
+4.  AddressBook deletes the person
 
     Use case ends.
 
@@ -286,101 +286,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-
-**Use case: Add a tag**
-
-**MSS**
-
-1. User requests to add a new tag.
-2. StonksBook add the provided tag.
-
-**Extensions**
-
-* 2a. The provided tag already exists in the tag list.
-
-Use case ends.
-
-**Use case: View all tags**
-
-**MSS**
-
-1. User requests to list all tags.
-2. StonksBook displays a list of all tags.
-
-Use case ends.
-
-**Extensions**
-
-* 2a. The list of tags is empty.
-
-Use case ends.
-
-**Use case: Update a tag**
-
-**MSS**
-
-1. User requests to list tags.
-2. StonksBook shows a list of tags.
-3. User requests to update a specific tag in the list.
-4. StonksBook requests for confirmation.
-5. User confirms.
-6. StonksBook updates the tag and updates all items associated with this tag.
-
-**Extensions**
-
-* 2a. The list of tags is empty.
-
-Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. StonksBook shows an error message.
-    
-    Use case resumes at step 2.
-
-**Use case: Delete a tag**
-
-**MSS**
-
-1. User requests to list tags.
-2. StonksBook shows a list of tags.
-3. User requests to delete a specific tag in the list.
-4. StonksBook requests for confirmation.
-5. User confirms.
-6. StonksBook deletes the tag and updates all items associated with this tag.
-
-**Extensions**
-
-* 2a. The list of tags is empty.
-
-Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. StonksBook shows an error message.
-    
-    Use case resumes at step 2.
-
-**Use case: Retrieve entries by tag**
-
-**MSS**
-
-1. User requests to list tags.
-2. StonksBook shows a list of tags.
-3. User requests to search for items under a specific tag in the list.
-4. StonksBook displays all entries under the given tag.
-
-**Extensions**
-
-* 2a. The list of tags is empty.
-
-Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. StonksBook shows an error message.
-    
-    Use case resumes at step 2. 
 
 *{More to be added}*
 
