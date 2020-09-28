@@ -287,6 +287,109 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Add a tag**
+
+**MSS**
+
+1.  User requests to add a new tag.
+2.  StonksBook adds the provided tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The provided tag already exists in the tag list.
+
+    Use case ends.
+
+**Use case: View all tags**
+
+**MSS**
+
+1.  User requests to list all tags.
+2.  StonksBook displays a list of all tags.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of tags is empty.
+
+    Use case ends.
+
+**Use case: Update a tag**
+
+**MSS**
+
+1.  User requests to list tags.
+2.  StonksBook shows a list of tags.
+3.  User requests to update a specific tag in the list.
+4.  StonksBook requests for confirmation.
+5.  User confirms.
+6.  StonksBook updates the tag and updates all items associated with this tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of tags is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+    
+        Use case resumes at step 2.
+
+**Use case: Delete a tag**
+
+**MSS**
+
+1.  User requests to list tags.
+2.  StonksBook shows a list of tags.
+3.  User requests to delete a specific tag in the list.
+4.  StonksBook requests for confirmation.
+5.  User confirms.
+6.  StonksBook deletes the tag and updates all items associated with this tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of tags is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+    
+        Use case resumes at step 2.
+
+**Use case: Retrieve entries by tag**
+
+**MSS**
+
+1.  User requests to list tags.
+2.  StonksBook shows a list of tags.
+3.  User requests to search for items under a specific tag in the list.
+4.  StonksBook displays all entries under the given tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of tags is empty.
+
+    Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+    
+        Use case resumes at step 2. 
+
 *{More to be added}*
 
 ### Non-Functional Requirements
