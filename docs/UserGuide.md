@@ -155,13 +155,13 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
     * Partial words will be matched e.g.  Han will match Hans
     
-![result for 'contact find'](images/contactFindMockup.png)
+![result for 'contact find keyword'](images/contactFindMockup.png)
 
 * Format: `contact find REGEX`
 
 * Returns results that satisfies the regular expression under exact matches.
 
-![result for 'tag find'](images/contactFindRegexMockup.png)
+![result for 'contact find regex'](images/contactFindRegexMockup.png)
 
 Examples:
 * `contact find John` returns john and John Doe
@@ -345,11 +345,11 @@ Format: `COMMAND help`
 
 * If `COMMAND` is not present, 
     * list the available commands and the link to the User Guide.
-![result for 'appointment list'](images/helpAllMockup.png)
+![result for 'help'](images/helpAllMockup.png)
 
 * If `COMMAND` is present
     * list the command description and example usage.
-![result for 'appointment list'](images/helpPerCommandMockup.png)
+![result for 'help command'](images/helpPerCommandMockup.png)
 
 #### Clearing all past interactions: `clear`
 
