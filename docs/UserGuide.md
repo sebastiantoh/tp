@@ -100,10 +100,37 @@ StonksBook is a **desktop app for managing contacts, optimized for use via a Com
 ### Contacts
 
 #### Adding a contact: `contact add`
+Adds a contact to StonksBook.
+
+Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMARK]…​`
+
+:bulb: Tip: A contact can have any number of tags (including 0)
+
+Examples:
+* `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal r/blacklisted`
+
 
 #### Editing a contact: `contact edit`
+Edits an existing contact in StonksBook.
+
+Format: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]…​`
+
+* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
+* When editing remarks, the previous remarks will also be removed/overwritten, similar to tags
+* You can remove all the contact’s tags/remarks by typing `t/` or  `r/` respectively without specifying any tags/remarks after it.
+
+Examples:
+* `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
+* `contact edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be Betsy Crower and clears all existing tags.
 
 #### Listing all contacts: `contact list`
+Shows a list of all contacts in StonksBook.
+
+Format:`contact list`
 
 #### Locating contacts by name: `contact find`
 * Finds contacts whose names contain any of the given keywords.
@@ -141,6 +168,16 @@ Examples:
 * `contact find alex david` returns Alex Yeoh, David Li
 
 #### Deleting a contact: `contact delete`
+Deletes the specified contact from StonksBook.
+
+Format: `contact delete INDEX`
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+`contact list` followed by `contact delete 2` deletes the 2nd contact in StonksBook.
+`contact find Betsy` followed by `contact delete 1` deletes the 1st contact in the results of the find command.
 
 ### Tags
 
