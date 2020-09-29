@@ -53,9 +53,9 @@ StonksBook is a **desktop app for managing contacts, optimized for use via a Com
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/AY2021S1-CS2103T-T11-1/tp/releases).
+1. Download the latest `stonksbook.jar` from [here](https://github.com/AY2021S1-CS2103T-T11-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your StonksBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -63,13 +63,13 @@ StonksBook is a **desktop app for managing contacts, optimized for use via a Com
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`contact list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to StonksBook.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`contact delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`purge`** : Deletes all contacts.
 
    * **`exit`** : Exits the app.
 
@@ -338,6 +338,7 @@ Examples:
 ### Miscellaneous
 
 #### Viewing help: `help`
+Lists the available commands, command description and example usage as well as the link to the User Guide.  
 
 Lists the available commands, command description and example usage as well as the link to the User Guide.
 
@@ -352,9 +353,13 @@ Format: `COMMAND help`
 ![result for 'help command'](images/helpPerCommandMockup.png)
 
 #### Clearing all past interactions: `clear`
+Clears all past interactions with the StonksBook GUI within the session.  
 
+Format: `clear`
 #### Removing all data: `purge`
+Clears all data from StonksBook. 
 
+Format: `purge`
 #### Exiting the program: `exit`
 
 Exits the program.
@@ -374,10 +379,28 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Contact Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/birthday: 20 August`
+**Contact Delete** | `contact delete INDEX` <br> e.g., `contact delete 3`
+**Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
+**Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` or `contact find REGEX` <br> e.g., `find James Jake`, `find [^abc]`
+**Contact List** | `contact list`
+**Sale Add** | `sales add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY` <br> e.g., `sale add c/4 n/Notebook p/6.00 q/2`
+**Sale List** | `sale list`
+**Sale Delete** | `sale delete c/CONTACT_INDEX s/SALE_INDEX` <br> e.g., `sale delete c/2 s/4`
+**Tag Add** | `tag add t/TAG` <br> e.g., `tag add t/important` 
+**Tag List** | `tag list`
+**Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
+**Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
+**Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 contact`
+**Appointment Add** | `appointment add CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION` <br> e.g., `appointment add 2 t/Follow-up appointment s/2020-10-30 15:00 d/1`
+**Appointment List** | `appointment list [CONTACT_INDEX] [a/]`
+**Appointment Delete** | `appointment delete INDEX` <br> e.g., `appointment delete 3`
+**Reminder Add** | `reminder add CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
+**Reminder List** | `reminder list`
+**Reminder Delete** | `reminder delete index` <br> e.g., `reminder delete 4`
+**Help** | `COMMAND help`
+**Clear Chatbox** | `clear`
+**Delete All Data Entries** | `purge`
+**Exit Application** | `exit`
+
+
