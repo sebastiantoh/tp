@@ -394,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1.  User enters the clear command.
-2.  StonksBook clears the GUI.
+2.  StonksBook clears the chatbox GUI.
 
     Use case ends.
 
@@ -408,8 +408,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. StonksBook requests for confirmation.
-    * 1a1. User confirms.  
-    Use case resumes from step 2.
+    * 1a1. User confirms.
+
+      Use case resumes from step 2.
 
 *{More to be added}*
 
