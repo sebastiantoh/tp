@@ -133,7 +133,7 @@ Shows a list of all contacts in StonksBook.
 Format:`contact list`
 
 #### Locating contacts by name: `contact find`
-* Finds contacts whose names contain any of the given keywords.
+Finds contacts whose names contain any of the given keywords.
 
 Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
