@@ -308,12 +308,10 @@ Format: `COMMAND help`
 
 * If `COMMAND` is not present, 
     * list the available commands and the link to the User Guide.
-
 ![result for 'appointment list'](images/helpAllMockup.png)
 
 * If `COMMAND` is present
     * list the command description and example usage.
-
 ![result for 'appointment list'](images/helpPerCommandMockup.png)
 
 #### Clearing all past interactions: `clear`
