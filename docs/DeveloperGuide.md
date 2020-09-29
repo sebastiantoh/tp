@@ -389,7 +389,72 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StonksBook shows an error message.
     
         Use case resumes at step 2. 
+        
+        
+        
+**Use case: Find a contact**
 
+**MSS**
+
+1.  User requests to find a contact by giving keyword(s).
+2.  AddressBook shows two list of contacts, one that matches the keyword, another that partially matches the keyword.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 2b. There is no given keyword. 
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case ends.
+      
+*{More to be added}*
+
+**Use case: Find a contact by regular expression**
+
+**MSS**
+
+1.  User requests to find a contact by giving a regular expression.
+2.  AddressBook shows a list of contacts that satisfies the regular expression.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 2b. There is no given regular expression. 
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case ends.
+      
+      
+**Use case: get help on available commands**
+
+**MSS**
+
+1.  User requests for help on the available commands.
+2.  AddressBook lists the available commands, command description and example usage as well as the link to the User Guide.
+
+    Use case ends.
+
+**Use case: get help for a command**
+
+**MSS**
+
+1.  User requests for help for a command.
+2.  AddressBook lists the command description and example usage.
+
+  Use case ends.
+        
 *{More to be added}*
 
 ### Non-Functional Requirements
