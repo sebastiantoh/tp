@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to clear past interactions with the GUI.
   * What it does: allows the user to clear up the GUI.
-  * Justification: This feature improves user experience.
+  * Justification: This feature improves user experience.  
 
 * **Code contributed**: [RepoSense link]()
 
