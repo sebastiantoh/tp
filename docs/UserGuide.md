@@ -39,9 +39,9 @@
     3. [Removing all data: `purge`](#removing-all-data-purge)
     4. [Exiting the program: `exit`](#exiting-the-program-exit)
     
-    3.7. [FAQ (WIP)](#faq-wip)   
+4. [**FAQ (WIP)**](#faq-wip)   
     
-    3.8 [Command summary](#command-summary)
+5. [**Command Summary**](#command-summary)
          
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
