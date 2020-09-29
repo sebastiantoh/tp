@@ -10,39 +10,39 @@
     3. [Listing all contacts: `contact list`](#listing-all-contacts-contact-list)
     4. [Locating contacts by name: `contact find`](#locating-contacts-by-name-contact-find)
     5. [Deleting a contact: `contact delete`](#deleting-a-contact-contact-delete)
-    
+
     3.2. [Tags](#tags)
     1. [Adding a tag: `tag add`](#adding-a-tag-tag-add)
     2. [Listing all tags: `tag list`](#listing-all-tags-tag-list)
     3. [Editing a tag: `tag edit`](#editing-a-tag-tag-edit)
     4. [Deleting a tag: `tag delete`](#deleting-a-tag-tag-delete)
     5. [Retrieving entries by tag: `tag find`](#retrieving-entries-by-tag-tag-find)
-    
+
     3.3. [Sales](#sales)
     1. [Adding a sale to a customer: `sale add`](#adding-a-sale-to-a-customer-sale-add)
     2. [Listing all sales items: `sale list`](#listing-all-sales-items-sale-list)
     3. [Deleting a sales item: `sale delete`](#deleting-a-sales-item-sale-delete)
-    
+
     3.4. [Scheduled Appointments](#scheduled-appointments)
     1. [Adding a scheduled appointment: `appointment add`](#adding-a-scheduled-appointment-appointment-add)
     2. [Listing all appointments: `appointment list`](#listing-all-appointments-appointment-list)
     3. [Deleting an appointment: `appointment delete`](#deleting-an-appointment-appointment-delete)
-    
+
     3.5. [Reminders](#reminders) 
     1. [Adding reminders: `reminder add`](#adding-reminders-reminder-add)
     2. [Listing all reminders: `reminder list`](#listing-all-reminders-reminder-list)
     3. [Deleting a reminder: `reminder delete`](#deleting-a-reminder-reminder-delete)
-    
+
     3.6. [Miscellaneous](#miscellaneous)  
     1.  [Viewing help: `help`](#viewing-help-help)
     2. [Clearing all past interactions: `clear`](#clearing-all-past-interactions-clear)
     3. [Removing all data: `purge`](#removing-all-data-purge)
     4. [Exiting the program: `exit`](#exiting-the-program-exit)
-    
+
 4. [**FAQ (WIP)**](#faq-wip)   
-    
+
 5. [**Command Summary**](#command-summary)
-         
+
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps. 
@@ -154,7 +154,7 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 * For similar matches:
 
     * Partial words will be matched e.g.  Han will match Hans
-    
+
 ![result for 'contact find keyword'](images/contactFindMockup.png)
 
 * Format: `contact find REGEX`
@@ -187,7 +187,7 @@ Adds a new customised tag of the specified name. If there is an existing tag wit
 
 Format: `tag add t/TAG`
 
-* Adds a tag with the specified `TAG` as name. If this tag name already exists in the tag list, there will be no change in the program state. 
+* Adds a tag with the specified `TAG` as name. If this tag name already exists in the tag list, there will be no change in the program state.
 * The `TAG` field must be provided.
 
 Examples:
@@ -338,13 +338,13 @@ Examples:
 ### Miscellaneous
 
 #### Viewing help: `help`
-Lists the available commands, command description and example usage as well as the link to the User Guide.  
+Lists the available commands, command description and example usage as well as the link to the User Guide.
 
 Lists the available commands, command description and example usage as well as the link to the User Guide.
 
 Format: `COMMAND help`
 
-* If `COMMAND` is not present, 
+* If `COMMAND` is not present,
     * list the available commands and the link to the User Guide.
 ![result for 'help'](images/helpAllMockup.png)
 
@@ -353,11 +353,11 @@ Format: `COMMAND help`
 ![result for 'help command'](images/helpPerCommandMockup.png)
 
 #### Clearing all past interactions: `clear`
-Clears all past interactions with the StonksBook GUI within the session.  
+Clears all past interactions with the StonksBook GUI within the session.
 
 Format: `clear`
 #### Removing all data: `purge`
-Clears all data from StonksBook. 
+Clears all data from StonksBook.
 
 Format: `purge`
 #### Exiting the program: `exit`
@@ -387,7 +387,7 @@ Action | Format, Examples
 **Sale Add** | `sales add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY` <br> e.g., `sale add c/4 n/Notebook p/6.00 q/2`
 **Sale List** | `sale list`
 **Sale Delete** | `sale delete c/CONTACT_INDEX s/SALE_INDEX` <br> e.g., `sale delete c/2 s/4`
-**Tag Add** | `tag add t/TAG` <br> e.g., `tag add t/important` 
+**Tag Add** | `tag add t/TAG` <br> e.g., `tag add t/important`
 **Tag List** | `tag list`
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
 **Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
