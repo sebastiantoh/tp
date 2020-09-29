@@ -1,12 +1,51 @@
----
-layout: page
-title: User Guide
----
+#StonksBook User Guide
 
-StonksBook is a **desktop app for managing sales contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps. 
+1. [**Introduction**](#introduction)
+2. [**Quick Start (WIP)**](#quick-start-wip)
+3. [**Features**](#features)
 
-* Table of Contents
-{:toc}
+    3.1. [Contacts](#contacts)
+    1. [Adding a contact: `contact add`](#adding-a-contact-contact-add)
+    2. [Editing a contact: `contact edit`](#editing-a-contact-contact-edit)
+    3. [Listing all contacts: `contact list`](#listing-all-contacts-contact-list)
+    4. [Locating contacts by name: `contact find`](#locating-contacts-by-name-contact-find)
+    5. [Deleting a contact: `contact delete`](#deleting-a-contact-contact-delete)
+    
+    3.2. [Tags](#tags)
+    1. [Adding a tag: `tag add`](#adding-a-tag-tag-add)
+    2. [Listing all tags: `tag list`](#listing-all-tags-tag-list)
+    3. [Editing a tag: `tag edit`](#editing-a-tag-tag-edit)
+    4. [Deleting a tag: `tag delete`](#deleting-a-tag-tag-delete)
+    5. [Retrieving entries by tag: `tag find`](#retrieving-entries-by-tag-tag-find)
+    
+    3.3. [Sales](#sales)
+    1. [Adding a sale to a customer: `sale add`](#adding-a-sale-to-a-customer-sale-add)
+    2. [Listing all sales items: `sale list`](#listing-all-sales-items-sale-list)
+    3. [Deleting a sales item: `sale delete`](#deleting-a-sales-item-sale-delete)
+    
+    3.4. [Scheduled Appointments](#scheduled-appointments)
+    1. [Adding a scheduled appointment: `appointment add`](#adding-a-scheduled-appointment-appointment-add)
+    2. [Listing all appointments: `appointment list`](#listing-all-appointments-appointment-list)
+    3. [Deleting an appointment: `appointment delete`](#deleting-an-appointment-appointment-delete)
+    
+    3.5. [Reminders](#reminders) 
+    1. [Adding reminders: `reminder add`](#adding-reminders-reminder-add)
+    2. [Listing all reminders: `reminder list`](#listing-all-reminders-reminder-list)
+    3. [Deleting a reminder: `reminder delete`](#deleting-a-reminder-reminder-delete)
+    
+    3.6. [Miscellaneous](#miscellaneous)  
+    1.  [Viewing help: `help`](#viewing-help-help)
+    2. [Clearing all past interactions: `clear`](#clearing-all-past-interactions-clear)
+    3. [Removing all data: `purge`](#removing-all-data-purge)
+    4. [Exiting the program: `exit`](#exiting-the-program-exit)
+    
+4. [**FAQ (WIP)**](#faq-wip)   
+    
+5. [**Command Summary**](#command-summary)
+         
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
+StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -61,14 +100,84 @@ StonksBook is a **desktop app for managing sales contacts, optimized for use via
 ### Contacts
 
 #### Adding a contact: `contact add`
+Adds a contact to StonksBook.
+
+Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMARK]…​`
+
+:bulb: Tip: A contact can have any number of tags (including 0)
+
+Examples:
+* `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal r/blacklisted`
+
 
 #### Editing a contact: `contact edit`
+Edits an existing contact in StonksBook.
+
+Format: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]…​`
+
+* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
+* When editing remarks, the previous remarks will also be removed/overwritten, similar to tags
+* You can remove all the contact’s tags/remarks by typing `t/` or  `r/` respectively without specifying any tags/remarks after it.
+
+Examples:
+* `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
+* `contact edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be Betsy Crower and clears all existing tags.
 
 #### Listing all contacts: `contact list`
+Shows a list of all contacts in StonksBook.
+
+Format:`contact list`
 
 #### Locating contacts by name: `contact find`
+Finds contacts whose names contain any of the given keywords.
+
+Format: `contact find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g hans will match Hans
+
+* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+
+* Only the name is searched.
+
+* Contacts matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+
+* There are two search result categories: exact matches and similar matches.
+
+* For exact matches:
+
+    * Only full words will be matched e.g. Han will not match Hans
+
+* For similar matches:
+
+    * Partial words will be matched e.g.  Han will match Hans
+    
+![result for 'contact find keyword'](images/contactFindMockup.png)
+
+* Format: `contact find REGEX`
+
+* Returns results that satisfies the regular expression under exact matches.
+
+![result for 'contact find regex'](images/contactFindRegexMockup.png)
+
+Examples:
+* `contact find John` returns john and John Doe
+* `contact find alex david` returns Alex Yeoh, David Li
 
 #### Deleting a contact: `contact delete`
+Deletes the specified contact from StonksBook.
+
+Format: `contact delete INDEX`
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+`contact list` followed by `contact delete 2` deletes the 2nd contact in StonksBook.
+`contact find Betsy` followed by `contact delete 1` deletes the 1st contact in the results of the find command.
 
 ### Tags
 
@@ -231,9 +340,18 @@ Examples:
 #### Viewing help: `help`
 Lists the available commands, command description and example usage as well as the link to the User Guide.  
 
+Lists the available commands, command description and example usage as well as the link to the User Guide.
+
 Format: `COMMAND help`
-* If `COMMAND` is present, list the command description and example usage.
-* If `COMMAND` not present, list the available commands and the link to the User Guide.
+
+* If `COMMAND` is not present, 
+    * list the available commands and the link to the User Guide.
+![result for 'help'](images/helpAllMockup.png)
+
+* If `COMMAND` is present
+    * list the command description and example usage.
+![result for 'help command'](images/helpPerCommandMockup.png)
+
 #### Clearing all past interactions: `clear`
 Clears all past interactions with the StonksBook GUI within the session.  
 
