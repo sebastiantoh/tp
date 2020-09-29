@@ -339,7 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. StonksBook shows an error message.
-    
+
         Use case resumes at step 2.
 
 **Use case: Delete a tag**
@@ -364,7 +364,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. StonksBook shows an error message.
-    
+
         Use case resumes at step 2.
 
 **Use case: Retrieve entries by tag**
@@ -387,8 +387,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. StonksBook shows an error message.
-    
-        Use case resumes at step 2. 
+
+        Use case resumes at step 2.
 
 **Use case: Clear past interactions**
 
@@ -396,20 +396,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User enters the clear command.
 2.  StonksBook clears the GUI.
 
-    Use case ends.  
-    
+    Use case ends.
+
 **Use case: Clear all data**
 
 **MSS**
 1.  User enters the purge command.
 2.  StonksBook clears all saved data.
 
-    Use case ends.  
+    Use case ends.
 
 **Extensions**
 * 1a. StonksBook requests for confirmation.
     * 1a1. User confirms.  
-    Use case resumes from step 2.  
+    Use case resumes from step 2.
 
 *{More to be added}*
 
