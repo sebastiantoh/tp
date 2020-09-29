@@ -236,27 +236,40 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* Managing a large client base
+* Values sales optimisation
+*  Analytical
+*  Performance-driven
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Effectively curate sales-optimised contact list and conveniently conduct data analysis to gain business insights and boost sales performance.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                        | I want to …​                                               | So that I can…​                                                                            |
+| -------- | --------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `* *`    | well-connected salesman           | see a history of the number of contacts made with someone     | determine if this contact is worth investing more time to                                     |
+| `* *`    | forgetful salesman                | set reminders associated with contacts                        | keep track of crucial tasks to be done                                                        |
+| `* *`    | efficient salesman                | set meeting / call time with contacts                         | plan my meetings without another app                                                          |
+| `* * *`  | new salesman                      | add more contacts                                             | expand my contact list                                                                        |
+| `* *`    | normal user who makes mistakes    | update records                                                | quickly and conveniently append any mistakes made.                                            |
+| `* * *`  | careless user                     | delete records                                                | avoid having wrong data                                                                       |
+| `* *`    | visual salesman                   | have chatbot GUI                                              | visually keep track of my actions                                                             |
+| `* *`    | busy salesman                     | clear past interactions with the app (like CLI clear command) | remove the clutter on the GUI                                                                 |
+| `* *`    | careless typer                    | be notified of an erroneous input                             | easily identify my mistakes                                                                   |
+| `* *`    | well-connected salesman           | associate notes to contacts                                   | remember key information about this contact and distinguish between contacts with same names  |
+| `* *`    | organised user                    | get notified if I attempted to create a duplicate record      | avoid duplicated contacts in the app.                                                         |
+| `* *`    | efficient salesman                | see the relevant sales information to the contact information | make sales decisions without referring to other app                                           |
+| `* * *`  | well-connected salesman           | categorise my contacts                                        | navigate through a large list of contacts with ease.                                          |
+| `* *`    | efficient salesman                | search contacts who are in certain groups                     | identify contacts belong to a sales group easily                                              |
+| `* *`    | well-connected salesman           | search for contacts or records based on fuzzy match           | easily find the contacts I am interested in                                                   |
+| `* *`    | forgetful salesman                | see the command list with a single command                    | easily recall how to use the app                                                              |
 
 *{More to be added}*
 
@@ -389,7 +402,72 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StonksBook shows an error message.
     
         Use case resumes at step 2. 
+        
+        
+        
+**Use case: Find a contact**
 
+**MSS**
+
+1.  User requests to find a contact by giving keyword(s).
+2.  AddressBook shows two list of contacts, one that matches the keyword, another that partially matches the keyword.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 2b. There is no given keyword. 
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case ends.
+      
+*{More to be added}*
+
+**Use case: Find a contact by regular expression**
+
+**MSS**
+
+1.  User requests to find a contact by giving a regular expression.
+2.  AddressBook shows a list of contacts that satisfies the regular expression.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 2b. There is no given regular expression. 
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case ends.
+      
+      
+**Use case: get help on available commands**
+
+**MSS**
+
+1.  User requests for help on the available commands.
+2.  AddressBook lists the available commands, command description and example usage as well as the link to the User Guide.
+
+    Use case ends.
+
+**Use case: get help for a command**
+
+**MSS**
+
+1.  User requests for help for a command.
+2.  AddressBook lists the command description and example usage.
+
+  Use case ends.
+        
 *{More to be added}*
 
 ### Non-Functional Requirements
