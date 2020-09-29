@@ -67,6 +67,39 @@ StonksBook is a **desktop app for managing contacts, optimized for use via a Com
 #### Listing all contacts: `contact list`
 
 #### Locating contacts by name: `contact find`
+* Finds contacts whose names contain any of the given keywords.
+
+Format: `contact find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g hans will match Hans
+
+* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+
+* Only the name is searched.
+
+* Contacts matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+
+* There are two search result categories: exact matches and similar matches.
+
+* For exact matches:
+
+    * Only full words will be matched e.g. Han will not match Hans
+
+* For similar matches:
+
+    * Partial words will be matched e.g.  Han will match Hans
+    
+![result for 'contact find'](images/contactFindMockup.png)
+
+* Format: `contact find REGEX`
+
+* Returns results that satisfies the regular expression under exact matches.
+
+![result for 'tag find'](images/contactFindRegexMockup.png)
+
+Examples:
+* `contact find John` returns john and John Doe
+* `contact find alex david` returns Alex Yeoh, David Li
 
 #### Deleting a contact: `contact delete`
 
@@ -229,6 +262,20 @@ Examples:
 ### Miscellaneous
 
 #### Viewing help: `help`
+
+Lists the available commands, command description and example usage as well as the link to the User Guide.
+
+Format: `COMMAND help`
+
+* If `COMMAND` is not present, 
+    * list the available commands and the link to the User Guide.
+
+![result for 'appointment list'](images/helpAllMockup.png)
+
+* If `COMMAND` is present
+    * list the command description and example usage.
+
+![result for 'appointment list'](images/helpPerCommandMockup.png)
 
 #### Clearing all past interactions: `clear`
 
