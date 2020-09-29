@@ -67,3 +67,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Testing
+
+### Leong Jin Ming
+[[github](https://github.com/jmleong666)]
+[[portfolio](team/jmleong666.md)]
+
+<img src="team/jmleong666.png" width="200px">
+
+* Role: Developer
+* Responsibilities: Integration
