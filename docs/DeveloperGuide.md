@@ -399,10 +399,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list contacts
-2.  StonksBook shows a list of contacts
-3.  User requests to add a sale to a specific contact in the list
-4.  StonksBook adds a sale to the specific contact
+1.  User requests to list contacts.
+2.  StonksBook shows a list of contacts.
+3.  User requests to add a sale to a specific contact in the list.
+4.  StonksBook adds a sale to the specific contact.
 
     Use case ends.
 
@@ -424,7 +424,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case ends.
     
-* 5a. The given parameters (unit price and quantity) are not in the correct format
+* 5a. The given parameters (unit price and quantity) are not in the correct format.
 
     * 5a1. StonksBook shows an error message.
     
@@ -434,10 +434,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list contacts
-2.  StonksBook shows a list of contacts
-3.  User requests to view all sales belonging to a specific contact in the list
-4.  StonksBook shows all sales belonging to the specific contact
+1.  User requests to list contacts.
+2.  StonksBook shows a list of contacts.
+3.  User requests to view all sales belonging to a specific contact in the list.
+4.  StonksBook shows all sales belonging to the specific contact.
 
     Use case ends.
 
@@ -457,9 +457,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list contacts
-2.  StonksBook shows a list of contacts
-3.  User requests to delete a sale belonging to a specific contact in the list
+1.  User requests to list contacts.
+2.  StonksBook shows a list of contacts.
+3.  User requests to delete a sale belonging to a specific contact in the list.
 4.  StonksBook deletes the specified sale.
 
     Use case ends.
