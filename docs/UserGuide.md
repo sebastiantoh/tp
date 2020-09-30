@@ -22,7 +22,7 @@ StonksBook is a **desktop app for managing contacts, optimized for use via a Com
 1. Copy the file to the folder you want to use as the _home folder_ for your StonksBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   <img src="images/Ui.png" alt="Ui" width="400px">
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -119,13 +119,13 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
     * Partial words will be matched e.g.  Han will match Hans
 
-![result for 'contact find keyword'](images/contactFindMockup.png)
+<img src="images/contactFindMockup.png" alt="result for 'contact find keyword'" width="400px">
 
 * Format: `contact find REGEX`
 
 * Returns results that satisfies the regular expression under exact matches.
 
-![result for 'contact find regex'](images/contactFindRegexMockup.png)
+<img src="images/contactFindRegexMockup.png" alt="result for 'contact find regex'" width="400px">
 
 Examples:
 * `contact find John` returns john and John Doe
@@ -162,7 +162,7 @@ Examples:
 
 Displays a list of all tags created so far.
 
-![result for 'tag list'](images/tagListMockup.png)
+<img src="images/tagListMockup.png" alt="result for 'tag list'" width="400px">
 
 Format: `tag list`
 
@@ -204,7 +204,7 @@ Examples:
 
 Displays all entries (including contacts, items, etc.) that are associated with the specified tag.
 
-![result for 'tag find'](images/tagFindMockup.png)
+<img src="images/tagFindMockup.png" alt="result for 'tag find'" width="400px">
 
 Format: `tag find INDEX [MODEL]`
 
@@ -233,7 +233,7 @@ Examples:
 
 Shows a list of all sales to a specified contact.
 
-![result for 'sale list](images/saleListMockup.png)
+<img src="images/saleListMockup.png" alt="result for 'sale list'" width="400px">
 
 Format: `sale list CONTACT_INDEX`
 
@@ -276,7 +276,7 @@ Examples:
 
 Shows a list of all appointments. By default, the list only shows upcoming appointments. This list is sorted in increasing order based on the date the appointment is scheduled.
 
-![result for 'appointment list'](images/appointmentListMockup.png)
+<img src="images/appointmentListMockup.png" alt="result for 'appointment list'" width="400px">
 
 Format: `appointments list [CONTACT_INDEX] [a/]`
 
@@ -316,7 +316,7 @@ Examples:
 
 Shows a list of all reminders created, sorted in increasing order based on the date the reminder is scheduled.
 
-![result for 'reminder list'](images/reminderListMockup.png)
+<img src="images/reminderListMockup.png" alt="result for 'reminder list'" width="400px">
 
 Format: `reminder list`
 
@@ -344,11 +344,13 @@ Format: `COMMAND help`
 
 * If `COMMAND` is not present,
     * list the available commands and the link to the User Guide.
-![result for 'help'](images/helpAllMockup.png)
+    
+<img src="images/helpAllMockup.png" alt="result for 'help'" width="400px">
 
 * If `COMMAND` is present
     * list the command description and example usage.
-![result for 'help command'](images/helpPerCommandMockup.png)
+    
+<img src="images/helpPerCommandMockup.png" alt="result for 'help command'" width="400px">
 
 #### Clearing all past interactions: `clear`
 Clears all past interactions with the StonksBook GUI within the session.
