@@ -256,18 +256,18 @@ Adds a sale of specified name, unit price and quantity, to the specified contact
 
 Format: `sale add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY`
 
-* Adds a sale made to the contact at the specified `CONTACT_INDEX`, with details such as the name of item sold, the unit price, and the quantity
+* Adds a sale made to the contact at the specified `CONTACT_INDEX`, with details such as the name of item sold, the unit price, and the quantity.
 * The `CONTACT_INDEX` refers to the index number shown in the displayed contact list.
 * The `CONTACT_INDEX` must be a positive integer 1, 2, 3, …​
 * `UNIT_PRICE` must be a positive number with 2 decimal places, in format `DOLLARS.CENTS`.
 * The `QUANTITY` must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `sale add c/4 n/Notebook p/6.00 q/2` Adds a sale made to the contact that is ordered 4th on the displayed contact list. This is a sale of 2 Notebooks, each of price $6.00
+* `sale add c/4 n/Notebook p/6.00 q/2` Adds a sale made to the contact that is ordered 4th on the displayed contact list. This is a sale of 2 Notebooks, each of price $6.00.
 
 #### Listing all sales items: `sale list`
 
-Shows a list of all sales to a specified contact
+Shows a list of all sales to a specified contact.
 
 ![result for 'sale list](images/saleListMockup.png)
 
@@ -279,11 +279,11 @@ Format: `sale list CONTACT_INDEX`
 
 #### Deleting a sales item: `sale delete`
 
-Deletes a sales item of specified index
+Deletes a sales item of specified index.
 
 Format: `sale delete c/CONTACT_INDEX s/SALE_INDEX`
 
-* In the list of all sales made to a contact with the specified `CONTACT_INDEX`, the sale of `SALE_INDEX` is deleted
+* In the list of all sales made to a contact with the specified `CONTACT_INDEX`, the sale of `SALE_INDEX` is deleted.
 * The  `CONTACT_INDEX` refers to the index number shown in the displayed contact list, while `SALE_INDEX` refers to the index number shown in the sale list of the specified contact. 
 * Both `CONTACT_INDEX` and `SALE_INDEX` must be a positive integer 1, 2, 3, …​
 
