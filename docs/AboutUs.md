@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/aaronnseah.md)]
 
 * Role: Team Lead
-* Responsibilities: overall project coordination and backend
+* Responsibilities: Overall Project Coordination
 
 ### Sebastian Toh
 
