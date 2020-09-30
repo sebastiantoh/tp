@@ -270,9 +270,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | efficient salesman                | search contacts who are in certain groups                     | identify contacts belong to a sales group easily                                              |
 | `* *`    | well-connected salesman           | search for contacts or records based on fuzzy match           | easily find the contacts I am interested in                                                   |
 | `* *`    | forgetful salesman                | see the command list with a single command                    | easily recall how to use the app                                                              |
-| `* *`    | well-connected salesman,          | see a history of the number of contacts made with someone     | determine if this contact is worth investing more time into                                   |
-| `* *`    | forgetful salesman                | set reminders associated with contacts                        | avoid missing crucial tasks to be done.                                                       |
-| `* *`    | efficient salesman                | set meeting / call time with contacts                         | can plan my meetings without another app                                                      |
 
 *{More to be added}*
 
