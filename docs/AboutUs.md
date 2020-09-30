@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Aaron Seah
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aaronnseah.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/aaronnseah)]
+[[portfolio](team/aaronnseah.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: overall project coordination and backend
 
 ### Johnny Doe
 
@@ -57,3 +57,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: UI
+
+### Wang Luo
+
+<img src="images/asthenosphere.png" width="200px">
+
+[[github](https://github.com/Asthenosphere)]
+[[portfolio](team/asthenosphere.md)]
+
+* Role: Developer
+* Responsibilities: Testing
