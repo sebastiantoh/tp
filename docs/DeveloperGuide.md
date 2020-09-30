@@ -286,7 +286,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User requests to delete a specific person in the list
 4.  StonksBook deletes the person
 
-    Use case ends.
+  Use case ends.
 
 **Extensions**
 
@@ -425,8 +425,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2. 
         
-        
-        
 **Use case: Find a contact**
 
 **MSS**
@@ -468,9 +466,154 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StonksBook shows an error message.
 
       Use case ends.
-
       
-**Use case: get help on available commands**
+**Use case: Add an appointment**
+
+**MSS**
+
+1. User requests to list contacts
+2. StonksBook shows a list of contacts
+3. User requests to add an appointment associated with a specific contact in the list
+4. StonksBook adds a appointment associated with the contact
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+      
+* 3b. The given appointment date is invalid.
+
+    * 3b1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+      
+* 3c. The given appointment duration is invalid.
+
+    * 3b1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: View all appointments**
+
+**MSS**
+
+1. User requests to list all appointments
+2. StonksBook shows a list of all appointments
+
+  Use case ends.
+
+**Extensions**
+
+* 1a. A index is specified, but the given index is invalid
+
+    * 1a1. StonksBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of appointments is empty.
+
+  Use case ends.
+
+**Use case: Delete an appointment**
+
+**MSS**
+
+1. User requests to list appointments
+2. StonksBook shows a list of appointments
+3. User requests to delete a specific appointment in the list
+4. StonksBook deletes the appointment
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. The list of appointments is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+      
+**Use case: Add a reminder**
+
+**MSS**
+
+1. User requests to list contacts
+2. StonksBook shows a list of contacts
+3. User requests to add a reminder associated with a specific contact in the list
+4. StonksBook adds a reminder associated with the contact
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+      
+* 3b. The given reminder date is invalid.
+
+    * 3b1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: View all reminders**
+
+**MSS**
+
+1. User requests to list all reminders
+2. StonksBook shows a list of all reminders
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. The list of reminders is empty.
+
+  Use case ends.
+
+**Use case: Delete a reminder**
+
+**MSS**
+
+1. User requests to list reminders
+2. StonksBook shows a list of reminders
+3. User requests to delete a specific reminder in the list
+4. StonksBook deletes the reminder
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. The list of reminders is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+      
+**Use case: Get help on available commands**
 
 **MSS**
 
@@ -479,7 +622,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: get help for a command**
+**Use case: Get help for a command**
 
 **MSS**
 
@@ -497,6 +640,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The size of the application should not exceed 100Mb.
 5.  The features of the application should be easily testable.
+6.  The application, along with all my existing data, should be portable.
+7.  Should be able to function without having to rely on being connected to a network.
+8.  The data should be stored locally and should be in a human editable text file.
 
 *{More to be added}*
 
@@ -504,7 +650,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Regular Expression**: a sequence of characters that define a search pattern
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
