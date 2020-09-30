@@ -269,7 +269,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | well-connected salesman           | categorise my contacts                                        | navigate through a large list of contacts with ease.                                          |
 | `* *`    | efficient salesman                | search contacts who are in certain groups                     | identify contacts belong to a sales group easily                                              |
 | `* *`    | well-connected salesman           | search for contacts or records based on fuzzy match           | easily find the contacts I am interested in                                                   |
-| `* *`    | forgetful salesman                | see the command list with a single command                    | easily recall how to use the app                                                              |
+| `* *`    | forgetful salesman                | see the command list with a single command                    | easily recall how to use the app     
+| `* * *`  | user                              | add sales to contacts                                         |                                                                                               |
+| `* * *`  | user                              | delete sales belonging to contacts                            | ensure updated and correct sales information                                                  |
+| `* * *`  | user                              | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
+| `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
+
 
 ### Use cases
 
@@ -554,13 +559,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. StonksBook adds a reminder associated with the contact
 
   Use case ends.
-
+  
 **Extensions**
 
 * 2a. The list of contacts is empty.
 
   Use case ends.
-
+  
 * 3a. The given index is invalid.
 
     * 3a1. StonksBook shows an error message.
@@ -628,6 +633,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  StonksBook lists the command description and example usage.
 
   Use case ends.
+
+**Use case: Add a sale to a contact**
+
+**MSS**
+
+1.  User requests to list contacts.
+2.  StonksBook shows a list of contacts.
+3.  User requests to add a sale to a specific contact in the list.
+4.  StonksBook adds a sale to the specific contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+
+* 3a. The given contact index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The given sale already exists
+
+    * 4a1. StonksBook shows an error message.
+    
+      Use case ends.
+    
+* 5a. The given parameters (unit price and quantity) are not in the correct format.
+
+    * 5a1. StonksBook shows an error message.
+    
+      Use case resumes at step 2.
+
+**Use case: List all sales belonging to a contact**
+
+**MSS**
+
+1.  User requests to list contacts.
+2.  StonksBook shows a list of contacts.
+3.  User requests to view all sales belonging to a specific contact in the list.
+4.  StonksBook shows all sales belonging to the specific contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+
+* 3a. The given contact index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a sale belonging to a contact**
+
+**MSS**
+
+1.  User requests to list contacts.
+2.  StonksBook shows a list of contacts.
+3.  User requests to delete a sale belonging to a specific contact in the list.
+4.  StonksBook deletes the specified sale.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+  
+* 3a. The list of sales is empty.
+
+  Use case ends.
+
+* 4a. The given contact index or sale index is invalid.
+
+    * 4a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
