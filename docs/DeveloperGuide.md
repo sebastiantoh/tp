@@ -249,14 +249,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                     | I want to …​                                        | So that I can…​                                                         |
+| -------- | ------------------------------------------ | -------------------------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                             | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new person                                   |                                                                        |
+| `* * *`  | user                                       | delete a person                                    | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a person by name                              | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | add remarks to a contact                           | store miscellaneous notes related to a contact                         |
+| `* *`    | user                                       | hide private contact details                       | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the address book | sort persons by name                               | locate a person easily                                                 |
+| `* * *`  | user                                       | add sales to contacts                              |                                                                        |
+| `* * *`  | user                                       | delete sales belonging to contacts                 | ensure updated and correct sales information                           |
+| `* * *`  | user                                       | list all sales of a contact                        | see all sales made to a contact easily                                 |
+| `* *`    | careless user                              | be notified if a similar record already exists     | ensure no duplicate records are created                                |
 
 *{More to be added}*
 
@@ -389,6 +394,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StonksBook shows an error message.
     
         Use case resumes at step 2. 
+
+**Use case: Add a sale to a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  StonksBook shows a list of contacts
+3.  User requests to add a sale to a specific contact in the list
+4.  StonksBook adds a sale to the specific contact
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+
+* 3a. The given contact index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. The given sale already exists
+
+    * 4a1. StonksBook shows an error message.
+    
+      Use case ends.
+    
+* 5a. The given parameters (unit price and quantity) are not in the correct format
+
+    * 5a1. StonksBook shows an error message.
+    
+      Use case resumes at step 2.
+
+**Use case: List all sales belonging to a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  StonksBook shows a list of contacts
+3.  User requests to view all sales belonging to a specific contact in the list
+4.  StonksBook shows all sales belonging to the specific contact
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+
+* 3a. The given contact index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a sale belonging to a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  StonksBook shows a list of contacts
+3.  User requests to delete a sale belonging to a specific contact in the list
+4.  StonksBook deletes the specified sale.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+  
+* 3a. The list of sales is empty.
+
+  Use case ends.
+
+* 4a. The given contact index or sale index is invalid.
+
+    * 4a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
 
 *{More to be added}*
 
