@@ -271,8 +271,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | well-connected salesman           | search for contacts or records based on fuzzy match           | easily find the contacts I am interested in                                                   |
 | `* *`    | forgetful salesman                | see the command list with a single command                    | easily recall how to use the app                                                              |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `StonksBook` and the **Actor** is the `user`, unless specified otherwise)
@@ -630,8 +628,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  StonksBook lists the command description and example usage.
 
   Use case ends.
-        
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -643,8 +639,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  The application, along with all my existing data, should be portable.
 7.  Should be able to function without having to rely on being connected to a network.
 8.  The data should be stored locally and should be in a human editable text file.
-
-*{More to be added}*
 
 ### Glossary
 
