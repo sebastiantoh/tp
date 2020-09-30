@@ -344,12 +344,10 @@ Format: `COMMAND help`
 
 * If `COMMAND` is not present,
     * list the available commands and the link to the User Guide.
-    
 <img src="images/helpAllMockup.png" alt="result for 'help'" width="400px">
 
 * If `COMMAND` is present
     * list the command description and example usage.
-    
 <img src="images/helpPerCommandMockup.png" alt="result for 'help command'" width="400px">
 
 #### Clearing all past interactions: `clear`
