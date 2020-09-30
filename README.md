@@ -9,4 +9,4 @@ StonksBook is a desktop app for managing contacts, optimized for use via a Comma
 For a detailed documentation of StonksBook, visit **[our product website](https://ay2021s1-cs2103t-t11-1.github.io/tp/)**.
 
 ## Acknowledgements
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU Initiative](https://se-education.org/).
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU Initiative](https://se-education.org).
