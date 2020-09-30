@@ -272,7 +272,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | forgetful salesman                | see the command list with a single command                    | easily recall how to use the app                                                              |
 | `* * *`  | efficient salesman                | add sales to contacts                                          | make better sales decisions to my clients                                                    |
 | `* * *`  | salesman                          | delete sales belonging to contacts                            | ensure updated and correct sales information                                                  |
-| `* * *`  | efficeint salesman                | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
+| `* * *`  | efficient salesman                | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
 
 
