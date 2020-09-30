@@ -258,8 +258,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | forgetful salesman                | set reminders associated with contacts                        | keep track of crucial tasks to be done                                                        |
 | `* *`    | efficient salesman                | set meeting / call time with contacts                         | plan my meetings without another app                                                          |
 | `* * *`  | new salesman                      | add more contacts                                             | expand my contact list                                                                        |
-| `* *`    | normal user who makes mistakes    | update records                                                | quickly and conveniently append any mistakes made.                                            |
-| `* * *`  | careless user                     | delete records                                                | avoid having wrong data                                                                       |
+| `* *`    | normal user who makes mistakes    | update contacts                                               | quickly and conveniently append any mistakes made.                                            |
+| `* * *`  | careless user                     | delete contacts                                               | avoid having wrong data                                                                       |
 | `* *`    | visual salesman                   | have chatbot GUI                                              | visually keep track of my actions                                                             |
 | `* *`    | busy salesman                     | clear past interactions with the app (like CLI clear command) | remove the clutter on the GUI                                                                 |
 | `* *`    | careless typer                    | be notified of an erroneous input                             | easily identify my mistakes                                                                   |
@@ -269,10 +269,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | well-connected salesman           | categorise my contacts                                        | navigate through a large list of contacts with ease.                                          |
 | `* *`    | efficient salesman                | search contacts who are in certain groups                     | identify contacts belong to a sales group easily                                              |
 | `* *`    | well-connected salesman           | search for contacts or records based on fuzzy match           | easily find the contacts I am interested in                                                   |
-| `* *`    | forgetful salesman                | see the command list with a single command                    | easily recall how to use the app     
-| `* * *`  | user                              | add sales to contacts                                         |                                                                                               |
-| `* * *`  | user                              | delete sales belonging to contacts                            | ensure updated and correct sales information                                                  |
-| `* * *`  | user                              | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
+| `* *`    | forgetful salesman                | see the command list with a single command                    | easily recall how to use the app                                                              |
+| `* * *`  | efficient salesman                | add sales to contacts                                          | make better sales decisions to my clients                                                    |
+| `* * *`  | salesman                          | delete sales belonging to contacts                            | ensure updated and correct sales information                                                  |
+| `* * *`  | efficeint salesman                | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
 
 
