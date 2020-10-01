@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kwek Min Yih
 
-<img src="images/hakujitsu.jpg" width="200px">
+<img src="images/hakujitsu.png" width="200px">
 
 [[github](http://github.com/hakujitsu)]
 [[portfolio](team/hakujitsu.md)]
