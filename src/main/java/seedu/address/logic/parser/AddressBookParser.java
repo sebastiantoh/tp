@@ -7,10 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.enums.GroupEnum;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.PurgeCommand;
 import seedu.address.logic.parser.contact.ContactCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -63,7 +63,7 @@ public class AddressBookParser {
 
     private boolean isSingleKeyWordCommand(String commandWord) {
         switch (commandWord) {
-        case ClearCommand.COMMAND_WORD:
+        case PurgeCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
         case ExitCommand.COMMAND_WORD:
             return true;
@@ -75,8 +75,8 @@ public class AddressBookParser {
 
     private Command parseSingleKeyWordCommand(String commandWord) throws ParseException {
         switch(commandWord) {
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case PurgeCommand.COMMAND_WORD:
+            return new PurgeCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
