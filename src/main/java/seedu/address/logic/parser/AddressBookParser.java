@@ -6,15 +6,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -27,6 +22,8 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    private static final String CONTACT_COMMAND = "contact";
+
     /**
      * Parses user input into command for execution.
      *
@@ -35,42 +32,78 @@ public class AddressBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        final Matcher firstCommandWordMatcher = this.getMatcherFromInput(userInput);
+
+        final String commandWord = firstCommandWordMatcher.group("commandWord");
+        final String arguments = firstCommandWordMatcher.group("arguments");
+
+
+        if (this.isSingleKeyWordCommand(commandWord)) {
+            return this.parseSingleKeyWordCommand(commandWord, arguments);
+        } else if (this.isDoubleKeyWordCommand(commandWord)) {
+            final Matcher secondCommandWordMatcher = this.getMatcherFromInput(arguments);
+
+            final String secondCommandWord = secondCommandWordMatcher.group("commandWord");
+            final String trueArguments = secondCommandWordMatcher.group("arguments");
+            return this.parseTwoKeyWordCommand(commandWord, secondCommandWord, trueArguments);
+        } else {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
 
-        final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+    private boolean isSingleKeyWordCommand(String commandWord) {
         switch (commandWord) {
+        case ClearCommand.COMMAND_WORD:
+        case HelpCommand.COMMAND_WORD:
+        case ExitCommand.COMMAND_WORD:
+            return true;
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        default:
+            return false;
+        }
+    }
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
+    private Command parseSingleKeyWordCommand(String commandWord, String arguments) throws ParseException {
+        switch(commandWord) {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
+    private boolean isDoubleKeyWordCommand(String commandWord) {
+        switch (commandWord) {
+        case CONTACT_COMMAND:
+            return true;
+
+        default:
+            return false;
+        }
+    }
+
+    private Command parseTwoKeyWordCommand(String commandWord, String secondCommandWord, String arguments) throws ParseException {
+        switch (commandWord) {
+        case CONTACT_COMMAND:
+            return new ContactCommandsParser().parse(secondCommandWord, arguments);
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
+    private Matcher getMatcherFromInput(String input) throws ParseException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+        return matcher;
+    }
 }
