@@ -11,8 +11,18 @@ import seedu.address.logic.commands.contact.ListCommand;
 import seedu.address.logic.parser.GroupCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses the command word to create a Contact Command Object corresponding to the command word.
+ */
 public class ContactCommandsParser implements GroupCommandsParser {
 
+    /**
+     * Parses the command word and arguments to create the appropriate Command Object for Contact.
+     * @param commandWord
+     * @param arguments
+     * @return Command Object for Contact
+     * @throws ParseException
+     */
     @Override
     public Command parse(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
