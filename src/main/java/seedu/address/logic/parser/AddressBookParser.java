@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.enums.GroupEnum;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
@@ -40,7 +41,7 @@ public class AddressBookParser {
 
 
         if (this.isSingleKeyWordCommand(commandWord)) {
-            return this.parseSingleKeyWordCommand(commandWord, arguments);
+            return this.parseSingleKeyWordCommand(commandWord);
         } else if (this.isDoubleKeyWordCommand(commandWord)) {
             final Matcher secondCommandWordMatcher = this.getMatcherFromInput(arguments);
 
@@ -50,6 +51,14 @@ public class AddressBookParser {
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    private Matcher getMatcherFromInput(String input) throws ParseException {
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+        return matcher;
     }
 
     private boolean isSingleKeyWordCommand(String commandWord) {
@@ -64,7 +73,7 @@ public class AddressBookParser {
         }
     }
 
-    private Command parseSingleKeyWordCommand(String commandWord, String arguments) throws ParseException {
+    private Command parseSingleKeyWordCommand(String commandWord) throws ParseException {
         switch(commandWord) {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -90,21 +99,23 @@ public class AddressBookParser {
         }
     }
 
-    private Command parseTwoKeyWordCommand(String commandWord, String secondCommandWord, String arguments) throws ParseException {
-        switch (commandWord) {
-        case CONTACT_COMMAND:
-            return new ContactCommandsParser().parse(secondCommandWord, arguments);
+    private Command parseTwoKeyWordCommand(String commandWord,
+        String secondCommandWord, String arguments) throws ParseException {
+        GroupEnum groupEnum;
+        try {
+            groupEnum = GroupEnum.valueOf(commandWord.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+
+        final String fullCommand = String.format("%s %s", commandWord, secondCommandWord);
+
+        switch (groupEnum) {
+        case CONTACT:
+            return new ContactCommandsParser().parse(fullCommand, arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
-    }
-
-    private Matcher getMatcherFromInput(String input) throws ParseException {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
-        }
-        return matcher;
     }
 }
