@@ -2,11 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.enums.GroupEnum.CONTACT;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.commons.enums.GroupEnum;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -88,31 +88,17 @@ public class AddressBookParser {
     }
 
     private boolean isDoubleKeyWordCommand(String commandWord) {
-        switch (commandWord) {
-        case CONTACT_COMMAND:
-            return true;
-
-        default:
-            return false;
-        }
+        return commandWord.equals(CONTACT.name().toLowerCase());
     }
 
     private Command parseTwoKeyWordCommand(String commandWord,
         String secondCommandWord, String arguments) throws ParseException {
-        GroupEnum groupEnum;
-        try {
-            groupEnum = GroupEnum.valueOf(commandWord.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-        }
 
         final String fullCommand = String.format("%s %s", commandWord, secondCommandWord);
 
-        switch (groupEnum) {
-        case CONTACT:
+        if (commandWord.equals(CONTACT.name().toLowerCase())) {
             return new ContactCommandsParser().parse(fullCommand, arguments);
-
-        default:
+        } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
