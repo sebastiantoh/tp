@@ -1,13 +1,14 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.contact;
 
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import seedu.address.logic.commands.contact.AddCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.contact.AddCommand;
 import seedu.address.logic.commands.contact.DeleteCommand;
 import seedu.address.logic.commands.contact.EditCommand;
 import seedu.address.logic.commands.contact.FindCommand;
 import seedu.address.logic.commands.contact.ListCommand;
+import seedu.address.logic.parser.GroupCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ContactCommandsParser implements GroupCommandsParser {
