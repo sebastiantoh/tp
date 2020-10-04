@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalReminders.CALL_ALICE;
-import static seedu.address.testutil.TypicalReminders.EMAIL_BOB;
+import static seedu.address.testutil.TypicalReminders.EMAIL_BENSON;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -73,7 +73,7 @@ public class UniqueReminderListTest {
     public void setReminders_uniqueReminderList_replacesOwnListWithProvidedUniqueReminderList() {
         uniqueReminderList.add(CALL_ALICE);
         UniqueReminderList expectedUniqueReminderList = new UniqueReminderList();
-        expectedUniqueReminderList.add(EMAIL_BOB);
+        expectedUniqueReminderList.add(EMAIL_BENSON);
         uniqueReminderList.setReminders(expectedUniqueReminderList);
         assertEquals(expectedUniqueReminderList, uniqueReminderList);
     }
@@ -86,10 +86,10 @@ public class UniqueReminderListTest {
     @Test
     public void setReminders_list_replacesOwnListWithProvidedList() {
         uniqueReminderList.add(CALL_ALICE);
-        List<Reminder> reminderList = Collections.singletonList(EMAIL_BOB);
+        List<Reminder> reminderList = Collections.singletonList(EMAIL_BENSON);
         uniqueReminderList.setReminders(reminderList);
         UniqueReminderList expectedUniqueReminderList = new UniqueReminderList();
-        expectedUniqueReminderList.add(EMAIL_BOB);
+        expectedUniqueReminderList.add(EMAIL_BENSON);
         assertEquals(expectedUniqueReminderList, uniqueReminderList);
     }
 
