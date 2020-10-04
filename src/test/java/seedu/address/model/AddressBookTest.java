@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReminders.CALL_ALICE;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,6 +22,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -50,7 +52,7 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        AddressBookStub newData = new AddressBookStub(newPersons, Arrays.asList());
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -84,6 +86,35 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
+    @Test
+    public void resetData_withDuplicateReminder_throwsDuplicateReminderException() {
+        List<Reminder> newReminders = Arrays.asList(CALL_ALICE, CALL_ALICE);
+        AddressBookStub newData = new AddressBookStub(Arrays.asList(), newReminders);
+
+        assertThrows(DuplicateReminderException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void hasReminder_nullReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasReminder(null));
+    }
+
+    @Test
+    public void hasReminder_reminderNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasReminder(CALL_ALICE));
+    }
+
+    @Test
+    public void hasReminder_reminderInAddressBook_returnsTrue() {
+        addressBook.addReminder(CALL_ALICE);
+        assertTrue(addressBook.hasReminder(CALL_ALICE));
+    }
+
+    @Test
+    public void getReminderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getReminderList().remove(0));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
@@ -91,8 +122,9 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Reminder> reminders = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        AddressBookStub(Collection<Person> persons, Collection<Reminder> reminders) {
             this.persons.setAll(persons);
+            this.reminders.setAll(reminders);
         }
 
         @Override
