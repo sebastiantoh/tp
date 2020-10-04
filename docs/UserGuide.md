@@ -265,7 +265,7 @@ Format: `appointment add CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION`
 * Adds a scheduled appointment with the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index must be a positive integer 1, 2, 3, …​
-* The start datetime must be in the format `YYYY-MM-DD HH:mm`
+* The start datetime must be in the format `yyyy-MM-dd HH:mm`
 * The duration is specified in hours and must be a positive number (not necessarily an integer).
 
 Examples:
@@ -307,7 +307,7 @@ Format: `reminder add CONTACT_INDEX m/MESSAGE d/DATETIME`
 * Adds a reminder associated with the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index must be a positive integer 1, 2, 3, …​
-* The datetime must be in the format `YYYY-MM-DD HH:mm`
+* The datetime must be in the format `yyyy-MM-dd HH:mm`
 
 Examples:
 * `reminder add 2 m/Send follow-up email d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact that is scheduled for 30th October 2020 3PM, with the message `Send follow-up email`
