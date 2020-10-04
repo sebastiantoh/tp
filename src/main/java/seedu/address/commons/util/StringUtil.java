@@ -65,4 +65,33 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Calculates the difference between {@code str1} and {@code str2}.
+     *
+     * @param str1
+     * @param str2
+     * @return the difference count.
+     */
+    public static int calculateDifferenceCount(String str1, String str2) {
+        return calculateLevenshteinDistance(str1, str2);
+    }
+
+    private static int calculateLevenshteinDistance(String str1, String str2) {
+        int[][] DP = new int[str1.length() + 1][str2.length() + 1];
+        for (int i = 0 ; i < str2.length() + 1 ; i++) {
+            DP[0][i] = i;
+        }
+        for (int i = 0 ; i < str1.length() + 1 ; i++) {
+            DP[i][0] = i;
+        }
+
+        for (int i = 1 ; i < str1.length() + 1 ; i++) {
+            for (int k = 1 ; k < str2.length() + 1 ; k++) {
+                DP[i][k] = Math.min(Math.min(DP[i - 1][k] + 1, DP[i][k - 1] + 1), DP[i - 1][k - 1] +
+                        (str1.charAt(i - 1) == str2.charAt(k - 1) ? 0 : 1));
+            }
+        }
+        return DP[str1.length()][str2.length()];
+    }
 }
