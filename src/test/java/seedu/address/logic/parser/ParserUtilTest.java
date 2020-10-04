@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -26,6 +27,12 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DATETIME_1 = "2020/10/30 15:00";
+    private static final String INVALID_DATETIME_2 = "2020-30-10 15:00";
+    private static final String INVALID_DATETIME_3 = "2020-10-30 26:00";
+    private static final String INVALID_DATETIME_4 = "2020-10-30 8:00";
+    private static final String INVALID_DATETIME_5 = "2020-10-30 8:61";
+    private static final String INVALID_DATETIME_6 = "30/10/2100 08:31";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +40,9 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+
+    private static final String VALID_DATETIME = "2020-10-30 15:19";
+    private static final LocalDateTime EXPECTED_DATETIME = LocalDateTime.of(2020, 10, 30, 15, 19);
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -193,4 +203,31 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseDateTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime(null));
+    }
+
+    @Test
+    public void parseDateTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME_2));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME_3));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME_4));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME_5));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME_6));
+    }
+
+    @Test
+    public void parseDateTime_validValueWithoutWhitespace_returnsLocalDateTime() throws Exception {
+        assertEquals(EXPECTED_DATETIME, ParserUtil.parseDateTime(VALID_DATETIME));
+    }
+
+    @Test
+    public void parseDateTime_validValueWithWhitespace_returnsLocalDateTime() throws Exception {
+        String dateTimeWithWhitespace = WHITESPACE + VALID_DATETIME + WHITESPACE;
+        assertEquals(EXPECTED_DATETIME, ParserUtil.parseDateTime(dateTimeWithWhitespace));
+    }
+
 }
