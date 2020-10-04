@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.UniqueReminderList;
 
 /**
  * Wraps all data at the address-book level
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueReminderList reminders;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,12 +28,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        reminders = new UniqueReminderList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the data in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -48,12 +53,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the reminders list with {@code reminders}.
+     * {@code reminders} must not contain duplicate reminders.
+     */
+    public void setReminders(List<Reminder> reminders) {
+        this.reminders.setReminders(reminders);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setReminders(newData.getReminderList());
     }
 
     //// person-level operations
@@ -93,6 +107,32 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// reminder-level operations
+
+    /**
+     * Returns true if an equivalent reminder exists in StonksBook.
+     */
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return reminders.contains(reminder);
+    }
+
+    /**
+     * Adds a reminder to StonksBook.
+     * The person must not already exist in StonksBook.
+     */
+    public void addReminder(Reminder reminder) {
+        reminders.add(reminder);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeReminder(Reminder key) {
+        reminders.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -107,10 +147,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Reminder> getReminderList() {
+        return reminders.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+            || (other instanceof AddressBook // instanceof handles nulls
+            && persons.equals(((AddressBook) other).persons));
     }
 
     @Override
