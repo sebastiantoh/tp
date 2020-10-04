@@ -2,7 +2,7 @@ package seedu.address.model.reminder;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.model.person.Person;
@@ -15,7 +15,7 @@ public class Reminder {
 
     private final Person person;
     private final String message;
-    private final Date scheduledDate;
+    private final LocalDateTime scheduledDate;
 
     /**
      * Constructs a {@code Reminder}. Every field must be present and not null.
@@ -24,7 +24,7 @@ public class Reminder {
      * @param message       The message associated with this reminder.
      * @param scheduledDate The date this reminder is scheduled for.
      */
-    public Reminder(Person person, String message, Date scheduledDate) {
+    public Reminder(Person person, String message, LocalDateTime scheduledDate) {
         requireAllNonNull(person, message, scheduledDate);
         this.person = person;
         this.message = message.strip();
@@ -39,7 +39,7 @@ public class Reminder {
         return this.message;
     }
 
-    public Date getScheduledDate() {
+    public LocalDateTime getScheduledDate() {
         return this.scheduledDate;
     }
 
