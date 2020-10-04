@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.reminder.Reminder;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a reminder based on its displayed index in the reminder list.
  */
 public class DeleteCommand extends Command {
 

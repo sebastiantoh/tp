@@ -25,8 +25,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         persons = new UniquePersonList();
         reminders = new UniqueReminderList();
     }
@@ -119,7 +118,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Adds a reminder to StonksBook.
-     * The person must not already exist in StonksBook.
+     * The reminder must not already exist in StonksBook.
      */
     public void addReminder(Reminder reminder) {
         reminders.add(reminder);

@@ -17,10 +17,10 @@ public class ReminderCommandsParser implements GroupCommandsParser {
     /**
      * Parses the command word and arguments to create the appropriate Command Object for Reminder.
      *
-     * @param commandWord
-     * @param arguments
-     * @return Command Object for Reminder
-     * @throws ParseException
+     * @param commandWord The command to be executed for Reminder.
+     * @param arguments   The arguments to be executed with the commandWord.
+     * @return Command Object for Reminder.
+     * @throws ParseException If the commandWord given is unknown or if the arguments given are invalid.
      */
     @Override
     public Command parse(String commandWord, String arguments) throws ParseException {

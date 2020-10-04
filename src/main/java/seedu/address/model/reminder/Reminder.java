@@ -8,7 +8,7 @@ import java.util.Objects;
 import seedu.address.model.person.Person;
 
 /**
- * Represents a Reminder associated with a Person in the address book.
+ * Represents a Reminder that is associated with a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Reminder {

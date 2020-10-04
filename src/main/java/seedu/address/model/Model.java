@@ -94,7 +94,7 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
-     * Returns true if a reminder with same same fields {@code reminder} exists in StonksBook.
+     * Returns true if a reminder with the same fields {@code reminder} exists in StonksBook.
      */
     boolean hasReminder(Reminder reminder);
 
