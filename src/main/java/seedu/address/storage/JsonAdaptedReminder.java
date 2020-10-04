@@ -1,6 +1,9 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -62,7 +65,13 @@ class JsonAdaptedReminder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DateTime"));
         }
 
-        final LocalDateTime scheduledDate = LocalDateTime.parse(this.scheduledDate);
+
+        final LocalDateTime scheduledDate;
+        try {
+            scheduledDate = LocalDateTime.parse(this.scheduledDate);
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException(MESSAGE_INVALID_DATETIME);
+        }
 
         return new Reminder(person, message, scheduledDate);
     }

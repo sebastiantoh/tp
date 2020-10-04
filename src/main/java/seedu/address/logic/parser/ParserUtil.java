@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -149,7 +149,7 @@ public class ParserUtil {
         try {
             return LocalDateTime.parse(trimmedDateTime, dateTimeFormatter);
         } catch (DateTimeParseException e) {
-            throw new ParseException(MESSAGE_INVALID_DATETIME_FORMAT);
+            throw new ParseException(MESSAGE_INVALID_DATETIME);
         }
     }
 }
