@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.reminder.AddCommand;
+import seedu.address.logic.commands.reminder.DeleteCommand;
 import seedu.address.logic.commands.reminder.ListCommand;
 import seedu.address.logic.parser.GroupCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -27,9 +28,9 @@ public class ReminderCommandsParser implements GroupCommandsParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        //        case DeleteCommand.COMMAND_WORD:
-        //            return new DeleteCommandParser().parse(arguments);
-        //
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
