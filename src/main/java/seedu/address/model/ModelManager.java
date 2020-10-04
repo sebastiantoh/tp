@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -112,11 +113,27 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return addressBook.hasReminder(reminder);
+    }
+
+    @Override
+    public void deleteReminder(Reminder target) {
+        addressBook.removeReminder(target);
+    }
+
+    @Override
+    public void addReminder(Reminder reminder) {
+        addressBook.addReminder(reminder);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedAddressBook}.
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -144,8 +161,8 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+            && userPrefs.equals(other.userPrefs)
+            && filteredPersons.equals(other.filteredPersons);
     }
 
 }
