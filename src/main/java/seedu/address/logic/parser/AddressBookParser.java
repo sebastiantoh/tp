@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.commons.enums.GroupEnum.CONTACT;
+import static seedu.address.commons.enums.GroupEnum.REMINDER;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +14,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.PurgeCommand;
 import seedu.address.logic.parser.contact.ContactCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.reminder.ReminderCommandsParser;
 
 /**
  * Parses user input.
@@ -72,7 +74,7 @@ public class AddressBookParser {
     }
 
     private Command parseSingleKeyWordCommand(String commandWord) throws ParseException {
-        switch(commandWord) {
+        switch (commandWord) {
         case PurgeCommand.COMMAND_WORD:
             return new PurgeCommand();
 
@@ -88,16 +90,21 @@ public class AddressBookParser {
     }
 
     private boolean isDoubleKeyWordCommand(String commandWord) {
-        return commandWord.equals(CONTACT.name().toLowerCase());
+        boolean isContactCommand = commandWord.equals(CONTACT.name().toLowerCase());
+        boolean isReminderCommand = commandWord.equals(REMINDER.name().toLowerCase());
+
+        return isContactCommand || isReminderCommand;
     }
 
-    private Command parseTwoKeyWordCommand(String commandWord,
-        String secondCommandWord, String arguments) throws ParseException {
+    private Command parseTwoKeyWordCommand(String commandWord, String secondCommandWord, String arguments)
+        throws ParseException {
 
         final String fullCommand = String.format("%s %s", commandWord, secondCommandWord);
 
         if (commandWord.equals(CONTACT.name().toLowerCase())) {
             return new ContactCommandsParser().parse(fullCommand, arguments);
+        } else if (commandWord.equals(REMINDER.name().toLowerCase())) {
+            return new ReminderCommandsParser().parse(fullCommand, arguments);
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
