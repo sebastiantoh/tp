@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_TAG;
 
@@ -22,6 +23,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,9 +38,11 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CONTACT_NAME, PREFIX_CONTACT_PHONE, PREFIX_CONTACT_EMAIL, PREFIX_CONTACT_ADDRESS, PREFIX_CONTACT_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_CONTACT_NAME, PREFIX_CONTACT_PHONE, PREFIX_CONTACT_EMAIL,
+                        PREFIX_CONTACT_ADDRESS, PREFIX_CONTACT_TAG, PREFIX_CONTACT_REMARK);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CONTACT_NAME, PREFIX_CONTACT_ADDRESS, PREFIX_CONTACT_PHONE, PREFIX_CONTACT_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_CONTACT_NAME, PREFIX_CONTACT_ADDRESS, PREFIX_CONTACT_PHONE,
+                PREFIX_CONTACT_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -48,8 +52,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CONTACT_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_CONTACT_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CONTACT_TAG));
+        Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_CONTACT_REMARK).orElse(""));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Person person = new Person(name, phone, email, address, tagList, remark);
 
         return new AddCommand(person);
     }
