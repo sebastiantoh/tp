@@ -41,7 +41,7 @@ public class UniqueReminderListTest {
     }
 
     @Test
-    public void add_duplicateReminder_throwsDuplicateReminderxception() {
+    public void add_duplicateReminder_throwsDuplicateReminderException() {
         uniqueReminderList.add(CALL_ALICE);
         assertThrows(DuplicateReminderException.class, () -> uniqueReminderList.add(CALL_ALICE));
     }
