@@ -21,6 +21,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -122,7 +123,8 @@ public class FindCommandTest {
         String keyword = IDA.getName().fullName;
         FindCommand command = new FindCommand(keyword);
         expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(new CommandResult(expectedMessage), command.execute(model));
         assertEquals(Arrays.asList(BENSON, DANIEL, ELLE, HOON, IDA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(IDA, BENSON, DANIEL, ELLE, HOON), model.getSortedPersonList());
     }
 }

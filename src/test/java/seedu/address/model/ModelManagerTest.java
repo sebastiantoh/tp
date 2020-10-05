@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalPersons.IDA;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
@@ -103,7 +102,7 @@ public class ModelManagerTest {
 
     @Test
     public void deletePerson_invalidPerson_throwsPersonNotFoundException() {
-       assertThrows(PersonNotFoundException.class, () -> modelManager.deletePerson(IDA));
+        assertThrows(PersonNotFoundException.class, () -> modelManager.deletePerson(IDA));
     }
 
     @Test
@@ -149,9 +148,9 @@ public class ModelManagerTest {
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        // different sortedList -> returns true
-        modelManager.updateSortedPersonList(Comparator.comparing(x -> x.getName().fullName));
-        assertTrue(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        // different sortedList -> returns false
+        modelManager.updateSortedPersonList((x, y) -> y.getName().fullName.compareTo(x.getName().fullName));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateSortedPersonList(null);
