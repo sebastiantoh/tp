@@ -1,13 +1,15 @@
 package seedu.address.commons;
 
-import java.util.List;
-
 import seedu.address.model.person.Person;
 
 public class SimilarContacts extends SimilarItems<Person> {
 
-    public SimilarContacts(String searchKeyword, List<Person> list) {
-        super(searchKeyword, list);
+    public SimilarContacts(String searchKeyword, double similarityThreshold) {
+        super(searchKeyword, similarityThreshold);
+    }
+
+    public SimilarContacts(String searchKeyword) {
+        super(searchKeyword);
     }
 
     @Override

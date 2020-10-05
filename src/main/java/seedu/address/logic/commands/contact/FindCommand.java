@@ -44,8 +44,8 @@ public class FindCommand extends Command {
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         List<Person> list = model.getFilteredPersonList();
 
-        SimilarItems<Person> similarItems = new SimilarContacts(this.argument, list);
-        similarItems.fillSimilarityMapper();
+        SimilarItems<Person> similarItems = new SimilarContacts(this.argument);
+        similarItems.fillSimilarityMapper(list);
 
         model.updateFilteredPersonList(similarItems::isInSimilarityMapper);
         model.updateSortedPersonList((x, y) -> similarItems.getFromSimilarityMatrix(y)
