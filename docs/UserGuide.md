@@ -97,7 +97,7 @@ Shows a list of all contacts in StonksBook.
 Format:`contact list`
 
 #### Locating contacts by name: `contact find`
-Finds contacts whose names contain any of the given keywords.
+Find contacts whose names exactly match or is similar to any of the given keywords.
 
 Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
@@ -109,27 +109,19 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
 * Contacts matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
-* There are two search result categories: exact matches and similar matches.
+* keyword does not have to be exactly matching a contact name. e.g. alx will return Alex Yeoh
 
-* For exact matches:
+* The contact list is sorted by non-ascending similarity. 
 
-    * Only full words will be matched e.g. Han will not match Hans
-
-* For similar matches:
-
-    * Partial words will be matched e.g.  Han will match Hans
+* Exact matches (if exists) will appear as the first few results.
 
 <img src="images/contactFindMockup.png" alt="result for 'contact find keyword'" width="400px">
-
-* Format: `contact find REGEX`
-
-* Returns results that satisfies the regular expression under exact matches.
-
-<img src="images/contactFindRegexMockup.png" alt="result for 'contact find regex'" width="400px">
 
 Examples:
 * `contact find John` returns john and John Doe
 * `contact find alex david` returns Alex Yeoh, David Li
+* `contact find alx` returns Alex Yeoh
+* `contact find alx dvd` returns Alex Yeoh, David Li
 
 #### Deleting a contact: `contact delete`
 Deletes the specified contact from StonksBook.
@@ -380,7 +372,7 @@ Action | Format, Examples
 **Contact Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/birthday: 20 August`
 **Contact Delete** | `contact delete INDEX` <br> e.g., `contact delete 3`
 **Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
-**Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` or `contact find REGEX` <br> e.g., `find James Jake`, `find [^abc]`
+**Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
 **Contact List** | `contact list`
 **Sale Add** | `sales add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY` <br> e.g., `sale add c/4 n/Notebook p/6.00 q/2`
 **Sale List** | `sale list`
