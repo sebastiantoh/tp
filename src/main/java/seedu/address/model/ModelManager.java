@@ -181,7 +181,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return this.addressBook.equals(other.addressBook)
                 && this.userPrefs.equals(other.userPrefs)
-                && this.filteredPersons.equals(other.filteredPersons);
+                && this.filteredPersons.equals(other.filteredPersons)
+                && this.sortedPersons.equals(other.sortedPersons);
     }
 
 }
