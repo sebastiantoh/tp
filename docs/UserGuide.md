@@ -78,14 +78,14 @@ Examples:
 #### Editing a contact: `contact edit`
 Edits an existing contact in StonksBook.
 
-Format: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]…​`
+Format: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]`
 
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
-* When editing remarks, the previous remarks will also be removed/overwritten, similar to tags
-* You can remove all the contact’s tags/remarks by typing `t/` or  `r/` respectively without specifying any tags/remarks after it.
+* When editing a contact's tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
+* When editing a contact's remark, the previous remark will also be removed/overwritten.
+* You can remove all the contact’s tags/remark by typing `t/` or  `r/` respectively without specifying any tags/remark after it.
 
 Examples:
 * `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
