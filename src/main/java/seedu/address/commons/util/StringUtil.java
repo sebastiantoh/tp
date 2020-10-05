@@ -98,16 +98,16 @@ public class StringUtil {
 
         int[][] memoizedArray = new int[rowSize][colSize];
 
-        for (int str1Index = 0; str1Index < rowSize ; str1Index++) {
+        for (int str1Index = 0; str1Index < rowSize; str1Index++) {
             memoizedArray[str1Index][0] = str1Index;
         }
 
-        for (int str2Index = 0; str2Index < colSize ; str2Index++) {
+        for (int str2Index = 0; str2Index < colSize; str2Index++) {
             memoizedArray[0][str2Index] = str2Index;
         }
 
-        for (int str1Index = 1; str1Index < rowSize ; str1Index++) {
-            for (int str2Index = 1; str2Index < colSize ; str2Index++) {
+        for (int str1Index = 1; str1Index < rowSize; str1Index++) {
+            for (int str2Index = 1; str2Index < colSize; str2Index++) {
 
                 int insertionAtStr1 = memoizedArray[str1Index][str2Index - 1] + 1;
                 int deletionAtStr1 = memoizedArray[str1Index - 1][str2Index] + 1;

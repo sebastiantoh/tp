@@ -25,12 +25,23 @@ public abstract class SimilarItems<T> {
 
     private final double similarityThreshold;
 
+    /**
+     * Initializes a SimilarItems with the given searchKeyword and similarityThreshold.
+     *
+     * @param searchKeyword
+     * @param similarityThreshold
+     */
     public SimilarItems(String searchKeyword, double similarityThreshold) {
         this.searchKeyword = searchKeyword;
         this.similarityMapper = new HashMap<>();
         this.similarityThreshold = similarityThreshold;
     }
 
+    /**
+     * Initializes a SimilarItems with the given searchKeyword.
+     *
+     * @param searchKeyword
+     */
     public SimilarItems(String searchKeyword) {
         this(searchKeyword, DEFAULT_SIMILARITY_THRESHOLD);
     }
@@ -59,7 +70,7 @@ public abstract class SimilarItems<T> {
 
     /**
      * Considers every item in {@code list} and
-     * fills the similarity mapper with entry <T, similarity ratio>
+     * fills the similarity mapper with entry < T, similarity ratio >
      * if T is an exact / similar match for the attribute searchKeyword.
      *
      * @param list

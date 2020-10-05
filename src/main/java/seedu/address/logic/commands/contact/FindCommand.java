@@ -31,13 +31,13 @@ public class FindCommand extends Command {
         this.argument = argument;
     }
 
-    @Override
     /**
      * Finds all the contacts whose names exactly or partially match the argument.
      * The filtered contact list is sorted by non-ascending similarity.
      * Contacts whose names exactly match the argument appear in the list first.
      *
      */
+    @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
