@@ -67,8 +67,8 @@ public class StringUtil {
     }
 
     /**
-     * Calculates the similarity between {@code str1} and {@code str2}.
-     *
+     * Calculates the similarity ratio between {@code str1} and {@code str2}.
+     * The similarity ratio ranges from 0.0 to 1.0.
      * @param str1
      * @param str2
      * @return similarity result as a ratio
@@ -77,21 +77,50 @@ public class StringUtil {
         return 1 - 1.0 * calculateLevenshteinDistance(str1, str2) / Math.max(str1.length(), str2.length());
     }
 
+
+    /**
+     * Calculates the levenshtein distance between {@code str1} and {@code str2}.
+     * Returns 0 if {@code str1} and {@code str2} are identical.
+     *
+     *<br>examples:<pre>
+     *   calculateLevenshteinDistance("ell", "hell") == 1 // add h to ell
+     *   calculateLevenshteinDistance("hello", "hell") == 1 // remove o from hello
+     *   calculateLevenshteinDistance("hello", "hullu") == 2 // substitute e with u and o with u in hello
+     *   calculateLevenshteinDistance("Hello", "hello") == 1 // substiture H with h in Hello
+     *   </pre>
+     * @param str1
+     * @param str2
+     * @return
+     */
     private static int calculateLevenshteinDistance(String str1, String str2) {
-        int[][] DP = new int[str1.length() + 1][str2.length() + 1];
-        for (int i = 0; i < str2.length() + 1 ; i++) {
-            DP[0][i] = i;
-        }
-        for (int i = 0; i < str1.length() + 1 ; i++) {
-            DP[i][0] = i;
+        int rowSize = str1.length() + 1;
+        int colSize = str2.length() + 1;
+
+        int[][] memoizedArray = new int[rowSize][colSize];
+
+        for (int str1Index = 0; str1Index < rowSize ; str1Index++) {
+            memoizedArray[str1Index][0] = str1Index;
         }
 
-        for (int i = 1; i < str1.length() + 1 ; i++) {
-            for (int k = 1; k < str2.length() + 1 ; k++) {
-                DP[i][k] = Math.min(Math.min(DP[i - 1][k] + 1, DP[i][k - 1] + 1), DP[i - 1][k - 1]
-                        + (str1.charAt(i - 1) == str2.charAt(k - 1) ? 0 : 1));
+        for (int str2Index = 0; str2Index < colSize ; str2Index++) {
+            memoizedArray[0][str2Index] = str2Index;
+        }
+
+        for (int str1Index = 1; str1Index < rowSize ; str1Index++) {
+            for (int str2Index = 1; str2Index < colSize ; str2Index++) {
+
+                int insertionAtStr1 = memoizedArray[str1Index][str2Index - 1] + 1;
+                int deletionAtStr1 = memoizedArray[str1Index - 1][str2Index] + 1;
+                int matchOrReplacement = memoizedArray[str1Index - 1][str2Index - 1]
+                        + (str1.charAt(str1Index - 1) == str2.charAt(str2Index - 1) ? 0 : 1);
+
+                int minBetweenInsertionAndDeletion = Math.min(deletionAtStr1, insertionAtStr1);
+                int minBetweenAllThree = Math.min(minBetweenInsertionAndDeletion, matchOrReplacement);
+
+                memoizedArray[str1Index][str2Index] = minBetweenAllThree;
             }
         }
-        return DP[str1.length()][str2.length()];
+
+        return memoizedArray[str1.length()][str2.length()];
     }
 }

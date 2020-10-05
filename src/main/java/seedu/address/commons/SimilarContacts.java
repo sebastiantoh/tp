@@ -6,8 +6,8 @@ import seedu.address.model.person.Person;
 
 public class SimilarContacts extends SimilarItems<Person> {
 
-    public SimilarContacts(String[] searchKeywords, List<Person> list) {
-        super(searchKeywords, list);
+    public SimilarContacts(String searchKeyword, List<Person> list) {
+        super(searchKeyword, list);
     }
 
     @Override

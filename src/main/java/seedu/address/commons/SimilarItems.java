@@ -10,16 +10,20 @@ public abstract class SimilarItems<T> {
 
     private static final double NOT_FOUND = -1;
 
+    private static final double EXACT_MATCH = 2;
+
     private final Map<T, Double> similarityMapper;
 
-    private final String[] searchKeywords;
+    private final String exactSearchKeyword;
+    private final String[] searchKeywordComponents;
 
     private final List<T> list;
 
     private double similarityThreshold = 0.5;
 
-    public SimilarItems(String[] searchKeywords, List<T> list) {
-        this.searchKeywords = searchKeywords;
+    public SimilarItems(String searchKeyword, List<T> list) {
+        this.exactSearchKeyword = searchKeyword;
+        this.searchKeywordComponents = this.exactSearchKeyword.split("\\s+");
         this.list = list;
         this.similarityMapper = new HashMap<>();
     }
@@ -35,9 +39,15 @@ public abstract class SimilarItems<T> {
 
     public void fillSimilarityMapper() {
         for (T p : list) {
-            String[] components = getAttribute(p).split("\\s+");
 
-            for (String searchKeyword : searchKeywords) {
+            if (this.getAttribute(p).equalsIgnoreCase(this.exactSearchKeyword)) {
+                this.similarityMapper.put(p, EXACT_MATCH);
+                break;
+            }
+
+            String[] components = this.getAttribute(p).split("\\s+");
+
+            for (String searchKeyword : this.searchKeywordComponents) {
                 for (String comp : components) {
                     double score = StringUtil.calculateSimilarityRatio(searchKeyword.toLowerCase(), comp.toLowerCase());
                     if (score >= this.similarityThreshold) {

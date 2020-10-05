@@ -25,20 +25,26 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final String arguments;
+    private final String argument;
 
-    public FindCommand(String arguments) {
-        this.arguments = arguments;
+    public FindCommand(String argument) {
+        this.argument = argument;
     }
 
     @Override
+    /**
+     * Finds all the contacts whose names exactly or partially match the argument.
+     * The filtered contact list is sorted by non-ascending similarity.
+     * Contacts whose names exactly match the argument appear in the list first.
+     *
+     */
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         List<Person> list = model.getFilteredPersonList();
 
-        SimilarItems<Person> similarItems = new SimilarContacts(this.arguments.split("\\s+"), list);
+        SimilarItems<Person> similarItems = new SimilarContacts(this.argument, list);
         similarItems.fillSimilarityMapper();
 
         model.updateFilteredPersonList(similarItems::isInSimilarityMapper);
@@ -53,6 +59,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && this.arguments.equals(((FindCommand) other).arguments)); // state check
+                && this.argument.equals(((FindCommand) other).argument)); // state check
     }
 }
