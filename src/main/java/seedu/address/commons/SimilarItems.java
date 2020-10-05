@@ -28,8 +28,8 @@ public abstract class SimilarItems<T> {
     /**
      * Initializes a SimilarItems with the given searchKeyword and similarityThreshold.
      *
-     * @param searchKeyword
-     * @param similarityThreshold
+     * @param searchKeyword string to be compared to for similarity
+     * @param similarityThreshold minimum ratio to be considered similar
      */
     public SimilarItems(String searchKeyword, double similarityThreshold) {
         this.searchKeyword = searchKeyword;
@@ -40,7 +40,7 @@ public abstract class SimilarItems<T> {
     /**
      * Initializes a SimilarItems with the given searchKeyword.
      *
-     * @param searchKeyword
+     * @param searchKeyword string to be compared to for similarity
      */
     public SimilarItems(String searchKeyword) {
         this(searchKeyword, DEFAULT_SIMILARITY_THRESHOLD);
@@ -49,7 +49,8 @@ public abstract class SimilarItems<T> {
     /**
      * Returns true if {@code item} exists in the similarity mapper,
      * which means that {@code item} is similar to attribute searchKeyword.
-     * @param item
+     *
+     * @param item an object to be checked if it is similar
      * @return boolean value indicating @{item}'s existence in the similarity mapper
      */
     public boolean isInSimilarityMapper(T item) {
@@ -61,7 +62,7 @@ public abstract class SimilarItems<T> {
      * If {@code item} does not exist in similarity matrix,
      * the value NOT_FOUND is returned.
      *
-     * @param item
+     * @param item  an object that is of type T
      * @return the similarity ratio of {@code item} to the attribute search keyword
      */
     public Double getFromSimilarityMatrix(T item) {
@@ -70,16 +71,16 @@ public abstract class SimilarItems<T> {
 
     /**
      * Considers every item in {@code list} and
-     * fills the similarity mapper with entry < T, similarity ratio >
+     * adds entry < T, similarity ratio > to the similarity mapper if
      * if T is an exact / similar match for the attribute searchKeyword.
      *
-     * @param list
+     * @param list list of T objects to be considered for similarity
      */
-    public void fillSimilarityMapper(List<T> list) {
+    public void fillSimilarityMapper(List<T> itemList) {
         String[] searchKeywordComponents = this.searchKeyword.split("\\s+");
 
-        for (T item : list) {
-            Map.Entry<T, Double> entry = this.getSimilarity(item, searchKeywordComponents);
+        for (T item : itemList) {
+            Map.Entry<T, Double> entry = this.calculateHighestSimilarity(item, searchKeywordComponents);
             if (!Objects.isNull(entry)) {
                 this.similarityMapper.put(entry.getKey(), entry.getValue());
             }
@@ -88,28 +89,28 @@ public abstract class SimilarItems<T> {
 
     /**
      * Returns entry <{@code item}, similarity ratio> if
-     * there is an exact / similar match of {@code item} to the attribute searchKeyword.
+     * there is an exact/similar match of {@code item} to the attribute searchKeyword.
      *
      * Entry for {@code item} will have the largest similarity ratio.
      *
-     * If no exact / similar match of {@code item}, returns null to indicate dissimilarity.
+     * If no exact/similar match of {@code item}, returns null to indicate dissimilarity.
      *
-     * @param item
-     * @param searchKeywordComponents
+     * @param item object of type T to be checked for similarity
+     * @param searchKeywordComponents strings to be checked against for similarity
      * @return
      */
-    private Map.Entry<T, Double> getSimilarity(T item, String[] searchKeywordComponents) {
-        if (this.getAttribute(item).equalsIgnoreCase(this.searchKeyword)) {
+    private Map.Entry<T, Double> calculateHighestSimilarity(T item, String[] searchKeywordComponents) {
+        if (this.getAttributeAsStr(item).equalsIgnoreCase(this.searchKeyword)) {
             return Map.entry(item, EXACT_MATCH);
         }
 
-        String[] components = this.getAttribute(item).split("\\s+");
+        String[] components = this.getAttributeAsStr(item).split("\\s+");
 
         double maxScore = -1;
 
         for (String searchKeyword : searchKeywordComponents) {
             for (String word : components) {
-                double score = this.getSimilarityRatio(searchKeyword, word);
+                double score = this.calculateSimilarityRatio(searchKeyword, word);
                 maxScore = Math.max(maxScore, score);
             }
         }
@@ -126,12 +127,12 @@ public abstract class SimilarItems<T> {
      * Returns similarity ratio for word and searchKeyword
      * if the similarity ratio of {@code word} and {@code searchKeyword} is greater
      * than or equal to the attribute similarityThreshold.
-     * else, returns -1 to indicate dissimilarity.
+     * Else, returns -1 to indicate dissimilarity.
      *
-     * @param searchKeyword
-     * @param word
+     * @param searchKeyword string that is searched
+     * @param word word compared to searchKeyWord
      */
-    private double getSimilarityRatio(String searchKeyword, String word) {
+    private double calculateSimilarityRatio(String searchKeyword, String word) {
         double score = StringUtil.calculateSimilarityRatio(searchKeyword.toLowerCase(), word.toLowerCase());
 
         if (score >= this.similarityThreshold) {
@@ -145,9 +146,9 @@ public abstract class SimilarItems<T> {
      * Returns the attribute of T in String that
      * will be compared to attribute searchKeyword for similarity.
      *
-     * @param item
+     * @param item object of type T
      * @return attribute of T in String
      */
-    abstract String getAttribute(T item);
+    abstract String getAttributeAsStr(T item);
 
 }

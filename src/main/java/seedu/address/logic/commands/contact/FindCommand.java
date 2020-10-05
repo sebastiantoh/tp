@@ -13,14 +13,16 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all persons in address book whose name exactly matches the argument or
+ * partially matches some space-delimited word in the argument.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "contact find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names exactly matches the argument or "
+            + "partially matches some space-delimited word in the argument. "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
@@ -32,7 +34,8 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Finds all the contacts whose names exactly or partially match the argument.
+     * Finds all the contacts whose names exactly matches the argument or
+     * partially matches some space-delimited word in the argument.
      * The filtered contact list is sorted by non-ascending similarity.
      * Contacts whose names exactly match the argument appear in the list first.
      *
@@ -41,9 +44,11 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
+        //read the unfiltered list of contacts
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         List<Person> list = model.getFilteredPersonList();
 
+        //extract contacts whose name is similar / identical to the argument
         SimilarItems<Person> similarItems = new SimilarContacts(this.argument);
         similarItems.fillSimilarityMapper(list);
 

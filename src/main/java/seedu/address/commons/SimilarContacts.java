@@ -16,7 +16,7 @@ public class SimilarContacts extends SimilarItems<Person> {
     }
 
     @Override
-    String getAttribute(Person person) {
+    String getAttributeAsStr(Person person) {
         return person.getName().fullName;
     }
 }

@@ -22,11 +22,12 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+
     private final UserPrefs userPrefs;
+
     private final FilteredList<Person> filteredPersons;
 
     private final SortedList<Person> sortedPersons;
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,8 +40,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        sortedPersons = new SortedList<>(filteredPersons);
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.sortedPersons = new SortedList<>(this.filteredPersons);
     }
 
     public ModelManager() {
@@ -57,29 +58,29 @@ public class ModelManager implements Model {
 
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
+        return this.userPrefs;
     }
 
     @Override
     public GuiSettings getGuiSettings() {
-        return userPrefs.getGuiSettings();
+        return this.userPrefs.getGuiSettings();
     }
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
-        userPrefs.setGuiSettings(guiSettings);
+        this.userPrefs.setGuiSettings(guiSettings);
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return this.userPrefs.getAddressBookFilePath();
     }
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        this.userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -91,31 +92,30 @@ public class ModelManager implements Model {
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return this.addressBook;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return this.addressBook.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        this.addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        this.addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+        this.addressBook.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -126,13 +126,19 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+        return this.filteredPersons;
     }
 
+    /**
+     * Updates the predicate used to filter person list and
+     * set comparator for sorted list to be null.
+     *
+     * @param predicate predicate to filter person list
+     */
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        this.filteredPersons.setPredicate(predicate);
         this.sortedPersons.setComparator(null);
     }
 
@@ -145,9 +151,14 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getSortedPersonList() {
-        return sortedPersons;
+        return this.sortedPersons;
     }
 
+    /**
+     * Updates the comparator to sort the person list.
+     *
+     * @param comparator comparator for sorting the person list
+     */
     @Override
     public void updateSortedPersonList(Comparator<Person> comparator) {
         this.sortedPersons.setComparator(comparator);
@@ -168,9 +179,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+        return this.addressBook.equals(other.addressBook)
+                && this.userPrefs.equals(other.userPrefs)
+                && this.filteredPersons.equals(other.filteredPersons);
     }
 
 }

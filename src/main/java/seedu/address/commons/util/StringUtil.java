@@ -69,8 +69,10 @@ public class StringUtil {
     /**
      * Calculates the similarity ratio between {@code str1} and {@code str2}.
      * The similarity ratio ranges from 0.0 to 1.0.
-     * @param str1
-     * @param str2
+     * The higher the ratio, the greater the similarity between {@code str1} and {@code str2}.
+     *
+     * @param str1 first string
+     * @param str2 second string
      * @return similarity result as a ratio
      */
     public static double calculateSimilarityRatio(String str1, String str2) {
@@ -88,8 +90,9 @@ public class StringUtil {
      *   calculateLevenshteinDistance("hello", "hullu") == 2 // substitute e with u and o with u in hello
      *   calculateLevenshteinDistance("Hello", "hello") == 1 // substiture H with h in Hello
      *   </pre>
-     * @param str1
-     * @param str2
+     *
+     * @param str1 first string
+     * @param str2 second string
      * @return
      */
     private static int calculateLevenshteinDistance(String str1, String str2) {
