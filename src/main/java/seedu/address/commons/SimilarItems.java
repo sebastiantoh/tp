@@ -1,5 +1,7 @@
 package seedu.address.commons;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +34,8 @@ public abstract class SimilarItems<T> {
      * @param similarityThreshold minimum ratio to be considered similar
      */
     public SimilarItems(String searchKeyword, double similarityThreshold) {
+        requireNonNull(searchKeyword);
+
         this.searchKeyword = searchKeyword;
         this.similarityMapper = new HashMap<>();
         this.similarityThreshold = similarityThreshold;
@@ -53,7 +57,7 @@ public abstract class SimilarItems<T> {
      * @param item an object to be checked if it is similar
      * @return boolean value indicating @{item}'s existence in the similarity mapper
      */
-    public boolean isInSimilarityMapper(T item) {
+    public final boolean isInSimilarityMapper(T item) {
         return this.similarityMapper.containsKey(item);
     }
 
@@ -65,7 +69,7 @@ public abstract class SimilarItems<T> {
      * @param item  an object that is of type T
      * @return the similarity ratio of {@code item} to the attribute search keyword
      */
-    public Double getFromSimilarityMatrix(T item) {
+    public final Double getFromSimilarityMatrix(T item) {
         return this.similarityMapper.getOrDefault(item, NOT_FOUND);
     }
 
@@ -76,7 +80,7 @@ public abstract class SimilarItems<T> {
      *
      * @param itemList list of T objects to be considered for similarity
      */
-    public void fillSimilarityMapper(List<T> itemList) {
+    public final void fillSimilarityMapper(List<T> itemList) {
         String[] searchKeywordComponents = this.searchKeyword.split("\\s+");
 
         for (T item : itemList) {
@@ -151,4 +155,12 @@ public abstract class SimilarItems<T> {
      */
     abstract String getAttributeAsStr(T item);
 
+    /**
+     * Returns the similarity mapper.
+     *
+     * @return map object
+     */
+    public Map<T, Double> getSimilarityMapper() {
+        return similarityMapper;
+    }
 }

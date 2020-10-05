@@ -76,6 +76,8 @@ public class StringUtil {
      * @return similarity result as a ratio
      */
     public static double calculateSimilarityRatio(String str1, String str2) {
+        requireNonNull(str1);
+        requireNonNull(str2);
         return 1 - 1.0 * calculateLevenshteinDistance(str1, str2) / Math.max(str1.length(), str2.length());
     }
 
@@ -88,7 +90,7 @@ public class StringUtil {
      *   calculateLevenshteinDistance("ell", "hell") == 1 // add h to ell
      *   calculateLevenshteinDistance("hello", "hell") == 1 // remove o from hello
      *   calculateLevenshteinDistance("hello", "hullu") == 2 // substitute e with u and o with u in hello
-     *   calculateLevenshteinDistance("Hello", "hello") == 1 // substiture H with h in Hello
+     *   calculateLevenshteinDistance("Hello", "hello") == 1 // substitute H with h in Hello
      *   </pre>
      *
      * @param str1 first string
@@ -96,6 +98,9 @@ public class StringUtil {
      * @return
      */
     private static int calculateLevenshteinDistance(String str1, String str2) {
+        requireNonNull(str1);
+        requireNonNull(str2);
+
         int rowSize = str1.length() + 1;
         int colSize = str2.length() + 1;
 

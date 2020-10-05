@@ -1,5 +1,7 @@
 package seedu.address.commons;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.person.Person;
 
 /**
@@ -17,6 +19,7 @@ public class SimilarContacts extends SimilarItems<Person> {
 
     @Override
     String getAttributeAsStr(Person person) {
+        requireNonNull(person);
         return person.getName().fullName;
     }
 }
