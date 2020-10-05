@@ -52,7 +52,7 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons, Arrays.asList());
+        AddressBookStub newData = new AddressBookStub(newPersons, Collections.emptyList());
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -89,7 +89,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateReminder_throwsDuplicateReminderException() {
         List<Reminder> newReminders = Arrays.asList(CALL_ALICE, CALL_ALICE);
-        AddressBookStub newData = new AddressBookStub(Arrays.asList(), newReminders);
+        AddressBookStub newData = new AddressBookStub(Collections.emptyList(), newReminders);
 
         assertThrows(DuplicateReminderException.class, () -> addressBook.resetData(newData));
     }
