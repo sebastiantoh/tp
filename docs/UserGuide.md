@@ -109,9 +109,9 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
 * Contacts matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
-* keyword does not have to be exactly matching a contact name. e.g. alx will return Alex Yeoh
+* keyword does not have to exactly match a contact name. e.g. alx will return Alex Yeoh
 
-* The contact list is sorted by non-ascending similarity. 
+* The contact list is orderd by non-ascending similarity. 
 
 * Exact matches (if exists) will appear as the first few results.
 
