@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -56,6 +57,23 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a tag with the same name {@code tag} exists in StonksBook.
+     */
+    boolean hasTag(Tag tag);
+
+    /**
+     * Adds the given tag.
+     * {@code tag} must not already exist in StonksBook.
+     */
+    void addTag(Tag tag);
+
+    /**
+     * Deletes the given tag.
+     * The tag must exist in StonksBook.
+     */
+    void deleteTag(Tag target);
 
     /**
      * Deletes the given person.
