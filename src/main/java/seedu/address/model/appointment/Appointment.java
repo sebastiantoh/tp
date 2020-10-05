@@ -18,7 +18,7 @@ public class Appointment {
     private final String message;
     private final LocalDateTime startDate;
     private final Duration duration;
-    
+
     /**
      * Constructs an {@code Appointment}. Every field must be present and not null.
      *
