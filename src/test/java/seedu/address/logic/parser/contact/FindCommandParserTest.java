@@ -10,7 +10,7 @@ import seedu.address.logic.commands.contact.FindCommand;
 
 public class FindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private final FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
@@ -19,9 +19,9 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
+        FindCommand expectedFindCommand = new FindCommand("Alice Bob");
+
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-            new FindCommand("Alice Bob");
         assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
