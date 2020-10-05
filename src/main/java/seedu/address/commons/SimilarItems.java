@@ -74,7 +74,7 @@ public abstract class SimilarItems<T> {
      * adds entry < T, similarity ratio > to the similarity mapper if
      * if T is an exact / similar match for the attribute searchKeyword.
      *
-     * @param list list of T objects to be considered for similarity
+     * @param itemList list of T objects to be considered for similarity
      */
     public void fillSimilarityMapper(List<T> itemList) {
         String[] searchKeywordComponents = this.searchKeyword.split("\\s+");
