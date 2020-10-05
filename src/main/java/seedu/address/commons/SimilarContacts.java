@@ -2,6 +2,9 @@ package seedu.address.commons;
 
 import seedu.address.model.person.Person;
 
+/**
+ * Represents a class to find similar contacts.
+ */
 public class SimilarContacts extends SimilarItems<Person> {
 
     public SimilarContacts(String searchKeyword, double similarityThreshold) {
