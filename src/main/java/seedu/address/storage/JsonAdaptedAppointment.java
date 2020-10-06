@@ -74,8 +74,6 @@ class JsonAdaptedAppointment {
         if (this.startDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Date"));
         }
-
-
         final LocalDateTime scheduledDate;
         try {
             scheduledDate = LocalDateTime.parse(this.startDate);
@@ -83,6 +81,9 @@ class JsonAdaptedAppointment {
             throw new IllegalValueException(MESSAGE_INVALID_DATETIME);
         }
 
+        if (this.duration == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Duration"));
+        }
         final Duration duration;
         try {
             duration = Duration.parse(this.duration);
