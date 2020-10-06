@@ -82,6 +82,26 @@ public class UniqueContactTagList implements Iterable<Tag> {
     }
 
     /**
+     * Replaces the tag {@code target} in the list with {@code editedTag}.
+     * {@code target} must exist in the list.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in the list.
+     */
+    public void setTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new TagNotFoundException();
+        }
+
+        if (!target.isSameTag(editedTag) && contains(editedTag)) {
+            throw new DuplicateTagException();
+        }
+
+        internalList.set(index, editedTag);
+    }
+
+    /**
      * Sort the internal list in lexicographical order.
      */
     public void sort() {

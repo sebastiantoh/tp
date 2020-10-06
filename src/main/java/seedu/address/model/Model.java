@@ -70,6 +70,13 @@ public interface Model {
     void addContactTag(Tag tag);
 
     /**
+     * Replaces the given {@code tag} with {@code editedTag}.
+     * {@code target} must exist in StonksBook.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in StonksBook.
+     */
+    void editContactTag(Tag target, Tag editedTag);
+
+    /**
      * Deletes the given tag.
      * The tag must exist in StonksBook.
      */

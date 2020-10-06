@@ -138,7 +138,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeContactTag(Tag key) {
         contactTags.remove(key);
-        persons.removeTag(key);
+        persons.removeContactTag(key);
+    }
+
+    /**
+     * Replaces the given {@code target} in the list with {@code editedTag}.
+     * {@code target} must exist in StonksBook.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in StonksBook.
+     */
+    public void editContactTag(Tag target, Tag editedTag) {
+        contactTags.setTag(target, editedTag);
+        persons.setContactTag(target, editedTag);
     }
 
     /**

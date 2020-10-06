@@ -83,9 +83,34 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Replaces the specified {@code target} with {@code editedTag} for all contacts.
+     */
+    public void setContactTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+        int count = internalList.size();
+        for (int i = 0; i < count; i++) {
+            Person original = internalList.get(i);
+            if (original.getTags().contains(target)) {
+                Set<Tag> tags = new HashSet<>();
+                for (Tag t : original.getTags()) {
+                    if (t.isSameTag(target)) {
+                        tags.add(editedTag);
+                    }
+                }
+                Person p = new Person(original.getName(),
+                        original.getPhone(),
+                        original.getEmail(),
+                        original.getAddress(),
+                        tags);
+                internalList.set(i, p);
+            }
+        }
+    }
+
+    /**
      * Removes the specified tag from all contacts.
      */
-    public void removeTag(Tag toRemove) {
+    public void removeContactTag(Tag toRemove) {
         requireNonNull(toRemove);
         int count = internalList.size();
         for (int i = 0; i < count; i++) {

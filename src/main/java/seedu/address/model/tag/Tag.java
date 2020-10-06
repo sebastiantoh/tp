@@ -26,6 +26,13 @@ public class Tag implements Comparable<Tag> {
     }
 
     /**
+     * Returns the tag name.
+     */
+    public String getTagName() {
+        return tagName;
+    }
+
+    /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {

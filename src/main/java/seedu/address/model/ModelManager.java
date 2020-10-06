@@ -107,7 +107,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void editContactTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+
+        addressBook.editContactTag(target, editedTag);
+    }
+
+    @Override
     public void deleteContactTag(Tag target) {
+        requireNonNull(target);
         addressBook.removeContactTag(target);
     }
 
