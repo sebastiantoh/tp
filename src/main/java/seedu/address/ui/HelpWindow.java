@@ -58,7 +58,6 @@ public class HelpWindow extends UiPart<Stage> {
         } catch (IOException e) {
             logger.warning(e::getMessage);
         }
-
     }
 
     /**

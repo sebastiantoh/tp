@@ -46,7 +46,6 @@ public class MainApp extends Application {
     protected Storage storage;
     protected Model model;
     protected Config config;
-
     protected HostServices hostServices;
 
     @Override
@@ -71,7 +70,6 @@ public class MainApp extends Application {
         hostServices = getHostServices();
 
         ui = new UiManager(logic, hostServices);
-
     }
 
     /**
