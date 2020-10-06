@@ -26,8 +26,8 @@ public class UniqueContactTagList implements Iterable<Tag> {
     }
 
     /**
-     * Adds a tag to the list.
-     * The tag must not already exist in the list.
+     * Adds a tag to the tag list.
+     * No operation will be performed if the tag already exists in the tag list.
      */
     public void add(Tag toAdd) {
         requireNonNull(toAdd);
@@ -35,16 +35,6 @@ public class UniqueContactTagList implements Iterable<Tag> {
             return;
         }
         internalList.add(toAdd);
-    }
-
-    /**
-     * Adds a tag to the list only if it does not exist.
-     */
-    public void optionalAdd(Tag toAdd) {
-        requireNonNull(toAdd);
-        if (!contains(toAdd)) {
-            internalList.add(toAdd);
-        }
     }
 
     public void setTags(UniqueContactTagList replacement) {
