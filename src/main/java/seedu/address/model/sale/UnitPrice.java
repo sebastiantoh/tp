@@ -1,18 +1,17 @@
 package seedu.address.model.sale;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Sale item's unit price in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidUnitPrice(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidUnitPriceString(String)}
  */
 public class UnitPrice {
     public static final String MESSAGE_CONSTRAINTS =
-            "UnitPrice should be in the form \"DOLLARS.CENTS\", where DOLLARS represents a positive integer " +
-                    "and CENTS represents a 2 digit positive integer. It should not be blank, " +
-                    "and the total unit price should be greater than zero";
+            "UnitPrice should be in the form \"DOLLARS.CENTS\", where DOLLARS represents a positive integer "
+                    + "and CENTS represents a 2 digit positive integer. It should not be blank, "
+                    + "and the total unit price should be greater than zero";
 
     /*
      * UnitPrice should be in the form "DOLLARS.CENTS", where DOLLARS represents a positive integer
@@ -31,7 +30,7 @@ public class UnitPrice {
      * @param dollars A valid dollar value for unit price.
      * @param cents A valid cent value for unit price.
      */
-    public UnitPrice(int dollars, int cents) {
+    public UnitPrice(Integer dollars, Integer cents) {
         requireAllNonNull(dollars, cents);
         checkArgument(isValidUnitPrice(dollars, cents), MESSAGE_CONSTRAINTS);
         this.dollars = dollars;
@@ -41,7 +40,7 @@ public class UnitPrice {
     /**
      * Returns true if a given params is a valid unit price.
      */
-    public static boolean isValidUnitPrice(int dollars, int cents) {
+    public static boolean isValidUnitPrice(Integer dollars, Integer cents) {
         boolean isCentsValid = cents >= 0 && cents < 100;
         boolean isDollarsValid = dollars >= 0;
         boolean isPriceGreaterThanZero = (cents + dollars) > 0;

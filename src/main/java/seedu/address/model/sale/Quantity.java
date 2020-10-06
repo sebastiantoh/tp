@@ -15,7 +15,7 @@ public class Quantity {
     /*
      * Quantity should be a non-blank, positive integer.
      */
-    public static final String VALIDATION_REGEX = "^[\\d]*$";
+    public static final String VALIDATION_REGEX = "^[\\d]+$";
 
     public final int quantity;
 
@@ -51,6 +51,6 @@ public class Quantity {
 
     @Override
     public int hashCode() {
-        return ((Integer)quantity).hashCode();
+        return ((Integer) quantity).hashCode();
     }
 }
