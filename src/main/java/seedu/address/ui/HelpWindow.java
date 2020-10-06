@@ -98,7 +98,8 @@ public class HelpWindow extends UiPart<Stage> {
 
     private class CommandTable {
 
-        private final List<String> colors = Arrays.asList("#d72c2c", "#08aeae", "#11cf11", "#c307c3", "#f3a517", "#dbbc11");
+        private final List<String> colors = Arrays.asList("#d72c2c", "#08aeae",
+                "#11cf11", "#c307c3", "#f3a517", "#dbbc11");
 
         private int headerCounter = 0;
 
