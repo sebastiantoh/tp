@@ -100,6 +100,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        for (Tag t : editedPerson.getTags()) {
+            contactTags.add(t);
+        }
     }
 
     /**

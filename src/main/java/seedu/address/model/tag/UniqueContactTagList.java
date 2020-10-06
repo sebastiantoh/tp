@@ -9,9 +9,21 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.exceptions.DuplicateTagException;
 import seedu.address.model.tag.exceptions.TagNotFoundException;
 
+/**
+ * A list of tags for contacts that enforces uniqueness between its elements and does not allow nulls.
+ * A tag is considered unique by comparing using {@code Tag#isSameTag(Tag)}. As such, adding and updating of
+ * tags uses Tag#isSameTag(Tag) for equality so as to ensure that the tag being added or updated is
+ * unique in terms of identity in the UniqueContactTagList. However, the removal of a tag uses Tag#equals(Object) so
+ * as to ensure that the tag with exactly the same tag name will be removed.
+ *
+ * Supports a minimal set of list operations.
+ *
+ * @see Tag#isSameTag(Tag)
+ */
 public class UniqueContactTagList implements Iterable<Tag> {
 
     private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
@@ -38,11 +50,19 @@ public class UniqueContactTagList implements Iterable<Tag> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Replaces the contents of this list with {@code replacement}.
+     * {@code replacement} must be another UniqueContactTagList.
+     */
     public void setTags(UniqueContactTagList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
+    /**
+     * Replaces the contents of this list with {@code tags}.
+     * {@code tags} must not contain duplicate tags.
+     */
     public void setTags(List<Tag> tags) {
         requireAllNonNull(tags);
         if (!tagsAreUnique(tags)) {

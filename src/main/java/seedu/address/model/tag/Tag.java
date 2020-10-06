@@ -52,16 +52,18 @@ public class Tag implements Comparable<Tag> {
     }
 
     /**
-     * Format state as text for viewing.
+     * Formats state as text for viewing.
      */
     @Override
     public String toString() {
         return '[' + tagName + ']';
     }
 
-
+    /**
+     * Compares two tags with lexicographical order.
+     */
     @Override
     public int compareTo(Tag o) {
-        return this.tagName.compareTo(o.tagName);
+        return tagName.compareTo(o.tagName);
     }
 }

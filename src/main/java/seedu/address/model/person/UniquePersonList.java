@@ -3,8 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -85,8 +87,23 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void removeTag(Tag toRemove) {
         requireNonNull(toRemove);
-        for (Person p : internalList) {
-            p.removeTag(toRemove);
+        int count = internalList.size();
+        for (int i = 0; i < count; i++) {
+            Person original = internalList.get(i);
+            if (original.getTags().contains(toRemove)) {
+                Set<Tag> tags = new HashSet<>();
+                for (Tag t : original.getTags()) {
+                    if (!t.isSameTag(toRemove)) {
+                        tags.add(t);
+                    }
+                }
+                Person p = new Person(original.getName(),
+                        original.getPhone(),
+                        original.getEmail(),
+                        original.getAddress(),
+                        tags);
+                internalList.set(i, p);
+            }
         }
     }
 

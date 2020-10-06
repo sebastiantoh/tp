@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Deletes a tag based on its displayed index in the tag list and updates all
+ * items associated with this tag.
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "tag delete";
@@ -43,6 +45,7 @@ public class DeleteCommand extends Command {
 
         Tag tagToDelete = tagList.get(targetIndex.getZeroBased());
         model.deleteContactTag(tagToDelete);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagToDelete));
     }
 
