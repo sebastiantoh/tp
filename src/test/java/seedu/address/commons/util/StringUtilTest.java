@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -138,6 +139,34 @@ public class StringUtilTest {
     @Test
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
+    }
+
+    @Test
+    public void calculateSimilarityRatio_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.calculateSimilarityRatio(null, "abc"));
+        assertThrows(NullPointerException.class, () -> StringUtil.calculateSimilarityRatio("abc", null));
+        assertThrows(NullPointerException.class, () -> StringUtil.calculateSimilarityRatio(null, null));
+    }
+
+    @Test
+    public void calculateSimilarityRatio_validInputs_correctResult() {
+        // Add h to ell
+        assertEquals(0.75, StringUtil.calculateSimilarityRatio("ell", "hell"));
+
+        // Remove o from hello
+        assertEquals(0.8, StringUtil.calculateSimilarityRatio("hello", "hell"));
+
+        // Substitute e with u and o with u in hello
+        assertEquals(0.6, StringUtil.calculateSimilarityRatio("hello", "hullu"));
+
+        // Substitute H with h in Hello
+        assertEquals(0.8, StringUtil.calculateSimilarityRatio("Hello", "hello"));
+
+        // Substitute 123 with 789 and delete 456
+        assertEquals(0.0, StringUtil.calculateSimilarityRatio("123456", "789"));
+
+        // delete all 123456
+        assertEquals(0.0, StringUtil.calculateSimilarityRatio("123456", ""));
     }
 
 }
