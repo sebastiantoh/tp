@@ -8,12 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.application.HostServices;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -23,7 +23,7 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t11-1.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL + ".";
+    public static final String HELP_MESSAGE = "Refer to the user guide: ";
 
     public static final String COMMAND_HELP_LEGEND = "\nThe information below is formatted"
             + " as (COMMAND NAME, COMMAND DESCRIPTION, COMMAND USAGE).";
@@ -32,16 +32,18 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String FXML = "HelpWindow.fxml";
 
     @FXML
-    private Button copyButton;
+    private Text helpMessage;
 
     @FXML
-    private Label helpMessage;
+    private Hyperlink helpLink;
 
     @FXML
     private Label commandHelpLegend;
 
     @FXML
     private GridPane table;
+
+    private HostServices hostServices;
 
     /**
      * Creates a new HelpWindow.
@@ -61,8 +63,9 @@ public class HelpWindow extends UiPart<Stage> {
     /**
      * Creates a new HelpWindow.
      */
-    public HelpWindow() {
+    public HelpWindow(HostServices hostServices) {
         this(new Stage());
+        this.hostServices = hostServices;
     }
 
     /**
@@ -72,6 +75,8 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void populateHelpWindow() throws IOException {
         helpMessage.setText(HELP_MESSAGE);
+        helpLink.setText(USERGUIDE_URL);
+
         commandHelpLegend.setText(COMMAND_HELP_LEGEND);
 
         List<String> list = Files.readAllLines(
@@ -92,7 +97,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     private class CommandTable {
 
-        private final List<String> colors = Arrays.asList("red", "blue", "green", "purple", "orange", "brown");
+        private final List<String> colors = Arrays.asList("red", "cyan", "green", "purple", "orange", "brown");
 
         private int headerCounter = 0;
 
@@ -121,7 +126,7 @@ public class HelpWindow extends UiPart<Stage> {
 
             for (String descriptionPartText : descriptionParts) {
                 Label descriptionPart = new Label(descriptionPartText);
-                descriptionPart.setStyle("-fx-label-padding: 0 4em 0 0");
+                descriptionPart.setStyle("-fx-label-padding: 0 4em 0 0; -fx-text-fill: white");
                 commandDescParts.add(descriptionPart);
             }
 
@@ -175,13 +180,14 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Copies the URL to the user guide to the clipboard.
+     * Opens the webpage directed by the URL.
+     * Sets events on URL hyperlinks for customised colors.
      */
     @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
+    private void openLink() {
+        this.hostServices.showDocument(USERGUIDE_URL);
+        this.helpLink.setStyle("-fx-text-fill: grey");
+        this.helpLink.setOnMouseMoved((v) -> this.helpLink.setStyle("-fx-text-fill: #0b6df3"));
+        this.helpLink.setOnMouseExited((v) -> this.helpLink.setStyle("-fx-text-fill: grey"));
     }
 }
