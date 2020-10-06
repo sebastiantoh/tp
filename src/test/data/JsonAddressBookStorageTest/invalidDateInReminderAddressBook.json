@@ -1,0 +1,19 @@
+{
+  "persons": [
+  ],
+  "reminders": [
+    {
+      "person": {
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "email": "alice@example.com",
+        "address": "123, Jurong West Ave 6, #08-111",
+        "tagged": [
+          "friends"
+        ]
+      },
+      "message": "Call Alice",
+      "scheduledDate": "2020-10-30T30:19"
+    }
+  ]
+}
