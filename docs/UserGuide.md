@@ -145,19 +145,6 @@ Examples:
 
 ### Tags
 
-#### Adding a tag: `tag add`
-
-Adds a new customised tag of the specified name. If there is an existing tag with this name, this command will not result in any change in state.
-
-Format: `tag add t/TAG`
-
-* Adds a tag with the specified `TAG` as name. If this tag name already exists in the tag list, there will be no change in the program state.
-* The `TAG` field must be provided.
-
-Examples:
-
-* `tag add t/friends` adds the tag `friends` to the tag list in StonksBook.
-
 #### Listing all tags: `tag list`
 
 Displays a list of all tags created so far.

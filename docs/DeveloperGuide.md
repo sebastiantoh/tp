@@ -303,21 +303,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a tag**
-
-**MSS**
-
-1.  User requests to add a new tag.
-2.  StonksBook adds the provided tag.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The provided tag already exists in the tag list.
-
-    Use case ends.
-
 **Use case: View all tags**
 
 **MSS**
