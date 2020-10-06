@@ -2,6 +2,7 @@ package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
 
@@ -25,10 +26,12 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder scheduled on a particular date that "
         + "is associated with the specified contact. "
-        + "Parameters: CONTACT_INDEX (must be a positive integer) "
+        + "Parameters: "
+        + PREFIX_CONTACT + "CONTACT_INDEX (must be a positive integer) "
         + PREFIX_MESSAGE + "MESSAGE "
         + PREFIX_DATETIME + "DATETIME\n"
-        + "Example: " + COMMAND_WORD + " 2 "
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_CONTACT + "2 "
         + PREFIX_MESSAGE + "Send follow-up email "
         + PREFIX_DATETIME + "2020-10-30 15:00";
 
