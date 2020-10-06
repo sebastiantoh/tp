@@ -1,5 +1,11 @@
 package seedu.address.ui;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -7,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -15,8 +22,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t11-1.github.io/tp/UserGuide.html";
+    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL + ".";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -27,6 +34,9 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private GridPane table;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -34,7 +44,12 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        try {
+            populateHelpWindow();
+        } catch (IOException e) {
+            logger.warning(e::getMessage);
+        }
+
     }
 
     /**
@@ -42,6 +57,69 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow() {
         this(new Stage());
+    }
+
+    /**
+     * Populates the help window with all StonksBook command description.
+     *
+     * @throws IOException
+     */
+    public void populateHelpWindow() throws IOException {
+        helpMessage.setText(HELP_MESSAGE);
+
+        List<String> list = Files.readAllLines(
+                Paths.get("./src/main/resources/text/helpForAllCommands.txt"));
+
+        CommandTable commandTable = new CommandTable();
+
+        for (int rowIndex = 1; rowIndex <= list.size(); rowIndex++) {
+            String[] components = list.get(rowIndex - 1).split("\\s{4,}");
+
+            if (components.length == 1 && !components[0].isBlank()) {
+                commandTable.addHeaders(rowIndex, components[0]);
+            } else {
+                commandTable.addCommandDescription(rowIndex, components);
+            }
+        }
+    }
+
+    private class CommandTable {
+
+        private final List<String> colors = Arrays.asList("red", "blue", "green", "purple", "orange", "brown");
+
+        private int headerCounter = 0;
+
+        /**
+         * Adds colored command headers.
+         *
+         * @param rowIndex grid pane row to insert to
+         * @param header header to be added
+         * @return
+         */
+        private void addHeaders(int rowIndex, String header) {
+            Label label = new Label(header);
+            label.setStyle("-fx-text-fill: " + this.colors.get(this.headerCounter / 2));
+            table.addRow(rowIndex, label);
+            this.headerCounter++;
+        }
+
+        /**
+         * Adds command description.
+         *
+         * @param rowIndex grid pane row to insert to
+         * @param components parts of the command description
+         */
+        private void addCommandDescription(int rowIndex, String[] components) {
+            List<Label> labelList = new ArrayList<>();
+
+            for (String s : components) {
+                Label label = new Label(s);
+                label.setStyle("-fx-label-padding: 0 4em 0 0");
+                labelList.add(label);
+            }
+
+            table.addRow(rowIndex, labelList.toArray(new Label[0]));
+        }
     }
 
     /**

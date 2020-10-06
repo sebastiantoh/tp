@@ -1,0 +1,41 @@
+
+Contact commands
+----------------------
+contact add	                Adds a contact                                              contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMARK]…
+contact edit                Edits an existing contact                                   contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]…
+contact list                Lists all contacts                                          contact list
+contact find                Find contacts given search keyword(s)                       contact find KEYWORD [MORE_KEYWORDS]
+contact delete              Deletes a contact                                           contact delete INDEX
+
+Tag commands
+----------------------
+tag add	                    Adds a tag 	                                                tag add t/TAG
+tag list                    Lists all tags                                              tag list
+tag edit                    Edits an existing tag to the specified tag name.            tag edit INDEX n/NAME
+tag delete                  Deletes the specified tag                                   tag delete INDEX
+tag find                    Displays all entries associated with the specified tag      tag find INDEX [MODEL]
+
+Sale commands
+----------------------
+sale add                   Adding a sale to a customer                                  x
+sale list                  Listing all sales items                                      x
+sale delete	               Deleting a sales item                                        x
+
+Appointment commands
+----------------------
+appointment add	           Adds an appointment with the specified contact              appointment add CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION
+appointment list           Lists all appointments.                                     appointments list [CONTACT_INDEX] [a/]
+appointment delete         Deletes the specified appointment                           appointment delete INDEX
+
+
+Reminder commands
+----------------------
+reminder add               Adds a reminder with the specified contact                 reminder add CONTACT_INDEX m/MESSAGE d/DATETIME
+reminder list              Lists all reminders                                         reminder list
+reminder delete	           Deletes the specified reminder                              reminder delete INDEX
+
+Miscellaneous commands
+----------------------
+Clear                      Clears chat bot history                                     clear
+Purge                      Clears all data                                             purge
+Exit                       exits program                                               exit
