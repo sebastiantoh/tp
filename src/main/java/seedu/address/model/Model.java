@@ -59,9 +59,14 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
-     * Returns true if a tag with the same name {@code tag} exists in StonksBook.
+     * Returns true if a contact tag with the same name {@code tag} exists in StonksBook.
      */
     boolean hasContactTag(Tag tag);
+
+    /**
+     * Returns true if a sale tag with the same name {@code tag} exists in StonksBook.
+     */
+    boolean hasSaleTag(Tag tag);
 
     /**
      * Adds the given tag.
@@ -77,10 +82,16 @@ public interface Model {
     void editContactTag(Tag target, Tag editedTag);
 
     /**
-     * Deletes the given tag.
+     * Deletes the given tag from the contact tag list.
      * The tag must exist in StonksBook.
      */
     void deleteContactTag(Tag target);
+
+    /**
+     * Deletes the given tag from the sale tag list.
+     * The tag must exist in StonksBook.
+     */
+    void deleteSaleTag(Tag target);
 
     /**
      * Lists all existing tags.

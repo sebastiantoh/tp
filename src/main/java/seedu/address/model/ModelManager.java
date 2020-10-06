@@ -102,6 +102,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasSaleTag(Tag tag) {
+        requireNonNull(tag);
+        return addressBook.hasSaleTag(tag);
+    }
+
+    @Override
     public void addContactTag(Tag tag) {
         addressBook.addContactTag(tag);
     }
@@ -117,6 +123,12 @@ public class ModelManager implements Model {
     public void deleteContactTag(Tag target) {
         requireNonNull(target);
         addressBook.removeContactTag(target);
+    }
+
+    @Override
+    public void deleteSaleTag(Tag target) {
+        requireNonNull(target);
+        addressBook.removeSaleTag(target);
     }
 
     @Override

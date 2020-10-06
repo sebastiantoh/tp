@@ -19,6 +19,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueContactTagList contactTags;
+    private final UniqueSaleTagList saleTags;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,6 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         contactTags = new UniqueContactTagList();
+        saleTags = new UniqueSaleTagList();
     }
 
     public AddressBook() {}
@@ -67,7 +69,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setTags(newData.getTagList());
+        setTags(newData.getContactTagList());
     }
 
     //// person-level operations
@@ -116,11 +118,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// tag-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in StonksBook.
+     * Returns true if a contact tag with the same identity as {@code tag} exists in StonksBook.
      */
     public boolean hasContactTag(Tag tag) {
         requireNonNull(tag);
         return contactTags.contains(tag);
+    }
+
+    /**
+     * Returns true if a sale tag with the same identity as {@code tag} exists in StonksBOok.
+     */
+    public boolean hasSaleTag(Tag tag) {
+        requireNonNull(tag);
+        return saleTags.contains(tag);
     }
 
     /**
@@ -139,6 +149,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeContactTag(Tag key) {
         contactTags.remove(key);
         persons.removeContactTag(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     *
+     */
+    public void removeSaleTag(Tag key) {
+        saleTags.remove(key);
+        persons.removeSaleTag(key);
     }
 
     /**
@@ -180,8 +200,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Tag> getTagList() {
+    public ObservableList<Tag> getContactTagList() {
         return contactTags.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Tag> getSaleTagList() {
+        return saleTags.asUnmodifiableObservableList();
     }
 
     @Override

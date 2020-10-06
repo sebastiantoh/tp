@@ -1,19 +1,23 @@
 package seedu.address.logic.commands.tag;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Edits a tag based on its displayed index in the tag list and updates all
+ * items associated with this tag.
+ */
 public class EditCommand extends Command {
     public static final String COMMAND_WORD = "tag edit";
 
@@ -29,6 +33,11 @@ public class EditCommand extends Command {
     private final Index targetIndex;
     private final EditTagDescriptor editTagDescriptor;
 
+    /**
+     *
+     * @param targetIndex of the tag in the tag list to edit.
+     * @param editTagDescriptor details to edit the tag with.
+     */
     public EditCommand(Index targetIndex, EditTagDescriptor editTagDescriptor) {
         this.targetIndex = targetIndex;
         this.editTagDescriptor = editTagDescriptor;
@@ -37,13 +46,26 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tag> tagList = model.getAddressBook().getTagList();
+        List<Tag> contactTagList = model.getAddressBook().getContactTagList();
+        List<Tag> saleTagList = model.getAddressBook().getSaleTagList();
 
-        if (targetIndex.getOneBased() > tagList.size()) {
+        if (targetIndex.getOneBased() > contactTagList.size() + saleTagList.size() || targetIndex.getOneBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
         }
 
-        Tag tagToEdit = tagList.get(targetIndex.getZeroBased());
+        if (targetIndex.getOneBased() > contactTagList.size()) {
+            Tag tagToEdit = saleTagList.get(targetIndex.getZeroBased());
+            Tag editedTag = createEditedTag(tagToEdit, editTagDescriptor);
+            if (!tagToEdit.isSameTag(editedTag) && model.hasSaleTag(editedTag)) {
+                throw new CommandException(MESSAGE_DUPLICATE_TAG);
+            }
+
+            model.editContactTag(tagToEdit, editedTag);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag));
+        }
+
+        Tag tagToEdit = contactTagList.get(targetIndex.getZeroBased());
         Tag editedTag = createEditedTag(tagToEdit, editTagDescriptor);
 
         if (!tagToEdit.isSameTag(editedTag) && model.hasContactTag(editedTag)) {
@@ -59,7 +81,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editTagDescriptor}.
      */
-    private static Tag createEditedTag(Tag tagToEdit, seedu.address.logic.commands.tag.EditCommand.EditTagDescriptor editTagDescriptor) {
+    private static Tag createEditedTag(Tag tagToEdit,
+                                       EditTagDescriptor editTagDescriptor) {
         assert tagToEdit != null;
 
         String updatedTagName = editTagDescriptor.getTagName().orElse(tagToEdit.getTagName());
@@ -75,12 +98,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof seedu.address.logic.commands.tag.EditCommand)) {
+        if (!(other instanceof EditCommand)) {
             return false;
         }
 
         // state check
-        seedu.address.logic.commands.tag.EditCommand e = (seedu.address.logic.commands.tag.EditCommand) other;
+        EditCommand e = (EditCommand) other;
         return targetIndex.equals(e.targetIndex)
                 && editTagDescriptor.equals(e.editTagDescriptor);
     }
@@ -98,7 +121,7 @@ public class EditCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditTagDescriptor(seedu.address.logic.commands.tag.EditCommand.EditTagDescriptor toCopy) {
+        public EditTagDescriptor(EditTagDescriptor toCopy) {
             setTagName(toCopy.tagName);
         }
 
@@ -118,12 +141,13 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof seedu.address.logic.commands.tag.EditCommand.EditTagDescriptor)) {
+            if (!(other instanceof EditTagDescriptor)) {
                 return false;
             }
 
             // state check
-            seedu.address.logic.commands.tag.EditCommand.EditTagDescriptor e = (seedu.address.logic.commands.tag.EditCommand.EditTagDescriptor) other;
+            EditTagDescriptor e =
+                    (EditTagDescriptor) other;
 
             return getTagName().equals(e.getTagName());
         }

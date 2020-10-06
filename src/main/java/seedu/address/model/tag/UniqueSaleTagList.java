@@ -1,17 +1,13 @@
 package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.tag.exceptions.DuplicateTagException;
 import seedu.address.model.tag.exceptions.InvalidTagListTypeException;
-import seedu.address.model.tag.exceptions.TagNotFoundException;
 
 /**
  * A list of tags for contacts that enforces uniqueness between its elements and does not allow nulls.

@@ -136,12 +136,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasSaleTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addContactTag(Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public void editContactTag(Tag target, Tag editedTag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteContactTag(Tag target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteSaleTag(Tag target) {
             throw new AssertionError("This method should not be called.");
         }
 

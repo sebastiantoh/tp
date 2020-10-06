@@ -15,5 +15,7 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
 
-    ObservableList<Tag> getTagList();
+    ObservableList<Tag> getContactTagList();
+
+    ObservableList<Tag> getSaleTagList();
 }

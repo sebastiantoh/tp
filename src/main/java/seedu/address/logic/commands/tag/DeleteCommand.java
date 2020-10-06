@@ -37,13 +37,21 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tag> tagList = model.getAddressBook().getTagList();
+        List<Tag> contactTagList = model.getAddressBook().getContactTagList();
+        List<Tag> saleTagList = model.getAddressBook().getSaleTagList();
 
-        if (targetIndex.getOneBased() > tagList.size()) {
+        if (targetIndex.getOneBased() > contactTagList.size() + saleTagList.size() || targetIndex.getOneBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
         }
 
-        Tag tagToDelete = tagList.get(targetIndex.getZeroBased());
+        if (targetIndex.getOneBased() > contactTagList.size()) {
+            Tag tagToDelete = saleTagList.get(targetIndex.getOneBased());
+            model.deleteSaleTag(tagToDelete);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagToDelete));
+        }
+
+        Tag tagToDelete = contactTagList.get(targetIndex.getZeroBased());
         model.deleteContactTag(tagToDelete);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagToDelete));

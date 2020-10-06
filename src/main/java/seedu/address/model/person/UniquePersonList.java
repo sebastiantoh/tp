@@ -132,6 +132,14 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    /**
+     * Removes the specified tag from all sales.
+     */
+    public void removeSaleTag(Tag toRemove) {
+        requireNonNull(toRemove);
+        // TODO: to be implemented after the Sale model is ready.
+    }
+
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
