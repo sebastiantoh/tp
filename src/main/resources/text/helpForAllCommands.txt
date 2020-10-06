@@ -30,7 +30,7 @@ appointment delete         Deletes the specified appointment                    
 
 Reminder commands
 ----------------------
-reminder add               Adds a reminder with the specified contact                 reminder add CONTACT_INDEX m/MESSAGE d/DATETIME
+reminder add               Adds a reminder with the specified contact                  reminder add CONTACT_INDEX m/MESSAGE d/DATETIME
 reminder list              Lists all reminders                                         reminder list
 reminder delete	           Deletes the specified reminder                              reminder delete INDEX
 
