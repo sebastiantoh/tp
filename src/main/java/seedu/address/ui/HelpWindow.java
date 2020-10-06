@@ -93,13 +93,13 @@ public class HelpWindow extends UiPart<Stage> {
          * Adds colored command headers.
          *
          * @param rowIndex grid pane row to insert to
-         * @param header header to be added
+         * @param headerText header text to be added
          * @return
          */
-        private void addHeaders(int rowIndex, String header) {
-            Label label = new Label(header);
-            label.setStyle("-fx-text-fill: " + this.colors.get(this.headerCounter / 2));
-            table.addRow(rowIndex, label);
+        private void addHeaders(int rowIndex, String headerText) {
+            Label header = new Label(headerText);
+            header.setStyle("-fx-text-fill: " + this.colors.get(this.headerCounter / 2));
+            table.addRow(rowIndex, header);
             this.headerCounter++;
         }
 
@@ -107,18 +107,18 @@ public class HelpWindow extends UiPart<Stage> {
          * Adds command description.
          *
          * @param rowIndex grid pane row to insert to
-         * @param components parts of the command description
+         * @param descriptionParts parts of the command description to be added
          */
-        private void addCommandDescription(int rowIndex, String[] components) {
-            List<Label> labelList = new ArrayList<>();
+        private void addCommandDescription(int rowIndex, String[] descriptionParts) {
+            List<Label> commandDescParts = new ArrayList<>();
 
-            for (String s : components) {
-                Label label = new Label(s);
-                label.setStyle("-fx-label-padding: 0 4em 0 0");
-                labelList.add(label);
+            for (String descriptionPartText : descriptionParts) {
+                Label descriptionPart = new Label(descriptionPartText);
+                descriptionPart.setStyle("-fx-label-padding: 0 4em 0 0");
+                commandDescParts.add(descriptionPart);
             }
 
-            table.addRow(rowIndex, labelList.toArray(new Label[0]));
+            table.addRow(rowIndex, commandDescParts.toArray(new Label[0]));
         }
     }
 
