@@ -418,7 +418,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to find a contact by giving keyword(s).
-2.  StonksBook shows two list of contacts, one that matches the keyword, another that partially matches the keyword.
+2.  StonksBook outputs a contact list.
 
     Use case ends.
 
@@ -429,27 +429,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 2b. There is no given keyword.
-
-    * 3a1. StonksBook shows an error message.
-
-      Use case ends.
-
-**Use case: Find a contact by regular expression**
-
-**MSS**
-
-1.  User requests to find a contact by giving a regular expression.
-2.  StonksBook shows a list of contacts that satisfies the regular expression.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 2b. There is no given regular expression.
 
     * 3a1. StonksBook shows an error message.
 
@@ -719,7 +698,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Regular expression**: a sequence of characters that define a search pattern
 
 --------------------------------------------------------------------------------------------------------------------
 
