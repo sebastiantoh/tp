@@ -382,7 +382,7 @@ Action | Format, Examples
 **Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
 **Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` or `contact find REGEX` <br> e.g., `find James Jake`, `find [^abc]`
 **Contact List** | `contact list`
-**Sale Add** | `sales add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY` <br> e.g., `sale add c/4 n/Notebook p/6.00 q/2`
+**Sale Add** | `sale add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY` <br> e.g., `sale add c/4 n/Notebook p/6.00 q/2`
 **Sale List** | `sale list`
 **Sale Delete** | `sale delete c/CONTACT_INDEX s/SALE_INDEX` <br> e.g., `sale delete c/2 s/4`
 **Tag Add** | `tag add t/TAG` <br> e.g., `tag add t/important`
@@ -395,7 +395,7 @@ Action | Format, Examples
 **Appointment Delete** | `appointment delete INDEX` <br> e.g., `appointment delete 3`
 **Reminder Add** | `reminder add CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
 **Reminder List** | `reminder list`
-**Reminder Delete** | `reminder delete index` <br> e.g., `reminder delete 4`
+**Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
 **Help** | `COMMAND help`
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
