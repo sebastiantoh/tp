@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.tag.exceptions.DuplicateTagException;
 import seedu.address.model.tag.exceptions.TagNotFoundException;
 
-public class UniqueTagList implements Iterable<Tag> {
+public class UniqueContactTagList implements Iterable<Tag> {
 
     private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
     private final ObservableList<Tag> internalUnmodifiableList =
@@ -47,7 +47,7 @@ public class UniqueTagList implements Iterable<Tag> {
         }
     }
 
-    public void setTags(UniqueTagList replacement) {
+    public void setTags(UniqueContactTagList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -83,8 +83,8 @@ public class UniqueTagList implements Iterable<Tag> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueTagList // instanceof handles nulls
-                && internalList.equals(((UniqueTagList) other).internalList));
+                || (other instanceof UniqueContactTagList // instanceof handles nulls
+                && internalList.equals(((UniqueContactTagList) other).internalList));
     }
 
     @Override
