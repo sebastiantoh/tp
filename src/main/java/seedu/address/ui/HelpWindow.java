@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -97,7 +98,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     private class CommandTable {
 
-        private final List<String> colors = Arrays.asList("red", "cyan", "green", "purple", "orange", "brown");
+        private final List<String> colors = Arrays.asList("#d72c2c", "#08aeae", "#11cf11", "#c307c3", "#f3a517", "#dbbc11");
 
         private int headerCounter = 0;
 
@@ -126,6 +127,7 @@ public class HelpWindow extends UiPart<Stage> {
 
             for (String descriptionPartText : descriptionParts) {
                 Label descriptionPart = new Label(descriptionPartText);
+                descriptionPart.setMinWidth(Region.USE_PREF_SIZE);
                 descriptionPart.setStyle("-fx-label-padding: 0 4em 0 0; -fx-text-fill: white");
                 commandDescParts.add(descriptionPart);
             }
