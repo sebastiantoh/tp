@@ -23,7 +23,7 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-      
+
       <BorderPane>
       <top>
       <VBox>
@@ -62,7 +62,7 @@
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
       </right>
-        
+
       <bottom>
       <VBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

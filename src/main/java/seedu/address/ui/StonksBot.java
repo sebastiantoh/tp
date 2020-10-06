@@ -9,7 +9,7 @@ public class StonksBot {
 
     /**
      * Takes in user input and returns a response.
-     * 
+     *
      * @param input
      * @return response from StonksBot.
      */

@@ -9,7 +9,7 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps. 
+StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -111,7 +111,7 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
 * keyword does not have to exactly match a contact name. e.g. alx will return Alex Yeoh
 
-* The contact list is orderd by non-ascending similarity. 
+* The contact list is orderd by non-ascending similarity.
 
 * Exact matches (if exists) will appear as the first few results.
 
@@ -240,7 +240,7 @@ Deletes a sales item of specified index.
 Format: `sale delete c/CONTACT_INDEX s/SALE_INDEX`
 
 * In the list of all sales made to a contact with the specified `CONTACT_INDEX`, the sale of `SALE_INDEX` is deleted.
-* The  `CONTACT_INDEX` refers to the index number shown in the displayed contact list, while `SALE_INDEX` refers to the index number shown in the sale list of the specified contact. 
+* The  `CONTACT_INDEX` refers to the index number shown in the displayed contact list, while `SALE_INDEX` refers to the index number shown in the sale list of the specified contact.
 * Both `CONTACT_INDEX` and `SALE_INDEX` must be a positive integer 1, 2, 3, …​
 
 Examples:
