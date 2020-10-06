@@ -17,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.contact.AddCommand;
 import seedu.address.logic.commands.contact.ListCommand;
@@ -91,6 +92,44 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getAddressBook_correctResults() {
+        assertEquals(model.getAddressBook(), logic.getAddressBook());
+    }
+
+    @Test
+    public void getFilteredPersonList_correctResults() {
+        assertEquals(model.getFilteredPersonList(), logic.getFilteredPersonList());
+    }
+
+    @Test
+    public void getSortedPersonList_correctResults() {
+        assertEquals(model.getSortedPersonList(), logic.getSortedPersonList());
+    }
+
+    @Test
+    public void getAddressBookFilePath_correctResults() {
+        assertEquals(model.getAddressBookFilePath(), logic.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getGuiSettings_correctResults() {
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings_nullGiven_nullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.setGuiSettings(null));
+    }
+
+    @Test
+    public void setGuiSettings_validInput_correctResults() {
+        GuiSettings guiSettings = new GuiSettings();
+        logic.setGuiSettings(guiSettings);
+
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     /**

@@ -39,7 +39,6 @@ public class AddressBookParser {
         final String commandWord = firstCommandWordMatcher.group("commandWord");
         final String arguments = firstCommandWordMatcher.group("arguments");
 
-
         if (this.isSingleKeyWordCommand(commandWord)) {
             return this.parseSingleKeyWordCommand(commandWord);
         } else if (this.isDoubleKeyWordCommand(commandWord)) {
