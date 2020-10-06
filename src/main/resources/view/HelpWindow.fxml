@@ -24,6 +24,7 @@
                 </columnConstraints>
                 <Label fx:id="helpMessage" minWidth="-Infinity" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
                 <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL"  GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <Label fx:id="commandHelpLegend" minWidth="-Infinity" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
             </GridPane>
         </HBox>
         </ScrollPane>

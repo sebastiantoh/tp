@@ -25,6 +25,9 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t11-1.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL + ".";
 
+    public static final String COMMAND_HELP_LEGEND = "\nThe information below is formatted" +
+            " as (COMMAND NAME, COMMAND DESCRIPTION, COMMAND USAGE).";
+
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -33,6 +36,9 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Label helpMessage;
+
+    @FXML
+    private Label commandHelpLegend;
 
     @FXML
     private GridPane table;
@@ -66,19 +72,20 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void populateHelpWindow() throws IOException {
         helpMessage.setText(HELP_MESSAGE);
+        commandHelpLegend.setText(COMMAND_HELP_LEGEND);
 
         List<String> list = Files.readAllLines(
                 Paths.get("./src/main/resources/text/helpForAllCommands.txt"));
 
         CommandTable commandTable = new CommandTable();
-
-        for (int rowIndex = 1; rowIndex <= list.size(); rowIndex++) {
-            String[] components = list.get(rowIndex - 1).split("\\s{4,}");
+        int startingRowIndex = 2;
+        for (int i = 0; i < list.size(); i++) {
+            String[] components = list.get(i).split("\\s{4,}");
 
             if (components.length == 1 && !components[0].isBlank()) {
-                commandTable.addHeaders(rowIndex, components[0]);
+                commandTable.addHeaders(i + startingRowIndex, components[0]);
             } else {
-                commandTable.addCommandDescription(rowIndex, components);
+                commandTable.addCommandDescription(i + startingRowIndex, components);
             }
         }
     }
