@@ -9,6 +9,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueContactTagList;
+import seedu.address.model.tag.UniqueSaleTagList;
 
 /**
  * Wraps all data at the address-book level
@@ -18,7 +19,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueContactTagList contactTags;
-    // TODO: append sale tags list once sale model is implemented
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
