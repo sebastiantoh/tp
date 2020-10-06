@@ -66,6 +66,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setTags(newData.getTagList());
     }
 
     //// person-level operations
@@ -84,6 +85,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+        for (Tag t : p.getTags()) {
+            tags.add(t);
+        }
     }
 
     /**
@@ -118,6 +122,15 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void removeTag(Tag key) {
         tags.remove(key);
+        persons.removeTag(key);
+    }
+
+    public void listTags() {
+        System.out.println(tags.asUnmodifiableObservableList());
+    }
+
+    public void editTag(Tag editedTag) {
+
     }
 
     //// util methods

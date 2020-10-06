@@ -62,10 +62,9 @@ class JsonSerializableAddressBook {
         }
         for (JsonAdaptedTag jsonAdaptedTag : tags) {
             Tag tag = jsonAdaptedTag.toModelType();
-            if (addressBook.hasTag(tag)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_TAG);
+            if (!addressBook.hasTag(tag)) {
+                addressBook.addTag(tag);
             }
-            addressBook.addTag(tag);
         }
         return addressBook;
     }

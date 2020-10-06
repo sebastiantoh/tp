@@ -5,11 +5,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tag.Tag;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -76,6 +78,17 @@ public class UniquePersonList implements Iterable<Person> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
+        }
+    }
+
+    public void updateTag(Tag toUpdate) {
+
+    }
+
+    public void removeTag(Tag toRemove) {
+        requireNonNull(toRemove);
+        for (Person p : internalList) {
+            p.removeTag(toRemove);
         }
     }
 

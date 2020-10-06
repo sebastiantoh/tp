@@ -33,11 +33,11 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Tag> tagList = model.getAddressBook().getTagList();
 
-        if (targetIndex.getOneBased() >= tagList.size()) {
+        if (targetIndex.getOneBased() > tagList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
         }
 
-        Tag tagToDelete = tagList.get(targetIndex.getOneBased());
+        Tag tagToDelete = tagList.get(targetIndex.getZeroBased());
         model.deleteTag(tagToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagToDelete));
     }

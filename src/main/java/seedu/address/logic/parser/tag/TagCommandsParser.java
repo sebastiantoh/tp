@@ -2,6 +2,7 @@ package seedu.address.logic.parser.tag;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.tag.AddCommand;
+import seedu.address.logic.commands.tag.DeleteCommand;
 import seedu.address.logic.commands.tag.ListCommand;
 import seedu.address.logic.parser.GroupCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -17,6 +18,8 @@ public class TagCommandsParser implements GroupCommandsParser {
            return new AddCommandParser().parse(arguments);
        case ListCommand.COMMAND_WORD:
            return new ListCommand();
+       case DeleteCommand.COMMAND_WORD:
+           return new DeleteCommandParser().parse(arguments);
        default:
            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
        }

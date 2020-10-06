@@ -61,6 +61,13 @@ public class Person {
     }
 
     /**
+     * Removes a tag from the tag set, no operation will be performed if the tag does not exist in the tag set.
+     */
+    public void removeTag(Tag tag) {
+        tags.remove(tag);
+    }
+
+    /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
