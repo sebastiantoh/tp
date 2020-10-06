@@ -6,8 +6,6 @@ import static java.util.Objects.requireNonNull;
  * Represents a remark added to a Contact in the address book.
  */
 public class Remark {
-    public static final String MESSAGE_CONSTRAINTS = "Remark can take any values, and is optional";
-
     /*
      * The first character of the note must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

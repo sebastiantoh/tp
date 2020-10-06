@@ -112,6 +112,4 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
-//    TODO: write another test to test remark
-
 }
