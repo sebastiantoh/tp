@@ -61,19 +61,24 @@ public interface Model {
     /**
      * Returns true if a tag with the same name {@code tag} exists in StonksBook.
      */
-    boolean hasTag(Tag tag);
+    boolean hasContactTag(Tag tag);
 
     /**
      * Adds the given tag.
      * {@code tag} must not already exist in StonksBook.
      */
-    void addTag(Tag tag);
+    void addContactTag(Tag tag);
 
     /**
      * Deletes the given tag.
      * The tag must exist in StonksBook.
      */
-    void deleteTag(Tag target);
+    void deleteContactTag(Tag target);
+
+    /**
+     * Lists all existing tags.
+     */
+    String listTags();
 
     /**
      * Deletes the given person.
@@ -102,6 +107,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
-    void listTags();
 }

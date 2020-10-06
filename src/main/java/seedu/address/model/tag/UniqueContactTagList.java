@@ -3,6 +3,7 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -51,11 +52,22 @@ public class UniqueContactTagList implements Iterable<Tag> {
         internalList.setAll(tags);
     }
 
+    /**
+     * Removes the specified {@code Tag} from the tag list.
+     */
     public void remove(Tag toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new TagNotFoundException();
         }
+    }
+
+    /**
+     * Sort the internal list in lexicographical order.
+     */
+    public void sort() {
+        Comparator<Tag> comparator = Comparator.naturalOrder();
+        FXCollections.sort(internalList, comparator);
     }
 
     /**

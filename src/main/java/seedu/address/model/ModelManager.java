@@ -96,19 +96,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasTag(Tag tag) {
+    public boolean hasContactTag(Tag tag) {
         requireNonNull(tag);
-        return addressBook.hasTag(tag);
+        return addressBook.hasContactTag(tag);
     }
 
     @Override
-    public void addTag(Tag tag) {
-        addressBook.addTag(tag);
+    public void addContactTag(Tag tag) {
+        addressBook.addContactTag(tag);
     }
 
     @Override
-    public void deleteTag(Tag target) {
-        addressBook.removeTag(target);
+    public void deleteContactTag(Tag target) {
+        addressBook.removeContactTag(target);
     }
 
     @Override
@@ -147,8 +147,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void listTags() {
-        addressBook.listTags();
+    public String listTags() {
+        return addressBook.listTags();
     }
 
     @Override

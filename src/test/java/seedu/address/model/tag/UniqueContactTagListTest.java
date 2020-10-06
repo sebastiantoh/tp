@@ -1,15 +1,21 @@
 package seedu.address.model.tag;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.tag.exceptions.DuplicateTagException;
-import seedu.address.model.tag.exceptions.TagNotFoundException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.TypicalContactTags.CLASSMATES;
+import static seedu.address.testutil.TypicalContactTags.COLLEAGUES;
+import static seedu.address.testutil.TypicalContactTags.FRIENDS;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.TypicalContactTags.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.tag.exceptions.DuplicateTagException;
+import seedu.address.model.tag.exceptions.TagNotFoundException;
 
 class UniqueContactTagListTest {
     private final UniqueContactTagList uniqueContactTagList = new UniqueContactTagList();

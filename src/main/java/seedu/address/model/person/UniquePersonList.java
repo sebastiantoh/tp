@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -81,10 +80,9 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
-    public void updateTag(Tag toUpdate) {
-
-    }
-
+    /**
+     * Removes the specified tag from all contacts.
+     */
     public void removeTag(Tag toRemove) {
         requireNonNull(toRemove);
         for (Person p : internalList) {

@@ -131,18 +131,18 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasTag(Tag tag) {
-            return false;
+        public boolean hasContactTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addTag(Tag tag) {
-            // TODO
+        public void addContactTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteTag(Tag target) {
-
+        public void deleteContactTag(Tag target) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -166,8 +166,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public void listTags() {
-
+        public String listTags() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

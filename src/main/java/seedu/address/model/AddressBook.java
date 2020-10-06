@@ -6,8 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueContactTagList;
 
 /**
@@ -18,6 +18,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueContactTagList contactTags;
+    // TODO: append sale tags list once sale model is implemented
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -111,26 +112,45 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// tag-level operations
 
-    public boolean hasTag(Tag tag) {
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in StonksBook.
+     */
+    public boolean hasContactTag(Tag tag) {
         requireNonNull(tag);
         return contactTags.contains(tag);
     }
 
-    public void addTag(Tag tag) {
+    /**
+     * Adds the specified tag to StonksBook.
+     * If the tag already exists in StonksBook, no action will be performed.
+     */
+    public void addContactTag(Tag tag) {
         contactTags.add(tag);
     }
 
-    public void removeTag(Tag key) {
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     *
+     */
+    public void removeContactTag(Tag key) {
         contactTags.remove(key);
         persons.removeTag(key);
     }
 
-    public void listTags() {
-        System.out.println(contactTags.asUnmodifiableObservableList());
+    /**
+     * List all the existing tags in StonksBook.
+     */
+    public String listTags() {
+        // TODO: append sale tags once sale model is implemented
+        return contactTags.asUnmodifiableObservableList().toString();
     }
 
-    public void editTag(Tag editedTag) {
-
+    /**
+     * Re-order all the existing tags in StonksBook.
+     */
+    public void sortTags() {
+        contactTags.sort();
     }
 
     //// util methods
@@ -155,7 +175,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons)) && contactTags.equals(((AddressBook) other).contactTags);
+                && persons.equals(((AddressBook) other).persons))
+                && contactTags.equals(((AddressBook) other).contactTags);
     }
 
     @Override

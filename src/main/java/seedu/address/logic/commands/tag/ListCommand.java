@@ -11,12 +11,11 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "tag list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all tags";
+    public static final String MESSAGE_SUCCESS = "Listed all tags: %s";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.listTags();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.listTags()));
     }
 }
