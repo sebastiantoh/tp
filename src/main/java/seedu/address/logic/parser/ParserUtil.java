@@ -14,6 +14,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.sale.ItemName;
+import seedu.address.model.sale.Quantity;
+import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -133,5 +136,56 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code ItemName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static ItemName parseItemName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!ItemName.isValidItemName(trimmedName)) {
+            throw new ParseException(ItemName.MESSAGE_CONSTRAINTS);
+        }
+        return new ItemName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String quantity} into a {@code Quantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(trimmedQuantity);
+    }
+
+    /**
+     * Parses a {@code String quantity} into a {@code UnitPrice}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code unitPrice} is invalid.
+     */
+    public static UnitPrice parseUnitPrice(String unitPrice) throws ParseException {
+        requireNonNull(unitPrice);
+        String trimmedUnitPrice = unitPrice.trim();
+        if (!UnitPrice.isValidUnitPriceString(trimmedUnitPrice)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        String[] priceSplit = unitPrice.split("\\.");
+        int dollars = Integer.parseInt(priceSplit[0]);
+        int cents = Integer.parseInt(priceSplit[1]);
+        if (UnitPrice.isValidUnitPrice(dollars, cents)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new UnitPrice(dollars, cents);
     }
 }

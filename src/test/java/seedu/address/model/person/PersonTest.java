@@ -8,12 +8,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.person.TypicalPersons.ALICE;
+import static seedu.address.testutil.person.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.person.PersonBuilder;
 
 public class PersonTest {
 
