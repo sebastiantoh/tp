@@ -1,8 +1,7 @@
 package seedu.address.model.tag.exceptions;
 
 /**
- * Signals that the operation will result in duplicate Tags (Tags are considered duplicates if they have the same
- * name).
+ * Signals that this operation is not provided with a list of contact tags.
  */
 public class InvalidTagListTypeException extends RuntimeException {
     public InvalidTagListTypeException() {

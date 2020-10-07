@@ -23,7 +23,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the tag identified by the index number used in the displayed tag list. "
-            + "Note that all associations with this tag will be updated.\n"
+            + "Note that all contacts or sales associated with this tag "
+            + "will be updated automatically with the updated tag.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in StonksBook.";
@@ -63,22 +64,22 @@ public class EditCommand extends Command {
             model.editContactTag(tagToEdit, editedTag);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag));
+        } else {
+            Tag tagToEdit = contactTagList.get(targetIndex.getZeroBased());
+            Tag editedTag = createEditedTag(tagToEdit, editTagDescriptor);
+
+            if (!tagToEdit.isSameTag(editedTag) && model.hasContactTag(editedTag)) {
+                throw new CommandException(MESSAGE_DUPLICATE_TAG);
+            }
+
+            model.editContactTag(tagToEdit, editedTag);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag));
         }
-
-        Tag tagToEdit = contactTagList.get(targetIndex.getZeroBased());
-        Tag editedTag = createEditedTag(tagToEdit, editTagDescriptor);
-
-        if (!tagToEdit.isSameTag(editedTag) && model.hasContactTag(editedTag)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TAG);
-        }
-
-        model.editContactTag(tagToEdit, editedTag);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Tag} with the details of {@code tagToEdit}
      * edited with {@code editTagDescriptor}.
      */
     private static Tag createEditedTag(Tag tagToEdit,
@@ -109,8 +110,7 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the tag with.
      */
     public static class EditTagDescriptor {
         private String tagName;
@@ -118,8 +118,7 @@ public class EditCommand extends Command {
         public EditTagDescriptor() {}
 
         /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * Instantiates a EditTagDescriptor object by copying another EditTagDescriptor {@code toCopy}.
          */
         public EditTagDescriptor(EditTagDescriptor toCopy) {
             setTagName(toCopy.tagName);

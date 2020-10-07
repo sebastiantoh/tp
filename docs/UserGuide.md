@@ -158,7 +158,7 @@ Format: `tag edit INDEX n/NAME`
 * Edits the name of the tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `NAME` and `INDEX` fields must be provided.
-* All contacts that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
+* All contacts or sales that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
 
 Examples:
 

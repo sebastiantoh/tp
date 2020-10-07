@@ -88,15 +88,13 @@ public class UniquePersonList implements Iterable<Person> {
     public void setContactTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
         int count = internalList.size();
+        // Iterate through all contacts and update their tags.
         for (int i = 0; i < count; i++) {
             Person original = internalList.get(i);
-            if (original.getTags().contains(target)) {
-                Set<Tag> tags = new HashSet<>();
-                for (Tag t : original.getTags()) {
-                    if (t.isSameTag(target)) {
-                        tags.add(editedTag);
-                    }
-                }
+            Set<Tag> tags = new HashSet<>(original.getTags());
+            if (tags.contains(target)) {
+                tags.remove(target);
+                tags.add(editedTag);
                 Person p = new Person(original.getName(),
                         original.getPhone(),
                         original.getEmail(),
@@ -115,13 +113,9 @@ public class UniquePersonList implements Iterable<Person> {
         int count = internalList.size();
         for (int i = 0; i < count; i++) {
             Person original = internalList.get(i);
-            if (original.getTags().contains(toRemove)) {
-                Set<Tag> tags = new HashSet<>();
-                for (Tag t : original.getTags()) {
-                    if (!t.isSameTag(toRemove)) {
-                        tags.add(t);
-                    }
-                }
+            Set<Tag> tags = new HashSet<>(original.getTags());
+            if (tags.contains(toRemove)) {
+                tags.remove(toRemove);
                 Person p = new Person(original.getName(),
                         original.getPhone(),
                         original.getEmail(),

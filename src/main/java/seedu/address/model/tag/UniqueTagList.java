@@ -40,7 +40,7 @@ public abstract class UniqueTagList implements Iterable<Tag> {
     public abstract boolean belongsToSale();
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent tag as the given argument.
      */
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
@@ -141,7 +141,7 @@ public abstract class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Returns true if {@code tags} contains only unique persons.
+     * Returns true if {@code tags} contains only unique tags.
      */
     protected boolean tagsAreUnique(List<Tag> tags) {
         for (int i = 0; i < tags.size() - 1; i++) {
