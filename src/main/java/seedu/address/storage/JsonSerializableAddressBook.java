@@ -21,9 +21,12 @@ import seedu.address.model.reminder.Reminder;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_TAG = "Tags list contains duplicate tag(s).";
     public static final String MESSAGE_DUPLICATE_REMINDER = "Reminders list contains duplicate reminder(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTag> contactTags = new ArrayList<>();
+    private final List<JsonAdaptedTag> saleTags = new ArrayList<>();
     private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
 
     /**
@@ -31,8 +34,13 @@ class JsonSerializableAddressBook {
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
+                                       @JsonProperty("contactTags") List<JsonAdaptedTag> contactTags,
+                                       @JsonProperty("saleTags") List<JsonAdaptedTag> saleTags,
+                                       @JsonProperty("reminders") List<JsonAdaptedReminder> reminders
+    ) {
         this.persons.addAll(persons);
+        this.contactTags.addAll(contactTags);
+        this.saleTags.addAll(saleTags);
         this.reminders.addAll(reminders);
     }
 
@@ -43,6 +51,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        contactTags.addAll(source.getContactTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+        saleTags.addAll(source.getSaleTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
         reminders.addAll(source.getReminderList().stream().map(JsonAdaptedReminder::new).collect(Collectors.toList()));
     }
 
@@ -60,6 +70,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+        addressBook.sortTags();
         for (JsonAdaptedReminder jsonAdaptedReminder : reminders) {
             Reminder reminder = jsonAdaptedReminder.toModelType();
             if (addressBook.hasReminder(reminder)) {

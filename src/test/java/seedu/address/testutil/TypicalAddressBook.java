@@ -9,7 +9,7 @@ import seedu.address.model.reminder.Reminder;
 
 public class TypicalAddressBook {
     /**
-     * Returns an {@code AddressBook} with all the typical reminders.
+     * Returns an {@code AddressBook} with all the typical entries.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();

@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -103,6 +104,49 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasContactTag(Tag tag) {
+        requireNonNull(tag);
+        return addressBook.hasContactTag(tag);
+    }
+
+    @Override
+    public boolean hasSaleTag(Tag tag) {
+        requireNonNull(tag);
+        return addressBook.hasSaleTag(tag);
+    }
+
+    @Override
+    public void addContactTag(Tag tag) {
+        addressBook.addContactTag(tag);
+    }
+
+    @Override
+    public void editContactTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+
+        addressBook.editContactTag(target, editedTag);
+    }
+
+    @Override
+    public void editSaleTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+
+        addressBook.editSaleTag(target, editedTag);
+    }
+
+    @Override
+    public void deleteContactTag(Tag target) {
+        requireNonNull(target);
+        addressBook.removeContactTag(target);
+    }
+
+    @Override
+    public void deleteSaleTag(Tag target) {
+        requireNonNull(target);
+        addressBook.removeSaleTag(target);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         this.addressBook.removePerson(target);
     }
@@ -181,6 +225,11 @@ public class ModelManager implements Model {
         this.sortedPersons.setComparator(comparator);
     }
 
+
+    @Override
+    public String listTags() {
+        return addressBook.listTags();
+    }
 
     @Override
     public boolean equals(Object obj) {

@@ -23,6 +23,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -121,6 +122,8 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Reminder> reminders = FXCollections.observableArrayList();
+        private final ObservableList<Tag> contactTags = FXCollections.observableArrayList();
+        private final ObservableList<Tag> saleTags = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons, Collection<Reminder> reminders) {
             this.persons.setAll(persons);
@@ -133,9 +136,18 @@ public class AddressBookTest {
         }
 
         @Override
+        public ObservableList<Tag> getContactTagList() {
+            return contactTags;
+        }
+
+        @Override
         public ObservableList<Reminder> getReminderList() {
             return reminders;
         }
-    }
 
+        @Override
+        public ObservableList<Tag> getSaleTagList() {
+            return saleTags;
+        }
+    }
 }

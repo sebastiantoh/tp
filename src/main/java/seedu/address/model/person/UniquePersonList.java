@@ -3,13 +3,16 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tag.Tag;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -77,6 +80,58 @@ public class UniquePersonList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+    }
+
+    /**
+     * Replaces the specified {@code target} with {@code editedTag} for all contacts.
+     */
+    public void setContactTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+        int count = internalList.size();
+        // Iterate through all contacts and update their tags.
+        for (int i = 0; i < count; i++) {
+            Person original = internalList.get(i);
+            Set<Tag> tags = new HashSet<>(original.getTags());
+            if (tags.contains(target)) {
+                tags.remove(target);
+                tags.add(editedTag);
+                Person p = new Person(original.getName(),
+                        original.getPhone(),
+                        original.getEmail(),
+                        original.getAddress(),
+                        tags);
+                internalList.set(i, p);
+            }
+        }
+    }
+
+    /**
+     * Removes the specified tag from all contacts.
+     */
+    public void removeContactTag(Tag toRemove) {
+        requireNonNull(toRemove);
+        int count = internalList.size();
+        for (int i = 0; i < count; i++) {
+            Person original = internalList.get(i);
+            Set<Tag> tags = new HashSet<>(original.getTags());
+            if (tags.contains(toRemove)) {
+                tags.remove(toRemove);
+                Person p = new Person(original.getName(),
+                        original.getPhone(),
+                        original.getEmail(),
+                        original.getAddress(),
+                        tags);
+                internalList.set(i, p);
+            }
+        }
+    }
+
+    /**
+     * Removes the specified tag from all sales.
+     */
+    public void removeSaleTag(Tag toRemove) {
+        requireNonNull(toRemove);
+        // TODO: to be implemented after the Sale model is ready.
     }
 
     public void setPersons(UniquePersonList replacement) {

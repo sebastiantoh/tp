@@ -9,7 +9,7 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps. 
+StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -137,19 +137,6 @@ Examples:
 
 ### Tags
 
-#### Adding a tag: `tag add`
-
-Adds a new customised tag of the specified name. If there is an existing tag with this name, this command will not result in any change in state.
-
-Format: `tag add t/TAG`
-
-* Adds a tag with the specified `TAG` as name. If this tag name already exists in the tag list, there will be no change in the program state.
-* The `TAG` field must be provided.
-
-Examples:
-
-* `tag add t/friends` adds the tag `friends` to the tag list in StonksBook.
-
 #### Listing all tags: `tag list`
 
 Displays a list of all tags created so far.
@@ -171,7 +158,7 @@ Format: `tag edit INDEX n/NAME`
 * Edits the name of the tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `NAME` and `INDEX` fields must be provided.
-* All contacts that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
+* All contacts or sales that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
 
 Examples:
 
@@ -240,7 +227,7 @@ Deletes a sales item of specified index.
 Format: `sale delete c/CONTACT_INDEX s/SALE_INDEX`
 
 * In the list of all sales made to a contact with the specified `CONTACT_INDEX`, the sale of `SALE_INDEX` is deleted.
-* The  `CONTACT_INDEX` refers to the index number shown in the displayed contact list, while `SALE_INDEX` refers to the index number shown in the sale list of the specified contact. 
+* The  `CONTACT_INDEX` refers to the index number shown in the displayed contact list, while `SALE_INDEX` refers to the index number shown in the sale list of the specified contact.
 * Both `CONTACT_INDEX` and `SALE_INDEX` must be a positive integer 1, 2, 3, …​
 
 Examples:

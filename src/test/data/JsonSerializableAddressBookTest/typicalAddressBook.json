@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalPersons()",
+  "_comment": "AddressBook save file which contains all the typical entries of the various models",
   "persons": [
     {
       "name": "Alice Pauline",
@@ -58,6 +58,8 @@
       "tagged": []
     }
   ],
+  "contactTags": [],
+  "saleTags": [],
   "reminders": [
     {
       "person": {

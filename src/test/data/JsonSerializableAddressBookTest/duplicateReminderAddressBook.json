@@ -1,5 +1,7 @@
 {
   "persons": [],
+  "contactTags": [ ],
+  "saleTags": [ ],
   "reminders": [
     {
       "person": {
