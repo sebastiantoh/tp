@@ -5,15 +5,18 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
-    "remark" : ""
-  }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street",
-    "remark" : ""
-  } ],
-  "contactTags": [ ],
-  "saleTags": [ ],
+    "remark": ""
+  },
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "pauline@example.com",
+      "address": "4th street",
+      "remark": ""
+    }
+  ],
+  "contactTags": [],
+  "saleTags": [],
+  "appointments": [],
   "reminders": []
 }

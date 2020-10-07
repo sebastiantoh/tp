@@ -21,6 +21,15 @@ public class JsonSerializableAddressBookTest {
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
 
+    private static final Path INVALID_PERSON_APPOINTMENT_FILE =
+        TEST_DATA_FOLDER.resolve("invalidPersonInAppointmentAddressBook.json");
+    private static final Path INVALID_DURATION_APPOINTMENT_FILE =
+        TEST_DATA_FOLDER.resolve("invalidDurationInAppointmentAddressBook.json");
+    private static final Path INVALID_DATE_APPOINTMENT_FILE =
+        TEST_DATA_FOLDER.resolve("invalidDateInAppointmentAddressBook.json");
+    private static final Path DUPLICATE_APPOINTMENT_FILE = TEST_DATA_FOLDER.resolve("duplicateAppointmentsAddressBook"
+        + ".json");
+
     private static final Path INVALID_REMINDER_FILE = TEST_DATA_FOLDER.resolve("invalidReminderAddressBook.json");
     private static final Path DUPLICATE_REMINDER_FILE = TEST_DATA_FOLDER.resolve("duplicateReminderAddressBook.json");
 
@@ -63,4 +72,32 @@ public class JsonSerializableAddressBookTest {
             dataFromFile::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidPersonInAppointment_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_APPOINTMENT_FILE,
+            JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDurationInAppointment_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_DURATION_APPOINTMENT_FILE,
+            JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDateInAppointment_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_DATE_APPOINTMENT_FILE,
+            JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateAppointments_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_APPOINTMENT_FILE,
+            JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_APPOINTMENT,
+            dataFromFile::toModelType);
+    }
 }

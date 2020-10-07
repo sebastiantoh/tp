@@ -1,9 +1,8 @@
 {
   "persons": [],
-  "contactTags": [],
-  "saleTags": [],
-  "appointments": [],
-  "reminders": [
+  "contactTags": [ ],
+  "saleTags": [ ],
+  "appointments": [
     {
       "person": {
         "name": "Alice Pauline",
@@ -12,10 +11,12 @@
         "address": "123, Jurong West Ave 6, #08-111",
         "tagged": [
           "friends"
-        ],
-        "remark": ""
+        ]
       },
-      "scheduledDate": "2020-10-30T15:19"
+      "message": "Lunch with Alice",
+      "startDate": "2020-10-30T15:19",
+      "duration": "PT30.5M"
     }
-  ]
+  ],
+  "reminders": []
 }
