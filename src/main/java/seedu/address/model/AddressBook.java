@@ -11,8 +11,8 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the address-book level.
+ * Duplicates are not allowed (by .isSamePerson comparison).
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -36,7 +36,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Creates an AddressBook using the data in the {@code toBeCopied}
+     * Creates an AddressBook using the data in the {@code toBeCopied}.
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();

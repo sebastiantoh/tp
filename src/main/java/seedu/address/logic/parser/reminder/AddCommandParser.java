@@ -17,7 +17,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new AddCommand object for Reminder
+ * Parses input arguments and creates a new AddCommand object for Reminder.
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
@@ -25,7 +25,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform to the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

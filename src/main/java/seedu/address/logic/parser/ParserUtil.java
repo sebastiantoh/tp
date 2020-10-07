@@ -139,7 +139,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String dateTime} into a {@code LocalDateTime}.
      *
-     * @throws ParseException if the given {@code dateTime} is not of the format 'yyyy-MM-dd HH:mm'
+     * @throws ParseException if the given {@code dateTime} is not of the format 'yyyy-MM-dd HH:mm'.
      */
     public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);

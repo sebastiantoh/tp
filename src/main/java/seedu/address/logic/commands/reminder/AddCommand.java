@@ -39,7 +39,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in StonksBook.";
 
     /**
-     * Index of the Person to be associated with this reminder
+     * Index of the Person to be associated with this reminder.
      */
     private final Index index;
     private final String message;
