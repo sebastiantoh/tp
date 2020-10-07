@@ -107,7 +107,7 @@ public interface Model {
 
     /**
      * Deletes the given appointment.
-     * The appointment must exist in StonksBook.
+     * {@code appointment} must exist in StonksBook.
      */
     void deleteAppointment(Appointment target);
 
