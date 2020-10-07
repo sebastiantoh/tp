@@ -99,6 +99,6 @@ class UniqueSaleTagListTest {
     void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         uniqueSaleTagList.add(IMPORTANT);
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueSaleTagList.asUnmodifiableObservableList().remove(0));
+            -> uniqueSaleTagList.asUnmodifiableObservableList().remove(0));
     }
 }
