@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -125,18 +126,42 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /** Returns an unmodifiable view of the sorted person list. */
+    /**
+     * Returns an unmodifiable view of the sorted person list.
+     */
     ObservableList<Person> getSortedPersonList();
 
-    /** Updates the comparator of the sorted person list to sort by the given {@code comparator}. */
+    /**
+     * Updates the comparator of the sorted person list to sort by the given {@code comparator}.
+     */
     void updateSortedPersonList(Comparator<Person> comparator);
+
+    /**
+     * Returns true if an appointment with same fields as {@code appointment} exists in StonksBook.
+     */
+    boolean hasAppointment(Appointment appointment);
+
+    /**
+     * Deletes the given appointment.
+     * {@code appointment} must exist in StonksBook.
+     */
+    void deleteAppointment(Appointment target);
+
+    /**
+     * Adds the given appointment.
+     * {@code appointment} must not already exist in StonksBook.
+     */
+    void addAppointment(Appointment appointment);
 }
