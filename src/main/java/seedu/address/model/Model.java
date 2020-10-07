@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -58,6 +59,53 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a contact tag with the same name {@code tag} exists in StonksBook.
+     */
+    boolean hasContactTag(Tag tag);
+
+    /**
+     * Returns true if a sale tag with the same name {@code tag} exists in StonksBook.
+     */
+    boolean hasSaleTag(Tag tag);
+
+    /**
+     * Adds the given tag.
+     * {@code tag} must not already exist in StonksBook.
+     */
+    void addContactTag(Tag tag);
+
+    /**
+     * Replaces the given {@code tag} with {@code editedTag}.
+     * {@code target} must exist in the contact tag list.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in StonksBook.
+     */
+    void editContactTag(Tag target, Tag editedTag);
+
+    /**
+     * Replaces the given {@code tag} with {@code editedTag}.
+     * {@code target} must exist in the sale tag list.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in StonksBook.
+     */
+    void editSaleTag(Tag target, Tag editedTag);
+
+    /**
+     * Deletes the given tag from the contact tag list.
+     * The tag must exist in StonksBook.
+     */
+    void deleteContactTag(Tag target);
+
+    /**
+     * Deletes the given tag from the sale tag list.
+     * The tag must exist in StonksBook.
+     */
+    void deleteSaleTag(Tag target);
+
+    /**
+     * Lists all existing tags.
+     */
+    String listTags();
 
     /**
      * Deletes the given person.

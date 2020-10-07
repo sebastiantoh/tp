@@ -21,9 +21,12 @@ import seedu.address.model.person.Person;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_TAG = "Tags list contains duplicate tag(s).";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointments list contains duplicate appointment(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTag> contactTags = new ArrayList<>();
+    private final List<JsonAdaptedTag> saleTags = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
     /**
@@ -31,8 +34,12 @@ class JsonSerializableAddressBook {
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("contactTags") List<JsonAdaptedTag> contactTags,
+                                       @JsonProperty("saleTags") List<JsonAdaptedTag> saleTags,
                                        @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.persons.addAll(persons);
+        this.contactTags.addAll(contactTags);
+        this.saleTags.addAll(saleTags);
         this.appointments.addAll(appointments);
     }
 
@@ -43,6 +50,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        contactTags.addAll(source.getContactTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+        saleTags.addAll(source.getSaleTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
         appointments
             .addAll(source.getAppointmentList().stream().map(JsonAdaptedAppointment::new).collect(Collectors.toList()));
     }
@@ -61,6 +70,7 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+        addressBook.sortTags();
 
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
             Appointment appointment = jsonAdaptedAppointment.toModelType();
