@@ -26,7 +26,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.person.PersonBuilder;
 
 public class AddCommandTest {
 

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static seedu.address.storage.JsonAdaptedReminder.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalReminders.CALL_ALICE;
+import static seedu.address.testutil.person.TypicalPersons.ALICE;
 
 import org.junit.jupiter.api.Test;
 

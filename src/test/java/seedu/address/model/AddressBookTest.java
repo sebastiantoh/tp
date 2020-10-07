@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalReminders.CALL_ALICE;
+import static seedu.address.testutil.person.TypicalPersons.ALICE;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -25,7 +25,7 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.person.PersonBuilder;
 
 public class AddressBookTest {
 

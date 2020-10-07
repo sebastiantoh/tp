@@ -20,9 +20,9 @@ import seedu.address.logic.commands.contact.FindCommand;
 import seedu.address.logic.commands.contact.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.person.EditPersonDescriptorBuilder;
+import seedu.address.testutil.person.PersonBuilder;
+import seedu.address.testutil.person.PersonUtil;
 
 public class AddressBookParserTest {
 

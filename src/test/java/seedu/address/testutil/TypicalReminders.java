@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.person.TypicalPersons.ALICE;
+import static seedu.address.testutil.person.TypicalPersons.BENSON;
+import static seedu.address.testutil.person.TypicalPersons.CARL;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
