@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.sale;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -17,11 +17,18 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.sale.Sale;
+import seedu.address.testutil.person.PersonBuilder;
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Sale} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalSales {
+
+    public static final Sale APPLE = new SaleBuilder().withItemName("Apple").withQuantity("10")
+            .withUnitPrice(3, 50).build();
+    public static final Sale BALL = new SaleBuilder().withItemName("Ball").withQuantity("1")
+            .withUnitPrice(0, 80).build();
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -57,7 +64,7 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalSales() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.

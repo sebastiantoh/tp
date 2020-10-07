@@ -263,7 +263,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | visual salesman                   | have chatbot GUI                                              | visually keep track of my actions                                                             |
 | `* *`    | busy salesman                     | clear past interactions with the app (like CLI clear command) | remove the clutter on the GUI                                                                 |
 | `* *`    | careless typer                    | be notified of an erroneous input                             | easily identify my mistakes                                                                   |
-| `* *`    | well-connected salesman           | associate notes to contacts                                   | remember key information about this contact and distinguish between contacts with same names  |
+| `* *`    | well-connected salesman           | associate remarks to contacts                                 | remember key information about this contact and distinguish between contacts with same names  |
 | `* *`    | organised user                    | get notified if I attempted to create a duplicate record      | avoid duplicated contacts in the app.                                                         |
 | `* *`    | efficient salesman                | see the relevant sales information to the contact information | make sales decisions without referring to other app                                           |
 | `* * *`  | well-connected salesman           | categorise my contacts                                        | navigate through a large list of contacts with ease.                                          |

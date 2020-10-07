@@ -99,7 +99,7 @@ public class UniquePersonList implements Iterable<Person> {
                         original.getPhone(),
                         original.getEmail(),
                         original.getAddress(),
-                        tags);
+                        tags, original.getRemark());
                 internalList.set(i, p);
             }
         }
@@ -120,7 +120,7 @@ public class UniquePersonList implements Iterable<Person> {
                         original.getPhone(),
                         original.getEmail(),
                         original.getAddress(),
-                        tags);
+                        tags, original.getRemark());
                 internalList.set(i, p);
             }
         }
