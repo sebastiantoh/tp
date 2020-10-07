@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public class Tag implements Comparable<Tag> {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -26,10 +26,24 @@ public class Tag {
     }
 
     /**
+     * Returns the tag name.
+     */
+    public String getTagName() {
+        return tagName;
+    }
+
+    /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if both tags have the same tag name.
+     */
+    public boolean isSameTag(Tag otherTag) {
+        return this.equals(otherTag);
     }
 
     @Override
@@ -45,10 +59,18 @@ public class Tag {
     }
 
     /**
-     * Format state as text for viewing.
+     * Formats state as text for viewing.
      */
+    @Override
     public String toString() {
         return '[' + tagName + ']';
     }
 
+    /**
+     * Compares two tags with lexicographical order.
+     */
+    @Override
+    public int compareTo(Tag o) {
+        return tagName.compareTo(o.tagName);
+    }
 }
