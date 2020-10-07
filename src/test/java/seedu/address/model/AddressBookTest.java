@@ -18,8 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -49,7 +51,7 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        AddressBookStub newData = new AddressBookStub(newPersons, Collections.emptyList());
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -88,15 +90,33 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Tag> contactTags = FXCollections.observableArrayList();
+        private final ObservableList<Tag> saleTags = FXCollections.observableArrayList();
+        private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        AddressBookStub(Collection<Person> persons, Collection<Appointment> appointments) {
             this.persons.setAll(persons);
+            this.appointments.setAll(appointments);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
         }
-    }
 
+        @Override
+        public ObservableList<Tag> getContactTagList() {
+            return contactTags;
+        }
+
+        @Override
+        public ObservableList<Appointment> getAppointmentList() {
+            return appointments;
+        }
+
+        @Override
+        public ObservableList<Tag> getSaleTagList() {
+            return saleTags;
+        }
+    }
 }

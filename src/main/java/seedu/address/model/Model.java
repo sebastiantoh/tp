@@ -1,11 +1,14 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -58,6 +61,53 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a contact tag with the same name {@code tag} exists in StonksBook.
+     */
+    boolean hasContactTag(Tag tag);
+
+    /**
+     * Returns true if a sale tag with the same name {@code tag} exists in StonksBook.
+     */
+    boolean hasSaleTag(Tag tag);
+
+    /**
+     * Adds the given tag.
+     * {@code tag} must not already exist in StonksBook.
+     */
+    void addContactTag(Tag tag);
+
+    /**
+     * Replaces the given {@code tag} with {@code editedTag}.
+     * {@code target} must exist in the contact tag list.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in StonksBook.
+     */
+    void editContactTag(Tag target, Tag editedTag);
+
+    /**
+     * Replaces the given {@code tag} with {@code editedTag}.
+     * {@code target} must exist in the sale tag list.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in StonksBook.
+     */
+    void editSaleTag(Tag target, Tag editedTag);
+
+    /**
+     * Deletes the given tag from the contact tag list.
+     * The tag must exist in StonksBook.
+     */
+    void deleteContactTag(Tag target);
+
+    /**
+     * Deletes the given tag from the sale tag list.
+     * The tag must exist in StonksBook.
+     */
+    void deleteSaleTag(Tag target);
+
+    /**
+     * Lists all existing tags.
+     */
+    String listTags();
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -76,12 +126,42 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns an unmodifiable view of the sorted person list.
+     */
+    ObservableList<Person> getSortedPersonList();
+
+    /**
+     * Updates the comparator of the sorted person list to sort by the given {@code comparator}.
+     */
+    void updateSortedPersonList(Comparator<Person> comparator);
+
+    /**
+     * Returns true if an appointment with same fields as {@code appointment} exists in StonksBook.
+     */
+    boolean hasAppointment(Appointment appointment);
+
+    /**
+     * Deletes the given appointment.
+     * {@code appointment} must exist in StonksBook.
+     */
+    void deleteAppointment(Appointment target);
+
+    /**
+     * Adds the given appointment.
+     * {@code appointment} must not already exist in StonksBook.
+     */
+    void addAppointment(Appointment appointment);
 }

@@ -49,5 +49,7 @@
     "address" : "4th street",
     "tagged" : [ ],
     "remark" : ""
-  } ]
+  } ],
+  "contactTags" : [ "friends", "owesMoney" ],
+  "saleTags": [ ]
 }

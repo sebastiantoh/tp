@@ -9,7 +9,7 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps. 
+StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -97,7 +97,7 @@ Shows a list of all contacts in StonksBook.
 Format:`contact list`
 
 #### Locating contacts by name: `contact find`
-Finds contacts whose names contain any of the given keywords.
+Find contacts whose names exactly match or is similar to any of the given keywords.
 
 Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
@@ -109,27 +109,19 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
 * Contacts matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
-* There are two search result categories: exact matches and similar matches.
+* keyword does not have to exactly match a contact name. e.g. alx will return Alex Yeoh
 
-* For exact matches:
+* The contact list is orderd by non-ascending similarity. 
 
-    * Only full words will be matched e.g. Han will not match Hans
-
-* For similar matches:
-
-    * Partial words will be matched e.g.  Han will match Hans
+* Exact matches (if exists) will appear as the first few results.
 
 <img src="images/contactFindMockup.png" alt="result for 'contact find keyword'" width="400px">
-
-* Format: `contact find REGEX`
-
-* Returns results that satisfies the regular expression under exact matches.
-
-<img src="images/contactFindRegexMockup.png" alt="result for 'contact find regex'" width="400px">
 
 Examples:
 * `contact find John` returns john and John Doe
 * `contact find alex david` returns Alex Yeoh, David Li
+* `contact find alx` returns Alex Yeoh
+* `contact find alx dvd` returns Alex Yeoh, David Li
 
 #### Deleting a contact: `contact delete`
 Deletes the specified contact from StonksBook.
@@ -144,19 +136,6 @@ Examples:
 `contact find Betsy` followed by `contact delete 1` deletes the 1st contact in the results of the find command.
 
 ### Tags
-
-#### Adding a tag: `tag add`
-
-Adds a new customised tag of the specified name. If there is an existing tag with this name, this command will not result in any change in state.
-
-Format: `tag add t/TAG`
-
-* Adds a tag with the specified `TAG` as name. If this tag name already exists in the tag list, there will be no change in the program state.
-* The `TAG` field must be provided.
-
-Examples:
-
-* `tag add t/friends` adds the tag `friends` to the tag list in StonksBook.
 
 #### Listing all tags: `tag list`
 
@@ -179,7 +158,7 @@ Format: `tag edit INDEX n/NAME`
 * Edits the name of the tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `NAME` and `INDEX` fields must be provided.
-* All contacts that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
+* All contacts or sales that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
 
 Examples:
 
@@ -248,7 +227,7 @@ Deletes a sales item of specified index.
 Format: `sale delete c/CONTACT_INDEX s/SALE_INDEX`
 
 * In the list of all sales made to a contact with the specified `CONTACT_INDEX`, the sale of `SALE_INDEX` is deleted.
-* The  `CONTACT_INDEX` refers to the index number shown in the displayed contact list, while `SALE_INDEX` refers to the index number shown in the sale list of the specified contact. 
+* The  `CONTACT_INDEX` refers to the index number shown in the displayed contact list, while `SALE_INDEX` refers to the index number shown in the sale list of the specified contact.
 * Both `CONTACT_INDEX` and `SALE_INDEX` must be a positive integer 1, 2, 3, …​
 
 Examples:
@@ -380,7 +359,7 @@ Action | Format, Examples
 **Contact Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/birthday: 20 August`
 **Contact Delete** | `contact delete INDEX` <br> e.g., `contact delete 3`
 **Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
-**Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` or `contact find REGEX` <br> e.g., `find James Jake`, `find [^abc]`
+**Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
 **Contact List** | `contact list`
 **Sale Add** | `sales add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY` <br> e.g., `sale add c/4 n/Notebook p/6.00 q/2`
 **Sale List** | `sale list`

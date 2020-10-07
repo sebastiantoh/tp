@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.commons.enums.GroupEnum.CONTACT;
+import static seedu.address.commons.enums.GroupEnum.TAG;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +14,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.PurgeCommand;
 import seedu.address.logic.parser.contact.ContactCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.tag.TagCommandsParser;
 
 /**
  * Parses user input.
@@ -36,7 +38,6 @@ public class AddressBookParser {
 
         final String commandWord = firstCommandWordMatcher.group("commandWord");
         final String arguments = firstCommandWordMatcher.group("arguments");
-
 
         if (this.isSingleKeyWordCommand(commandWord)) {
             return this.parseSingleKeyWordCommand(commandWord);
@@ -88,7 +89,7 @@ public class AddressBookParser {
     }
 
     private boolean isDoubleKeyWordCommand(String commandWord) {
-        return commandWord.equals(CONTACT.name().toLowerCase());
+        return commandWord.equals(CONTACT.name().toLowerCase()) || commandWord.equals(TAG.name().toLowerCase());
     }
 
     private Command parseTwoKeyWordCommand(String commandWord,
@@ -98,6 +99,8 @@ public class AddressBookParser {
 
         if (commandWord.equals(CONTACT.name().toLowerCase())) {
             return new ContactCommandsParser().parse(fullCommand, arguments);
+        } else if (commandWord.equals(TAG.name().toLowerCase())) {
+            return new TagCommandsParser().parse(fullCommand, arguments);
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
