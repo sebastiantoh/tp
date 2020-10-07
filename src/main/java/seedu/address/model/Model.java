@@ -77,10 +77,17 @@ public interface Model {
 
     /**
      * Replaces the given {@code tag} with {@code editedTag}.
-     * {@code target} must exist in StonksBook.
+     * {@code target} must exist in the contact tag list.
      * The tag identity of {@code editedTag} must not be the same as another existing tag in StonksBook.
      */
     void editContactTag(Tag target, Tag editedTag);
+
+    /**
+     * Replaces the given {@code tag} with {@code editedTag}.
+     * {@code target} must exist in the sale tag list.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in StonksBook.
+     */
+    void editSaleTag(Tag target, Tag editedTag);
 
     /**
      * Deletes the given tag from the contact tag list.

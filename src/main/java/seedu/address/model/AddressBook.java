@@ -163,12 +163,22 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given {@code target} in the list with {@code editedTag}.
-     * {@code target} must exist in StonksBook.
+     * {@code target} must exist in the contact tag list.
      * The tag identity of {@code editedTag} must not be the same as another existing tag in StonksBook.
      */
     public void editContactTag(Tag target, Tag editedTag) {
         contactTags.setTag(target, editedTag);
         persons.setContactTag(target, editedTag);
+    }
+
+    /**
+     * Replaces the given {@code target} in the list with {@code editedTag}.
+     * {@code target} must exist in the sale tag list.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in StonksBook.
+     */
+    public void editSaleTag(Tag target, Tag editedTag) {
+        saleTags.setTag(target, editedTag);
+        // TODO: edit sale tag once sale model is implemented
     }
 
     /**

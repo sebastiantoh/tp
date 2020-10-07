@@ -54,28 +54,27 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
         }
 
+        Tag tagToEdit;
+        Tag editedTag;
         if (targetIndex.getOneBased() > contactTagList.size()) {
-            Tag tagToEdit = saleTagList.get(targetIndex.getZeroBased());
-            Tag editedTag = createEditedTag(tagToEdit, editTagDescriptor);
+            tagToEdit = saleTagList.get(targetIndex.getZeroBased());
+            editedTag = createEditedTag(tagToEdit, editTagDescriptor);
+
             if (!tagToEdit.isSameTag(editedTag) && model.hasSaleTag(editedTag)) {
                 throw new CommandException(MESSAGE_DUPLICATE_TAG);
             }
-
-            model.editContactTag(tagToEdit, editedTag);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag));
+            model.editSaleTag(tagToEdit, editedTag);
         } else {
-            Tag tagToEdit = contactTagList.get(targetIndex.getZeroBased());
-            Tag editedTag = createEditedTag(tagToEdit, editTagDescriptor);
+            tagToEdit = contactTagList.get(targetIndex.getZeroBased());
+            editedTag = createEditedTag(tagToEdit, editTagDescriptor);
 
             if (!tagToEdit.isSameTag(editedTag) && model.hasContactTag(editedTag)) {
                 throw new CommandException(MESSAGE_DUPLICATE_TAG);
             }
-
             model.editContactTag(tagToEdit, editedTag);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag));
         }
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag));
     }
 
     /**
