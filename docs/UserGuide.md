@@ -153,7 +153,7 @@ Examples:
 
 Edits an existing tag in StonksBook to the specified tag name. All entries previously associated with this tag will be updated to associated with the updated tag.
 
-Format: `tag edit INDEX n/NAME`
+Format: `tag edit INDEX t/NAME`
 
 * Edits the name of the tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
