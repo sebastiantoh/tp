@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.person;
 
 import java.util.HashSet;
 import java.util.Set;
