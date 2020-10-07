@@ -21,8 +21,8 @@ import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.person.PersonBuilder;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.person.PersonBuilder;
 
 public class AddressBookTest {
 
