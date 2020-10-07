@@ -1,6 +1,6 @@
 {
   "persons": [],
-  "tags": [
-    {}
-  ]
+  "contactTags": [],
+  "saleTags": [],
+  "reminders": []
 }

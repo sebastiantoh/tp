@@ -9,13 +9,15 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueContactTagList;
 import seedu.address.model.tag.UniqueSaleTagList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the address-book level.
+ * Duplicates are not allowed (by .isSamePerson comparison).
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -23,6 +25,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueContactTagList contactTags;
     private final UniqueSaleTagList saleTags;
     private final UniqueAppointmentList appointments;
+    private final UniqueReminderList reminders;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,18 +33,21 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
+     *
      */
     {
         persons = new UniquePersonList();
         contactTags = new UniqueContactTagList();
         saleTags = new UniqueSaleTagList();
         appointments = new UniqueAppointmentList();
+        reminders = new UniqueReminderList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
-     * Creates an AddressBook using the data in the {@code toBeCopied}
+     * Creates an AddressBook using the data in the {@code toBeCopied}.
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -75,6 +81,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the reminders list with {@code reminders}.
+     * {@code reminders} must not contain duplicate reminders.
+     */
+    public void setReminders(List<Reminder> reminders) {
+        this.reminders.setReminders(reminders);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -83,6 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setTags(newData.getContactTagList());
         setAppointments(newData.getAppointmentList());
+        setReminders(newData.getReminderList());
     }
 
     //// person-level operations
@@ -235,6 +250,32 @@ public class AddressBook implements ReadOnlyAddressBook {
         appointments.remove(key);
     }
 
+    //// reminder-level operations
+
+    /**
+     * Returns true if an equivalent reminder exists in StonksBook.
+     */
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return reminders.contains(reminder);
+    }
+
+    /**
+     * Adds a reminder to StonksBook.
+     * The reminder must not already exist in StonksBook.
+     */
+    public void addReminder(Reminder reminder) {
+        reminders.add(reminder);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeReminder(Reminder key) {
+        reminders.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -264,15 +305,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Reminder> getReminderList() {
+        return reminders.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         } else if (!(other instanceof AddressBook)) {
             return false;
         }
+
         AddressBook otherAddressBook = (AddressBook) other;
 
-        return persons.equals(otherAddressBook.persons) && appointments.equals(otherAddressBook.appointments)
+        return persons.equals(otherAddressBook.persons) && reminders.equals(otherAddressBook.reminders)
+                && appointments.equals(otherAddressBook.appointments)
                 && contactTags.equals(((AddressBook) other).contactTags);
     }
 

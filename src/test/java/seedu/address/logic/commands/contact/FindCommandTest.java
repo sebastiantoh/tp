@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.person.TypicalPersons.CARL;
 import static seedu.address.testutil.person.TypicalPersons.DANIEL;
@@ -12,7 +13,6 @@ import static seedu.address.testutil.person.TypicalPersons.ELLE;
 import static seedu.address.testutil.person.TypicalPersons.FIONA;
 import static seedu.address.testutil.person.TypicalPersons.HOON;
 import static seedu.address.testutil.person.TypicalPersons.IDA;
-import static seedu.address.testutil.person.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,8 +1,12 @@
 {
   "persons": [],
-  "tags": [ {
-    "tagName": "friends"
-  }, {
-    "tagName": "friends"
-  } ]
+  "contactTags": [
+    {
+      "tagName": "friends"
+    },
+    {
+      "tagName": "friends"
+    }
+  ],
+  "reminders": []
 }

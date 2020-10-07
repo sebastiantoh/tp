@@ -6,8 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReminders.CALL_ALICE;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
-import static seedu.address.testutil.person.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,6 +22,8 @@ import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.person.PersonBuilder;
 
@@ -49,9 +52,9 @@ public class AddressBookTest {
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons, Collections.emptyList());
+        AddressBookStub newData = new AddressBookStub(newPersons, Collections.emptyList(), Collections.emptyList());
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -76,7 +79,7 @@ public class AddressBookTest {
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 
@@ -85,18 +88,51 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
+    @Test
+    public void resetData_withDuplicateReminder_throwsDuplicateReminderException() {
+        List<Reminder> newReminders = Arrays.asList(CALL_ALICE, CALL_ALICE);
+        AddressBookStub newData = new AddressBookStub(Collections.emptyList(), Collections.emptyList(), newReminders);
+
+        assertThrows(DuplicateReminderException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void hasReminder_nullReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasReminder(null));
+    }
+
+    @Test
+    public void hasReminder_reminderNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasReminder(CALL_ALICE));
+    }
+
+    @Test
+    public void hasReminder_reminderInAddressBook_returnsTrue() {
+        addressBook.addReminder(CALL_ALICE);
+        assertTrue(addressBook.hasReminder(CALL_ALICE));
+    }
+
+    @Test
+    public void getReminderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getReminderList().remove(0));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Reminder> reminders = FXCollections.observableArrayList();
         private final ObservableList<Tag> contactTags = FXCollections.observableArrayList();
         private final ObservableList<Tag> saleTags = FXCollections.observableArrayList();
         private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Appointment> appointments) {
+
+        AddressBookStub(Collection<Person> persons, Collection<Appointment> appointments,
+                        Collection<Reminder> reminders) {
             this.persons.setAll(persons);
             this.appointments.setAll(appointments);
+            this.reminders.setAll(reminders);
         }
 
         @Override
@@ -112,6 +148,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Appointment> getAppointmentList() {
             return appointments;
+        }
+
+        @Override
+        public ObservableList<Reminder> getReminderList() {
+            return reminders;
         }
 
         @Override

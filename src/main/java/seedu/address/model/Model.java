@@ -8,13 +8,16 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true.
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
@@ -52,7 +55,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook.
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -128,6 +133,7 @@ public interface Model {
 
     /**
      * Returns an unmodifiable view of the filtered person list
+    .
      */
     ObservableList<Person> getFilteredPersonList();
 
@@ -164,4 +170,21 @@ public interface Model {
      * {@code appointment} must not already exist in StonksBook.
      */
     void addAppointment(Appointment appointment);
+
+    /**
+     * Returns true if a reminder with the same fields {@code reminder} exists in StonksBook.
+     */
+    boolean hasReminder(Reminder reminder);
+
+    /**
+     * Deletes the given reminder.
+     * The reminder must exist in StonksBook.
+     */
+    void deleteReminder(Reminder target);
+
+    /**
+     * Adds the given reminder.
+     * {@code reminder} must not already exist in StonksBook.
+     */
+    void addReminder(Reminder reminder);
 }

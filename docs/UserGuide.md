@@ -239,17 +239,17 @@ Examples:
 
 Adds a scheduled appointment with the specified contact in StonksBook.
 
-Format: `appointment add CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION`
+Format: `appointment add c/CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION`
 
 * Adds a scheduled appointment with the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index must be a positive integer 1, 2, 3, …​
-* The start datetime must be in the format `YYYY-MM-DD HH:mm`
+* The start datetime must be in the format `yyyy-MM-dd HH:mm`
 * The duration is specified in hours and must be a positive number (not necessarily an integer).
 
 Examples:
-* `appointment add 2 t/Follow-up appointment s/2020-10-30 15:00 d/1` Adds a 1-hour long appointment titled `Follow-up appointment` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
-* `appointment add 3 t/Call to finalise details s/2020-10-30 08:00 d/0.5` Adds a 30-minute long appointment titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
+* `appointment add c/2 t/Follow-up appointment s/2020-10-30 15:00 d/1` Adds a 1-hour long appointment titled `Follow-up appointment` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
+* `appointment add c/3 t/Call to finalise details s/2020-10-30 08:00 d/0.5` Adds a 30-minute long appointment titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
 
 #### Listing all appointments: `appointment list`
 
@@ -257,7 +257,7 @@ Shows a list of all appointments. By default, the list only shows upcoming appoi
 
 <img src="images/appointmentListMockup.png" alt="result for 'appointment list'" width="400px">
 
-Format: `appointments list [CONTACT_INDEX] [a/]`
+Format: `appointments list [c/CONTACT_INDEX] [a/]`
 
 * When an index is specified, the list will only show appointments associated with the contact at the specified index.
 * You can show all appointments, including those that have passed, by typing `a/`.
@@ -281,15 +281,15 @@ Examples:
 
 Adds a reminder scheduled on a particular date that is associated with the specified contact to StonksBook.
 
-Format: `reminder add CONTACT_INDEX m/MESSAGE d/DATETIME`
+Format: `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`
 
 * Adds a reminder associated with the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index must be a positive integer 1, 2, 3, …​
-* The datetime must be in the format `YYYY-MM-DD HH:mm`
+* The datetime must be in the format `yyyy-MM-dd HH:mm`
 
 Examples:
-* `reminder add 2 m/Send follow-up email d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact that is scheduled for 30th October 2020 3PM, with the message `Send follow-up email`
+* `reminder add c/2 m/Send follow-up email d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact that is scheduled for 30th October 2020 3PM, with the message `Send follow-up email`
 
 #### Listing all reminders: `reminder list`
 
@@ -361,7 +361,7 @@ Action | Format, Examples
 **Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
 **Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
 **Contact List** | `contact list`
-**Sale Add** | `sales add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY` <br> e.g., `sale add c/4 n/Notebook p/6.00 q/2`
+**Sale Add** | `sale add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY` <br> e.g., `sale add c/4 n/Notebook p/6.00 q/2`
 **Sale List** | `sale list`
 **Sale Delete** | `sale delete c/CONTACT_INDEX s/SALE_INDEX` <br> e.g., `sale delete c/2 s/4`
 **Tag Add** | `tag add t/TAG` <br> e.g., `tag add t/important`
@@ -369,12 +369,12 @@ Action | Format, Examples
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
 **Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
 **Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 contact`
-**Appointment Add** | `appointment add CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION` <br> e.g., `appointment add 2 t/Follow-up appointment s/2020-10-30 15:00 d/1`
-**Appointment List** | `appointment list [CONTACT_INDEX] [a/]`
+**Appointment Add** | `appointment add c/CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION` <br> e.g., `appointment add 2 t/Follow-up appointment s/2020-10-30 15:00 d/1`
+**Appointment List** | `appointment list [c/CONTACT_INDEX] [a/]`
 **Appointment Delete** | `appointment delete INDEX` <br> e.g., `appointment delete 3`
-**Reminder Add** | `reminder add CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
+**Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
 **Reminder List** | `reminder list`
-**Reminder Delete** | `reminder delete index` <br> e.g., `reminder delete 4`
+**Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
 **Help** | `COMMAND help`
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
