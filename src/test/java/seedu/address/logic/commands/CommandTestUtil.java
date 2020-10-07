@@ -21,7 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.person.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -66,6 +66,15 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    public static final String VALID_ITEM_NAME_APPLE = "Apple";
+    public static final String VALID_ITEM_NAME_BALL = "Ball";
+    public static final String VALID_QUANTITY_APPLE = "10";
+    public static final String VALID_QUANTITY_BALL = "1";
+    public static final Integer VALID_UNIT_PRICE_DOLLARS_APPLE = 3;
+    public static final Integer VALID_UNIT_PRICE_CENTS_APPLE = 50;
+    public static final Integer VALID_UNIT_PRICE_DOLLARS_BALL = 0;
+    public static final Integer VALID_UNIT_PRICE_CENTS_BALL = 80;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

@@ -13,4 +13,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_CONTACT_TAG = new Prefix("t/");
     public static final Prefix PREFIX_CONTACT_REMARK = new Prefix("r/");
 
+    public static final Prefix PREFIX_SALE_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_SALE_QUANTITY = new Prefix("q/");
+    public static final Prefix PREFIX_SALE_UNIT_PRICE = new Prefix("p/");
+
 }
