@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static seedu.address.storage.JsonAdaptedAppointment.DESERIALISING_DURATION_ERROR_MESSAGE;
 import static seedu.address.storage.JsonAdaptedAppointment.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAppointments.MEET_ALICE;
+import static seedu.address.testutil.appointment.TypicalAppointments.MEET_ALICE;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 
 import org.junit.jupiter.api.Test;
