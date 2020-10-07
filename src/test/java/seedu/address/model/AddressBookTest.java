@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalReminders.CALL_ALICE;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
+import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 
 import java.util.Arrays;
 import java.util.Collection;

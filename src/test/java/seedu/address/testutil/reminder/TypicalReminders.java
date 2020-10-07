@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.reminder;
 
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalReminders.CALL_ALICE;
-import static seedu.address.testutil.TypicalReminders.EMAIL_BENSON;
+import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
+import static seedu.address.testutil.reminder.TypicalReminders.EMAIL_BENSON;
 
 import java.util.Arrays;
 import java.util.Collections;
