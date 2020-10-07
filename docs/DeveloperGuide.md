@@ -303,21 +303,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a tag**
-
-**MSS**
-
-1.  User requests to add a new tag.
-2.  StonksBook adds the provided tag.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The provided tag already exists in the tag list.
-
-    Use case ends.
-
 **Use case: View all tags**
 
 **MSS**
@@ -426,8 +411,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. StonksBook requests for confirmation.
     * 1a1. User confirms.
 
-        Use case resumes at step 2. 
-        
+        Use case resumes at step 2.
+
 **Use case: Find a contact**
 
 **MSS**
@@ -448,7 +433,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StonksBook shows an error message.
 
       Use case ends.
-      
+
 **Use case: Add an appointment**
 
 **MSS**
@@ -471,13 +456,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StonksBook shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. The given appointment date is invalid.
 
     * 3b1. StonksBook shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3c. The given appointment duration is invalid.
 
     * 3b1. StonksBook shows an error message.
@@ -527,7 +512,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StonksBook shows an error message.
 
       Use case resumes at step 2.
-      
+
 **Use case: Add a reminder**
 
 **MSS**
@@ -538,19 +523,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. StonksBook adds a reminder associated with the contact
 
   Use case ends.
-  
+
 **Extensions**
 
 * 2a. The list of contacts is empty.
 
   Use case ends.
-  
+
 * 3a. The given index is invalid.
 
     * 3a1. StonksBook shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. The given reminder date is invalid.
 
     * 3b1. StonksBook shows an error message.
@@ -594,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StonksBook shows an error message.
 
       Use case resumes at step 2.
-      
+
 **Use case: Get help on available commands**
 
 **MSS**
@@ -639,13 +624,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4a. The given sale already exists
 
     * 4a1. StonksBook shows an error message.
-    
+
       Use case ends.
-    
+
 * 5a. The given parameters (unit price and quantity) are not in the correct format.
 
     * 5a1. StonksBook shows an error message.
-    
+
       Use case resumes at step 2.
 
 **Use case: List all sales belonging to a contact**
@@ -687,7 +672,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list of contacts is empty.
 
   Use case ends.
-  
+
 * 3a. The list of sales is empty.
 
   Use case ends.
