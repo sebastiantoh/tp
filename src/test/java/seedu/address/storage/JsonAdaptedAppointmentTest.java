@@ -6,7 +6,7 @@ import static seedu.address.storage.JsonAdaptedAppointment.DESERIALISING_DURATIO
 import static seedu.address.storage.JsonAdaptedAppointment.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.MEET_ALICE;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.person.TypicalPersons.ALICE;
 
 import org.junit.jupiter.api.Test;
 

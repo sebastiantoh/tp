@@ -31,26 +31,33 @@
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tagged" : [ ],
-    "remark" : ""
-  }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tagged" : [ ],
-    "remark" : ""
-  }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
-    "tagged" : [ ],
-    "remark" : ""
-  } ],
-  "contactTags" : [ "friends", "owesMoney" ],
-  "saleTags": [ ],
-  "appointments": []
+    "email": "werner@example.com",
+    "address": "michegan ave",
+    "tagged": [],
+    "remark": ""
+  },
+    {
+      "name": "Fiona Kunz",
+      "phone": "9482427",
+      "email": "lydia@example.com",
+      "address": "little tokyo",
+      "tagged": [],
+      "remark": ""
+    },
+    {
+      "name": "George Best",
+      "phone": "9482442",
+      "email": "anna@example.com",
+      "address": "4th street",
+      "tagged": [],
+      "remark": ""
+    }
+  ],
+  "contactTags": [
+    "friends",
+    "owesMoney"
+  ],
+  "saleTags": [],
+  "appointments": [],
+  "reminders": []
 }

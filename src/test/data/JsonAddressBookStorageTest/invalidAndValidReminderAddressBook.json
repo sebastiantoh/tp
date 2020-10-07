@@ -1,0 +1,33 @@
+{
+  "persons": [
+  ],
+  "reminders": [
+    {
+      "person": {
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "email": "alice@example.com",
+        "address": "123, Jurong West Ave 6, #08-111",
+        "tagged": [
+          "friends"
+        ]
+      },
+      "message": "Call Alice",
+      "scheduledDate": "2020-10-30T30:19"
+    },
+    {
+      "person": {
+        "name": "Benson Meier",
+        "phone": "98765432",
+        "email": "johnd@example.com",
+        "address": "311, Clementi Ave 2, #02-25",
+        "tagged": [
+          "owesMoney",
+          "friends"
+        ]
+      },
+      "message": "Email Benson",
+      "scheduledDate": "2018-12-20T12:00"
+    }
+  ]
+}
