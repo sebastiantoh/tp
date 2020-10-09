@@ -218,6 +218,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Reminder> getRemindersList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasReminder(Reminder reminder) {
             throw new AssertionError("This method should not be called.");
         }

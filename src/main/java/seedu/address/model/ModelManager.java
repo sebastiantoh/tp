@@ -248,6 +248,17 @@ public class ModelManager implements Model {
         return addressBook.listTags();
     }
 
+    //=========== Reminder List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Reminder} backed by the internal list of
+     * {@code versionedAddressBook}.
+     */
+    @Override
+    public ObservableList<Reminder> getRemindersList() {
+        return this.addressBook.getReminderList();
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

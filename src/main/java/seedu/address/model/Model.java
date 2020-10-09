@@ -172,6 +172,12 @@ public interface Model {
     void addAppointment(Appointment appointment);
 
     /**
+     * Returns an unmodifiable view of the filtered person list
+     * .
+     */
+    ObservableList<Reminder> getRemindersList();
+
+    /**
      * Returns true if a reminder with the same fields {@code reminder} exists in StonksBook.
      */
     boolean hasReminder(Reminder reminder);
