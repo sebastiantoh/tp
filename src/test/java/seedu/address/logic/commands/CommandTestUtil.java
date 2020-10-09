@@ -61,7 +61,7 @@ public class CommandTestUtil {
     public static final String REMARK_DESC_BOB = " " + PREFIX_CONTACT_REMARK + VALID_REMARK_BOB;
     public static final String MESSAGE_CALL_AMY = " " + PREFIX_MESSAGE + VALID_MESSAGE_CALL_AMY;
     public static final String DATE_1 = " " + PREFIX_DATETIME + VALID_DATE_1;
-    public static final String CONTACT_INDEX = " " + PREFIX_CONTACT + INDEX_SECOND_ITEM.getOneBased();
+    public static final String CONTACT_INDEX_SECOND = " " + PREFIX_CONTACT + INDEX_SECOND_ITEM.getOneBased();
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_CONTACT_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_CONTACT_PHONE + "911a"; // 'a' not allowed in phones

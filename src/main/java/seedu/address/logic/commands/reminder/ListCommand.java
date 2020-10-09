@@ -39,4 +39,9 @@ public class ListCommand extends Command {
 
         return new CommandResult(output);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ListCommand; // instanceof handles nulls
+    }
 }
