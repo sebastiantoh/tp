@@ -2,7 +2,7 @@
   "persons": [],
   "contactTags": [ ],
   "saleTags": [ ],
-  "appointments": [
+  "meetings": [
     {
       "person": {
         "name": "Alice@Pauline!!",

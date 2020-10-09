@@ -67,7 +67,7 @@
   ],
   "contactTags": [],
   "saleTags": [],
-  "appointments": [
+  "meetings": [
     {
       "person": {
         "name": "Alice Pauline",
@@ -152,7 +152,7 @@
         "tagged": [],
         "remark": ""
       },
-      "message": "Set appointment with Carl",
+      "message": "Set meeting with Carl",
       "scheduledDate": "2020-12-20T12:12"
     }
   ]
