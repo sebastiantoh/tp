@@ -36,7 +36,6 @@ public class ListCommand extends Command {
                     .collect(Collectors.joining("\n"));
         }
 
-
         return new CommandResult(output);
     }
 
