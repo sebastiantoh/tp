@@ -21,6 +21,13 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
+     * {@code Comparator} that is used for default sorting of person list in alphabetical order,
+     * ignoring case
+     */
+    Comparator<Person> DEFAULT_PERSON_COMPARATOR = (person1, person2) -> (
+            person1.getName().fullName.compareToIgnoreCase(person2.getName().fullName));
+
+    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
