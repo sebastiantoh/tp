@@ -3,6 +3,7 @@ package seedu.address.model.reminder;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import seedu.address.model.person.Person;
@@ -12,6 +13,8 @@ import seedu.address.model.person.Person;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Reminder {
+    // For formatting of the scheduled date that is to be printed to the UI.
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy, HH:mm");
 
     private final Person person;
     private final String message;
@@ -47,12 +50,9 @@ public class Reminder {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        builder.append("Reminder for: ")
-            .append(getPerson().getName())
-            .append(" Message: ")
-            .append(getMessage())
-            .append(" Scheduled for: ")
-            .append(getScheduledDate());
+        builder.append(getMessage())
+                .append(String.format(" - %s ", getPerson().getName()))
+                .append(String.format("(Scheduled for: %s)", getScheduledDate().format(DATE_TIME_FORMATTER)));
 
         return builder.toString();
     }
