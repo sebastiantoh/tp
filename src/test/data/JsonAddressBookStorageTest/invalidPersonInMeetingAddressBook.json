@@ -1,5 +1,8 @@
 {
   "persons": [],
+  "contactTags": [],
+  "saleTags": [],
+  "reminders": [],
   "meetings": [
     {
       "person": {

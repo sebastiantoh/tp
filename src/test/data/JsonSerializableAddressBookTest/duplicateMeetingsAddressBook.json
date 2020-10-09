@@ -1,7 +1,8 @@
 {
   "persons": [],
-  "contactTags": [ ],
-  "saleTags": [ ],
+  "contactTags": [],
+  "saleTags": [],
+  "reminders": [],
   "meetings": [
     {
       "person": {
@@ -33,6 +34,5 @@
       "startDate": "2020-10-30T15:19",
       "duration": "PT30M"
     }
-  ],
-  "reminders": []
+  ]
 }
