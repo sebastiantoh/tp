@@ -22,7 +22,7 @@ public interface Model {
 
     /**
      * {@code Comparator} that is used for default sorting of person list in alphabetical order,
-     * ignoring case
+     * ignoring case.
      */
     Comparator<Person> DEFAULT_PERSON_COMPARATOR = (person1, person2) -> (
             person1.getName().fullName.compareToIgnoreCase(person2.getName().fullName));

@@ -28,7 +28,6 @@ public class TypicalAddressBook {
         return ab;
     }
 
-
     /**
      * Returns an {@code AddressBook} with all the typical entries in reverse order.
      */

@@ -50,7 +50,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_failure() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastPerson = Index.fromOneBased(model.getSortedPersonList().size());
         Person lastPerson = model.getSortedPersonList().get(indexLastPerson.getZeroBased());
 
