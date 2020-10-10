@@ -96,7 +96,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_validAttributeAndDESC_failure() {
+    public void parse_validAttributeAndDescUpperCase_failure() {
         String args = " " + PREFIX_CONTACT_EMAIL + " " + ORDER_KEYWORD.toUpperCase();
         assertParseFailure(sortCommandParser, args,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
