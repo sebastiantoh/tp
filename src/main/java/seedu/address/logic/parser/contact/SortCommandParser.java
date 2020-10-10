@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 
-import seedu.address.logic.commands.contact.AddCommand;
 import seedu.address.logic.commands.contact.SortCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -17,7 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class SortCommandParser implements Parser<SortCommand> {
 
-    private static final String ORDER_KEYWORD = "desc";
+    public static final String ORDER_KEYWORD = "desc";
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
@@ -46,7 +45,7 @@ public class SortCommandParser implements Parser<SortCommand> {
                 || (!isEmailInputPresent && !isNameInputPresent)
                 || !argMultimap.getPreamble().isEmpty()
                 || (isSecondArgumentPresent && !isSecondArgumentDesc)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
         Prefix sortingAttribute;

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 
+import java.util.Comparator;
 import java.util.function.Function;
 
 import seedu.address.logic.commands.Command;
@@ -36,6 +37,11 @@ public class SortCommand extends Command {
     private final boolean isDesc;
 
     private Function<Person, String> getSortingValue;
+
+    private final Comparator<Person> nonDescendingComparator = (person1, person2) ->
+            this.getSortingValue.apply(person1).compareToIgnoreCase(this.getSortingValue.apply(person2));
+
+    private final Comparator<Person> nonAscendingComparator = nonDescendingComparator.reversed();
 
     /**
      * Creates a SortCommand to sort the contacts by {@code sortingAttribute}
@@ -73,12 +79,19 @@ public class SortCommand extends Command {
     }
 
     private void sortByAttribute(Model model) {
+        requireNonNull(this.getSortingValue);
         if (!this.isDesc) {
-            model.updateSortedPersonList((person1, person2) -> this.getSortingValue.apply(person1)
-                    .compareToIgnoreCase(this.getSortingValue.apply(person2)));
+            model.updateSortedPersonList(this.nonDescendingComparator);
         } else {
-            model.updateSortedPersonList((person1, person2) -> this.getSortingValue.apply(person2)
-                    .compareToIgnoreCase(this.getSortingValue.apply(person1)));
+            model.updateSortedPersonList(this.nonAscendingComparator);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && sortingAttribute.equals(((SortCommand) other).sortingAttribute)
+                && isDesc == ((SortCommand) other).isDesc);
     }
 }
