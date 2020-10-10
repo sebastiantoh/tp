@@ -10,8 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 /**
@@ -22,10 +20,12 @@ import javafx.scene.layout.HBox;
 public class DialogBox extends HBox {
     @FXML
     private Label dialog;
-    @FXML
-    private ImageView displayPicture;
+    
+    private static String botName = "StonksBot";
+    
+    private static String userName = "$";
 
-    private DialogBox(String text, Image img) {
+    private DialogBox(String text) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -36,11 +36,10 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
-        displayPicture.setImage(img);
     }
 
     /**
-     * Flips the dialog box such that the ImageView is on the left and text on the right.
+     * Flips the dialog box such that the text on the left.
      */
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
@@ -52,12 +51,14 @@ public class DialogBox extends HBox {
     /**
      * WIP.
      */
-    public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+    public static DialogBox getUserDialog(String text) {
+        var db = new DialogBox(userName + " " + text);
+        db.flip();
+        return db;
     }
 
-    public static DialogBox getStonksBotDialog(String text, Image img) {
-        var db = new DialogBox(text, img);
+    public static DialogBox getStonksBotDialog(String text) {
+        var db = new DialogBox(botName + ": " + text);
         db.flip();
         return db;
     }
