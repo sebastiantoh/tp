@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
@@ -46,6 +47,7 @@ public class CommandTestUtil {
     public static final String VALID_DATE_1 = "2020-10-30 15:19";
     public static final String VALID_REMARK_AMY = "";
     public static final String VALID_REMARK_BOB = "Likes cats";
+    public static final String VALID_DURATION_ONE_HOUR = "60";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_CONTACT_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_CONTACT_NAME + VALID_NAME_BOB;
@@ -62,14 +64,16 @@ public class CommandTestUtil {
     public static final String MESSAGE_CALL_AMY = " " + PREFIX_MESSAGE + VALID_MESSAGE_CALL_AMY;
     public static final String DATE_1 = " " + PREFIX_DATETIME + VALID_DATE_1;
     public static final String CONTACT_INDEX = " " + PREFIX_CONTACT + INDEX_SECOND_ITEM.getOneBased();
+    public static final String DURATION_ONE_HOUR = " " + PREFIX_DURATION + VALID_DURATION_ONE_HOUR;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_CONTACT_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_CONTACT_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_CONTACT_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " "
-        + PREFIX_CONTACT_ADDRESS; // empty string not allowed for addresses
+            + PREFIX_CONTACT_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_CONTACT_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DATE = " " + PREFIX_DATETIME + "2020/10/30 15:00";
+    public static final String INVALID_DURATION = " " + PREFIX_DURATION + "-30";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
