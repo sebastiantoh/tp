@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import seedu.address.model.person.Person;
@@ -13,6 +14,8 @@ import seedu.address.model.person.Person;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Meeting {
+    // For formatting of the scheduled date that is to be printed to the UI.
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy, HH:mm");
 
     private final Person person;
     private final String message;
@@ -55,14 +58,11 @@ public class Meeting {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        builder.append("Meeting with: ")
-            .append(getPerson().getName())
-            .append(" Message: ")
-            .append(getMessage())
-            .append(" From ")
-            .append(getStartDate())
-            .append(" to ")
-            .append(getStartDate().plus(getDuration()));
+        builder.append(getMessage())
+                .append(String.format(" - %s ", getPerson().getName()))
+                .append(String.format("(%s - %s)",
+                        getStartDate().format(DATE_TIME_FORMATTER),
+                        getStartDate().plus(getDuration()).format(DATE_TIME_FORMATTER)));
 
         return builder.toString();
     }
