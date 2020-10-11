@@ -3,7 +3,7 @@ package seedu.address.logic.parser.meeting;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DURATION;
-import static seedu.address.logic.commands.CommandTestUtil.CONTACT_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACT_INDEX_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.DURATION_ONE_HOUR;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE;
@@ -28,7 +28,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String userInput = CONTACT_INDEX + MESSAGE_CALL_AMY + DATE_1 + DURATION_ONE_HOUR;
+        String userInput = CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + DATE_1 + DURATION_ONE_HOUR;
 
         AddCommand expectedCommand =
                 new AddCommand(INDEX_SECOND_ITEM, VALID_MESSAGE_CALL_AMY, TYPICAL_DATE_1, TYPICAL_DURATION_ONE_HOUR);
@@ -46,17 +46,17 @@ public class AddCommandParserTest {
 
         // missing message prefix
         assertParseFailure(parser,
-                CONTACT_INDEX + VALID_MESSAGE_CALL_AMY + DATE_1 + DURATION_ONE_HOUR,
+                CONTACT_INDEX_SECOND + VALID_MESSAGE_CALL_AMY + DATE_1 + DURATION_ONE_HOUR,
                 expectedMessage);
 
         // missing date prefix
         assertParseFailure(parser,
-                CONTACT_INDEX + MESSAGE_CALL_AMY + VALID_DATE_1 + DURATION_ONE_HOUR,
+                CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + VALID_DATE_1 + DURATION_ONE_HOUR,
                 expectedMessage);
 
         // missing duration prefix
         assertParseFailure(parser,
-                CONTACT_INDEX + MESSAGE_CALL_AMY + DATE_1 + VALID_DURATION_ONE_HOUR,
+                CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + DATE_1 + VALID_DURATION_ONE_HOUR,
                 expectedMessage);
 
         // all prefixes missing
@@ -70,16 +70,17 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid date
         assertParseFailure(parser,
-                CONTACT_INDEX + MESSAGE_CALL_AMY + INVALID_DATE + DURATION_ONE_HOUR,
+                CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + INVALID_DATE + DURATION_ONE_HOUR,
                 MESSAGE_INVALID_DATETIME);
 
         // invalid duration
         assertParseFailure(parser,
-                CONTACT_INDEX + MESSAGE_CALL_AMY + DATE_1 + INVALID_DURATION,
+                CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + DATE_1 + INVALID_DURATION,
                 MESSAGE_INVALID_DURATION);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + CONTACT_INDEX + MESSAGE_CALL_AMY + DATE_1 + DURATION_ONE_HOUR,
+        assertParseFailure(parser,
+                PREAMBLE_NON_EMPTY + CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + DATE_1 + DURATION_ONE_HOUR,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
