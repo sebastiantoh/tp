@@ -20,8 +20,8 @@ import seedu.address.model.tag.Tag;
 
 class EditCommandTest {
 
-    private final static String MINIONS = "minions";
-    private final static String BANANAS = "bananas";
+    private static final String BANANAS = "bananas";
+    private static final String MINIONS = "minions";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -44,7 +44,8 @@ class EditCommandTest {
 
     @Test
     public void execute_invalidIndexContactTagList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getContactTagList().size() + model.getSaleTagList().size() + 1);
+        Index outOfBoundIndex =
+                Index.fromOneBased(model.getContactTagList().size() + model.getSaleTagList().size() + 1);
         EditCommand.EditTagDescriptor descriptor = new EditCommand.EditTagDescriptor();
         descriptor.setTagName(MINIONS);
 
@@ -59,6 +60,7 @@ class EditCommandTest {
         firstDescriptor.setTagName(MINIONS);
 
         EditCommand.EditTagDescriptor secondDescriptor = new EditCommand.EditTagDescriptor();
+        secondDescriptor.setTagName(BANANAS);
         EditCommand editFirstCommand = new EditCommand(INDEX_FIRST_ITEM, firstDescriptor);
         EditCommand editSecondCommand = new EditCommand(INDEX_SECOND_ITEM, secondDescriptor);
 

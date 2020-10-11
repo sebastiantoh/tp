@@ -36,7 +36,8 @@ class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexContactTagList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getContactTagList().size() + model.getSaleTagList().size() + 1);
+        Index outOfBoundIndex =
+                Index.fromOneBased(model.getContactTagList().size() + model.getSaleTagList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
