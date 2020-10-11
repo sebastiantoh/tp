@@ -28,7 +28,8 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in StonksBook.";
-
+    public static final String MESSAGE_MISSING_FIELD = "A new tag name must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "The new tag name provided is the same as the original.";
     public static final String MESSAGE_EDIT_TAG_SUCCESS = "Edited tag %s to: %s";
 
     private final Index targetIndex;
@@ -60,16 +61,16 @@ public class EditCommand extends Command {
             tagToEdit = saleTagList.get(targetIndex.getZeroBased());
             editedTag = createEditedTag(tagToEdit, editTagDescriptor);
 
-            if (!tagToEdit.isSameTag(editedTag) && model.hasSaleTag(editedTag)) {
-                throw new CommandException(MESSAGE_DUPLICATE_TAG);
+            if (tagToEdit.isSameTag(editedTag) && model.hasSaleTag(editedTag)) {
+                throw new CommandException(MESSAGE_NOT_EDITED);
             }
             model.editSaleTag(tagToEdit, editedTag);
         } else {
             tagToEdit = contactTagList.get(targetIndex.getZeroBased());
             editedTag = createEditedTag(tagToEdit, editTagDescriptor);
 
-            if (!tagToEdit.isSameTag(editedTag) && model.hasContactTag(editedTag)) {
-                throw new CommandException(MESSAGE_DUPLICATE_TAG);
+            if (tagToEdit.isSameTag(editedTag) && model.hasContactTag(editedTag)) {
+                throw new CommandException(MESSAGE_NOT_EDITED);
             }
             model.editContactTag(tagToEdit, editedTag);
         }
