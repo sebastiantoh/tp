@@ -245,11 +245,11 @@ Format: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 * The index refers to the index number shown in the displayed contact list.
 * The index must be a positive integer 1, 2, 3, …​
 * The start datetime must be in the format `yyyy-MM-dd HH:mm`
-* The duration is specified in hours and must be a positive number (not necessarily an integer).
+* The duration is specified in minutes and must be a positive integer.
 
 Examples:
-* `meeting add c/2 t/Follow-up meeting s/2020-10-30 15:00 d/1` Adds a 1-hour long meeting titled `Follow-up meeting` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
-* `meeting add c/3 t/Call to finalise details s/2020-10-30 08:00 d/0.5` Adds a 30-minute long meeting titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
+* `meeting add c/2 t/Follow-up meeting s/2020-10-30 15:00 d/60` Adds a 1-hour long meeting titled `Follow-up meeting` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
+* `meeting add c/3 t/Call to finalise details s/2020-10-30 08:00 d/30` Adds a 30-minute long meeting titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
 
 #### Listing all meetings: `meeting list`
 
