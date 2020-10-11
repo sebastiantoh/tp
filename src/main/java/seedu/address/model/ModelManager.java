@@ -249,6 +249,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Tag> getContactTagList() {
+        return addressBook.getContactTagList();
+    }
+
+    @Override
+    public ObservableList<Tag> getSaleTagList() {
+        return addressBook.getSaleTagList();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

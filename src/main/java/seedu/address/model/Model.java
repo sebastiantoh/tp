@@ -113,6 +113,16 @@ public interface Model {
     String listTags();
 
     /**
+     * Returns an unmodifiable view of the contact tag list.
+     */
+    ObservableList<Tag> getContactTagList();
+
+    /**
+     * Returns an unmodifiable view of the sale tag list.
+     */
+    ObservableList<Tag> getSaleTagList();
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
