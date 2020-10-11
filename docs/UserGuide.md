@@ -239,7 +239,7 @@ Examples:
 
 Adds a scheduled meeting with the specified contact in StonksBook.
 
-Format: `meeting add c/CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION`
+Format: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 
 * Adds a scheduled meeting with the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
