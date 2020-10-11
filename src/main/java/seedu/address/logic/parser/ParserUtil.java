@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DURATION;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -166,6 +168,27 @@ public class ParserUtil {
             return LocalDateTime.parse(trimmedDateTime, dateTimeFormatter);
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INVALID_DATETIME);
+        }
+    }
+
+    /**
+     * Parses a {@code String duration} into a {@code Duration}.
+     *
+     * @throws ParseException if the given {@code duration} is not a positive integer.
+     */
+    public static Duration parseDuration(String duration) throws ParseException {
+        requireNonNull(duration);
+        String trimmedDuration = duration.trim();
+
+        try {
+            long minutes = Long.parseLong(trimmedDuration);
+            if (minutes <= 0) {
+                throw new ParseException(MESSAGE_INVALID_DURATION);
+            }
+
+            return Duration.ofMinutes(minutes);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_DURATION);
         }
     }
 
