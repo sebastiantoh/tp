@@ -172,7 +172,7 @@ public interface Model {
     void addAppointment(Appointment appointment);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the reminder list
      * .
      */
     ObservableList<Reminder> getRemindersList();
