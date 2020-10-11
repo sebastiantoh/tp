@@ -242,6 +242,16 @@ public class ModelManager implements Model {
         this.sortedPersons.setComparator(comparator);
     }
 
+    //=========== Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedAddressBook}.
+     */
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return this.addressBook.getMeetingList();
+    }
 
     @Override
     public String listTags() {
