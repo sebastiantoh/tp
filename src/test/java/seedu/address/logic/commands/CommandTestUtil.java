@@ -73,6 +73,7 @@ public class CommandTestUtil {
             + PREFIX_CONTACT_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_CONTACT_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DATE = " " + PREFIX_DATETIME + "2020/10/30 15:00";
+    public static final String INVALID_CONTACT_INDEX = " " + PREFIX_CONTACT + "-1";
     public static final String INVALID_DURATION = " " + PREFIX_DURATION + "-30";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

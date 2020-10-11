@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DURATION;
 import static seedu.address.logic.commands.CommandTestUtil.CONTACT_INDEX_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.DURATION_ONE_HOUR;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACT_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DURATION;
 import static seedu.address.logic.commands.CommandTestUtil.MESSAGE_CALL_AMY;
@@ -68,6 +69,11 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        // invalid index
+        assertParseFailure(parser,
+                INVALID_CONTACT_INDEX + MESSAGE_CALL_AMY + DATE_1 + DURATION_ONE_HOUR,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
         // invalid date
         assertParseFailure(parser,
                 CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + INVALID_DATE + DURATION_ONE_HOUR,
