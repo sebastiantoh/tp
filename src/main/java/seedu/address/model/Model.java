@@ -155,10 +155,10 @@ public interface Model {
     void updateSortedPersonList(Comparator<Person> comparator);
 
     /**
-     * Returns an unmodifiable view of the meeting list.
+     * Returns an unmodifiable view of the sorted meeting list.
      * .
      */
-    ObservableList<Meeting> getMeetingList();
+    ObservableList<Meeting> getSortedMeetingList();
 
     /**
      * Returns true if an meeting with same fields as {@code meeting} exists in StonksBook.

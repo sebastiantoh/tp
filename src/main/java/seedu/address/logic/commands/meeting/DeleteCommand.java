@@ -35,7 +35,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Meeting> meetingList = model.getMeetingList();
+        List<Meeting> meetingList = model.getSortedMeetingList();
 
         if (targetIndex.getZeroBased() >= meetingList.size()) {
             throw new CommandException(MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);

@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
  * Represents a Meeting that is associated with a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Meeting {
+public class Meeting implements Comparable<Meeting> {
     // For formatting of the scheduled date that is to be printed to the UI.
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy, HH:mm");
 
@@ -85,10 +85,10 @@ public class Meeting {
         Meeting otherMeeting = (Meeting) other;
 
         return this.person.equals(otherMeeting.person)
-            // Case-insensitive equality checking
-            && this.message.toLowerCase().equals(otherMeeting.message.toLowerCase())
-            && this.startDate.equals(otherMeeting.startDate)
-            && this.duration.equals(otherMeeting.duration);
+                // Case-insensitive equality checking
+                && this.message.toLowerCase().equals(otherMeeting.message.toLowerCase())
+                && this.startDate.equals(otherMeeting.startDate)
+                && this.duration.equals(otherMeeting.duration);
     }
 
     @Override
@@ -96,4 +96,21 @@ public class Meeting {
         return Objects.hash(this.person, this.message, this.startDate, this.duration);
     }
 
+    /**
+     * Compares this meeting to the specified Meeting. A Meeting is "less" than another Meeting if and only if it
+     * starts earlier than the other Meeting. If both Meetings have the same start date, than the meeting with the
+     * shorter duration will be considered "less".
+     *
+     * @param otherMeeting The other meeting to compare to.
+     * @return The comparator value, negative if less, positive if greater.
+     */
+    @Override
+    public int compareTo(Meeting otherMeeting) {
+        int cmpStartDate = this.startDate.compareTo(otherMeeting.startDate);
+        if (cmpStartDate != 0) {
+            return cmpStartDate;
+        }
+
+        return this.duration.compareTo(otherMeeting.duration);
+    }
 }

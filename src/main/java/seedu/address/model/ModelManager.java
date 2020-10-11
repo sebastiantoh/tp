@@ -32,6 +32,8 @@ public class ModelManager implements Model {
 
     private final SortedList<Person> sortedPersons;
 
+    private final SortedList<Meeting> sortedMeetings;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -45,6 +47,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.sortedPersons = new SortedList<>(this.filteredPersons);
+        this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
     }
 
     public ModelManager() {
@@ -249,8 +252,8 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}.
      */
     @Override
-    public ObservableList<Meeting> getMeetingList() {
-        return this.addressBook.getMeetingList();
+    public ObservableList<Meeting> getSortedMeetingList() {
+        return this.sortedMeetings;
     }
 
     @Override
