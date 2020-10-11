@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,6 +34,11 @@ public class ParserUtilTest {
     private static final String INVALID_DATETIME_4 = "2020-10-30 8:00";
     private static final String INVALID_DATETIME_5 = "2020-10-30 8:61";
     private static final String INVALID_DATETIME_6 = "30/10/2100 08:31";
+    private static final String INVALID_DURATION_1 = "0";
+    private static final String INVALID_DURATION_2 = "-60";
+    private static final String INVALID_DURATION_3 = "2 hours 30 minutes";
+    private static final String INVALID_DURATION_4 = "30.5";
+    private static final String INVALID_DURATION_5 = "0.00";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -43,6 +49,9 @@ public class ParserUtilTest {
 
     private static final String VALID_DATETIME = "2020-10-30 15:19";
     private static final LocalDateTime EXPECTED_DATETIME = LocalDateTime.of(2020, 10, 30, 15, 19);
+
+    private static final String VALID_DURATION = "120";
+    private static final Duration EXPECTED_DURATION = Duration.ofMinutes(120);
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -230,4 +239,28 @@ public class ParserUtilTest {
         assertEquals(EXPECTED_DATETIME, ParserUtil.parseDateTime(dateTimeWithWhitespace));
     }
 
+    @Test
+    public void parseDuration_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDuration(null));
+    }
+
+    @Test
+    public void parseDuration_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_2));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_3));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_4));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_5));
+    }
+
+    @Test
+    public void parseDuration_validValueWithoutWhitespace_returnsDuration() throws Exception {
+        assertEquals(EXPECTED_DURATION, ParserUtil.parseDuration(VALID_DURATION));
+    }
+
+    @Test
+    public void parseDuration_validValueWithWhitespace_returnsDuration() throws Exception {
+        String durationWithWhitespace = WHITESPACE + VALID_DURATION + WHITESPACE;
+        assertEquals(EXPECTED_DURATION, ParserUtil.parseDuration(durationWithWhitespace));
+    }
 }
