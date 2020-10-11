@@ -9,6 +9,7 @@ import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.person.TypicalPersons.IDA;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
+import static seedu.address.testutil.reminder.TypicalReminders.EMAIL_BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,9 +17,12 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -176,5 +180,26 @@ public class ModelManagerTest {
     public void hasReminder_reminderInAddressBook_returnsTrue() {
         modelManager.addReminder(CALL_ALICE);
         assertTrue(modelManager.hasReminder(CALL_ALICE));
+    }
+
+    @Test
+    public void deleteReminder_invalidReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteReminder(null));
+    }
+
+    @Test
+    public void deleteReminder_invalidReminder_throwsReminderNotFoundException() {
+        assertThrows(ReminderNotFoundException.class, () -> modelManager.deleteReminder(CALL_ALICE));
+    }
+
+    @Test
+    public void getSortedReminderList_reminderWithEarlierDateAdded_meetingInSortedOrder() {
+        modelManager.addReminder(CALL_ALICE);
+        modelManager.addReminder(EMAIL_BENSON);
+
+        ObservableList<Reminder> reminderList = modelManager.getSortedReminderList();
+
+        assertEquals(reminderList.get(0), EMAIL_BENSON);
+        assertEquals(reminderList.get(1), CALL_ALICE);
     }
 }
