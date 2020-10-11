@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
  * Represents a Reminder that is associated with a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Reminder {
+public class Reminder implements Comparable<Reminder> {
     // For formatting of the scheduled date that is to be printed to the UI.
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy, HH:mm");
 
@@ -75,9 +75,9 @@ public class Reminder {
         Reminder otherReminder = (Reminder) other;
 
         return this.person.equals(otherReminder.person)
-            // Case-insensitive equality checking
-            && this.message.toLowerCase().equals(otherReminder.message.toLowerCase())
-            && this.scheduledDate.equals(otherReminder.scheduledDate);
+                // Case-insensitive equality checking
+                && this.message.toLowerCase().equals(otherReminder.message.toLowerCase())
+                && this.scheduledDate.equals(otherReminder.scheduledDate);
     }
 
     @Override
@@ -85,4 +85,15 @@ public class Reminder {
         return Objects.hash(this.person, this.message, this.scheduledDate);
     }
 
+    /**
+     * Compares this reminder to the specified Reminder. A Reminder is "less" than another Reminder if and only if it
+     * is scheduled earlier than the other Reminder.
+     *
+     * @param otherReminder The other Reminder to compare to
+     * @return The comparator value, negative if less, positive if greater.
+     */
+    @Override
+    public int compareTo(Reminder otherReminder) {
+        return this.getScheduledDate().compareTo(otherReminder.scheduledDate);
+    }
 }

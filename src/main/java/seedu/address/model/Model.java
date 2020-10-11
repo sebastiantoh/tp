@@ -175,7 +175,7 @@ public interface Model {
      * Returns an unmodifiable view of the reminder list
      * .
      */
-    ObservableList<Reminder> getRemindersList();
+    ObservableList<Reminder> getSortedReminderList();
 
     /**
      * Returns true if a reminder with the same fields {@code reminder} exists in StonksBook.

@@ -24,7 +24,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        List<Reminder> reminders = model.getRemindersList();
+        List<Reminder> reminders = model.getSortedReminderList();
 
         String output;
         if (reminders.size() == 0) {
