@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.commons.enums.GroupEnum.CONTACT;
+import static seedu.address.commons.enums.GroupEnum.MEETING;
 import static seedu.address.commons.enums.GroupEnum.REMINDER;
 import static seedu.address.commons.enums.GroupEnum.TAG;
 
@@ -15,6 +16,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.PurgeCommand;
 import seedu.address.logic.parser.contact.ContactCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.meeting.MeetingCommandsParser;
 import seedu.address.logic.parser.reminder.ReminderCommandsParser;
 import seedu.address.logic.parser.tag.TagCommandsParser;
 
@@ -94,8 +96,9 @@ public class AddressBookParser {
         boolean isContactCommand = commandWord.equals(CONTACT.name().toLowerCase());
         boolean isTagCommand = commandWord.equals(TAG.name().toLowerCase());
         boolean isReminderCommand = commandWord.equals(REMINDER.name().toLowerCase());
+        boolean isMeetingCommand = commandWord.equals(MEETING.name().toLowerCase());
 
-        return isContactCommand || isTagCommand || isReminderCommand;
+        return isContactCommand || isTagCommand || isReminderCommand || isMeetingCommand;
     }
 
     private Command parseTwoKeyWordCommand(String commandWord, String secondCommandWord, String arguments)
@@ -109,6 +112,8 @@ public class AddressBookParser {
             return new TagCommandsParser().parse(fullCommand, arguments);
         } else if (commandWord.equals(REMINDER.name().toLowerCase())) {
             return new ReminderCommandsParser().parse(fullCommand, arguments);
+        } else if (commandWord.equals(MEETING.name().toLowerCase())) {
+            return new MeetingCommandsParser().parse(fullCommand, arguments);
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
