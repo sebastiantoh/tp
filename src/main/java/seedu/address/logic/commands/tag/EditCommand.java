@@ -58,7 +58,7 @@ public class EditCommand extends Command {
         Tag tagToEdit;
         Tag editedTag;
         if (targetIndex.getOneBased() > contactTagList.size()) {
-            tagToEdit = saleTagList.get(targetIndex.getZeroBased());
+            tagToEdit = saleTagList.get(targetIndex.getZeroBased() - contactTagList.size());
             editedTag = createEditedTag(tagToEdit, editTagDescriptor);
 
             if (tagToEdit.isSameTag(editedTag) && model.hasSaleTag(editedTag)) {
