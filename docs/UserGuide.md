@@ -248,8 +248,8 @@ Format: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 * The duration is specified in minutes and must be a positive integer.
 
 Examples:
-* `meeting add c/2 t/Follow-up meeting s/2020-10-30 15:00 d/60` Adds a 1-hour long meeting titled `Follow-up meeting` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
-* `meeting add c/3 t/Call to finalise details s/2020-10-30 08:00 d/30` Adds a 30-minute long meeting titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
+* `meeting add c/2 m/Follow-up meeting d/2020-10-30 15:00 du/60` Adds a 1-hour long meeting titled `Follow-up meeting` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
+* `meeting add c/3 m/Call to finalise details d/2020-10-30 08:00 du/30` Adds a 30-minute long meeting titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
 
 #### Listing all meetings: `meeting list`
 
@@ -369,7 +369,7 @@ Action | Format, Examples
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
 **Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
 **Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 contact`
-**Meeting Add** | `meeting add c/CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION` <br> e.g., `meeting add 2 t/Follow-up meeting s/2020-10-30 15:00 d/1`
+**Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Follow-up meeting d/2020-10-30 15:00 du/60`
 **Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
 **Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
