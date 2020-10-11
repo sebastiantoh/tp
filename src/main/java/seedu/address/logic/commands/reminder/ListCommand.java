@@ -2,10 +2,10 @@ package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -24,7 +24,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        ObservableList<Reminder> reminders = model.getRemindersList();
+        List<Reminder> reminders = model.getRemindersList();
 
         String output;
         if (reminders.size() == 0) {
