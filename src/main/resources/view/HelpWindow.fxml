@@ -14,22 +14,22 @@
 <?import javafx.scene.text.TextFlow?>
 <?import javafx.stage.Stage?>
 <?import javafx.scene.control.Hyperlink?>
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
     <Scene>
         <ScrollPane hbarPolicy="NEVER" fitToWidth="true">
-        <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: derive(#1d1d1d, 20%); -fx-fill
-        background-color: #383838;">
+        <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: derive(#1d1d1d, 20%);
+         -fx-fillbackground-color: #383838;">
             <GridPane fx:id="table" HBox.hgrow="ALWAYS">
                 <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
                 </columnConstraints>
                 <TextFlow minWidth="-Infinity" GridPane.rowIndex="0" GridPane.columnIndex="0">
                     <children>
-                        <Text fx:id="helpMessage" style="-fx-fill: white"/>
+                        <Text fx:id="helpMessage" style="-fx-fill: white" />
                         <Hyperlink fx:id="helpLink" onAction="#openLink"/>
                     </children>
                 </TextFlow>

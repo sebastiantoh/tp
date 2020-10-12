@@ -1,8 +1,10 @@
 package seedu.address.ui;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +32,10 @@ public class HelpWindow extends UiPart<Stage> {
             + " as (COMMAND NAME, COMMAND DESCRIPTION, COMMAND USAGE).";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
+
     private static final String FXML = "HelpWindow.fxml";
+
+    private CommandTable commandTable = new CommandTable();
 
     @FXML
     private Text helpMessage;
@@ -73,25 +78,25 @@ public class HelpWindow extends UiPart<Stage> {
      *
      * @throws IOException
      */
-    public void populateHelpWindow() throws IOException {
+    private void populateHelpWindow() throws IOException {
         helpMessage.setText(HELP_MESSAGE);
         helpLink.setText(USERGUIDE_URL);
-
         commandHelpLegend.setText(COMMAND_HELP_LEGEND);
 
-        List<String> list = Files.readAllLines(
-                Paths.get("./src/main/resources/text/helpForAllCommands.txt"));
+        try (InputStream resource = this.getClass().getClassLoader()
+                .getResourceAsStream("text/helpForAllCommands.txt")) {
+            new BufferedReader(new InputStreamReader(resource, StandardCharsets.UTF_8))
+                    .lines().forEachOrdered(this::addToCommandTable);
+        }
+    }
 
-        CommandTable commandTable = new CommandTable();
-        int startingRowIndex = 2;
-        for (int i = 0; i < list.size(); i++) {
-            String[] components = list.get(i).split("\\s{4,}");
+    private void addToCommandTable(String line) {
+        String[] components = line.split("\\s{4,}");
 
-            if (components.length == 1 && !components[0].isBlank()) {
-                commandTable.addHeaders(i + startingRowIndex, components[0]);
-            } else {
-                commandTable.addCommandDescription(i + startingRowIndex, components);
-            }
+        if (components.length == 1 && !components[0].isBlank()) {
+            this.commandTable.addHeaders(components[0]);
+        } else {
+            this.commandTable.addCommandDescription(components);
         }
     }
 
@@ -102,37 +107,40 @@ public class HelpWindow extends UiPart<Stage> {
 
         private int headerCounter = 0;
 
+        private static final int STARTING_ROW_INDEX = 2;
+
+        private int currentRowIdx = STARTING_ROW_INDEX;
+
         /**
          * Adds colored command headers.
          *
-         * @param rowIndex grid pane row to insert to
          * @param headerText header text to be added
-         * @return
          */
-        private void addHeaders(int rowIndex, String headerText) {
+        void addHeaders(String headerText) {
             Label header = new Label(headerText);
             header.setStyle("-fx-text-fill: " + this.colors.get(this.headerCounter / 2));
-            table.addRow(rowIndex, header);
+            table.addRow(this.currentRowIdx, header);
+            this.currentRowIdx++;
             this.headerCounter++;
         }
 
         /**
          * Adds command description.
          *
-         * @param rowIndex grid pane row to insert to
          * @param descriptionParts parts of the command description to be added
          */
-        private void addCommandDescription(int rowIndex, String[] descriptionParts) {
+        void addCommandDescription(String[] descriptionParts) {
             List<Label> commandDescParts = new ArrayList<>();
 
             for (String descriptionPartText : descriptionParts) {
                 Label descriptionPart = new Label(descriptionPartText);
                 descriptionPart.setMinWidth(Region.USE_PREF_SIZE);
-                descriptionPart.setStyle("-fx-label-padding: 0 4em 0 0; -fx-text-fill: white");
+                descriptionPart.setStyle("-fx-label-padding: 0 1em 0 0; -fx-text-fill: white;");
                 commandDescParts.add(descriptionPart);
             }
 
-            table.addRow(rowIndex, commandDescParts.toArray(new Label[0]));
+            table.addRow(this.currentRowIdx, commandDescParts.toArray(new Label[0]));
+            this.currentRowIdx++;
         }
     }
 
