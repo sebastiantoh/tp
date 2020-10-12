@@ -58,6 +58,7 @@ public class EditCommand extends Command {
         Tag tagToEdit;
         Tag editedTag;
         if (targetIndex.getOneBased() > contactTagList.size()) {
+            System.out.println("Successfully reached here.");
             tagToEdit = saleTagList.get(targetIndex.getZeroBased() - contactTagList.size());
             editedTag = createEditedTag(tagToEdit, editTagDescriptor);
 

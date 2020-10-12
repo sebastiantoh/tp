@@ -69,7 +69,7 @@ public class AddCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
         try {
-            personToEdit.getSalesList().add(toAdd);
+            model.addSaleToPerson(personToEdit, toAdd);
         } catch (DuplicateSaleException e) {
             throw new CommandException(MESSAGE_DUPLICATE_SALE);
         }

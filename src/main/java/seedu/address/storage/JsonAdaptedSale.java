@@ -8,6 +8,13 @@ import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.sale.UnitPrice;
+import seedu.address.model.tag.Tag;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Sale}.
@@ -20,6 +27,7 @@ class JsonAdaptedSale {
     private final String quantity;
     private final Integer unitPriceDollar;
     private final Integer unitPriceCent;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedSale} with the given sale details.
@@ -27,11 +35,15 @@ class JsonAdaptedSale {
     @JsonCreator
     public JsonAdaptedSale(@JsonProperty("itemName") String itemName, @JsonProperty("quantity") String quantity,
                            @JsonProperty("unitPriceDollar") Integer unitPriceDollar,
-                           @JsonProperty("unitPriceCent") Integer unitPriceCent) {
+                           @JsonProperty("unitPriceCent") Integer unitPriceCent,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.itemName = itemName;
         this.quantity = quantity;
         this.unitPriceDollar = unitPriceDollar;
         this.unitPriceCent = unitPriceCent;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -42,6 +54,9 @@ class JsonAdaptedSale {
         quantity = source.getQuantity().toString();
         unitPriceDollar = source.getUnitPrice().dollars;
         unitPriceCent = source.getUnitPrice().cents;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -50,7 +65,12 @@ class JsonAdaptedSale {
      * @throws IllegalValueException if there were any data constraints violated in the adapted sale.
      */
     public Sale toModelType() throws IllegalValueException {
-        System.out.println("testing");
+        final List<Tag> saleTags = new ArrayList<>();
+
+        for (JsonAdaptedTag tag : tagged) {
+            saleTags.add(tag.toModelType());
+        }
+
         if (itemName == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, ItemName.class.getSimpleName()));
@@ -78,7 +98,9 @@ class JsonAdaptedSale {
         }
         final UnitPrice modelUnitPrice = new UnitPrice(unitPriceDollar, unitPriceCent);
 
-        return new Sale(modelItemName, modelQuantity, modelUnitPrice);
+        final Set<Tag> saleTagsSet = new HashSet<>(saleTags);
+
+        return new Sale(modelItemName, modelQuantity, modelUnitPrice, saleTagsSet);
     }
 
     public String toString() {

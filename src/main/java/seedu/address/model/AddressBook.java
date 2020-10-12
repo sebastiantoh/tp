@@ -11,6 +11,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
+import seedu.address.model.sale.Sale;
+import seedu.address.model.sale.UniqueSaleList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueContactTagList;
 import seedu.address.model.tag.UniqueSaleTagList;
@@ -167,11 +169,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds the specified tag to StonksBook.
-     * If the tag already exists in StonksBook, no action will be performed.
+     * Adds the specified contact tag to StonksBook.
+     * If the tag already exists in the contact tag list, no action will be performed.
      */
     public void addContactTag(Tag tag) {
         contactTags.add(tag);
+    }
+
+    /**
+     * Adds the specified sale tag to StonksBook.
+     * If the tag already exists in the sale tag list, no action will be performed.
+     */
+    public void addSaleTag(Tag tag) {
+        saleTags.add(tag);
     }
 
     /**
@@ -211,7 +221,24 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void editSaleTag(Tag target, Tag editedTag) {
         saleTags.setTag(target, editedTag);
-        // TODO: edit sale tag once sale model is implemented
+        persons.setSaleTag(target, editedTag);
+    }
+
+    /**
+     * Returns the number of contacts who are associated with the {@code target} tag.
+     */
+    public int findByContactTag(Tag target) {
+        return (int) persons.asUnmodifiableObservableList()
+                .stream()
+                .filter(p -> p.getTags().contains(target)).count();
+    }
+
+    /**
+     * Returns the number of sale items that are associated with the {@code target} tag.
+     */
+    public int findBySaleTag(Tag target) {
+        // TODO
+        return 0;
     }
 
     /**
@@ -303,6 +330,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeReminder(Reminder key) {
         reminders.remove(key);
+    }
+
+    public void addSaleToPerson(Person person, Sale sale) {
+        person.getSalesList().add(sale);
+        for (Tag t : sale.getTags()) {
+            saleTags.add(t);
+        }
     }
 
     //// util methods

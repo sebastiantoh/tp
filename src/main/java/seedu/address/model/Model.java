@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -115,6 +116,16 @@ public interface Model {
     void deleteSaleTag(Tag target);
 
     /**
+     * Lists all contacts associated with {@code target} tag.
+     */
+    int findByContactTag(Tag target);
+
+    /**
+     * Lists all sales associated with {@code target} tag.
+     */
+    int findBySaleTag(Tag target);
+
+    /**
      * Lists all existing tags.
      */
     String listTags();
@@ -203,4 +214,6 @@ public interface Model {
      * {@code reminder} must not already exist in StonksBook.
      */
     void addReminder(Reminder reminder);
+
+    void addSaleToPerson(Person person, Sale sale);
 }

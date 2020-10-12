@@ -16,6 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -197,6 +198,11 @@ public class ModelManager implements Model {
         addressBook.addReminder(reminder);
     }
 
+    @Override
+    public void addSaleToPerson(Person person, Sale sale) {
+        addressBook.addSaleToPerson(person, sale);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -246,6 +252,16 @@ public class ModelManager implements Model {
     @Override
     public String listTags() {
         return addressBook.listTags();
+    }
+
+    @Override
+    public int findByContactTag(Tag target) {
+        return addressBook.findByContactTag(target);
+    }
+
+    @Override
+    public int findBySaleTag(Tag target) {
+        return addressBook.findBySaleTag(target);
     }
 
     @Override
