@@ -38,6 +38,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         Optional<String> tag = argMultimap.getValue(PREFIX_CONTACT_TAG);
         if (tag.isPresent()) {
             editTagDescriptor.setTagName(ParserUtil.parseTag(tag.get()).getTagName());
+        } else {
+            throw new ParseException(EditCommand.MESSAGE_MISSING_FIELD);
         }
 
         return new EditCommand(index, editTagDescriptor);

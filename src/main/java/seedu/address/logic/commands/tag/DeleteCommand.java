@@ -47,7 +47,7 @@ public class DeleteCommand extends Command {
 
         Tag tagToDelete;
         if (targetIndex.getOneBased() > contactTagList.size()) {
-            tagToDelete = saleTagList.get(targetIndex.getOneBased());
+            tagToDelete = saleTagList.get(targetIndex.getZeroBased() - contactTagList.size());
             model.deleteSaleTag(tagToDelete);
         } else {
             tagToDelete = contactTagList.get(targetIndex.getZeroBased());
