@@ -2,6 +2,8 @@ package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -10,8 +12,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
-import java.util.List;
-
+/**
+ * Lists all contacts or sale items associated with the specified tag.
+ */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "tag find";
 
