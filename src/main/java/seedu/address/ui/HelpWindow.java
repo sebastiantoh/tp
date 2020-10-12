@@ -117,7 +117,7 @@ public class HelpWindow extends UiPart<Stage> {
          *
          * @param headerText header text to be added
          */
-        void addHeaders(String headerText) {
+        private void addHeaders(String headerText) {
             Label header = new Label(headerText);
             header.setStyle("-fx-text-fill: " + this.colors.get(this.headerCounter / 2));
             table.addRow(this.currentRowIdx, header);
@@ -130,7 +130,7 @@ public class HelpWindow extends UiPart<Stage> {
          *
          * @param descriptionParts parts of the command description to be added
          */
-        void addCommandDescription(String[] descriptionParts) {
+        private void addCommandDescription(String[] descriptionParts) {
             List<Label> commandDescParts = new ArrayList<>();
 
             for (String descriptionPartText : descriptionParts) {
