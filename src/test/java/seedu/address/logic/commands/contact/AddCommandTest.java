@@ -174,6 +174,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Tag> getContactTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Tag> getSaleTagList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
