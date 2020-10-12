@@ -13,17 +13,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 /**
- * An example of a custom control using FXML.
- * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
- * containing text from the speaker.
+ * This control represents a dialog box consisting of a label containing text from the speaker.
  */
 public class DialogBox extends HBox {
-    @FXML
-    private Label dialog;
 
     private static String botName = "StonksBot";
 
     private static String userName = "$";
+
+    @FXML
+    private Label dialog;
 
     private DialogBox(String text) {
         try {
@@ -49,7 +48,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * WIP.
+     * Displays user dialog.
      */
     public static DialogBox getUserDialog(String text) {
         var db = new DialogBox(userName + " " + text);
@@ -57,6 +56,9 @@ public class DialogBox extends HBox {
         return db;
     }
 
+    /**
+     * Displays StonksBot's response dialog.
+     */
     public static DialogBox getStonksBotDialog(String text) {
         var db = new DialogBox(botName + ": " + text);
         db.flip();

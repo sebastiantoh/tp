@@ -50,7 +50,9 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isClear() { return clear; }
+    public boolean isClear() { 
+        return clear;
+    }
 
     @Override
     public boolean equals(Object other) {
