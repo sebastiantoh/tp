@@ -50,7 +50,7 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isClear() { 
+    public boolean isClear() {
         return clear;
     }
 
