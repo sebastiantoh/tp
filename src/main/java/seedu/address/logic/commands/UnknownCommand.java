@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MOST_SIMILAR_COMMAND;
 import static seedu.address.logic.parser.contact.ContactCommandsParser.ALL_CONTACT_COMMAND_WORDS;
@@ -9,11 +10,8 @@ import static seedu.address.logic.parser.tag.TagCommandsParser.ALL_TAG_COMMAND_W
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -33,20 +31,17 @@ public class UnknownCommand extends Command {
                     .collect(Collectors.toMap(x -> String.join("", x.split("\\s+")), x -> x));
 
     public UnknownCommand(String unknownInput) {
+        requireNonNull(unknownInput);
         this.unknownInput = unknownInput;
     }
 
     @Override
     public CommandResult execute(Model model) {
         SimilarItems<String> similarCommandWords = new SimilarCommandWords(
-                String.join("", this.unknownInput.split("\\s+")), 0.65);
-//        if (this.unknownInput.split("\\s+").length == 1) {
-//            similarCommandWords.fillSimilarityMapper(ALL_COMMAND_WORDS, false);
-        similarCommandWords.fillSimilarityMapper(new ArrayList<>(SEARCH_TO_COMMAND_WORDS.keySet()), false);
+                String.join("", this.unknownInput.split("\\s+")), 0.4);
 
-//        } else {
-//            similarCommandWords.fillSimilarityMapper(ALL_COMMAND_WORDS, true);
-//        }
+        similarCommandWords.fillSimilarityMapper(new ArrayList<>(SEARCH_TO_COMMAND_WORDS.keySet()));
+
         String mostSimilarCommandWord = similarCommandWords.getSimilarityMapper()
                 .entrySet()
                 .stream()

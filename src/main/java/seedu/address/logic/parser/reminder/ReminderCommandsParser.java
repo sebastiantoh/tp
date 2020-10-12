@@ -1,8 +1,10 @@
 package seedu.address.logic.parser.reminder;
 
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import java.util.Arrays;
+import java.util.List;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.UnknownCommand;
 import seedu.address.logic.commands.reminder.AddCommand;
 import seedu.address.logic.commands.reminder.DeleteCommand;
 import seedu.address.logic.commands.reminder.ListCommand;
@@ -13,6 +15,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses the command word to create a Reminder Command Object corresponding to the command word.
  */
 public class ReminderCommandsParser implements GroupCommandsParser {
+
+    public static List<String> ALL_REMINDER_COMMAND_WORDS = Arrays.asList(
+            AddCommand.COMMAND_WORD,
+            DeleteCommand.COMMAND_WORD,
+            ListCommand.COMMAND_WORD
+    );
 
     /**
      * Parses the command word and arguments to create the appropriate Command Object for Reminder.
@@ -35,7 +43,8 @@ public class ReminderCommandsParser implements GroupCommandsParser {
             return new ListCommand();
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+//            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            return new UnknownCommand(commandWord);
         }
     }
 }
