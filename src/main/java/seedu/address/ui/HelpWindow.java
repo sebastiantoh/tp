@@ -35,7 +35,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     private static final String FXML = "HelpWindow.fxml";
 
-    private CommandTable commandTable = new CommandTable();
+    private final CommandTable commandTable = new CommandTable();
 
     @FXML
     private Text helpMessage;
@@ -81,6 +81,7 @@ public class HelpWindow extends UiPart<Stage> {
     private void populateHelpWindow() throws IOException {
         helpMessage.setText(HELP_MESSAGE);
         helpLink.setText(USERGUIDE_URL);
+
         commandHelpLegend.setText(COMMAND_HELP_LEGEND);
 
         try (InputStream resource = this.getClass().getClassLoader()
