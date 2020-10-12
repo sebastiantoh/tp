@@ -33,7 +33,7 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false)));
-        
+
         // different clear value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true)));
     }
@@ -49,11 +49,11 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), 
+        assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", true, false, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), 
+        assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, true, false).hashCode());
 
         // different clear value -> returns different hashcode
