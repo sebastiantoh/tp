@@ -42,4 +42,11 @@ public class ChatBox extends UiPart<Region> {
         );
         scrollToBottom();
     }
+
+    /**
+     * Clears all past interactions with the GUI in the chat box.
+     */
+    public void clear() {
+        dialogContainer.getChildren().clear();
+    }
 }

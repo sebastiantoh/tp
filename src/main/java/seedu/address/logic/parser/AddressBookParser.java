@@ -9,6 +9,7 @@ import static seedu.address.commons.enums.GroupEnum.TAG;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -65,6 +66,7 @@ public class AddressBookParser {
     private boolean isSingleKeyWordCommand(String commandWord) {
         switch (commandWord) {
         case PurgeCommand.COMMAND_WORD:
+        case ClearCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
         case ExitCommand.COMMAND_WORD:
             return true;
@@ -81,6 +83,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
