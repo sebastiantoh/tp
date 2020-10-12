@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +13,11 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.sale.ItemName;
+import seedu.address.model.sale.Quantity;
+import seedu.address.model.sale.Sale;
+import seedu.address.model.sale.UniqueSaleList;
+import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,10 +28,10 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), new Remark("")),
+                getTagSet("friends"), new Remark(""), getSampleSaleList()),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), new Remark("")),
+                getTagSet("colleagues", "friends"), new Remark("Likes white chocolate")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours"), new Remark("")),
@@ -39,6 +45,14 @@ public class SampleDataUtil {
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"), new Remark(""))
         };
+    }
+
+    public static UniqueSaleList getSampleSaleList() {
+        ArrayList<Sale> sales = new ArrayList<>();
+        sales.add(new Sale(new ItemName("Notebook"), new Quantity("10"), new UnitPrice(1, 10)));
+        UniqueSaleList saleList = new UniqueSaleList();
+        saleList.setSales(sales);
+        return saleList;
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
