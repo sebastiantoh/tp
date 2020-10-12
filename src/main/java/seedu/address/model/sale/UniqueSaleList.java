@@ -24,9 +24,13 @@ import seedu.address.model.sale.exceptions.SaleNotFoundException;
  */
 public class UniqueSaleList implements Iterable<Sale> {
 
+    private static final double ZERO_SALE_AMOUNT = 0.0;
+
     private final ObservableList<Sale> internalList = FXCollections.observableArrayList();
     private final ObservableList<Sale> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
+    private double totalSalesAmount = ZERO_SALE_AMOUNT;
 
     /**
      * Returns true if the list contains an equivalent sale as the given argument.
@@ -46,6 +50,7 @@ public class UniqueSaleList implements Iterable<Sale> {
             throw new DuplicateSaleException();
         }
         internalList.add(toAdd);
+        totalSalesAmount += toAdd.getTotalCost();
     }
 
     /**
@@ -66,6 +71,8 @@ public class UniqueSaleList implements Iterable<Sale> {
         }
 
         internalList.set(index, editedSale);
+        totalSalesAmount -= target.getTotalCost();
+        totalSalesAmount += editedSale.getTotalCost();
     }
 
     /**
@@ -77,11 +84,20 @@ public class UniqueSaleList implements Iterable<Sale> {
         if (!internalList.remove(toRemove)) {
             throw new SaleNotFoundException();
         }
+        totalSalesAmount -= toRemove.getTotalCost();
     }
 
     public void setSales(UniqueSaleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        resetTotalSalesAmount(replacement.internalList);
+    }
+
+    private void resetTotalSalesAmount(List<Sale> saleList) {
+        totalSalesAmount = saleList.stream()
+                .map(Sale::getTotalCost)
+                .reduce(Double::sum)
+                .orElse(ZERO_SALE_AMOUNT);
     }
 
     /**
@@ -95,6 +111,11 @@ public class UniqueSaleList implements Iterable<Sale> {
         }
 
         internalList.setAll(sales);
+        resetTotalSalesAmount(sales);
+    }
+
+    public double getTotalSalesAmount() {
+        return totalSalesAmount;
     }
 
     /**
@@ -113,7 +134,8 @@ public class UniqueSaleList implements Iterable<Sale> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueSaleList // instanceof handles nulls
-                && internalList.equals(((UniqueSaleList) other).internalList));
+                && internalList.equals(((UniqueSaleList) other).internalList)
+                && totalSalesAmount == ((UniqueSaleList) other).totalSalesAmount);
     }
 
     @Override

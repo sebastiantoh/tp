@@ -23,6 +23,7 @@ public class UnitPrice {
 
     public final int dollars;
     public final int cents;
+    public final double amount;
 
     /**
      * Constructs a {@code UnitPrice}.
@@ -35,6 +36,11 @@ public class UnitPrice {
         checkArgument(isValidUnitPrice(dollars, cents), MESSAGE_CONSTRAINTS);
         this.dollars = dollars;
         this.cents = cents;
+        this.amount = Double.parseDouble(String.format("%s.%s", dollars, cents));
+    }
+
+    public double getAmount() {
+        return amount;
     }
 
     /**

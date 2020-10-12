@@ -4,12 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.contact.SortCommand.MESSAGE_SORTING_ATTRIBUTE_NONEXISTENT;
+import static seedu.address.logic.commands.contact.SortCommand.MESSAGE_SORTING_ATTRIBUTE_INVALID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TOTAL_SALES;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookInReverse;
 import static seedu.address.testutil.person.TypicalPersons.getTypicalAddressBook;
+
+import java.util.Comparator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,6 +25,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for SortCommand.
@@ -155,11 +159,67 @@ public class SortCommandTest {
     }
 
     @Test
+    public void execute_totalSalesOnly_success() throws CommandException {
+        Prefix prefix = PREFIX_TOTAL_SALES;
+        boolean isDesc = false;
+
+        SortCommand sortCommand = new SortCommand(prefix, isDesc);
+
+        String expectedMessage = SortCommand.MESSAGE_SUCCESS;
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Comparator<Person> comparator = Comparator.comparingDouble(x -> x.getSalesList().getTotalSalesAmount());
+        expectedModel.updateSortedPersonList(comparator);
+
+        CommandResult commandResult = sortCommand.execute(model);
+
+        assertEquals(new CommandResult(expectedMessage), commandResult);
+        assertEquals(expectedModel, model);
+
+        Model expectedReverseModel = new ModelManager(new AddressBook(reversedModel.getAddressBook()), new UserPrefs());
+        expectedReverseModel.updateSortedPersonList(comparator);
+
+        commandResult = sortCommand.execute(reversedModel);
+
+        assertEquals(new CommandResult(expectedMessage), commandResult);
+        assertEquals(expectedReverseModel, reversedModel);
+
+    }
+
+    @Test
+    public void execute_totalSalesAndDesc_success() throws CommandException {
+        Prefix prefix = PREFIX_TOTAL_SALES;
+        boolean isDesc = true;
+
+        SortCommand sortCommand = new SortCommand(prefix, isDesc);
+
+        String expectedMessage = SortCommand.MESSAGE_SUCCESS;
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Comparator<Person> comparator = Comparator.comparingDouble(x -> x.getSalesList().getTotalSalesAmount());
+        expectedModel.updateSortedPersonList(comparator.reversed());
+
+        CommandResult commandResult = sortCommand.execute(model);
+
+        assertEquals(new CommandResult(expectedMessage), commandResult);
+        assertEquals(expectedModel, model);
+
+        Model expectedReverseModel = new ModelManager(new AddressBook(reversedModel.getAddressBook()), new UserPrefs());
+        expectedReverseModel.updateSortedPersonList(comparator.reversed());
+
+        commandResult = sortCommand.execute(reversedModel);
+
+        assertEquals(new CommandResult(expectedMessage), commandResult);
+        assertEquals(expectedReverseModel, reversedModel);
+
+    }
+
+    @Test
     public void execute_invalidAttribute_failure() {
         Prefix prefix = PREFIX_CONTACT_ADDRESS;
         boolean isDesc = true;
         SortCommand sortCommand = new SortCommand(prefix, isDesc);
-        String expectedMessage = MESSAGE_SORTING_ATTRIBUTE_NONEXISTENT;
+        String expectedMessage = MESSAGE_SORTING_ATTRIBUTE_INVALID;
         assertCommandFailure(sortCommand, model, expectedMessage);
     }
 

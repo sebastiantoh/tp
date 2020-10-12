@@ -16,6 +16,8 @@ public class Sale {
     private final Quantity quantity;
     private final UnitPrice unitPrice;
 
+    private final double totalCost;
+
     /**
      * Every field must be present and not null.
      */
@@ -24,6 +26,7 @@ public class Sale {
         this.itemName = itemName;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
+        this.totalCost = this.quantity.quantity * this.unitPrice.getAmount();
     }
 
     public ItemName getItemName() {
@@ -49,6 +52,10 @@ public class Sale {
         }
 
         return otherSale != null && otherSale.getItemName().equals(getItemName());
+    }
+
+    public double getTotalCost() {
+        return this.totalCost;
     }
 
     /**
