@@ -40,7 +40,7 @@ public class Sale {
 
 
     /**
-     * Returns true if both sales have the same name or are hte same.
+     * Returns true if both sales have the same name or are the same.
      * This defines a weaker notion of equality between two sales.
      */
     public boolean isSameSale(Sale otherSale) {
@@ -81,10 +81,12 @@ public class Sale {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getItemName())
-                .append(" Quantity: ")
+                .append(" (Quantity: ")
                 .append(getQuantity())
+                .append(", ")
                 .append(" Unit Price: ")
-                .append(getUnitPrice());
+                .append(getUnitPrice())
+                .append(")");
         return builder.toString();
     }
 }

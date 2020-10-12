@@ -27,16 +27,23 @@ public class ItemNameTest {
         assertThrows(NullPointerException.class, () -> ItemName.isValidItemName(null));
 
         // invalid name
-        assertFalse(Name.isValidName("")); // empty string
-        assertFalse(Name.isValidName(" ")); // spaces only
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(ItemName.isValidItemName("")); // empty string
+        assertFalse(ItemName.isValidItemName(" ")); // spaces only
+        assertFalse(ItemName.isValidItemName("^")); // only non-alphanumeric characters
+        assertFalse(ItemName.isValidItemName("peter*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(Name.isValidName("pencilcase")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("2b pencil")); // alphanumeric characters
-        assertTrue(Name.isValidName("Notebook")); // with capital letters
-        assertTrue(Name.isValidName("Gussi Classic Dotted Grid Bullet Notebook Journal Hard Cover A5")); // long names
+        assertTrue(ItemName.isValidItemName("pencilcase")); // alphabets only
+        assertTrue(ItemName.isValidItemName("12345")); // numbers only
+        assertTrue(ItemName.isValidItemName("2b pencil")); // alphanumeric characters
+        assertTrue(ItemName.isValidItemName("Notebook")); // with capital letters
+        assertTrue(ItemName.isValidItemName("Gussi Classic Dotted Grid Bullet Notebook Journal Hard Cover A5")); // long names
+    }
+
+    @Test
+    public void equals() {
+        assertTrue(new ItemName("Apple").equals(new ItemName("Apple")));
+        assertTrue(new ItemName("APPLE").equals(new ItemName("apple")));
+        assertFalse(new ItemName("APPLE").equals(new ItemName("ball")));
     }
 }
