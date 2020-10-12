@@ -11,7 +11,7 @@
             xmlns:fx="http://javafx.com/fxml/1">
     <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" vvalue="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
-            <VBox fx:id="dialogContainer" styleClass="result-display" minWidth="1024" prefHeight="150" />
+            <VBox fx:id="dialogContainer" styleClass="result-display" minWidth="1004" prefHeight="150" />
         </content>
     </ScrollPane>
 </AnchorPane>
