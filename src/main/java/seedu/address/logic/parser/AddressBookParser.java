@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.commons.enums.GroupEnum.CONTACT;
 import static seedu.address.commons.enums.GroupEnum.REMINDER;
 import static seedu.address.commons.enums.GroupEnum.TAG;
@@ -13,6 +12,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.PurgeCommand;
+import seedu.address.logic.commands.UnknownCommand;
 import seedu.address.logic.parser.contact.ContactCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.reminder.ReminderCommandsParser;
@@ -43,14 +43,15 @@ public class AddressBookParser {
 
         if (this.isSingleKeyWordCommand(commandWord)) {
             return this.parseSingleKeyWordCommand(commandWord);
-        } else if (this.isDoubleKeyWordCommand(commandWord)) {
+        } else if (this.isDoubleKeyWordCommand(commandWord, arguments)) {
             final Matcher secondCommandWordMatcher = this.getMatcherFromInput(arguments);
 
             final String secondCommandWord = secondCommandWordMatcher.group("commandWord");
             final String trueArguments = secondCommandWordMatcher.group("arguments");
             return this.parseTwoKeyWordCommand(commandWord, secondCommandWord, trueArguments);
         } else {
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            String fullCommand = String.format("%s %s", commandWord, arguments);
+            return new UnknownCommand(fullCommand);
         }
     }
 
@@ -86,11 +87,15 @@ public class AddressBookParser {
             return new ExitCommand();
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            return new UnknownCommand(commandWord);
         }
     }
 
-    private boolean isDoubleKeyWordCommand(String commandWord) {
+    private boolean isDoubleKeyWordCommand(String commandWord, String arguments) {
+        if (arguments.isBlank()) {
+            return false;
+        }
+
         boolean isContactCommand = commandWord.equals(CONTACT.name().toLowerCase());
         boolean isTagCommand = commandWord.equals(TAG.name().toLowerCase());
         boolean isReminderCommand = commandWord.equals(REMINDER.name().toLowerCase());
@@ -110,7 +115,7 @@ public class AddressBookParser {
         } else if (commandWord.equals(REMINDER.name().toLowerCase())) {
             return new ReminderCommandsParser().parse(fullCommand, arguments);
         } else {
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            return new UnknownCommand(fullCommand);
         }
     }
 }
