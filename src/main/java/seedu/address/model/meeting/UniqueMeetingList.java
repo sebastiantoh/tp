@@ -5,11 +5,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
+import seedu.address.model.person.Person;
 
 /**
  * A list of meetings that enforces uniqueness between its elements and does not allow nulls.
@@ -50,6 +52,22 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new MeetingNotFoundException();
+        }
+    }
+
+    /**
+     * Removes all meetings associated with the given {@code contact} from the list.
+     *
+     * @param contact The contact whose associated meetings are to be removed.
+     */
+    public void removeMeetingsWithContact(Person contact) {
+        requireNonNull(contact);
+        List<Meeting> meetingsToRemove =
+                internalList.stream().filter(meeting -> meeting.getPerson().equals(contact))
+                        .collect(Collectors.toList());
+
+        for (Meeting meeting : meetingsToRemove) {
+            this.remove(meeting);
         }
     }
 

@@ -136,11 +136,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code AddressBook}. All associated meetings will be removed as well.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        meetings.removeMeetingsWithContact(key);
     }
 
     //// tag-level operations
