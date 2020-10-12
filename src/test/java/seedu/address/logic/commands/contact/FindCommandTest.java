@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookInReverse;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.person.TypicalPersons.CARL;
 import static seedu.address.testutil.person.TypicalPersons.DANIEL;
@@ -38,8 +38,8 @@ public class FindCommandTest {
 
     @BeforeEach
     void beforeEach() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBookInReverse(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalAddressBookInReverse(), new UserPrefs());
         this.model.addPerson(HOON);
         this.model.addPerson(IDA);
 
@@ -91,7 +91,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(multipleKeywords);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA, IDA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA, IDA), model.getSortedPersonList());
     }
 
     @Test
@@ -102,9 +102,8 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(keyword);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON, DANIEL, ELLE, HOON, IDA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(BENSON, DANIEL, ELLE, HOON, IDA), model.getSortedPersonList());
     }
-
 
     @Test
     public void execute_similarMatch_noPersonFound() {
@@ -113,7 +112,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(unmatchedKeyword);
         expectedModel.updateFilteredPersonList(x -> false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getSortedPersonList());
     }
 
     @Test
@@ -124,7 +123,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(keyword);
         expectedModel.updateFilteredPersonList(predicate);
         assertEquals(new CommandResult(expectedMessage), command.execute(model));
-        assertEquals(Arrays.asList(BENSON, DANIEL, ELLE, HOON, IDA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ELLE, DANIEL, BENSON, HOON, IDA), model.getFilteredPersonList());
         assertEquals(Arrays.asList(IDA, BENSON, DANIEL, ELLE, HOON), model.getSortedPersonList());
     }
 }

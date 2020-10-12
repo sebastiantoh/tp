@@ -21,8 +21,8 @@
   <scene>
     <Scene>
         <ScrollPane hbarPolicy="NEVER" fitToWidth="true">
-        <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: derive(#1d1d1d, 20%); -fx-fill
-        background-color: #383838;">
+        <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: derive(#1d1d1d, 20%);
+         -fx-fillbackground-color: #383838;">
             <GridPane fx:id="table" HBox.hgrow="ALWAYS">
                 <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
