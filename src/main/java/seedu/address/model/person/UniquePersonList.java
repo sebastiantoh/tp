@@ -127,6 +127,19 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the {@code target} tag has no occurrences in StonksBook.
+     */
+    public boolean hasZeroOccurrences(Tag target) {
+        requireNonNull(target);
+        for (Person p : internalList) {
+            if (p.getTags().contains(target)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Removes the specified tag from all sales.
      */
     public void removeSaleTag(Tag toRemove) {
