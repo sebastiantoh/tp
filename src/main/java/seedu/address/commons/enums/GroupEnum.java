@@ -5,4 +5,5 @@ public enum GroupEnum {
     TAG,
     REMINDER,
     MEETING,
+    SALE
 }

@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.enums.GroupEnum.CONTACT;
 import static seedu.address.commons.enums.GroupEnum.MEETING;
 import static seedu.address.commons.enums.GroupEnum.REMINDER;
+import static seedu.address.commons.enums.GroupEnum.SALE;
 import static seedu.address.commons.enums.GroupEnum.TAG;
 
 import java.util.regex.Matcher;
@@ -18,6 +19,7 @@ import seedu.address.logic.parser.contact.ContactCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meeting.MeetingCommandsParser;
 import seedu.address.logic.parser.reminder.ReminderCommandsParser;
+import seedu.address.logic.parser.sale.SaleCommandsParser;
 import seedu.address.logic.parser.tag.TagCommandsParser;
 
 /**
@@ -102,8 +104,9 @@ public class AddressBookParser {
         boolean isTagCommand = commandWord.equals(TAG.name().toLowerCase());
         boolean isReminderCommand = commandWord.equals(REMINDER.name().toLowerCase());
         boolean isMeetingCommand = commandWord.equals(MEETING.name().toLowerCase());
+        boolean isSaleCommand = commandWord.equals(SALE.name().toLowerCase());
 
-        return isContactCommand || isTagCommand || isReminderCommand || isMeetingCommand;
+        return isContactCommand || isTagCommand || isReminderCommand || isMeetingCommand || isSaleCommand;
     }
 
     private Command parseTwoKeyWordCommand(String commandWord, String secondCommandWord, String arguments)
@@ -119,6 +122,8 @@ public class AddressBookParser {
             return new ReminderCommandsParser().parse(fullCommand, arguments);
         } else if (commandWord.equals(MEETING.name().toLowerCase())) {
             return new MeetingCommandsParser().parse(fullCommand, arguments);
+        } else if (commandWord.equals(SALE.name().toLowerCase())) {
+            return new SaleCommandsParser().parse(fullCommand, arguments);
         } else {
             return new UnknownCommand(fullCommand);
         }

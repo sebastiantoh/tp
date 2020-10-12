@@ -230,13 +230,13 @@ public class ParserUtil {
         requireNonNull(unitPrice);
         String trimmedUnitPrice = unitPrice.trim();
         if (!UnitPrice.isValidUnitPriceString(trimmedUnitPrice)) {
-            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+            throw new ParseException(UnitPrice.MESSAGE_CONSTRAINTS);
         }
         String[] priceSplit = unitPrice.split("\\.");
         int dollars = Integer.parseInt(priceSplit[0]);
         int cents = Integer.parseInt(priceSplit[1]);
-        if (UnitPrice.isValidUnitPrice(dollars, cents)) {
-            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        if (!UnitPrice.isValidUnitPrice(dollars, cents)) {
+            throw new ParseException(UnitPrice.MESSAGE_CONSTRAINTS);
         }
         return new UnitPrice(dollars, cents);
     }

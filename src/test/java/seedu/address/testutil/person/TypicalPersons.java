@@ -12,12 +12,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.sale.TypicalSales.APPLE;
+import static seedu.address.testutil.sale.TypicalSales.BALL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 
 /**
@@ -26,13 +29,11 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-        .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-        .withPhone("94351253")
+        .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com").withPhone("94351253")
         .withTags("friends").withRemark("Likes chocolates").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-        .withAddress("311, Clementi Ave 2, #02-25")
-        .withEmail("johnd@example.com").withPhone("98765432")
-        .withTags("owesMoney", "friends").withRemark("Owes me $10").build();
+        .withAddress("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com").withPhone("98765432")
+            .withTags("owesMoney", "friends").withRemark("Owes me $10").withSales(APPLE, BALL).build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
         .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
@@ -63,6 +64,16 @@ public class TypicalPersons {
     private TypicalPersons() {
     } // prevents instantiation
 
+    /**
+     * Returns an {@code AddressBook} with all the typical persons.
+     */
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));

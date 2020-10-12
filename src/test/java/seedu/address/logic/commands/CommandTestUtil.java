@@ -12,6 +12,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 
@@ -33,6 +36,7 @@ import seedu.address.testutil.person.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    /* Contact commands */
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -69,8 +73,8 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_CONTACT_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_CONTACT_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_CONTACT_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " "
-            + PREFIX_CONTACT_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_ADDRESS_DESC =
+            " " + PREFIX_CONTACT_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_CONTACT_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DATE = " " + PREFIX_DATETIME + "2020/10/30 15:00";
     public static final String INVALID_CONTACT_INDEX = " " + PREFIX_CONTACT + "-1";
@@ -82,6 +86,7 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    /* Sale commands */
     public static final String VALID_ITEM_NAME_APPLE = "Apple";
     public static final String VALID_ITEM_NAME_BALL = "Ball";
     public static final String VALID_QUANTITY_APPLE = "10";
@@ -90,6 +95,15 @@ public class CommandTestUtil {
     public static final Integer VALID_UNIT_PRICE_CENTS_APPLE = 50;
     public static final Integer VALID_UNIT_PRICE_DOLLARS_BALL = 0;
     public static final Integer VALID_UNIT_PRICE_CENTS_BALL = 80;
+
+    public static final String INVALID_ITEM_NAME = " " + PREFIX_SALE_NAME + "@pple";
+    public static final String INVALID_QUANTITY = " " + PREFIX_SALE_QUANTITY + "1.5";
+    public static final String INVALID_UNIT_PRICE = " " + PREFIX_SALE_UNIT_PRICE + "0.0";
+
+    public static final String ITEM_NAME_DESC_APPLE = " " + PREFIX_SALE_NAME + VALID_ITEM_NAME_APPLE;
+    public static final String QUANTITY_DESC_APPLE = " " + PREFIX_SALE_QUANTITY + VALID_QUANTITY_APPLE;
+    public static final String UNIT_PRICE_DESC_APPLE =
+            " " + PREFIX_SALE_UNIT_PRICE + VALID_UNIT_PRICE_DOLLARS_APPLE + "." + VALID_UNIT_PRICE_CENTS_APPLE;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

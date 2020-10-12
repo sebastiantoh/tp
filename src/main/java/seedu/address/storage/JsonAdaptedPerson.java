@@ -16,6 +16,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.sale.Sale;
+import seedu.address.model.sale.UniqueSaleList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String remark;
+    private final List<JsonAdaptedSale> saleList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,7 +41,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark,
+            @JsonProperty("person") List<JsonAdaptedSale> saleList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -47,6 +51,9 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.remark = remark;
+        if (saleList != null) {
+            this.saleList.addAll(saleList);
+        }
     }
 
     /**
@@ -61,6 +68,11 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         remark = source.getRemark().value;
+        saleList.addAll(source.getSalesList()
+                .asUnmodifiableObservableList()
+                .stream()
+                .map(JsonAdaptedSale::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -70,8 +82,14 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Sale> personSales = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        for (JsonAdaptedSale sale : saleList) {
+            System.out.println(sale);
+            personSales.add(sale.toModelType());
         }
 
         if (name == null) {
@@ -107,13 +125,15 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+        final UniqueSaleList modelSales = new UniqueSaleList();
+        modelSales.setSales(personSales);
 
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelRemark);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelRemark, modelSales);
     }
 
 }

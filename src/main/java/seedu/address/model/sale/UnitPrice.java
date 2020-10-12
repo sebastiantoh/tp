@@ -56,7 +56,7 @@ public class UnitPrice {
 
     @Override
     public String toString() {
-        return "$" + dollars + "." + cents;
+        return "$" + dollars + "." + String.format("%02d", cents);
     }
 
     @Override
