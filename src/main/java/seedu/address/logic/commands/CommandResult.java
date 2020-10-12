@@ -16,7 +16,7 @@ public class CommandResult {
 
     /** The application should exit. */
     private final boolean exit;
-    
+
     /** The chat box should be cleared. */
     private final boolean clear;
 
@@ -49,7 +49,7 @@ public class CommandResult {
     public boolean isExit() {
         return exit;
     }
-    
+
     public boolean isClear() { return clear; }
 
     @Override

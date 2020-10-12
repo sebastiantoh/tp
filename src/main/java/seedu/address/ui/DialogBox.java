@@ -20,9 +20,9 @@ import javafx.scene.layout.HBox;
 public class DialogBox extends HBox {
     @FXML
     private Label dialog;
-    
+
     private static String botName = "StonksBot";
-    
+
     private static String userName = "$";
 
     private DialogBox(String text) {

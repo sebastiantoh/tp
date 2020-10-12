@@ -23,7 +23,7 @@
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
-      
+
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
@@ -33,27 +33,27 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-        
+
         <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="1024" VBox.vgrow="ALWAYS">
           <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
         </VBox>
-      
-        <StackPane VBox.vgrow="NEVER" fx:id="chatBoxPlaceholder" styleClass="pane-with-border" 
+
+        <StackPane VBox.vgrow="NEVER" fx:id="chatBoxPlaceholder" styleClass="pane-with-border"
                        minHeight="150" prefHeight="150" maxHeight="150" minWidth="340" prefWidth="1024">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-        
+
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-        
+
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

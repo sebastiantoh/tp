@@ -17,7 +17,7 @@ public class ChatBox extends UiPart<Region> {
 
     @FXML
     private VBox dialogContainer;
-    
+
     @FXML
     private ScrollPane scrollPane;
 
