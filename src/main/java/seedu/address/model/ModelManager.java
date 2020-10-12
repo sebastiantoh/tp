@@ -249,6 +249,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public int findByContactTag(Tag target) {
+        return addressBook.findByContactTag(target);
+    }
+
+    @Override
+    public int findBySaleTag(Tag target) {
+        return addressBook.findBySaleTag(target);
+    }
+
+    @Override
     public ObservableList<Tag> getContactTagList() {
         return addressBook.getContactTagList();
     }
