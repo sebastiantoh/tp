@@ -277,9 +277,10 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return this.addressBook.equals(other.addressBook)
-            && this.userPrefs.equals(other.userPrefs)
-            && this.filteredPersons.equals(other.filteredPersons)
-                && this.sortedPersons.equals(other.sortedPersons);
+                && this.userPrefs.equals(other.userPrefs)
+                && this.filteredPersons.equals(other.filteredPersons)
+                && this.sortedPersons.equals(other.sortedPersons)
+                && this.sortedReminders.equals(other.sortedReminders);
     }
 
 }
