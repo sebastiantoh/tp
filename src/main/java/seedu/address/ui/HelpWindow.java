@@ -102,12 +102,12 @@ public class HelpWindow extends UiPart<Stage> {
 
     private class CommandTable {
 
+        private static final int STARTING_ROW_INDEX = 2;
+
         private final List<String> colors = Arrays.asList("#d72c2c", "#08aeae",
                 "#11cf11", "#c307c3", "#f3a517", "#dbbc11");
 
         private int headerCounter = 0;
-
-        private static final int STARTING_ROW_INDEX = 2;
 
         private int currentRowIdx = STARTING_ROW_INDEX;
 
