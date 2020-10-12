@@ -3,10 +3,6 @@ package seedu.address.logic.commands.sale;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -56,12 +52,12 @@ public class ListCommand extends Command {
 
         StringBuilder output = new StringBuilder("Sales made to " + personToShow.getName() + ":\n");
 
-        if(sales.size() == 0) {
+        if (sales.size() == 0) {
             return new CommandResult("No sales made to " + personToShow.getName() + "!");
         }
 
         int index = 1;
-        for(Sale sale : personToShow.getSalesList().asUnmodifiableObservableList()) {
+        for (Sale sale : personToShow.getSalesList().asUnmodifiableObservableList()) {
             output.append(index).append(". ").append(sale.toString()).append("\n");
             index++;
         }

@@ -2,43 +2,22 @@ package seedu.address.logic.commands.sale;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
 
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.contact.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
-import seedu.address.model.reminder.Reminder;
-import seedu.address.model.sale.ItemName;
-import seedu.address.model.sale.Quantity;
 import seedu.address.model.sale.Sale;
-import seedu.address.model.sale.UniqueSaleList;
-import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Adds a sale associated with a contact to StonksBook.
@@ -62,8 +41,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New sale added: %1$s";
     public static final String MESSAGE_DUPLICATE_SALE = "This sale already exists in StonksBook.";
 
-    private final Index index; /** Index of the person to be associated with this sale. */
-    private final Sale toAdd; /** Sale to be added. */
+    private final Index index;
+    private final Sale toAdd;
 
     /**
      * Creates an AddCommand that adds a {@code Sale}.

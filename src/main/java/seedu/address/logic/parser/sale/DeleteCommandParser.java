@@ -7,8 +7,6 @@ import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.sale.DeleteCommand;
-import seedu.address.logic.commands.sale.AddCommand;
-import seedu.address.logic.commands.sale.ListCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;

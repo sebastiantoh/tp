@@ -6,8 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Name;
-
 public class ItemNameTest {
 
     @Test
@@ -37,7 +35,8 @@ public class ItemNameTest {
         assertTrue(ItemName.isValidItemName("12345")); // numbers only
         assertTrue(ItemName.isValidItemName("2b pencil")); // alphanumeric characters
         assertTrue(ItemName.isValidItemName("Notebook")); // with capital letters
-        assertTrue(ItemName.isValidItemName("Gussi Classic Dotted Grid Bullet Notebook Journal Hard Cover A5")); // long names
+        assertTrue(ItemName.isValidItemName(
+                "Gussi Classic Dotted Grid Bullet Notebook Journal Hard Cover A5")); // long names
     }
 
     @Test

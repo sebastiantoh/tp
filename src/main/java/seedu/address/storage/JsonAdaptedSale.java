@@ -52,7 +52,8 @@ class JsonAdaptedSale {
     public Sale toModelType() throws IllegalValueException {
         System.out.println("testing");
         if (itemName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ItemName.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, ItemName.class.getSimpleName()));
         }
         if (!ItemName.isValidItemName(itemName)) {
             throw new IllegalValueException(ItemName.MESSAGE_CONSTRAINTS);
@@ -60,7 +61,8 @@ class JsonAdaptedSale {
         final ItemName modelItemName = new ItemName(itemName);
 
         if (quantity == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
         }
         if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
@@ -68,7 +70,8 @@ class JsonAdaptedSale {
         final Quantity modelQuantity = new Quantity(quantity);
 
         if (unitPriceDollar == null || unitPriceCent == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, UnitPrice.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, UnitPrice.class.getSimpleName()));
         }
         if (!UnitPrice.isValidUnitPrice(unitPriceDollar, unitPriceCent)) {
             throw new IllegalValueException(UnitPrice.MESSAGE_CONSTRAINTS);

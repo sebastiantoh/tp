@@ -13,7 +13,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.reminder.Reminder;
 import seedu.address.model.sale.Sale;
 
 /**
@@ -24,7 +23,8 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "sale delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the sale belonging to specified contact, identified by the index number used in the displayed sale list.\n"
+        + ": Deletes the sale belonging to specified contact, "
+        + "identified by the index number used in the displayed sale list.\n"
         + "Parameters: CONTACT_INDEX (must be a positive integer) "
         + "SALE_INDEX (must be a positive integer)\n"
         + "Example: " + COMMAND_WORD + " "
@@ -36,6 +36,11 @@ public class DeleteCommand extends Command {
     private final Index contactIndex;
     private final Index saleIndex;
 
+    /**
+     * Creates an AddCommand that removes a sale from a specified contact.
+     * @param contactIndex Index of the contact whose sale is to be removed.
+     * @param saleIndex Index of the sale to be removed.
+     */
     public DeleteCommand(Index contactIndex, Index saleIndex) {
         this.contactIndex = contactIndex;
         this.saleIndex = saleIndex;

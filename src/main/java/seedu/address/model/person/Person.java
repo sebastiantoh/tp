@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.sale.Sale;
 import seedu.address.model.sale.UniqueSaleList;
 import seedu.address.model.tag.Tag;
 
@@ -29,7 +28,14 @@ public class Person {
     private final UniqueSaleList salesList = new UniqueSaleList();
 
     /**
+     * Creates a person object with specified details.
      * Every field must be present and not null.
+     * @param name Name of the person.
+     * @param phone Phone number of the person.
+     * @param email Email Address of the person.
+     * @param address Address of the person.
+     * @param tags Set of tags associated with the person.
+     * @param remark Remark associated with the person.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark) {
         requireAllNonNull(name, phone, email, address, tags, remark);
@@ -41,7 +47,19 @@ public class Person {
         this.remark = remark;
     }
 
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark, UniqueSaleList salesList) {
+    /**
+     * Creates a person object with specified details.
+     * Every field must be present and not null.
+     * @param name Name of the person.
+     * @param phone Phone number of the person.
+     * @param email Email Address of the person.
+     * @param address Address of the person.
+     * @param tags Set of tags associated with the person.
+     * @param remark Remark associated with the person.
+     * @param salesList UniqueSaleList of sales made to the person.
+     */
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, Remark remark, UniqueSaleList salesList) {
         requireAllNonNull(name, phone, email, address, tags, remark);
         this.name = name;
         this.phone = phone;

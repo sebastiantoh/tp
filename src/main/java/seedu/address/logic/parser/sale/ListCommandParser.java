@@ -2,22 +2,15 @@ package seedu.address.logic.parser.sale;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.sale.AddCommand;
 import seedu.address.logic.commands.sale.ListCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.sale.ItemName;
-import seedu.address.model.sale.Quantity;
-import seedu.address.model.sale.UnitPrice;
 
 /**
  * Parses input arguments and creates a new ListCommand object for Sale.
