@@ -93,13 +93,6 @@ public class UniqueSaleList implements Iterable<Sale> {
         resetTotalSalesAmount(replacement.internalList);
     }
 
-    private void resetTotalSalesAmount(List<Sale> saleList) {
-        totalSalesAmount = saleList.stream()
-                .map(Sale::getTotalCost)
-                .reduce(Double::sum)
-                .orElse(ZERO_SALE_AMOUNT);
-    }
-
     /**
      * Replaces the contents of this list with {@code sales}.
      * {@code sales} must not contain duplicate sales.
@@ -112,6 +105,13 @@ public class UniqueSaleList implements Iterable<Sale> {
 
         internalList.setAll(sales);
         resetTotalSalesAmount(sales);
+    }
+
+    private void resetTotalSalesAmount(List<Sale> saleList) {
+        totalSalesAmount = saleList.stream()
+                .map(Sale::getTotalCost)
+                .reduce(Double::sum)
+                .orElse(ZERO_SALE_AMOUNT);
     }
 
     public double getTotalSalesAmount() {

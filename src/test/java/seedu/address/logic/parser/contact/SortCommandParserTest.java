@@ -89,7 +89,7 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_MoreThanOneAttributes_failure() {
+    public void parse_moreThanOneAttribute_failure() {
         // email and name
         String args = " " + PREFIX_CONTACT_EMAIL + " " + PREFIX_CONTACT_NAME;
         assertParseFailure(sortCommandParser, args,
