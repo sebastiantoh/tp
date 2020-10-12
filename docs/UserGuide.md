@@ -111,7 +111,7 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
 * keyword does not have to exactly match a contact name. e.g. alx will return Alex Yeoh
 
-* The contact list is orderd by non-ascending similarity. 
+* The contact list is orderd by non-ascending similarity.
 
 * Exact matches (if exists) will appear as the first few results.
 
