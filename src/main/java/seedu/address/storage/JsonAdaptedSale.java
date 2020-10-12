@@ -50,7 +50,6 @@ class JsonAdaptedSale {
      * @throws IllegalValueException if there were any data constraints violated in the adapted sale.
      */
     public Sale toModelType() throws IllegalValueException {
-        System.out.println("testing");
         if (itemName == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, ItemName.class.getSimpleName()));

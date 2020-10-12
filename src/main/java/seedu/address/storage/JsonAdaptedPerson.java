@@ -88,7 +88,6 @@ class JsonAdaptedPerson {
         }
 
         for (JsonAdaptedSale sale : saleList) {
-            System.out.println(sale);
             personSales.add(sale.toModelType());
         }
 
