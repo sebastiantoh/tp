@@ -39,8 +39,8 @@ public class TypicalAddressBook {
         for (Reminder reminder : getTypicalReminders()) {
             ab.addReminder(reminder);
         }
-        for (Appointment appointment : getTypicalAppointments()) {
-            ab.addAppointment(appointment);
+        for (Meeting meeting : getTypicalMeetings()) {
+            ab.addMeeting(meeting);
         }
         return ab;
     }
