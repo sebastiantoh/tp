@@ -19,7 +19,8 @@ public class UnknownCommandTest {
     @Test
     public void execute_oneWordHaveSimilar_success() {
         UnknownCommand unknownCommand = new UnknownCommand("hel");
-        CommandResult expectedCommandResult = new CommandResult(String.format(MOST_SIMILAR_COMMAND, HelpCommand.COMMAND_WORD));
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(MOST_SIMILAR_COMMAND, HelpCommand.COMMAND_WORD));
         assertEquals(expectedCommandResult, unknownCommand.execute(null));
 
         unknownCommand = new UnknownCommand("contactl");
@@ -30,7 +31,8 @@ public class UnknownCommandTest {
     @Test
     public void execute_twoWordHaveSimilar_success() {
         UnknownCommand unknownCommand = new UnknownCommand("contact l");
-        CommandResult expectedCommandResult = new CommandResult(String.format(MOST_SIMILAR_COMMAND, ListCommand.COMMAND_WORD));
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(MOST_SIMILAR_COMMAND, ListCommand.COMMAND_WORD));
         assertEquals(expectedCommandResult, unknownCommand.execute(null));
 
         unknownCommand = new UnknownCommand("cont l");

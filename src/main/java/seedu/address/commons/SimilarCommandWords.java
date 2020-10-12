@@ -1,7 +1,5 @@
 package seedu.address.commons;
 
-import java.util.List;
-
 public class SimilarCommandWords extends SimilarItems<String> {
 
     public SimilarCommandWords(String searchKeyword, double similarityThreshold) {

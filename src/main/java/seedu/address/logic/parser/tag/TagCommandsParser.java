@@ -13,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class TagCommandsParser implements GroupCommandsParser {
 
-    public static List<String> ALL_TAG_COMMAND_WORDS = Arrays.asList(
+    public static final List<String> ALL_TAG_COMMAND_WORDS = Arrays.asList(
             EditCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD
@@ -29,7 +29,6 @@ public class TagCommandsParser implements GroupCommandsParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
         default:
-//            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             return new UnknownCommand(commandWord);
         }
     }

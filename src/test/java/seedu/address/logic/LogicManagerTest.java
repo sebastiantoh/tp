@@ -52,9 +52,9 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_invalidCommandFormat_throwsParseException() {
+    public void execute_invalidCommandFormat_throwsParseException() throws CommandException, ParseException {
         String invalidCommand = "uicfhmowqewca";
-        assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
+        assertCommandSuccess(invalidCommand, MESSAGE_UNKNOWN_COMMAND, this.model);
     }
 
     @Test

@@ -18,7 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ContactCommandsParser implements GroupCommandsParser {
 
-    public static List<String> ALL_CONTACT_COMMAND_WORDS = Arrays.asList(
+    public static final List<String> ALL_CONTACT_COMMAND_WORDS = Arrays.asList(
             AddCommand.COMMAND_WORD,
             EditCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
@@ -52,7 +52,6 @@ public class ContactCommandsParser implements GroupCommandsParser {
             return new ListCommand();
 
         default:
-//            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             return new UnknownCommand(commandWord);
         }
     }

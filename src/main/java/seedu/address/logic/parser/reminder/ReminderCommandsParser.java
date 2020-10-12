@@ -16,7 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ReminderCommandsParser implements GroupCommandsParser {
 
-    public static List<String> ALL_REMINDER_COMMAND_WORDS = Arrays.asList(
+    public static final List<String> ALL_REMINDER_COMMAND_WORDS = Arrays.asList(
             AddCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD
@@ -43,7 +43,6 @@ public class ReminderCommandsParser implements GroupCommandsParser {
             return new ListCommand();
 
         default:
-//            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             return new UnknownCommand(commandWord);
         }
     }
