@@ -61,7 +61,7 @@ public class SortCommand extends Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @return the success message of the SortCommand
-     * @throws CommandException sorting attribute is non existent
+     * @throws CommandException if sorting attribute is non existent
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
