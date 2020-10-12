@@ -1,0 +1,41 @@
+package seedu.address.logic.parser.sale;
+
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.sale.AddCommand;
+import seedu.address.logic.commands.sale.DeleteCommand;
+import seedu.address.logic.commands.sale.ListCommand;
+import seedu.address.logic.parser.GroupCommandsParser;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+/**
+ * Parses the command word to create a Sale Command Object corresponding to the command word.
+ */
+public class SaleCommandsParser implements GroupCommandsParser {
+
+    /**
+     * Parses the command word and arguments to create the appropriate Command Object for Sale.
+     *
+     * @param commandWord The command to be executed for Sale.
+     * @param arguments   The arguments to be executed with the commandWord.
+     * @return Command Object for Sale.
+     * @throws ParseException If the commandWord given is unknown or if the arguments given are invalid.
+     */
+    @Override
+    public Command parse(String commandWord, String arguments) throws ParseException {
+        switch (commandWord) {
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
+
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommandParser().parse(arguments);
+
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+}

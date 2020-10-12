@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookInReverse;
-import static seedu.address.testutil.sale.TypicalSales.getTypicalAddressBook;
+import static seedu.address.testutil.person.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
