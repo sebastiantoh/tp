@@ -133,6 +133,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : editedPerson.getTags()) {
             contactTags.add(t);
         }
+        for (Tag t : target.getTags()) {
+            if (persons.hasZeroOccurrences(t)) {
+                contactTags.remove(t);
+            }
+        }
     }
 
     /**
@@ -214,8 +219,32 @@ public class AddressBook implements ReadOnlyAddressBook {
      * List all the existing tags in StonksBook.
      */
     public String listTags() {
-        // TODO: append sale tags once sale model is implemented
-        return contactTags.asUnmodifiableObservableList().toString();
+        StringBuilder output = new StringBuilder();
+        ObservableList<Tag> contactTagList = contactTags.asUnmodifiableObservableList();
+        ObservableList<Tag> saleTagList = saleTags.asUnmodifiableObservableList();
+        if (contactTagList.size() == 0 && saleTagList.size() == 0) {
+            output.append("No tags found!");
+        } else if (contactTagList.size() == 0) {
+            output.append("No contact tags found! ").append("Listing sale tags:\n");
+            for (int i = 0; i < saleTagList.size(); i++) {
+                output.append(String.format("%d. %s\n", i + 1, saleTagList.get(i)));
+            }
+        } else if (saleTagList.size() == 0) {
+            output.append("No sale tags found! ").append("Listing contact tags:\n");
+            for (int i = 0; i < contactTagList.size(); i++) {
+                output.append(String.format("%d. %s\n", i + 1, contactTagList.get(i)));
+            }
+        } else {
+            output.append("Listing contact tags:\n");
+            for (int i = 0; i < contactTagList.size(); i++) {
+                output.append(String.format("%d. %s\n", i + 1, contactTagList.get(i)));
+            }
+            output.append("\nListing sale tags:\n");
+            for (int i = 0; i < saleTagList.size(); i++) {
+                output.append(String.format("%d. %s\n", i + 1 + contactTagList.size(), saleTagList.get(i)));
+            }
+        }
+        return output.toString();
     }
 
     /**
