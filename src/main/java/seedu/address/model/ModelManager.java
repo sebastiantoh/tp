@@ -47,6 +47,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.sortedPersons = new SortedList<>(this.filteredPersons);
+        this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
     }
 
@@ -212,7 +213,7 @@ public class ModelManager implements Model {
 
     /**
      * Updates the predicate used to filter person list and
-     * set comparator for sorted list to be null.
+     * set comparator for sorted person list to be the default comparator.
      *
      * @param predicate predicate to filter person list
      */
@@ -220,9 +221,8 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         this.filteredPersons.setPredicate(predicate);
-        this.sortedPersons.setComparator(null);
+        this.sortedPersons.setComparator(DEFAULT_PERSON_COMPARATOR);
     }
-
 
     //=========== Sorted Person List Accessors =============================================================
 
@@ -287,7 +287,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return this.addressBook.equals(other.addressBook)
                 && this.userPrefs.equals(other.userPrefs)
-                && this.filteredPersons.equals(other.filteredPersons)
                 && this.sortedPersons.equals(other.sortedPersons)
                 && this.sortedMeetings.equals(other.sortedMeetings);
     }
