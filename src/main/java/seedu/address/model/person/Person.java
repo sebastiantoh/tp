@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.sale.Sale;
+import seedu.address.model.sale.UniqueSaleList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,6 +26,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
+    private final UniqueSaleList salesList = new UniqueSaleList();
 
     /**
      * Every field must be present and not null.
@@ -36,6 +39,17 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.remark = remark;
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark, UniqueSaleList salesList) {
+        requireAllNonNull(name, phone, email, address, tags, remark);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.remark = remark;
+        this.salesList.setSales(salesList);
     }
 
     public Name getName() {
@@ -64,6 +78,10 @@ public class Person {
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public UniqueSaleList getSalesList() {
+        return salesList;
     }
 
     /**

@@ -51,7 +51,7 @@ public class ListCommand extends Command {
         }
 
         Person personToShow = lastShownList.get(targetIndex.getZeroBased());
-        
+
         List<Sale> sales = personToShow.getSalesList().asUnmodifiableObservableList();
 
         StringBuilder output = new StringBuilder("Sales made to " + personToShow.getName() + ":\n");
