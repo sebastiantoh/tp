@@ -13,7 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
@@ -166,19 +166,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasAppointment(Appointment appointment) {
-        requireNonNull(appointment);
-        return addressBook.hasAppointment(appointment);
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return addressBook.hasMeeting(meeting);
     }
 
     @Override
-    public void deleteAppointment(Appointment target) {
-        addressBook.removeAppointment(target);
+    public void deleteMeeting(Meeting target) {
+        addressBook.removeMeeting(target);
     }
 
     @Override
-    public void addAppointment(Appointment appointment) {
-        addressBook.addAppointment(appointment);
+    public void addMeeting(Meeting meeting) {
+        addressBook.addMeeting(meeting);
     }
 
     @Override

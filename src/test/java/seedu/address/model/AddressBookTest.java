@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.reminder.Reminder;
@@ -125,13 +125,13 @@ public class AddressBookTest {
         private final ObservableList<Reminder> reminders = FXCollections.observableArrayList();
         private final ObservableList<Tag> contactTags = FXCollections.observableArrayList();
         private final ObservableList<Tag> saleTags = FXCollections.observableArrayList();
-        private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+        private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
 
 
-        AddressBookStub(Collection<Person> persons, Collection<Appointment> appointments,
+        AddressBookStub(Collection<Person> persons, Collection<Meeting> meetings,
                         Collection<Reminder> reminders) {
             this.persons.setAll(persons);
-            this.appointments.setAll(appointments);
+            this.meetings.setAll(meetings);
             this.reminders.setAll(reminders);
         }
 
@@ -146,8 +146,8 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Appointment> getAppointmentList() {
-            return appointments;
+        public ObservableList<Meeting> getMeetingList() {
+            return meetings;
         }
 
         @Override
