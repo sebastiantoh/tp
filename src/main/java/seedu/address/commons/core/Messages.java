@@ -14,4 +14,6 @@ public class Messages {
         "Dates should be specified in the format 'yyyy-MM-dd HH:mm'";
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
     public static final String MESSAGE_INVALID_TAG_DISPLAYED_INDEX = "The tag index provided is invalid";
+    public static final String MESSAGE_INVALID_SALE_DISPLAYED_INDEX = "The sale index provided is invalid";
+
 }
