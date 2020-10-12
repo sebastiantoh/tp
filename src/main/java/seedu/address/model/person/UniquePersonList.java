@@ -126,6 +126,16 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    public boolean hasZeroOccurrences(Tag target) {
+        requireNonNull(target);
+        for (Person p : internalList) {
+            if (p.getTags().contains(target)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Removes the specified tag from all sales.
      */

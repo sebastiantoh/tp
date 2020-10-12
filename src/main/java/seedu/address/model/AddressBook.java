@@ -133,6 +133,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : editedPerson.getTags()) {
             contactTags.add(t);
         }
+        for (Tag t : target.getTags()) {
+            if (persons.hasZeroOccurrences(t)) {
+                contactTags.remove(t);
+            }
+        }
     }
 
     /**
