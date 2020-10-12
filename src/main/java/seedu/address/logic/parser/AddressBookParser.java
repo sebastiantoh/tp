@@ -52,7 +52,6 @@ public class AddressBookParser {
         } else {
             String fullCommand = String.format("%s %s", commandWord, arguments);
             return new UnknownCommand(fullCommand);
-
         }
     }
 
