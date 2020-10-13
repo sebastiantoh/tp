@@ -2,7 +2,9 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
@@ -357,6 +359,21 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeSaleFromPerson(Person person, Sale sale) {
         person.getSalesList().remove(sale);
+        Set<Tag> toRemove = new HashSet<>(sale.getTags());
+        for (Tag t : sale.getTags()) {
+            for (Person p : persons) {
+                for (Sale s : p.getSalesList()) {
+                    if (s.getTags().contains(t)) {
+                        toRemove.remove(t);
+                    }
+                }
+            }
+        }
+        if (!toRemove.isEmpty()) {
+            for (Tag t : toRemove) {
+                saleTags.remove(t);
+            }
+        }
     }
 
     //// util methods

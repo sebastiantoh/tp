@@ -63,7 +63,7 @@ public class DeleteCommand extends Command {
         }
 
         Sale saleToDelete = sales.get(saleIndex.getZeroBased());
-        person.getSalesList().remove(saleToDelete);
+        model.removeSaleFromPerson(person, saleToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_SALE_SUCCESS, saleToDelete));
     }
 
