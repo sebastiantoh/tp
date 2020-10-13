@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.sale.TypicalSales.APPLE;
 import static seedu.address.testutil.sale.TypicalSales.BALL;
+import static seedu.address.testutil.sale.TypicalSales.CAMERA;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -162,5 +163,21 @@ public class UniqueSaleListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueSaleList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void getTotalSalesAmount_valid_success() {
+        UniqueSaleList uniqueSaleList = new UniqueSaleList();
+        uniqueSaleList.add(CAMERA);
+        assertEquals(CAMERA.getTotalCost(), uniqueSaleList.getTotalSalesAmount());
+    }
+
+    @Test
+    public void getTotalSalesAmountAsStr_valid_success() {
+        UniqueSaleList uniqueSaleList = new UniqueSaleList();
+        uniqueSaleList.add(CAMERA);
+
+        assertEquals(String.format("$%.2f", CAMERA.getTotalCost()),
+                uniqueSaleList.getTotalSalesAmountAsStr());
     }
 }
