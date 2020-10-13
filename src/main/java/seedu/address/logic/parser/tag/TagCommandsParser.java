@@ -17,7 +17,8 @@ public class TagCommandsParser implements GroupCommandsParser {
     public static final List<String> ALL_TAG_COMMAND_WORDS = Arrays.asList(
             EditCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
-            ListCommand.COMMAND_WORD
+            ListCommand.COMMAND_WORD,
+            FindCommand.COMMAND_WORD
     );
 
     @Override

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MOST_SIMILAR_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
@@ -172,6 +173,15 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    public static void testAllCommandWords(List<String> commandWords) {
+        for (String commandWord : commandWords) {
+            UnknownCommand unknownCommand = new UnknownCommand(commandWord.substring(2));
+            CommandResult expectedCommandResult = new CommandResult(
+                    String.format(MOST_SIMILAR_COMMAND, commandWord));
+            assertEquals(expectedCommandResult, unknownCommand.execute(null));
+        }
     }
 
 }

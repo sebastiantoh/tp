@@ -254,6 +254,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                        | I want to …​                                               | So that I can…​                                                                            |
 | -------- | --------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `* *`    | well-connected salesman           | see a history of the number of contacts made with someone     | determine if this contact is worth investing more time to                                     |
 | `* *`    | forgetful salesman                | set reminders associated with contacts                        | keep track of crucial tasks to be done                                                        |
 | `* *`    | efficient salesman                | set meeting / call time with contacts                         | plan my meetings without another app                                                          |
 | `* * *`  | new salesman                      | add contacts                                                  | expand my contact list                                                                        |
