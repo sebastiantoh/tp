@@ -23,4 +23,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_CONTACT = new Prefix("c/");
     public static final Prefix PREFIX_MESSAGE = new Prefix("m/");
     public static final Prefix PREFIX_DATETIME = new Prefix("d/");
+    public static final Prefix PREFIX_DURATION = new Prefix("du/");
 }

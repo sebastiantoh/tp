@@ -6,7 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.meeting.TypicalMeetings.MEET_ALICE;
 import static seedu.address.testutil.meeting.TypicalMeetings.PRESENT_PROPOSAL_BENSON;
+import static seedu.address.testutil.person.TypicalPersons.ALICE;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -66,9 +69,36 @@ public class UniqueMeetingListTest {
     }
 
     @Test
+    public void removeMeetingsWithContact_nullContact_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueMeetingList.removeMeetingsWithContact(null));
+    }
+
+    @Test
+    public void removeMeetingsWithContact_noMeetingsWithContact_noChange() {
+        uniqueMeetingList.removeMeetingsWithContact(ALICE);
+        UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
+        assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+    }
+
+    @Test
+    public void removeMeetingsWithContact_contactWithMultipleMeetings_associatedMeetingsRemoved() {
+        uniqueMeetingList.add(MEET_ALICE);
+        uniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
+        uniqueMeetingList.add(new Meeting(ALICE, "Second meeting with Alice",
+                LocalDateTime.of(2021, 10, 30, 10, 19),
+                Duration.ofMinutes(60)));
+
+        uniqueMeetingList.removeMeetingsWithContact(ALICE);
+
+        UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
+        expectedUniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
+
+        assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+    }
+
+    @Test
     public void setMeetings_nullUniqueMeetingList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, ()
-            -> uniqueMeetingList.setMeetings((UniqueMeetingList) null));
+        assertThrows(NullPointerException.class, () -> uniqueMeetingList.setMeetings((UniqueMeetingList) null));
     }
 
     @Test

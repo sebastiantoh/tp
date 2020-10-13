@@ -32,6 +32,8 @@ public class ModelManager implements Model {
 
     private final SortedList<Person> sortedPersons;
 
+    private final SortedList<Meeting> sortedMeetings;
+
     private final SortedList<Reminder> sortedReminders;
 
     /**
@@ -48,6 +50,7 @@ public class ModelManager implements Model {
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.sortedPersons = new SortedList<>(this.filteredPersons);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
+        this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
     }
 
@@ -245,6 +248,16 @@ public class ModelManager implements Model {
         this.sortedPersons.setComparator(comparator);
     }
 
+    //=========== Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedAddressBook}.
+     */
+    @Override
+    public ObservableList<Meeting> getSortedMeetingList() {
+        return this.sortedMeetings;
+    }
 
     @Override
     public String listTags() {
@@ -299,7 +312,7 @@ public class ModelManager implements Model {
         return this.addressBook.equals(other.addressBook)
                 && this.userPrefs.equals(other.userPrefs)
                 && this.sortedPersons.equals(other.sortedPersons)
+                && this.sortedMeetings.equals(other.sortedMeetings)
                 && this.sortedReminders.equals(other.sortedReminders);
     }
-
 }

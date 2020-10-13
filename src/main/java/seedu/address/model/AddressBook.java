@@ -141,11 +141,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}. All associated reminders will be removed as well.
+     * Removes {@code key} from this {@code AddressBook}. All associated meetings and reminders will be removed as well.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        meetings.removeMeetingsWithContact(key);
         reminders.removeRemindersWithContact(key);
     }
 
