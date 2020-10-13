@@ -2,10 +2,7 @@ package seedu.address.logic.commands.sale;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.List;
 
@@ -25,8 +22,8 @@ import seedu.address.model.sale.exceptions.DuplicateSaleException;
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "sale add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a sale of specified item name, unit price and "
-        + "quantity, to the specified contact.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a sale of specified item name, unit price, "
+        + "quantity and tags (optional), to the specified contact.\n"
         + "Parameters: "
         + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer) "
         + PREFIX_SALE_NAME + "ITEM_NAME "
@@ -36,7 +33,8 @@ public class AddCommand extends Command {
         + PREFIX_SALE_CONTACT_INDEX + "2 "
         + PREFIX_SALE_NAME + "Apple "
         + PREFIX_SALE_UNIT_PRICE + "2.50 "
-        + PREFIX_SALE_QUANTITY + "50";
+        + PREFIX_SALE_QUANTITY + "50 "
+        + PREFIX_TAG + "fruits";
 
     public static final String MESSAGE_SUCCESS = "New sale added: %1$s";
     public static final String MESSAGE_DUPLICATE_SALE = "This sale already exists in StonksBook.";
