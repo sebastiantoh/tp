@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -27,8 +28,9 @@ import seedu.address.model.tag.Tag;
  * @see Person#isSamePerson(Person)
  */
 public class UniquePersonList implements Iterable<Person> {
+    private final ObservableList<Person> internalList = FXCollections.observableArrayList(person ->
+            new Observable[] {person.getSalesList().totalSalesAmountProperty()});
 
-    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -49,6 +51,7 @@ public class UniquePersonList implements Iterable<Person> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
+        System.out.println();
         internalList.add(toAdd);
     }
 

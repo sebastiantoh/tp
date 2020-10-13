@@ -6,6 +6,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
@@ -30,7 +32,8 @@ public class UniqueSaleList implements Iterable<Sale> {
     private final ObservableList<Sale> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    private double totalSalesAmount = ZERO_SALE_AMOUNT;
+    private final DoubleProperty totalSalesAmount = new SimpleDoubleProperty(
+            this, "totalSalesAmount", ZERO_SALE_AMOUNT);
 
     /**
      * Returns true if the list contains an equivalent sale as the given argument.
@@ -50,7 +53,8 @@ public class UniqueSaleList implements Iterable<Sale> {
             throw new DuplicateSaleException();
         }
         internalList.add(toAdd);
-        totalSalesAmount += toAdd.getTotalCost();
+        totalSalesAmount.set(totalSalesAmount.getValue() + toAdd.getTotalCost());
+
         return this;
     }
 
@@ -72,8 +76,8 @@ public class UniqueSaleList implements Iterable<Sale> {
         }
 
         internalList.set(index, editedSale);
-        totalSalesAmount -= target.getTotalCost();
-        totalSalesAmount += editedSale.getTotalCost();
+        totalSalesAmount.set(totalSalesAmount.getValue()
+                - target.getTotalCost() + editedSale.getTotalCost());
     }
 
     /**
@@ -85,7 +89,7 @@ public class UniqueSaleList implements Iterable<Sale> {
         if (!internalList.remove(toRemove)) {
             throw new SaleNotFoundException();
         }
-        totalSalesAmount -= toRemove.getTotalCost();
+        totalSalesAmount.set(totalSalesAmount.getValue() - toRemove.getTotalCost());
     }
 
     public void setSales(UniqueSaleList replacement) {
@@ -109,18 +113,22 @@ public class UniqueSaleList implements Iterable<Sale> {
     }
 
     private void resetTotalSalesAmount(List<Sale> saleList) {
-        totalSalesAmount = saleList.stream()
+        totalSalesAmount.set(saleList.stream()
                 .map(Sale::getTotalCost)
                 .reduce(Double::sum)
-                .orElse(ZERO_SALE_AMOUNT);
+                .orElse(ZERO_SALE_AMOUNT));
     }
 
-    public double getTotalSalesAmount() {
+    public DoubleProperty totalSalesAmountProperty() {
         return totalSalesAmount;
     }
 
+    public double getTotalSalesAmount() {
+        return totalSalesAmount.doubleValue();
+    }
+
     public String getTotalSalesAmountAsStr() {
-        return String.format("$%.2f", totalSalesAmount);
+        return String.format("$%.2f", totalSalesAmount.doubleValue());
     }
 
     /**
@@ -140,7 +148,7 @@ public class UniqueSaleList implements Iterable<Sale> {
         return other == this // short circuit if same object
                 || (other instanceof UniqueSaleList // instanceof handles nulls
                 && internalList.equals(((UniqueSaleList) other).internalList)
-                && totalSalesAmount == ((UniqueSaleList) other).totalSalesAmount);
+                && totalSalesAmount.doubleValue() == ((UniqueSaleList) other).totalSalesAmount.doubleValue());
     }
 
     @Override
