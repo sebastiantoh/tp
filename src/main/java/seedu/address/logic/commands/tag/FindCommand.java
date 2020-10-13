@@ -46,7 +46,7 @@ public class FindCommand extends Command {
         if (targetIndex.getOneBased() > contactTagList.size()) {
             tagToFind = saleTagList.get(targetIndex.getZeroBased() - contactTagList.size());
             return new CommandResult(String.format(Messages.MESSAGE_SALES_LISTED_OVERVIEW,
-                    model.findByContactTag(tagToFind)));
+                    model.findBySaleTag(tagToFind)));
         } else {
             tagToFind = contactTagList.get(targetIndex.getZeroBased());
             model.updateFilteredPersonList(p -> p.getTags().contains(tagToFind));
