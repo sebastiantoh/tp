@@ -3,9 +3,9 @@ package seedu.address.logic.commands.contact;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TOTAL_SALES;
 
 import java.util.Comparator;
-import java.util.function.Function;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -23,25 +23,20 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "contact sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the contacts."
-            + "Reverts to default sorting when other actions are taken."
+            + "valid arguments: n/ for name, e/ for email address, s/ for total sales amount"
             + "Parameters: KEYWORD [ORDER]\n"
             + "Example: contact sort n/ desc";
 
     public static final String MESSAGE_SUCCESS = "sorted!";
 
-    public static final String MESSAGE_SORTING_ATTRIBUTE_NONEXISTENT =
+    public static final String MESSAGE_SORTING_ATTRIBUTE_INVALID =
             "The given attribute to sort by is not valid";
 
     private final Prefix sortingAttribute;
 
     private final boolean isDesc;
 
-    private Function<Person, String> getSortingValue;
-
-    private final Comparator<Person> nonDescendingComparator = (person1, person2) ->
-            this.getSortingValue.apply(person1).compareToIgnoreCase(this.getSortingValue.apply(person2));
-
-    private final Comparator<Person> nonAscendingComparator = nonDescendingComparator.reversed();
+    private Comparator<Person> comparator;
 
     /**
      * Creates a SortCommand to sort the contacts by {@code sortingAttribute}
@@ -61,16 +56,18 @@ public class SortCommand extends Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @return the success message of the SortCommand
-     * @throws CommandException if sorting attribute is non existent
+     * @throws CommandException if sorting attribute is not valid
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (sortingAttribute.equals(PREFIX_CONTACT_NAME)) {
-            this.getSortingValue = person -> person.getName().fullName;
+            this.comparator = Comparator.comparing(person -> person.getName().fullName.toLowerCase());
         } else if (sortingAttribute.equals(PREFIX_CONTACT_EMAIL)) {
-            this.getSortingValue = person -> person.getEmail().value;
+            this.comparator = Comparator.comparing(person -> person.getEmail().value.toLowerCase());
+        } else if (sortingAttribute.equals(PREFIX_TOTAL_SALES)) {
+            this.comparator = Comparator.comparingDouble(x -> x.getSalesList().getTotalSalesAmount());
         } else {
-            throw new CommandException(MESSAGE_SORTING_ATTRIBUTE_NONEXISTENT);
+            throw new CommandException(MESSAGE_SORTING_ATTRIBUTE_INVALID);
         }
 
         this.sortByAttribute(model);
@@ -79,11 +76,11 @@ public class SortCommand extends Command {
     }
 
     private void sortByAttribute(Model model) {
-        requireNonNull(this.getSortingValue);
+        requireNonNull(this.comparator);
         if (!this.isDesc) {
-            model.updateSortedPersonList(this.nonDescendingComparator);
+            model.updateSortedPersonList(this.comparator);
         } else {
-            model.updateSortedPersonList(this.nonAscendingComparator);
+            model.updateSortedPersonList(this.comparator.reversed());
         }
     }
 

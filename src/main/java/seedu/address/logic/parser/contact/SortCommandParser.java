@@ -3,6 +3,7 @@ package seedu.address.logic.parser.contact;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TOTAL_SALES;
 
 import seedu.address.logic.commands.contact.SortCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -26,10 +27,24 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL);
+            ArgumentTokenizer.tokenize(args, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, PREFIX_TOTAL_SALES);
 
-        boolean isNameInputPresent = argMultimap.getValue(PREFIX_CONTACT_NAME).isPresent();
-        boolean isEmailInputPresent = argMultimap.getValue(PREFIX_CONTACT_EMAIL).isPresent();
+        Prefix sortingAttribute = null;
+
+        int presentAttributeCounter = 0;
+
+        if (argMultimap.getValue(PREFIX_CONTACT_NAME).isPresent()) {
+            sortingAttribute = PREFIX_CONTACT_NAME;
+            presentAttributeCounter++;
+        }
+        if (argMultimap.getValue(PREFIX_CONTACT_EMAIL).isPresent()) {
+            sortingAttribute = PREFIX_CONTACT_EMAIL;
+            presentAttributeCounter++;
+        }
+        if (argMultimap.getValue(PREFIX_TOTAL_SALES).isPresent()) {
+            sortingAttribute = PREFIX_TOTAL_SALES;
+            presentAttributeCounter++;
+        }
 
         String[] argComponents = args.trim().split("\\s+" , 2);
 
@@ -41,19 +56,9 @@ public class SortCommandParser implements Parser<SortCommand> {
             isSecondArgumentDesc = argComponents[1].trim().equals(ORDER_KEYWORD);
         }
 
-        if ((isEmailInputPresent && isNameInputPresent)
-                || (!isEmailInputPresent && !isNameInputPresent)
-                || !argMultimap.getPreamble().isEmpty()
+        if (presentAttributeCounter != 1 || !argMultimap.getPreamble().isEmpty()
                 || (isSecondArgumentPresent && !isSecondArgumentDesc)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-        }
-
-        Prefix sortingAttribute;
-
-        if (isNameInputPresent) {
-            sortingAttribute = PREFIX_CONTACT_NAME;
-        } else {
-            sortingAttribute = PREFIX_CONTACT_EMAIL;
         }
 
         return new SortCommand(sortingAttribute, isSecondArgumentDesc);
