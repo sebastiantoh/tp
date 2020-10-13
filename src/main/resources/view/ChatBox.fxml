@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.StackPane?>
-
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="placeHolder" xmlns="http://javafx.com/javafx/8" styleClass="pane-with-border"
-            xmlns:fx="http://javafx.com/fxml/1">
-    <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" vvalue="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <content>
-            <VBox fx:id="dialogContainer" styleClass="result-display" minWidth="1004" prefHeight="150" />
-        </content>
+<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="0.0" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="1024" prefHeight="150.0" vvalue="0.0" StackPane.alignment="TOP_LEFT">
+        <VBox fx:id="dialogContainer" minWidth="1024" prefHeight="150" styleClass="result-display" />
     </ScrollPane>
-</AnchorPane>
+</StackPane>
