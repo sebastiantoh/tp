@@ -233,47 +233,47 @@ Format: `sale delete c/CONTACT_INDEX s/SALE_INDEX`
 Examples:
 * `sale delete c/2 s/4` deletes the 4th sale made to the contact of index number 2.
 
-### Scheduled Appointments
+### Scheduled Meetings
 
-#### Adding a scheduled appointment: `appointment add`
+#### Adding a scheduled meeting: `meeting add`
 
-Adds a scheduled appointment with the specified contact in StonksBook.
+Adds a scheduled meeting with the specified contact in StonksBook.
 
-Format: `appointment add c/CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION`
+Format: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 
-* Adds a scheduled appointment with the contact at the specified `CONTACT_INDEX`.
+* Adds a scheduled meeting with the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index must be a positive integer 1, 2, 3, …​
 * The start datetime must be in the format `yyyy-MM-dd HH:mm`
-* The duration is specified in hours and must be a positive number (not necessarily an integer).
+* The duration is specified in minutes and must be a positive integer.
 
 Examples:
-* `appointment add c/2 t/Follow-up appointment s/2020-10-30 15:00 d/1` Adds a 1-hour long appointment titled `Follow-up appointment` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
-* `appointment add c/3 t/Call to finalise details s/2020-10-30 08:00 d/0.5` Adds a 30-minute long appointment titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
+* `meeting add c/2 m/Follow-up meeting d/2020-10-30 15:00 du/60` Adds a 1-hour long meeting titled `Follow-up meeting` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
+* `meeting add c/3 m/Call to finalise details d/2020-10-30 08:00 du/30` Adds a 30-minute long meeting titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
 
-#### Listing all appointments: `appointment list`
+#### Listing all meetings: `meeting list`
 
-Shows a list of all appointments. By default, the list only shows upcoming appointments. This list is sorted in increasing order based on the date the appointment is scheduled.
+Shows a list of all meetings. By default, the list only shows upcoming meetings. This list is sorted in increasing order based on the date the meeting is scheduled.
 
-<img src="images/appointmentListMockup.png" alt="result for 'appointment list'" width="400px">
+<img src="images/meetingListMockup.png" alt="result for 'meeting list'" width="400px">
 
-Format: `appointments list [c/CONTACT_INDEX] [a/]`
+Format: `meeting list [c/CONTACT_INDEX] [a/]`
 
-* When an index is specified, the list will only show appointments associated with the contact at the specified index.
-* You can show all appointments, including those that have passed, by typing `a/`.
+* When an index is specified, the list will only show meetings associated with the contact at the specified index.
+* You can show all meetings, including those that have passed, by typing `a/`.
 
-#### Deleting an appointment: `appointment delete`
+#### Deleting an meeting: `meeting delete`
 
-Deletes the specified appointment from StonksBook.
+Deletes the specified meeting from StonksBook.
 
-Format: `appointment delete INDEX`
+Format: `meeting delete INDEX`
 
 * Deletes the schedule at the specified `INDEX`.
-* The index refers to the index number shown in the displayed appointments list.
+* The index refers to the index number shown in the displayed meetings list.
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `appointment list 5` followed by `appointment delete 2` deletes the 2nd appointment that is associated with the 5th contact in StonksBook.
+* `meeting list 5` followed by `meeting delete 2` deletes the 2nd meeting that is associated with the 5th contact in StonksBook.
 
 ### Reminders
 
@@ -369,9 +369,9 @@ Action | Format, Examples
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
 **Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
 **Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 contact`
-**Appointment Add** | `appointment add c/CONTACT_INDEX t/TITLE s/START_DATETIME d/DURATION` <br> e.g., `appointment add 2 t/Follow-up appointment s/2020-10-30 15:00 d/1`
-**Appointment List** | `appointment list [c/CONTACT_INDEX] [a/]`
-**Appointment Delete** | `appointment delete INDEX` <br> e.g., `appointment delete 3`
+**Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Follow-up meeting d/2020-10-30 15:00 du/60`
+**Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
+**Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
 **Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
 **Reminder List** | `reminder list`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`

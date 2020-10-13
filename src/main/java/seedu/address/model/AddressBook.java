@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.UniqueAppointmentList;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.Reminder;
@@ -27,7 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final UniqueContactTagList contactTags;
     private final UniqueSaleTagList saleTags;
-    private final UniqueAppointmentList appointments;
+    private final UniqueMeetingList meetings;
     private final UniqueReminderList reminders;
 
     /*
@@ -42,7 +42,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
         contactTags = new UniqueContactTagList();
         saleTags = new UniqueSaleTagList();
-        appointments = new UniqueAppointmentList();
+        meetings = new UniqueMeetingList();
         reminders = new UniqueReminderList();
     }
 
@@ -80,11 +80,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the appointments list with {@code appointments}.
-     * {@code appointments} must not contain duplicate appointments.
+     * Replaces the contents of the meetings list with {@code meetings}.
+     * {@code meetings} must not contain duplicate meetings.
      */
-    public void setAppointments(List<Appointment> appointments) {
-        this.appointments.setAppointments(appointments);
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings.setMeetings(meetings);
     }
 
     /**
@@ -102,9 +102,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+<<<<<<< HEAD
         setContactTags(newData.getContactTagList());
         setSaleTags(newData.getSaleTagList());
         setAppointments(newData.getAppointmentList());
+=======
+        setTags(newData.getContactTagList());
+        setMeetings(newData.getMeetingList());
+>>>>>>> 11ac0778593f9f10508088bf62a7abad544c404c
         setReminders(newData.getReminderList());
     }
 
@@ -154,11 +159,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code AddressBook}. All associated meetings and reminders will be removed as well.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        meetings.removeMeetingsWithContact(key);
+        reminders.removeRemindersWithContact(key);
     }
 
     //// tag-level operations
@@ -253,6 +260,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns the number of contacts who are associated with the {@code target} tag.
+     */
+    public int findByContactTag(Tag target) {
+        return (int) persons.asUnmodifiableObservableList()
+                .stream()
+                .filter(p -> p.getTags().contains(target)).count();
+    }
+
+    /**
+     * Returns the number of sale items that are associated with the {@code target} tag.
+     */
+    public int findBySaleTag(Tag target) {
+        // TODO
+        return 0;
+    }
+
+    /**
      * List all the existing tags in StonksBook.
      */
     public String listTags() {
@@ -292,30 +316,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         saleTags.sort();
     }
 
-    //// appointment-level operations
+    //// meeting-level operations
 
     /**
-     * Returns true if an equivalent appointment exists in the address book.
+     * Returns true if an equivalent meeting exists in the address book.
      */
-    public boolean hasAppointment(Appointment appointment) {
-        requireNonNull(appointment);
-        return appointments.contains(appointment);
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetings.contains(meeting);
     }
 
     /**
-     * Adds an appointment to the address book.
-     * The appointment must not already exist in the address book.
+     * Adds an meeting to the address book.
+     * The meeting must not already exist in the address book.
      */
-    public void addAppointment(Appointment appointment) {
-        appointments.add(appointment);
+    public void addMeeting(Meeting meeting) {
+        meetings.add(meeting);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeAppointment(Appointment key) {
-        appointments.remove(key);
+    public void removeMeeting(Meeting key) {
+        meetings.remove(key);
     }
 
     //// reminder-level operations
@@ -400,8 +424,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Appointment> getAppointmentList() {
-        return appointments.asUnmodifiableObservableList();
+    public ObservableList<Meeting> getMeetingList() {
+        return meetings.asUnmodifiableObservableList();
     }
 
     @Override
@@ -420,8 +444,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         AddressBook otherAddressBook = (AddressBook) other;
 
         return persons.equals(otherAddressBook.persons) && reminders.equals(otherAddressBook.reminders)
-                && appointments.equals(otherAddressBook.appointments)
-                && contactTags.equals(((AddressBook) other).contactTags);
+            && meetings.equals(otherAddressBook.meetings)
+            && contactTags.equals(((AddressBook) other).contactTags);
     }
 
     @Override

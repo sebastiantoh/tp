@@ -1,7 +1,7 @@
 package seedu.address.logic.parser.sale;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.CONTACT_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACT_INDEX_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -16,7 +16,7 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String userInput = CONTACT_INDEX;
+        String userInput = CONTACT_INDEX_SECOND;
 
         ListCommand expectedCommand = new ListCommand(INDEX_SECOND_ITEM);
 
@@ -37,7 +37,7 @@ public class ListCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + CONTACT_INDEX,
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + CONTACT_INDEX_SECOND,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
     }
 }
