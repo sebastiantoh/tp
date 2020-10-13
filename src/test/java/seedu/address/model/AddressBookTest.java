@@ -121,34 +121,41 @@ public class AddressBookTest {
 
     @Test
     public void findByContactTag_contactTagNotInAddressBook_success() {
-        AddressBook addressBook = getTypicalAddressBook();
-        assertEquals(addressBook.findByContactTag(new Tag("random")), 0);
+        AddressBook addressBookCopy = getTypicalAddressBook();
+        assertEquals(addressBookCopy.findByContactTag(new Tag("random")), 0);
     }
 
     @Test
     public void findBySaleTag_saleTagInAddressBook_success() {
-        addressBook.addPerson(ALICE);
-        addressBook.addSaleToPerson(ALICE, TypicalSales.APPLE);
-        assertEquals(addressBook.findBySaleTag(new Tag("fruits")),
-                "Listing all sale items associated with : [fruits]\n" +
-                "1. Apple (Quantity: 10,  Unit Price: $3.50,  Tags: [[fruits]]) (Client: Alice Pauline)\n");
+        AddressBook addressBookCopy = new AddressBook();
+        addressBookCopy.addPerson(ALICE);
+        addressBookCopy.addSaleToPerson(ALICE, TypicalSales.APPLE);
+        assertEquals(addressBookCopy.findBySaleTag(new Tag("fruits")),
+                "Listing all sale items associated with : [fruits]\n"
+                        + "1. Apple (Quantity: 10,  Unit Price: $3.50,  Tags: [[fruits]]) (Client: Alice Pauline)\n");
     }
 
     @Test
     public void listTags_noSaleTags_success() {
         addressBook.addPerson(ALICE);
-        assertEquals(addressBook.listTags(), "No sale tags found! Listing contact tags:\n1. [friends]\n");
+        assertEquals( "Listing contact tags:\n"
+                + "1. [friends]\n"
+                + "\n"
+                + "Listing sale tags:\n"
+                + "2. [fruits]\n"
+                + "3. [electronics]\n", addressBook.listTags());
     }
 
     @Test
     public void listTags_withBothTags_success() {
         addressBook.addPerson(ALICE);
-        addressBook.addSaleToPerson(ALICE, TypicalSales.APPLE);
-        assertEquals(addressBook.listTags(), "Listing contact tags:\n" +
-                "1. [friends]\n" +
-                "\n" +
-                "Listing sale tags:\n" +
-                "2. [fruits]\n");
+        addressBook.addSaleToPerson(ALICE, TypicalSales.CAMERA);
+        assertEquals( "Listing contact tags:\n"
+                + "1. [friends]\n"
+                + "\n"
+                + "Listing sale tags:\n"
+                + "2. [fruits]\n"
+                + "3. [electronics]\n", addressBook.listTags());
     }
 
     @Test
