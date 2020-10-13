@@ -6,9 +6,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -115,6 +116,16 @@ public interface Model {
     void deleteSaleTag(Tag target);
 
     /**
+     * Returns the number of contacts associated with {@code target} tag.
+     */
+    int findByContactTag(Tag target);
+
+    /**
+     * Lists all sale items associated with {@code target} tag.
+     */
+    String findBySaleTag(Tag target);
+
+    /**
      * Lists all existing tags.
      */
     String listTags();
@@ -171,21 +182,33 @@ public interface Model {
     void updateSortedPersonList(Comparator<Person> comparator);
 
     /**
-     * Returns true if an appointment with same fields as {@code appointment} exists in StonksBook.
+     * Returns an unmodifiable view of the sorted meeting list.
+     * .
      */
-    boolean hasAppointment(Appointment appointment);
+    ObservableList<Meeting> getSortedMeetingList();
 
     /**
-     * Deletes the given appointment.
-     * {@code appointment} must exist in StonksBook.
+     * Returns true if an meeting with same fields as {@code meeting} exists in StonksBook.
      */
-    void deleteAppointment(Appointment target);
+    boolean hasMeeting(Meeting meeting);
 
     /**
-     * Adds the given appointment.
-     * {@code appointment} must not already exist in StonksBook.
+     * Deletes the given meeting.
+     * {@code target} must exist in StonksBook.
      */
-    void addAppointment(Appointment appointment);
+    void deleteMeeting(Meeting target);
+
+    /**
+     * Adds the given meeting.
+     * {@code meeting} must not already exist in StonksBook.
+     */
+    void addMeeting(Meeting meeting);
+
+    /**
+     * Returns an unmodifiable view of the reminder list
+     * .
+     */
+    ObservableList<Reminder> getSortedReminderList();
 
     /**
      * Returns true if a reminder with the same fields {@code reminder} exists in StonksBook.
@@ -203,4 +226,14 @@ public interface Model {
      * {@code reminder} must not already exist in StonksBook.
      */
     void addReminder(Reminder reminder);
+
+    /**
+     * Adds the given sale item to the specified contact.
+     */
+    void addSaleToPerson(Person person, Sale sale);
+
+    /**
+     * Removes the given sale item to the specified contact.
+     */
+    void removeSaleFromPerson(Person person, Sale sale);
 }

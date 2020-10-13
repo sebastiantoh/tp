@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -106,6 +107,31 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Replaces the specified {@code target} with {@code editedTag} for all sales.
+     */
+    public void setSaleTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+        int count = internalList.size();
+        // Iterate through all sales and update their tags.
+        for (int i = 0; i < count; i++) {
+            Person original = internalList.get(i);
+            for (Sale s : original.getSalesList()) {
+                Set<Tag> tags = new HashSet<>(s.getTags());
+                if (tags.contains(target)) {
+                    tags.remove(target);
+                    tags.add(editedTag);
+
+                    Sale newSale = new Sale(s.getItemName(),
+                            s.getQuantity(),
+                            s.getUnitPrice(),
+                            tags);
+                    original.getSalesList().setSale(s, newSale);
+                }
+            }
+        }
+    }
+
+    /**
      * Removes the specified tag from all contacts.
      */
     public void removeContactTag(Tag toRemove) {
@@ -144,7 +170,21 @@ public class UniquePersonList implements Iterable<Person> {
      */
     public void removeSaleTag(Tag toRemove) {
         requireNonNull(toRemove);
-        // TODO: to be implemented after the Sale model is ready.
+        int count = internalList.size();
+        for (int i = 0; i < count; i++) {
+            Person original = internalList.get(i);
+            for (Sale s : original.getSalesList()) {
+                Set<Tag> tags = new HashSet<>(s.getTags());
+                if (tags.contains(toRemove)) {
+                    tags.remove(toRemove);
+                    Sale newSale = new Sale(s.getItemName(),
+                            s.getQuantity(),
+                            s.getUnitPrice(),
+                            tags);
+                    original.getSalesList().setSale(s, newSale);
+                }
+            }
+        }
     }
 
     public void setPersons(UniquePersonList replacement) {

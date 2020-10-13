@@ -5,10 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.meeting.TypicalMeetings.MEET_ALICE;
+import static seedu.address.testutil.meeting.TypicalMeetings.PRESENT_PROPOSAL_BENSON;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.person.TypicalPersons.IDA;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
+import static seedu.address.testutil.reminder.TypicalReminders.EMAIL_BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,9 +19,14 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -163,6 +171,32 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasMeeting_nullMeeting_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasMeeting(null));
+    }
+
+    @Test
+    public void hasMeeting_meetingNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasMeeting(MEET_ALICE));
+    }
+
+    @Test
+    public void hasMeeting_meetingInAddressBook_returnsTrue() {
+        modelManager.addMeeting(MEET_ALICE);
+        assertTrue(modelManager.hasMeeting(MEET_ALICE));
+    }
+
+    @Test
+    public void deleteMeeting_invalidMeeting_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteMeeting(null));
+    }
+
+    @Test
+    public void deleteMeeting_invalidMeeting_throwsMeetingNotFoundException() {
+        assertThrows(MeetingNotFoundException.class, () -> modelManager.deleteMeeting(MEET_ALICE));
+    }
+
+    @Test
     public void hasReminder_nullReminder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasReminder(null));
     }
@@ -176,5 +210,37 @@ public class ModelManagerTest {
     public void hasReminder_reminderInAddressBook_returnsTrue() {
         modelManager.addReminder(CALL_ALICE);
         assertTrue(modelManager.hasReminder(CALL_ALICE));
+    }
+
+    @Test
+    public void deleteReminder_invalidReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteReminder(null));
+    }
+
+    @Test
+    public void deleteReminder_invalidReminder_throwsReminderNotFoundException() {
+        assertThrows(ReminderNotFoundException.class, () -> modelManager.deleteReminder(CALL_ALICE));
+    }
+
+    @Test
+    public void getSortedReminderList_reminderWithEarlierDateAdded_meetingInSortedOrder() {
+        modelManager.addReminder(CALL_ALICE);
+        modelManager.addReminder(EMAIL_BENSON);
+
+        ObservableList<Reminder> reminderList = modelManager.getSortedReminderList();
+
+        assertEquals(reminderList.get(0), EMAIL_BENSON);
+        assertEquals(reminderList.get(1), CALL_ALICE);
+    }
+
+    @Test
+    public void getSortedMeetingList_meetingWithEarlierDateAdded_meetingInSortedOrder() {
+        modelManager.addMeeting(MEET_ALICE);
+        modelManager.addMeeting(PRESENT_PROPOSAL_BENSON);
+
+        ObservableList<Meeting> meetingList = modelManager.getSortedMeetingList();
+
+        assertEquals(meetingList.get(0), PRESENT_PROPOSAL_BENSON);
+        assertEquals(meetingList.get(1), MEET_ALICE);
     }
 }

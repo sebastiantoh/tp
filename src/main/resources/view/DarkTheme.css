@@ -147,14 +147,14 @@
 }
 
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: #2f2f2f;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
 
 .result-display .label {
-    -fx-text-fill: black !important;
+    -fx-text-fill: white !important;
 }
 
 .status-bar .label {

@@ -2,7 +2,11 @@ package seedu.address.model.sale;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Objects;
+import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Sale in the address book.
@@ -18,15 +22,19 @@ public class Sale {
 
     private final double totalCost;
 
+    // Sale tags
+    private final Set<Tag> tags;
+
     /**
      * Every field must be present and not null.
      */
-    public Sale(ItemName itemName, Quantity quantity, UnitPrice unitPrice) {
+    public Sale(ItemName itemName, Quantity quantity, UnitPrice unitPrice, Set<Tag> tags) {
         requireAllNonNull(itemName, quantity, unitPrice);
         this.itemName = itemName;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
         this.totalCost = this.quantity.quantity * this.unitPrice.getAmount();
+        this.tags = tags;
     }
 
     public ItemName getItemName() {
@@ -39,6 +47,14 @@ public class Sale {
 
     public UnitPrice getUnitPrice() {
         return unitPrice;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
 
@@ -75,7 +91,8 @@ public class Sale {
         Sale otherSale = (Sale) other;
         return otherSale.getItemName().equals(getItemName())
                 && otherSale.getQuantity().equals(getQuantity())
-                && otherSale.getUnitPrice().equals(getUnitPrice());
+                && otherSale.getUnitPrice().equals(getUnitPrice())
+                && otherSale.getTags().equals(getTags());
     }
 
     @Override
@@ -93,6 +110,9 @@ public class Sale {
                 .append(", ")
                 .append(" Unit Price: ")
                 .append(getUnitPrice())
+                .append(", ")
+                .append(" Tags: ")
+                .append(getTags())
                 .append(")");
         return builder.toString();
     }

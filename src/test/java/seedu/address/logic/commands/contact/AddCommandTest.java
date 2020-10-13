@@ -22,9 +22,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.person.PersonBuilder;
 
@@ -169,6 +170,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public int findByContactTag(Tag target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String findBySaleTag(Tag target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public String listTags() {
             throw new AssertionError("This method should not be called.");
         }
@@ -213,17 +224,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasAppointment(Appointment appointment) {
+        public ObservableList<Meeting> getSortedMeetingList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteAppointment(Appointment target) {
+        public boolean hasMeeting(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addAppointment(Appointment appointment) {
+        public void deleteMeeting(Meeting target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getSortedReminderList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -239,6 +260,16 @@ public class AddCommandTest {
 
         @Override
         public void addReminder(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSaleToPerson(Person person, Sale sale) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeSaleFromPerson(Person person, Sale sale) {
             throw new AssertionError("This method should not be called.");
         }
     }

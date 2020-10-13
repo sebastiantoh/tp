@@ -19,13 +19,16 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.TypicalContactTags;
+import seedu.address.testutil.TypicalSaleTags;
 import seedu.address.testutil.person.PersonBuilder;
+import seedu.address.testutil.sale.TypicalSales;
 
 public class AddressBookTest {
 
@@ -89,6 +92,73 @@ public class AddressBookTest {
     }
 
     @Test
+    public void hasContactTag_contactTagInAddressBook_returnsTrue() {
+        addressBook.addContactTag(TypicalContactTags.CLASSMATES);
+        assertTrue(addressBook.hasContactTag(TypicalContactTags.CLASSMATES));
+    }
+
+    @Test
+    public void hasSaleTag_saleTagInAddressBook_returnsTrue() {
+        addressBook.addSaleTag(TypicalSaleTags.IMPORTANT);
+        assertTrue(addressBook.hasSaleTag(TypicalSaleTags.IMPORTANT));
+    }
+
+    @Test
+    public void hasContactTag_contactTagNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasContactTag(TypicalContactTags.CLASSMATES));
+    }
+
+    @Test
+    public void hasSaleTag_saleTagNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasSaleTag(TypicalSaleTags.IMPORTANT));
+    }
+
+    @Test
+    public void findByContactTag_contactTagInAddressBook_success() {
+        AddressBook addressBook = getTypicalAddressBook();
+        assertEquals(addressBook.findByContactTag(TypicalContactTags.FRIENDS), 3);
+    }
+
+    @Test
+    public void findByContactTag_contactTagNotInAddressBook_success() {
+        AddressBook addressBookCopy = getTypicalAddressBook();
+        assertEquals(addressBookCopy.findByContactTag(new Tag("random")), 0);
+    }
+
+    @Test
+    public void findBySaleTag_saleTagInAddressBook_success() {
+        AddressBook addressBookCopy = new AddressBook();
+        addressBookCopy.addPerson(ALICE);
+        addressBookCopy.addSaleToPerson(ALICE, TypicalSales.APPLE);
+        assertEquals(addressBookCopy.findBySaleTag(new Tag("fruits")),
+                "Listing all sale items associated with : [fruits]\n"
+                        + "1. Apple (Quantity: 10,  Unit Price: $3.50,  Tags: [[fruits]]) (Client: Alice Pauline)\n");
+    }
+
+    @Test
+    public void listTags_noSaleTags_success() {
+        addressBook.addPerson(ALICE);
+        assertEquals("Listing contact tags:\n"
+                + "1. [friends]\n"
+                + "\n"
+                + "Listing sale tags:\n"
+                + "2. [fruits]\n"
+                + "3. [electronics]\n", addressBook.listTags());
+    }
+
+    @Test
+    public void listTags_withBothTags_success() {
+        addressBook.addPerson(ALICE);
+        addressBook.addSaleToPerson(ALICE, TypicalSales.CAMERA);
+        assertEquals("Listing contact tags:\n"
+                + "1. [friends]\n"
+                + "\n"
+                + "Listing sale tags:\n"
+                + "2. [fruits]\n"
+                + "3. [electronics]\n", addressBook.listTags());
+    }
+
+    @Test
     public void resetData_withDuplicateReminder_throwsDuplicateReminderException() {
         List<Reminder> newReminders = Arrays.asList(CALL_ALICE, CALL_ALICE);
         AddressBookStub newData = new AddressBookStub(Collections.emptyList(), Collections.emptyList(), newReminders);
@@ -125,13 +195,13 @@ public class AddressBookTest {
         private final ObservableList<Reminder> reminders = FXCollections.observableArrayList();
         private final ObservableList<Tag> contactTags = FXCollections.observableArrayList();
         private final ObservableList<Tag> saleTags = FXCollections.observableArrayList();
-        private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+        private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
 
 
-        AddressBookStub(Collection<Person> persons, Collection<Appointment> appointments,
+        AddressBookStub(Collection<Person> persons, Collection<Meeting> meetings,
                         Collection<Reminder> reminders) {
             this.persons.setAll(persons);
-            this.appointments.setAll(appointments);
+            this.meetings.setAll(meetings);
             this.reminders.setAll(reminders);
         }
 
@@ -146,8 +216,8 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Appointment> getAppointmentList() {
-            return appointments;
+        public ObservableList<Meeting> getMeetingList() {
+            return meetings;
         }
 
         @Override
