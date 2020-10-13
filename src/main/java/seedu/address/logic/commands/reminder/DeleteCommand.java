@@ -35,7 +35,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Reminder> reminderList = model.getAddressBook().getReminderList();
+        List<Reminder> reminderList = model.getSortedReminderList();
 
         if (targetIndex.getZeroBased() >= reminderList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);

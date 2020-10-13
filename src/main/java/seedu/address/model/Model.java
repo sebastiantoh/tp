@@ -115,6 +115,16 @@ public interface Model {
     void deleteSaleTag(Tag target);
 
     /**
+     * Returns the number of contacts associated with {@code target} tag.
+     */
+    int findByContactTag(Tag target);
+
+    /**
+     * Returns the number of sale items associated with {@code target} tag.
+     */
+    int findBySaleTag(Tag target);
+
+    /**
      * Lists all existing tags.
      */
     String listTags();
@@ -192,6 +202,12 @@ public interface Model {
      * {@code meeting} must not already exist in StonksBook.
      */
     void addMeeting(Meeting meeting);
+
+    /**
+     * Returns an unmodifiable view of the reminder list
+     * .
+     */
+    ObservableList<Reminder> getSortedReminderList();
 
     /**
      * Returns true if a reminder with the same fields {@code reminder} exists in StonksBook.

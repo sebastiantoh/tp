@@ -13,30 +13,28 @@ import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
 /**
- * Deletes a tag based on its displayed index in the tag list and updates all
- * items associated with this tag.
+ * Lists all contacts or sale items associated with the specified tag.
  */
-public class DeleteCommand extends Command {
-    public static final String COMMAND_WORD = "tag delete";
+public class FindCommand extends Command {
+    public static final String COMMAND_WORD = "tag find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the tag identified by the index number used in the displayed reminder list. "
-            + "Note that all associations with this tag will be cleared.\n"
+            + ": Finds all the contacts or sales items associated with this tag. "
+            + "Note that all contacts or sales associated with this tag "
+            + "will be updated automatically with the updated tag.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag: %1$s";
-
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public FindCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // Contact tags will be displayed in front of Sale tags.
+
         List<Tag> contactTagList = model.getAddressBook().getContactTagList();
         List<Tag> saleTagList = model.getAddressBook().getSaleTagList();
 
@@ -44,15 +42,17 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
         }
 
-        Tag tagToDelete;
+        Tag tagToFind;
         if (targetIndex.getOneBased() > contactTagList.size()) {
-            tagToDelete = saleTagList.get(targetIndex.getZeroBased() - contactTagList.size());
-            model.deleteSaleTag(tagToDelete);
+            tagToFind = saleTagList.get(targetIndex.getZeroBased() - contactTagList.size());
+            return new CommandResult(String.format(Messages.MESSAGE_SALES_LISTED_OVERVIEW,
+                    model.findBySaleTag(tagToFind)));
         } else {
-            tagToDelete = contactTagList.get(targetIndex.getZeroBased());
-            model.deleteContactTag(tagToDelete);
+            tagToFind = contactTagList.get(targetIndex.getZeroBased());
+            model.updateFilteredPersonList(p -> p.getTags().contains(tagToFind));
+            return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                    model.findByContactTag(tagToFind)));
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagToDelete));
     }
 
     @Override
@@ -61,6 +61,6 @@ public class DeleteCommand extends Command {
             return true;
         }
 
-        return (obj instanceof DeleteCommand) && targetIndex.equals(((DeleteCommand) obj).targetIndex);
+        return (obj instanceof FindCommand) && targetIndex.equals(((FindCommand) obj).targetIndex);
     }
 }
