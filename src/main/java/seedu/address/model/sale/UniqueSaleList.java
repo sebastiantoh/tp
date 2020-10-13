@@ -40,12 +40,13 @@ public class UniqueSaleList implements Iterable<Sale> {
      * Adds a sale to the list.
      * The sale must not already exist in the list.
      */
-    public void add(Sale toAdd) throws DuplicateSaleException {
+    public UniqueSaleList add(Sale toAdd) throws DuplicateSaleException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateSaleException();
         }
         internalList.add(toAdd);
+        return this;
     }
 
     /**

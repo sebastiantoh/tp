@@ -18,32 +18,56 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
+import seedu.address.model.sale.ItemName;
+import seedu.address.model.sale.Quantity;
+import seedu.address.model.sale.Sale;
+import seedu.address.model.sale.UniqueSaleList;
+import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+    private static final Sale NOTEBOOK = new Sale(new ItemName("Notebook"), new Quantity("10"),
+            new UnitPrice(3, 50));
+    private static final Sale BLACK_PEN = new Sale(new ItemName("Black Pen"), new Quantity("300"),
+            new UnitPrice(2, 0));
+    private static final Sale BINDER = new Sale(new ItemName("Binder"), new Quantity("250"),
+            new UnitPrice(4, 99));
+    private static final Sale TAPE = new Sale(new ItemName("Scotch Tape"), new Quantity("1000"),
+            new UnitPrice(2, 10));
+    private static final Sale ERASER = new Sale(new ItemName("Eraser"), new Quantity("1200"),
+            new UnitPrice(0, 80));
+    private static final Sale RULER = new Sale(new ItemName("Ruler"), new Quantity("1200"),
+            new UnitPrice(0, 99));
+
+    /** UniqueSaleList */
+    private static final UniqueSaleList SALE_LIST_1 = new UniqueSaleList().add(NOTEBOOK).add(BINDER).add(TAPE);
+    private static final UniqueSaleList SALE_LIST_2 = new UniqueSaleList().add(RULER).add(BLACK_PEN).add(TAPE);
+    private static final UniqueSaleList SALE_LIST_3 = new UniqueSaleList().add(BINDER).add(ERASER).add(NOTEBOOK);
+    private static final UniqueSaleList SALE_LIST_4 = new UniqueSaleList().add(BLACK_PEN).add(RULER).add(TAPE);
+
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                    new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getTagSet("friends"), new Remark("")),
+                new Address("Blk 30 Geylang Street 29, #06-40"), getTagSet("friends"),
+                    new Remark("Not available on Fridays"), SALE_LIST_1),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getTagSet("colleagues", "friends"), new Remark("")),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet("colleagues", "friends"),
+                    new Remark("Owns a small stationery business"), SALE_LIST_2),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getTagSet("neighbours"), new Remark("")),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                getTagSet("neighbours"), new Remark(""), SALE_LIST_3),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet("family"), new Remark("")),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                getTagSet("family"), new Remark(""), SALE_LIST_4),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                    new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getTagSet("classmates"), new Remark("")),
+                new Address("Blk 47 Tampines Street 20, #17-35"),
+                getTagSet("classmates"), new Remark("Interested in paper-based products")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("colleagues"), new Remark(""))
+                new Address("Blk 45 Aljunied Street 85, #11-31"),
+                getTagSet("colleagues"), new Remark(""))
         };
     }
 
