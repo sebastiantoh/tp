@@ -24,11 +24,9 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of all sales to a specified contact.\n"
             + "Parameters: "
-            + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer) "
-            + PREFIX_SALE_INDEX + "ITEM_INDEX (must be a positive integer)\n"
+            + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_SALE_CONTACT_INDEX + "3 "
-            + PREFIX_SALE_INDEX + "1";
+            + PREFIX_SALE_CONTACT_INDEX + "3 ";
 
     private final Index targetIndex;
 
