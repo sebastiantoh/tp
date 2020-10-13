@@ -2,7 +2,11 @@ package seedu.address.logic.commands.sale;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 
