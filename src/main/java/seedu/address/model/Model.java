@@ -121,9 +121,9 @@ public interface Model {
     int findByContactTag(Tag target);
 
     /**
-     * Returns the number of sale items associated with {@code target} tag.
+     * Lists all sale items associated with {@code target} tag.
      */
-    int findBySaleTag(Tag target);
+    String findBySaleTag(Tag target);
 
     /**
      * Lists all existing tags.

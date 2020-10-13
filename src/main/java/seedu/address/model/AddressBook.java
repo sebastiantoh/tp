@@ -102,14 +102,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-<<<<<<< HEAD
         setContactTags(newData.getContactTagList());
         setSaleTags(newData.getSaleTagList());
-        setAppointments(newData.getAppointmentList());
-=======
-        setTags(newData.getContactTagList());
         setMeetings(newData.getMeetingList());
->>>>>>> 11ac0778593f9f10508088bf62a7abad544c404c
         setReminders(newData.getReminderList());
     }
 
@@ -254,26 +249,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns the number of sale items that are associated with the {@code target} tag.
      */
-    public int findBySaleTag(Tag target) {
-
-        return 0;
-    }
-
-    /**
-     * Returns the number of contacts who are associated with the {@code target} tag.
-     */
-    public int findByContactTag(Tag target) {
-        return (int) persons.asUnmodifiableObservableList()
-                .stream()
-                .filter(p -> p.getTags().contains(target)).count();
-    }
-
-    /**
-     * Returns the number of sale items that are associated with the {@code target} tag.
-     */
-    public int findBySaleTag(Tag target) {
-        // TODO
-        return 0;
+    public String findBySaleTag(Tag target) {
+        StringBuilder output = new StringBuilder();
+        output.append(String.format("Listing all sale items associated with : %s\n", target.toString()));
+        for (Person p : persons) {
+            int len = p.getSalesList().asUnmodifiableObservableList().size();
+            for (int i = 0; i < len; i++) {
+                Sale s = p.getSalesList().asUnmodifiableObservableList().get(i);
+                if (s.getTags().contains(target)) {
+                    output.append(String.format("%d. %s (Client: %s)\n", i + 1, s, p.getName()));
+                }
+            }
+        }
+        return output.toString();
     }
 
     /**

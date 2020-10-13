@@ -31,12 +31,11 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-<<<<<<< HEAD
-        String userInput =
-                CONTACT_INDEX + ITEM_NAME_DESC_APPLE + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE + VALID_SALE_TAG;
-=======
-        String userInput = CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE;
->>>>>>> 11ac0778593f9f10508088bf62a7abad544c404c
+        String userInput = CONTACT_INDEX_SECOND
+                + ITEM_NAME_DESC_APPLE
+                + QUANTITY_DESC_APPLE
+                + UNIT_PRICE_DESC_APPLE
+                + VALID_SALE_TAG;
 
         AddCommand expectedCommand = new AddCommand(INDEX_SECOND_ITEM, APPLE);
 
