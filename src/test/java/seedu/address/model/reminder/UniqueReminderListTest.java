@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 import static seedu.address.testutil.reminder.TypicalReminders.EMAIL_BENSON;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -61,6 +63,33 @@ public class UniqueReminderListTest {
         uniqueReminderList.add(CALL_ALICE);
         uniqueReminderList.remove(CALL_ALICE);
         UniqueReminderList expectedUniqueReminderList = new UniqueReminderList();
+        assertEquals(expectedUniqueReminderList, uniqueReminderList);
+    }
+
+    @Test
+    public void removeRemindersWithContact_nullContact_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueReminderList.removeRemindersWithContact(null));
+    }
+
+    @Test
+    public void removeRemindersWithContact_noRemindersWithContact_noChange() {
+        uniqueReminderList.removeRemindersWithContact(ALICE);
+        UniqueReminderList expectedUniqueReminderList = new UniqueReminderList();
+        assertEquals(expectedUniqueReminderList, uniqueReminderList);
+    }
+
+    @Test
+    public void removeRemindersWithContact_contactWithMultipleReminders_associatedRemindersRemoved() {
+        uniqueReminderList.add(CALL_ALICE);
+        uniqueReminderList.add(EMAIL_BENSON);
+        uniqueReminderList.add(new Reminder(ALICE, "Second reminder with Alice",
+                LocalDateTime.of(2021, 10, 30, 10, 19)));
+
+        uniqueReminderList.removeRemindersWithContact(ALICE);
+
+        UniqueReminderList expectedUniqueReminderList = new UniqueReminderList();
+        expectedUniqueReminderList.add(EMAIL_BENSON);
+
         assertEquals(expectedUniqueReminderList, uniqueReminderList);
     }
 

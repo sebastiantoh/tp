@@ -188,6 +188,12 @@ public interface Model {
     void addMeeting(Meeting meeting);
 
     /**
+     * Returns an unmodifiable view of the reminder list
+     * .
+     */
+    ObservableList<Reminder> getSortedReminderList();
+
+    /**
      * Returns true if a reminder with the same fields {@code reminder} exists in StonksBook.
      */
     boolean hasReminder(Reminder reminder);

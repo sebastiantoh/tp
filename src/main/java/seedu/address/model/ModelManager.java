@@ -32,6 +32,8 @@ public class ModelManager implements Model {
 
     private final SortedList<Person> sortedPersons;
 
+    private final SortedList<Reminder> sortedReminders;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -46,6 +48,7 @@ public class ModelManager implements Model {
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.sortedPersons = new SortedList<>(this.filteredPersons);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
+        this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
     }
 
     public ModelManager() {
@@ -248,6 +251,17 @@ public class ModelManager implements Model {
         return addressBook.listTags();
     }
 
+    //=========== Reminder List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Reminder} backed by the internal list of
+     * {@code versionedAddressBook}.
+     */
+    @Override
+    public ObservableList<Reminder> getSortedReminderList() {
+        return this.sortedReminders;
+    }
+
     @Override
     public ObservableList<Tag> getContactTagList() {
         return addressBook.getContactTagList();
@@ -273,8 +287,9 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return this.addressBook.equals(other.addressBook)
-            && this.userPrefs.equals(other.userPrefs)
-            && this.sortedPersons.equals(other.sortedPersons);
+                && this.userPrefs.equals(other.userPrefs)
+                && this.sortedPersons.equals(other.sortedPersons)
+                && this.sortedReminders.equals(other.sortedReminders);
     }
 
 }

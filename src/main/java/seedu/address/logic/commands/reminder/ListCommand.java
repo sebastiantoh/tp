@@ -2,9 +2,15 @@ package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * Lists all reminders in the address book to the user.
@@ -18,6 +24,23 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(MESSAGE_SUCCESS);
+        List<Reminder> reminders = model.getSortedReminderList();
+
+        String output;
+        if (reminders.size() == 0) {
+            output = "No reminders found!";
+        } else {
+            output = IntStream
+                    .range(0, reminders.size())
+                    .mapToObj(i -> String.format("%d. %s", Index.fromZeroBased(i).getOneBased(), reminders.get(i)))
+                    .collect(Collectors.joining("\n"));
+        }
+
+        return new CommandResult(output);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ListCommand; // instanceof handles nulls
     }
 }
