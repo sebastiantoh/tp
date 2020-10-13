@@ -10,18 +10,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
- * Jackson-friendly version of {@link Appointment}.
+ * Jackson-friendly version of {@link Meeting}.
  */
-class JsonAdaptedAppointment {
+class JsonAdaptedMeeting {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Appointment's %s field is missing!";
-    public static final String DESERIALISING_DURATION_ERROR_MESSAGE = "An error occured while deserialising the "
-        + "duration of "
-        + "an appointment!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Meeting's %s field is missing!";
+    public static final String DESERIALIZING_DURATION_ERROR_MESSAGE = "An error occurred while deserializing the "
+        + "duration of a meeting!";
 
     private final JsonAdaptedPerson person;
     private final String message;
@@ -31,13 +30,13 @@ class JsonAdaptedAppointment {
     private final String duration;
 
     /**
-     * Constructs a {@code JsonAdaptedAppointment} with the given appointment details.
+     * Constructs a {@code JsonAdaptedMeeting} with the given meeting details.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("person") JsonAdaptedPerson person,
-                                  @JsonProperty("message") String message,
-                                  @JsonProperty("startDate") String startDate,
-                                  @JsonProperty("duration") String duration) {
+    public JsonAdaptedMeeting(@JsonProperty("person") JsonAdaptedPerson person,
+                              @JsonProperty("message") String message,
+                              @JsonProperty("startDate") String startDate,
+                              @JsonProperty("duration") String duration) {
         this.person = person;
         this.message = message;
         this.startDate = startDate;
@@ -45,9 +44,9 @@ class JsonAdaptedAppointment {
     }
 
     /**
-     * Converts a given {@code Appointment} into this class for Jackson use.
+     * Converts a given {@code Meeting} into this class for Jackson use.
      */
-    public JsonAdaptedAppointment(Appointment source) {
+    public JsonAdaptedMeeting(Meeting source) {
         this.person = new JsonAdaptedPerson(source.getPerson());
         this.message = source.getMessage();
         this.startDate = source.getStartDate().toString();
@@ -55,11 +54,11 @@ class JsonAdaptedAppointment {
     }
 
     /**
-     * Converts this Jackson-friendly adapted appointment object into the model's {@code Appointment} object.
+     * Converts this Jackson-friendly adapted meeting object into the model's {@code Meeting} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
      */
-    public Appointment toModelType() throws IllegalValueException {
+    public Meeting toModelType() throws IllegalValueException {
 
         if (this.person == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName()));
@@ -88,8 +87,8 @@ class JsonAdaptedAppointment {
         try {
             duration = Duration.parse(this.duration);
         } catch (DateTimeParseException e) {
-            throw new IllegalValueException(DESERIALISING_DURATION_ERROR_MESSAGE);
+            throw new IllegalValueException(DESERIALIZING_DURATION_ERROR_MESSAGE);
         }
-        return new Appointment(person, message, scheduledDate, duration);
+        return new Meeting(person, message, scheduledDate, duration);
     }
 }

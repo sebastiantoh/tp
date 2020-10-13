@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
@@ -171,21 +171,21 @@ public interface Model {
     void updateSortedPersonList(Comparator<Person> comparator);
 
     /**
-     * Returns true if an appointment with same fields as {@code appointment} exists in StonksBook.
+     * Returns true if an meeting with same fields as {@code meeting} exists in StonksBook.
      */
-    boolean hasAppointment(Appointment appointment);
+    boolean hasMeeting(Meeting meeting);
 
     /**
-     * Deletes the given appointment.
-     * {@code appointment} must exist in StonksBook.
+     * Deletes the given meeting.
+     * {@code target} must exist in StonksBook.
      */
-    void deleteAppointment(Appointment target);
+    void deleteMeeting(Meeting target);
 
     /**
-     * Adds the given appointment.
-     * {@code appointment} must not already exist in StonksBook.
+     * Adds the given meeting.
+     * {@code meeting} must not already exist in StonksBook.
      */
-    void addAppointment(Appointment appointment);
+    void addMeeting(Meeting meeting);
 
     /**
      * Returns an unmodifiable view of the reminder list
