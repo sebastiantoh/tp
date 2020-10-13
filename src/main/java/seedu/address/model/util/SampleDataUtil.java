@@ -3,6 +3,7 @@ package seedu.address.model.util;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,17 +31,17 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     private static final Sale NOTEBOOK = new Sale(new ItemName("Notebook"), new Quantity("10"),
-            new UnitPrice(3, 50));
+            new UnitPrice(3, 50), new HashSet<Tag>());
     private static final Sale BLACK_PEN = new Sale(new ItemName("Black Pen"), new Quantity("300"),
-            new UnitPrice(2, 0));
+            new UnitPrice(2, 0), new HashSet<Tag>());
     private static final Sale BINDER = new Sale(new ItemName("Binder"), new Quantity("250"),
-            new UnitPrice(4, 99));
+            new UnitPrice(4, 99), new HashSet<Tag>());
     private static final Sale TAPE = new Sale(new ItemName("Scotch Tape"), new Quantity("1000"),
-            new UnitPrice(2, 10));
+            new UnitPrice(2, 10), new HashSet<Tag>());
     private static final Sale ERASER = new Sale(new ItemName("Eraser"), new Quantity("1200"),
-            new UnitPrice(0, 80));
+            new UnitPrice(0, 80), new HashSet<Tag>());
     private static final Sale RULER = new Sale(new ItemName("Ruler"), new Quantity("1200"),
-            new UnitPrice(0, 99));
+            new UnitPrice(0, 99), new HashSet<Tag>());
 
     /** UniqueSaleList */
     private static final UniqueSaleList SALE_LIST_1 = new UniqueSaleList().add(NOTEBOOK).add(BINDER).add(TAPE);

@@ -138,7 +138,7 @@ public class AddressBookTest {
     @Test
     public void listTags_noSaleTags_success() {
         addressBook.addPerson(ALICE);
-        assertEquals( "Listing contact tags:\n"
+        assertEquals("Listing contact tags:\n"
                 + "1. [friends]\n"
                 + "\n"
                 + "Listing sale tags:\n"
@@ -150,7 +150,7 @@ public class AddressBookTest {
     public void listTags_withBothTags_success() {
         addressBook.addPerson(ALICE);
         addressBook.addSaleToPerson(ALICE, TypicalSales.CAMERA);
-        assertEquals( "Listing contact tags:\n"
+        assertEquals("Listing contact tags:\n"
                 + "1. [friends]\n"
                 + "\n"
                 + "Listing sale tags:\n"
