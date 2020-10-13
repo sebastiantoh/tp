@@ -115,6 +115,16 @@ public interface Model {
     void deleteSaleTag(Tag target);
 
     /**
+     * Returns the number of contacts associated with {@code target} tag.
+     */
+    int findByContactTag(Tag target);
+
+    /**
+     * Returns the number of sale items associated with {@code target} tag.
+     */
+    int findBySaleTag(Tag target);
+
+    /**
      * Lists all existing tags.
      */
     String listTags();
