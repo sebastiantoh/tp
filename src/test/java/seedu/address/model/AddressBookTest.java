@@ -25,7 +25,10 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.TypicalContactTags;
+import seedu.address.testutil.TypicalSaleTags;
 import seedu.address.testutil.person.PersonBuilder;
+import seedu.address.testutil.sale.TypicalSales;
 
 public class AddressBookTest {
 
@@ -86,6 +89,66 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void hasContactTag_contactTagInAddressBook_returnsTrue() {
+        addressBook.addContactTag(TypicalContactTags.CLASSMATES);
+        assertTrue(addressBook.hasContactTag(TypicalContactTags.CLASSMATES));
+    }
+
+    @Test
+    public void hasSaleTag_saleTagInAddressBook_returnsTrue() {
+        addressBook.addSaleTag(TypicalSaleTags.IMPORTANT);
+        assertTrue(addressBook.hasSaleTag(TypicalSaleTags.IMPORTANT));
+    }
+
+    @Test
+    public void hasContactTag_contactTagNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasContactTag(TypicalContactTags.CLASSMATES));
+    }
+
+    @Test
+    public void hasSaleTag_saleTagNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasSaleTag(TypicalSaleTags.IMPORTANT));
+    }
+
+    @Test
+    public void findByContactTag_contactTagInAddressBook_success() {
+        AddressBook addressBook = getTypicalAddressBook();
+        assertEquals(addressBook.findByContactTag(TypicalContactTags.FRIENDS), 3);
+    }
+
+    @Test
+    public void findByContactTag_contactTagNotInAddressBook_success() {
+        AddressBook addressBook = getTypicalAddressBook();
+        assertEquals(addressBook.findByContactTag(new Tag("random")), 0);
+    }
+
+    @Test
+    public void findBySaleTag_saleTagInAddressBook_success() {
+        addressBook.addPerson(ALICE);
+        addressBook.addSaleToPerson(ALICE, TypicalSales.APPLE);
+        assertEquals(addressBook.findBySaleTag(new Tag("fruits")),
+                "Listing all sale items associated with : [fruits]\n" +
+                "1. Apple (Quantity: 10,  Unit Price: $3.50,  Tags: [[fruits]]) (Client: Alice Pauline)\n");
+    }
+
+    @Test
+    public void listTags_noSaleTags_success() {
+        addressBook.addPerson(ALICE);
+        assertEquals(addressBook.listTags(), "No sale tags found! Listing contact tags:\n1. [friends]\n");
+    }
+
+    @Test
+    public void listTags_withBothTags_success() {
+        addressBook.addPerson(ALICE);
+        addressBook.addSaleToPerson(ALICE, TypicalSales.APPLE);
+        assertEquals(addressBook.listTags(), "Listing contact tags:\n" +
+                "1. [friends]\n" +
+                "\n" +
+                "Listing sale tags:\n" +
+                "2. [fruits]\n");
     }
 
     @Test

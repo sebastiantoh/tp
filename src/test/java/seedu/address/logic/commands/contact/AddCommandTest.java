@@ -175,7 +175,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public int findBySaleTag(Tag target) {
+        public String findBySaleTag(Tag target) {
             throw new AssertionError("This method should not be called.");
         }
 

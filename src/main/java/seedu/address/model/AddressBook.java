@@ -362,7 +362,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addSaleToPerson(Person person, Sale sale) {
         person.getSalesList().add(sale);
         for (Tag t : sale.getTags()) {
-            saleTags.add(t);
+            addSaleTag(t);
         }
     }
 
