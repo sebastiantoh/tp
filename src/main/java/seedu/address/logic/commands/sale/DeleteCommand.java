@@ -49,7 +49,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> people = model.getAddressBook().getPersonList();
+        List<Person> people = model.getSortedPersonList();
 
         if (contactIndex.getZeroBased() >= people.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
