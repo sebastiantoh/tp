@@ -118,6 +118,10 @@ public class UniqueSaleList implements Iterable<Sale> {
         return totalSalesAmount;
     }
 
+    public String getTotalSalesAmountAsStr() {
+        return String.format("$%.2f", totalSalesAmount);
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
