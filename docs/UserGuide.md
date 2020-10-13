@@ -105,23 +105,40 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 
-* Only the name is searched.
+* You can only search based on the contact name.
 
 * Contacts matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
 
 * keyword does not have to exactly match a contact name. e.g. alx will return Alex Yeoh
 
-* The contact list is orderd by non-ascending similarity.
+* The contact list is ordered by non-ascending similarity.
 
 * Exact matches (if exists) will appear as the first few results.
 
 <img src="images/contactFindMockup.png" alt="result for 'contact find keyword'" width="400px">
 
 Examples:
-* `contact find John` returns john and John Doe
 * `contact find alex david` returns Alex Yeoh, David Li
 * `contact find alx` returns Alex Yeoh
 * `contact find alx dvd` returns Alex Yeoh, David Li
+
+#### Sorting contacts: `contact sort`
+Sort contacts based on the name, email address or the total sales amount of a contact.
+
+Format: `contact sort KEYWORD [ORDER]`
+
+* `KEYWORD` can only either be `n/` for name, `e/` for email address, or 's/' for total sales amount.
+
+* `ORDER` can only be `desc`.
+
+* If `ORDER` is absent, contacts will be sorted in non-descending order. Otherwise, contacts will be sorted in non-ascending order.
+
+* The sorted result will last until other contact commands (except `contact delete`) are executed.
+
+Examples:
+* `contact sort e/ desc` sorts the contact list based on the email address in non-ascending order
+* `contact find n/`  sorts the contact list based on the contact name in non-descending order
+* `contact find s/ desc` sorts the contact list based on the total sales amount in non-ascending order
 
 #### Deleting a contact: `contact delete`
 Deletes the specified contact from StonksBook.
@@ -314,20 +331,22 @@ Examples:
 
 ### Miscellaneous
 
+#### Error resolution suggestion:
+Gives an approximate match (if exists) of the most similar command to an unknown user input.
+
+Examples:
+* `contac add` will return a suggestion of `contact add`
+* `contt ad` will return a suggestion of `contact add`
+* `contacta ` will return a suggestion of `contact add`
+
 #### Viewing help: `help`
-Lists the available commands, command description and example usage as well as the link to the User Guide.
+Lists useful information about the available commands.
 
-Lists the available commands, command description and example usage as well as the link to the User Guide.
+Format: `help`
 
-Format: `COMMAND help`
+ * Lists the available commands, command description and example usage as well as the link to the User Guide.
 
-* If `COMMAND` is not present,
-    * list the available commands and the link to the User Guide.
 <img src="images/helpAllMockup.png" alt="result for 'help'" width="400px">
-
-* If `COMMAND` is present
-    * list the command description and example usage.
-<img src="images/helpPerCommandMockup.png" alt="result for 'help command'" width="400px">
 
 #### Clearing all past interactions: `clear`
 Clears all past interactions with the StonksBook GUI within the session.
@@ -359,7 +378,8 @@ Action | Format, Examples
 **Contact Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/birthday: 20 August`
 **Contact Delete** | `contact delete INDEX` <br> e.g., `contact delete 3`
 **Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
-**Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find James Jake`
+**Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `contact find James Jake`
+**Contact Sort** | `contact sort KEYWORD [ORDER]` <br> e.g., `contact sort n/ desc`
 **Contact List** | `contact list`
 **Sale Add** | `sale add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY` <br> e.g., `sale add c/4 n/Notebook p/6.00 q/2`
 **Sale List** | `sale list`
@@ -375,7 +395,7 @@ Action | Format, Examples
 **Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
 **Reminder List** | `reminder list`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
-**Help** | `COMMAND help`
+**Help** | `help`
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
 **Exit Application** | `exit`
