@@ -1,7 +1,7 @@
 package seedu.address.logic.parser.sale;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.CONTACT_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.CONTACT_INDEX_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ITEM_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUANTITY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_UNIT_PRICE;
@@ -30,7 +30,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String userInput = CONTACT_INDEX + ITEM_NAME_DESC_APPLE + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE;
+        String userInput = CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE;
 
         AddCommand expectedCommand = new AddCommand(INDEX_SECOND_ITEM, APPLE);
 
@@ -44,44 +44,44 @@ public class AddCommandParserTest {
 
         // missing contact prefix
         assertParseFailure(parser, INDEX_SECOND_ITEM.getOneBased() + ITEM_NAME_DESC_APPLE
-                        + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE, expectedMessage);
+                + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE, expectedMessage);
 
         // missing item name prefix
-        assertParseFailure(parser, CONTACT_INDEX + VALID_ITEM_NAME_APPLE + QUANTITY_DESC_APPLE
-                        + UNIT_PRICE_DESC_APPLE, expectedMessage);
+        assertParseFailure(parser, CONTACT_INDEX_SECOND + VALID_ITEM_NAME_APPLE + QUANTITY_DESC_APPLE
+                + UNIT_PRICE_DESC_APPLE, expectedMessage);
 
         // missing quantity prefix
-        assertParseFailure(parser, CONTACT_INDEX + ITEM_NAME_DESC_APPLE + VALID_QUANTITY_APPLE
-                        + UNIT_PRICE_DESC_APPLE, expectedMessage);
+        assertParseFailure(parser, CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE + VALID_QUANTITY_APPLE
+                + UNIT_PRICE_DESC_APPLE, expectedMessage);
 
         // missing unit price prefix
-        assertParseFailure(parser, CONTACT_INDEX + ITEM_NAME_DESC_APPLE + QUANTITY_DESC_APPLE
+        assertParseFailure(parser, CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE + QUANTITY_DESC_APPLE
                         + VALID_UNIT_PRICE_DOLLARS_APPLE + "." + VALID_UNIT_PRICE_CENTS_APPLE,
-                        expectedMessage);
+                expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, INDEX_SECOND_ITEM.getOneBased() + VALID_ITEM_NAME_APPLE
                         + VALID_QUANTITY_APPLE + VALID_UNIT_PRICE_DOLLARS_APPLE + "." + VALID_UNIT_PRICE_CENTS_APPLE,
-                        expectedMessage);
+                expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid item name
-        assertParseFailure(parser, CONTACT_INDEX + INVALID_ITEM_NAME + QUANTITY_DESC_APPLE
+        assertParseFailure(parser, CONTACT_INDEX_SECOND + INVALID_ITEM_NAME + QUANTITY_DESC_APPLE
                 + UNIT_PRICE_DESC_APPLE, ItemName.MESSAGE_CONSTRAINTS);
 
         // invalid quantity
-        assertParseFailure(parser, CONTACT_INDEX + ITEM_NAME_DESC_APPLE + INVALID_QUANTITY
+        assertParseFailure(parser, CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE + INVALID_QUANTITY
                 + UNIT_PRICE_DESC_APPLE, Quantity.MESSAGE_CONSTRAINTS);
 
         // invalid unit price
-        assertParseFailure(parser, CONTACT_INDEX + ITEM_NAME_DESC_APPLE + QUANTITY_DESC_APPLE
+        assertParseFailure(parser, CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE + QUANTITY_DESC_APPLE
                 + INVALID_UNIT_PRICE, UnitPrice.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + CONTACT_INDEX + ITEM_NAME_DESC_APPLE
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE
                         + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE,
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

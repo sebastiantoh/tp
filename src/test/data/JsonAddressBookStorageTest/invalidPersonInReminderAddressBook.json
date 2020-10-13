@@ -1,6 +1,8 @@
 {
   "persons": [
   ],
+  "contactTags": [],
+  "saleTags": [],
   "reminders": [
     {
       "person": {
@@ -15,5 +17,6 @@
       "message": "Call Alice",
       "scheduledDate": "2020-10-30T13:19"
     }
-  ]
+  ],
+  "meetings": []
 }

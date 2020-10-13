@@ -434,14 +434,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Add an appointment**
+**Use case: Add a meeting**
 
 **MSS**
 
 1. User requests to list contacts
 2. StonksBook shows a list of contacts
-3. User requests to add an appointment associated with a specific contact in the list
-4. StonksBook adds a appointment associated with the contact
+3. User requests to add a meeting associated with a specific contact in the list
+4. StonksBook adds a meeting associated with the contact
 
   Use case ends.
 
@@ -457,24 +457,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 3b. The given appointment date is invalid.
+* 3b. The given meeting date is invalid.
 
     * 3b1. StonksBook shows an error message.
 
       Use case resumes at step 2.
 
-* 3c. The given appointment duration is invalid.
+* 3c. The given meeting duration is invalid.
 
     * 3b1. StonksBook shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: View all appointments**
+**Use case: View all meetings**
 
 **MSS**
 
-1. User requests to list all appointments
-2. StonksBook shows a list of all appointments
+1. User requests to list all meetings
+2. StonksBook shows a list of all meetings
 
   Use case ends.
 
@@ -486,24 +486,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-* 2a. The list of appointments is empty.
+* 2a. The list of meetings is empty.
 
   Use case ends.
 
-**Use case: Delete an appointment**
+**Use case: Delete a meeting**
 
 **MSS**
 
-1. User requests to list appointments
-2. StonksBook shows a list of appointments
-3. User requests to delete a specific appointment in the list
-4. StonksBook deletes the appointment
+1. User requests to list meetings
+2. StonksBook shows a list of meetings
+3. User requests to delete a specific meeting in the list
+4. StonksBook deletes the meeting
 
   Use case ends.
 
 **Extensions**
 
-* 2a. The list of appointments is empty.
+* 2a. The list of meetings is empty.
 
   Use case ends.
 

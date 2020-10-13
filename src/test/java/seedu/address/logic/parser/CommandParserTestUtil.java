@@ -24,6 +24,20 @@ public class CommandParserTestUtil {
     }
 
     /**
+     * Asserts that the parsing of {@code userInput} and {@code arguments} by {@code parser} is successful and the
+     * command created equals to {@code expectedCommand}.
+     */
+    public static void assertParseSuccess(GroupCommandsParser parser, String userInput,
+                                          String arguments, Command expectedCommand) {
+        try {
+            Command command = parser.parse(userInput, arguments);
+            assertEquals(expectedCommand, command);
+        } catch (ParseException pe) {
+            throw new IllegalArgumentException("Invalid userInput.", pe);
+        }
+    }
+
+    /**
      * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful and the error message
      * equals to {@code expectedMessage}.
      */

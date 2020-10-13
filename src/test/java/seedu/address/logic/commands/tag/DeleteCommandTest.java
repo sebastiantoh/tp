@@ -51,7 +51,7 @@ class DeleteCommandTest {
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
-        // same values -> returns true
+        // same indices -> returns true
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ITEM);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 

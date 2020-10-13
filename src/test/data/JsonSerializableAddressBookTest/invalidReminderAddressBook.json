@@ -2,7 +2,6 @@
   "persons": [],
   "contactTags": [],
   "saleTags": [],
-  "appointments": [],
   "reminders": [
     {
       "person": {
@@ -17,5 +16,6 @@
       },
       "scheduledDate": "2020-10-30T15:19"
     }
-  ]
+  ],
+  "meetings": []
 }

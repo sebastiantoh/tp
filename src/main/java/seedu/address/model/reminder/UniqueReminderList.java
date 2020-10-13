@@ -5,9 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
 
@@ -50,6 +52,22 @@ public class UniqueReminderList implements Iterable<Reminder> {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new ReminderNotFoundException();
+        }
+    }
+
+    /**
+     * Removes all reminders associated with the given {@code contact} from the list.
+     *
+     * @param contact The contact whose associated reminders are to be removed.
+     */
+    public void removeRemindersWithContact(Person contact) {
+        requireNonNull(contact);
+        List<Reminder> remindersToRemove =
+                internalList.stream().filter(reminder -> reminder.getPerson().equals(contact))
+                        .collect(Collectors.toList());
+
+        for (Reminder reminder : remindersToRemove) {
+            this.remove(reminder);
         }
     }
 

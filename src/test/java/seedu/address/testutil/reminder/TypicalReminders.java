@@ -20,7 +20,7 @@ public class TypicalReminders {
         LocalDateTime.of(2020, 10, 30, 15, 19));
     public static final Reminder EMAIL_BENSON = new Reminder(BENSON, "Email Benson",
         LocalDateTime.of(2018, 12, 20, 12, 0));
-    public static final Reminder SET_APPOINTMENT_CARL = new Reminder(CARL, "Set appointment with Carl",
+    public static final Reminder SET_MEETING_CARL = new Reminder(CARL, "Set meeting with Carl",
         LocalDateTime.of(2020, 12, 20, 12, 12));
 
     // prevents instantiation
@@ -28,6 +28,6 @@ public class TypicalReminders {
     }
 
     public static List<Reminder> getTypicalReminders() {
-        return new ArrayList<>(Arrays.asList(CALL_ALICE, EMAIL_BENSON, SET_APPOINTMENT_CARL));
+        return new ArrayList<>(Arrays.asList(CALL_ALICE, EMAIL_BENSON, SET_MEETING_CARL));
     }
 }

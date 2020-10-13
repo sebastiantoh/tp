@@ -13,7 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
@@ -32,6 +32,10 @@ public class ModelManager implements Model {
 
     private final SortedList<Person> sortedPersons;
 
+    private final SortedList<Meeting> sortedMeetings;
+
+    private final SortedList<Reminder> sortedReminders;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -46,6 +50,8 @@ public class ModelManager implements Model {
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.sortedPersons = new SortedList<>(this.filteredPersons);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
+        this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
+        this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
     }
 
     public ModelManager() {
@@ -166,19 +172,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasAppointment(Appointment appointment) {
-        requireNonNull(appointment);
-        return addressBook.hasAppointment(appointment);
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return addressBook.hasMeeting(meeting);
     }
 
     @Override
-    public void deleteAppointment(Appointment target) {
-        addressBook.removeAppointment(target);
+    public void deleteMeeting(Meeting target) {
+        addressBook.removeMeeting(target);
     }
 
     @Override
-    public void addAppointment(Appointment appointment) {
-        addressBook.addAppointment(appointment);
+    public void addMeeting(Meeting meeting) {
+        addressBook.addMeeting(meeting);
     }
 
     @Override
@@ -242,10 +248,41 @@ public class ModelManager implements Model {
         this.sortedPersons.setComparator(comparator);
     }
 
+    //=========== Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedAddressBook}.
+     */
+    @Override
+    public ObservableList<Meeting> getSortedMeetingList() {
+        return this.sortedMeetings;
+    }
 
     @Override
     public String listTags() {
         return addressBook.listTags();
+    }
+
+    //=========== Reminder List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Reminder} backed by the internal list of
+     * {@code versionedAddressBook}.
+     */
+    @Override
+    public ObservableList<Reminder> getSortedReminderList() {
+        return this.sortedReminders;
+    }
+
+    @Override
+    public int findByContactTag(Tag target) {
+        return addressBook.findByContactTag(target);
+    }
+
+    @Override
+    public int findBySaleTag(Tag target) {
+        return addressBook.findBySaleTag(target);
     }
 
     @Override
@@ -273,8 +310,9 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return this.addressBook.equals(other.addressBook)
-            && this.userPrefs.equals(other.userPrefs)
-            && this.sortedPersons.equals(other.sortedPersons);
+                && this.userPrefs.equals(other.userPrefs)
+                && this.sortedPersons.equals(other.sortedPersons)
+                && this.sortedMeetings.equals(other.sortedMeetings)
+                && this.sortedReminders.equals(other.sortedReminders);
     }
-
 }

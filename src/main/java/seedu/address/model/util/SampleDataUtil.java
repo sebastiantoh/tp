@@ -1,17 +1,23 @@
 package seedu.address.model.util;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
 import seedu.address.model.sale.Sale;
@@ -65,13 +71,48 @@ public class SampleDataUtil {
         };
     }
 
+    public static UniqueReminderList getSampleReminderList() {
+        Person[] samplePersons = getSamplePersons();
+        Person alex = samplePersons[0];
+        Person charlotte = samplePersons[2];
+
+        UniqueReminderList reminders = new UniqueReminderList();
+        reminders.add(new Reminder(alex, "Send follow up email",
+                LocalDateTime.of(2020, 11, 30, 15, 30)));
+        reminders.add(new Reminder(charlotte, "Draft up sales proposal for upcoming meeting",
+                LocalDateTime.of(2020, 12, 15, 9, 0)));
+
+        return reminders;
+    }
+
+    public static UniqueMeetingList getSampleMeetingList() {
+        Person[] samplePersons = getSamplePersons();
+        Person bernice = samplePersons[1];
+        Person charlotte = samplePersons[2];
+
+        UniqueMeetingList meetings = new UniqueMeetingList();
+        meetings.add(new Meeting(bernice, "Sales Call",
+                LocalDateTime.of(2020, 11, 20, 15, 30), Duration.ofMinutes(30)));
+        meetings.add(new Meeting(charlotte, "Lunch to discuss new recurring purchase requirements",
+                LocalDateTime.of(2020, 12, 20, 12, 0), Duration.ofMinutes(90)));
+
+        return meetings;
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
+        for (Reminder sampleReminder : getSampleReminderList()) {
+            sampleAb.addReminder(sampleReminder);
+        }
+        for (Meeting sampleMeeting : getSampleMeetingList()) {
+            sampleAb.addMeeting(sampleMeeting);
+        }
         return sampleAb;
     }
+
 
     /**
      * Returns a tag set containing the list of strings given.
