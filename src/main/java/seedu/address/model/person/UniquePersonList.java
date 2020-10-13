@@ -29,7 +29,7 @@ import seedu.address.model.tag.Tag;
  */
 public class UniquePersonList implements Iterable<Person> {
     private final ObservableList<Person> internalList = FXCollections.observableArrayList(person ->
-            new Observable[] {person.getSalesList().totalSalesAmountProperty()});
+            new Observable[] {person.getSalesList().getTotalSalesAmountProperty()});
 
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -51,7 +51,6 @@ public class UniquePersonList implements Iterable<Person> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
-        System.out.println();
         internalList.add(toAdd);
     }
 

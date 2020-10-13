@@ -119,7 +119,7 @@ public class UniqueSaleList implements Iterable<Sale> {
                 .orElse(ZERO_SALE_AMOUNT));
     }
 
-    public DoubleProperty totalSalesAmountProperty() {
+    public DoubleProperty getTotalSalesAmountProperty() {
         return totalSalesAmount;
     }
 
