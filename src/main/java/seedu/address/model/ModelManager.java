@@ -203,6 +203,11 @@ public class ModelManager implements Model {
         addressBook.addSaleToPerson(person, sale);
     }
 
+    @Override
+    public void removeSaleFromPerson(Person person, Sale sale) {
+        addressBook.removeSaleFromPerson(person, sale);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

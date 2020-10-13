@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.person.PersonBuilder;
 
@@ -169,6 +170,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public int findByContactTag(Tag target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int findBySaleTag(Tag target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public String listTags() {
             throw new AssertionError("This method should not be called.");
         }
@@ -240,6 +251,11 @@ public class AddCommandTest {
         @Override
         public void addReminder(Reminder reminder) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSaleToPerson(Person person, Sale sale) {
+
         }
     }
 

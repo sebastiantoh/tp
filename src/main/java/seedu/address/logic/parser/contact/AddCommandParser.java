@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Set;
@@ -39,7 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_CONTACT_NAME, PREFIX_CONTACT_PHONE, PREFIX_CONTACT_EMAIL,
-                        PREFIX_CONTACT_ADDRESS, PREFIX_CONTACT_TAG, PREFIX_CONTACT_REMARK);
+                        PREFIX_CONTACT_ADDRESS, PREFIX_TAG, PREFIX_CONTACT_REMARK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CONTACT_NAME, PREFIX_CONTACT_ADDRESS, PREFIX_CONTACT_PHONE,
                 PREFIX_CONTACT_EMAIL)
@@ -51,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CONTACT_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CONTACT_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_CONTACT_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CONTACT_TAG));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_CONTACT_REMARK).orElse(""));
 
         Person person = new Person(name, phone, email, address, tagList, remark);

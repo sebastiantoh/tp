@@ -1,12 +1,12 @@
 package seedu.address.model.sale;
 
-import seedu.address.model.tag.Tag;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Sale in the address book.

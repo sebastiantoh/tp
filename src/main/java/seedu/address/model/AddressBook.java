@@ -12,7 +12,6 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.sale.Sale;
-import seedu.address.model.sale.UniqueSaleList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueContactTagList;
 import seedu.address.model.tag.UniqueSaleTagList;
@@ -70,8 +69,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the  contents of the tag list with {@code contactTags}.
      * {@code contactTags} must not contain duplicate contactTags.
      */
-    public void setTags(List<Tag> contactTags) {
+    public void setContactTags(List<Tag> contactTags) {
         this.contactTags.setTags(contactTags);
+    }
+
+    public void setSaleTags(List<Tag> saleTags) {
+        this.saleTags.setTags(saleTags);
     }
 
     /**
@@ -97,7 +100,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setTags(newData.getContactTagList());
+        setContactTags(newData.getContactTagList());
+        setSaleTags(newData.getSaleTagList());
         setAppointments(newData.getAppointmentList());
         setReminders(newData.getReminderList());
     }
@@ -120,6 +124,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
         for (Tag t : p.getTags()) {
             contactTags.add(t);
+        }
+        for (Sale s : p.getSalesList()) {
+            for (Tag t : s.getTags()) {
+                saleTags.add(t);
+            }
         }
     }
 
@@ -278,6 +287,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void sortTags() {
         contactTags.sort();
+        saleTags.sort();
     }
 
     //// appointment-level operations
@@ -332,11 +342,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         reminders.remove(key);
     }
 
+    /**
+     * Add a sale item to a contact.
+     */
     public void addSaleToPerson(Person person, Sale sale) {
         person.getSalesList().add(sale);
         for (Tag t : sale.getTags()) {
             saleTags.add(t);
         }
+    }
+
+    /**
+     * Removes a sale item from a contact.
+     */
+    public void removeSaleFromPerson(Person person, Sale sale) {
+        person.getSalesList().remove(sale);
     }
 
     //// util methods

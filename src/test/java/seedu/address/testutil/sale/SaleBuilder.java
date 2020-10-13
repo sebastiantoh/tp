@@ -1,9 +1,14 @@
 package seedu.address.testutil.sale;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.sale.UnitPrice;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Sale objects.
@@ -18,6 +23,7 @@ public class SaleBuilder {
     private ItemName name;
     private Quantity quantity;
     private UnitPrice unitPrice;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code SaleBuilder} with the default details.
@@ -26,6 +32,7 @@ public class SaleBuilder {
         name = new ItemName(DEFAULT_ITEM_NAME);
         quantity = new Quantity(DEFAULT_QUANTITY);
         unitPrice = new UnitPrice(DEFAULT_UNIT_PRICE_DOLLARS, DEFAULT_UNIT_PRICE_CENTS);
+        tags = new HashSet<>();
     }
 
     /**
@@ -35,6 +42,7 @@ public class SaleBuilder {
         name = saleToCopy.getItemName();
         quantity = saleToCopy.getQuantity();
         unitPrice = saleToCopy.getUnitPrice();
+        tags = saleToCopy.getTags();
     }
 
     /**
@@ -61,7 +69,15 @@ public class SaleBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Tags} of the {@code Sale} that we are building.
+     */
+    public SaleBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
     public Sale build() {
-        return new Sale(name, quantity, unitPrice);
+        return new Sale(name, quantity, unitPrice, tags);
     }
 }

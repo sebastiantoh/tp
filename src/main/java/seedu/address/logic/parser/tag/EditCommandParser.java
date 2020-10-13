@@ -2,7 +2,7 @@ package seedu.address.logic.parser.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Optional;
 
@@ -24,7 +24,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CONTACT_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         Index index;
 
@@ -35,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditTagDescriptor editTagDescriptor = new EditTagDescriptor();
-        Optional<String> tag = argMultimap.getValue(PREFIX_CONTACT_TAG);
+        Optional<String> tag = argMultimap.getValue(PREFIX_TAG);
         if (tag.isPresent()) {
             editTagDescriptor.setTagName(ParserUtil.parseTag(tag.get()).getTagName());
         } else {

@@ -215,5 +215,13 @@ public interface Model {
      */
     void addReminder(Reminder reminder);
 
+    /**
+     * Adds the given sale item to the specified contact.
+     */
     void addSaleToPerson(Person person, Sale sale);
+
+    /**
+     * Removes the given sale item to the specified contact.
+     */
+    void removeSaleFromPerson(Person person, Sale sale);
 }
