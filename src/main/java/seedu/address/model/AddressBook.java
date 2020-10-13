@@ -247,7 +247,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns the number of sale items that are associated with the {@code target} tag.
+     * Lists all sale items associated with {@code target} tag.
      */
     public String findBySaleTag(Tag target) {
         StringBuilder output = new StringBuilder();
