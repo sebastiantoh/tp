@@ -12,11 +12,11 @@ import seedu.address.model.sale.Sale;
 public class TypicalSales {
 
     public static final Sale APPLE = new SaleBuilder().withItemName("Apple").withQuantity("10")
-            .withUnitPrice(3, 50).build();
+            .withUnitPrice(3, 50).withTags("fruits").build();
     public static final Sale BALL = new SaleBuilder().withItemName("Ball").withQuantity("1")
-            .withUnitPrice(0, 80).build();
+            .withUnitPrice(0, 80).withTags("sports").build();
     public static final Sale CAMERA = new SaleBuilder().withItemName("Camera").withQuantity("2")
-            .withUnitPrice(1000, 50).build();
+            .withUnitPrice(1000, 50).withTags("electronics").build();
 
     private TypicalSales() {} // prevents instantiation
 

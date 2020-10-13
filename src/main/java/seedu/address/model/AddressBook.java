@@ -2,7 +2,9 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
@@ -11,6 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueContactTagList;
 import seedu.address.model.tag.UniqueSaleTagList;
@@ -68,8 +71,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the  contents of the tag list with {@code contactTags}.
      * {@code contactTags} must not contain duplicate contactTags.
      */
-    public void setTags(List<Tag> contactTags) {
+    public void setContactTags(List<Tag> contactTags) {
         this.contactTags.setTags(contactTags);
+    }
+
+    public void setSaleTags(List<Tag> saleTags) {
+        this.saleTags.setTags(saleTags);
     }
 
     /**
@@ -95,7 +102,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setTags(newData.getContactTagList());
+        setContactTags(newData.getContactTagList());
+        setSaleTags(newData.getSaleTagList());
         setMeetings(newData.getMeetingList());
         setReminders(newData.getReminderList());
     }
@@ -118,6 +126,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.add(p);
         for (Tag t : p.getTags()) {
             contactTags.add(t);
+        }
+        for (Sale s : p.getSalesList()) {
+            for (Tag t : s.getTags()) {
+                saleTags.add(t);
+            }
         }
     }
 
@@ -221,7 +234,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void editSaleTag(Tag target, Tag editedTag) {
         saleTags.setTag(target, editedTag);
-        // TODO: edit sale tag once sale model is implemented
+        persons.setSaleTag(target, editedTag);
     }
 
     /**
@@ -234,11 +247,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns the number of sale items that are associated with the {@code target} tag.
+     * Lists all sale items associated with {@code target} tag.
      */
-    public int findBySaleTag(Tag target) {
-        // TODO
-        return 0;
+    public String findBySaleTag(Tag target) {
+        StringBuilder output = new StringBuilder();
+        output.append(String.format("Listing all sale items associated with : %s\n", target.toString()));
+        for (Person p : persons) {
+            int len = p.getSalesList().asUnmodifiableObservableList().size();
+            for (int i = 0; i < len; i++) {
+                Sale s = p.getSalesList().asUnmodifiableObservableList().get(i);
+                if (s.getTags().contains(target)) {
+                    output.append(String.format("%d. %s (Client: %s)\n", i + 1, s, p.getName()));
+                }
+            }
+        }
+        return output.toString();
     }
 
     /**
@@ -278,6 +301,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void sortTags() {
         contactTags.sort();
+        saleTags.sort();
     }
 
     //// meeting-level operations
@@ -330,6 +354,38 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeReminder(Reminder key) {
         reminders.remove(key);
+    }
+
+    /**
+     * Add a sale item to a contact.
+     */
+    public void addSaleToPerson(Person person, Sale sale) {
+        person.getSalesList().add(sale);
+        for (Tag t : sale.getTags()) {
+            addSaleTag(t);
+        }
+    }
+
+    /**
+     * Removes a sale item from a contact.
+     */
+    public void removeSaleFromPerson(Person person, Sale sale) {
+        person.getSalesList().remove(sale);
+        Set<Tag> toRemove = new HashSet<>(sale.getTags());
+        for (Tag t : sale.getTags()) {
+            for (Person p : persons) {
+                for (Sale s : p.getSalesList()) {
+                    if (s.getTags().contains(t)) {
+                        toRemove.remove(t);
+                    }
+                }
+            }
+        }
+        if (!toRemove.isEmpty()) {
+            for (Tag t : toRemove) {
+                saleTags.remove(t);
+            }
+        }
     }
 
     //// util methods

@@ -24,8 +24,8 @@ public class EditCommand extends Command {
             + ": Edits the tag identified by the index number used in the displayed tag list. "
             + "Note that all contacts or sales associated with this tag "
             + "will be updated automatically with the updated tag.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX (must be a positive integer) and new tag name\n"
+            + "Example: " + COMMAND_WORD + " 1 t/furniture";
     public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in StonksBook.";
     public static final String MESSAGE_MISSING_FIELD = "A new tag name must be provided.";
     public static final String MESSAGE_NOT_EDITED = "The new tag name provided is the same as the original.";

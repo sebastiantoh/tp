@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,9 +121,9 @@ public interface Model {
     int findByContactTag(Tag target);
 
     /**
-     * Returns the number of sale items associated with {@code target} tag.
+     * Lists all sale items associated with {@code target} tag.
      */
-    int findBySaleTag(Tag target);
+    String findBySaleTag(Tag target);
 
     /**
      * Lists all existing tags.
@@ -225,4 +226,14 @@ public interface Model {
      * {@code reminder} must not already exist in StonksBook.
      */
     void addReminder(Reminder reminder);
+
+    /**
+     * Adds the given sale item to the specified contact.
+     */
+    void addSaleToPerson(Person person, Sale sale);
+
+    /**
+     * Removes the given sale item to the specified contact.
+     */
+    void removeSaleFromPerson(Person person, Sale sale);
 }

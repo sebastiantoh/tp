@@ -8,13 +8,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 
@@ -61,8 +61,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_CONTACT_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_CONTACT_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_CONTACT_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_CONTACT_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_CONTACT_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String REMARK_DESC_AMY = " " + PREFIX_CONTACT_REMARK + VALID_REMARK_AMY;
     public static final String REMARK_DESC_BOB = " " + PREFIX_CONTACT_REMARK + VALID_REMARK_BOB;
     public static final String MESSAGE_CALL_AMY = " " + PREFIX_MESSAGE + VALID_MESSAGE_CALL_AMY;
@@ -75,7 +75,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_CONTACT_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC =
             " " + PREFIX_CONTACT_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_CONTACT_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_DATE = " " + PREFIX_DATETIME + "2020/10/30 15:00";
     public static final String INVALID_CONTACT_INDEX = " " + PREFIX_CONTACT + "-1";
     public static final String INVALID_DURATION = " " + PREFIX_DURATION + "-30";
@@ -91,6 +91,7 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_NAME_BALL = "Ball";
     public static final String VALID_QUANTITY_APPLE = "10";
     public static final String VALID_QUANTITY_BALL = "1";
+    public static final String VALID_SALE_TAG_FRUITS = "fruits";
     public static final Integer VALID_UNIT_PRICE_DOLLARS_APPLE = 3;
     public static final Integer VALID_UNIT_PRICE_CENTS_APPLE = 50;
     public static final Integer VALID_UNIT_PRICE_DOLLARS_BALL = 0;
@@ -104,6 +105,8 @@ public class CommandTestUtil {
     public static final String QUANTITY_DESC_APPLE = " " + PREFIX_SALE_QUANTITY + VALID_QUANTITY_APPLE;
     public static final String UNIT_PRICE_DESC_APPLE =
             " " + PREFIX_SALE_UNIT_PRICE + VALID_UNIT_PRICE_DOLLARS_APPLE + "." + VALID_UNIT_PRICE_CENTS_APPLE;
+
+    public static final String VALID_SALE_TAG = " " + PREFIX_TAG + VALID_SALE_TAG_FRUITS;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

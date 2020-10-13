@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.UNIT_PRICE_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SALE_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_PRICE_CENTS_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_PRICE_DOLLARS_APPLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -30,7 +31,11 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String userInput = CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE;
+        String userInput = CONTACT_INDEX_SECOND
+                + ITEM_NAME_DESC_APPLE
+                + QUANTITY_DESC_APPLE
+                + UNIT_PRICE_DESC_APPLE
+                + VALID_SALE_TAG;
 
         AddCommand expectedCommand = new AddCommand(INDEX_SECOND_ITEM, APPLE);
 
