@@ -175,6 +175,10 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Executes the UnknownCommand for each edited commandWord in the {@code commandWords} and expects
+     * the result containing the unedited commandWord.
+     */
     public static void testAllCommandWords(List<String> commandWords) {
         for (String commandWord : commandWords) {
             UnknownCommand unknownCommand = new UnknownCommand(commandWord.substring(2));
