@@ -24,7 +24,8 @@ public class ContactCommandsParser implements GroupCommandsParser {
             EditCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
-            ListCommand.COMMAND_WORD
+            ListCommand.COMMAND_WORD,
+            SortCommand.COMMAND_WORD
     );
 
     /**

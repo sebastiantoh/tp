@@ -1,8 +1,10 @@
 package seedu.address.logic.parser.sale;
 
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import java.util.Arrays;
+import java.util.List;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.UnknownCommand;
 import seedu.address.logic.commands.sale.AddCommand;
 import seedu.address.logic.commands.sale.DeleteCommand;
 import seedu.address.logic.commands.sale.ListCommand;
@@ -13,6 +15,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses the command word to create a Sale Command Object corresponding to the command word.
  */
 public class SaleCommandsParser implements GroupCommandsParser {
+
+    public static final List<String> ALL_SALE_COMMAND_WORDS = Arrays.asList(
+            AddCommand.COMMAND_WORD,
+            DeleteCommand.COMMAND_WORD,
+            ListCommand.COMMAND_WORD
+    );
 
     /**
      * Parses the command word and arguments to create the appropriate Command Object for Sale.
@@ -35,7 +43,7 @@ public class SaleCommandsParser implements GroupCommandsParser {
             return new ListCommandParser().parse(arguments);
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            return new UnknownCommand(commandWord);
         }
     }
 }

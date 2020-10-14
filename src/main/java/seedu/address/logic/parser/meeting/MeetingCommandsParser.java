@@ -1,8 +1,10 @@
 package seedu.address.logic.parser.meeting;
 
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import java.util.Arrays;
+import java.util.List;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.UnknownCommand;
 import seedu.address.logic.commands.meeting.AddCommand;
 import seedu.address.logic.commands.meeting.DeleteCommand;
 import seedu.address.logic.commands.meeting.ListCommand;
@@ -13,6 +15,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses the command word to create a Meeting Command Object corresponding to the command word.
  */
 public class MeetingCommandsParser implements GroupCommandsParser {
+
+    public static final List<String> ALL_MEETING_COMMAND_WORDS = Arrays.asList(
+            AddCommand.COMMAND_WORD,
+            DeleteCommand.COMMAND_WORD,
+            ListCommand.COMMAND_WORD
+    );
 
     /**
      * Parses the command word and arguments to create the appropriate Command Object for Meeting.
@@ -35,7 +43,7 @@ public class MeetingCommandsParser implements GroupCommandsParser {
             return new ListCommand();
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            return new UnknownCommand(commandWord);
         }
     }
 }
