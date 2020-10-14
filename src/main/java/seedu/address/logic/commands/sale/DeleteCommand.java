@@ -55,15 +55,16 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person person = people.get(contactIndex.getZeroBased());
-        List<Sale> sales = person.getSalesList().asUnmodifiableObservableList();
+        Person personToEdit = people.get(contactIndex.getZeroBased());
+        List<Sale> sales = personToEdit.getSalesList().asUnmodifiableObservableList();
 
         if (saleIndex.getZeroBased() >= sales.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX);
         }
 
         Sale saleToDelete = sales.get(saleIndex.getZeroBased());
-        model.removeSaleFromPerson(person, saleToDelete);
+
+        model.removeSaleFromPerson(personToEdit, saleToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_SALE_SUCCESS, saleToDelete));
     }
 

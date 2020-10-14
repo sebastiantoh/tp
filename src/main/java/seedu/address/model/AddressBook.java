@@ -14,6 +14,8 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.sale.Sale;
+import seedu.address.model.sale.UniqueSaleList;
+import seedu.address.model.sale.exceptions.DuplicateSaleException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueContactTagList;
 import seedu.address.model.tag.UniqueSaleTagList;
@@ -360,7 +362,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Add a sale item to a contact.
      */
     public void addSaleToPerson(Person person, Sale sale) {
-        person.getSalesList().add(sale);
+        Person editedPerson = Person.copyOf(person);
+        editedPerson.getSalesList().add(sale);
+        setPerson(person, editedPerson);
+
+        // TODO: extract the next few lines to another method (SRP)
         for (Tag t : sale.getTags()) {
             addSaleTag(t);
         }
@@ -370,7 +376,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Removes a sale item from a contact.
      */
     public void removeSaleFromPerson(Person person, Sale sale) {
-        person.getSalesList().remove(sale);
+        Person editedPerson = Person.copyOf(person);
+        editedPerson.getSalesList().remove(sale);
+        setPerson(person, editedPerson);
+
+        // TODO: extract the below to a new method (SRP)
         Set<Tag> toRemove = new HashSet<>(sale.getTags());
         for (Tag t : sale.getTags()) {
             for (Person p : persons) {

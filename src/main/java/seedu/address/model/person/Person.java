@@ -25,7 +25,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
-    private final UniqueSaleList salesList = new UniqueSaleList();
+    private UniqueSaleList salesList = new UniqueSaleList();
 
     /**
      * Creates a person object with specified details.
@@ -102,6 +102,10 @@ public class Person {
         return salesList;
     }
 
+    public void setSalesList(UniqueSaleList newList) {
+        this.salesList = newList;
+    }
+
     /**
      * Removes a tag from the tag set, no operation will be performed if the tag does not exist in the tag set.
      */
@@ -121,6 +125,26 @@ public class Person {
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
                 && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+    }
+
+    /**
+     * Returns a deep copy of the specified person.
+     * Defensive copies of the tag list and sale list are made.
+     * @param toCopy The person. to be copied.
+     * @return A deep copy of the person.
+     */
+    public static Person copyOf(Person toCopy) {
+        Set<Tag> newTagList = new HashSet<>(toCopy.tags);
+        UniqueSaleList newSaleList = new UniqueSaleList().setSales(toCopy.salesList);
+        return new Person(
+                toCopy.getName(),
+                toCopy.getPhone(),
+                toCopy.getEmail(),
+                toCopy.getAddress(),
+                newTagList,
+                toCopy.getRemark(),
+                newSaleList
+        );
     }
 
     /**
