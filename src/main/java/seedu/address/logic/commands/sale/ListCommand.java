@@ -2,7 +2,6 @@ package seedu.address.logic.commands.sale;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_INDEX;
 
 import java.util.List;
 

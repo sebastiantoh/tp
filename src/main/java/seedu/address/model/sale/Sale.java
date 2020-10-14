@@ -2,6 +2,7 @@ package seedu.address.model.sale;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
@@ -13,13 +14,13 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Sale {
-    // Identity field
+    /** Identity fields */
     private final ItemName itemName;
 
-    // Data fields
+    /** Data fields */
+    private final LocalDateTime datetimeOfPurchase;
     private final Quantity quantity;
     private final UnitPrice unitPrice;
-
     private final double totalCost;
 
     // Sale tags
@@ -28,10 +29,12 @@ public class Sale {
     /**
      * Every field must be present and not null.
      */
-    public Sale(ItemName itemName, Quantity quantity, UnitPrice unitPrice, Set<Tag> tags) {
-        requireAllNonNull(itemName, quantity, unitPrice);
+    public Sale(ItemName itemName, LocalDateTime datetimeOfPurchase, Quantity quantity,
+                UnitPrice unitPrice, Set<Tag> tags) {
+        requireAllNonNull(itemName, datetimeOfPurchase, quantity, unitPrice);
         this.itemName = itemName;
         this.quantity = quantity;
+        this.datetimeOfPurchase = datetimeOfPurchase;
         this.unitPrice = unitPrice;
         this.totalCost = this.quantity.quantity * this.unitPrice.getAmount();
         this.tags = tags;
@@ -39,6 +42,10 @@ public class Sale {
 
     public ItemName getItemName() {
         return itemName;
+    }
+
+    public LocalDateTime getDatetimeOfPurchase() {
+        return datetimeOfPurchase;
     }
 
     public Quantity getQuantity() {
@@ -49,6 +56,10 @@ public class Sale {
         return unitPrice;
     }
 
+    public double getTotalCost() {
+        return this.totalCost;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -57,9 +68,8 @@ public class Sale {
         return Collections.unmodifiableSet(tags);
     }
 
-
     /**
-     * Returns true if both sales have the same name or are the same.
+     * Returns true if both sales have the identity and data fields.
      * This defines a weaker notion of equality between two sales.
      */
     public boolean isSameSale(Sale otherSale) {
@@ -67,11 +77,11 @@ public class Sale {
             return true;
         }
 
-        return otherSale != null && otherSale.getItemName().equals(getItemName());
-    }
-
-    public double getTotalCost() {
-        return this.totalCost;
+        return otherSale != null
+                && otherSale.getItemName().equals(getItemName())
+                && otherSale.getDatetimeOfPurchase().equals(getDatetimeOfPurchase())
+                && otherSale.getUnitPrice().equals(getUnitPrice())
+                && otherSale.getQuantity().equals(getItemName());
     }
 
     /**
@@ -90,28 +100,29 @@ public class Sale {
 
         Sale otherSale = (Sale) other;
         return otherSale.getItemName().equals(getItemName())
-                && otherSale.getQuantity().equals(getQuantity())
+                && otherSale.getDatetimeOfPurchase().equals(getDatetimeOfPurchase())
                 && otherSale.getUnitPrice().equals(getUnitPrice())
+                && otherSale.getQuantity().equals(getQuantity())
                 && otherSale.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(itemName, quantity, unitPrice);
+        return Objects.hash(itemName, datetimeOfPurchase, quantity, unitPrice);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getItemName())
-                .append(" (Quantity: ")
+                .append(" (Date of Purchase: ")
+                .append(getDatetimeOfPurchase())
+                .append(", Quantity: ")
                 .append(getQuantity())
-                .append(", ")
-                .append(" Unit Price: ")
+                .append(", Unit Price: ")
                 .append(getUnitPrice())
-                .append(", ")
-                .append(" Tags: ")
+                .append(", Tags: ")
                 .append(getTags())
                 .append(")");
         return builder.toString();

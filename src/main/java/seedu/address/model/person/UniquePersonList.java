@@ -122,6 +122,7 @@ public class UniquePersonList implements Iterable<Person> {
                     tags.add(editedTag);
 
                     Sale newSale = new Sale(s.getItemName(),
+                            s.getDatetimeOfPurchase(),
                             s.getQuantity(),
                             s.getUnitPrice(),
                             tags);
@@ -178,6 +179,7 @@ public class UniquePersonList implements Iterable<Person> {
                 if (tags.contains(toRemove)) {
                     tags.remove(toRemove);
                     Sale newSale = new Sale(s.getItemName(),
+                            s.getDatetimeOfPurchase(),
                             s.getQuantity(),
                             s.getUnitPrice(),
                             tags);

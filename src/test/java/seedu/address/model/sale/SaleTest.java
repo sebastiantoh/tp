@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BALL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BALL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_PRICE_CENTS_BALL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_PRICE_DOLLARS_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_PRICE_DOLLARS_BALL;
 import static seedu.address.testutil.sale.TypicalSales.APPLE;
 import static seedu.address.testutil.sale.TypicalSales.BALL;
@@ -25,12 +24,7 @@ public class SaleTest {
         assertFalse(APPLE.isSameSale(null));
 
         // different quantity and unit price -> returns true
-        Sale editedApple = new SaleBuilder(APPLE).withQuantity(VALID_QUANTITY_BALL)
-                .withUnitPrice(VALID_UNIT_PRICE_DOLLARS_APPLE, VALID_UNIT_PRICE_CENTS_BALL).build();
-        assertTrue(APPLE.isSameSale(editedApple));
-
-        // different name -> returns false
-        editedApple = new SaleBuilder(APPLE).withItemName(VALID_ITEM_NAME_BALL).build();
+        Sale editedApple = new SaleBuilder(APPLE).withItemName(VALID_ITEM_NAME_BALL).build();
         assertFalse(APPLE.isSameSale(editedApple));
     }
 

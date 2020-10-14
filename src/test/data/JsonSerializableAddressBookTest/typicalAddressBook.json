@@ -24,12 +24,14 @@
       "remark": "Owes me $10",
       "saleList" : [ {
         "itemName" : "Apple",
+        "datetimeOfPurchase" : "2020-10-30T15:00",
         "quantity" : "10",
         "unitPriceDollar" : 3,
         "unitPriceCent" : 50
         },
         {
           "itemName" : "Ball",
+          "datetimeOfPurchase" : "2020-09-22T12:40",
           "quantity" : "1",
           "unitPriceDollar" : 0,
           "unitPriceCent" : 80

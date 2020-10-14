@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
@@ -89,6 +90,8 @@ public class CommandTestUtil {
     /* Sale commands */
     public static final String VALID_ITEM_NAME_APPLE = "Apple";
     public static final String VALID_ITEM_NAME_BALL = "Ball";
+    public static final String VALID_DATE_APPLE = "2020-10-30 15:00";
+    public static final String VALID_DATE_BALL = "2020-09-22 12:40";
     public static final String VALID_QUANTITY_APPLE = "10";
     public static final String VALID_QUANTITY_BALL = "1";
     public static final String VALID_SALE_TAG_FRUITS = "fruits";
@@ -98,10 +101,12 @@ public class CommandTestUtil {
     public static final Integer VALID_UNIT_PRICE_CENTS_BALL = 80;
 
     public static final String INVALID_ITEM_NAME = " " + PREFIX_SALE_NAME + "@pple";
+    public static final String INVALID_SALE_DATE = " " + PREFIX_SALE_DATE + "2020/09/22 12:40";
     public static final String INVALID_QUANTITY = " " + PREFIX_SALE_QUANTITY + "1.5";
     public static final String INVALID_UNIT_PRICE = " " + PREFIX_SALE_UNIT_PRICE + "0.0";
 
     public static final String ITEM_NAME_DESC_APPLE = " " + PREFIX_SALE_NAME + VALID_ITEM_NAME_APPLE;
+    public static final String SALE_DATE_DESC_APPLE = " " + PREFIX_SALE_DATE + VALID_DATE_APPLE;
     public static final String QUANTITY_DESC_APPLE = " " + PREFIX_SALE_QUANTITY + VALID_QUANTITY_APPLE;
     public static final String UNIT_PRICE_DESC_APPLE =
             " " + PREFIX_SALE_UNIT_PRICE + VALID_UNIT_PRICE_DOLLARS_APPLE + "." + VALID_UNIT_PRICE_CENTS_APPLE;
