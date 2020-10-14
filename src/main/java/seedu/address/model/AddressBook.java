@@ -14,8 +14,6 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.sale.Sale;
-import seedu.address.model.sale.UniqueSaleList;
-import seedu.address.model.sale.exceptions.DuplicateSaleException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueContactTagList;
 import seedu.address.model.tag.UniqueSaleTagList;

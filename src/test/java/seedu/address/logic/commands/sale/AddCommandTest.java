@@ -26,7 +26,7 @@ public class AddCommandTest {
 
     @Test
     public void constructor_nullSale_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(INDEX_SECOND_ITEM,null));
+        assertThrows(NullPointerException.class, () -> new AddCommand(INDEX_SECOND_ITEM, null));
     }
 
     @Test

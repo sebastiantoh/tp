@@ -139,8 +139,8 @@ public class AddressBookTest {
     @Test
     public void listTags_noSaleTags_success() {
         addressBook.addPerson(ALICE);
-        assertEquals("No sale tags found! Listing contact tags:\n" +
-                "1. [friends]\n", addressBook.listTags());
+        assertEquals("No sale tags found! Listing contact tags:\n"
+                + "1. [friends]\n", addressBook.listTags());
     }
 
     @Test
