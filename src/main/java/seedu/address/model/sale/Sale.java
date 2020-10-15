@@ -3,6 +3,7 @@ package seedu.address.model.sale;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
@@ -14,6 +15,8 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Sale {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy, HH:mm");
+
     /** Identity fields */
     private final ItemName itemName;
 
@@ -117,7 +120,7 @@ public class Sale {
         final StringBuilder builder = new StringBuilder();
         builder.append(getItemName())
                 .append(" (Date of Purchase: ")
-                .append(getDatetimeOfPurchase())
+                .append(getDatetimeOfPurchase().format(DATE_TIME_FORMATTER))
                 .append(", Quantity: ")
                 .append(getQuantity())
                 .append(", Unit Price: ")
