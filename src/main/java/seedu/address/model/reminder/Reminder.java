@@ -46,6 +46,14 @@ public class Reminder implements Comparable<Reminder> {
         return this.scheduledDate;
     }
 
+    /**
+     * Returns a formatted string representation of the meeting's scheduled date.
+     * Output format is "E, dd MMM yyyy, HH:mm".
+     */
+    public String getFormattedScheduledDate() {
+        return getScheduledDate().format(DATE_TIME_FORMATTER);
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
