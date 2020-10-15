@@ -22,9 +22,7 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private Label message;
     @FXML
-    private Label startDate;
-    @FXML
-    private Label endDate;
+    private Label date;
     @FXML
     private Label personName;
 
@@ -36,8 +34,7 @@ public class MeetingCard extends UiPart<Region> {
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
         message.setText(meeting.getMessage());
-        startDate.setText(meeting.getFormattedStartDate());
-        endDate.setText(meeting.getFormattedEndDate());
+        date.setText(meeting.getFormattedStartEndDate());
         personName.setText(meeting.getPerson().getName().fullName);
     }
 

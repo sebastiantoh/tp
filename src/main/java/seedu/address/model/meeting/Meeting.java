@@ -54,12 +54,11 @@ public class Meeting implements Comparable<Meeting> {
         return this.duration;
     }
 
-    public String getFormattedStartDate() {
-        return getStartDate().format(DATE_TIME_FORMATTER);
-    }
-
-    public String getFormattedEndDate() {
-        return getStartDate().plus(getDuration()).format(DATE_TIME_FORMATTER);
+    public String getFormattedStartEndDate() {
+        return String.format("%s - %s",
+                getStartDate().format(DATE_TIME_FORMATTER),
+                getStartDate().plus(getDuration()).format(DATE_TIME_FORMATTER)
+        );
     }
 
     @Override
@@ -68,9 +67,7 @@ public class Meeting implements Comparable<Meeting> {
 
         builder.append(getMessage())
                 .append(String.format(" - %s ", getPerson().getName()))
-                .append(String.format("(%s - %s)",
-                        getFormattedStartDate(),
-                        getFormattedEndDate()));
+                .append(String.format("(%s)", getFormattedStartEndDate()));
 
         return builder.toString();
     }
