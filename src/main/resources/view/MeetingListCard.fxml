@@ -17,22 +17,22 @@
       <padding>
         <Insets top="5" right="5" bottom="5" left="15"/>
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
+      <HBox spacing="5">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE"/>
           </minWidth>
         </Label>
-        <Label fx:id="message" text="\$first" styleClass="cell_big_label"/>
+        <Label fx:id="message" text="\$first" wrapText="true" styleClass="cell_big_label"/>
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
         <FontIcon iconLiteral="far-calendar-alt" iconColor="white" iconSize="16"/>
-        <Label fx:id="date" styleClass="cell_small_label" text="\$date"/>
+        <Label fx:id="date" styleClass="cell_small_label" text="\$date" wrapText="true"/>
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
         <FontIcon iconLiteral="fas-user-circle" iconColor="white" iconSize="16"/>
-        <Label fx:id="personName" styleClass="cell_small_label" text="\$personName"/>
+        <Label fx:id="personName" styleClass="cell_small_label" text="\$personName" wrapText="true"/>
       </HBox>
     </VBox>
   </GridPane>
