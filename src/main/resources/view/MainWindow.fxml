@@ -40,14 +40,22 @@
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
-          <VBox fx:id="meetingList" styleClass="pane-with-border" minWidth="340" prefWidth="512" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
-            <StackPane fx:id="meetingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          <VBox>
+            <VBox fx:id="meetingList" styleClass="pane-with-border" minWidth="340" prefWidth="512" VBox.vgrow="ALWAYS">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+              </padding>
+              <StackPane fx:id="meetingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+
+            <VBox fx:id="reminderList" styleClass="pane-with-border" minWidth="340" prefWidth="512" VBox.vgrow="ALWAYS">
+              <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+              </padding>
+              <StackPane fx:id="reminderListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
           </VBox>
         </HBox>
-
 
         <StackPane VBox.vgrow="NEVER" fx:id="chatBoxPlaceholder" styleClass="pane-with-border"
                    minHeight="150" prefHeight="150" maxHeight="150" minWidth="340" prefWidth="1024">
