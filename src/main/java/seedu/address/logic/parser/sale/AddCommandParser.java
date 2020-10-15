@@ -60,8 +60,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         UnitPrice unitPrice = ParserUtil.parseUnitPrice(argMultimap.getValue(PREFIX_SALE_UNIT_PRICE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Sale toAdd = new Sale(itemName, dateOfPurchase, quantity, unitPrice, tagList);
 
-        return new AddCommand(index, toAdd);
+        return new AddCommand(index, itemName, dateOfPurchase, quantity, unitPrice, tagList);
     }
 }

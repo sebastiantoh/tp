@@ -14,6 +14,7 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.sale.Sale;
+import seedu.address.model.sale.UniqueSaleList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueContactTagList;
 import seedu.address.model.tag.UniqueSaleTagList;
@@ -29,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueSaleTagList saleTags;
     private final UniqueMeetingList meetings;
     private final UniqueReminderList reminders;
+    private final UniqueSaleList sales;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -44,6 +46,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         saleTags = new UniqueSaleTagList();
         meetings = new UniqueMeetingList();
         reminders = new UniqueReminderList();
+        sales = new UniqueSaleList();
     }
 
     public AddressBook() {
@@ -96,6 +99,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the sales list with {@code sales}.
+     * {@code reminders} must not contain duplicate sales.
+     */
+    public void setSales(List<Sale> sales) {
+        this.sales.setSales(sales);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -106,6 +117,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setSaleTags(newData.getSaleTagList());
         setMeetings(newData.getMeetingList());
         setReminders(newData.getReminderList());
+        setSales(newData.getSaleList());
     }
 
     //// person-level operations
@@ -127,11 +139,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : p.getTags()) {
             contactTags.add(t);
         }
-        for (Sale s : p.getSalesList()) {
-            for (Tag t : s.getTags()) {
-                saleTags.add(t);
-            }
-        }
+        // TODO: Add all sales that belong to person to the list of sale tags
+//        for (Sale s : p.getSalesList()) {
+//            for (Tag t : s.getTags()) {
+//                saleTags.add(t);
+//            }
+//        }
     }
 
     /**
@@ -214,7 +227,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeSaleTag(Tag key) {
         saleTags.remove(key);
-        persons.removeSaleTag(key);
+        sales.removeSaleTag(key);
     }
 
     /**
@@ -234,7 +247,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void editSaleTag(Tag target, Tag editedTag) {
         saleTags.setTag(target, editedTag);
-        persons.setSaleTag(target, editedTag);
+        sales.setSaleTag(target, editedTag);
     }
 
     /**
@@ -252,13 +265,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String findBySaleTag(Tag target) {
         StringBuilder output = new StringBuilder();
         output.append(String.format("Listing all sale items associated with : %s\n", target.toString()));
-        for (Person p : persons) {
-            int len = p.getSalesList().asUnmodifiableObservableList().size();
-            for (int i = 0; i < len; i++) {
-                Sale s = p.getSalesList().asUnmodifiableObservableList().get(i);
-                if (s.getTags().contains(target)) {
-                    output.append(String.format("%d. %s (Client: %s)\n", i + 1, s, p.getName()));
-                }
+        int i = 0;
+        for (Sale s : sales.asUnmodifiableObservableList()) {
+            if(s.getTags().contains(target)) {
+                output.append(String.format("%d. %s (Client: %s)\n", i + 1, s, s.getBuyer().getName()));
+                i += 1;
             }
         }
         return output.toString();
@@ -357,35 +368,38 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Add a sale item to a contact.
+     * Returns true if an equivalent sale exists in the address book.
      */
-    public void addSaleToPerson(Person person, Sale sale) {
-        Person editedPerson = Person.copyOf(person);
-        editedPerson.getSalesList().add(sale);
-        setPerson(person, editedPerson);
+    public boolean hasSale(Sale sale) {
+        requireNonNull(sale);
+        return sales.contains(sale);
+    }
 
-        // TODO: extract the next few lines to another method (SRP)
+    /**
+     * Adds a sale to StonksBook.
+     * The sale must not already exist in StonksBook.
+     */
+    public void addSale(Sale sale) {
+        sales.add(sale);
+
         for (Tag t : sale.getTags()) {
             addSaleTag(t);
         }
     }
 
     /**
-     * Removes a sale item from a contact.
+     * Removes {@code sale} from this {@code AddressBook}.
+     * {@code sale} must exist in the address book.
      */
-    public void removeSaleFromPerson(Person person, Sale sale) {
-        Person editedPerson = Person.copyOf(person);
-        editedPerson.getSalesList().remove(sale);
-        setPerson(person, editedPerson);
+    public void removeSale(Sale sale) {
+        sales.remove(sale);
 
         // TODO: extract the below to a new method (SRP)
         Set<Tag> toRemove = new HashSet<>(sale.getTags());
         for (Tag t : sale.getTags()) {
-            for (Person p : persons) {
-                for (Sale s : p.getSalesList()) {
-                    if (s.getTags().contains(t)) {
-                        toRemove.remove(t);
-                    }
+            for (Sale s : sales) {
+                if (s.getTags().contains(t)) {
+                    toRemove.remove(t);
                 }
             }
         }
@@ -430,6 +444,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Sale> getSaleList() {
+        return sales.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -439,13 +458,16 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         AddressBook otherAddressBook = (AddressBook) other;
 
-        return persons.equals(otherAddressBook.persons) && reminders.equals(otherAddressBook.reminders)
+        return persons.equals(otherAddressBook.persons)
+            && reminders.equals(otherAddressBook.reminders)
             && meetings.equals(otherAddressBook.meetings)
-            && contactTags.equals(((AddressBook) other).contactTags);
+            && contactTags.equals(((AddressBook) other).contactTags)
+            && sales.equals(((AddressBook) other).sales);
     }
 
     @Override
     public int hashCode() {
+        // TODO: refine later
         return persons.hashCode();
     }
 }

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -44,8 +45,11 @@ public class ListCommand extends Command {
         }
 
         Person personToShow = lastShownList.get(targetIndex.getZeroBased());
+        Predicate<Sale> filterByContact = x -> x.getBuyer().equals(personToShow);
 
-        List<Sale> sales = personToShow.getSalesList().asUnmodifiableObservableList();
+        model.updateFilteredSaleList(filterByContact);
+
+        List<Sale> sales = model.getFilteredSaleList();
 
         StringBuilder output = new StringBuilder("Sales made to " + personToShow.getName() + ":\n");
 
@@ -54,7 +58,7 @@ public class ListCommand extends Command {
         }
 
         int index = 1;
-        for (Sale sale : personToShow.getSalesList().asUnmodifiableObservableList()) {
+        for (Sale sale : sales) {
             output.append(index).append(". ").append(sale.toString()).append("\n");
             index++;
         }

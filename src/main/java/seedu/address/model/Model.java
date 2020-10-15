@@ -182,6 +182,28 @@ public interface Model {
     void updateSortedPersonList(Comparator<Person> comparator);
 
     /**
+     * Returns an unmodifiable view of the filtered sale list.
+     */
+    ObservableList<Sale> getFilteredSaleList();
+
+    /**
+     * Updates the filter of the filtered sale list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredSaleList(Predicate<Sale> predicate);
+
+    /**
+     * Returns an unmodifiable view of the sorted sale list.
+     */
+    ObservableList<Sale> getSortedSaleList();
+
+    /**
+     * Updates the comparator of the sorted sale list to sort by the given {@code comparator}.
+     */
+    void updateSortedSaleList(Comparator<Sale> comparator);
+
+    /**
      * Returns an unmodifiable view of the sorted meeting list.
      * .
      */
@@ -228,12 +250,19 @@ public interface Model {
     void addReminder(Reminder reminder);
 
     /**
-     * Adds the given sale item to the specified contact.
+     * Returns true if a sale with the same fields {@code sale} exists in StonksBook.
      */
-    void addSaleToPerson(Person person, Sale sale);
+    boolean hasSale(Sale sale);
 
     /**
-     * Removes the given sale item to the specified contact.
+     * Adds the given sale.
+     * {@code sale} must not already exist in StonksBook.
      */
-    void removeSaleFromPerson(Person person, Sale sale);
+    void addSale(Sale sale);
+
+    /**
+     * Removes the given sale.
+     * The sale must exist in StonksBook.
+     */
+    void removeSale(Sale sale);
 }

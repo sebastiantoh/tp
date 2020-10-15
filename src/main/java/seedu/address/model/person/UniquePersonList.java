@@ -100,34 +100,10 @@ public class UniquePersonList implements Iterable<Person> {
                         original.getPhone(),
                         original.getEmail(),
                         original.getAddress(),
-                        tags, original.getRemark());
+                        tags,
+                        original.getRemark(),
+                        original.getTotalSalesAmount());
                 internalList.set(i, p);
-            }
-        }
-    }
-
-    /**
-     * Replaces the specified {@code target} with {@code editedTag} for all sales.
-     */
-    public void setSaleTag(Tag target, Tag editedTag) {
-        requireAllNonNull(target, editedTag);
-        int count = internalList.size();
-        // Iterate through all sales and update their tags.
-        for (int i = 0; i < count; i++) {
-            Person original = internalList.get(i);
-            for (Sale s : original.getSalesList()) {
-                Set<Tag> tags = new HashSet<>(s.getTags());
-                if (tags.contains(target)) {
-                    tags.remove(target);
-                    tags.add(editedTag);
-
-                    Sale newSale = new Sale(s.getItemName(),
-                            s.getDatetimeOfPurchase(),
-                            s.getQuantity(),
-                            s.getUnitPrice(),
-                            tags);
-                    original.getSalesList().setSale(s, newSale);
-                }
             }
         }
     }
@@ -147,7 +123,9 @@ public class UniquePersonList implements Iterable<Person> {
                         original.getPhone(),
                         original.getEmail(),
                         original.getAddress(),
-                        tags, original.getRemark());
+                        tags,
+                        original.getRemark(),
+                        original.getTotalSalesAmount());
                 internalList.set(i, p);
             }
         }
@@ -164,29 +142,6 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
-    }
-
-    /**
-     * Removes the specified tag from all sales.
-     */
-    public void removeSaleTag(Tag toRemove) {
-        requireNonNull(toRemove);
-        int count = internalList.size();
-        for (int i = 0; i < count; i++) {
-            Person original = internalList.get(i);
-            for (Sale s : original.getSalesList()) {
-                Set<Tag> tags = new HashSet<>(s.getTags());
-                if (tags.contains(toRemove)) {
-                    tags.remove(toRemove);
-                    Sale newSale = new Sale(s.getItemName(),
-                            s.getDatetimeOfPurchase(),
-                            s.getQuantity(),
-                            s.getUnitPrice(),
-                            tags);
-                    original.getSalesList().setSale(s, newSale);
-                }
-            }
-        }
     }
 
     public void setPersons(UniquePersonList replacement) {

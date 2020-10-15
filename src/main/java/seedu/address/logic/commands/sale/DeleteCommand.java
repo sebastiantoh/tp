@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_INDEX;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -37,7 +38,7 @@ public class DeleteCommand extends Command {
     private final Index saleIndex;
 
     /**
-     * Creates an AddCommand that removes a sale from a specified contact.
+     * Creates an DeleteCommand that removes a sale from a specified contact.
      * @param contactIndex Index of the contact whose sale is to be removed.
      * @param saleIndex Index of the sale to be removed.
      */
@@ -56,15 +57,21 @@ public class DeleteCommand extends Command {
         }
 
         Person personToEdit = people.get(contactIndex.getZeroBased());
-        List<Sale> sales = personToEdit.getSalesList().asUnmodifiableObservableList();
 
+        List<Sale> sales = model.getFilteredSaleList();
         if (saleIndex.getZeroBased() >= sales.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX);
         }
 
         Sale saleToDelete = sales.get(saleIndex.getZeroBased());
+        BigDecimal newTotalSalesAmount = personToEdit.getTotalSalesAmount().subtract(saleToDelete.getTotalCost());
 
-        model.removeSaleFromPerson(personToEdit, saleToDelete);
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getRemark(), newTotalSalesAmount);
+
+        model.removeSale(saleToDelete);
+        model.setPerson(personToEdit, editedPerson);
+
         return new CommandResult(String.format(MESSAGE_DELETE_SALE_SUCCESS, saleToDelete));
     }
 

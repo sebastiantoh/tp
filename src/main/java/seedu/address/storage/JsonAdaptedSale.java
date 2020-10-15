@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Person;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
 import seedu.address.model.sale.Sale;
@@ -28,10 +30,10 @@ class JsonAdaptedSale {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Sale's %s field is missing!";
 
     private final String itemName;
+    private final JsonAdaptedPerson buyer;
     private final String datetimeOfPurchase;
     private final String quantity;
-    private final Integer unitPriceDollar;
-    private final Integer unitPriceCent;
+    private final String unitPrice;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -39,16 +41,16 @@ class JsonAdaptedSale {
      */
     @JsonCreator
     public JsonAdaptedSale(@JsonProperty("itemName") String itemName,
+                           @JsonProperty("buyer") JsonAdaptedPerson buyer,
                            @JsonProperty("datetimeOfPurchase") String datetimeOfPurchase,
                            @JsonProperty("quantity") String quantity,
-                           @JsonProperty("unitPriceDollar") Integer unitPriceDollar,
-                           @JsonProperty("unitPriceCent") Integer unitPriceCent,
+                           @JsonProperty("unitPrice") String unitPrice,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.itemName = itemName;
+        this.buyer = buyer;
         this.datetimeOfPurchase = datetimeOfPurchase;
         this.quantity = quantity;
-        this.unitPriceDollar = unitPriceDollar;
-        this.unitPriceCent = unitPriceCent;
+        this.unitPrice = unitPrice;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -59,10 +61,10 @@ class JsonAdaptedSale {
      */
     public JsonAdaptedSale(Sale source) {
         itemName = source.getItemName().name;
+        buyer = new JsonAdaptedPerson(source.getBuyer());
         datetimeOfPurchase = source.getDatetimeOfPurchase().toString();
         quantity = source.getQuantity().toString();
-        unitPriceDollar = source.getUnitPrice().dollars;
-        unitPriceCent = source.getUnitPrice().cents;
+        unitPrice = source.getUnitPrice().getUnitPriceString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -89,6 +91,11 @@ class JsonAdaptedSale {
         }
         final ItemName modelItemName = new ItemName(itemName);
 
+        if (this.buyer == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName()));
+        }
+        final Person modelBuyer = this.buyer.toModelType();
+
         if (datetimeOfPurchase == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Datetime of Purchase"));
         }
@@ -108,17 +115,17 @@ class JsonAdaptedSale {
         }
         final Quantity modelQuantity = new Quantity(quantity);
 
-        if (unitPriceDollar == null || unitPriceCent == null) {
+        if (unitPrice == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, UnitPrice.class.getSimpleName()));
         }
-        if (!UnitPrice.isValidUnitPrice(unitPriceDollar, unitPriceCent)) {
+        if (!UnitPrice.isValidUnitPriceString(unitPrice)) {
             throw new IllegalValueException(UnitPrice.MESSAGE_CONSTRAINTS);
         }
-        final UnitPrice modelUnitPrice = new UnitPrice(unitPriceDollar, unitPriceCent);
+        final UnitPrice modelUnitPrice = new UnitPrice(new BigDecimal(unitPrice));
 
         final Set<Tag> saleTagsSet = new HashSet<>(saleTags);
 
-        return new Sale(modelItemName, modelDatetimeOfPurchase, modelQuantity, modelUnitPrice, saleTagsSet);
+        return new Sale(modelItemName, modelBuyer, modelDatetimeOfPurchase, modelQuantity, modelUnitPrice, saleTagsSet);
     }
 }

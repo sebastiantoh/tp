@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import seedu.address.logic.commands.contact.AddCommand;
@@ -54,7 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_CONTACT_REMARK).orElse(""));
 
-        Person person = new Person(name, phone, email, address, tagList, remark);
+        Person person = new Person(name, phone, email, address, tagList, remark, BigDecimal.ZERO);
 
         return new AddCommand(person);
     }

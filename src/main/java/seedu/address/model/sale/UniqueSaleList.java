@@ -3,13 +3,17 @@ package seedu.address.model.sale;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
 import seedu.address.model.sale.exceptions.SaleNotFoundException;
+import seedu.address.model.tag.Tag;
 
 /**
  * A list of sales that enforces uniqueness between its elements and does not allow nulls.
@@ -30,8 +34,6 @@ public class UniqueSaleList implements Iterable<Sale> {
     private final ObservableList<Sale> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    private double totalSalesAmount = ZERO_SALE_AMOUNT;
-
     /**
      * Returns true if the list contains an equivalent sale as the given argument.
      */
@@ -50,7 +52,6 @@ public class UniqueSaleList implements Iterable<Sale> {
             throw new DuplicateSaleException();
         }
         internalList.add(toAdd);
-        totalSalesAmount += toAdd.getTotalCost();
         return this;
     }
 
@@ -72,8 +73,6 @@ public class UniqueSaleList implements Iterable<Sale> {
         }
 
         internalList.set(index, editedSale);
-        totalSalesAmount -= target.getTotalCost();
-        totalSalesAmount += editedSale.getTotalCost();
     }
 
     /**
@@ -85,13 +84,11 @@ public class UniqueSaleList implements Iterable<Sale> {
         if (!internalList.remove(toRemove)) {
             throw new SaleNotFoundException();
         }
-        totalSalesAmount -= toRemove.getTotalCost();
     }
 
     public UniqueSaleList setSales(UniqueSaleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-        resetTotalSalesAmount(replacement.internalList);
         return this;
     }
 
@@ -106,22 +103,54 @@ public class UniqueSaleList implements Iterable<Sale> {
         }
 
         internalList.setAll(sales);
-        resetTotalSalesAmount(sales);
     }
 
-    private void resetTotalSalesAmount(List<Sale> saleList) {
-        totalSalesAmount = saleList.stream()
-                .map(Sale::getTotalCost)
-                .reduce(Double::sum)
-                .orElse(ZERO_SALE_AMOUNT);
+    /**
+     * Replaces the specified {@code target} with {@code editedTag} for all sales.
+     */
+    public void setSaleTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+        int count = internalList.size();
+        // Iterate through all sales and update their tags.
+        for (int i = 0; i < count; i++) {
+            Sale original = internalList.get(i);
+            Set<Tag> tags = new HashSet<>(original.getTags());
+            if (tags.contains(target)) {
+                tags.remove(target);
+                tags.add(editedTag);
+
+                Sale newSale = new Sale(original.getItemName(),
+                        original.getBuyer(),
+                        original.getDatetimeOfPurchase(),
+                        original.getQuantity(),
+                        original.getUnitPrice(),
+                        tags);
+                internalList.set(i, newSale);
+            }
+        }
     }
 
-    public double getTotalSalesAmount() {
-        return totalSalesAmount;
-    }
+    /**
+     * Removes the specified tag from all sales.
+     */
+    public void removeSaleTag(Tag toRemove) {
+        requireNonNull(toRemove);
+        int count = internalList.size();
 
-    public String getTotalSalesAmountAsStr() {
-        return String.format("$%.2f", totalSalesAmount);
+        for (int i = 0; i < count; i++) {
+            Sale original = internalList.get(i);
+            Set<Tag> tags = new HashSet<>(original.getTags());
+            if (tags.contains(toRemove)) {
+                tags.remove(toRemove);
+                Sale newSale = new Sale(original.getItemName(),
+                        original.getBuyer(),
+                        original.getDatetimeOfPurchase(),
+                        original.getQuantity(),
+                        original.getUnitPrice(),
+                        tags);
+                internalList.set(i, newSale);
+            }
+        }
     }
 
     /**
@@ -140,8 +169,7 @@ public class UniqueSaleList implements Iterable<Sale> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueSaleList // instanceof handles nulls
-                && internalList.equals(((UniqueSaleList) other).internalList)
-                && totalSalesAmount == ((UniqueSaleList) other).totalSalesAmount);
+                && internalList.equals(((UniqueSaleList) other).internalList));
     }
 
     @Override
