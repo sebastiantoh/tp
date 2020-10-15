@@ -32,8 +32,9 @@ public class ListCommandTest {
     @Test
     public void execute_validIndex_showsSales() {
         String saleListResult = "Sales made to Benson Meier:\n"
-                + "1. Apple (Date of Purchase: 2020-10-30T15:00, Quantity: 10, Unit Price: $3.50, Tags: [[fruits]])\n"
-                + "2. Ball (Date of Purchase: 2020-09-22T12:40, Quantity: 1, Unit Price: $0.80, Tags: [[sports]])\n";
+                + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: $3.50, "
+                + "Tags: [[fruits]])\n2. Ball (Date of Purchase: Tue, 22 Sep 2020, 12:40, Quantity: 1, "
+                + "Unit Price: $0.80, Tags: [[sports]])\n";
         assertCommandSuccess(new ListCommand(INDEX_SECOND_ITEM), model, saleListResult, expectedModel);
     }
 
