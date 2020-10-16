@@ -92,10 +92,11 @@ public class UniqueSaleList implements Iterable<Sale> {
         totalSalesAmount.set(totalSalesAmount.getValue() - toRemove.getTotalCost());
     }
 
-    public void setSales(UniqueSaleList replacement) {
+    public UniqueSaleList setSales(UniqueSaleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         resetTotalSalesAmount(replacement.internalList);
+        return this;
     }
 
     /**

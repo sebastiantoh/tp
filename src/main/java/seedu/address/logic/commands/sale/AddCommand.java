@@ -3,6 +3,7 @@ package seedu.address.logic.commands.sale;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
@@ -18,7 +19,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.sale.Sale;
-import seedu.address.model.sale.exceptions.DuplicateSaleException;
 
 /**
  * Adds a sale associated with a contact to StonksBook.
@@ -31,11 +31,13 @@ public class AddCommand extends Command {
         + "Parameters: "
         + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer) "
         + PREFIX_SALE_NAME + "ITEM_NAME "
+        + PREFIX_SALE_DATE + "DATETIME_OF_PURCHASE"
         + PREFIX_SALE_UNIT_PRICE + "UNIT_PRICE "
         + PREFIX_SALE_QUANTITY + "QUANTITY\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_SALE_CONTACT_INDEX + "2 "
         + PREFIX_SALE_NAME + "Apple "
+        + PREFIX_SALE_DATE + "2020-10-30 15:00 "
         + PREFIX_SALE_UNIT_PRICE + "2.50 "
         + PREFIX_SALE_QUANTITY + "50 "
         + PREFIX_TAG + "fruits";
@@ -70,11 +72,12 @@ public class AddCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        try {
-            model.addSaleToPerson(personToEdit, toAdd);
-        } catch (DuplicateSaleException e) {
+        if (personToEdit.getSalesList().contains(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SALE);
         }
+
+        model.addSaleToPerson(personToEdit, toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -1,5 +1,6 @@
 package seedu.address.testutil.sale;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,12 +16,15 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class SaleBuilder {
 
-    public static final String DEFAULT_ITEM_NAME = "Pizza";
-    public static final String DEFAULT_QUANTITY = "50";
     public static final Integer DEFAULT_UNIT_PRICE_DOLLARS = 20;
     public static final Integer DEFAULT_UNIT_PRICE_CENTS = 50;
+    public static final String DEFAULT_ITEM_NAME = "Pizza";
+    public static final String DEFAULT_QUANTITY = "50";
+    private static final LocalDateTime DEFAULT_DATETIME =
+            LocalDateTime.of(2020, 10, 17, 15, 20);
 
     private ItemName name;
+    private LocalDateTime datetimeOfPurchase;
     private Quantity quantity;
     private UnitPrice unitPrice;
     private Set<Tag> tags;
@@ -30,6 +34,7 @@ public class SaleBuilder {
      */
     public SaleBuilder() {
         name = new ItemName(DEFAULT_ITEM_NAME);
+        datetimeOfPurchase = DEFAULT_DATETIME;
         quantity = new Quantity(DEFAULT_QUANTITY);
         unitPrice = new UnitPrice(DEFAULT_UNIT_PRICE_DOLLARS, DEFAULT_UNIT_PRICE_CENTS);
         tags = new HashSet<>();
@@ -40,6 +45,7 @@ public class SaleBuilder {
      */
     public SaleBuilder(Sale saleToCopy) {
         name = saleToCopy.getItemName();
+        datetimeOfPurchase = saleToCopy.getDatetimeOfPurchase();
         quantity = saleToCopy.getQuantity();
         unitPrice = saleToCopy.getUnitPrice();
         tags = saleToCopy.getTags();
@@ -50,6 +56,14 @@ public class SaleBuilder {
      */
     public SaleBuilder withItemName(String name) {
         this.name = new ItemName(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code datetimeOfPurchase} of the {@code Sale} that we are building.
+     */
+    public SaleBuilder withDatetimeOfPurchase(LocalDateTime datetime) {
+        this.datetimeOfPurchase = datetime;
         return this;
     }
 
@@ -78,6 +92,6 @@ public class SaleBuilder {
     }
 
     public Sale build() {
-        return new Sale(name, quantity, unitPrice, tags);
+        return new Sale(name, datetimeOfPurchase, quantity, unitPrice, tags);
     }
 }

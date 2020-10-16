@@ -132,18 +132,15 @@ public class AddressBookTest {
         addressBookCopy.addSaleToPerson(ALICE, TypicalSales.APPLE);
         assertEquals(addressBookCopy.findBySaleTag(new Tag("fruits")),
                 "Listing all sale items associated with : [fruits]\n"
-                        + "1. Apple (Quantity: 10,  Unit Price: $3.50,  Tags: [[fruits]]) (Client: Alice Pauline)\n");
+                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: $3.50, "
+                        + "Tags: [[fruits]]) (Client: Alice Pauline)\n");
     }
 
     @Test
     public void listTags_noSaleTags_success() {
         addressBook.addPerson(ALICE);
-        assertEquals("Listing contact tags:\n"
-                + "1. [friends]\n"
-                + "\n"
-                + "Listing sale tags:\n"
-                + "2. [fruits]\n"
-                + "3. [electronics]\n", addressBook.listTags());
+        assertEquals("No sale tags found! Listing contact tags:\n"
+                + "1. [friends]\n", addressBook.listTags());
     }
 
     @Test
@@ -154,8 +151,7 @@ public class AddressBookTest {
                 + "1. [friends]\n"
                 + "\n"
                 + "Listing sale tags:\n"
-                + "2. [fruits]\n"
-                + "3. [electronics]\n", addressBook.listTags());
+                + "2. [electronics]\n", addressBook.listTags());
     }
 
     @Test

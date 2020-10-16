@@ -1,5 +1,9 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +28,7 @@ class JsonAdaptedSale {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Sale's %s field is missing!";
 
     private final String itemName;
+    private final String datetimeOfPurchase;
     private final String quantity;
     private final Integer unitPriceDollar;
     private final Integer unitPriceCent;
@@ -33,11 +38,14 @@ class JsonAdaptedSale {
      * Constructs a {@code JsonAdaptedSale} with the given sale details.
      */
     @JsonCreator
-    public JsonAdaptedSale(@JsonProperty("itemName") String itemName, @JsonProperty("quantity") String quantity,
+    public JsonAdaptedSale(@JsonProperty("itemName") String itemName,
+                           @JsonProperty("datetimeOfPurchase") String datetimeOfPurchase,
+                           @JsonProperty("quantity") String quantity,
                            @JsonProperty("unitPriceDollar") Integer unitPriceDollar,
                            @JsonProperty("unitPriceCent") Integer unitPriceCent,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.itemName = itemName;
+        this.datetimeOfPurchase = datetimeOfPurchase;
         this.quantity = quantity;
         this.unitPriceDollar = unitPriceDollar;
         this.unitPriceCent = unitPriceCent;
@@ -51,6 +59,7 @@ class JsonAdaptedSale {
      */
     public JsonAdaptedSale(Sale source) {
         itemName = source.getItemName().name;
+        datetimeOfPurchase = source.getDatetimeOfPurchase().toString();
         quantity = source.getQuantity().toString();
         unitPriceDollar = source.getUnitPrice().dollars;
         unitPriceCent = source.getUnitPrice().cents;
@@ -80,6 +89,16 @@ class JsonAdaptedSale {
         }
         final ItemName modelItemName = new ItemName(itemName);
 
+        if (datetimeOfPurchase == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Datetime of Purchase"));
+        }
+        final LocalDateTime modelDatetimeOfPurchase;
+        try {
+            modelDatetimeOfPurchase = LocalDateTime.parse(this.datetimeOfPurchase);
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException(MESSAGE_INVALID_DATETIME);
+        }
+
         if (quantity == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
@@ -100,11 +119,6 @@ class JsonAdaptedSale {
 
         final Set<Tag> saleTagsSet = new HashSet<>(saleTags);
 
-        return new Sale(modelItemName, modelQuantity, modelUnitPrice, saleTagsSet);
+        return new Sale(modelItemName, modelDatetimeOfPurchase, modelQuantity, modelUnitPrice, saleTagsSet);
     }
-
-    public String toString() {
-        return this.itemName;
-    }
-
 }

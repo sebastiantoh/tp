@@ -39,13 +39,6 @@ public class UniqueSaleListTest {
     }
 
     @Test
-    public void contains_saleWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueSaleList.add(APPLE);
-        Sale editedApple = new SaleBuilder(APPLE).withUnitPrice(5, 60).withQuantity("20").build();
-        assertTrue(uniqueSaleList.contains(editedApple));
-    }
-
-    @Test
     public void add_nullSale_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueSaleList.add(null));
     }
