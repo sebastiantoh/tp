@@ -15,10 +15,9 @@ import seedu.address.model.reminder.Reminder;
  */
 public class ReminderCard extends UiPart<Region> {
 
-    // The shae of red that is used to indicate overdue reminders
+    // The shade of red that is used to indicate overdue reminders
     private static final String RED = "#ff0266";
-
-    private static final String OVERDUE_DATE_STYLE_CLASS = "overdue-date";
+    private static final String OVERDUE_DATE_STYLE_CLASS = "overdue";
     private static final String FXML = "ReminderListCard.fxml";
 
     public final Reminder reminder;

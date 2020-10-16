@@ -36,7 +36,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getSortedReminderList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedMeetingList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
@@ -60,7 +60,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertNotEquals(deleteFirstCommand, null);
 
-        // different reminders -> returns false
+        // different indices -> returns false
         assertNotEquals(deleteFirstCommand, deleteSecondCommand);
     }
 }

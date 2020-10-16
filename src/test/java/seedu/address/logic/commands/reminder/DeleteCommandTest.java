@@ -60,7 +60,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertNotEquals(deleteFirstCommand, null);
 
-        // different reminders -> returns false
+        // different indices -> returns false
         assertNotEquals(deleteFirstCommand, deleteSecondCommand);
     }
 }
