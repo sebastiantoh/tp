@@ -15,11 +15,10 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelStub;
+import seedu.address.model.ModelStubWithSortedPersonList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.person.PersonBuilder;
@@ -98,19 +97,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that has a sortedPersonList containing {@code TypicalPerson#BOB}.
-     */
-    private class ModelStubWithSortedPersonList extends ModelStub {
-        @Override
-        public ObservableList<Person> getSortedPersonList() {
-            ObservableList<Person> sortedPersonList = FXCollections.observableArrayList();
-            sortedPersonList.add(BOB);
-            return sortedPersonList;
-        }
-    }
-
-    /**
-     * A Model stub that always accept the reminder associated with {@code TypicalPerson#BOB}.
+     * A Model stub that always accept the reminder being added.
      */
     private class ModelStubAcceptingReminderAdded extends ModelStubWithSortedPersonList {
         final ArrayList<Reminder> remindersAdded = new ArrayList<>();
@@ -124,14 +111,13 @@ public class AddCommandTest {
         @Override
         public void addReminder(Reminder reminder) {
             requireNonNull(reminder);
-            assert reminder.getPerson().equals(BOB);
 
             remindersAdded.add(reminder);
         }
     }
 
     /**
-     * A Model stub that contains a single reminder associated with {@code TypicalPerson#BOB}.
+     * A Model stub that contains a single reminder.
      */
     private class ModelStubWithReminder extends ModelStubWithSortedPersonList {
         private final Reminder reminder;
