@@ -111,7 +111,6 @@ public class AddCommandTest {
         @Override
         public void addReminder(Reminder reminder) {
             requireNonNull(reminder);
-
             remindersAdded.add(reminder);
         }
     }

@@ -128,8 +128,6 @@ public class AddCommandTest {
         @Override
         public void addMeeting(Meeting meeting) {
             requireNonNull(meeting);
-            assert meeting.getPerson().equals(BOB);
-
             meetingsAdded.add(meeting);
         }
     }
