@@ -8,6 +8,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Year;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -263,4 +265,30 @@ public class ParserUtilTest {
         String durationWithWhitespace = WHITESPACE + VALID_DURATION + WHITESPACE;
         assertEquals(EXPECTED_DURATION, ParserUtil.parseDuration(durationWithWhitespace));
     }
+
+    @Test
+    public void parseMonth_validValue_returnsMonth() throws Exception {
+        assertEquals(Month.AUGUST, ParserUtil.parseMonth(String.valueOf(8)));
+        assertEquals(Month.DECEMBER, ParserUtil.parseMonth(String.valueOf(12)));
+    }
+
+    @Test
+    public void parseMonth_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class , () -> ParserUtil.parseMonth(String.valueOf(0)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseMonth(String.valueOf(13)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseMonth(String.valueOf(-1)));
+    }
+
+    @Test
+    public void parseYear_validValue_returnsYear() throws Exception {
+        assertEquals(Year.of(2020), ParserUtil.parseYear("2020"));
+        assertEquals(Year.of(1990), ParserUtil.parseYear("1990"));
+    }
+
+    @Test
+    public void parseYear_invalidValue_throwsParseException()  {
+        assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(-1)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(1000000000)));
+    }
+
 }
