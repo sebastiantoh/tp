@@ -119,7 +119,7 @@ public class UniqueSaleList implements Iterable<Sale> {
                 tags.add(editedTag);
 
                 Sale newSale = new Sale(original.getItemName(),
-                        original.getBuyer(),
+                        original.getBuyerId(),
                         original.getDatetimeOfPurchase(),
                         original.getQuantity(),
                         original.getUnitPrice(),
@@ -142,7 +142,7 @@ public class UniqueSaleList implements Iterable<Sale> {
             if (tags.contains(toRemove)) {
                 tags.remove(toRemove);
                 Sale newSale = new Sale(original.getItemName(),
-                        original.getBuyer(),
+                        original.getBuyerId(),
                         original.getDatetimeOfPurchase(),
                         original.getQuantity(),
                         original.getUnitPrice(),

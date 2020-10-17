@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.sale;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -10,6 +11,8 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookInReverse;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +56,13 @@ public class DeleteCommandTest {
         ModelManager expectedModel = new ModelManager(getTypicalAddressBookInReverse(), new UserPrefs());
         expectedModel.updateFilteredSaleList(x -> true);
 
-        Person toEdit = expectedModel.getFilteredSaleList().get(1).getBuyer();
+        Person toEdit = expectedModel.getSortedPersonList().stream()
+                .filter(person -> person.getId().equals(saleToDelete.getBuyerId()))
+                .findAny()
+                .orElse(null);
+
+        assertNotNull(toEdit);
+
         Person newPerson = new PersonBuilder(toEdit)
                 .withTotalSalesAmount(toEdit.getTotalSalesAmount().subtract(saleToDelete.getTotalCost())).build();
 

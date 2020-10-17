@@ -30,7 +30,7 @@ class JsonAdaptedSale {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Sale's %s field is missing!";
 
     private final String itemName;
-    private final JsonAdaptedPerson buyer;
+    private final Integer buyerId;
     private final String datetimeOfPurchase;
     private final String quantity;
     private final String unitPrice;
@@ -41,13 +41,13 @@ class JsonAdaptedSale {
      */
     @JsonCreator
     public JsonAdaptedSale(@JsonProperty("itemName") String itemName,
-                           @JsonProperty("buyer") JsonAdaptedPerson buyer,
+                           @JsonProperty("buyerId") Integer buyerId,
                            @JsonProperty("datetimeOfPurchase") String datetimeOfPurchase,
                            @JsonProperty("quantity") String quantity,
                            @JsonProperty("unitPrice") String unitPrice,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.itemName = itemName;
-        this.buyer = buyer;
+        this.buyerId= buyerId;
         this.datetimeOfPurchase = datetimeOfPurchase;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
@@ -61,7 +61,7 @@ class JsonAdaptedSale {
      */
     public JsonAdaptedSale(Sale source) {
         itemName = source.getItemName().name;
-        buyer = new JsonAdaptedPerson(source.getBuyer());
+        buyerId = source.getBuyerId();
         datetimeOfPurchase = source.getDatetimeOfPurchase().toString();
         quantity = source.getQuantity().toString();
         unitPrice = source.getUnitPrice().getUnitPriceString();
@@ -91,10 +91,10 @@ class JsonAdaptedSale {
         }
         final ItemName modelItemName = new ItemName(itemName);
 
-        if (this.buyer == null) {
+        if (this.buyerId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName()));
         }
-        final Person modelBuyer = this.buyer.toModelType();
+        final Integer modelBuyer = this.buyerId;
 
         if (datetimeOfPurchase == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Datetime of Purchase"));

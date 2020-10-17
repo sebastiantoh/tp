@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
+import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.person.TypicalPersons.CARL;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 
@@ -131,11 +132,11 @@ public class AddressBookTest {
     @Test
     public void findBySaleTag_saleTagInAddressBook_success() {
         AddressBook addressBookCopy = new AddressBook();
-        addressBookCopy.addPerson(ALICE);
+        addressBookCopy.addPerson(BENSON);
         addressBookCopy.addSale(TypicalSales.APPLE);
         assertEquals(addressBookCopy.findBySaleTag(new Tag("fruits")),
                 "Listing all sale items associated with : [fruits]\n"
-                        + "1. Apple (Buyer: Benson Meier, Date of Purchase: Fri, 30 Oct 2020, 15:00, "
+                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, "
                         + "Quantity: 10, Unit Price: $3.50, Tags: [[fruits]]) (Client: Benson Meier)\n");
     }
 

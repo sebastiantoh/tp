@@ -66,7 +66,7 @@ public class AddCommandTest {
     public void execute_saleAcceptedByModel_addSuccessful() throws Exception {
         Person validPerson = new PersonBuilder(BOB).build();
         Sale validSale = new SaleBuilder(APPLE).build();
-        Sale toAdd = new SaleBuilder(BALL).withBuyer(validPerson).build();
+        Sale toAdd = new SaleBuilder(BALL).withBuyerId(validPerson.getId()).build();
         ModelManager model = new ModelManager();
         model.addSale(validSale);
         model.addPerson(validPerson);
@@ -86,7 +86,7 @@ public class AddCommandTest {
     @Test
     public void execute_duplicateSale_throwsCommandException() {
         Person validPerson = new PersonBuilder(BOB).build();
-        Sale validSale = new SaleBuilder(APPLE).withBuyer(validPerson).build();
+        Sale validSale = new SaleBuilder(APPLE).withBuyerId(validPerson.getId()).build();
 
         ModelManager model = new ModelManager();
         model.addPerson(validPerson);

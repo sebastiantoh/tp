@@ -62,7 +62,7 @@ public class ListCommand extends Command {
             }
 
             Person personToShow = sortedPersonList.get(targetIndex.getZeroBased());
-            Predicate<Sale> filterByContact = x -> x.getBuyer().equals(personToShow);
+            Predicate<Sale> filterByContact = x -> x.getBuyerId() == personToShow.getId();
 
             model.updateFilteredSaleList(filterByContact);
             output = output.append("Sales made to ").append(personToShow.getName()).append(":\n");
@@ -71,6 +71,7 @@ public class ListCommand extends Command {
                 return new CommandResult("No sales made to " + personToShow.getName() + "!");
             }
         }
+
         int index = 1;
         for (Sale sale : sales) {
             output.append(index).append(". ").append(sale.toString()).append("\n");

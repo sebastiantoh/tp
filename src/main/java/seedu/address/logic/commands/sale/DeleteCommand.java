@@ -48,6 +48,7 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
 
         List<Sale> sales = model.getFilteredSaleList();
+        List<Person> people = model.getSortedPersonList();
         if (model.getSortedSaleList().size() > sales.size() && model.getFilteredSaleList().size() == 0) {
             throw new CommandException(MESSAGE_NO_SALES_DISPLAYED);
         }
@@ -56,7 +57,12 @@ public class DeleteCommand extends Command {
         }
 
         Sale saleToDelete = sales.get(saleIndex.getZeroBased());
-        Person personToEdit = saleToDelete.getBuyer();
+        Person personToEdit = people.stream()
+                .filter(person -> person.getId().equals(saleToDelete.getBuyerId()))
+                .findAny()
+                .orElse(null);
+        assert personToEdit != null;
+
         BigDecimal newTotalSalesAmount = personToEdit.getTotalSalesAmount().subtract(saleToDelete.getTotalCost());
 
         Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),

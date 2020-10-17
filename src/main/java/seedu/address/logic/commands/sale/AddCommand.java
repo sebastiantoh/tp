@@ -90,7 +90,7 @@ public class AddCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Sale toAdd = new Sale(itemName, personToEdit, dateOfPurchase, quantity, unitPrice, tagList);
+        Sale toAdd = new Sale(itemName, personToEdit.getId(), dateOfPurchase, quantity, unitPrice, tagList);
         BigDecimal newTotalSalesAmount = toAdd.getTotalCost().add(personToEdit.getTotalSalesAmount());
 
         Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
