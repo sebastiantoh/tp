@@ -84,11 +84,6 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         this.setMonthlyMeetingList(replacement.internalList);
     }
 
-    private void setMonthlyMeetingList(List<Meeting> list) {
-        this.monthlyMeetingList.clear();
-        list.forEach(x -> this.monthlyMeetingList.addItem(x.getStartDate().getMonth(), x.getStartDate().getYear(), x));
-    }
-
     /**
      * Replaces the contents of this list with {@code meetings}.
      * {@code meetings} must not contain duplicate meetings.
@@ -101,6 +96,11 @@ public class UniqueMeetingList implements Iterable<Meeting> {
 
         internalList.setAll(meetings);
         this.setMonthlyMeetingList(meetings);
+    }
+
+    private void setMonthlyMeetingList(List<Meeting> list) {
+        this.monthlyMeetingList.clear();
+        list.forEach(x -> this.monthlyMeetingList.addItem(x.getStartDate().getMonth(), x.getStartDate().getYear(), x));
     }
 
     /**

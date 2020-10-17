@@ -32,7 +32,8 @@ public class StatsCommandTest {
         Year year = Year.now();
         int expectedCount = model.getMonthMeetingsCount(month, year);
         StatsCommand statsCommand = new StatsCommand(month, year);
-        String expectedResult = String.format(StatsCommand.MESSAGE_SUCCESS, month.name(), year.getValue(), expectedCount);
+        String expectedResult = String.format(StatsCommand.MESSAGE_SUCCESS,
+                month.name(), year.getValue(), expectedCount);
         assertCommandSuccess(statsCommand, model, expectedResult, expectedModel);
     }
 

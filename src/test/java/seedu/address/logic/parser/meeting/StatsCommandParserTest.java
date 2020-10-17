@@ -54,22 +54,4 @@ public class StatsCommandParserTest {
         assertParseFailure(statsCommandParser, " m/10 y/-1",
                 MESSAGE_INVALID_YEAR);
     }
-
-//    @Test
-//    public void parse_emptyYear_failure() {
-//        assertParseFailure(statsCommandParser, " m/10 y/ ",
-//                String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE));
-//    }
-//
-//    @Test
-//    public void parse_emptyMonth_failure() {
-//        assertParseFailure(statsCommandParser, " m/ y/2020",
-//                String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE));
-//    }
-//
-//    @Test
-//    public void parse_emptyYearAndMonth_failure() {
-//        assertParseFailure(statsCommandParser, " m/ y/ ",
-//                String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE));
-//    }
 }

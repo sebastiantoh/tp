@@ -30,8 +30,8 @@ public class StatsCommandParser implements Parser<StatsCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MONTH, PREFIX_YEAR);
 
-        if (argMultimap.getValue(PREFIX_MONTH).isPresent() && !argMultimap.getValue(PREFIX_YEAR).isPresent()
-                || (!argMultimap.getValue(PREFIX_MONTH).isPresent() && argMultimap.getValue(PREFIX_YEAR).isPresent())
+        if (argMultimap.getValue(PREFIX_MONTH).isPresent() && argMultimap.getValue(PREFIX_YEAR).isEmpty()
+                || (argMultimap.getValue(PREFIX_MONTH).isEmpty() && argMultimap.getValue(PREFIX_YEAR).isPresent())
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StatsCommand.MESSAGE_USAGE));
@@ -41,7 +41,7 @@ public class StatsCommandParser implements Parser<StatsCommand> {
         if (argMultimap.getValue(PREFIX_MONTH).isPresent() && argMultimap.getValue(PREFIX_YEAR).isPresent()) {
             month = ParserUtil.parseMonth(argMultimap.getValue(PREFIX_MONTH).get());
             year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
-        }  else {
+        } else {
             month = LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth();
             year = Year.now();
         }
