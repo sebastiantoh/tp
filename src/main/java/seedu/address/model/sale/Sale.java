@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
@@ -17,6 +18,8 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Sale implements Comparable<Sale> {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy, HH:mm");
+
     /** Identity fields */
     private final ItemName itemName;
     private final Person buyer;
@@ -130,8 +133,8 @@ public class Sale implements Comparable<Sale> {
         builder.append(getItemName())
                 .append(" (Buyer: ")
                 .append(getBuyer())
-                .append(" Date of Purchase: ")
-                .append(getDatetimeOfPurchase())
+                .append(" (Date of Purchase: ")
+                .append(getDatetimeOfPurchase().format(DATE_TIME_FORMATTER))
                 .append(", Quantity: ")
                 .append(getQuantity())
                 .append(", Unit Price: ")

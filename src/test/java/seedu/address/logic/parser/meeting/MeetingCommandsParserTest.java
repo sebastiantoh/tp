@@ -1,11 +1,11 @@
 package seedu.address.logic.parser.meeting;
 
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.UnknownCommand;
 import seedu.address.logic.commands.meeting.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -19,8 +19,8 @@ public class MeetingCommandsParserTest {
     }
 
     @Test
-    public void parse_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
-                meetingCommandsParser.parse("unknownCommand", null));
+    public void parse_unknownCommand_throwsParseException() throws ParseException {
+        assertTrue(meetingCommandsParser.parse("unknownCommand", "lol")
+                instanceof UnknownCommand);
     }
 }
