@@ -286,7 +286,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseYear_invalidValue_throwsParseException()  {
+    public void parseYear_invalidValue_throwsParseException() {
         assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(-1)));
         assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(1000000000)));
     }
