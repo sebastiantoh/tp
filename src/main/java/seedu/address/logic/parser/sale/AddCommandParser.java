@@ -21,7 +21,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
-import seedu.address.model.sale.Sale;
 import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
 

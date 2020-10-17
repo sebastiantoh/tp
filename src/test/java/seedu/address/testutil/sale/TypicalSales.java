@@ -2,7 +2,6 @@ package seedu.address.testutil.sale;
 
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
-import static seedu.address.testutil.person.TypicalPersons.BOB;
 import static seedu.address.testutil.person.TypicalPersons.CARL;
 
 import java.math.BigDecimal;
@@ -12,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import seedu.address.model.person.Person;
 import seedu.address.model.sale.Sale;
 
 /**

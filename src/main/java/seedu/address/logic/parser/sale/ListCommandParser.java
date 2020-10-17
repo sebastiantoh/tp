@@ -2,7 +2,6 @@ package seedu.address.logic.parser.sale;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
-import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.NoSuchElementException;
 

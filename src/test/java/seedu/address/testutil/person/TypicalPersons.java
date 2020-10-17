@@ -12,8 +12,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.sale.TypicalSales.APPLE;
-import static seedu.address.testutil.sale.TypicalSales.BALL;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

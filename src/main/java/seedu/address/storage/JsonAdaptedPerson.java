@@ -19,7 +19,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.sale.UniqueSaleList;
-import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -144,7 +143,8 @@ class JsonAdaptedPerson {
 
         final BigDecimal modelTotalSalesAmount = new BigDecimal(totalSalesAmount);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelRemark, modelTotalSalesAmount);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, modelRemark, modelTotalSalesAmount);
     }
 
 }

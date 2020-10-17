@@ -139,12 +139,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : p.getTags()) {
             contactTags.add(t);
         }
-        // TODO: Add all sales that belong to person to the list of sale tags
-//        for (Sale s : p.getSalesList()) {
-//            for (Tag t : s.getTags()) {
-//                saleTags.add(t);
-//            }
-//        }
     }
 
     /**
@@ -267,7 +261,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         output.append(String.format("Listing all sale items associated with : %s\n", target.toString()));
         int i = 0;
         for (Sale s : sales.asUnmodifiableObservableList()) {
-            if(s.getTags().contains(target)) {
+            if (s.getTags().contains(target)) {
                 output.append(String.format("%d. %s (Client: %s)\n", i + 1, s, s.getBuyer().getName()));
                 i += 1;
             }

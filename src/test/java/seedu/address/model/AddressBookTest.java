@@ -135,8 +135,8 @@ public class AddressBookTest {
         addressBookCopy.addSale(TypicalSales.APPLE);
         assertEquals(addressBookCopy.findBySaleTag(new Tag("fruits")),
                 "Listing all sale items associated with : [fruits]\n"
-                        + "1. Apple (Buyer: Benson Meier, Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: $3.50, "
-                        + "Tags: [[fruits]]) (Client: Benson Meier)\n");
+                        + "1. Apple (Buyer: Benson Meier, Date of Purchase: Fri, 30 Oct 2020, 15:00, "
+                        + "Quantity: 10, Unit Price: $3.50, Tags: [[fruits]]) (Client: Benson Meier)\n");
     }
 
     @Test

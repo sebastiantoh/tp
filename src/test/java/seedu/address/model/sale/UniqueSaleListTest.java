@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.sale.TypicalSales.APPLE;
 import static seedu.address.testutil.sale.TypicalSales.BALL;
-import static seedu.address.testutil.sale.TypicalSales.CAMERA;
 
 import java.math.BigDecimal;
 import java.util.Arrays;

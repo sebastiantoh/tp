@@ -14,7 +14,6 @@ import static seedu.address.testutil.sale.TypicalSales.BALL;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -72,8 +71,9 @@ public class AddCommandTest {
         model.addSale(validSale);
         model.addPerson(validPerson);
 
-        CommandResult commandResult = new AddCommand(INDEX_FIRST_ITEM, toAdd.getItemName(), toAdd.getDatetimeOfPurchase(),
-                toAdd.getQuantity(), toAdd.getUnitPrice(), toAdd.getTags()).execute(model);
+        CommandResult commandResult = new AddCommand(INDEX_FIRST_ITEM, toAdd.getItemName(),
+                toAdd.getDatetimeOfPurchase(), toAdd.getQuantity(),
+                toAdd.getUnitPrice(), toAdd.getTags()).execute(model);
 
         ObservableList<Sale> newSaleList = model.getSortedSaleList();
         ObservableList<Sale> expectedSaleList = new UniqueSaleList()

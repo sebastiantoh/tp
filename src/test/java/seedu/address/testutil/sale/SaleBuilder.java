@@ -1,6 +1,5 @@
 package seedu.address.testutil.sale;
 
-import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BOB;
 
 import java.math.BigDecimal;

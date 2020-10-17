@@ -24,13 +24,18 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of all sales to a specified contact.\n"
             + "Parameters: "
-            + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer)\n"
+            + "[" + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer)]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SALE_CONTACT_INDEX + "3 ";
 
     private final boolean showAll;
     private final Index targetIndex;
 
+    /**
+     * Creates a ListCommand with the following parameters.
+     * @param showAll A boolean dictating if all sales should be displayed.
+     * @param targetIndex The index of the contact whose sales are to be displayed.
+     */
     public ListCommand(boolean showAll, Index targetIndex) {
         this.showAll = showAll;
         this.targetIndex = targetIndex;
@@ -43,7 +48,7 @@ public class ListCommand extends Command {
         List<Sale> sales = model.getFilteredSaleList();
         StringBuilder output = new StringBuilder();
 
-        if(showAll) {
+        if (showAll) {
             model.updateFilteredSaleList(x -> true);
             output = output.append("Listing all sales:\n");
 
@@ -81,8 +86,8 @@ public class ListCommand extends Command {
             return true;
         }
 
-        if(other instanceof ListCommand) {
-            if (!showAll){
+        if (other instanceof ListCommand) {
+            if (!showAll) {
                 return targetIndex.equals(((ListCommand) other).targetIndex);
             } else {
                 return ((ListCommand) other).showAll;

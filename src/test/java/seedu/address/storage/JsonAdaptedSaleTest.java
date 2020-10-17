@@ -7,7 +7,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.sale.TypicalSales.BALL;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,6 +63,19 @@ public class JsonAdaptedSaleTest {
                         VALID_UNIT_PRICE,
                         VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ItemName.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, sale::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullBuyer_throwsIllegalValueException() {
+        JsonAdaptedSale sale =
+                new JsonAdaptedSale(VALID_ITEM_NAME,
+                        null,
+                        VALID_DATETIME,
+                        VALID_QUANTITY,
+                        VALID_UNIT_PRICE,
+                        VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, sale::toModelType);
     }
 
