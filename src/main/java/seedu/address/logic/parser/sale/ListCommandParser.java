@@ -4,6 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
+import java.util.NoSuchElementException;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.sale.ListCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -26,9 +28,8 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SALE_CONTACT_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_SALE_CONTACT_INDEX) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ListCommand.MESSAGE_USAGE));
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
         Index index;
@@ -37,8 +38,10 @@ public class ListCommandParser implements Parser<ListCommand> {
             index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SALE_CONTACT_INDEX).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE), pe);
+        } catch (NoSuchElementException ne) {
+            return new ListCommand(true, null);
         }
 
-        return new ListCommand(index);
+        return new ListCommand(false, index);
     }
 }
