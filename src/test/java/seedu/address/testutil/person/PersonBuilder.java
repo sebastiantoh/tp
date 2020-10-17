@@ -1,5 +1,6 @@
 package seedu.address.testutil.person;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,12 +21,12 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
+    public static final BigDecimal DEFAULT_TOTAL_SALES_AMOUNT = new BigDecimal("0");
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "";
-    public static final UniqueSaleList DEFAULT_SALE_LIST = new UniqueSaleList();
 
     private Name name;
     private Phone phone;
@@ -33,7 +34,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Remark remark;
-    private UniqueSaleList saleList;
+    private BigDecimal totalSalesAmount;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -45,7 +46,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         remark = new Remark(DEFAULT_REMARK);
-        saleList = DEFAULT_SALE_LIST;
+        totalSalesAmount = DEFAULT_TOTAL_SALES_AMOUNT;
     }
 
 
@@ -59,7 +60,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         remark = personToCopy.getRemark();
-        saleList = personToCopy.getSalesList();
+        totalSalesAmount = personToCopy.getTotalSalesAmount();
     }
 
     /**
@@ -111,15 +112,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Adds the {@code sales} into a {@code UniqueSaleList} and set it to the {@code Person} that we are building.
+     * Sets the {@code Remark} of the {@code Person} that we are building.
      */
-    public PersonBuilder withSales(Sale ... sales) {
-        this.saleList.setSales(Arrays.asList(sales));
+    public PersonBuilder withTotalSalesAmount(BigDecimal totalSalesAmount) {
+        this.totalSalesAmount = totalSalesAmount;
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, remark, saleList);
+        return new Person(name, phone, email, address, tags, remark, totalSalesAmount);
     }
 
 }

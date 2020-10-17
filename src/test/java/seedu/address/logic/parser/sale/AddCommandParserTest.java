@@ -16,12 +16,17 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALE_TAG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_PRICE_CENTS_APPLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_PRICE_DOLLARS_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SALE_TAG_FRUITS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_PRICE_APPLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
-import static seedu.address.testutil.sale.TypicalSales.APPLE;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,6 +34,7 @@ import seedu.address.logic.commands.sale.AddCommand;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
 import seedu.address.model.sale.UnitPrice;
+import seedu.address.model.tag.Tag;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -42,7 +48,12 @@ public class AddCommandParserTest {
                 + UNIT_PRICE_DESC_APPLE
                 + VALID_SALE_TAG;
 
-        AddCommand expectedCommand = new AddCommand(INDEX_SECOND_ITEM, APPLE);
+        Set<Tag> tags = new HashSet<>();
+        tags.add(new Tag(VALID_SALE_TAG_FRUITS));
+
+        AddCommand expectedCommand = new AddCommand(INDEX_SECOND_ITEM, new ItemName(VALID_ITEM_NAME_APPLE),
+                LocalDateTime.parse(VALID_DATE_APPLE, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+                new Quantity(VALID_QUANTITY_APPLE), new UnitPrice(new BigDecimal(VALID_UNIT_PRICE_APPLE)), tags);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -70,13 +81,11 @@ public class AddCommandParserTest {
 
         // missing unit price prefix
         assertParseFailure(parser, CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE + SALE_DATE_DESC_APPLE
-                + QUANTITY_DESC_APPLE + VALID_UNIT_PRICE_DOLLARS_APPLE + "." + VALID_UNIT_PRICE_CENTS_APPLE,
-                expectedMessage);
+                + QUANTITY_DESC_APPLE + VALID_UNIT_PRICE_APPLE, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, INDEX_SECOND_ITEM.getOneBased() + VALID_ITEM_NAME_APPLE + VALID_DATE_APPLE
-                        + VALID_QUANTITY_APPLE + VALID_UNIT_PRICE_DOLLARS_APPLE + "." + VALID_UNIT_PRICE_CENTS_APPLE,
-                expectedMessage);
+                        + VALID_QUANTITY_APPLE + VALID_UNIT_PRICE_APPLE, expectedMessage);
     }
 
     @Test

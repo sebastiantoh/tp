@@ -95,11 +95,10 @@ public class CommandTestUtil {
     public static final String VALID_DATE_BALL = "2020-09-22 12:40";
     public static final String VALID_QUANTITY_APPLE = "10";
     public static final String VALID_QUANTITY_BALL = "1";
+    public static final String VALID_UNIT_PRICE_APPLE = "3.50";
+    public static final String VALID_UNIT_PRICE_BALL = "0.8";
+    public static final String VALID_EMPTY_SALE_TAG = "";
     public static final String VALID_SALE_TAG_FRUITS = "fruits";
-    public static final Integer VALID_UNIT_PRICE_DOLLARS_APPLE = 3;
-    public static final Integer VALID_UNIT_PRICE_CENTS_APPLE = 50;
-    public static final Integer VALID_UNIT_PRICE_DOLLARS_BALL = 0;
-    public static final Integer VALID_UNIT_PRICE_CENTS_BALL = 80;
 
     public static final String INVALID_ITEM_NAME = " " + PREFIX_SALE_NAME + "@pple";
     public static final String INVALID_SALE_DATE = " " + PREFIX_SALE_DATE + "2020/09/22 12:40";
@@ -109,8 +108,7 @@ public class CommandTestUtil {
     public static final String ITEM_NAME_DESC_APPLE = " " + PREFIX_SALE_NAME + VALID_ITEM_NAME_APPLE;
     public static final String SALE_DATE_DESC_APPLE = " " + PREFIX_SALE_DATE + VALID_DATE_APPLE;
     public static final String QUANTITY_DESC_APPLE = " " + PREFIX_SALE_QUANTITY + VALID_QUANTITY_APPLE;
-    public static final String UNIT_PRICE_DESC_APPLE =
-            " " + PREFIX_SALE_UNIT_PRICE + VALID_UNIT_PRICE_DOLLARS_APPLE + "." + VALID_UNIT_PRICE_CENTS_APPLE;
+    public static final String UNIT_PRICE_DESC_APPLE = " " + PREFIX_SALE_UNIT_PRICE + VALID_UNIT_PRICE_APPLE;
 
     public static final String VALID_SALE_TAG = " " + PREFIX_TAG + VALID_SALE_TAG_FRUITS;
 

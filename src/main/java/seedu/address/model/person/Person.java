@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.sale.UniqueSaleList;
+import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -129,7 +130,7 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getRemark().equals(getRemark())
-                && otherPerson.getTotalSalesAmount().equals(getTotalSalesAmount());
+                && otherPerson.getTotalSalesAmount().compareTo(getTotalSalesAmount()) == 0;
     }
 
     @Override

@@ -34,6 +34,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_SALE_SUCCESS = "Deleted Sale: %1$s";
 
+    public static final String MESSAGE_NO_SALES_DISPLAYED = "No sales displayed, use `sale list` "
+            + "to display sales before executing the `sale delete` command";
+
     private final Index contactIndex;
     private final Index saleIndex;
 
@@ -59,6 +62,9 @@ public class DeleteCommand extends Command {
         Person personToEdit = people.get(contactIndex.getZeroBased());
 
         List<Sale> sales = model.getFilteredSaleList();
+        if (model.getSortedSaleList().size() > sales.size() && model.getFilteredSaleList().size() == 0) {
+            throw new CommandException(MESSAGE_NO_SALES_DISPLAYED);
+        }
         if (saleIndex.getZeroBased() >= sales.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX);
         }

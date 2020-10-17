@@ -32,16 +32,15 @@ public class ListCommandTest {
     @Test
     public void execute_validIndex_showsSales() {
         String saleListResult = "Sales made to Benson Meier:\n"
-                + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: $3.50, "
-                + "Tags: [[fruits]])\n2. Ball (Date of Purchase: Tue, 22 Sep 2020, 12:40, Quantity: 1, "
-                + "Unit Price: $0.80, Tags: [[sports]])\n";
+                + "1. Apple (Buyer: Benson Meier, Date of Purchase: Fri, 30 Oct 2020, 15:00, "
+                + "Quantity: 10, Unit Price: $3.50, Tags: [[fruits]])\n";
         assertCommandSuccess(new ListCommand(INDEX_SECOND_ITEM), model, saleListResult, expectedModel);
     }
 
     @Test
     public void execute_emptySalesList_displaysEmptySalesListMessage() {
-        String saleListResult = "No sales made to Alice Pauline!";
-        assertCommandSuccess(new ListCommand(INDEX_FIRST_ITEM), model, saleListResult, expectedModel);
+        String saleListResult = "No sales made to Daniel Meier!";
+        assertCommandSuccess(new ListCommand(Index.fromOneBased(4)), model, saleListResult, expectedModel);
     }
 
     @Test

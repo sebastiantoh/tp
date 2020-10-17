@@ -95,7 +95,7 @@ public class Sale implements Comparable<Sale> {
                 && otherSale.getBuyer().equals(getBuyer())
                 && otherSale.getDatetimeOfPurchase().equals(getDatetimeOfPurchase())
                 && otherSale.getUnitPrice().equals(getUnitPrice())
-                && otherSale.getQuantity().equals(getItemName());
+                && otherSale.getQuantity().equals(getQuantity());
     }
 
     /**
@@ -132,8 +132,8 @@ public class Sale implements Comparable<Sale> {
         final StringBuilder builder = new StringBuilder();
         builder.append(getItemName())
                 .append(" (Buyer: ")
-                .append(getBuyer())
-                .append(" (Date of Purchase: ")
+                .append(getBuyer().getName())
+                .append(", Date of Purchase: ")
                 .append(getDatetimeOfPurchase().format(DATE_TIME_FORMATTER))
                 .append(", Quantity: ")
                 .append(getQuantity())

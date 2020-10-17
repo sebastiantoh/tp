@@ -15,6 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.sale.TypicalSales.APPLE;
 import static seedu.address.testutil.sale.TypicalSales.BALL;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,12 +31,14 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
         .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com").withPhone("94351253")
-        .withTags("friends").withRemark("Likes chocolates").build();
+        .withTags("friends").withRemark("Likes chocolates").withTotalSalesAmount(new BigDecimal("0.8")).build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
         .withAddress("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").withRemark("Owes me $10").withSales(APPLE, BALL).build();
+        .withTags("owesMoney", "friends").withRemark("Owes me $10")
+        .withTotalSalesAmount(new BigDecimal("35.00")).build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-        .withEmail("heinz@example.com").withAddress("wall street").build();
+        .withEmail("heinz@example.com").withAddress("wall street")
+        .withTotalSalesAmount(new BigDecimal("2001.00")).build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
         .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")

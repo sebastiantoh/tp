@@ -44,7 +44,11 @@ public class UnitPrice {
      * Returns true if given unit price is greater than 0.
      */
     public static boolean isValidUnitPrice(BigDecimal test) {
-        return test.compareTo(BigDecimal.ZERO) > 0;
+        String string = test.stripTrailingZeros().toPlainString();
+        int index = string.indexOf(".");
+        int noOfDecimalPlaces = index < 0 ? 0 : string.length() - index - 1;
+
+        return test.compareTo(BigDecimal.ZERO) > 0 && noOfDecimalPlaces < 3;
     }
 
     /**
@@ -66,7 +70,7 @@ public class UnitPrice {
     }
 
     public String getUnitPriceString() {
-        return NumberFormat.getCurrencyInstance().format(this.amount);
+        return this.amount.setScale(2).toPlainString();
     }
 
     @Override
@@ -78,7 +82,7 @@ public class UnitPrice {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UnitPrice // instanceof handles nulls
-                && amount.equals(((UnitPrice) other).amount)); // state check
+                && amount.compareTo(((UnitPrice) other).amount) == 0); // state check
     }
 
     @Override

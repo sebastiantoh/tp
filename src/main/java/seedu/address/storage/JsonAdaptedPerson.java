@@ -19,6 +19,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.sale.UniqueSaleList;
+import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -67,7 +68,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         remark = source.getRemark().value;
-        totalSalesAmount = source.getTotalSalesAmountString();
+        totalSalesAmount = source.getTotalSalesAmount().setScale(2).toPlainString();
     }
 
     /**
@@ -126,6 +127,21 @@ class JsonAdaptedPerson {
         if (totalSalesAmount == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Total Sales Amount"));
         }
+        try {
+            BigDecimal test = new BigDecimal(totalSalesAmount);
+
+            String string = test.stripTrailingZeros().toPlainString();
+            int index = string.indexOf(".");
+            int noOfDecimalPlaces = index < 0 ? 0 : string.length() - index - 1;
+
+            if (noOfDecimalPlaces < 3 && !(test.compareTo(BigDecimal.ZERO) >= 0)) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalValueException("Total Sales Amount should be a positive decimal number, "
+                    + "with at most 2 decimal places.");
+        }
+
         final BigDecimal modelTotalSalesAmount = new BigDecimal(totalSalesAmount);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelRemark, modelTotalSalesAmount);

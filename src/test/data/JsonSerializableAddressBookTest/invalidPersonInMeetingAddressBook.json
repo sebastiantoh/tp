@@ -13,11 +13,13 @@
         "tagged": [
           "friends"
         ],
-        "remark": ""
+        "remark": "Likes chocolates",
+        "totalSalesAmount" : "0.80"
       },
       "message": "Lunch with Alice",
       "startDate": "2020-10-30T15:19",
       "duration": "PT120M"
     }
-  ]
+  ],
+  "sales": []
 }
