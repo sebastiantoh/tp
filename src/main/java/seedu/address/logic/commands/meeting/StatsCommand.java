@@ -33,7 +33,7 @@ public class StatsCommand extends Command {
     public final Year year;
 
     /**
-     * Creates an StatsCommand with the given {@code month} and {@code year}.
+     * Creates a StatsCommand with the given {@code month} and {@code year}.
      */
     public StatsCommand(Month month, Year year) {
         this.month = month;

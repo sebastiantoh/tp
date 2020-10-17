@@ -10,9 +10,13 @@ import java.util.Map;
 
 import javafx.util.Pair;
 
+/**
+ * Stores a list of items of type T based on the key of < month, year >
+ * @param <T>
+ */
 public class MonthlyList<T> {
 
-    private final Map<Pair<Month, Integer>, List<T>> monthlyList;
+    private final Map<Pair<Month, Year>, List<T>> monthlyList;
 
     public MonthlyList() {
         this.monthlyList = new HashMap<>();
@@ -25,8 +29,8 @@ public class MonthlyList<T> {
      * @param year a valid year number
      * @param item item of type T
      */
-    public void addItem(Month month, int year, T item) {
-        Pair<Month, Integer> key = new Pair<>(month, year);
+    public void addItem(Month month, Year year, T item) {
+        Pair<Month, Year> key = new Pair<>(month, year);
         if (this.monthlyList.containsKey(key)) {
             this.monthlyList.get(key).add(item);
         } else {
@@ -42,8 +46,8 @@ public class MonthlyList<T> {
      * @param year a valid year number
      * @param item item of type T
      */
-    public void removeItem(Month month, int year, T item) {
-        Pair<Month, Integer> key = new Pair<>(month, year);
+    public void removeItem(Month month, Year year, T item) {
+        Pair<Month, Year> key = new Pair<>(month, year);
         if (this.monthlyList.containsKey(key)) {
             this.monthlyList.get(key).remove(item);
         }
@@ -51,7 +55,7 @@ public class MonthlyList<T> {
     }
 
     private void print() {
-        for (Pair<Month, Integer> p : this.monthlyList.keySet()) {
+        for (Pair<Month, Year> p : this.monthlyList.keySet()) {
             for (T t : this.monthlyList.get(p)) {
                 System.out.println(t);
             }

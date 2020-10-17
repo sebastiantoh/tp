@@ -47,7 +47,8 @@ public class UniqueMeetingList implements Iterable<Meeting> {
             throw new DuplicateMeetingException();
         }
         internalList.add(toAdd);
-        monthlyMeetingList.addItem(toAdd.getStartDate().getMonth(), toAdd.getStartDate().getYear(), toAdd);
+        monthlyMeetingList.addItem(toAdd.getStartDate().getMonth(),
+                Year.of(toAdd.getStartDate().getYear()), toAdd);
     }
 
     /**
@@ -59,7 +60,8 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         if (!internalList.remove(toRemove)) {
             throw new MeetingNotFoundException();
         }
-        monthlyMeetingList.removeItem(toRemove.getStartDate().getMonth(), toRemove.getStartDate().getYear(), toRemove);
+        monthlyMeetingList.removeItem(toRemove.getStartDate().getMonth(),
+                Year.of(toRemove.getStartDate().getYear()), toRemove);
     }
 
     /**
@@ -100,7 +102,8 @@ public class UniqueMeetingList implements Iterable<Meeting> {
 
     private void setMonthlyMeetingList(List<Meeting> list) {
         this.monthlyMeetingList.clear();
-        list.forEach(x -> this.monthlyMeetingList.addItem(x.getStartDate().getMonth(), x.getStartDate().getYear(), x));
+        list.forEach(x -> this.monthlyMeetingList.addItem(
+                x.getStartDate().getMonth(), Year.of(x.getStartDate().getYear()), x));
     }
 
     /**
