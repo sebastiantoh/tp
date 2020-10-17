@@ -390,6 +390,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+    * Gets the number of meetings in {@code month} and {@code year}.
+    */
     public int getMonthMeetingsCount(Month month, Year year) {
         return this.meetings.getMonthMeetingsCount(month, year);
     }

@@ -239,5 +239,8 @@ public interface Model {
      */
     void removeSaleFromPerson(Person person, Sale sale);
 
+    /**
+     * Gets the number of meetings in {@code month} and {@code year}.
+     */
     int getMonthMeetingsCount(Month month, Year year);
 }

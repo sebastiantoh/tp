@@ -36,7 +36,6 @@ public class MonthlyList<T> {
         } else {
             this.monthlyList.put(key, new ArrayList<>(Collections.singleton(item)));
         }
-        print();
     }
 
     /**
@@ -49,15 +48,10 @@ public class MonthlyList<T> {
     public void removeItem(Month month, Year year, T item) {
         Pair<Month, Year> key = new Pair<>(month, year);
         if (this.monthlyList.containsKey(key)) {
-            this.monthlyList.get(key).remove(item);
-        }
-        print();
-    }
-
-    private void print() {
-        for (Pair<Month, Year> p : this.monthlyList.keySet()) {
-            for (T t : this.monthlyList.get(p)) {
-                System.out.println(t);
+            if (this.monthlyList.get(key).size() == 1) {
+                this.monthlyList.remove(key);
+            } else {
+                this.monthlyList.get(key).remove(item);
             }
         }
     }
@@ -71,7 +65,7 @@ public class MonthlyList<T> {
      * @return the number of meeting started in that month and year
      */
     public int getMonthCount(Month month, Year year) {
-        Pair<Month, Integer> key = new Pair<>(month, year.getValue());
+        Pair<Month, Year> key = new Pair<>(month, year);
         if (this.monthlyList.containsKey(key)) {
             return this.monthlyList.get(key).size();
         }

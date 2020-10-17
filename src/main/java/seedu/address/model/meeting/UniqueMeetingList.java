@@ -113,6 +113,9 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Gets the number of meetings in {@code month} and {@code year}.
+     */
     public int getMonthMeetingsCount(Month month, Year year) {
         return this.monthlyMeetingList.getMonthCount(month, year);
     }
