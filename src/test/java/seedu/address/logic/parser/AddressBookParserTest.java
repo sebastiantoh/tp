@@ -3,10 +3,16 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.PARSED_VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PARSED_VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PARSED_VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PARSED_VALID_REMARK_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
+
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,8 +41,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
+        AddCommand expectedCommand = new AddCommand(PersonBuilder.DEFAULT_NAME, PersonBuilder.DEFAULT_PHONE,
+                PersonBuilder.DEFAULT_EMAIL, PersonBuilder.DEFAULT_ADDRESS,
+                new HashSet<>(), PersonBuilder.DEFAULT_REMARK);
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        assertEquals(expectedCommand, command);
     }
 
     @Test

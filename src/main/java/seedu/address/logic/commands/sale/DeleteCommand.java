@@ -26,8 +26,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the sale identified by the index number used in the displayed sale list.\n"
         + "Parameters: SALE_INDEX (must be a positive integer)\n"
-        + "Example: " + COMMAND_WORD + " "
-        + PREFIX_SALE_INDEX + "1";
+        + "Example: " + COMMAND_WORD + " 3";
 
     public static final String MESSAGE_DELETE_SALE_SUCCESS = "Deleted Sale: %1$s";
 
@@ -60,8 +59,9 @@ public class DeleteCommand extends Command {
         Person personToEdit = saleToDelete.getBuyer();
         BigDecimal newTotalSalesAmount = personToEdit.getTotalSalesAmount().subtract(saleToDelete.getTotalCost());
 
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getRemark(), newTotalSalesAmount);
+        Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
+                personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
+                personToEdit.getRemark(), newTotalSalesAmount);
 
         model.removeSale(saleToDelete);
         model.setPerson(personToEdit, editedPerson);

@@ -55,8 +55,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_CONTACT_REMARK).orElse(""));
 
-        Person person = new Person(name, phone, email, address, tagList, remark, BigDecimal.ZERO);
-
-        return new AddCommand(person);
+        return new AddCommand(name, phone, email, address, tagList, remark);
     }
 }

@@ -18,6 +18,7 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final Integer id;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -38,9 +39,10 @@ public class Person {
      * @param tags Set of tags associated with the person.
      * @param remark Remark associated with the person.
      */
-    public Person(Name name, Phone phone, Email email, Address address,
+    public Person(Integer id, Name name, Phone phone, Email email, Address address,
                   Set<Tag> tags, Remark remark, BigDecimal totalSalesAmount) {
         requireAllNonNull(name, phone, email, address, tags, remark);
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -48,6 +50,10 @@ public class Person {
         this.tags.addAll(tags);
         this.remark = remark;
         this.totalSalesAmount = totalSalesAmount;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public Name getName() {
@@ -122,13 +128,7 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getRemark().equals(getRemark())
-                && otherPerson.getTotalSalesAmount().compareTo(getTotalSalesAmount()) == 0;
+        return this.id.equals(otherPerson.id);
     }
 
     @Override

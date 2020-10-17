@@ -93,7 +93,7 @@ public class AddCommand extends Command {
         Sale toAdd = new Sale(itemName, personToEdit, dateOfPurchase, quantity, unitPrice, tagList);
         BigDecimal newTotalSalesAmount = toAdd.getTotalCost().add(personToEdit.getTotalSalesAmount());
 
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getRemark(), newTotalSalesAmount);
 
         if (model.hasSale(toAdd)) {

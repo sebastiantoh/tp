@@ -95,7 +95,8 @@ public class UniquePersonList implements Iterable<Person> {
             if (tags.contains(target)) {
                 tags.remove(target);
                 tags.add(editedTag);
-                Person p = new Person(original.getName(),
+                Person p = new Person(original.getId(),
+                        original.getName(),
                         original.getPhone(),
                         original.getEmail(),
                         original.getAddress(),
@@ -118,7 +119,8 @@ public class UniquePersonList implements Iterable<Person> {
             Set<Tag> tags = new HashSet<>(original.getTags());
             if (tags.contains(toRemove)) {
                 tags.remove(toRemove);
-                Person p = new Person(original.getName(),
+                Person p = new Person(original.getId(),
+                        original.getName(),
                         original.getPhone(),
                         original.getEmail(),
                         original.getAddress(),

@@ -2,6 +2,7 @@
   "_comment": "AddressBook save file which contains all the typical entries of the various models",
   "persons": [
     {
+      "id": 1,
       "name": "Alice Pauline",
       "phone": "94351253",
       "email": "alice@example.com",
@@ -13,6 +14,7 @@
       "totalSalesAmount" : "0.80"
     },
     {
+      "id": 2,
       "name": "Benson Meier",
       "phone": "98765432",
       "email": "johnd@example.com",
@@ -25,6 +27,7 @@
       "totalSalesAmount" : "35.00"
     },
     {
+      "id": 3,
       "name": "Carl Kurz",
       "phone": "95352563",
       "email": "heinz@example.com",
@@ -34,6 +37,7 @@
       "totalSalesAmount" : "2001.00"
     },
     {
+      "id": 4,
       "name": "Daniel Meier",
       "phone": "87652533",
       "email": "cornelia@example.com",
@@ -45,6 +49,7 @@
       "totalSalesAmount" : "0.00"
     },
     {
+      "id": 5,
       "name": "Elle Meyer",
       "phone": "9482224",
       "email": "werner@example.com",
@@ -54,6 +59,7 @@
       "totalSalesAmount" : "0.00"
     },
     {
+      "id": 6,
       "name": "Fiona Kunz",
       "phone": "9482427",
       "email": "lydia@example.com",
@@ -63,6 +69,7 @@
       "totalSalesAmount" : "0.00"
     },
     {
+      "id": 7,
       "name": "George Best",
       "phone": "9482442",
       "email": "anna@example.com",
@@ -77,6 +84,7 @@
   "reminders": [
     {
       "person": {
+        "id": 1,
         "name": "Alice Pauline",
         "phone": "94351253",
         "email": "alice@example.com",
@@ -92,6 +100,7 @@
     },
     {
       "person": {
+        "id": 2,
         "name": "Benson Meier",
         "phone": "98765432",
         "email": "johnd@example.com",
@@ -108,6 +117,7 @@
     },
     {
       "person": {
+        "id": 3,
         "name": "Carl Kurz",
         "phone": "95352563",
         "email": "heinz@example.com",
@@ -123,6 +133,7 @@
   "meetings": [
     {
       "person": {
+        "id": 1,
         "name": "Alice Pauline",
         "phone": "94351253",
         "email": "alice@example.com",
@@ -139,6 +150,7 @@
     },
     {
       "person": {
+        "id": 2,
         "name": "Benson Meier",
         "phone": "98765432",
         "email": "johnd@example.com",
@@ -156,6 +168,7 @@
     },
     {
       "person": {
+        "id": 3,
         "name": "Carl Kurz",
         "phone": "95352563",
         "email": "heinz@example.com",
@@ -172,6 +185,7 @@
   "sales" : [ {
     "itemName" : "Apple",
     "buyer" : {
+      "id": 2,
       "name": "Benson Meier",
       "phone": "98765432",
       "email": "johnd@example.com",
@@ -190,6 +204,7 @@
   }, {
     "itemName" : "Ball",
     "buyer" : {
+      "id": 1,
       "name": "Alice Pauline",
       "phone": "94351253",
       "email": "alice@example.com",
@@ -207,6 +222,7 @@
   }, {
     "itemName" : "Camera",
     "buyer" : {
+      "id": 3,
       "name": "Carl Kurz",
       "phone": "95352563",
       "email": "heinz@example.com",

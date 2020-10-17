@@ -99,6 +99,7 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
+        Integer id = personToEdit.getId();
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
@@ -107,7 +108,7 @@ public class EditCommand extends Command {
         Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
         BigDecimal updatedTotalSalesAmount = personToEdit.getTotalSalesAmount();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Person(id,updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedTags, updatedRemark, updatedTotalSalesAmount);
     }
 
@@ -134,6 +135,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+        private int id;
         private Name name;
         private Phone phone;
         private Email email;
@@ -148,6 +150,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+            setId(toCopy.id);
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -161,6 +164,14 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, remark);
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public Optional<Integer> getId() {
+            return Optional.ofNullable(id);
         }
 
         public void setName(Name name) {
