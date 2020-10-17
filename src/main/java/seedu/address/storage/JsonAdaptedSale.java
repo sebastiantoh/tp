@@ -47,7 +47,7 @@ class JsonAdaptedSale {
                            @JsonProperty("unitPrice") String unitPrice,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.itemName = itemName;
-        this.buyerId= buyerId;
+        this.buyerId = buyerId;
         this.datetimeOfPurchase = datetimeOfPurchase;
         this.quantity = quantity;
         this.unitPrice = unitPrice;

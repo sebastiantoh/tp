@@ -1,14 +1,9 @@
 package seedu.address.logic.parser.sale;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_INDEX;
-import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.sale.DeleteCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;

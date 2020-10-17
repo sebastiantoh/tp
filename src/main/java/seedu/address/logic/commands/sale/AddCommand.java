@@ -93,8 +93,9 @@ public class AddCommand extends Command {
         Sale toAdd = new Sale(itemName, personToEdit.getId(), dateOfPurchase, quantity, unitPrice, tagList);
         BigDecimal newTotalSalesAmount = toAdd.getTotalCost().add(personToEdit.getTotalSalesAmount());
 
-        Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getRemark(), newTotalSalesAmount);
+        Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
+                personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
+                personToEdit.getRemark(), newTotalSalesAmount);
 
         if (model.hasSale(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SALE);

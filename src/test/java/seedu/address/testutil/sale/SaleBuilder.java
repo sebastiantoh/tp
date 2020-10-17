@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Person;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
 import seedu.address.model.sale.Sale;

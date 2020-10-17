@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 import seedu.address.logic.commands.contact.AddCommand;
@@ -21,7 +20,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;

@@ -39,9 +39,10 @@ public class SampleDataUtil {
             new Phone("99272758"), new Email("berniceyu@example.com"),
             new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet("colleagues", "friends"),
             new Remark("Owns a small stationery business"), new BigDecimal("1788"));
-    private static final Person CHARLOTTE_OLIVEIRO = new Person(3, new Name("Charlotte Oliveiro"), new Phone("93210283"),
-            new Email("charlotte@example.com"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-            getTagSet("neighbours"), new Remark(""), new BigDecimal("960"));
+    private static final Person CHARLOTTE_OLIVEIRO = new Person(3, new Name("Charlotte Oliveiro"),
+            new Phone("93210283"), new Email("charlotte@example.com"),
+            new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), getTagSet("neighbours"),
+            new Remark(""), new BigDecimal("960"));
     private static final Person DAVID_LI = new Person(4, new Name("David Li"), new Phone("91031282"),
             new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
             getTagSet("family"), new Remark(""), BigDecimal.ZERO);

@@ -108,7 +108,7 @@ public class EditCommand extends Command {
         Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
         BigDecimal updatedTotalSalesAmount = personToEdit.getTotalSalesAmount();
 
-        return new Person(id,updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Person(id, updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedTags, updatedRemark, updatedTotalSalesAmount);
     }
 
