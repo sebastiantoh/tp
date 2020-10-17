@@ -2,6 +2,8 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -386,6 +388,10 @@ public class AddressBook implements ReadOnlyAddressBook {
                 saleTags.remove(t);
             }
         }
+    }
+
+    public int getMonthMeetingsCount(Month month, Year year) {
+        return this.meetings.getMonthMeetingsCount(month, year);
     }
 
     //// util methods

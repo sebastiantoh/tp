@@ -10,6 +10,8 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -185,6 +187,11 @@ public class AddressBookTest {
     @Test
     public void getReminderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getReminderList().remove(0));
+    }
+
+    @Test
+    public void getMonthMeetingsCount_valid_success() {
+        assertTrue(addressBook.getMonthMeetingsCount(Month.APRIL, Year.now()) >= 0);
     }
 
     /**

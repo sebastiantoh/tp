@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -270,6 +272,11 @@ public class AddCommandTest {
 
         @Override
         public void removeSaleFromPerson(Person person, Sale sale) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getMonthMeetingsCount(Month month, Year year) {
             throw new AssertionError("This method should not be called.");
         }
     }

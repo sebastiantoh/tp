@@ -25,4 +25,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_MESSAGE = new Prefix("m/");
     public static final Prefix PREFIX_DATETIME = new Prefix("d/");
     public static final Prefix PREFIX_DURATION = new Prefix("du/");
+    public static final Prefix PREFIX_MONTH = new Prefix("m/");
+    public static final Prefix PREFIX_YEAR = new Prefix("y/");
 }

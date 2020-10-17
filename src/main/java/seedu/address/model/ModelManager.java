@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.Month;
+import java.time.Year;
 import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -304,6 +306,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Tag> getSaleTagList() {
         return addressBook.getSaleTagList();
+    }
+
+    @Override
+    public int getMonthMeetingsCount(Month month, Year year) {
+        return this.addressBook.getMonthMeetingsCount(month, year);
     }
 
     @Override

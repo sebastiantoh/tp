@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
@@ -21,6 +23,7 @@ import seedu.address.logic.commands.contact.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.contact.FindCommand;
 import seedu.address.logic.commands.contact.ListCommand;
 import seedu.address.logic.commands.contact.SortCommand;
+import seedu.address.logic.commands.meeting.StatsCommand;
 import seedu.address.logic.parser.contact.SortCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
@@ -107,5 +110,14 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand("hel") instanceof UnknownCommand);
         assertTrue(parser.parseCommand("tag lis") instanceof UnknownCommand);
         assertTrue(parser.parseCommand("tag") instanceof UnknownCommand);
+    }
+
+    @Test
+    public void parseCommand_meetingStat() throws Exception {
+        String month = "10";
+        String year = "2020";
+        assertTrue(parser.parseCommand(StatsCommand.COMMAND_WORD) instanceof StatsCommand);
+        assertTrue(parser.parseCommand(StatsCommand.COMMAND_WORD + " " + PREFIX_MONTH + month + " "
+                + PREFIX_YEAR + year) instanceof StatsCommand);
     }
 }

@@ -1,6 +1,8 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.Month;
+import java.time.Year;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -236,4 +238,6 @@ public interface Model {
      * Removes the given sale item to the specified contact.
      */
     void removeSaleFromPerson(Person person, Sale sale);
+
+    int getMonthMeetingsCount(Month month, Year year);
 }
