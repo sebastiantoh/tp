@@ -18,8 +18,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, " " + PREFIX_SALE_CONTACT_INDEX + "2 " + PREFIX_SALE_INDEX + "1",
-                new DeleteCommand(INDEX_SECOND_ITEM, INDEX_FIRST_ITEM));
+        assertParseSuccess(parser, " " + PREFIX_SALE_INDEX + "2", new DeleteCommand(INDEX_SECOND_ITEM));
     }
 
     @Test

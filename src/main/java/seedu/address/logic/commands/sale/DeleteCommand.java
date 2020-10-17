@@ -24,12 +24,9 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "sale delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the sale belonging to specified contact, "
-        + "identified by the index number used in the displayed sale list.\n"
-        + "Parameters: CONTACT_INDEX (must be a positive integer) "
-        + "SALE_INDEX (must be a positive integer)\n"
+        + ": Deletes the sale identified by the index number used in the displayed sale list.\n"
+        + "Parameters: SALE_INDEX (must be a positive integer)\n"
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_SALE_CONTACT_INDEX + "2 "
         + PREFIX_SALE_INDEX + "1";
 
     public static final String MESSAGE_DELETE_SALE_SUCCESS = "Deleted Sale: %1$s";
@@ -37,29 +34,19 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_NO_SALES_DISPLAYED = "No sales displayed, use `sale list` "
             + "to display sales before executing the `sale delete` command";
 
-    private final Index contactIndex;
     private final Index saleIndex;
 
     /**
      * Creates an DeleteCommand that removes a sale from a specified contact.
-     * @param contactIndex Index of the contact whose sale is to be removed.
      * @param saleIndex Index of the sale to be removed.
      */
-    public DeleteCommand(Index contactIndex, Index saleIndex) {
-        this.contactIndex = contactIndex;
+    public DeleteCommand(Index saleIndex) {
         this.saleIndex = saleIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> people = model.getSortedPersonList();
-
-        if (contactIndex.getZeroBased() >= people.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToEdit = people.get(contactIndex.getZeroBased());
 
         List<Sale> sales = model.getFilteredSaleList();
         if (model.getSortedSaleList().size() > sales.size() && model.getFilteredSaleList().size() == 0) {
@@ -70,6 +57,7 @@ public class DeleteCommand extends Command {
         }
 
         Sale saleToDelete = sales.get(saleIndex.getZeroBased());
+        Person personToEdit = saleToDelete.getBuyer();
         BigDecimal newTotalSalesAmount = personToEdit.getTotalSalesAmount().subtract(saleToDelete.getTotalCost());
 
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
@@ -85,7 +73,6 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof DeleteCommand // instanceof handles nulls
-            && contactIndex.equals(((DeleteCommand) other).contactIndex)
             && saleIndex.equals(((DeleteCommand) other).saleIndex)); // state check
     }
 }

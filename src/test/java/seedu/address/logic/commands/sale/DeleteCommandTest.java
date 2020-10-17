@@ -33,7 +33,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_noSalesListed_throwsCommandException() {
         Sale saleToDelete = model.getSortedSaleList().get(0);
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_SECOND_ITEM, INDEX_FIRST_ITEM);
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_SECOND_ITEM);
 
         ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.removeSale(saleToDelete);
@@ -46,14 +46,14 @@ public class DeleteCommandTest {
         model.updateFilteredSaleList(x -> true);
 
         Sale saleToDelete = model.getFilteredSaleList().get(1);
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_SECOND_ITEM, INDEX_SECOND_ITEM);
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_SECOND_ITEM);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_SALE_SUCCESS, saleToDelete);
 
         ModelManager expectedModel = new ModelManager(getTypicalAddressBookInReverse(), new UserPrefs());
         expectedModel.updateFilteredSaleList(x -> true);
 
-        Person toEdit = expectedModel.getSortedPersonList().get(INDEX_SECOND_ITEM.getZeroBased());
+        Person toEdit = expectedModel.getFilteredSaleList().get(1).getBuyer();
         Person newPerson = new PersonBuilder(toEdit)
                 .withTotalSalesAmount(toEdit.getTotalSalesAmount().subtract(saleToDelete.getTotalCost())).build();
 
@@ -64,47 +64,35 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidContactIndex_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getSortedPersonList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, INDEX_FIRST_ITEM);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
     public void execute_invalidSaleIndex_throwsCommandException() {
         model.updateFilteredSaleList(x -> true);
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_SECOND_ITEM, Index.fromOneBased(10));
+        DeleteCommand deleteCommand = new DeleteCommand(Index.fromOneBased(10));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_emptyFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_ITEM);
-        model.updateFilteredSaleList(x -> true);
+        model.updateFilteredSaleList(x -> false);
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
+        String expectedMessage = "No sales displayed, use `sale list` to display sales "
+                + "before executing the `sale delete` command";
 
-        Index outOfBoundIndex = INDEX_SECOND_ITEM;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
-
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, INDEX_FIRST_ITEM);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, expectedMessage);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstSaleCommand = new DeleteCommand(INDEX_FIRST_ITEM, INDEX_FIRST_ITEM);
-        DeleteCommand deleteSecondSaleCommand = new DeleteCommand(INDEX_FIRST_ITEM, INDEX_SECOND_ITEM);
-        DeleteCommand deleteFromSecondPersonCommand = new DeleteCommand(INDEX_SECOND_ITEM, INDEX_FIRST_ITEM);
+        DeleteCommand deleteFirstSaleCommand = new DeleteCommand(INDEX_FIRST_ITEM);
+        DeleteCommand deleteSecondSaleCommand = new DeleteCommand(INDEX_SECOND_ITEM);
 
         // same object -> returns true
         assertTrue(deleteFirstSaleCommand.equals(deleteFirstSaleCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ITEM, INDEX_FIRST_ITEM);
-        assertTrue(deleteFirstSaleCommand.equals(deleteFirstCommandCopy));
+        DeleteCommand deleteFirstSaleCommandCopy = new DeleteCommand(INDEX_FIRST_ITEM);
+        assertTrue(deleteFirstSaleCommand.equals(deleteFirstSaleCommandCopy));
 
         // different types -> returns false
         assertFalse(deleteFirstSaleCommand.equals(1));
@@ -114,6 +102,5 @@ public class DeleteCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstSaleCommand.equals(deleteSecondSaleCommand));
-        assertFalse(deleteFirstSaleCommand.equals(deleteFromSecondPersonCommand));
     }
 }
