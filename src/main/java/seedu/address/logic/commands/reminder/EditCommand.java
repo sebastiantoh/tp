@@ -82,6 +82,7 @@ public class EditCommand extends Command {
      */
     private static Reminder createEditedReminder(Model model, Reminder reminderToEdit,
                                                  EditReminderDescriptor editReminderDescriptor) {
+        assert model != null;
         assert reminderToEdit != null;
         assert editReminderDescriptor != null;
 
@@ -131,6 +132,7 @@ public class EditCommand extends Command {
          * A constructor that is used to create a Copy of the provided @{code EditReminderDescriptor}.
          */
         public EditReminderDescriptor(EditReminderDescriptor toCopy) {
+            assert toCopy != null;
             setContactIndex(toCopy.contactIndex);
             setMessage(toCopy.message);
             setScheduledDate(toCopy.scheduledDate);
