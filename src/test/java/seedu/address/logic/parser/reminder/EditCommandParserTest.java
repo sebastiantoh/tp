@@ -12,6 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.MESSAGE_CALL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MESSAGE_CALL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MESSAGE_CALL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MESSAGE_CALL_BOB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -24,6 +26,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.reminder.EditCommand;
 import seedu.address.logic.commands.reminder.EditCommand.EditReminderDescriptor;
+import seedu.address.model.Message;
 import seedu.address.testutil.TypicalDates;
 import seedu.address.testutil.reminder.EditReminderDescriptorBuilder;
 
@@ -64,7 +67,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_CONTACT_INDEX, MESSAGE_INVALID_INDEX); // invalid contact index
+        assertParseFailure(parser, "1" + " " + PREFIX_MESSAGE + "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Message.MESSAGE_CONSTRAINTS));
         assertParseFailure(parser, "1" + INVALID_DATE, MESSAGE_INVALID_DATETIME); // invalid date
+        assertParseFailure(parser, "1" + CONTACT_INDEX_SECOND + " " + PREFIX_DATETIME + "", MESSAGE_INVALID_DATETIME);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_CONTACT_INDEX + INVALID_DATE + MESSAGE_CALL_AMY,

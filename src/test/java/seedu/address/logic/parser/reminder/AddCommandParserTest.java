@@ -10,6 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.MESSAGE_CALL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MESSAGE_CALL_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalDates.TYPICAL_DATE_1;
@@ -61,8 +63,14 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_CONTACT_INDEX + MESSAGE_CALL_AMY + DATE_1,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
+        // invalid message
+        assertParseFailure(parser, INVALID_CONTACT_INDEX + " " + PREFIX_MESSAGE + "" + DATE_1,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
         // invalid date
         assertParseFailure(parser, CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + INVALID_DATE,
+                MESSAGE_INVALID_DATETIME);
+        assertParseFailure(parser, CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + " " + PREFIX_DATETIME + "",
                 MESSAGE_INVALID_DATETIME);
 
         // non-empty preamble
