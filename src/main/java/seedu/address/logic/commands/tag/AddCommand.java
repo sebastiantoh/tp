@@ -18,7 +18,8 @@ import seedu.address.model.tag.Tag;
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "tag add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag (for contacts or for sales) to the StonksBook. "
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Adds a tag (for contacts or for sales) to the StonksBook. "
             + "Parameters: "
             + "c/ (or s/) "
             + PREFIX_TAG + "TAG\n"

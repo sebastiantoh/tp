@@ -1,5 +1,12 @@
 package seedu.address.logic.parser.tag;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.tag.AddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -8,13 +15,6 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
 public class AddCommandParser implements Parser<AddCommand> {
 
     @Override
@@ -22,6 +22,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(userInput, PREFIX_SALE, PREFIX_CONTACT, PREFIX_TAG);
 
+        System.out.println(userInput);
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     seedu.address.logic.commands.tag.AddCommand.MESSAGE_USAGE));
@@ -41,7 +42,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         } else if (!argMultimap.getValue(PREFIX_CONTACT).isEmpty()) {
             return new AddCommand(tag, true);
         } else {
-            throw new ParseException(AddCommand.MESSAGE_USAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
     }
 
