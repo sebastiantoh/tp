@@ -88,7 +88,7 @@ public class EditCommand extends Command {
         List<Person> lastShownPersonsList = model.getSortedPersonList();
 
         Person updatedPerson =
-                editReminderDescriptor.getPersonIndex().map(index -> lastShownPersonsList.get(index.getZeroBased()))
+                editReminderDescriptor.getContactIndex().map(index -> lastShownPersonsList.get(index.getZeroBased()))
                         .orElse(reminderToEdit.getPerson());
         String updatedMessage = editReminderDescriptor.getMessage().orElse(reminderToEdit.getMessage());
         LocalDateTime updatedScheduledDate =
@@ -120,7 +120,7 @@ public class EditCommand extends Command {
      * corresponding field value of the reminder.
      */
     public static class EditReminderDescriptor {
-        private Index personIndex;
+        private Index contactIndex;
         private String message;
         private LocalDateTime scheduledDate;
 
@@ -131,7 +131,7 @@ public class EditCommand extends Command {
          * A constructor that is used to create a Copy of the provided @{code EditReminderDescriptor}.
          */
         public EditReminderDescriptor(EditReminderDescriptor toCopy) {
-            setPersonIndex(toCopy.personIndex);
+            setContactIndex(toCopy.contactIndex);
             setMessage(toCopy.message);
             setScheduledDate(toCopy.scheduledDate);
         }
@@ -140,15 +140,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(personIndex, message, scheduledDate);
+            return CollectionUtil.isAnyNonNull(contactIndex, message, scheduledDate);
         }
 
-        public void setPersonIndex(Index personIndex) {
-            this.personIndex = personIndex;
+        public void setContactIndex(Index contactIndex) {
+            this.contactIndex = contactIndex;
         }
 
-        public Optional<Index> getPersonIndex() {
-            return Optional.ofNullable(personIndex);
+        public Optional<Index> getContactIndex() {
+            return Optional.ofNullable(contactIndex);
         }
 
         public void setMessage(String message) {
@@ -182,7 +182,7 @@ public class EditCommand extends Command {
             // state check
             EditReminderDescriptor e = (EditReminderDescriptor) other;
 
-            return getPersonIndex().equals(e.getPersonIndex())
+            return getContactIndex().equals(e.getContactIndex())
                     && getMessage().equals(e.getMessage())
                     && getScheduledDate().equals(e.getScheduledDate());
         }
