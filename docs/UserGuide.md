@@ -141,7 +141,7 @@ Examples:
 * `contact find s/ desc` sorts the contact list based on the total sales amount in non-ascending order
 
 #### Deleting a contact: `contact delete`
-Deletes the specified contact from StonksBook.
+Deletes the specified contact from StonksBook. All associated reminders and meetings will be deleted as well.
 
 Format: `contact delete INDEX`
 * Deletes the contact at the specified `INDEX`.
