@@ -29,7 +29,6 @@ public class Assert {
     public static void assertThrows(Class<? extends Throwable> expectedType, String expectedMessage,
             Executable executable) {
         Throwable thrownException = Assertions.assertThrows(expectedType, executable);
-        System.out.println(thrownException.getMessage());
         Assertions.assertEquals(expectedMessage, thrownException.getMessage());
     }
 }
