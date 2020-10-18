@@ -94,6 +94,51 @@ public class UniqueReminderListTest {
     }
 
     @Test
+    public void setReminder_nullTargetReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueReminderList.setReminder(null, CALL_ALICE));
+    }
+
+    @Test
+    public void setReminder_nullEditedReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueReminderList.setReminder(CALL_ALICE, null));
+    }
+
+    @Test
+    public void setReminder_targetReminderNotInList_throwsReminderNotFoundException() {
+        assertThrows(ReminderNotFoundException.class, () -> uniqueReminderList.setReminder(CALL_ALICE, CALL_ALICE));
+    }
+
+    @Test
+    public void setReminder_editedReminderIsSameReminder_success() {
+        uniqueReminderList.add(CALL_ALICE);
+        uniqueReminderList.setReminder(CALL_ALICE, CALL_ALICE);
+
+        UniqueReminderList expectedUniqueReminderList = new UniqueReminderList();
+        expectedUniqueReminderList.add(CALL_ALICE);
+
+        assertEquals(expectedUniqueReminderList, uniqueReminderList);
+    }
+
+    @Test
+    public void setReminder_editedReminderIsDifferent_success() {
+        uniqueReminderList.add(CALL_ALICE);
+        uniqueReminderList.setReminder(CALL_ALICE, EMAIL_BENSON);
+
+        UniqueReminderList expectedUniqueReminderList = new UniqueReminderList();
+        expectedUniqueReminderList.add(EMAIL_BENSON);
+
+        assertEquals(expectedUniqueReminderList, uniqueReminderList);
+    }
+
+    @Test
+    public void setReminder_editedReminderExists_throwsDuplicateReminderException() {
+        uniqueReminderList.add(CALL_ALICE);
+        uniqueReminderList.add(EMAIL_BENSON);
+
+        assertThrows(DuplicateReminderException.class, () -> uniqueReminderList.setReminder(CALL_ALICE, EMAIL_BENSON));
+    }
+
+    @Test
     public void setReminders_nullUniqueReminderList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueReminderList.setReminders((UniqueReminderList) null));
     }
