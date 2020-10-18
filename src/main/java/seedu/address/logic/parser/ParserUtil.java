@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Message;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -150,6 +151,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String message} into a {@code Message}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code message} is invalid.
+     */
+    public static Message parseMessage(String message) throws ParseException {
+        requireNonNull(message);
+        String trimmedMessage = message.strip();
+        if (!Message.isValidMessage(trimmedMessage)) {
+            throw new ParseException(Message.MESSAGE_CONSTRAINTS);
+        }
+        return new Message(trimmedMessage);
     }
 
     /**
