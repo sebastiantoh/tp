@@ -130,6 +130,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addSaleTag(Tag tag) {
+        addressBook.addSaleTag(tag);
+    }
+
+    @Override
     public void editContactTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
 
@@ -273,6 +278,16 @@ public class ModelManager implements Model {
     @Override
     public String listTags() {
         return addressBook.listTags();
+    }
+
+    @Override
+    public boolean saleTagsExist(Sale sale) {
+        return addressBook.saleTagsExist(sale);
+    }
+
+    @Override
+    public boolean contactTagsExist(Person person) {
+        return addressBook.contactTagsExist(person);
     }
 
     //=========== Reminder List Accessors =============================================================

@@ -84,10 +84,16 @@ public interface Model {
     boolean hasSaleTag(Tag tag);
 
     /**
-     * Adds the given tag.
+     * Adds the given {@code tag} to the contact tag list.
      * {@code tag} must not already exist in StonksBook.
      */
     void addContactTag(Tag tag);
+
+    /**
+     * Adds the given {@code tag} to the sales tag list.
+     * {@code tag} must not already exist in StonksBook.
+     */
+    void addSaleTag(Tag tag);
 
     /**
      * Replaces the given {@code tag} with {@code editedTag}.
@@ -129,6 +135,16 @@ public interface Model {
      * Lists all existing tags.
      */
     String listTags();
+
+    /**
+     * Returns if the {@code sale} item's tags are present in StonksBook.
+     */
+    boolean saleTagsExist(Sale sale);
+
+    /**
+     * Returns if the {@code person}'s tags are present in StonksBook.
+     */
+    boolean contactTagsExist(Person person);
 
     /**
      * Returns an unmodifiable view of the contact tag list.
