@@ -146,11 +146,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : editedPerson.getTags()) {
             contactTags.add(t);
         }
-        for (Tag t : target.getTags()) {
-            if (persons.hasZeroOccurrences(t)) {
-                contactTags.remove(t);
-            }
-        }
     }
 
     /**
@@ -411,11 +406,6 @@ public class AddressBook implements ReadOnlyAddressBook {
                         toRemove.remove(t);
                     }
                 }
-            }
-        }
-        if (!toRemove.isEmpty()) {
-            for (Tag t : toRemove) {
-                saleTags.remove(t);
             }
         }
     }
