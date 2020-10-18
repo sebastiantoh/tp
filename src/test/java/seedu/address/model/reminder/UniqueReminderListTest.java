@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.Message;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
 
@@ -82,7 +83,7 @@ public class UniqueReminderListTest {
     public void removeRemindersWithContact_contactWithMultipleReminders_associatedRemindersRemoved() {
         uniqueReminderList.add(CALL_ALICE);
         uniqueReminderList.add(EMAIL_BENSON);
-        uniqueReminderList.add(new Reminder(ALICE, "Second reminder with Alice",
+        uniqueReminderList.add(new Reminder(ALICE, new Message("Second reminder with Alice"),
                 LocalDateTime.of(2021, 10, 30, 10, 19)));
 
         uniqueReminderList.removeRemindersWithContact(ALICE);

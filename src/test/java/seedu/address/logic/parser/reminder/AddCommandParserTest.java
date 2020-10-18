@@ -18,6 +18,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.reminder.AddCommand;
+import seedu.address.model.Message;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -26,7 +27,8 @@ public class AddCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         String userInput = CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + DATE_1;
 
-        AddCommand expectedCommand = new AddCommand(INDEX_SECOND_ITEM, VALID_MESSAGE_CALL_AMY, TYPICAL_DATE_1);
+        AddCommand expectedCommand = new AddCommand(INDEX_SECOND_ITEM, new Message(VALID_MESSAGE_CALL_AMY),
+                TYPICAL_DATE_1);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

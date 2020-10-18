@@ -15,6 +15,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Message;
 
 /**
  * Parses input arguments and creates a new AddCommand object for Reminder.
@@ -45,7 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE), pe);
         }
 
-        String message = argMultimap.getValue(PREFIX_MESSAGE).get();
+        Message message = ParserUtil.parseMessage(argMultimap.getValue(PREFIX_MESSAGE).get());
         LocalDateTime scheduledDate = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
 
         return new AddCommand(index, message, scheduledDate);

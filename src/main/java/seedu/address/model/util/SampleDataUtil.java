@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.Message;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
@@ -84,9 +85,9 @@ public class SampleDataUtil {
         Person charlotte = samplePersons[2];
 
         UniqueReminderList reminders = new UniqueReminderList();
-        reminders.add(new Reminder(alex, "Send follow up email",
+        reminders.add(new Reminder(alex, new Message("Send follow up email"),
                 LocalDateTime.of(2020, 11, 30, 15, 30)));
-        reminders.add(new Reminder(charlotte, "Draft up sales proposal for upcoming meeting",
+        reminders.add(new Reminder(charlotte, new Message("Draft up sales proposal for upcoming meeting"),
                 LocalDateTime.of(2020, 12, 15, 9, 0)));
 
         return reminders;

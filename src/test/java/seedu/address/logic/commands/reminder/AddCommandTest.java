@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Message;
 import seedu.address.model.ModelStub;
 import seedu.address.model.ModelStubWithSortedPersonList;
 import seedu.address.model.person.Person;
@@ -24,7 +25,7 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.testutil.person.PersonBuilder;
 
 public class AddCommandTest {
-    private static final String MESSAGE = "message";
+    private static final Message MESSAGE = new Message("message");
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
@@ -70,13 +71,15 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        AddCommand addCallAliceReminderCommand = new AddCommand(INDEX_FIRST_ITEM, "Call Alice", TYPICAL_DATE_1);
+        AddCommand addCallAliceReminderCommand =
+                new AddCommand(INDEX_FIRST_ITEM, new Message("Call Alice"), TYPICAL_DATE_1);
 
         // same object -> returns true
         assertEquals(addCallAliceReminderCommand, addCallAliceReminderCommand);
 
         // same values -> returns true
-        AddCommand addCallAliceReminderCommandCopy = new AddCommand(INDEX_FIRST_ITEM, "Call Alice", TYPICAL_DATE_1);
+        AddCommand addCallAliceReminderCommandCopy =
+                new AddCommand(INDEX_FIRST_ITEM, new Message("Call Alice"), TYPICAL_DATE_1);
         assertEquals(addCallAliceReminderCommand, addCallAliceReminderCommandCopy);
 
         // different types -> returns false
@@ -86,14 +89,16 @@ public class AddCommandTest {
         assertNotEquals(addCallAliceReminderCommand, null);
 
         // different index -> returns false
-        assertNotEquals(addCallAliceReminderCommand, new AddCommand(INDEX_SECOND_ITEM, "Call Alice",
+        assertNotEquals(addCallAliceReminderCommand, new AddCommand(INDEX_SECOND_ITEM, new Message("Call Alice"),
                 TYPICAL_DATE_1));
 
         // different message -> returns false
-        assertNotEquals(addCallAliceReminderCommand, new AddCommand(INDEX_FIRST_ITEM, "Call Bob", TYPICAL_DATE_1));
+        assertNotEquals(addCallAliceReminderCommand, new AddCommand(INDEX_FIRST_ITEM, new Message("Call Bob"),
+                TYPICAL_DATE_1));
 
         // different date -> returns false
-        assertNotEquals(addCallAliceReminderCommand, new AddCommand(INDEX_FIRST_ITEM, "Call Alice", TYPICAL_DATE_2));
+        assertNotEquals(addCallAliceReminderCommand, new AddCommand(INDEX_FIRST_ITEM, new Message("Call Alice"),
+                TYPICAL_DATE_2));
     }
 
     /**

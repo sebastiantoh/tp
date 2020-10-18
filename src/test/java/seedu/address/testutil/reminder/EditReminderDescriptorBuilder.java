@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.reminder.EditCommand.EditReminderDescriptor;
+import seedu.address.model.Message;
 
 /**
  * A utility class to help with building EditReminderDescriptor objects.
@@ -32,7 +33,7 @@ public class EditReminderDescriptorBuilder {
      * Sets the {@code message} of the {@code EditReminderDescriptor} that we are building.
      */
     public EditReminderDescriptorBuilder withMessage(String message) {
-        descriptor.setMessage(message);
+        descriptor.setMessage(new Message(message));
         return this;
     }
 

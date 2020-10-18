@@ -15,6 +15,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Message;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -91,7 +92,7 @@ public class EditCommand extends Command {
         Person updatedPerson =
                 editReminderDescriptor.getContactIndex().map(index -> lastShownPersonsList.get(index.getZeroBased()))
                         .orElse(reminderToEdit.getPerson());
-        String updatedMessage = editReminderDescriptor.getMessage().orElse(reminderToEdit.getMessage());
+        Message updatedMessage = editReminderDescriptor.getMessage().orElse(reminderToEdit.getMessage());
         LocalDateTime updatedScheduledDate =
                 editReminderDescriptor.getScheduledDate().orElse(reminderToEdit.getScheduledDate());
 
@@ -122,7 +123,7 @@ public class EditCommand extends Command {
      */
     public static class EditReminderDescriptor {
         private Index contactIndex;
-        private String message;
+        private Message message;
         private LocalDateTime scheduledDate;
 
         public EditReminderDescriptor() {
@@ -153,11 +154,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(contactIndex);
         }
 
-        public void setMessage(String message) {
+        public void setMessage(Message message) {
             this.message = message;
         }
 
-        public Optional<String> getMessage() {
+        public Optional<Message> getMessage() {
             return Optional.ofNullable(message);
         }
 

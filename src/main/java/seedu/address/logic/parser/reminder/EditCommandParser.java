@@ -44,7 +44,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editReminderDescriptor.setContactIndex(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONTACT).get()));
         }
         if (argMultimap.getValue(PREFIX_MESSAGE).isPresent()) {
-            editReminderDescriptor.setMessage(argMultimap.getValue(PREFIX_MESSAGE).get());
+            editReminderDescriptor.setMessage(ParserUtil.parseMessage(argMultimap.getValue(PREFIX_MESSAGE).get()));
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             editReminderDescriptor

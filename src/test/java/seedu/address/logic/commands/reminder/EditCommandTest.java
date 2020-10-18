@@ -2,7 +2,6 @@ package seedu.address.logic.commands.reminder;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.MESSAGE_CALL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MESSAGE_CALL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MESSAGE_CALL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -19,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PurgeCommand;
 import seedu.address.logic.commands.reminder.EditCommand.EditReminderDescriptor;
 import seedu.address.model.AddressBook;
+import seedu.address.model.Message;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -35,7 +35,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Reminder editedReminder = new Reminder(GEORGE, VALID_MESSAGE_CALL_AMY, TypicalDates.TYPICAL_DATE_1);
+        Reminder editedReminder = new Reminder(GEORGE, new Message(VALID_MESSAGE_CALL_AMY),
+                TypicalDates.TYPICAL_DATE_1);
         EditReminderDescriptor descriptor = new EditReminderDescriptorBuilder()
                 // George appears as the 6th item
                 .withContactIndex(Index.fromZeroBased(6))
@@ -91,7 +92,7 @@ public class EditCommandTest {
         EditReminderDescriptor descriptor = new EditReminderDescriptorBuilder()
                 .withContactIndex(Index.fromZeroBased(model.getSortedPersonList().indexOf(firstReminder.getPerson())))
                 .withScheduledDate(firstReminder.getScheduledDate())
-                .withMessage(firstReminder.getMessage())
+                .withMessage(firstReminder.getMessage().message)
                 .build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_ITEM, descriptor);
 
@@ -112,7 +113,7 @@ public class EditCommandTest {
     public void equals() {
         EditReminderDescriptor descriptor =
                 new EditReminderDescriptorBuilder()
-                        .withMessage(MESSAGE_CALL_AMY)
+                        .withMessage(VALID_MESSAGE_CALL_AMY)
                         .withContactIndex(INDEX_SECOND_ITEM)
                         .withScheduledDate(TypicalDates.TYPICAL_DATE_3).build();
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
