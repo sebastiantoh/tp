@@ -245,7 +245,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         int count = 0;
         for (Person p : persons) {
             if (p.getTags().contains(target)) {
-                output.append(String.format("%d. %s\n", count++ + 1, p.toString()));
+                output.append(String.format("%d. %s\n", ++count, p.toString()));
             }
         }
         if (count == 0) {
@@ -265,7 +265,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             for (int i = 0; i < len; i++) {
                 Sale s = p.getSalesList().asUnmodifiableObservableList().get(i);
                 if (s.getTags().contains(target)) {
-                    output.append(String.format("%d. %s (Client: %s)\n", count++ + 1, s, p.getName()));
+                    output.append(String.format("%d. %s (Client: %s)\n", ++count, s, p.getName()));
                 }
             }
         }

@@ -202,11 +202,17 @@ Displays all entries (including contacts, items, etc.) that are associated with 
 
 <img src="images/tagFindMockup.png" alt="result for 'tag find'" width="400px">
 
-Format: `tag find INDEX [MODEL]`
+Format: `tag find INDEX [c/]`
 
-* Displays all entries of `[MODEL]` (optional, see point 3 below) associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command and `[MODEL]` refers to the model to search for (i.e. contacts, sales, etc.).
+* Displays all entries of associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
-* The `INDEX` field must be provided and the `[MODEL]` field is optional; when not provided, this command will display all entries that have been associated with the specified tag.
+* The `INDEX` field must be provided.
+* An additional `c/` field can be provided when performing searching on sales tags. This field results in all contacts who purchased sales items associated with this tag to be displayed. Adding this field will have no effect on the search results for contact tags.
+
+Examples:
+* `tag find 1` displays all contacts associated with the first tag displayed by the `tag list` command, assuming there are more than one contact tags.
+* `tag find 5` displays all sales associated with the seventh tag displayed by the `tag list` command, assuming there are less than five contact tags.
+* `tag find 5 c/` displays all contacts who have purchased items associated with the tenth tag, assuming there are less than five contact tags.
 
 ### Sales
 
