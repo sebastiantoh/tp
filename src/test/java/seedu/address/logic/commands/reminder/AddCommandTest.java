@@ -71,15 +71,16 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
+        Message callAlice = new Message("Call Alice");
         AddCommand addCallAliceReminderCommand =
-                new AddCommand(INDEX_FIRST_ITEM, new Message("Call Alice"), TYPICAL_DATE_1);
+                new AddCommand(INDEX_FIRST_ITEM, callAlice, TYPICAL_DATE_1);
 
         // same object -> returns true
         assertEquals(addCallAliceReminderCommand, addCallAliceReminderCommand);
 
         // same values -> returns true
         AddCommand addCallAliceReminderCommandCopy =
-                new AddCommand(INDEX_FIRST_ITEM, new Message("Call Alice"), TYPICAL_DATE_1);
+                new AddCommand(INDEX_FIRST_ITEM, callAlice, TYPICAL_DATE_1);
         assertEquals(addCallAliceReminderCommand, addCallAliceReminderCommandCopy);
 
         // different types -> returns false
@@ -89,7 +90,7 @@ public class AddCommandTest {
         assertNotEquals(addCallAliceReminderCommand, null);
 
         // different index -> returns false
-        assertNotEquals(addCallAliceReminderCommand, new AddCommand(INDEX_SECOND_ITEM, new Message("Call Alice"),
+        assertNotEquals(addCallAliceReminderCommand, new AddCommand(INDEX_SECOND_ITEM, callAlice,
                 TYPICAL_DATE_1));
 
         // different message -> returns false
@@ -97,7 +98,7 @@ public class AddCommandTest {
                 TYPICAL_DATE_1));
 
         // different date -> returns false
-        assertNotEquals(addCallAliceReminderCommand, new AddCommand(INDEX_FIRST_ITEM, new Message("Call Alice"),
+        assertNotEquals(addCallAliceReminderCommand, new AddCommand(INDEX_FIRST_ITEM, callAlice,
                 TYPICAL_DATE_2));
     }
 
