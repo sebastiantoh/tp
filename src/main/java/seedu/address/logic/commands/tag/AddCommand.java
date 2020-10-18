@@ -31,6 +31,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SALES_SUCCESS = "New sales tag added: %1$s";
     public static final String MESSAGE_DUPLICATE_CONTACT_TAG = "This contact tag already exists in StonksBook";
     public static final String MESSAGE_DUPLICATE_SALES_TAG = "This sales tag already exists in StonksBook";
+    public static final String MESSAGE_CONFLICT_TYPES =
+            "Invalid tag type provided! Please use either c/ or s/, but not both.\n";
 
     private final Tag toAdd;
     private final boolean isContact;
@@ -66,7 +68,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.logic.commands.tag.AddCommand // instanceof handles nulls
-                && toAdd.equals(((seedu.address.logic.commands.tag.AddCommand) other).toAdd));
+                || (other instanceof AddCommand // instanceof handles nulls
+                && toAdd.equals(((AddCommand) other).toAdd));
     }
 }

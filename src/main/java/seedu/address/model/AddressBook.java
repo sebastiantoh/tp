@@ -292,7 +292,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns if all the tags of the provided {@code sale} item exist in StonksBook.
+     * Returns true if all the tags of the provided {@code sale} item exist in StonksBook.
      */
     public boolean saleTagsExist(Sale sale) {
         for (Tag t : sale.getTags()) {
@@ -304,7 +304,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns if all the tags of the provided {@code sale} item exist in StonksBook.
+     * Returns true if all the tags of the provided {@code sale} item exist in StonksBook.
      */
     public boolean contactTagsExist(Person person) {
         for (Tag t : person.getTags()) {
