@@ -318,7 +318,7 @@ Format: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]`
 * Existing values will be updated to the input values.
 
 Examples:
-* `reminder edit 1 c/2` edits the associated contact of the 1st reminder to be the second contact in the displayed contact list.
+* `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.
 * `reminder edit 3 m/Follow up call d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Follow up call" and "28th November 2020, 1PM" respectively.
 
 #### Listing all reminders: `reminder list`

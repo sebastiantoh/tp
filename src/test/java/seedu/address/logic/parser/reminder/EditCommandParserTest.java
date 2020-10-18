@@ -68,7 +68,7 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_CONTACT_INDEX, MESSAGE_INVALID_INDEX); // invalid contact index
         assertParseFailure(parser, "1" + " " + PREFIX_MESSAGE + "",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Message.MESSAGE_CONSTRAINTS));
+                Message.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + INVALID_DATE, MESSAGE_INVALID_DATETIME); // invalid date
         assertParseFailure(parser, "1" + CONTACT_INDEX_SECOND + " " + PREFIX_DATETIME + "", MESSAGE_INVALID_DATETIME);
 

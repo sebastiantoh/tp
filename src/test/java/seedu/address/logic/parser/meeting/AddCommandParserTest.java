@@ -80,14 +80,14 @@ public class AddCommandParserTest {
 
         // invalid message
         assertParseFailure(parser, INVALID_CONTACT_INDEX + " " + PREFIX_MESSAGE + "" + DATE_1,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        seedu.address.logic.commands.reminder.AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         // invalid date
         assertParseFailure(parser,
                 CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + INVALID_DATE + DURATION_ONE_HOUR,
                 MESSAGE_INVALID_DATETIME);
-        assertParseFailure(parser, CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + " " + PREFIX_DATETIME + "",
+        assertParseFailure(parser,
+                CONTACT_INDEX_SECOND + MESSAGE_CALL_AMY + " " + PREFIX_DATETIME + "" + DURATION_ONE_HOUR,
                 MESSAGE_INVALID_DATETIME);
 
         // invalid duration
