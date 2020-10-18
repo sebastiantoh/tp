@@ -240,28 +240,60 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns the number of contacts who are associated with the {@code target} tag.
      */
-    public int findByContactTag(Tag target) {
-        return (int) persons.asUnmodifiableObservableList()
-                .stream()
-                .filter(p -> p.getTags().contains(target)).count();
+    public String findByContactTag(Tag target) {
+        StringBuilder output = new StringBuilder();
+        int count = 0;
+        for (Person p : persons) {
+            if (p.getTags().contains(target)) {
+                output.append(String.format("%d. %s\n", count++ + 1, p.toString()));
+            }
+        }
+        if (count == 0) {
+            return String.format("No matching contact found for tag: %s\n", target.toString());
+        }
+        return String.format("Listing %d contacts associated with: %s\n", count, target.toString()) + output.toString();
     }
 
     /**
      * Lists all sale items associated with {@code target} tag.
      */
-    public String findBySaleTag(Tag target) {
+    public String findSalesBySaleTag(Tag target) {
         StringBuilder output = new StringBuilder();
-        output.append(String.format("Listing all sale items associated with : %s\n", target.toString()));
+        int count = 0;
         for (Person p : persons) {
             int len = p.getSalesList().asUnmodifiableObservableList().size();
             for (int i = 0; i < len; i++) {
                 Sale s = p.getSalesList().asUnmodifiableObservableList().get(i);
                 if (s.getTags().contains(target)) {
-                    output.append(String.format("%d. %s (Client: %s)\n", i + 1, s, p.getName()));
+                    output.append(String.format("%d. %s (Client: %s)\n", count++ + 1, s, p.getName()));
                 }
             }
         }
-        return output.toString();
+        if (count == 0) {
+            return String.format("No matching sales found for tag: %s\n", target.toString());
+        }
+        return String.format("Listing %d sales items associated with: %s\n",
+                count,
+                target.toString()) + output.toString();
+    }
+
+    /**
+     * Lists all contacts who have purchased items associated with {@code target} tag.
+     */
+    public String findContactsBySaleTag(Tag target) {
+        StringBuilder output = new StringBuilder();
+        int count = 0;
+        for (Person p : persons) {
+            for (Sale s : p.getSalesList()) {
+                if (s.getTags().contains(target)) {
+                    output.append(String.format("%d. %s\n", count++ + 1, p.toString()));
+                    break;
+                }
+            }
+        }
+        return String.format("The following %d contact(s) have purchased items in this category: %s\n",
+                count,
+                target.toString()) + output.toString();
     }
 
     /**

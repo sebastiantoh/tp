@@ -118,12 +118,17 @@ public interface Model {
     /**
      * Returns the number of contacts associated with {@code target} tag.
      */
-    int findByContactTag(Tag target);
+    String findByContactTag(Tag target);
 
     /**
      * Lists all sale items associated with {@code target} tag.
      */
-    String findBySaleTag(Tag target);
+    String findSalesBySaleTag(Tag target);
+
+    /**
+     * Lists all contacts who have bought items associated with {@code target} tag.
+     */
+    String findContactsBySaleTag(Tag target);
 
     /**
      * Lists all existing tags.

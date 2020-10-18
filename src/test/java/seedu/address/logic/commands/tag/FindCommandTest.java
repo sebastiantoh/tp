@@ -28,11 +28,16 @@ class FindCommandTest {
 
         FindCommand findCommand = new FindCommand(INDEX_FIRST_ITEM);
 
-        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = "Listing 3 contacts associated with: [friends]\n"
+                + "1. Alice Pauline Phone: 94351253 Email: alice@example.com "
+                + "Address: 123, Jurong West Ave 6, #08-111 Tags: [friends] Remark: Likes chocolates\n"
+                + "2. Benson Meier Phone: 98765432 Email: johnd@example.com "
+                + "Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends] Remark: Owes me $10\n"
+                + "3. Daniel Meier Phone: 87652533 Email: cornelia@example.com "
+                + "Address: 10th street Tags: [friends] Remark: \n";
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.findByContactTag(tagToFind);
-        expectedModel.updateFilteredPersonList(p -> p.getTags().contains(tagToFind));
 
         assertCommandSuccess(findCommand, model, expectedMessage, expectedModel);
     }
