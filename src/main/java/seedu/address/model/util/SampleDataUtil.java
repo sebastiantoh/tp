@@ -99,9 +99,9 @@ public class SampleDataUtil {
         Person charlotte = samplePersons[2];
 
         UniqueMeetingList meetings = new UniqueMeetingList();
-        meetings.add(new Meeting(bernice, "Sales Call",
+        meetings.add(new Meeting(bernice, new Message("Sales Call"),
                 LocalDateTime.of(2020, 11, 20, 15, 30), Duration.ofMinutes(30)));
-        meetings.add(new Meeting(charlotte, "Lunch to discuss new recurring purchase requirements",
+        meetings.add(new Meeting(charlotte, new Message("Lunch to discuss new recurring purchase requirements"),
                 LocalDateTime.of(2020, 12, 20, 12, 0), Duration.ofMinutes(90)));
 
         return meetings;
