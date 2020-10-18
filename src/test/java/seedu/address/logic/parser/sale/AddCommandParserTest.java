@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.ITEM_NAME_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.SALE_DATE_DESC_APPLE;
+import static seedu.address.logic.commands.CommandTestUtil.SALE_TAG_FRUITS;
 import static seedu.address.logic.commands.CommandTestUtil.UNIT_PRICE_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
@@ -83,23 +84,23 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid item name
         assertParseFailure(parser, CONTACT_INDEX_SECOND + INVALID_ITEM_NAME + SALE_DATE_DESC_APPLE
-                + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE, ItemName.MESSAGE_CONSTRAINTS);
+                + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE + SALE_TAG_FRUITS, ItemName.MESSAGE_CONSTRAINTS);
 
         // invalid date
         assertParseFailure(parser, CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE + INVALID_SALE_DATE
-                + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE, MESSAGE_INVALID_DATETIME);
+                + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE + SALE_TAG_FRUITS, MESSAGE_INVALID_DATETIME);
 
         // invalid quantity
         assertParseFailure(parser, CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE + SALE_DATE_DESC_APPLE
-                + INVALID_QUANTITY + UNIT_PRICE_DESC_APPLE, Quantity.MESSAGE_CONSTRAINTS);
+                + INVALID_QUANTITY + UNIT_PRICE_DESC_APPLE + SALE_TAG_FRUITS, Quantity.MESSAGE_CONSTRAINTS);
 
         // invalid unit price
         assertParseFailure(parser, CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE + SALE_DATE_DESC_APPLE
-                + QUANTITY_DESC_APPLE + INVALID_UNIT_PRICE, UnitPrice.MESSAGE_CONSTRAINTS);
+                + QUANTITY_DESC_APPLE + INVALID_UNIT_PRICE + SALE_TAG_FRUITS, UnitPrice.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + CONTACT_INDEX_SECOND + ITEM_NAME_DESC_APPLE
-                        + SALE_DATE_DESC_APPLE + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE,
+                        + SALE_DATE_DESC_APPLE + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE + SALE_TAG_FRUITS,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

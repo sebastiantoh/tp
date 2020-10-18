@@ -111,6 +111,7 @@ public class CommandTestUtil {
     public static final String QUANTITY_DESC_APPLE = " " + PREFIX_SALE_QUANTITY + VALID_QUANTITY_APPLE;
     public static final String UNIT_PRICE_DESC_APPLE =
             " " + PREFIX_SALE_UNIT_PRICE + VALID_UNIT_PRICE_DOLLARS_APPLE + "." + VALID_UNIT_PRICE_CENTS_APPLE;
+    public static final String SALE_TAG_FRUITS = " " + PREFIX_TAG + "fruits";
 
     public static final String VALID_SALE_TAG = " " + PREFIX_TAG + VALID_SALE_TAG_FRUITS;
 

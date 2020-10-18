@@ -34,7 +34,7 @@ public class AddCommand extends Command {
         + PREFIX_SALE_DATE + "DATETIME_OF_PURCHASE "
         + PREFIX_SALE_UNIT_PRICE + "UNIT_PRICE "
         + PREFIX_SALE_QUANTITY + "QUANTITY "
-        + "[" + PREFIX_TAG + "TAG]...\n"
+        + PREFIX_TAG + "TAG...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_SALE_CONTACT_INDEX + "2 "
         + PREFIX_SALE_NAME + "Apple "
