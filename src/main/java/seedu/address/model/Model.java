@@ -88,10 +88,16 @@ public interface Model {
     boolean hasSaleTag(Tag tag);
 
     /**
-     * Adds the given tag.
+     * Adds the given {@code tag} to the contact tag list.
      * {@code tag} must not already exist in StonksBook.
      */
     void addContactTag(Tag tag);
+
+    /**
+     * Adds the given {@code tag} to the sales tag list.
+     * {@code tag} must not already exist in StonksBook.
+     */
+    void addSaleTag(Tag tag);
 
     /**
      * Replaces the given {@code tag} with {@code editedTag}.
@@ -122,17 +128,32 @@ public interface Model {
     /**
      * Returns the number of contacts associated with {@code target} tag.
      */
-    int findByContactTag(Tag target);
+    String findByContactTag(Tag target);
 
     /**
      * Lists all sale items associated with {@code target} tag.
      */
-    String findBySaleTag(Tag target);
+    String findSalesBySaleTag(Tag target);
+
+    /**
+     * Lists all contacts who have bought items associated with {@code target} tag.
+     */
+    String findContactsBySaleTag(Tag target);
 
     /**
      * Lists all existing tags.
      */
     String listTags();
+
+    /**
+     * Returns if the {@code sale} item's tags are present in StonksBook.
+     */
+    boolean saleTagsExist(Sale sale);
+
+    /**
+     * Returns if the {@code person}'s tags are present in StonksBook.
+     */
+    boolean contactTagsExist(Person person);
 
     /**
      * Returns an unmodifiable view of the contact tag list.
@@ -186,6 +207,28 @@ public interface Model {
     void updateSortedPersonList(Comparator<Person> comparator);
 
     /**
+     * Returns an unmodifiable view of the filtered sale list.
+     */
+    ObservableList<Sale> getFilteredSaleList();
+
+    /**
+     * Updates the filter of the filtered sale list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredSaleList(Predicate<Sale> predicate);
+
+    /**
+     * Returns an unmodifiable view of the sorted sale list.
+     */
+    ObservableList<Sale> getSortedSaleList();
+
+    /**
+     * Updates the comparator of the sorted sale list to sort by the given {@code comparator}.
+     */
+    void updateSortedSaleList(Comparator<Sale> comparator);
+
+    /**
      * Returns an unmodifiable view of the sorted meeting list.
      * .
      */
@@ -232,14 +275,21 @@ public interface Model {
     void addReminder(Reminder reminder);
 
     /**
-     * Adds the given sale item to the specified contact.
+     * Returns true if a sale with the same fields {@code sale} exists in StonksBook.
      */
-    void addSaleToPerson(Person person, Sale sale);
+    boolean hasSale(Sale sale);
 
     /**
-     * Removes the given sale item to the specified contact.
+     * Adds the given sale.
+     * {@code sale} must not already exist in StonksBook.
      */
-    void removeSaleFromPerson(Person person, Sale sale);
+    void addSale(Sale sale);
+
+    /**
+     * Removes the given sale.
+     * The sale must exist in StonksBook.
+     */
+    void removeSale(Sale sale);
 
     /**
      * Gets the number of meetings in {@code month} and {@code year}.

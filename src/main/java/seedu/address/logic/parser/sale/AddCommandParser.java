@@ -2,12 +2,14 @@ package seedu.address.logic.parser.sale;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -19,7 +21,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
-import seedu.address.model.sale.Sale;
 import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
 
@@ -36,10 +37,10 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SALE_CONTACT_INDEX, PREFIX_SALE_NAME,
-                PREFIX_SALE_QUANTITY, PREFIX_TAG, PREFIX_SALE_UNIT_PRICE);
+                PREFIX_SALE_DATE, PREFIX_SALE_QUANTITY, PREFIX_TAG, PREFIX_SALE_UNIT_PRICE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_SALE_CONTACT_INDEX, PREFIX_SALE_NAME,
-                PREFIX_SALE_QUANTITY, PREFIX_SALE_UNIT_PRICE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_SALE_CONTACT_INDEX, PREFIX_SALE_NAME, PREFIX_SALE_DATE,
+                PREFIX_SALE_QUANTITY, PREFIX_SALE_UNIT_PRICE, PREFIX_TAG)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -53,12 +54,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         ItemName itemName = ParserUtil.parseItemName(argMultimap.getValue(PREFIX_SALE_NAME).get());
+        LocalDateTime dateOfPurchase = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_SALE_DATE).get());
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_SALE_QUANTITY).get());
         UnitPrice unitPrice = ParserUtil.parseUnitPrice(argMultimap.getValue(PREFIX_SALE_UNIT_PRICE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Sale toAdd = new Sale(itemName, quantity, unitPrice, tagList);
 
-        return new AddCommand(index, toAdd);
+        return new AddCommand(index, itemName, dateOfPurchase, quantity, unitPrice, tagList);
     }
 }

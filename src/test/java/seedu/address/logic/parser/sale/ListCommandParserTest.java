@@ -15,10 +15,19 @@ public class ListCommandParserTest {
     private ListCommandParser parser = new ListCommandParser();
 
     @Test
-    public void parse_allFieldsSpecified_success() {
+    public void parse_listAllSales_success() {
+        String userInput = "";
+
+        ListCommand expectedCommand = new ListCommand(true, null);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_filterByContact_success() {
         String userInput = CONTACT_INDEX_SECOND;
 
-        ListCommand expectedCommand = new ListCommand(INDEX_SECOND_ITEM);
+        ListCommand expectedCommand = new ListCommand(false, INDEX_SECOND_ITEM);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -29,9 +38,6 @@ public class ListCommandParserTest {
 
         // missing contact prefix
         assertParseFailure(parser, Integer.toString(INDEX_SECOND_ITEM.getOneBased()), expectedMessage);
-
-        // all prefixes missing
-        assertParseFailure(parser, "", expectedMessage);
     }
 
     @Test

@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
+import static seedu.address.testutil.person.TypicalPersons.BENSON;
+import static seedu.address.testutil.person.TypicalPersons.CARL;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 
 import java.time.Month;
@@ -26,6 +28,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TypicalContactTags;
 import seedu.address.testutil.TypicalSaleTags;
@@ -59,7 +62,8 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons, Collections.emptyList(), Collections.emptyList());
+        AddressBookStub newData = new AddressBookStub(newPersons, Collections.emptyList(),
+                Collections.emptyList(), Collections.emptyList());
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -118,52 +122,75 @@ public class AddressBookTest {
     @Test
     public void findByContactTag_contactTagInAddressBook_success() {
         AddressBook addressBook = getTypicalAddressBook();
-        assertEquals(addressBook.findByContactTag(TypicalContactTags.FRIENDS), 3);
+        assertEquals("Listing 3 contacts associated with: [friends]\n"
+                + "1. Alice Pauline Phone: 94351253 Email: alice@example.com "
+                + "Address: 123, Jurong West Ave 6, #08-111 Tags: [friends] Remark: Likes chocolates\n"
+                + "2. Benson Meier Phone: 98765432 Email: johnd@example.com "
+                + "Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends] Remark: Owes me $10\n"
+                + "3. Daniel Meier Phone: 87652533 Email: cornelia@example.com "
+                + "Address: 10th street Tags: [friends] Remark: \n",
+                addressBook.findByContactTag(TypicalContactTags.FRIENDS));
     }
 
     @Test
     public void findByContactTag_contactTagNotInAddressBook_success() {
         AddressBook addressBookCopy = getTypicalAddressBook();
-        assertEquals(addressBookCopy.findByContactTag(new Tag("random")), 0);
+        assertEquals("No matching contact found for tag: [random]\n",
+                addressBookCopy.findByContactTag(new Tag("random")));
     }
 
     @Test
-    public void findBySaleTag_saleTagInAddressBook_success() {
+    public void findSalesBySaleTag_saleTagInAddressBook_success() {
         AddressBook addressBookCopy = new AddressBook();
-        addressBookCopy.addPerson(ALICE);
-        addressBookCopy.addSaleToPerson(ALICE, TypicalSales.APPLE);
-        assertEquals(addressBookCopy.findBySaleTag(new Tag("fruits")),
-                "Listing all sale items associated with : [fruits]\n"
-                        + "1. Apple (Quantity: 10,  Unit Price: $3.50,  Tags: [[fruits]]) (Client: Alice Pauline)\n");
+        addressBookCopy.addPerson(BENSON);
+        addressBookCopy.addSale(TypicalSales.APPLE);
+        assertEquals("Listing 1 sales items associated with: [fruits]\n"
+                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: 3.50, "
+                        + "Tags: [[fruits]]) (Client: Benson Meier)\n",
+                addressBookCopy.findSalesBySaleTag(new Tag("fruits")));
+    }
+
+    @Test
+    public void findSalesBySaleTag_noMatchingSales_success() {
+        assertEquals("No matching sales found for tag: [random]\n",
+                addressBook.findSalesBySaleTag(new Tag("random")));
+    }
+
+    @Test
+    public void findContactsBySaleTag_saleTagInAddressBook_success() {
+        AddressBook addressBookCopy = new AddressBook();
+        addressBookCopy.addPerson(BENSON);
+        addressBookCopy.addSale(TypicalSales.APPLE);
+        assertEquals("The following 1 contact(s) have purchased items in this category: [fruits]\n"
+                        + "1. Benson Meier Phone: 98765432 Email: johnd@example.com "
+                        + "Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends] Remark: Owes me $10\n",
+                addressBookCopy.findContactsBySaleTag(new Tag("fruits")));
     }
 
     @Test
     public void listTags_noSaleTags_success() {
         addressBook.addPerson(ALICE);
-        assertEquals("Listing contact tags:\n"
-                + "1. [friends]\n"
-                + "\n"
-                + "Listing sale tags:\n"
-                + "2. [fruits]\n"
-                + "3. [electronics]\n", addressBook.listTags());
+        assertEquals("No sale tags found! Listing contact tags:\n"
+                + "1. [friends]\n", addressBook.listTags());
     }
 
     @Test
     public void listTags_withBothTags_success() {
         addressBook.addPerson(ALICE);
-        addressBook.addSaleToPerson(ALICE, TypicalSales.CAMERA);
+        addressBook.addPerson(CARL);
+        addressBook.addSale(TypicalSales.CAMERA);
         assertEquals("Listing contact tags:\n"
                 + "1. [friends]\n"
                 + "\n"
                 + "Listing sale tags:\n"
-                + "2. [fruits]\n"
-                + "3. [electronics]\n", addressBook.listTags());
+                + "2. [electronics]\n", addressBook.listTags());
     }
 
     @Test
     public void resetData_withDuplicateReminder_throwsDuplicateReminderException() {
         List<Reminder> newReminders = Arrays.asList(CALL_ALICE, CALL_ALICE);
-        AddressBookStub newData = new AddressBookStub(Collections.emptyList(), Collections.emptyList(), newReminders);
+        AddressBookStub newData = new AddressBookStub(Collections.emptyList(), Collections.emptyList(),
+                newReminders, Collections.emptyList());
 
         assertThrows(DuplicateReminderException.class, () -> addressBook.resetData(newData));
     }
@@ -203,13 +230,15 @@ public class AddressBookTest {
         private final ObservableList<Tag> contactTags = FXCollections.observableArrayList();
         private final ObservableList<Tag> saleTags = FXCollections.observableArrayList();
         private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
+        private final ObservableList<Sale> sales = FXCollections.observableArrayList();
 
 
         AddressBookStub(Collection<Person> persons, Collection<Meeting> meetings,
-                        Collection<Reminder> reminders) {
+                        Collection<Reminder> reminders, Collection<Sale> sales) {
             this.persons.setAll(persons);
             this.meetings.setAll(meetings);
             this.reminders.setAll(reminders);
+            this.sales.setAll(sales);
         }
 
         @Override
@@ -230,6 +259,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Reminder> getReminderList() {
             return reminders;
+        }
+
+        @Override
+        public ObservableList<Sale> getSaleList() {
+            return sales;
         }
 
         @Override

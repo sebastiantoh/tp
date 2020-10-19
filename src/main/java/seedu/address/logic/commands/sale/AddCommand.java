@@ -3,12 +3,16 @@ package seedu.address.logic.commands.sale;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -17,8 +21,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.sale.ItemName;
+import seedu.address.model.sale.Quantity;
 import seedu.address.model.sale.Sale;
-import seedu.address.model.sale.exceptions.DuplicateSaleException;
+import seedu.address.model.sale.UnitPrice;
+import seedu.address.model.tag.Tag;
 
 /**
  * Adds a sale associated with a contact to StonksBook.
@@ -31,11 +38,14 @@ public class AddCommand extends Command {
         + "Parameters: "
         + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer) "
         + PREFIX_SALE_NAME + "ITEM_NAME "
+        + PREFIX_SALE_DATE + "DATETIME_OF_PURCHASE "
         + PREFIX_SALE_UNIT_PRICE + "UNIT_PRICE "
-        + PREFIX_SALE_QUANTITY + "QUANTITY\n"
+        + PREFIX_SALE_QUANTITY + "QUANTITY "
+        + PREFIX_TAG + "TAG...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_SALE_CONTACT_INDEX + "2 "
         + PREFIX_SALE_NAME + "Apple "
+        + PREFIX_SALE_DATE + "2020-10-30 15:00 "
         + PREFIX_SALE_UNIT_PRICE + "2.50 "
         + PREFIX_SALE_QUANTITY + "50 "
         + PREFIX_TAG + "fruits";
@@ -44,18 +54,30 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_SALE = "This sale already exists in StonksBook.";
 
     private final Index index;
-    private final Sale toAdd;
+    private final ItemName itemName;
+    private final LocalDateTime dateOfPurchase;
+    private final Quantity quantity;
+    private final UnitPrice unitPrice;
+    private final Set<Tag> tagList;
 
     /**
-     * Creates an AddCommand that adds a {@code Sale}.
-     *
+     * Creates an AddCommand that adds a Sale of specified parameters.
      * @param index          The index of the Person to associate this sale to.
-     * @param toAdd          The sale to be added to the specified person.
+     * @param itemName       The item name of the Sale.
+     * @param dateOfPurchase The date of purchase of the Sale.
+     * @param quantity       The quantity of the Sale.
+     * @param unitPrice      The unit price of the Sale.
+     * @param tagList        The tagList belonging to the Sale.
      */
-    public AddCommand(Index index, Sale toAdd) {
-        requireAllNonNull(index, toAdd);
+    public AddCommand(Index index, ItemName itemName, LocalDateTime dateOfPurchase,
+                      Quantity quantity, UnitPrice unitPrice, Set<Tag> tagList) {
+        requireAllNonNull(index, itemName, dateOfPurchase, quantity, unitPrice, tagList);
         this.index = index;
-        this.toAdd = toAdd;
+        this.itemName = itemName;
+        this.dateOfPurchase = dateOfPurchase;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.tagList = tagList;
     }
 
     @Override
@@ -69,12 +91,24 @@ public class AddCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        Sale toAdd = new Sale(itemName, personToEdit.getId(), dateOfPurchase, quantity, unitPrice, tagList);
 
-        try {
-            model.addSaleToPerson(personToEdit, toAdd);
-        } catch (DuplicateSaleException e) {
+        if (!model.saleTagsExist(toAdd)) {
+            throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
+        }
+        BigDecimal newTotalSalesAmount = toAdd.getTotalCost().add(personToEdit.getTotalSalesAmount());
+
+        Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
+                personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
+                personToEdit.getRemark(), newTotalSalesAmount);
+
+        if (model.hasSale(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SALE);
         }
+
+        model.addSale(toAdd);
+        model.setPerson(personToEdit, editedPerson);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
@@ -93,6 +127,10 @@ public class AddCommand extends Command {
         // state check
         AddCommand otherAddCommand = (AddCommand) other;
         return index.equals(otherAddCommand.index)
-            && toAdd.equals(otherAddCommand.toAdd);
+            && itemName.equals(otherAddCommand.itemName)
+            && dateOfPurchase.equals(otherAddCommand.dateOfPurchase)
+            && quantity.equals(otherAddCommand.quantity)
+            && unitPrice.equals(otherAddCommand.unitPrice)
+            && tagList.equals(otherAddCommand.tagList);
     }
 }

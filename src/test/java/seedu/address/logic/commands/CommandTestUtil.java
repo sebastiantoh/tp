@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
@@ -28,8 +29,14 @@ import seedu.address.logic.commands.contact.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.person.EditPersonDescriptorBuilder;
 
 /**
@@ -38,6 +45,19 @@ import seedu.address.testutil.person.EditPersonDescriptorBuilder;
 public class CommandTestUtil {
 
     /* Contact commands */
+    public static final Name PARSED_VALID_NAME_AMY = new Name("Amy Bee");
+    public static final Name PARSED_VALID_NAME_BOB = new Name("Bob Choo");
+    public static final Phone PARSED_VALID_PHONE_AMY = new Phone("11111111");
+    public static final Phone PARSED_VALID_PHONE_BOB = new Phone("22222222");
+    public static final Email PARSED_VALID_EMAIL_AMY = new Email("amy@example.com");
+    public static final Email PARSED_VALID_EMAIL_BOB = new Email("bob@example.com");
+    public static final Address PARSED_VALID_ADDRESS_AMY = new Address("Block 312, Amy Street 1");
+    public static final Address PARSED_VALID_ADDRESS_BOB = new Address("Block 123, Bobby Street 3");
+    public static final Tag PARSED_VALID_TAG_HUSBAND = new Tag("husband");
+    public static final Tag PARSED_VALID_TAG_FRIEND = new Tag("friend");
+    public static final Remark PARSED_VALID_REMARK_AMY = new Remark("");
+    public static final Remark PARSED_VALID_REMARK_BOB = new Remark("Likes cats");
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -90,22 +110,25 @@ public class CommandTestUtil {
     /* Sale commands */
     public static final String VALID_ITEM_NAME_APPLE = "Apple";
     public static final String VALID_ITEM_NAME_BALL = "Ball";
+    public static final String VALID_DATE_APPLE = "2020-10-30 15:00";
+    public static final String VALID_DATE_BALL = "2020-09-22 12:40";
     public static final String VALID_QUANTITY_APPLE = "10";
     public static final String VALID_QUANTITY_BALL = "1";
+    public static final String VALID_UNIT_PRICE_APPLE = "3.50";
+    public static final String VALID_UNIT_PRICE_BALL = "0.8";
+    public static final String VALID_EMPTY_SALE_TAG = "";
     public static final String VALID_SALE_TAG_FRUITS = "fruits";
-    public static final Integer VALID_UNIT_PRICE_DOLLARS_APPLE = 3;
-    public static final Integer VALID_UNIT_PRICE_CENTS_APPLE = 50;
-    public static final Integer VALID_UNIT_PRICE_DOLLARS_BALL = 0;
-    public static final Integer VALID_UNIT_PRICE_CENTS_BALL = 80;
 
     public static final String INVALID_ITEM_NAME = " " + PREFIX_SALE_NAME + "@pple";
+    public static final String INVALID_SALE_DATE = " " + PREFIX_SALE_DATE + "2020/09/22 12:40";
     public static final String INVALID_QUANTITY = " " + PREFIX_SALE_QUANTITY + "1.5";
     public static final String INVALID_UNIT_PRICE = " " + PREFIX_SALE_UNIT_PRICE + "0.0";
 
     public static final String ITEM_NAME_DESC_APPLE = " " + PREFIX_SALE_NAME + VALID_ITEM_NAME_APPLE;
+    public static final String SALE_DATE_DESC_APPLE = " " + PREFIX_SALE_DATE + VALID_DATE_APPLE;
     public static final String QUANTITY_DESC_APPLE = " " + PREFIX_SALE_QUANTITY + VALID_QUANTITY_APPLE;
-    public static final String UNIT_PRICE_DESC_APPLE =
-            " " + PREFIX_SALE_UNIT_PRICE + VALID_UNIT_PRICE_DOLLARS_APPLE + "." + VALID_UNIT_PRICE_CENTS_APPLE;
+    public static final String UNIT_PRICE_DESC_APPLE = " " + PREFIX_SALE_UNIT_PRICE + VALID_UNIT_PRICE_APPLE;
+    public static final String SALE_TAG_FRUITS = " " + PREFIX_TAG + "fruits";
 
     public static final String VALID_SALE_TAG = " " + PREFIX_TAG + VALID_SALE_TAG_FRUITS;
 

@@ -17,6 +17,7 @@ public class CliSyntax {
     /* Prefix definitions for sales */
     public static final Prefix PREFIX_SALE_CONTACT_INDEX = new Prefix("c/");
     public static final Prefix PREFIX_SALE_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_SALE_DATE = new Prefix("d/");
     public static final Prefix PREFIX_SALE_QUANTITY = new Prefix("q/");
     public static final Prefix PREFIX_SALE_UNIT_PRICE = new Prefix("p/");
     public static final Prefix PREFIX_SALE_INDEX = new Prefix("s/");
@@ -27,4 +28,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_DURATION = new Prefix("du/");
     public static final Prefix PREFIX_MONTH = new Prefix("m/");
     public static final Prefix PREFIX_YEAR = new Prefix("y/");
+    public static final Prefix PREFIX_SALE = new Prefix("s/");
 }

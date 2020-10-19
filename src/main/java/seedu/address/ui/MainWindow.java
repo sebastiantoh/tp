@@ -36,6 +36,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private MeetingListPanel meetingListPanel;
+    private ReminderListPanel reminderListPanel;
     private ChatBox chatBox;
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
@@ -50,6 +52,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane meetingListPanelPlaceholder;
+
+    @FXML
+    private StackPane reminderListPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -122,6 +130,12 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getSortedPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        meetingListPanel = new MeetingListPanel(logic.getSortedMeetingList());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+
+        reminderListPanel = new ReminderListPanel(logic.getSortedReminderList());
+        reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         chatBox = new ChatBox();
         chatBoxPlaceholder.getChildren().add(chatBox.getRoot());
@@ -218,6 +232,12 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.hasStatisticsResult()) {
                 handleStatisticsResult(commandResult.getStatisticResult());
             }
+
+            // Force refresh of the following UI components which are time sensitive
+            // Overdue reminders should be displayed differently
+            this.reminderListPanel.refresh();
+            // Past meetings should be filtered out
+            this.meetingListPanel.refresh();
 
             return commandResult;
         } catch (CommandException | ParseException e) {

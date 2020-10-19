@@ -65,7 +65,7 @@ public class SortCommand extends Command {
         } else if (sortingAttribute.equals(PREFIX_CONTACT_EMAIL)) {
             this.comparator = Comparator.comparing(person -> person.getEmail().value.toLowerCase());
         } else if (sortingAttribute.equals(PREFIX_TOTAL_SALES)) {
-            this.comparator = Comparator.comparingDouble(x -> x.getSalesList().getTotalSalesAmount());
+            this.comparator = Comparator.comparing(Person::getTotalSalesAmount);
         } else {
             throw new CommandException(MESSAGE_SORTING_ATTRIBUTE_INVALID);
         }

@@ -168,7 +168,7 @@ public class SortCommandTest {
         String expectedMessage = SortCommand.MESSAGE_SUCCESS;
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Comparator<Person> comparator = Comparator.comparingDouble(x -> x.getSalesList().getTotalSalesAmount());
+        Comparator<Person> comparator = Comparator.comparing(x -> x.getTotalSalesAmount());
         expectedModel.updateSortedPersonList(comparator);
 
         CommandResult commandResult = sortCommand.execute(model);
@@ -196,7 +196,7 @@ public class SortCommandTest {
         String expectedMessage = SortCommand.MESSAGE_SUCCESS;
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Comparator<Person> comparator = Comparator.comparingDouble(x -> x.getSalesList().getTotalSalesAmount());
+        Comparator<Person> comparator = Comparator.comparing(x -> x.getTotalSalesAmount());
         expectedModel.updateSortedPersonList(comparator.reversed());
 
         CommandResult commandResult = sortCommand.execute(model);

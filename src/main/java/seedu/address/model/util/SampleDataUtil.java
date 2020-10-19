@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -30,71 +31,73 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    private static final Sale NOTEBOOK = new Sale(new ItemName("Notebook"), new Quantity("10"),
-            new UnitPrice(3, 50), new HashSet<Tag>());
-    private static final Sale BLACK_PEN = new Sale(new ItemName("Black Pen"), new Quantity("300"),
-            new UnitPrice(2, 0), new HashSet<Tag>());
-    private static final Sale BINDER = new Sale(new ItemName("Binder"), new Quantity("250"),
-            new UnitPrice(4, 99), new HashSet<Tag>());
-    private static final Sale TAPE = new Sale(new ItemName("Scotch Tape"), new Quantity("1000"),
-            new UnitPrice(2, 10), new HashSet<Tag>());
-    private static final Sale ERASER = new Sale(new ItemName("Eraser"), new Quantity("1200"),
-            new UnitPrice(0, 80), new HashSet<Tag>());
-    private static final Sale RULER = new Sale(new ItemName("Ruler"), new Quantity("1200"),
-            new UnitPrice(0, 99), new HashSet<Tag>());
+    /** Contacts */
+    private static final Person ALEX_YEOH = new Person(1, new Name("Alex Yeoh"), new Phone("87438807"),
+            new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
+            getTagSet("friends"), new Remark("Not available on Fridays"), new BigDecimal("3382.5"));
+    private static final Person BERNICE_YU = new Person(2, new Name("Bernice Yu"),
+            new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet("colleagues", "friends"),
+            new Remark("Owns a small stationery business"), new BigDecimal("1788"));
+    private static final Person CHARLOTTE_OLIVEIRO = new Person(3, new Name("Charlotte Oliveiro"),
+            new Phone("93210283"), new Email("charlotte@example.com"),
+            new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), getTagSet("neighbours"),
+            new Remark(""), new BigDecimal("960"));
+    private static final Person DAVID_LI = new Person(4, new Name("David Li"), new Phone("91031282"),
+            new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            getTagSet("family"), new Remark(""), BigDecimal.ZERO);
+    private static final Person IRFAN_IBRAHIM = new Person(5, new Name("Irfan Ibrahim"), new Phone("92492021"),
+            new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
+            getTagSet("classmates"), new Remark("Interested in paper-based products"), BigDecimal.ZERO);
+    private static final Person ROY_BALAKRISHNAN = new Person(6, new Name("Roy Balakrishnan"), new Phone("92624417"),
+            new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
+            getTagSet("colleagues"), new Remark(""), BigDecimal.ZERO);
 
-    /** UniqueSaleList */
-    private static final UniqueSaleList SALE_LIST_1 = new UniqueSaleList().add(NOTEBOOK).add(BINDER).add(TAPE);
-    private static final UniqueSaleList SALE_LIST_2 = new UniqueSaleList().add(RULER).add(BLACK_PEN).add(TAPE);
-    private static final UniqueSaleList SALE_LIST_3 = new UniqueSaleList().add(BINDER).add(ERASER).add(NOTEBOOK);
-    private static final UniqueSaleList SALE_LIST_4 = new UniqueSaleList().add(BLACK_PEN).add(RULER).add(TAPE);
+    /** Sales */
+    private static final Sale NOTEBOOK = new Sale(new ItemName("Notebook"), ALEX_YEOH.getId(),
+            LocalDateTime.of(2020, 11, 29, 15, 40),
+            new Quantity("10"), new UnitPrice(new BigDecimal("3.5")), new HashSet<Tag>());
+    private static final Sale BLACK_PEN = new Sale(new ItemName("Black Pen"), BERNICE_YU.getId(),
+            LocalDateTime.of(2020, 10, 6, 9, 50),
+            new Quantity("300"), new UnitPrice(new BigDecimal("2.0")), getTagSet("stationery"));
+    private static final Sale BINDER = new Sale(new ItemName("Binder"), ALEX_YEOH.getId(),
+            LocalDateTime.of(2020, 11, 13, 11, 45),
+            new Quantity("250"), new UnitPrice(new BigDecimal("4.99")), new HashSet<Tag>());
+    private static final Sale TAPE = new Sale(new ItemName("Scotch Tape"), ALEX_YEOH.getId(),
+            LocalDateTime.of(2020, 10, 17, 15, 20),
+            new Quantity("1000"), new UnitPrice(new BigDecimal("2.1")), getTagSet("crafts"));
+    private static final Sale ERASER = new Sale(new ItemName("Eraser"), CHARLOTTE_OLIVEIRO.getId(),
+            LocalDateTime.of(2020, 9, 20, 14, 10),
+            new Quantity("1200"), new UnitPrice(new BigDecimal("0.8")), getTagSet("stationery"));
+    private static final Sale RULER = new Sale(new ItemName("Ruler"), BERNICE_YU.getId(),
+            LocalDateTime.of(2020, 11, 1, 19, 00),
+            new Quantity("1200"), new UnitPrice(new BigDecimal("0.99")), getTagSet("stationery"));
 
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), getTagSet("friends"),
-                    new Remark("Not available on Fridays"), SALE_LIST_1),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet("colleagues", "friends"),
-                    new Remark("Owns a small stationery business"), SALE_LIST_2),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"), new Remark(""), SALE_LIST_3),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family"), new Remark(""), SALE_LIST_4),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates"), new Remark("Interested in paper-based products")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"), new Remark(""))
+            ALEX_YEOH, BERNICE_YU, CHARLOTTE_OLIVEIRO, DAVID_LI, IRFAN_IBRAHIM, ROY_BALAKRISHNAN
         };
     }
 
-    public static UniqueReminderList getSampleReminderList() {
-        Person[] samplePersons = getSamplePersons();
-        Person alex = samplePersons[0];
-        Person charlotte = samplePersons[2];
+    public static UniqueSaleList getSampleSales() {
+        return new UniqueSaleList().add(NOTEBOOK).add(BLACK_PEN).add(BINDER).add(TAPE).add(ERASER).add(RULER);
+    }
 
+    public static UniqueReminderList getSampleReminderList() {
         UniqueReminderList reminders = new UniqueReminderList();
-        reminders.add(new Reminder(alex, "Send follow up email",
+        reminders.add(new Reminder(ALEX_YEOH, "Send follow up email",
                 LocalDateTime.of(2020, 11, 30, 15, 30)));
-        reminders.add(new Reminder(charlotte, "Draft up sales proposal for upcoming meeting",
+        reminders.add(new Reminder(CHARLOTTE_OLIVEIRO, "Draft up sales proposal for upcoming meeting",
                 LocalDateTime.of(2020, 12, 15, 9, 0)));
 
         return reminders;
     }
 
     public static UniqueMeetingList getSampleMeetingList() {
-        Person[] samplePersons = getSamplePersons();
-        Person bernice = samplePersons[1];
-        Person charlotte = samplePersons[2];
-
         UniqueMeetingList meetings = new UniqueMeetingList();
-        meetings.add(new Meeting(bernice, "Sales Call",
+        meetings.add(new Meeting(BERNICE_YU, "Sales Call",
                 LocalDateTime.of(2020, 11, 20, 15, 30), Duration.ofMinutes(30)));
-        meetings.add(new Meeting(charlotte, "Lunch to discuss new recurring purchase requirements",
+        meetings.add(new Meeting(CHARLOTTE_OLIVEIRO, "Lunch to discuss new recurring purchase requirements",
                 LocalDateTime.of(2020, 12, 20, 12, 0), Duration.ofMinutes(90)));
 
         return meetings;
@@ -104,6 +107,9 @@ public class SampleDataUtil {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Sale sampleSale : getSampleSales()) {
+            sampleAb.addSale(sampleSale);
         }
         for (Reminder sampleReminder : getSampleReminderList()) {
             sampleAb.addReminder(sampleReminder);

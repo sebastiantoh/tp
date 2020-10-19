@@ -4,18 +4,20 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.Test;
 
 public class UnitPriceTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new UnitPrice(null, null));
+        assertThrows(NullPointerException.class, () -> new UnitPrice(null));
     }
 
     @Test
     public void constructor_invalidQuantity_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new UnitPrice(1, 200));
+        assertThrows(IllegalArgumentException.class, () -> new UnitPrice(new BigDecimal("-1.43")));
     }
 
     @Test
@@ -39,16 +41,15 @@ public class UnitPriceTest {
     @Test
     public void isValidUnitPrice() {
         // null quantity
-        assertThrows(NullPointerException.class, () -> UnitPrice.isValidUnitPrice(null, null));
+        assertThrows(NullPointerException.class, () -> UnitPrice.isValidUnitPrice(null));
 
         // invalid quantity
-        assertFalse(UnitPrice.isValidUnitPrice(0, 0)); // sums to zero
-        assertFalse(UnitPrice.isValidUnitPrice(1, 100)); // cents is greater than 99
-        assertFalse(UnitPrice.isValidUnitPrice(-4, 4)); // dollars is negative
-        assertFalse(UnitPrice.isValidUnitPrice(4, -4)); // cents is negative
+        assertFalse(UnitPrice.isValidUnitPrice(new BigDecimal("0"))); // sums to zero
+        assertFalse(UnitPrice.isValidUnitPrice(new BigDecimal("1.999"))); // cents is greater than 99
+        assertFalse(UnitPrice.isValidUnitPrice(new BigDecimal("-1.00"))); // dollars is negative
 
         // valid quantity
-        assertTrue(UnitPrice.isValidUnitPrice(421, 0)); // numbers only
-        assertTrue(UnitPrice.isValidUnitPrice(2, 53)); // zero
+        assertTrue(UnitPrice.isValidUnitPrice(new BigDecimal("1.30")));
+        assertTrue(UnitPrice.isValidUnitPrice(new BigDecimal("2.53")));
     }
 }

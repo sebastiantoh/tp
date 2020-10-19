@@ -46,6 +46,22 @@ public class Reminder implements Comparable<Reminder> {
         return this.scheduledDate;
     }
 
+    /**
+     * Returns a formatted string representation of the meeting's scheduled date.
+     * Output format is "E, dd MMM yyyy, HH:mm".
+     */
+    public String getFormattedScheduledDate() {
+        return getScheduledDate().format(DATE_TIME_FORMATTER);
+    }
+
+    /**
+     * Returns true if the reminder is not yet complete and the scheduled date is past the current date.
+     * TODO: Add check that the reminder is not yet complete
+     */
+    public boolean isOverdue() {
+        return this.getScheduledDate().isBefore(LocalDateTime.now());
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

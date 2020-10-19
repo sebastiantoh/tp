@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><?import javafx.scene.control.Hyperlink?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -9,22 +10,18 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 <?import javafx.stage.Stage?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
-<?import javafx.stage.Stage?>
-<?import javafx.scene.control.Hyperlink?>
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-  <icons>
-    <Image url="@/images/help_icon.png" />
-  </icons>
-  <scene>
-    <Scene>
-        <ScrollPane hbarPolicy="NEVER" fitToWidth="true">
-        <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: derive(#1d1d1d, 20%);
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8"
+         xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/help_icon.png"/>
+    </icons>
+    <scene>
+        <Scene>
+            <ScrollPane hbarPolicy="NEVER" fitToWidth="true">
+                <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: derive(#1d1d1d, 20%);
          -fx-fillbackground-color: #383838;">
-            <GridPane fx:id="table" HBox.hgrow="ALWAYS">
-                <columnConstraints>
+                    <GridPane fx:id="table" HBox.hgrow="ALWAYS">
+                        <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
                 </columnConstraints>
                 <TextFlow minWidth="-Infinity" GridPane.rowIndex="0" GridPane.columnIndex="0">

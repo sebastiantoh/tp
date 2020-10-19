@@ -227,8 +227,6 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_ITEM;
         String userInput = targetIndex.getOneBased() + REMARK_EMPTY;
 
-        System.out.println(userInput);
-
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withRemark("").build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
