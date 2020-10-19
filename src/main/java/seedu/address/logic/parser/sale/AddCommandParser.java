@@ -40,7 +40,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_SALE_DATE, PREFIX_SALE_QUANTITY, PREFIX_TAG, PREFIX_SALE_UNIT_PRICE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_SALE_CONTACT_INDEX, PREFIX_SALE_NAME, PREFIX_SALE_DATE,
-                PREFIX_SALE_QUANTITY, PREFIX_SALE_UNIT_PRICE)
+                PREFIX_SALE_QUANTITY, PREFIX_SALE_UNIT_PRICE, PREFIX_TAG)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }

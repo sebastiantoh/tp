@@ -120,24 +120,49 @@ public class AddressBookTest {
     @Test
     public void findByContactTag_contactTagInAddressBook_success() {
         AddressBook addressBook = getTypicalAddressBook();
-        assertEquals(addressBook.findByContactTag(TypicalContactTags.FRIENDS), 3);
+        assertEquals("Listing 3 contacts associated with: [friends]\n"
+                + "1. Alice Pauline Phone: 94351253 Email: alice@example.com "
+                + "Address: 123, Jurong West Ave 6, #08-111 Tags: [friends] Remark: Likes chocolates\n"
+                + "2. Benson Meier Phone: 98765432 Email: johnd@example.com "
+                + "Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends] Remark: Owes me $10\n"
+                + "3. Daniel Meier Phone: 87652533 Email: cornelia@example.com "
+                + "Address: 10th street Tags: [friends] Remark: \n",
+                addressBook.findByContactTag(TypicalContactTags.FRIENDS));
     }
 
     @Test
     public void findByContactTag_contactTagNotInAddressBook_success() {
         AddressBook addressBookCopy = getTypicalAddressBook();
-        assertEquals(addressBookCopy.findByContactTag(new Tag("random")), 0);
+        assertEquals("No matching contact found for tag: [random]\n",
+                addressBookCopy.findByContactTag(new Tag("random")));
     }
 
     @Test
-    public void findBySaleTag_saleTagInAddressBook_success() {
+    public void findSalesBySaleTag_saleTagInAddressBook_success() {
         AddressBook addressBookCopy = new AddressBook();
         addressBookCopy.addPerson(BENSON);
         addressBookCopy.addSale(TypicalSales.APPLE);
-        assertEquals(addressBookCopy.findBySaleTag(new Tag("fruits")),
-                "Listing all sale items associated with : [fruits]\n"
-                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, "
-                        + "Quantity: 10, Unit Price: $3.50, Tags: [[fruits]]) (Client: Benson Meier)\n");
+        assertEquals("Listing 1 sales items associated with: [fruits]\n"
+                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: $3.50, "
+                        + "Tags: [[fruits]]) (Client: Benson Meier)\n",
+                addressBookCopy.findSalesBySaleTag(new Tag("fruits")));
+    }
+
+    @Test
+    public void findSalesBySaleTag_noMatchingSales_success() {
+        assertEquals("No matching sales found for tag: [random]\n",
+                addressBook.findSalesBySaleTag(new Tag("random")));
+    }
+
+    @Test
+    public void findContactsBySaleTag_saleTagInAddressBook_success() {
+        AddressBook addressBookCopy = new AddressBook();
+        addressBookCopy.addPerson(BENSON);
+        addressBookCopy.addSale(TypicalSales.APPLE);
+        assertEquals("The following 1 contact(s) have purchased items in this category: [fruits]\n"
+                        + "1. Benson Meier Phone: 98765432 Email: johnd@example.com "
+                        + "Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends] Remark: Owes me $10\n",
+                addressBookCopy.findContactsBySaleTag(new Tag("fruits")));
     }
 
     @Test

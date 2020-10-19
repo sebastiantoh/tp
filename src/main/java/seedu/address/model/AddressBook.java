@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -153,11 +154,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : editedPerson.getTags()) {
             contactTags.add(t);
         }
-        for (Tag t : target.getTags()) {
-            if (persons.hasZeroOccurrences(t)) {
-                contactTags.remove(t);
-            }
-        }
     }
 
     /**
@@ -247,19 +243,26 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns the number of contacts who are associated with the {@code target} tag.
      */
-    public int findByContactTag(Tag target) {
-        return (int) persons.asUnmodifiableObservableList()
-                .stream()
-                .filter(p -> p.getTags().contains(target)).count();
+    public String findByContactTag(Tag target) {
+        StringBuilder output = new StringBuilder();
+        int count = 0;
+        for (Person p : persons) {
+            if (p.getTags().contains(target)) {
+                output.append(String.format("%d. %s\n", ++count, p.toString()));
+            }
+        }
+        if (count == 0) {
+            return String.format("No matching contact found for tag: %s\n", target.toString());
+        }
+        return String.format("Listing %d contacts associated with: %s\n", count, target.toString()) + output.toString();
     }
 
     /**
      * Lists all sale items associated with {@code target} tag.
      */
-    public String findBySaleTag(Tag target) {
+    public String findSalesBySaleTag(Tag target) {
         StringBuilder output = new StringBuilder();
-        output.append(String.format("Listing all sale items associated with : %s\n", target.toString()));
-        int i = 0;
+        int count = 0;
         for (Sale s : sales.asUnmodifiableObservableList()) {
             if (s.getTags().contains(target)) {
                 Person buyer = persons.asUnmodifiableObservableList().stream()
@@ -268,11 +271,43 @@ public class AddressBook implements ReadOnlyAddressBook {
                         .orElse(null);
                 assert buyer != null;
 
-                output.append(String.format("%d. %s (Client: %s)\n", i + 1, s, buyer.getName()));
-                i += 1;
+                output.append(String.format("%d. %s (Client: %s)\n", count + 1, s, buyer.getName()));
+                count += 1;
             }
         }
-        return output.toString();
+        if (count == 0) {
+            return String.format("No matching sales found for tag: %s\n", target.toString());
+        }
+        return String.format("Listing %d sales items associated with: %s\n",
+                count,
+                target.toString()) + output.toString();
+    }
+
+    /**
+     * Lists all contacts who have purchased items associated with {@code target} tag.
+     */
+    public String findContactsBySaleTag(Tag target) {
+        StringBuilder output = new StringBuilder();
+        int count = 0;
+        List<Person> contactsWithSaleTag = new ArrayList<>();
+
+        for (Sale s : sales.asUnmodifiableObservableList()) {
+            if (s.getTags().contains(target)) {
+                Person buyer = persons.asUnmodifiableObservableList().stream()
+                        .filter(person -> person.getId().equals(s.getBuyerId()))
+                        .findAny()
+                        .orElse(null);
+                assert buyer != null;
+
+                if(!contactsWithSaleTag.contains(buyer)) {
+                    contactsWithSaleTag.add(buyer);
+                    output.append(String.format("%d. %s\n", count++ + 1, buyer.toString()));
+                }
+            }
+        }
+        return String.format("The following %d contact(s) have purchased items in this category: %s\n",
+                count,
+                target.toString()) + output.toString();
     }
 
     /**
@@ -305,6 +340,30 @@ public class AddressBook implements ReadOnlyAddressBook {
             }
         }
         return output.toString();
+    }
+
+    /**
+     * Returns true if all the tags of the provided {@code sale} item exist in StonksBook.
+     */
+    public boolean saleTagsExist(Sale sale) {
+        for (Tag t : sale.getTags()) {
+            if (!saleTags.contains(t)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if all the tags of the provided {@code sale} item exist in StonksBook.
+     */
+    public boolean contactTagsExist(Person person) {
+        for (Tag t : person.getTags()) {
+            if (!contactTags.contains(t)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -394,18 +453,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeSale(Sale sale) {
         sales.remove(sale);
 
-        // TODO: extract the below to a new method (SRP)
         Set<Tag> toRemove = new HashSet<>(sale.getTags());
         for (Tag t : sale.getTags()) {
             for (Sale s : sales) {
                 if (s.getTags().contains(t)) {
                     toRemove.remove(t);
                 }
-            }
-        }
-        if (!toRemove.isEmpty()) {
-            for (Tag t : toRemove) {
-                saleTags.remove(t);
             }
         }
     }

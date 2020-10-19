@@ -137,6 +137,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addSaleTag(Tag tag) {
+        addressBook.addSaleTag(tag);
+    }
+
+    @Override
     public void editContactTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
 
@@ -331,6 +336,16 @@ public class ModelManager implements Model {
         return addressBook.listTags();
     }
 
+    @Override
+    public boolean saleTagsExist(Sale sale) {
+        return addressBook.saleTagsExist(sale);
+    }
+
+    @Override
+    public boolean contactTagsExist(Person person) {
+        return addressBook.contactTagsExist(person);
+    }
+
     //=========== Reminder List Accessors =============================================================
 
     /**
@@ -343,13 +358,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int findByContactTag(Tag target) {
+    public String findByContactTag(Tag target) {
         return addressBook.findByContactTag(target);
     }
 
     @Override
-    public String findBySaleTag(Tag target) {
-        return addressBook.findBySaleTag(target);
+    public String findSalesBySaleTag(Tag target) {
+        return addressBook.findSalesBySaleTag(target);
+    }
+
+    @Override
+    public String findContactsBySaleTag(Tag target) {
+        return addressBook.findContactsBySaleTag(target);
     }
 
     @Override

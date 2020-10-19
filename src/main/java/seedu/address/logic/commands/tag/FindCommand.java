@@ -26,9 +26,22 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     private final Index targetIndex;
+    private final boolean isContact;
 
+    /**
+     * Instantiates a FindCommand object depending on whether the user specified whether to find contacts or sales.
+     */
+    public FindCommand(Index targetIndex, boolean isContact) {
+        this.targetIndex = targetIndex;
+        this.isContact = isContact;
+    }
+
+    /**
+     * Instantiates a FindCommand object that finds sales.
+     */
     public FindCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+        this.isContact = false;
     }
 
     @Override
@@ -45,12 +58,13 @@ public class FindCommand extends Command {
         Tag tagToFind;
         if (targetIndex.getOneBased() > contactTagList.size()) {
             tagToFind = saleTagList.get(targetIndex.getZeroBased() - contactTagList.size());
-            return new CommandResult(model.findBySaleTag(tagToFind));
+            if (isContact) {
+                return new CommandResult(model.findContactsBySaleTag(tagToFind));
+            }
+            return new CommandResult(model.findSalesBySaleTag(tagToFind));
         } else {
             tagToFind = contactTagList.get(targetIndex.getZeroBased());
-            model.updateFilteredPersonList(p -> p.getTags().contains(tagToFind));
-            return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
-                    model.findByContactTag(tagToFind)));
+            return new CommandResult(model.findByContactTag(tagToFind));
         }
     }
 

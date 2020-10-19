@@ -184,6 +184,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addSaleTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void editContactTag(Tag target, Tag editedTag) {
             throw new AssertionError("This method should not be called.");
         }
@@ -204,18 +209,33 @@ public class AddCommandTest {
         }
 
         @Override
-        public int findByContactTag(Tag target) {
+        public String findByContactTag(Tag target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public String findBySaleTag(Tag target) {
+        public String findSalesBySaleTag(Tag target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String findContactsBySaleTag(Tag target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public String listTags() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean saleTagsExist(Sale sale) {
+            return true;
+        }
+
+        @Override
+        public boolean contactTagsExist(Person person) {
+            return true;
         }
 
         @Override

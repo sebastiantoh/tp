@@ -38,9 +38,10 @@ public class AddCommand extends Command {
         + "Parameters: "
         + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer) "
         + PREFIX_SALE_NAME + "ITEM_NAME "
-        + PREFIX_SALE_DATE + "DATETIME_OF_PURCHASE"
+        + PREFIX_SALE_DATE + "DATETIME_OF_PURCHASE "
         + PREFIX_SALE_UNIT_PRICE + "UNIT_PRICE "
-        + PREFIX_SALE_QUANTITY + "QUANTITY\n"
+        + PREFIX_SALE_QUANTITY + "QUANTITY "
+        + PREFIX_TAG + "TAG...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_SALE_CONTACT_INDEX + "2 "
         + PREFIX_SALE_NAME + "Apple "
@@ -91,6 +92,10 @@ public class AddCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Sale toAdd = new Sale(itemName, personToEdit.getId(), dateOfPurchase, quantity, unitPrice, tagList);
+
+        if (!model.saleTagsExist(toAdd)) {
+            throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
+        }
         BigDecimal newTotalSalesAmount = toAdd.getTotalCost().add(personToEdit.getTotalSalesAmount());
 
         Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),

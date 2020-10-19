@@ -27,6 +27,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.person.EditPersonDescriptorBuilder;
 import seedu.address.testutil.person.PersonBuilder;
 
@@ -55,6 +56,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
+        model.addContactTag(new Tag(VALID_TAG_HUSBAND));
         Index indexLastPerson = Index.fromOneBased(model.getSortedPersonList().size());
         Person lastPerson = model.getSortedPersonList().get(indexLastPerson.getZeroBased());
 

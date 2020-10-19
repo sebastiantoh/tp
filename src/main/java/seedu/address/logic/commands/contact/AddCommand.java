@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -78,6 +79,10 @@ public class AddCommand extends Command {
         int id = people.size() > 0 ? people.get(people.size() - 1).getId() : 1;
 
         Person toAdd = new Person(id, name, phone, email, address, tagList, remark, BigDecimal.ZERO);
+
+        if (!model.contactTagsExist(toAdd)) {
+            throw new CommandException(Messages.MESSAGE_CONTACT_TAGS_NOT_FOUND);
+        }
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
