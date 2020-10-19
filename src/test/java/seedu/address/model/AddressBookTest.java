@@ -143,7 +143,7 @@ public class AddressBookTest {
         addressBookCopy.addPerson(BENSON);
         addressBookCopy.addSale(TypicalSales.APPLE);
         assertEquals("Listing 1 sales items associated with: [fruits]\n"
-                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: $3.50, "
+                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: \u00243.50, "
                         + "Tags: [[fruits]]) (Client: Benson Meier)\n",
                 addressBookCopy.findSalesBySaleTag(new Tag("fruits")));
     }
