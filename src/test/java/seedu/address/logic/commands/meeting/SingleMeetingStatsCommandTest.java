@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookInReverse;
@@ -18,25 +19,43 @@ import seedu.address.model.UserPrefs;
 
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code SingleMeetingStatsCommand}
  */
-public class StatsCommandTest {
+public class SingleMeetingStatsCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBookInReverse(), new UserPrefs());
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new SingleMeetingStatsCommand(null, null));
+        assertThrows(NullPointerException.class, () -> new SingleMeetingStatsCommand(Month.APRIL, null));
+        assertThrows(NullPointerException.class, () -> new SingleMeetingStatsCommand(null, Year.of(1850)));
+    }
 
     @Test
     public void execute_validInputs_success() {
         Model expectedModel = new ModelManager(this.model.getAddressBook(), new UserPrefs());
         Month month = LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth();
         Year year = Year.now();
-        int expectedCount = model.getMonthMeetingsCount(month, year);
+        int expectedCount = expectedModel.getMonthMeetingsCount(month, year);
         StatsCommand statsCommand = new SingleMeetingStatsCommand(month, year);
         String expectedResult = String.format(SingleMeetingStatsCommand.MESSAGE_SUCCESS,
                 month.name(), year.getValue(), expectedCount);
         assertCommandSuccess(statsCommand, model, expectedResult, expectedModel);
     }
 
+    @Test
+    public void execute_noInpus_success() {
+        Model expectedModel = new ModelManager(this.model.getAddressBook(), new UserPrefs());
+        Month month = LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth();
+        Year year = Year.now();
+        int expectedCount = expectedModel.getMonthMeetingsCount(month, year);
+        StatsCommand statsCommand = new SingleMeetingStatsCommand();
+        String expectedResult = String.format(SingleMeetingStatsCommand.MESSAGE_SUCCESS,
+                month.name(), year.getValue(), expectedCount);
+        assertCommandSuccess(statsCommand, model, expectedResult, expectedModel);
+    }
 
     @Test
     public void equals() {

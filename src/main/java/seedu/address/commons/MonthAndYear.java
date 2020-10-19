@@ -1,5 +1,7 @@
 package seedu.address.commons;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.Month;
 import java.time.Year;
 import java.util.Objects;
@@ -16,6 +18,9 @@ public class MonthAndYear {
      * Creates a MonthAndYear Object from the given {@code month} and {@code year}
      */
     public MonthAndYear(Month month, Year year) {
+        requireNonNull(month);
+        requireNonNull(year);
+
         this.month = month;
         this.year = year;
     }

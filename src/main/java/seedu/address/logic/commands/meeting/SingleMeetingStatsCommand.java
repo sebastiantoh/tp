@@ -34,6 +34,9 @@ public class SingleMeetingStatsCommand extends StatsCommand {
      * Creates a SingleMeetingStatsCommand with the given {@code month} and {@code year}.
      */
     public SingleMeetingStatsCommand(Month month, Year year) {
+        requireNonNull(month);
+        requireNonNull(year);
+
         this.month = month;
         this.year = year;
     }

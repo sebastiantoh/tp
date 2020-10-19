@@ -291,4 +291,21 @@ public class ParserUtilTest {
         assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(1000000000)));
     }
 
+    @Test
+    public void parseNumberOfMonths_validValue_returnsInt() throws ParseException {
+        assertEquals(2, ParserUtil.parseNumberOfMonths("2"));
+        assertEquals(6, ParserUtil.parseNumberOfMonths("6"));
+        assertEquals(4, ParserUtil.parseNumberOfMonths("4"));
+    }
+
+    @Test
+    public void parseNumberOfMonths_invalidValue_throwsParseException() throws ParseException {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("1"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("7"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("-1"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("12"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("abc"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("1.1"));
+
+    }
 }

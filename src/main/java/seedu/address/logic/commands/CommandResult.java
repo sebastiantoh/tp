@@ -101,12 +101,16 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && clear == otherCommandResult.clear
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && ((Objects.isNull(statisticResult)
+                    && Objects.isNull(otherCommandResult.statisticResult))
+                    || (!Objects.isNull(statisticResult)
+                    && statisticResult.equals(otherCommandResult.statisticResult)));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, clear);
+        return Objects.hash(feedbackToUser, showHelp, exit, clear, statisticResult);
     }
 
 }
