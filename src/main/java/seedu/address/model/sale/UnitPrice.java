@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.math.BigDecimal;
-import java.text.NumberFormat;
 
 /**
  * Represents a Sale item's unit price in the address book.
