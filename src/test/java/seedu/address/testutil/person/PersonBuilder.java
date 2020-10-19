@@ -33,6 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Remark remark;
+    private boolean archived;
     private UniqueSaleList saleList;
 
     /**
@@ -45,6 +46,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         remark = new Remark(DEFAULT_REMARK);
+        archived = false;
         saleList = DEFAULT_SALE_LIST;
     }
 
@@ -59,6 +61,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         remark = personToCopy.getRemark();
+        archived = personToCopy.isArchived();
         saleList = personToCopy.getSalesList();
     }
 
@@ -111,6 +114,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Archived} of the {@code Person} that we are building to {@code true}.
+     */
+    public PersonBuilder withArchived() {
+        this.archived = true;
+        return this;
+    }
+
+    /**
      * Adds the {@code sales} into a {@code UniqueSaleList} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withSales(Sale ... sales) {
@@ -119,7 +130,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, remark, saleList);
+        return new Person(name, phone, email, address, tags, remark, archived, saleList);
     }
 
 }
