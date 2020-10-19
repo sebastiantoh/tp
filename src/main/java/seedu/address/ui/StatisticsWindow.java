@@ -1,8 +1,6 @@
 package seedu.address.ui;
 
 import java.io.IOException;
-import java.time.Month;
-import java.time.Year;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
@@ -13,7 +11,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
-import javafx.util.Pair;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.commons.core.LogsCenter;
 
 /**
@@ -39,7 +37,7 @@ public class StatisticsWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public StatisticsWindow(Stage root, List<Pair<Pair<Month, Year>, Integer>>  statisticResult) {
+    public StatisticsWindow(Stage root, List<MonthlyCountData>  statisticResult) {
         super(FXML, root);
         try {
             populateStatisticsWindow(statisticResult);
@@ -51,7 +49,7 @@ public class StatisticsWindow extends UiPart<Stage> {
     /**
      * Creates a new StatisticsWindow.
      */
-    public StatisticsWindow(List<Pair<Pair<Month, Year>, Integer>> statisticResult) {
+    public StatisticsWindow(List<MonthlyCountData> statisticResult) {
         this(new Stage(), statisticResult);
     }
 
@@ -61,18 +59,18 @@ public class StatisticsWindow extends UiPart<Stage> {
      *
      * @throws IOException
      */
-    private void populateStatisticsWindow(List<Pair<Pair<Month, Year>, Integer>> statisticResult) throws IOException {
+    private void populateStatisticsWindow(List<MonthlyCountData> statisticResult) throws IOException {
         this.barChart.setTitle("Meetings Count");
         int maxValue = 0;
         this.y.setTickUnit(1);
         this.y.setAutoRanging(false);
         this.y.setMinorTickVisible(false);
         XYChart.Series<String, Integer> bars = new XYChart.Series<>();
-        for (Pair<Pair<Month, Year>, Integer> data : statisticResult) {
-            XYChart.Data<String, Integer> data1 = new XYChart.Data<>(String.format("%s %s",
-                    data.getKey().getKey(), data.getKey().getValue()), data.getValue());
+        for (MonthlyCountData data : statisticResult) {
+            XYChart.Data<String, Integer> data1 = new XYChart.Data<>(
+                    data.getMonthAndYearAsStr(), data.getCount());
             bars.getData().add(data1);
-            maxValue = Math.max(maxValue, data.getValue());
+            maxValue = Math.max(maxValue, data.getCount());
         }
 
         List<String> barColors = Arrays.asList("blue", "red", "purple", "yellow", "orange", "green");

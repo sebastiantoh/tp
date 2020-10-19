@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.time.Month;
-import java.time.Year;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -14,7 +12,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.util.Pair;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -172,7 +170,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    public void handleStatisticsResult(List<Pair<Pair<Month, Year>, Integer>> statisticResult) {
+    public void handleStatisticsResult(List<MonthlyCountData> statisticResult) {
         this.statisticsWindow = new StatisticsWindow(statisticResult);
         if (!statisticsWindow.isShowing()) {
             statisticsWindow.show();

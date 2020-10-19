@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import javafx.util.Pair;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
@@ -401,7 +401,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Gets multiple number of meeting count.
      */
-    public List<Pair<Pair<Month, Year>, Integer>> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+    public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         return this.meetings.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
     }
 

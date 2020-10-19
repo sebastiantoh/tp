@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.util.Pair;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meeting.Meeting;
@@ -315,7 +315,7 @@ public class ModelManager implements Model {
         return this.addressBook.getMonthMeetingsCount(month, year);
     }
 
-    public List<Pair<Pair<Month, Year>, Integer>> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+    public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         return this.addressBook.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
     }
 

@@ -19,9 +19,9 @@ public class MonthlyListTest {
         Month month = MEET_ALICE.getStartDate().getMonth();
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
         this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        assertEquals(1, this.meetingMonthlyList.getMonthCount(month, year));
+        assertEquals(1, this.meetingMonthlyList.getItemCount(month, year));
         this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        assertEquals(2, this.meetingMonthlyList.getMonthCount(month, year));
+        assertEquals(2, this.meetingMonthlyList.getItemCount(month, year));
     }
 
     @Test
@@ -31,11 +31,11 @@ public class MonthlyListTest {
         this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
         this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
         this.meetingMonthlyList.removeItem(month, year, MEET_ALICE);
-        assertEquals(1, this.meetingMonthlyList.getMonthCount(month, year));
+        assertEquals(1, this.meetingMonthlyList.getItemCount(month, year));
         this.meetingMonthlyList.removeItem(month, year, MEET_ALICE);
-        assertEquals(0, this.meetingMonthlyList.getMonthCount(month, year));
+        assertEquals(0, this.meetingMonthlyList.getItemCount(month, year));
         this.meetingMonthlyList.removeItem(month, year, MEET_ALICE);
-        assertEquals(0, this.meetingMonthlyList.getMonthCount(month, year));
+        assertEquals(0, this.meetingMonthlyList.getItemCount(month, year));
     }
 
     @Test
@@ -44,8 +44,8 @@ public class MonthlyListTest {
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
         this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
         this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        assertEquals(2, this.meetingMonthlyList.getMonthCount(month, year));
+        assertEquals(2, this.meetingMonthlyList.getItemCount(month, year));
         this.meetingMonthlyList.clear();
-        assertEquals(0, this.meetingMonthlyList.getMonthCount(month, year));
+        assertEquals(0, this.meetingMonthlyList.getItemCount(month, year));
     }
 }

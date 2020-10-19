@@ -9,7 +9,7 @@ import java.time.Year;
 import java.util.List;
 import java.util.Objects;
 
-import javafx.util.Pair;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -56,7 +56,7 @@ public class StatsCommand extends Command {
             return new CommandResult(String.format(MESSAGE_SUCCESS, month.name(), year.getValue(), result));
         }
         else if (!Objects.isNull(numberOfMonths)) {
-            List<Pair<Pair<Month, Year>, Integer>> result = model
+            List<MonthlyCountData> result = model
                     .getMultipleMonthMeetingsCount(month, year, numberOfMonths);
 
             return new CommandResult(MESSAGE_SUCCESS_1, result);
