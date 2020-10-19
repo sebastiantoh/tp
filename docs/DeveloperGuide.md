@@ -115,7 +115,10 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes the following unmodifiable lists that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+    1. `ObservableList<Person>`
+    2. `ObservableList<Meeting>`
+    3. `ObservableList<Reminder>`
 * does not depend on any of the other three components.
 
 
