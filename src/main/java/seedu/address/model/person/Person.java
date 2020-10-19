@@ -25,6 +25,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
+    private final boolean archived;
     private UniqueSaleList salesList = new UniqueSaleList();
 
     /**
@@ -45,6 +46,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.remark = remark;
+        archived = false;
     }
 
     /**
@@ -59,7 +61,7 @@ public class Person {
      * @param salesList UniqueSaleList of sales made to the person.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, Remark remark, UniqueSaleList salesList) {
+                  Set<Tag> tags, Remark remark, boolean archived, UniqueSaleList salesList) {
         requireAllNonNull(name, phone, email, address, tags, remark);
         this.name = name;
         this.phone = phone;
@@ -67,6 +69,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.remark = remark;
+        this.archived = archived;
         this.salesList.setSales(salesList);
     }
 
@@ -100,6 +103,10 @@ public class Person {
 
     public UniqueSaleList getSalesList() {
         return salesList;
+    }
+
+    public boolean isArchived() {
+        return archived;
     }
 
     public void setSalesList(UniqueSaleList newList) {
@@ -143,6 +150,7 @@ public class Person {
                 toCopy.getAddress(),
                 newTagList,
                 toCopy.getRemark(),
+                toCopy.isArchived(),
                 newSaleList
         );
     }

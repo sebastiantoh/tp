@@ -33,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String remark;
+    private final boolean archived;
     private final List<JsonAdaptedSale> saleList = new ArrayList<>();
 
     /**
@@ -42,7 +43,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark,
-            @JsonProperty("person") List<JsonAdaptedSale> saleList) {
+            @JsonProperty("archived") boolean archived, @JsonProperty("person") List<JsonAdaptedSale> saleList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -54,6 +55,7 @@ class JsonAdaptedPerson {
         if (saleList != null) {
             this.saleList.addAll(saleList);
         }
+        this.archived = archived;
     }
 
     /**
@@ -68,6 +70,7 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         remark = source.getRemark().value;
+        archived = source.isArchived();
         saleList.addAll(source.getSalesList()
                 .asUnmodifiableObservableList()
                 .stream()
@@ -132,7 +135,8 @@ class JsonAdaptedPerson {
         }
         final Remark modelRemark = new Remark(remark);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelRemark, modelSales);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelRemark, archived,
+                modelSales);
     }
 
 }

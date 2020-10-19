@@ -33,6 +33,10 @@ public class ModelManager implements Model {
 
     private final SortedList<Person> sortedPersons;
 
+    private final FilteredList<Person> filteredArchivedPersons;
+
+    private final SortedList<Person> sortedArchivedPersons;
+
     private final SortedList<Meeting> sortedMeetings;
 
     private final SortedList<Reminder> sortedReminders;
@@ -51,6 +55,8 @@ public class ModelManager implements Model {
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.sortedPersons = new SortedList<>(this.filteredPersons);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
+        this.filteredArchivedPersons = null;
+        this.sortedArchivedPersons = null;
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
     }

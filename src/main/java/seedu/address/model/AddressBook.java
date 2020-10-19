@@ -25,6 +25,7 @@ import seedu.address.model.tag.UniqueSaleTagList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniquePersonList archivedPersons;
     private final UniqueContactTagList contactTags;
     private final UniqueSaleTagList saleTags;
     private final UniqueMeetingList meetings;
@@ -40,6 +41,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        archivedPersons = new UniquePersonList();
         contactTags = new UniqueContactTagList();
         saleTags = new UniqueSaleTagList();
         meetings = new UniqueMeetingList();

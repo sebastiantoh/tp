@@ -11,6 +11,7 @@ import seedu.address.logic.commands.contact.EditCommand;
 import seedu.address.logic.commands.contact.FindCommand;
 import seedu.address.logic.commands.contact.ListCommand;
 import seedu.address.logic.commands.contact.SortCommand;
+import seedu.address.logic.commands.contact.ArchiveCommand;
 import seedu.address.logic.parser.GroupCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -21,6 +22,7 @@ public class ContactCommandsParser implements GroupCommandsParser {
 
     public static final List<String> ALL_CONTACT_COMMAND_WORDS = Arrays.asList(
             AddCommand.COMMAND_WORD,
+            ArchiveCommand.COMMAND_WORD,
             EditCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
@@ -40,6 +42,9 @@ public class ContactCommandsParser implements GroupCommandsParser {
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+    
+        case ArchiveCommand.COMMAND_WORD:
+            return new ArchiveCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

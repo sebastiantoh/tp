@@ -22,6 +22,16 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
+     * {@code Predicate} that checks whether the {@code Person} is not archived.
+     */
+    Predicate<Person> PREDICATE_SHOW_UNARCHIVED_PERSONS = person -> !person.isArchived();
+
+    /**
+     * {@code Predicate} that checks whether the {@code Person} is archived.
+     */    
+    Predicate<Person> PREDICATE_SHOW_ARCHIVED_PERSONS = person -> person.isArchived();
+
+    /**
      * {@code Comparator} that is used for default sorting of person list in alphabetical order,
      * ignoring case.
      */

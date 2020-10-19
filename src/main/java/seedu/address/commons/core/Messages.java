@@ -19,5 +19,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_TAG_DISPLAYED_INDEX = "The tag index provided is invalid";
     public static final String MESSAGE_INVALID_MEETING_DISPLAYED_INDEX = "The meeting index provided is invalid";
     public static final String MESSAGE_INVALID_SALE_DISPLAYED_INDEX = "The sale index provided is invalid";
+    public static final String MESSAGE_UNARCHIVE_INVALIID_LIST = "Please list all archived persons first!";
+    public static final String MESSAGE_ARCHIVE_INVALIID_LIST = "Please list all contacts first!";
 
 }
