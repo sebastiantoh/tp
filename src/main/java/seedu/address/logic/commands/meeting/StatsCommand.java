@@ -15,9 +15,9 @@ public abstract class StatsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Outputs statistics on meetings.\n"
-            + "Parameters: [NUMBER OF MONTHS]"
+            + "Parameters: [NUMBER OF MONTHS] "
             + "[" + PREFIX_MONTH + "MONTH "
             + PREFIX_YEAR + "YEAR] "
-            + "Example: " + COMMAND_WORD + " m/10 y/2020\n"
-            + " " + COMMAND_WORD + " 4";
+            + "Example: " + COMMAND_WORD + " m/10 y/2020 or "
+            + COMMAND_WORD + " 4";
 }
