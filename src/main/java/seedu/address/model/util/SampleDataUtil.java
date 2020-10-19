@@ -59,19 +59,19 @@ public class SampleDataUtil {
             new Quantity("10"), new UnitPrice(new BigDecimal("3.5")), new HashSet<Tag>());
     private static final Sale BLACK_PEN = new Sale(new ItemName("Black Pen"), BERNICE_YU.getId(),
             LocalDateTime.of(2020, 10, 6, 9, 50),
-            new Quantity("300"), new UnitPrice(new BigDecimal("2.0")), new HashSet<Tag>());
+            new Quantity("300"), new UnitPrice(new BigDecimal("2.0")), getTagSet("stationery"));
     private static final Sale BINDER = new Sale(new ItemName("Binder"), ALEX_YEOH.getId(),
             LocalDateTime.of(2020, 11, 13, 11, 45),
             new Quantity("250"), new UnitPrice(new BigDecimal("4.99")), new HashSet<Tag>());
     private static final Sale TAPE = new Sale(new ItemName("Scotch Tape"), ALEX_YEOH.getId(),
             LocalDateTime.of(2020, 10, 17, 15, 20),
-            new Quantity("1000"), new UnitPrice(new BigDecimal("2.1")), new HashSet<Tag>());
+            new Quantity("1000"), new UnitPrice(new BigDecimal("2.1")), getTagSet("crafts"));
     private static final Sale ERASER = new Sale(new ItemName("Eraser"), CHARLOTTE_OLIVEIRO.getId(),
             LocalDateTime.of(2020, 9, 20, 14, 10),
-            new Quantity("1200"), new UnitPrice(new BigDecimal("0.8")), new HashSet<Tag>());
+            new Quantity("1200"), new UnitPrice(new BigDecimal("0.8")), getTagSet("stationery"));
     private static final Sale RULER = new Sale(new ItemName("Ruler"), BERNICE_YU.getId(),
             LocalDateTime.of(2020, 11, 1, 19, 00),
-            new Quantity("1200"), new UnitPrice(new BigDecimal("0.99")), new HashSet<Tag>());
+            new Quantity("1200"), new UnitPrice(new BigDecimal("0.99")), getTagSet("stationery"));
 
     public static Person[] getSamplePersons() {
         return new Person[] {
