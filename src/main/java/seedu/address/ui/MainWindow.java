@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.time.Month;
+import java.time.Year;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.application.HostServices;
@@ -11,6 +14,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -35,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ChatBox chatBox;
     private HelpWindow helpWindow;
+    private StatisticsWindow statisticsWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -166,6 +171,16 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    public void handleStatisticsResult(List<Pair<Pair<Month, Year>, Integer>> statisticResult) {
+        this.statisticsWindow = new StatisticsWindow(statisticResult);
+        if (!statisticsWindow.isShowing()) {
+            statisticsWindow.show();
+        } else {
+            statisticsWindow.focus();
+        }
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -191,6 +206,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isClear()) {
                 chatBox.clear();
+            }
+
+            if (commandResult.hasStatisticsResult()) {
+                handleStatisticsResult(commandResult.getStatisticResult());
             }
 
             return commandResult;

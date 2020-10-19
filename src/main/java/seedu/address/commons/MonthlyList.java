@@ -78,4 +78,34 @@ public class MonthlyList<T> {
     public void clear() {
         this.monthlyList.clear();
     }
+
+    public List<Pair<Pair<Month, Year>, Integer>> getMultipleMonthCount(Month month, Year year, int numberOfMonths) {
+        List<Pair<Pair<Month, Year>, Integer>> result = new ArrayList<>();
+
+        Month currentMonth = month;
+        Year currentYear = year;
+        Pair<Month, Year> currentMonthAndYear = new Pair<>(currentMonth, currentYear);
+        result.add(new Pair<>(currentMonthAndYear,
+                this.monthlyList.getOrDefault(currentMonthAndYear, Collections.emptyList()).size()));
+        for (int i = 1; i < numberOfMonths; i++) {
+            Pair<Month, Year> previousMonthAndYear = getPreviousMonthAndYear(currentMonth, currentYear);
+            currentMonth = previousMonthAndYear.getKey();
+            currentYear = previousMonthAndYear.getValue();
+            result.add(new Pair<>(previousMonthAndYear,
+                    this.monthlyList.getOrDefault(previousMonthAndYear, Collections.emptyList()).size()));
+        }
+        Collections.reverse(result);
+        return result;
+    }
+
+    private Pair<Month, Year> getPreviousMonthAndYear(Month month, Year year) {
+        Year yearResult = year;
+        int monthResult = month.getValue() - 1;
+        if (monthResult <= 0) {
+            monthResult += 12;
+            yearResult = year.minusYears(1);
+        }
+        Month previousMonth = Month.of(monthResult);
+        return new Pair<>(previousMonth, yearResult);
+    }
 }

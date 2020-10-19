@@ -32,19 +32,25 @@ public class StatsCommandParser implements Parser<StatsCommand> {
 
         if (argMultimap.getValue(PREFIX_MONTH).isPresent() && argMultimap.getValue(PREFIX_YEAR).isEmpty()
                 || (argMultimap.getValue(PREFIX_MONTH).isEmpty() && argMultimap.getValue(PREFIX_YEAR).isPresent())
-                || !argMultimap.getPreamble().isEmpty()) {
+                || (!argMultimap.getPreamble().isEmpty() && argMultimap.getValue(PREFIX_MONTH).isPresent()
+                    && argMultimap.getValue(PREFIX_YEAR).isPresent())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StatsCommand.MESSAGE_USAGE));
         }
-        Month month;
-        Year year;
+        Month month = null;
+        Year year = null;
+        Integer numberOfMonths = null;
         if (argMultimap.getValue(PREFIX_MONTH).isPresent() && argMultimap.getValue(PREFIX_YEAR).isPresent()) {
             month = ParserUtil.parseMonth(argMultimap.getValue(PREFIX_MONTH).get());
             year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
+        } else if (argMultimap.getPreamble().isEmpty()) {
+            month = LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth();
+            year = Year.now();
         } else {
             month = LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth();
             year = Year.now();
+            numberOfMonths = ParserUtil.parseNumberOfMonths(argMultimap.getPreamble());
         }
-        return new StatsCommand(month, year);
+        return new StatsCommand(month, year, numberOfMonths);
     }
 }

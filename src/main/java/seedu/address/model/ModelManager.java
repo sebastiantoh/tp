@@ -7,12 +7,14 @@ import java.nio.file.Path;
 import java.time.Month;
 import java.time.Year;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meeting.Meeting;
@@ -311,6 +313,10 @@ public class ModelManager implements Model {
     @Override
     public int getMonthMeetingsCount(Month month, Year year) {
         return this.addressBook.getMonthMeetingsCount(month, year);
+    }
+
+    public List<Pair<Pair<Month, Year>, Integer>> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+        return this.addressBook.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
     }
 
     @Override

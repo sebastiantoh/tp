@@ -279,6 +279,11 @@ public class AddCommandTest {
         public int getMonthMeetingsCount(Month month, Year year) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public int getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

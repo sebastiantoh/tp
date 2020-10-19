@@ -4,9 +4,11 @@ import java.nio.file.Path;
 import java.time.Month;
 import java.time.Year;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -243,4 +245,9 @@ public interface Model {
      * Gets the number of meetings in {@code month} and {@code year}.
      */
     int getMonthMeetingsCount(Month month, Year year);
+
+    /**
+     * Gets multiple number of meeting counts.
+     */
+    List<Pair<Pair<Month, Year>, Integer>> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
 }

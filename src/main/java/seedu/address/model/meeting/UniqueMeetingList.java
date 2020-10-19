@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.commons.MonthlyList;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
@@ -118,6 +119,10 @@ public class UniqueMeetingList implements Iterable<Meeting> {
      */
     public int getMonthMeetingsCount(Month month, Year year) {
         return this.monthlyMeetingList.getMonthCount(month, year);
+    }
+
+    public List<Pair<Pair<Month, Year>, Integer>> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+        return this.monthlyMeetingList.getMultipleMonthCount(month, year, numberOfMonths);
     }
 
     @Override
