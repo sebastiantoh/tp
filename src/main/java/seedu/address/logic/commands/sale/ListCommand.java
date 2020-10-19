@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -23,38 +24,56 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of all sales to a specified contact.\n"
             + "Parameters: "
-            + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer)\n"
+            + "[" + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer)]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SALE_CONTACT_INDEX + "3 ";
 
+    private final boolean showAll;
     private final Index targetIndex;
 
-    public ListCommand(Index targetIndex) {
+    /**
+     * Creates a ListCommand with the following parameters.
+     * @param showAll A boolean dictating if all sales should be displayed.
+     * @param targetIndex The index of the contact whose sales are to be displayed.
+     */
+    public ListCommand(boolean showAll, Index targetIndex) {
+        this.showAll = showAll;
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Person> sortedPersonList = model.getSortedPersonList();
+        List<Sale> sales = model.getFilteredSaleList();
+        StringBuilder output = new StringBuilder();
 
-        List<Person> lastShownList = model.getSortedPersonList();
+        if (showAll) {
+            model.updateFilteredSaleList(x -> true);
+            output = output.append("Listing all sales:\n");
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
+            if (sales.size() == 0) {
+                return new CommandResult("No sales made!");
+            }
 
-        Person personToShow = lastShownList.get(targetIndex.getZeroBased());
+        } else {
+            if (targetIndex.getZeroBased() >= sortedPersonList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
 
-        List<Sale> sales = personToShow.getSalesList().asUnmodifiableObservableList();
+            Person personToShow = sortedPersonList.get(targetIndex.getZeroBased());
+            Predicate<Sale> filterByContact = x -> x.getBuyerId() == personToShow.getId();
 
-        StringBuilder output = new StringBuilder("Sales made to " + personToShow.getName() + ":\n");
+            model.updateFilteredSaleList(filterByContact);
+            output = output.append("Sales made to ").append(personToShow.getName()).append(":\n");
 
-        if (sales.size() == 0) {
-            return new CommandResult("No sales made to " + personToShow.getName() + "!");
+            if (sales.size() == 0) {
+                return new CommandResult("No sales made to " + personToShow.getName() + "!");
+            }
         }
 
         int index = 1;
-        for (Sale sale : personToShow.getSalesList().asUnmodifiableObservableList()) {
+        for (Sale sale : sales) {
             output.append(index).append(". ").append(sale.toString()).append("\n");
             index++;
         }
@@ -64,8 +83,18 @@ public class ListCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ListCommand // instanceof handles nulls
-                && targetIndex.equals(((ListCommand) other).targetIndex)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof ListCommand) {
+            if (!showAll) {
+                return targetIndex.equals(((ListCommand) other).targetIndex);
+            } else {
+                return ((ListCommand) other).showAll;
+            }
+        }
+
+        return false;
     }
 }

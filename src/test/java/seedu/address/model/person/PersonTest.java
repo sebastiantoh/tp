@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
-import static seedu.address.testutil.person.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -58,6 +57,7 @@ public class PersonTest {
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
+        Person aliceWithDifferentId = new PersonBuilder(ALICE).withId(2).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -70,26 +70,6 @@ public class PersonTest {
         assertFalse(ALICE.equals(5));
 
         // different person -> returns false
-        assertFalse(ALICE.equals(BOB));
-
-        // different name -> returns false
-        Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different phone -> returns false
-        editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different email -> returns false
-        editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different address -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        assertFalse(ALICE.equals(aliceWithDifferentId));
     }
 }

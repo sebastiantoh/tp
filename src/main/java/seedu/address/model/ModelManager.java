@@ -37,6 +37,10 @@ public class ModelManager implements Model {
 
     private final SortedList<Reminder> sortedReminders;
 
+    private final FilteredList<Sale> filteredSales;
+
+    private final SortedList<Sale> sortedSales;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -49,10 +53,13 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
+        this.filteredSales.setPredicate(x -> false);
         this.sortedPersons = new SortedList<>(this.filteredPersons);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
+        this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
     }
 
     public ModelManager() {
@@ -210,13 +217,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addSaleToPerson(Person person, Sale sale) {
-        addressBook.addSaleToPerson(person, sale);
+    public boolean hasSale(Sale sale) {
+        requireNonNull(sale);
+        return addressBook.hasSale(sale);
     }
 
     @Override
-    public void removeSaleFromPerson(Person person, Sale sale) {
-        addressBook.removeSaleFromPerson(person, sale);
+    public void addSale(Sale sale) {
+        addressBook.addSale(sale);
+    }
+
+    @Override
+    public void removeSale(Sale sale) {
+        addressBook.removeSale(sale);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -262,6 +275,49 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedPersonList(Comparator<Person> comparator) {
         this.sortedPersons.setComparator(comparator);
+    }
+
+    //=========== Filtered Sale List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Sale} backed by the internal list of
+     * {@code versionedAddressBook}.
+     */
+    @Override
+    public ObservableList<Sale> getFilteredSaleList() {
+        return this.filteredSales;
+    }
+
+    /**
+     * Updates the predicate used to filter sale list.
+     *
+     * @param predicate predicate to filter sale list
+     */
+    @Override
+    public void updateFilteredSaleList(Predicate<Sale> predicate) {
+        requireNonNull(predicate);
+        this.filteredSales.setPredicate(predicate);
+    }
+
+    //=========== Sorted Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Sale} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Sale> getSortedSaleList() {
+        return this.sortedSales;
+    }
+
+    /**
+     * Updates the comparator to sort the sale list.
+     *
+     * @param comparator comparator for sorting the sale list
+     */
+    @Override
+    public void updateSortedSaleList(Comparator<Sale> comparator) {
+        this.sortedSales.setComparator(comparator);
     }
 
     //=========== Meeting List Accessors =============================================================

@@ -1,22 +1,32 @@
 {
   "persons": [ {
+    "id": 1,
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ],
-    "remark": ""
+    "tagged": [
+      "friends"
+    ],
+    "remark": "Likes chocolates",
+    "totalSalesAmount" : "0.80"
   },
     {
+      "id": 1,
       "name": "Alice Pauline",
       "phone": "94351253",
-      "email": "pauline@example.com",
-      "address": "4th street",
-      "remark": ""
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "tagged": [
+        "friends"
+      ],
+      "remark": "Likes chocolates",
+      "totalSalesAmount" : "0.80"
     }
   ],
   "contactTags": [],
   "saleTags": [],
   "reminders": [],
-  "meetings": []
+  "meetings": [],
+  "sales": []
 }

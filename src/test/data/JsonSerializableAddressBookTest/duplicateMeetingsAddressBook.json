@@ -6,6 +6,7 @@
   "meetings": [
     {
       "person": {
+        "id": 1,
         "name": "Alice Pauline",
         "phone": "94351253",
         "email": "alice@example.com",
@@ -13,7 +14,8 @@
         "tagged": [
           "friends"
         ],
-        "remark": ""
+        "remark": "Likes chocolates",
+        "totalSalesAmount" : "0.00"
       },
       "message": "Lunch with Alice",
       "startDate": "2020-10-30T15:19",
@@ -21,6 +23,7 @@
     },
     {
       "person": {
+        "id": 1,
         "name": "Alice Pauline",
         "phone": "94351253",
         "email": "alice@example.com",
@@ -28,11 +31,13 @@
         "tagged": [
           "friends"
         ],
-        "remark": ""
+        "remark": "Likes chocolates",
+        "totalSalesAmount" : "0.00"
       },
       "message": "Lunch with Alice",
       "startDate": "2020-10-30T15:19",
       "duration": "PT30M"
     }
-  ]
+  ],
+  "sales" : []
 }

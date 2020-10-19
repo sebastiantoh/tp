@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,5 +33,11 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate reminders.
      */
     ObservableList<Reminder> getReminderList();
+
+    /**
+     * Returns an unmodifiable view of the sales list.
+     * This list will not contain any duplicate sales.
+     */
+    ObservableList<Sale> getSaleList();
 
 }

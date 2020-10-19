@@ -1,6 +1,6 @@
 package seedu.address.testutil.person;
 
-import java.util.Arrays;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,8 +10,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.sale.Sale;
-import seedu.address.model.sale.UniqueSaleList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -20,32 +18,35 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_REMARK = "";
-    public static final UniqueSaleList DEFAULT_SALE_LIST = new UniqueSaleList();
+    public static final BigDecimal DEFAULT_TOTAL_SALES_AMOUNT = new BigDecimal("0");
+    public static final int DEFAULT_ID = 1;
+    public static final Name DEFAULT_NAME = new Name("Alice Pauline");
+    public static final Phone DEFAULT_PHONE = new Phone("85355255");
+    public static final Email DEFAULT_EMAIL = new Email("alice@gmail.com");
+    public static final Address DEFAULT_ADDRESS = new Address("123, Jurong West Ave 6, #08-111");
+    public static final Remark DEFAULT_REMARK = new Remark("");
 
+    private int id;
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
     private Remark remark;
-    private UniqueSaleList saleList;
+    private BigDecimal totalSalesAmount;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        id = DEFAULT_ID;
+        name = DEFAULT_NAME;
+        phone = DEFAULT_PHONE;
+        email = DEFAULT_EMAIL;
+        address = DEFAULT_ADDRESS;
         tags = new HashSet<>();
-        remark = new Remark(DEFAULT_REMARK);
-        saleList = DEFAULT_SALE_LIST;
+        remark = DEFAULT_REMARK;
+        totalSalesAmount = DEFAULT_TOTAL_SALES_AMOUNT;
     }
 
 
@@ -53,13 +54,22 @@ public class PersonBuilder {
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
+        id = personToCopy.getId();
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         remark = personToCopy.getRemark();
-        saleList = personToCopy.getSalesList();
+        totalSalesAmount = personToCopy.getTotalSalesAmount();
+    }
+
+    /**
+     * Sets the {@code id} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withId(int id) {
+        this.id = id;
+        return this;
     }
 
     /**
@@ -111,15 +121,15 @@ public class PersonBuilder {
     }
 
     /**
-     * Adds the {@code sales} into a {@code UniqueSaleList} and set it to the {@code Person} that we are building.
+     * Sets the {@code Remark} of the {@code Person} that we are building.
      */
-    public PersonBuilder withSales(Sale ... sales) {
-        this.saleList.setSales(Arrays.asList(sales));
+    public PersonBuilder withTotalSalesAmount(BigDecimal totalSalesAmount) {
+        this.totalSalesAmount = totalSalesAmount;
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, remark, saleList);
+        return new Person(id, name, phone, email, address, tags, remark, totalSalesAmount);
     }
 
 }

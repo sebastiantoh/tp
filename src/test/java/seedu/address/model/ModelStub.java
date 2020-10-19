@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
@@ -168,10 +169,30 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<Person> getSortedPersonList() {
-        throw new AssertionError("This method should not be called.");
+        return new UniquePersonList().asUnmodifiableObservableList();
     }
 
     public void updateSortedPersonList(Comparator<Person> comparator) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Sale> getFilteredSaleList() {
+        return null;
+    }
+
+    @Override
+    public void updateFilteredSaleList(Predicate<Sale> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Sale> getSortedSaleList() {
+        return null;
+    }
+
+    @Override
+    public void updateSortedSaleList(Comparator<Sale> comparator) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -216,12 +237,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addSaleToPerson(Person person, Sale sale) {
+    public boolean hasSale(Sale sale) {
+        return false;
+    }
+
+    @Override
+    public void addSale(Sale sale) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void removeSaleFromPerson(Person person, Sale sale) {
+    public void removeSale(Sale sale) {
         throw new AssertionError("This method should not be called.");
     }
 }

@@ -14,6 +14,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,12 +27,14 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_TAG = "Tags list contains duplicate tag(s).";
     public static final String MESSAGE_DUPLICATE_MEETING = "Meetings list contains duplicate meeting(s).";
     public static final String MESSAGE_DUPLICATE_REMINDER = "Reminders list contains duplicate reminder(s).";
+    public static final String MESSAGE_DUPLICATE_SALE = "Sales list contains duplicate sale(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedTag> contactTags = new ArrayList<>();
     private final List<JsonAdaptedTag> saleTags = new ArrayList<>();
     private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
+    private final List<JsonAdaptedSale> sales = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons, meetings and reminders
@@ -41,12 +44,14 @@ class JsonSerializableAddressBook {
                                        @JsonProperty("contactTags") List<JsonAdaptedTag> contactTags,
                                        @JsonProperty("saleTags") List<JsonAdaptedTag> saleTags,
                                        @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings,
-                                       @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
+                                       @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
+                                       @JsonProperty("sales") List<JsonAdaptedSale> sales) {
         this.persons.addAll(persons);
         this.contactTags.addAll(contactTags);
         this.saleTags.addAll(saleTags);
         this.meetings.addAll(meetings);
         this.reminders.addAll(reminders);
+        this.sales.addAll(sales);
     }
 
     /**
@@ -61,6 +66,7 @@ class JsonSerializableAddressBook {
         meetings
             .addAll(source.getMeetingList().stream().map(JsonAdaptedMeeting::new).collect(Collectors.toList()));
         reminders.addAll(source.getReminderList().stream().map(JsonAdaptedReminder::new).collect(Collectors.toList()));
+        sales.addAll(source.getSaleList().stream().map(JsonAdaptedSale::new).collect(Collectors.toList()));
     }
 
     /**
@@ -104,6 +110,14 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_REMINDER);
             }
             addressBook.addReminder(reminder);
+        }
+
+        for (JsonAdaptedSale jsonAdaptedSale : sales) {
+            Sale sale = jsonAdaptedSale.toModelType();
+            if (addressBook.hasSale(sale)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SALE);
+            }
+            addressBook.addSale(sale);
         }
         return addressBook;
     }
