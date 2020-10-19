@@ -14,6 +14,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.tag.Tag;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -76,6 +77,17 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+
+        for (JsonAdaptedTag jsonAdaptedTag : saleTags) {
+            Tag tag = jsonAdaptedTag.toModelType();
+            addressBook.addSaleTag(tag);
+        }
+
+        for (JsonAdaptedTag jsonAdaptedTag : contactTags) {
+            Tag tag = jsonAdaptedTag.toModelType();
+            addressBook.addContactTag(tag);
+        }
+
         addressBook.sortTags();
 
         for (JsonAdaptedMeeting jsonAdaptedMeeting : meetings) {
