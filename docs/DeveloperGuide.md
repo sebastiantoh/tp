@@ -5,6 +5,18 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+## **Introduction**
+
+### Software overview
+
+StonksBook is a sales-optimised contact management application. It is targeted at salesmen who are seeking an all-in-one application that can empower them to effectively curate their contact list. 
+StonksBook also provides many tools that can boost one's sales peformance through the use of sophisticated data analysis techniques.
+
+### Purpose & scope
+
+This document describes the software architecture and software design decisions for the implementation
+of StonksBook. The intended audience of this document is the developers, designers, and software testers of StonksBook.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
