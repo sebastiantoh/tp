@@ -125,7 +125,7 @@ public class AddressBookParser {
 
         if (commandWord.equals(CONTACT.name().toLowerCase())) {
             return new ContactCommandsParser().parse(fullCommand, arguments);
-        } else if (commandWord.equals(ARCHIVE.name().toLowerCase())){
+        } else if (commandWord.equals(ARCHIVE.name().toLowerCase())) {
             return new ArchiveCommandsParser().parse(fullCommand, arguments);
         } else if (commandWord.equals(TAG.name().toLowerCase())) {
             return new TagCommandsParser().parse(fullCommand, arguments);

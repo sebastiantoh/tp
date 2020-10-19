@@ -1,5 +1,10 @@
 package seedu.address.logic.commands.archive;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -8,24 +13,19 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
-
 public class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "archive remove";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD +
-            ": Removes a person from the archive without deleting the person.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Removes a person from the archive without deleting the person.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
-    
-    public static final String MESSAGE_REMOVE_SUCCESS = "Removed Person from archive: %1$s. " +
-            "This Person will appear on your contact list again.";
+
+    public static final String MESSAGE_REMOVE_SUCCESS = "Removed Person from archive: %1$s. "
+            + "This Person will appear on your contact list again.";
 
     private final Index targetIndex;
-    
+
     public RemoveCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

@@ -1,11 +1,11 @@
 package seedu.address.logic.commands.archive;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
 
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "archive list";

@@ -28,7 +28,7 @@ public interface Model {
 
     /**
      * {@code Predicate} that checks whether the {@code Person} is archived.
-     */    
+     */
     Predicate<Person> PREDICATE_SHOW_ARCHIVED_PERSONS = person -> person.isArchived();
 
     /**

@@ -10,6 +10,9 @@ import seedu.address.logic.commands.archive.RemoveCommand;
 import seedu.address.logic.parser.GroupCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses the command word to create a Archive Command Object corresponding to the command word.
+ */
 public class ArchiveCommandsParser implements GroupCommandsParser {
     public static final List<String> ALL_CONTACT_COMMAND_WORDS = Arrays.asList(
             ListCommand.COMMAND_WORD,
@@ -26,14 +29,14 @@ public class ArchiveCommandsParser implements GroupCommandsParser {
     @Override
     public Command parse(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
-            case RemoveCommand.COMMAND_WORD:
-                return new RemoveCommandParser().parse(arguments);
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            default:
-                return new UnknownCommand(commandWord);
+        default:
+            return new UnknownCommand(commandWord);
         }
     }
 }
