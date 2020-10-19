@@ -129,7 +129,7 @@ public class Sale implements Comparable<Sale> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        // TODO: settle printing of buyer
+        // TODO: settle printing of buyer when implementing GUI
         builder.append(getItemName())
                 .append(" (Date of Purchase: ")
                 .append(getDatetimeOfPurchase().format(DATE_TIME_FORMATTER))

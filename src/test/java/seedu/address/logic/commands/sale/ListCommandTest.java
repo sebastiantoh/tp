@@ -33,11 +33,11 @@ public class ListCommandTest {
     public void execute_noIndex_showsAllSales() {
         String saleListResult = "Listing all sales:\n"
                 + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, "
-                + "Quantity: 10, Unit Price: \u00243.50, Tags: [[fruits]])\n"
+                + "Quantity: 10, Unit Price: 3.50, Tags: [[fruits]])\n"
                 + "2. Ball (Date of Purchase: Tue, 22 Sep 2020, 12:40, "
-                + "Quantity: 1, Unit Price: \u00240.80, Tags: [[sports]])\n"
+                + "Quantity: 1, Unit Price: 0.80, Tags: [[sports]])\n"
                 + "3. Camera (Date of Purchase: Sun, 01 Nov 2020, 09:05, "
-                + "Quantity: 2, Unit Price: \u00241,000.50, Tags: [[electronics]])\n";
+                + "Quantity: 2, Unit Price: 1,000.50, Tags: [[electronics]])\n";
         assertCommandSuccess(new ListCommand(true, null), model, saleListResult, expectedModel);
     }
 
@@ -45,7 +45,7 @@ public class ListCommandTest {
     public void execute_validIndex_showsSales() {
         String saleListResult = "Sales made to Benson Meier:\n"
                 + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, "
-                + "Quantity: 10, Unit Price: \u00243.50, Tags: [[fruits]])\n";
+                + "Quantity: 10, Unit Price: 3.50, Tags: [[fruits]])\n";
         assertCommandSuccess(new ListCommand(false, INDEX_SECOND_ITEM), model, saleListResult, expectedModel);
     }
 
