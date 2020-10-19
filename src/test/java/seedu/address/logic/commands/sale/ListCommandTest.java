@@ -37,7 +37,7 @@ public class ListCommandTest {
                 + "2. Ball (Date of Purchase: Tue, 22 Sep 2020, 12:40, "
                 + "Quantity: 1, Unit Price: 0.80, Tags: [[sports]])\n"
                 + "3. Camera (Date of Purchase: Sun, 01 Nov 2020, 09:05, "
-                + "Quantity: 2, Unit Price: 1,000.50, Tags: [[electronics]])\n";
+                + "Quantity: 2, Unit Price: 1000.50, Tags: [[electronics]])\n";
         assertCommandSuccess(new ListCommand(true, null), model, saleListResult, expectedModel);
     }
 
