@@ -20,6 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.sale.UniqueSaleList;
+import seedu.address.testutil.TypicalSaleTags;
 import seedu.address.testutil.person.PersonBuilder;
 
 public class AddCommandTest {
@@ -46,6 +47,7 @@ public class AddCommandTest {
         Person validPerson = new PersonBuilder(BOB).withSales(APPLE).build();
         ModelManager model = new ModelManager();
         model.addPerson(validPerson);
+        model.addSaleTag(TypicalSaleTags.SPORTS);
 
         CommandResult commandResult = new AddCommand(INDEX_FIRST_ITEM, BALL).execute(model);
 
