@@ -146,11 +146,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : editedPerson.getTags()) {
             contactTags.add(t);
         }
-        for (Tag t : target.getTags()) {
-            if (persons.hasZeroOccurrences(t)) {
-                contactTags.remove(t);
-            }
-        }
     }
 
     /**
@@ -329,6 +324,30 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if all the tags of the provided {@code sale} item exist in StonksBook.
+     */
+    public boolean saleTagsExist(Sale sale) {
+        for (Tag t : sale.getTags()) {
+            if (!saleTags.contains(t)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if all the tags of the provided {@code sale} item exist in StonksBook.
+     */
+    public boolean contactTagsExist(Person person) {
+        for (Tag t : person.getTags()) {
+            if (!contactTags.contains(t)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Re-order all the existing tags in StonksBook.
      */
     public void sortTags() {
@@ -419,11 +438,6 @@ public class AddressBook implements ReadOnlyAddressBook {
                         toRemove.remove(t);
                     }
                 }
-            }
-        }
-        if (!toRemove.isEmpty()) {
-            for (Tag t : toRemove) {
-                saleTags.remove(t);
             }
         }
     }

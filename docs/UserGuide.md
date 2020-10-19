@@ -154,6 +154,21 @@ Examples:
 
 ### Tags
 
+#### Adding a tag: `tag add`
+
+Adds a new customised tag of the specified name to either the contact tags or sales tags. If there is an existing tag with this name, this command will not result in any change in state.
+
+Format: `tag add c/ (or s/) t/TAG`
+
+* Adds a tag with the specified `TAG` as the tag name to the contact tag list or sales tag list.
+* If this tag name already exists in the tag list, there will be no change in the program state.
+* The type of tag is specified by the empty prefix `c/` or `s/`, where `c/` adds the tag to the contact tag list, whilst `s/` adds the tag to the sales tag list.
+* The `TAG` field must be provided.
+
+Examples:
+
+* `tag add s/ t/electronics` adds the tag `electronics` to the sales tag list in StonksBook.
+
 #### Listing all tags: `tag list`
 
 Displays a list of all tags created so far.
