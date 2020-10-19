@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DURATION;
@@ -59,7 +58,7 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Index.fromOneBased(parseInt(trimmedIndex));
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
     /**
@@ -205,7 +204,7 @@ public class ParserUtil {
     public static Month parseMonth(String month) throws ParseException {
         requireNonNull(month);
         try {
-            return Month.of(parseInt(month.trim()));
+            return Month.of(Integer.parseInt(month.trim()));
         } catch (DateTimeException | NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_MONTH);
         }
@@ -220,7 +219,7 @@ public class ParserUtil {
         requireNonNull(year);
 
         try {
-            int yearValue = parseInt(year);
+            int yearValue = Integer.parseInt(year);
             if (yearValue <= 0) {
                 throw new ParseException(MESSAGE_INVALID_YEAR);
             }
@@ -273,14 +272,20 @@ public class ParserUtil {
             throw new ParseException(UnitPrice.MESSAGE_CONSTRAINTS);
         }
         String[] priceSplit = unitPrice.split("\\.");
-        int dollars = parseInt(priceSplit[0]);
-        int cents = parseInt(priceSplit[1]);
+        int dollars = Integer.parseInt(priceSplit[0]);
+        int cents = Integer.parseInt(priceSplit[1]);
         if (!UnitPrice.isValidUnitPrice(dollars, cents)) {
             throw new ParseException(UnitPrice.MESSAGE_CONSTRAINTS);
         }
         return new UnitPrice(dollars, cents);
     }
 
+    /**
+     * Parses a {@code String numberOfMonthsString} into an {@code int}.
+     *
+     * @throws ParseException if the given {@code numberOfMonthString} is
+     * not an integer between 2 and 6 inclusive
+     */
     public static int parseNumberOfMonths(String numberOfMonthsString) throws ParseException {
         requireNonNull(numberOfMonthsString);
         try {

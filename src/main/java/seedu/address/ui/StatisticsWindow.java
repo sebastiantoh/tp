@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
@@ -35,15 +34,11 @@ public class StatisticsWindow extends UiPart<Stage> {
     /**
      * Creates a new StatisticsWindow.
      *
-     * @param root Stage to use as the root of the HelpWindow.
+     * @param root Stage to use as the root of the StatisticsWindow.
      */
     public StatisticsWindow(Stage root, List<MonthlyCountData>  statisticResult) {
         super(FXML, root);
-        try {
-            populateStatisticsWindow(statisticResult);
-        } catch (IOException e) {
-            logger.warning(e::getMessage);
-        }
+        this.populateStatisticsWindow(statisticResult);
     }
 
     /**
@@ -55,11 +50,9 @@ public class StatisticsWindow extends UiPart<Stage> {
 
 
     /**
-     * Populates the help window with all StonksBook command description.
-     *
-     * @throws IOException
+     * Populates the statistics window with the statistics data from {@code statisticResult}.
      */
-    private void populateStatisticsWindow(List<MonthlyCountData> statisticResult) throws IOException {
+    private void populateStatisticsWindow(List<MonthlyCountData> statisticResult) {
         this.barChart.setTitle("Meetings Count");
         int maxValue = 0;
         this.y.setTickUnit(1);
@@ -89,7 +82,7 @@ public class StatisticsWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows the help window.
+     * Shows the statistics window.
      * @throws IllegalStateException
      * <ul>
      *     <li>
@@ -113,21 +106,21 @@ public class StatisticsWindow extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the statistics window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the statistics window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the statistics window.
      */
     public void focus() {
         getRoot().requestFocus();

@@ -315,6 +315,7 @@ public class ModelManager implements Model {
         return this.addressBook.getMonthMeetingsCount(month, year);
     }
 
+    @Override
     public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         return this.addressBook.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
     }

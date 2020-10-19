@@ -399,7 +399,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Gets multiple number of meeting count.
+     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         return this.meetings.getMultipleMonthMeetingsCount(month, year, numberOfMonths);

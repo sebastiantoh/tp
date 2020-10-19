@@ -20,7 +20,8 @@ public class MonthlyList<T> {
     }
 
     /**
-     * Adds {@code item} of type T based on the key of {@code month} and {@code year}.
+     * Adds {@code item} of type T to an item list
+     * based on the key of {@code month} and {@code year}.
      *
      * @param month a valid month number
      * @param year a valid year number
@@ -36,7 +37,8 @@ public class MonthlyList<T> {
     }
 
     /**
-     * Removes {@code item} of type T based on the key of {@code month} and {@code year} if exists.
+     * Removes {@code item} of type T from an item list
+     * based on the key of {@code month} and {@code year} if exists.
      *
      * @param month a valid month number
      * @param year a valid year number
@@ -54,7 +56,8 @@ public class MonthlyList<T> {
     }
 
     /**
-     * Gets the number of items based on the key of {@code month} and {@code year}.
+     * Gets the number of items in an item list
+     * based on the key of {@code month} and {@code year}.
      * If the key of {@code month} and {@code year} does not exist, the number is 0.
      *
      * @param month a valid month number
@@ -77,7 +80,7 @@ public class MonthlyList<T> {
     }
 
     /**
-     * Gets the item counts for {@code month}, {@code year}
+     * Gets the item counts in the item list for {@code month}, {@code year}
      * and the previous @{numberOfMonths} - 1 months.
      * @param month valid month
      * @param year  valid year

@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -39,6 +40,8 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
 
+    List<StatisticsWindow> openStatisticsWindows;
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -72,6 +75,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow(hostServices);
+        openStatisticsWindows = new ArrayList<>();
     }
 
     public Stage getPrimaryStage() {
@@ -167,16 +171,21 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        this.openStatisticsWindows.forEach(StatisticsWindow::hide);
     }
 
+
+    /**
+     * Opens a statistics window.
+     */
     @FXML
     public void handleStatisticsResult(List<MonthlyCountData> statisticResult) {
         this.statisticsWindow = new StatisticsWindow(statisticResult);
-        if (!statisticsWindow.isShowing()) {
-            statisticsWindow.show();
-        } else {
-            statisticsWindow.focus();
-        }
+        this.statisticsWindow.getRoot()
+                .setOnCloseRequest(x -> this.openStatisticsWindows.remove(this.statisticsWindow));
+
+        this.openStatisticsWindows.add(this.statisticsWindow);
+        this.statisticsWindow.show();
     }
 
     public PersonListPanel getPersonListPanel() {

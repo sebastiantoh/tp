@@ -19,7 +19,7 @@ public class MultipleMeetingStatsCommand extends StatsCommand {
 
     public static final String MESSAGE_SUCCESS = "Opened a new window!";
 
-    private final Integer numberOfMonths;
+    private final int numberOfMonths;
 
     /**
      * Creates a MultipleMeetingStatsCommand with the given {@code numberOfMonths}.
@@ -30,7 +30,7 @@ public class MultipleMeetingStatsCommand extends StatsCommand {
 
     /**
      * Gets multiple monthly meeting counts for months between
-     * the current month and the previous numberOfMonths - 1 months.
+     * the current month and the previous numberOfMonths - 1 months inclusive.
      *
      * @param model {@code Model} which the command should operate on
      * @return CommandResult object storing the success message

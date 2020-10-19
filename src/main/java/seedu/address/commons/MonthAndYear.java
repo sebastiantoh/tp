@@ -34,7 +34,7 @@ public class MonthAndYear {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof MonthAndYear // instanceof handles nulls
-                && this.month.equals(((MonthAndYear) other).month) &&
-                this.year.equals(((MonthAndYear) other).year));
+                && this.month.equals(((MonthAndYear) other).month)
+                && this.year.equals(((MonthAndYear) other).year));
     }
 }

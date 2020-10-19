@@ -12,11 +12,13 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -281,7 +283,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public int getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+        public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
             throw new AssertionError("This method should not be called.");
         }
     }
