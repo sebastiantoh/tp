@@ -30,6 +30,13 @@ public class ReminderListPanel extends UiPart<Region> {
     }
 
     /**
+     * Refreshes (redraws) the ReminderListPanel. Use when you want to force an update of the UI.
+     */
+    void refresh() {
+        this.reminderListView.refresh();
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Reminder} using a {@code ReminderCard}.
      */
     class ReminderListViewCell extends ListCell<Reminder> {
