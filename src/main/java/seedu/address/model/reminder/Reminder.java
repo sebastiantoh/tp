@@ -54,6 +54,14 @@ public class Reminder implements Comparable<Reminder> {
         return getScheduledDate().format(DATE_TIME_FORMATTER);
     }
 
+    /**
+     * Returns true if the reminder is not yet complete and the scheduled date is past the current date.
+     * TODO: Add check that the reminder is not yet complete
+     */
+    public boolean isOverdue() {
+        return this.getScheduledDate().isBefore(LocalDateTime.now());
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
