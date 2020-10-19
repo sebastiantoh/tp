@@ -26,7 +26,9 @@ public class CommandResult {
     private final List<MonthlyCountData>  statisticResult;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code showHelp}, {@code exit}, {@code clear}
+     * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean clear) {
         this(feedbackToUser, showHelp, exit, clear, null);
@@ -45,7 +47,8 @@ public class CommandResult {
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified {@code statisticResult},
+     * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, List<MonthlyCountData> statisticResult) {
         this(feedbackToUser, false, false, false, statisticResult);
