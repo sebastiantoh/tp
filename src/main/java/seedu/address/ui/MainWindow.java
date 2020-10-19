@@ -207,6 +207,12 @@ public class MainWindow extends UiPart<Stage> {
                 chatBox.clear();
             }
 
+            // Force refresh of the following UI components which are time sensitive
+            // Overdue reminders should be displayed differently
+            this.reminderListPanel.refresh();
+            // Past meetings should be filtered out
+            this.meetingListPanel.refresh();
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

@@ -2,6 +2,7 @@
   "_comment": "AddressBook save file which contains all the typical entries of the various models",
   "persons": [
     {
+      "id": 1,
       "name": "Alice Pauline",
       "phone": "94351253",
       "email": "alice@example.com",
@@ -10,9 +11,10 @@
         "friends"
       ],
       "remark": "Likes chocolates",
-      "saleList" : []
+      "totalSalesAmount" : "0.80"
     },
     {
+      "id": 2,
       "name": "Benson Meier",
       "phone": "98765432",
       "email": "johnd@example.com",
@@ -22,32 +24,20 @@
         "friends"
       ],
       "remark": "Owes me $10",
-      "saleList" : [ {
-        "itemName" : "Apple",
-        "datetimeOfPurchase" : "2020-10-30T15:00",
-        "quantity" : "10",
-        "unitPriceDollar" : 3,
-        "unitPriceCent" : 50
-        },
-        {
-          "itemName" : "Ball",
-          "datetimeOfPurchase" : "2020-09-22T12:40",
-          "quantity" : "1",
-          "unitPriceDollar" : 0,
-          "unitPriceCent" : 80
-        }
-      ]
+      "totalSalesAmount" : "35.00"
     },
     {
+      "id": 3,
       "name": "Carl Kurz",
       "phone": "95352563",
       "email": "heinz@example.com",
       "address": "wall street",
       "tagged": [],
       "remark": "",
-      "saleList" : []
+      "totalSalesAmount" : "2001.00"
     },
     {
+      "id": 4,
       "name": "Daniel Meier",
       "phone": "87652533",
       "email": "cornelia@example.com",
@@ -56,34 +46,37 @@
         "friends"
       ],
       "remark": "",
-      "saleList" : []
+      "totalSalesAmount" : "0.00"
     },
     {
+      "id": 5,
       "name": "Elle Meyer",
       "phone": "9482224",
       "email": "werner@example.com",
       "address": "michegan ave",
       "tagged": [],
       "remark": "",
-      "saleList" : []
+      "totalSalesAmount" : "0.00"
     },
     {
+      "id": 6,
       "name": "Fiona Kunz",
       "phone": "9482427",
       "email": "lydia@example.com",
       "address": "little tokyo",
       "tagged": [],
       "remark": "",
-      "saleList" : []
+      "totalSalesAmount" : "0.00"
     },
     {
+      "id": 7,
       "name": "George Best",
       "phone": "9482442",
       "email": "anna@example.com",
       "address": "4th street",
       "tagged": [],
       "remark": "",
-      "saleList" : []
+      "totalSalesAmount" : "0.00"
     }
   ],
   "contactTags": [],
@@ -91,6 +84,7 @@
   "reminders": [
     {
       "person": {
+        "id": 1,
         "name": "Alice Pauline",
         "phone": "94351253",
         "email": "alice@example.com",
@@ -98,13 +92,15 @@
         "tagged": [
           "friends"
         ],
-        "remark": "Likes chocolates"
+        "remark": "Likes chocolates",
+        "totalSalesAmount" : "0.80"
       },
       "message": "Call Alice",
       "scheduledDate": "2020-10-30T15:19"
     },
     {
       "person": {
+        "id": 2,
         "name": "Benson Meier",
         "phone": "98765432",
         "email": "johnd@example.com",
@@ -113,19 +109,22 @@
           "owesMoney",
           "friends"
         ],
-        "remark": "Owes me $10"
+        "remark": "Owes me $10",
+        "totalSalesAmount" : "35.00"
       },
       "message": "Email Benson",
       "scheduledDate": "2018-12-20T12:00"
     },
     {
       "person": {
+        "id": 3,
         "name": "Carl Kurz",
         "phone": "95352563",
         "email": "heinz@example.com",
         "address": "wall street",
         "tagged": [],
-        "remark": ""
+        "remark": "",
+        "totalSalesAmount" : "2001.00"
       },
       "message": "Set meeting with Carl",
       "scheduledDate": "2020-12-20T12:12"
@@ -134,6 +133,7 @@
   "meetings": [
     {
       "person": {
+        "id": 1,
         "name": "Alice Pauline",
         "phone": "94351253",
         "email": "alice@example.com",
@@ -141,7 +141,8 @@
         "tagged": [
           "friends"
         ],
-        "remark": "Likes chocolates"
+        "remark": "Likes chocolates",
+        "totalSalesAmount" : "0.80"
       },
       "message": "Meet Alice to discuss pricing",
       "startDate": "2020-10-30T15:19",
@@ -149,6 +150,7 @@
     },
     {
       "person": {
+        "id": 2,
         "name": "Benson Meier",
         "phone": "98765432",
         "email": "johnd@example.com",
@@ -157,7 +159,8 @@
           "owesMoney",
           "friends"
         ],
-        "remark": "Owes me $10"
+        "remark": "Owes me $10",
+        "totalSalesAmount" : "35.00"
       },
       "message": "Present proposal to Benson",
       "startDate": "2018-12-20T12:00",
@@ -165,16 +168,40 @@
     },
     {
       "person": {
+        "id": 3,
         "name": "Carl Kurz",
         "phone": "95352563",
         "email": "heinz@example.com",
         "address": "wall street",
         "tagged": [],
-        "remark": ""
+        "remark": "",
+        "totalSalesAmount" : "2001.00"
       },
       "message": "Lunch with Carl",
       "startDate": "2020-12-20T12:12",
       "duration": "PT45M"
     }
-  ]
+  ],
+  "sales" : [ {
+    "itemName" : "Apple",
+    "buyerId" : 2,
+    "datetimeOfPurchase" : "2020-10-30T15:00",
+    "quantity" : "10",
+    "unitPrice" : "3.50",
+    "tagged" : [ "fruits" ]
+  }, {
+    "itemName" : "Ball",
+    "buyerId" : 1,
+    "datetimeOfPurchase" : "2020-09-22T12:40",
+    "quantity" : "1",
+    "unitPrice" : "0.80",
+    "tagged" : [ "sports" ]
+  }, {
+    "itemName" : "Camera",
+    "buyerId" : 3,
+    "datetimeOfPurchase" : "2020-11-01T09:05",
+    "quantity" : "2",
+    "unitPrice" : "1000.50",
+    "tagged" : [ "electronics" ]
+  } ]
 }

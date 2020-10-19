@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ExitCommand;
@@ -35,8 +37,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
+        AddCommand expectedCommand = new AddCommand(PersonBuilder.DEFAULT_NAME, PersonBuilder.DEFAULT_PHONE,
+                PersonBuilder.DEFAULT_EMAIL, PersonBuilder.DEFAULT_ADDRESS,
+                new HashSet<>(), PersonBuilder.DEFAULT_REMARK);
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        assertEquals(expectedCommand, command);
     }
 
     @Test

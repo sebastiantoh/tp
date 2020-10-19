@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DURATION;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -237,7 +238,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String quantity} into a {@code UnitPrice}.
+     * Parses a {@code String unitPrice} into a {@code UnitPrice}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code unitPrice} is invalid.
@@ -248,12 +249,8 @@ public class ParserUtil {
         if (!UnitPrice.isValidUnitPriceString(trimmedUnitPrice)) {
             throw new ParseException(UnitPrice.MESSAGE_CONSTRAINTS);
         }
-        String[] priceSplit = unitPrice.split("\\.");
-        int dollars = Integer.parseInt(priceSplit[0]);
-        int cents = Integer.parseInt(priceSplit[1]);
-        if (!UnitPrice.isValidUnitPrice(dollars, cents)) {
-            throw new ParseException(UnitPrice.MESSAGE_CONSTRAINTS);
-        }
-        return new UnitPrice(dollars, cents);
+
+        BigDecimal parsedPrice = new BigDecimal(unitPrice);
+        return new UnitPrice(parsedPrice);
     }
 }

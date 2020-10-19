@@ -1,14 +1,9 @@
 package seedu.address.logic.parser.sale;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_INDEX;
-import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.sale.DeleteCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -25,25 +20,12 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws ParseException if the user input does not conform to the expected format.
      */
     public DeleteCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SALE_CONTACT_INDEX, PREFIX_SALE_INDEX);
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_SALE_CONTACT_INDEX, PREFIX_SALE_INDEX)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteCommand.MESSAGE_USAGE));
-        }
-
-        Index contactIndex;
-        Index saleIndex;
-
         try {
-            contactIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SALE_CONTACT_INDEX).get());
-            saleIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SALE_INDEX).get());
+            Index saleIndex = ParserUtil.parseIndex(args);
+            return new DeleteCommand(saleIndex);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
-
-        return new DeleteCommand(contactIndex, saleIndex);
     }
 
 }
