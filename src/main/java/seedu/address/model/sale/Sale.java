@@ -145,9 +145,8 @@ public class Sale implements Comparable<Sale> {
 
     /**
      * Compares this sale to the specified Sale. A Sale is "less" than another Sale if and only if, from highest to
-     * lowest priority: has an earlier datetime of purchase, has a lower lexicographical order of buyer name,
+     * lowest priority: has an earlier datetime of purchase, has a buyer that was added least recently,
      * has a lower lexicographical order of item name.
-     *
      *
      * @param otherSale The other Sale to compare to
      * @return The comparator value, negative if less, positive if greater.
