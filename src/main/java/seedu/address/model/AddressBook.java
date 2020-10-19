@@ -299,7 +299,7 @@ public class AddressBook implements ReadOnlyAddressBook {
                         .orElse(null);
                 assert buyer != null;
 
-                if(!contactsWithSaleTag.contains(buyer)) {
+                if (!contactsWithSaleTag.contains(buyer)) {
                     contactsWithSaleTag.add(buyer);
                     output.append(String.format("%d. %s\n", count++ + 1, buyer.toString()));
                 }
