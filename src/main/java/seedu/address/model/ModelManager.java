@@ -217,6 +217,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireAllNonNull(target, editedReminder);
+        this.addressBook.setReminder(target, editedReminder);
+    }
+
+    @Override
     public boolean hasSale(Sale sale) {
         requireNonNull(sale);
         return addressBook.hasSale(sale);

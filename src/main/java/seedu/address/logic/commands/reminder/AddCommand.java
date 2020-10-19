@@ -14,6 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Message;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -42,7 +43,7 @@ public class AddCommand extends Command {
      * Index of the Person to be associated with this reminder.
      */
     private final Index index;
-    private final String message;
+    private final Message message;
     private final LocalDateTime scheduledDate;
 
     /**
@@ -52,7 +53,7 @@ public class AddCommand extends Command {
      * @param message       The message associated with this reminder.
      * @param scheduledDate The scheduled date of the reminder.
      */
-    public AddCommand(Index index, String message, LocalDateTime scheduledDate) {
+    public AddCommand(Index index, Message message, LocalDateTime scheduledDate) {
         requireAllNonNull(index, message, scheduledDate);
         this.index = index;
         this.message = message;

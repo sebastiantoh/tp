@@ -223,6 +223,14 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setReminder_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setReminder(null, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setReminder(null, CALL_ALICE));
+        assertThrows(NullPointerException.class, () -> modelManager.setReminder(CALL_ALICE, null));
+    }
+
+
+    @Test
     public void getSortedReminderList_reminderWithEarlierDateAdded_meetingInSortedOrder() {
         modelManager.addReminder(CALL_ALICE);
         modelManager.addReminder(EMAIL_BENSON);

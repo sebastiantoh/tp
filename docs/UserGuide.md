@@ -141,7 +141,7 @@ Examples:
 * `contact find s/ desc` sorts the contact list based on the total sales amount in non-ascending order
 
 #### Deleting a contact: `contact delete`
-Deletes the specified contact from StonksBook.
+Deletes the specified contact from StonksBook. All associated reminders and meetings will be deleted as well.
 
 Format: `contact delete INDEX`
 * Deletes the contact at the specified `INDEX`.
@@ -328,6 +328,19 @@ Format: `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`
 
 Examples:
 * `reminder add c/2 m/Send follow-up email d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact that is scheduled for 30th October 2020 3PM, with the message `Send follow-up email`
+
+#### Editing a reminder: `reminder edit`
+Edits an existing reminder in StonksBook.
+
+Format: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]`
+
+* Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.
+* `reminder edit 3 m/Follow up call d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Follow up call" and "28th November 2020, 1PM" respectively.
 
 #### Listing all reminders: `reminder list`
 

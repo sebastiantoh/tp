@@ -42,11 +42,10 @@ public class ReminderCard extends UiPart<Region> {
         super(FXML);
         this.reminder = reminder;
         id.setText(displayedIndex + ". ");
-        message.setText(reminder.getMessage());
+        message.setText(reminder.getMessage().message);
         scheduledDate.setText(reminder.getFormattedScheduledDate());
         personName.setText(reminder.getPerson().getName().fullName);
 
-        //  TODO: Test that the colour updates properly when a reminder is updated
         if (reminder.isOverdue()) {
             setStyleToIndicateOverdue();
         }

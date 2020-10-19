@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.Message;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
@@ -31,7 +32,9 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    /** Contacts */
+    /**
+     * Contacts
+     */
     private static final Person ALEX_YEOH = new Person(1, new Name("Alex Yeoh"), new Phone("87438807"),
             new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
             getTagSet("friends"), new Remark("Not available on Fridays"), new BigDecimal("3382.5"));
@@ -53,7 +56,9 @@ public class SampleDataUtil {
             new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
             getTagSet("colleagues"), new Remark(""), BigDecimal.ZERO);
 
-    /** Sales */
+    /**
+     * Sales
+     */
     private static final Sale NOTEBOOK = new Sale(new ItemName("Notebook"), ALEX_YEOH.getId(),
             LocalDateTime.of(2020, 11, 29, 15, 40),
             new Quantity("10"), new UnitPrice(new BigDecimal("3.5")), new HashSet<Tag>());
@@ -74,9 +79,7 @@ public class SampleDataUtil {
             new Quantity("1200"), new UnitPrice(new BigDecimal("0.99")), getTagSet("stationery"));
 
     public static Person[] getSamplePersons() {
-        return new Person[] {
-            ALEX_YEOH, BERNICE_YU, CHARLOTTE_OLIVEIRO, DAVID_LI, IRFAN_IBRAHIM, ROY_BALAKRISHNAN
-        };
+        return new Person[] {ALEX_YEOH, BERNICE_YU, CHARLOTTE_OLIVEIRO, DAVID_LI, IRFAN_IBRAHIM, ROY_BALAKRISHNAN};
     }
 
     public static UniqueSaleList getSampleSales() {
@@ -85,9 +88,9 @@ public class SampleDataUtil {
 
     public static UniqueReminderList getSampleReminderList() {
         UniqueReminderList reminders = new UniqueReminderList();
-        reminders.add(new Reminder(ALEX_YEOH, "Send follow up email",
+        reminders.add(new Reminder(ALEX_YEOH, new Message("Send follow up email"),
                 LocalDateTime.of(2020, 11, 30, 15, 30)));
-        reminders.add(new Reminder(CHARLOTTE_OLIVEIRO, "Draft up sales proposal for upcoming meeting",
+        reminders.add(new Reminder(CHARLOTTE_OLIVEIRO, new Message("Draft up sales proposal for upcoming meeting"),
                 LocalDateTime.of(2020, 12, 15, 9, 0)));
 
         return reminders;
@@ -95,10 +98,13 @@ public class SampleDataUtil {
 
     public static UniqueMeetingList getSampleMeetingList() {
         UniqueMeetingList meetings = new UniqueMeetingList();
-        meetings.add(new Meeting(BERNICE_YU, "Sales Call",
-                LocalDateTime.of(2020, 11, 20, 15, 30), Duration.ofMinutes(30)));
-        meetings.add(new Meeting(CHARLOTTE_OLIVEIRO, "Lunch to discuss new recurring purchase requirements",
-                LocalDateTime.of(2020, 12, 20, 12, 0), Duration.ofMinutes(90)));
+        meetings.add(new Meeting(BERNICE_YU, new Message("Sales Call"),
+                LocalDateTime.of(2020, 11, 20, 15, 30),
+                Duration.ofMinutes(30)));
+        meetings.add(new Meeting(CHARLOTTE_OLIVEIRO,
+                new Message("Lunch to discuss new recurring purchase requirements"),
+                LocalDateTime.of(2020, 12, 20, 12, 0),
+                Duration.ofMinutes(90)));
 
         return meetings;
     }
