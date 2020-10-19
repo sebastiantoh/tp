@@ -100,16 +100,9 @@ public class StatisticsWindow extends UiPart<Stage> {
      * </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing statistics page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
-    }
-
-    /**
-     * Returns true if the statistics window is currently being shown.
-     */
-    public boolean isShowing() {
-        return getRoot().isShowing();
     }
 
     /**
@@ -119,10 +112,4 @@ public class StatisticsWindow extends UiPart<Stage> {
         getRoot().hide();
     }
 
-    /**
-     * Focuses on the statistics window.
-     */
-    public void focus() {
-        getRoot().requestFocus();
-    }
 }
