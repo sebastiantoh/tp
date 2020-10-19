@@ -22,6 +22,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_MONTH =
             "Month must be an integer value in between 1 and 12 inclusive.";
     public static final String MESSAGE_INVALID_YEAR = "Year must be an non negative integer.";
-    public static final String MESSAGE_INVALID_NUMBER_OF_MONTHS = "The number of months must be an integer value in between 2 and 6 inclusive.";
+    public static final String MESSAGE_INVALID_NUMBER_OF_MONTHS =
+            "The number of months must be an integer value in between 2 and 6 inclusive.";
 
 }

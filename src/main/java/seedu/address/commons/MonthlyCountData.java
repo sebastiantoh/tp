@@ -9,6 +9,9 @@ public class MonthlyCountData {
 
     private final int count;
 
+    /**
+     * Creates MonthlyCountData Object from the given {@code monthAndYear} and {@code count}.
+     */
     public MonthlyCountData(MonthAndYear monthAndYear, int count) {
         this.monthAndYear = monthAndYear;
         this.count = count;

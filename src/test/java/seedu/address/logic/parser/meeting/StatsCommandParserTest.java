@@ -6,13 +6,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_YEAR;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
-import java.time.ZoneId;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.meeting.SingleMeetingStatsCommand;
 import seedu.address.logic.commands.meeting.StatsCommand;
 
 public class StatsCommandParserTest {
@@ -20,14 +19,13 @@ public class StatsCommandParserTest {
 
     @Test
     public void parse_noArguments_success() {
-        assertParseSuccess(statsCommandParser, "", new StatsCommand(
-                LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth(), Year.now()));
+        assertParseSuccess(statsCommandParser, "", new SingleMeetingStatsCommand());
     }
 
     @Test
     public void parse_validArguments_success() {
-        assertParseSuccess(statsCommandParser, " m/10 y/2020", new StatsCommand(
-                Month.of(10), Year.of(2020)));
+        assertParseSuccess(statsCommandParser, " m/10 y/2020",
+                new SingleMeetingStatsCommand(Month.of(10), Year.of(2020)));
     }
 
     @Test

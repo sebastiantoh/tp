@@ -36,7 +36,7 @@ public class StatisticsWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the StatisticsWindow.
      */
-    public StatisticsWindow(Stage root, List<MonthlyCountData>  statisticResult) {
+    public StatisticsWindow(Stage root, List<MonthlyCountData> statisticResult) {
         super(FXML, root);
         this.populateStatisticsWindow(statisticResult);
     }
@@ -68,8 +68,8 @@ public class StatisticsWindow extends UiPart<Stage> {
 
         List<String> barColors = Arrays.asList("blue", "red", "purple", "yellow", "orange", "green");
 
-        this.barChart.getData().addAll(bars);
-        for (int i = 0 ; i < bars.getData().size() ; i++) {
+        this.barChart.getData().add(bars);
+        for (int i = 0; i < bars.getData().size(); i++) {
             bars.getData().get(i).getNode().setStyle("-fx-bar-fill: " + barColors.get(i));
         }
 

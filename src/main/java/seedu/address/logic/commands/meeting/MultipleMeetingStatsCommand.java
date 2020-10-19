@@ -47,6 +47,12 @@ public class MultipleMeetingStatsCommand extends StatsCommand {
                 .getMultipleMonthMeetingsCount(currentMonth, currentYear, numberOfMonths);
 
         return new CommandResult(MESSAGE_SUCCESS, result);
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof MultipleMeetingStatsCommand
+                && numberOfMonths == (((MultipleMeetingStatsCommand) other).numberOfMonths));
     }
 }

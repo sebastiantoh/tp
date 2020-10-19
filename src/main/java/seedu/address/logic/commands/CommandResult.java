@@ -23,7 +23,7 @@ public class CommandResult {
     /** The chat box should be cleared. */
     private final boolean clear;
 
-    private final List<MonthlyCountData>  statisticResult;
+    private final List<MonthlyCountData> statisticResult;
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
@@ -37,8 +37,8 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean clear
-            , List<MonthlyCountData>  statisticResult) {
+    public CommandResult(String feedbackToUser, boolean showHelp,
+                         boolean exit, boolean clear, List<MonthlyCountData> statisticResult) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -82,7 +82,7 @@ public class CommandResult {
         return !Objects.isNull(this.statisticResult);
     }
 
-    public List<MonthlyCountData>  getStatisticResult() {
+    public List<MonthlyCountData> getStatisticResult() {
         return statisticResult;
     }
 

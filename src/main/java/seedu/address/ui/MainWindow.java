@@ -40,7 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
 
-    List<StatisticsWindow> openStatisticsWindows;
+    private List<StatisticsWindow> openStatisticsWindows;
 
     @FXML
     private StackPane commandBoxPlaceholder;

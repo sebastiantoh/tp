@@ -99,7 +99,7 @@ public class MonthlyList<T> {
             result.add(new MonthlyCountData(previousMonthAndYear,
                     this.monthlyList.getOrDefault(previousMonthAndYear, Collections.emptyList()).size()));
             month = previousMonthAndYear.getMonth();
-            year  = previousMonthAndYear.getYear();
+            year = previousMonthAndYear.getYear();
         }
 
         Collections.reverse(result);

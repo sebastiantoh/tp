@@ -31,8 +31,8 @@ public class StatsCommandTest {
         Month month = LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth();
         Year year = Year.now();
         int expectedCount = model.getMonthMeetingsCount(month, year);
-        StatsCommand statsCommand = new StatsCommand(month, year);
-        String expectedResult = String.format(StatsCommand.MESSAGE_SUCCESS,
+        StatsCommand statsCommand = new SingleMeetingStatsCommand(month, year);
+        String expectedResult = String.format(SingleMeetingStatsCommand.MESSAGE_SUCCESS,
                 month.name(), year.getValue(), expectedCount);
         assertCommandSuccess(statsCommand, model, expectedResult, expectedModel);
     }
@@ -44,16 +44,16 @@ public class StatsCommandTest {
         Year year = Year.now();
         Month month1 = Month.APRIL;
         Year year1 = Year.of(120);
-        StatsCommand firstCommand = new StatsCommand(month, year);
-        StatsCommand secondCommand = new StatsCommand(month1, year1);
-        StatsCommand thirdCommand = new StatsCommand(month, year1);
-        StatsCommand fourthCommand = new StatsCommand(month1, year);
+        StatsCommand firstCommand = new SingleMeetingStatsCommand(month, year);
+        StatsCommand secondCommand = new SingleMeetingStatsCommand(month1, year1);
+        StatsCommand thirdCommand = new SingleMeetingStatsCommand(month, year1);
+        StatsCommand fourthCommand = new SingleMeetingStatsCommand(month1, year);
 
         // same object -> returns true
         assertTrue(firstCommand.equals(firstCommand));
 
         // same values -> returns true
-        StatsCommand firstCommandCopy = new StatsCommand(month, year);
+        StatsCommand firstCommandCopy = new SingleMeetingStatsCommand(month, year);
         assertTrue(firstCommand.equals(firstCommandCopy));
 
         // different types -> returns false

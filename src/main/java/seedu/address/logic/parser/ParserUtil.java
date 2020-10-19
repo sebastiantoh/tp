@@ -290,11 +290,11 @@ public class ParserUtil {
         requireNonNull(numberOfMonthsString);
         try {
             int numberOfMonths = Integer.parseInt(numberOfMonthsString);
-            if (2 > numberOfMonths || numberOfMonths > 6)  {
+            if (2 > numberOfMonths || numberOfMonths > 6) {
                 throw new ParseException(MESSAGE_INVALID_NUMBER_OF_MONTHS);
             }
             return numberOfMonths;
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_NUMBER_OF_MONTHS);
         }
     }

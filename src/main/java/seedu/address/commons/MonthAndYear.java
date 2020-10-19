@@ -12,6 +12,9 @@ public class MonthAndYear {
     private Month month;
     private Year year;
 
+    /**
+     * Creates a MonthAndYear Object from the given {@code month} and {@code year}
+     */
     public MonthAndYear(Month month, Year year) {
         this.month = month;
         this.year = year;
