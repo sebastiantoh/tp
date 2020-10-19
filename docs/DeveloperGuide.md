@@ -639,17 +639,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 4a. The given sale already exists
+* 3b. The given sale already exists
 
-    * 4a1. StonksBook shows an error message.
+    * 3b1. StonksBook shows an error message stating that the given sale already exists.
 
       Use case ends.
 
-* 5a. The given parameters (unit price and quantity) are not in the correct format.
+* 3c. The given parameters (e.g. unit price, quantity) are not in the correct format.
 
-    * 5a1. StonksBook shows an error message.
+    * 3c1. StonksBook shows an error message, reminding the user of the correct format.
 
       Use case resumes at step 2.
+
+**Use case: List all sales**
+
+**MSS**
+
+1.  User requests to list all sales.
+2.  StonksBook shows all sales belonging to the specific contact.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of sales is empty.
+
+  Use case ends.
 
 **Use case: List all sales belonging to a contact**
 
@@ -674,28 +689,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a sale belonging to a contact**
+**Use case: Delete a sale**
 
 **MSS**
 
-1.  User requests to list contacts.
-2.  StonksBook shows a list of contacts.
-3.  User requests to delete a sale belonging to a specific contact in the list.
+1.  User requests to list sales.
+2.  StonksBook shows a list of sales.
+3.  User requests to delete a sale of a specified index.
 4.  StonksBook deletes the specified sale.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list of contacts is empty.
+* 2a. The list of sales is empty.
 
   Use case ends.
 
-* 3a. The list of sales is empty.
-
-  Use case ends.
-
-* 4a. The given contact index or sale index is invalid.
+* 4a. The given sale index is invalid.
 
     * 4a1. StonksBook shows an error message.
 
