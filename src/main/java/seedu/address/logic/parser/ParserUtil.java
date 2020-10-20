@@ -3,10 +3,16 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DURATION;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MONTH;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NUMBER_OF_MONTHS;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_YEAR;
 
 import java.math.BigDecimal;
+import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
@@ -208,6 +214,39 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String month} into a {@code Month}.
+     *
+     * @throws ParseException if the given {@code month} is not a valid month
+     */
+    public static Month parseMonth(String month) throws ParseException {
+        requireNonNull(month);
+        try {
+            return Month.of(Integer.parseInt(month.trim()));
+        } catch (DateTimeException | NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_MONTH);
+        }
+    }
+
+    /**
+     * Parses a {@code String year} into a {@code Year}.
+     *
+     * @throws ParseException if the given {@code year} is not a valid year.
+     */
+    public static Year parseYear(String year) throws ParseException {
+        requireNonNull(year);
+
+        try {
+            int yearValue = Integer.parseInt(year);
+            if (yearValue <= 0) {
+                throw new ParseException(MESSAGE_INVALID_YEAR);
+            }
+            return Year.of(yearValue);
+        } catch (DateTimeException | NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_YEAR);
+        }
+    }
+
+    /**
      * Parses a {@code String name} into a {@code ItemName}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -252,5 +291,24 @@ public class ParserUtil {
 
         BigDecimal parsedPrice = new BigDecimal(unitPrice);
         return new UnitPrice(parsedPrice);
+    }
+
+    /**
+     * Parses a {@code String numberOfMonthsString} into an {@code int}.
+     *
+     * @throws ParseException if the given {@code numberOfMonthString} is
+     * not an integer between 2 and 6 inclusive
+     */
+    public static int parseNumberOfMonths(String numberOfMonthsString) throws ParseException {
+        requireNonNull(numberOfMonthsString);
+        try {
+            int numberOfMonths = Integer.parseInt(numberOfMonthsString);
+            if (2 > numberOfMonths || numberOfMonths > 6) {
+                throw new ParseException(MESSAGE_INVALID_NUMBER_OF_MONTHS);
+            }
+            return numberOfMonths;
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INVALID_NUMBER_OF_MONTHS);
+        }
     }
 }

@@ -3,12 +3,15 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
@@ -473,6 +476,21 @@ public class AddressBook implements ReadOnlyAddressBook {
                 }
             }
         }
+    }
+
+    /**
+    * Gets the number of meetings in {@code month} and {@code year}.
+    */
+    public int getMonthMeetingsCount(Month month, Year year) {
+        return this.meetings.getMonthMeetingsCount(month, year);
+    }
+
+    /**
+     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * the previous {@code numberOfMonths} - 1 months inclusive.
+     */
+    public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+        return this.meetings.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
     }
 
     //// util methods

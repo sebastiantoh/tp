@@ -10,6 +10,8 @@ import static seedu.address.testutil.person.TypicalPersons.ALICE;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Year;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -36,8 +38,12 @@ public class UniqueMeetingListTest {
 
     @Test
     public void contains_meetingInList_returnsTrue() {
+        Month month = MEET_ALICE.getStartDate().getMonth();
+        Year year = Year.of(MEET_ALICE.getStartDate().getYear());
+        int oldMonthMeetingsCount = uniqueMeetingList.getMonthMeetingsCount(month, year);
         uniqueMeetingList.add(MEET_ALICE);
         assertTrue(uniqueMeetingList.contains(MEET_ALICE));
+        assertEquals(oldMonthMeetingsCount + 1, uniqueMeetingList.getMonthMeetingsCount(month, year));
     }
 
     @Test
@@ -47,8 +53,12 @@ public class UniqueMeetingListTest {
 
     @Test
     public void add_duplicateMeeting_throwsDuplicateMeetingException() {
+        Month month = MEET_ALICE.getStartDate().getMonth();
+        Year year = Year.of(MEET_ALICE.getStartDate().getYear());
         uniqueMeetingList.add(MEET_ALICE);
+        int oldMonthMeetingsCount = uniqueMeetingList.getMonthMeetingsCount(month, year);
         assertThrows(DuplicateMeetingException.class, () -> uniqueMeetingList.add(MEET_ALICE));
+        assertEquals(oldMonthMeetingsCount, uniqueMeetingList.getMonthMeetingsCount(month, year));
     }
 
     @Test
@@ -58,15 +68,24 @@ public class UniqueMeetingListTest {
 
     @Test
     public void remove_meetingDoesNotExist_throwsMeetingNotFoundException() {
+        Month month = MEET_ALICE.getStartDate().getMonth();
+        Year year = Year.of(MEET_ALICE.getStartDate().getYear());
+        int oldMonthMeetingsCount = uniqueMeetingList.getMonthMeetingsCount(month, year);
         assertThrows(MeetingNotFoundException.class, () -> uniqueMeetingList.remove(MEET_ALICE));
+        assertEquals(oldMonthMeetingsCount, uniqueMeetingList.getMonthMeetingsCount(month, year));
     }
 
     @Test
     public void remove_existingMeeting_removesMeeting() {
+        Month month = MEET_ALICE.getStartDate().getMonth();
+        Year year = Year.of(MEET_ALICE.getStartDate().getYear());
+        int oldMonthMeetingsCount = uniqueMeetingList.getMonthMeetingsCount(month, year);
         uniqueMeetingList.add(MEET_ALICE);
+        assertEquals(oldMonthMeetingsCount + 1, uniqueMeetingList.getMonthMeetingsCount(month, year));
         uniqueMeetingList.remove(MEET_ALICE);
         UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
         assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+        assertEquals(oldMonthMeetingsCount, uniqueMeetingList.getMonthMeetingsCount(month, year));
     }
 
     @Test
@@ -104,11 +123,19 @@ public class UniqueMeetingListTest {
 
     @Test
     public void setMeetings_uniqueMeetingList_replacesOwnListWithProvidedUniqueMeetingList() {
+        Month month = MEET_ALICE.getStartDate().getMonth();
+        Year year = Year.of(MEET_ALICE.getStartDate().getYear());
+
+        Month month1 = PRESENT_PROPOSAL_BENSON.getStartDate().getMonth();
+        Year year1 = Year.of(PRESENT_PROPOSAL_BENSON.getStartDate().getYear());
+
         uniqueMeetingList.add(MEET_ALICE);
         UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
         expectedUniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
         uniqueMeetingList.setMeetings(expectedUniqueMeetingList);
         assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+        assertEquals(0, uniqueMeetingList.getMonthMeetingsCount(month, year));
+        assertEquals(1, uniqueMeetingList.getMonthMeetingsCount(month1, year1));
     }
 
     @Test
@@ -118,12 +145,20 @@ public class UniqueMeetingListTest {
 
     @Test
     public void setMeetings_list_replacesOwnListWithProvidedList() {
+        Month month = MEET_ALICE.getStartDate().getMonth();
+        Year year = Year.of(MEET_ALICE.getStartDate().getYear());
+
+        Month month1 = PRESENT_PROPOSAL_BENSON.getStartDate().getMonth();
+        Year year1 = Year.of(PRESENT_PROPOSAL_BENSON.getStartDate().getYear());
+
         uniqueMeetingList.add(MEET_ALICE);
         List<Meeting> meetingsList = Collections.singletonList(PRESENT_PROPOSAL_BENSON);
         uniqueMeetingList.setMeetings(meetingsList);
         UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
         expectedUniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
         assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+        assertEquals(0, uniqueMeetingList.getMonthMeetingsCount(month, year));
+        assertEquals(1, uniqueMeetingList.getMonthMeetingsCount(month1, year1));
     }
 
     @Test

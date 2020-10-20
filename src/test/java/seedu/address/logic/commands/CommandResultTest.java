@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
@@ -15,6 +17,7 @@ public class CommandResultTest {
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", null)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -36,6 +39,10 @@ public class CommandResultTest {
 
         // different clear value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true)));
+
+        // different statistics result -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", Collections.emptyList())));
+        assertFalse(new CommandResult("feedback", Collections.emptyList()).equals(commandResult));
     }
 
     @Test
@@ -59,5 +66,9 @@ public class CommandResultTest {
         // different clear value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, false, true).hashCode());
+
+        // different statistic result -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", Collections.emptyList()).hashCode());
     }
 }
