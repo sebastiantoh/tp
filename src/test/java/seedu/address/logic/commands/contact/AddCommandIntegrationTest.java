@@ -29,7 +29,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newPerson_success() {
-        Person validPerson = new PersonBuilder().withId(7).build();
+        Person validPerson = new PersonBuilder().withId(8).build();
         AddCommand expectedCommand = new AddCommand(PersonBuilder.DEFAULT_NAME, PersonBuilder.DEFAULT_PHONE,
                 PersonBuilder.DEFAULT_EMAIL, PersonBuilder.DEFAULT_ADDRESS,
                 new HashSet<>(), PersonBuilder.DEFAULT_REMARK);

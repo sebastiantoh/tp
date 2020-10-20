@@ -23,7 +23,7 @@ public class RemoveCommandParserTest {
 
     @Test
     public void parse_invaliedArgs_throwsParseException() {
-        assertParseFailure(parser, "a", 
+        assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE));
     }
 }

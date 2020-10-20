@@ -72,11 +72,21 @@ public class AddCommand extends Command {
         this.remark = remark;
     }
 
+    private int getNewPersonId(Model model) {
+        List<Person> allPersons = model.getAllPersons();
+        int maxIdValue = 0;
+        for (Person p: allPersons) {
+            if (p.getId() > maxIdValue) {
+                maxIdValue = p.getId();
+            }
+        }
+        return maxIdValue + 1;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> people = model.getSortedPersonList();
-        int id = people.size() > 0 ? people.get(people.size() - 1).getId() : 1;
+        int id = getNewPersonId(model);
 
         Person toAdd = new Person(id, name, phone, email, address, tagList, remark, false, BigDecimal.ZERO);
 
