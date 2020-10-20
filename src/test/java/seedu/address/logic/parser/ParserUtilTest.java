@@ -8,6 +8,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Year;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -16,6 +18,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Message;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -214,6 +217,29 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseMessage_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMessage(null));
+    }
+
+    @Test
+    public void parseMessage_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMessage(INVALID_NAME));
+    }
+
+    @Test
+    public void parseMessage_validValueWithoutWhitespace_returnsName() throws Exception {
+        Message expectedMessage = new Message(VALID_NAME);
+        assertEquals(expectedMessage, ParserUtil.parseMessage(VALID_NAME));
+    }
+
+    @Test
+    public void parseMessage_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String messageWithWhiteSpace = WHITESPACE + VALID_NAME + WHITESPACE;
+        Message expectedMessage = new Message(VALID_NAME);
+        assertEquals(expectedMessage, ParserUtil.parseMessage(messageWithWhiteSpace));
+    }
+
+    @Test
     public void parseDateTime_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime(null));
     }
@@ -262,5 +288,48 @@ public class ParserUtilTest {
     public void parseDuration_validValueWithWhitespace_returnsDuration() throws Exception {
         String durationWithWhitespace = WHITESPACE + VALID_DURATION + WHITESPACE;
         assertEquals(EXPECTED_DURATION, ParserUtil.parseDuration(durationWithWhitespace));
+    }
+
+    @Test
+    public void parseMonth_validValue_returnsMonth() throws Exception {
+        assertEquals(Month.AUGUST, ParserUtil.parseMonth(String.valueOf(8)));
+        assertEquals(Month.DECEMBER, ParserUtil.parseMonth(String.valueOf(12)));
+    }
+
+    @Test
+    public void parseMonth_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class , () -> ParserUtil.parseMonth(String.valueOf(0)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseMonth(String.valueOf(13)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseMonth(String.valueOf(-1)));
+    }
+
+    @Test
+    public void parseYear_validValue_returnsYear() throws Exception {
+        assertEquals(Year.of(2020), ParserUtil.parseYear("2020"));
+        assertEquals(Year.of(1990), ParserUtil.parseYear("1990"));
+    }
+
+    @Test
+    public void parseYear_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(-1)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(1000000000)));
+    }
+
+    @Test
+    public void parseNumberOfMonths_validValue_returnsInt() throws ParseException {
+        assertEquals(2, ParserUtil.parseNumberOfMonths("2"));
+        assertEquals(6, ParserUtil.parseNumberOfMonths("6"));
+        assertEquals(4, ParserUtil.parseNumberOfMonths("4"));
+    }
+
+    @Test
+    public void parseNumberOfMonths_invalidValue_throwsParseException() throws ParseException {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("1"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("7"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("-1"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("12"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("abc"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfMonths("1.1"));
+
     }
 }

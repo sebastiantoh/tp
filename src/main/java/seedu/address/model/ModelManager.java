@@ -4,13 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.Month;
+import java.time.Year;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meeting.Meeting;
@@ -37,6 +41,10 @@ public class ModelManager implements Model {
 
     private final SortedList<Reminder> sortedReminders;
 
+    private final FilteredList<Sale> filteredSales;
+
+    private final SortedList<Sale> sortedSales;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -49,10 +57,13 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
+        this.filteredSales.setPredicate(x -> false);
         this.sortedPersons = new SortedList<>(this.filteredPersons);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
+        this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
     }
 
     public ModelManager() {
@@ -210,13 +221,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addSaleToPerson(Person person, Sale sale) {
-        addressBook.addSaleToPerson(person, sale);
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireAllNonNull(target, editedReminder);
+        this.addressBook.setReminder(target, editedReminder);
     }
 
     @Override
-    public void removeSaleFromPerson(Person person, Sale sale) {
-        addressBook.removeSaleFromPerson(person, sale);
+    public boolean hasSale(Sale sale) {
+        requireNonNull(sale);
+        return addressBook.hasSale(sale);
+    }
+
+    @Override
+    public void addSale(Sale sale) {
+        addressBook.addSale(sale);
+    }
+
+    @Override
+    public void removeSale(Sale sale) {
+        addressBook.removeSale(sale);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -262,6 +285,49 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedPersonList(Comparator<Person> comparator) {
         this.sortedPersons.setComparator(comparator);
+    }
+
+    //=========== Filtered Sale List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Sale} backed by the internal list of
+     * {@code versionedAddressBook}.
+     */
+    @Override
+    public ObservableList<Sale> getFilteredSaleList() {
+        return this.filteredSales;
+    }
+
+    /**
+     * Updates the predicate used to filter sale list.
+     *
+     * @param predicate predicate to filter sale list
+     */
+    @Override
+    public void updateFilteredSaleList(Predicate<Sale> predicate) {
+        requireNonNull(predicate);
+        this.filteredSales.setPredicate(predicate);
+    }
+
+    //=========== Sorted Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Sale} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Sale> getSortedSaleList() {
+        return this.sortedSales;
+    }
+
+    /**
+     * Updates the comparator to sort the sale list.
+     *
+     * @param comparator comparator for sorting the sale list
+     */
+    @Override
+    public void updateSortedSaleList(Comparator<Sale> comparator) {
+        this.sortedSales.setComparator(comparator);
     }
 
     //=========== Meeting List Accessors =============================================================
@@ -324,6 +390,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Tag> getSaleTagList() {
         return addressBook.getSaleTagList();
+    }
+
+    @Override
+    public int getMonthMeetingsCount(Month month, Year year) {
+        return this.addressBook.getMonthMeetingsCount(month, year);
+    }
+
+    @Override
+    public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+        return this.addressBook.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
     }
 
     @Override

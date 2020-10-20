@@ -90,6 +90,26 @@ public class UniqueReminderList implements Iterable<Reminder> {
     }
 
     /**
+     * Replaces the reminder {@code target} in the list with {@code editedReminder}.
+     * {@code target} must exist in the list.
+     * The reminder {@code editedReminder} must not be the same as another existing reminder in the list.
+     */
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireAllNonNull(target, editedReminder);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ReminderNotFoundException();
+        }
+
+        if (!target.equals(editedReminder) && contains(editedReminder)) {
+            throw new DuplicateReminderException();
+        }
+
+        internalList.set(index, editedReminder);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Reminder> asUnmodifiableObservableList() {

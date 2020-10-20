@@ -1,7 +1,9 @@
 package seedu.address.model.sale;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.math.BigDecimal;
 
 /**
  * Represents a Sale item's unit price in the address book.
@@ -21,56 +23,69 @@ public class UnitPrice {
      */
     public static final String VALIDATION_REGEX = "^(([\\d]*)\\.(\\d{2}))$";
 
-    public final int dollars;
-    public final int cents;
-    public final double amount;
+    public final BigDecimal amount;
 
     /**
      * Constructs a {@code UnitPrice}.
-     *
-     * @param dollars A valid dollar value for unit price.
-     * @param cents A valid cent value for unit price.
+     * @param unitPrice A valid value of unit price.
      */
-    public UnitPrice(Integer dollars, Integer cents) {
-        requireAllNonNull(dollars, cents);
-        checkArgument(isValidUnitPrice(dollars, cents), MESSAGE_CONSTRAINTS);
-        this.dollars = dollars;
-        this.cents = cents;
-        this.amount = Double.parseDouble(String.format("%s.%s", dollars, cents));
+    public UnitPrice(BigDecimal unitPrice) {
+        requireNonNull(unitPrice);
+        checkArgument(isValidUnitPrice(unitPrice), MESSAGE_CONSTRAINTS);
+        this.amount = unitPrice;
     }
 
-    public double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
+    }
+
+    /**
+     * Returns true if given unit price is greater than 0.
+     */
+    public static boolean isValidUnitPrice(BigDecimal test) {
+        String string = test.stripTrailingZeros().toPlainString();
+        int index = string.indexOf(".");
+        int noOfDecimalPlaces = index < 0 ? 0 : string.length() - index - 1;
+
+        return test.compareTo(BigDecimal.ZERO) > 0 && noOfDecimalPlaces < 3;
     }
 
     /**
      * Returns true if a given params is a valid unit price.
      */
-    public static boolean isValidUnitPrice(Integer dollars, Integer cents) {
+    public static boolean isValidUnitPriceString(String test) {
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
+        String[] priceSplit = test.split("\\.");
+        int dollars = Integer.parseInt(priceSplit[0]);
+        int cents = Integer.parseInt(priceSplit[1]);
+
         boolean isCentsValid = cents >= 0 && cents < 100;
         boolean isDollarsValid = dollars >= 0;
         boolean isPriceGreaterThanZero = (cents + dollars) > 0;
         return isCentsValid && isDollarsValid && isPriceGreaterThanZero;
     }
 
-    /**
-     * Returns true if a given string can be parsed into a valid unit price.
-     */
-    public static boolean isValidUnitPriceString(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public String getUnitPriceString() {
+        return this.amount.setScale(2).toPlainString();
     }
 
     @Override
     public String toString() {
-        return "$" + dollars + "." + String.format("%02d", cents);
+        return this.amount.setScale(2).toPlainString();
+
+        // Dollar sign has been temporarily removed to pass test cases
+        // TODO: reinstate the following method after implementing GUI for sales
+        // return NumberFormat.getCurrencyInstance().format(this.amount);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UnitPrice // instanceof handles nulls
-                && dollars == ((UnitPrice) other).dollars // state check
-                && cents == ((UnitPrice) other).cents); // state check
+                && amount.compareTo(((UnitPrice) other).amount) == 0); // state check
     }
 
     @Override

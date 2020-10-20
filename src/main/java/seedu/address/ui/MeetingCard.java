@@ -33,7 +33,7 @@ public class MeetingCard extends UiPart<Region> {
         super(FXML);
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
-        message.setText(meeting.getMessage());
+        message.setText(meeting.getMessage().message);
         date.setText(meeting.getFormattedStartEndDate());
         personName.setText(meeting.getPerson().getName().fullName);
     }

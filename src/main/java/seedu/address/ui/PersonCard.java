@@ -64,7 +64,7 @@ public class PersonCard extends UiPart<Region> {
             remark.setVisible(false);
             remark.setManaged(false);
         }
-        totalSalesAmount.setText(String.valueOf(person.getSalesList().getTotalSalesAmountAsStr()));
+        totalSalesAmount.setText(String.valueOf(person.getTotalSalesAmountString()));
     }
 
     @Override

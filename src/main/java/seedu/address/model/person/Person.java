@@ -2,12 +2,13 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.sale.UniqueSaleList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,6 +18,7 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
+    private final Integer id;
     private final Name name;
     private final Phone phone;
     private final Email email;
@@ -25,7 +27,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
-    private UniqueSaleList salesList = new UniqueSaleList();
+    private final BigDecimal totalSalesAmount;
 
     /**
      * Creates a person object with specified details.
@@ -37,37 +39,21 @@ public class Person {
      * @param tags Set of tags associated with the person.
      * @param remark Remark associated with the person.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark) {
+    public Person(Integer id, Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, Remark remark, BigDecimal totalSalesAmount) {
         requireAllNonNull(name, phone, email, address, tags, remark);
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.remark = remark;
+        this.totalSalesAmount = totalSalesAmount;
     }
 
-    /**
-     * Creates a person object with specified details.
-     * Every field must be present and not null.
-     * @param name Name of the person.
-     * @param phone Phone number of the person.
-     * @param email Email Address of the person.
-     * @param address Address of the person.
-     * @param tags Set of tags associated with the person.
-     * @param remark Remark associated with the person.
-     * @param salesList UniqueSaleList of sales made to the person.
-     */
-    public Person(Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, Remark remark, UniqueSaleList salesList) {
-        requireAllNonNull(name, phone, email, address, tags, remark);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.remark = remark;
-        this.salesList.setSales(salesList);
+    public Integer getId() {
+        return id;
     }
 
     public Name getName() {
@@ -98,12 +84,12 @@ public class Person {
         return remark;
     }
 
-    public UniqueSaleList getSalesList() {
-        return salesList;
+    public BigDecimal getTotalSalesAmount() {
+        return totalSalesAmount;
     }
 
-    public void setSalesList(UniqueSaleList newList) {
-        this.salesList = newList;
+    public String getTotalSalesAmountString() {
+        return NumberFormat.getCurrencyInstance().format(totalSalesAmount);
     }
 
     /**
@@ -128,26 +114,6 @@ public class Person {
     }
 
     /**
-     * Returns a deep copy of the specified person.
-     * Defensive copies of the tag list and sale list are made.
-     * @param toCopy The person. to be copied.
-     * @return A deep copy of the person.
-     */
-    public static Person copyOf(Person toCopy) {
-        Set<Tag> newTagList = new HashSet<>(toCopy.tags);
-        UniqueSaleList newSaleList = new UniqueSaleList().setSales(toCopy.salesList);
-        return new Person(
-                toCopy.getName(),
-                toCopy.getPhone(),
-                toCopy.getEmail(),
-                toCopy.getAddress(),
-                newTagList,
-                toCopy.getRemark(),
-                newSaleList
-        );
-    }
-
-    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -162,18 +128,13 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getRemark().equals(getRemark());
+        return this.id.equals(otherPerson.id);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, remark);
+        return Objects.hash(name, phone, email, address, tags, remark, totalSalesAmount);
     }
 
     @Override

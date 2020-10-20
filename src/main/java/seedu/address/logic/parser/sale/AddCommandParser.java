@@ -21,7 +21,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
-import seedu.address.model.sale.Sale;
 import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
 
@@ -60,8 +59,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         UnitPrice unitPrice = ParserUtil.parseUnitPrice(argMultimap.getValue(PREFIX_SALE_UNIT_PRICE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Sale toAdd = new Sale(itemName, dateOfPurchase, quantity, unitPrice, tagList);
 
-        return new AddCommand(index, toAdd);
+        return new AddCommand(index, itemName, dateOfPurchase, quantity, unitPrice, tagList);
     }
 }

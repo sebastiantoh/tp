@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.sale.TypicalSales.APPLE;
 import static seedu.address.testutil.sale.TypicalSales.BALL;
-import static seedu.address.testutil.sale.TypicalSales.CAMERA;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -76,7 +76,7 @@ public class UniqueSaleListTest {
     @Test
     public void setSale_editedSaleHasSameIdentity_success() {
         uniqueSaleList.add(APPLE);
-        Sale editedApple = new SaleBuilder(APPLE).withUnitPrice(5, 60).withQuantity("20").build();
+        Sale editedApple = new SaleBuilder(APPLE).withUnitPrice(new BigDecimal("5.6")).withQuantity("20").build();
         uniqueSaleList.setSale(APPLE, editedApple);
         UniqueSaleList expectedUniqueSaleList = new UniqueSaleList();
         expectedUniqueSaleList.add(editedApple);
@@ -156,21 +156,5 @@ public class UniqueSaleListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueSaleList.asUnmodifiableObservableList().remove(0));
-    }
-
-    @Test
-    public void getTotalSalesAmount_valid_success() {
-        UniqueSaleList uniqueSaleList = new UniqueSaleList();
-        uniqueSaleList.add(CAMERA);
-        assertEquals(CAMERA.getTotalCost(), uniqueSaleList.getTotalSalesAmount());
-    }
-
-    @Test
-    public void getTotalSalesAmountAsStr_valid_success() {
-        UniqueSaleList uniqueSaleList = new UniqueSaleList();
-        uniqueSaleList.add(CAMERA);
-
-        assertEquals(String.format("$%.2f", CAMERA.getTotalCost()),
-                uniqueSaleList.getTotalSalesAmountAsStr());
     }
 }

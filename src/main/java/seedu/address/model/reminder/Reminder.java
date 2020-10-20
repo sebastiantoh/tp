@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import seedu.address.model.Message;
 import seedu.address.model.person.Person;
 
 /**
@@ -17,7 +18,7 @@ public class Reminder implements Comparable<Reminder> {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy, HH:mm");
 
     private final Person person;
-    private final String message;
+    private final Message message;
     private final LocalDateTime scheduledDate;
 
     /**
@@ -27,10 +28,10 @@ public class Reminder implements Comparable<Reminder> {
      * @param message       The message associated with this reminder.
      * @param scheduledDate The date this reminder is scheduled for.
      */
-    public Reminder(Person person, String message, LocalDateTime scheduledDate) {
+    public Reminder(Person person, Message message, LocalDateTime scheduledDate) {
         requireAllNonNull(person, message, scheduledDate);
         this.person = person;
-        this.message = message.strip();
+        this.message = message;
         this.scheduledDate = scheduledDate;
     }
 
@@ -38,7 +39,7 @@ public class Reminder implements Comparable<Reminder> {
         return this.person;
     }
 
-    public String getMessage() {
+    public Message getMessage() {
         return this.message;
     }
 
@@ -52,6 +53,14 @@ public class Reminder implements Comparable<Reminder> {
      */
     public String getFormattedScheduledDate() {
         return getScheduledDate().format(DATE_TIME_FORMATTER);
+    }
+
+    /**
+     * Returns true if the reminder is not yet complete and the scheduled date is past the current date.
+     * TODO: Add check that the reminder is not yet complete
+     */
+    public boolean isOverdue() {
+        return this.getScheduledDate().isBefore(LocalDateTime.now());
     }
 
     @Override
@@ -83,8 +92,7 @@ public class Reminder implements Comparable<Reminder> {
         Reminder otherReminder = (Reminder) other;
 
         return this.person.equals(otherReminder.person)
-                // Case-insensitive equality checking
-                && this.message.toLowerCase().equals(otherReminder.message.toLowerCase())
+                && this.message.equals(otherReminder.message)
                 && this.scheduledDate.equals(otherReminder.scheduledDate);
     }
 

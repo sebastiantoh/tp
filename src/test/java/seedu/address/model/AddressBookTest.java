@@ -8,8 +8,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
+import static seedu.address.testutil.person.TypicalPersons.BENSON;
+import static seedu.address.testutil.person.TypicalPersons.CARL;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -24,6 +28,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TypicalContactTags;
 import seedu.address.testutil.TypicalSaleTags;
@@ -57,7 +62,8 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons, Collections.emptyList(), Collections.emptyList());
+        AddressBookStub newData = new AddressBookStub(newPersons, Collections.emptyList(),
+                Collections.emptyList(), Collections.emptyList());
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -136,11 +142,11 @@ public class AddressBookTest {
     @Test
     public void findSalesBySaleTag_saleTagInAddressBook_success() {
         AddressBook addressBookCopy = new AddressBook();
-        addressBookCopy.addPerson(ALICE);
-        addressBookCopy.addSaleToPerson(ALICE, TypicalSales.APPLE);
+        addressBookCopy.addPerson(BENSON);
+        addressBookCopy.addSale(TypicalSales.APPLE);
         assertEquals("Listing 1 sales items associated with: [fruits]\n"
-                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: $3.50, "
-                        + "Tags: [[fruits]]) (Client: Alice Pauline)\n",
+                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: 3.50, "
+                        + "Tags: [[fruits]]) (Client: Benson Meier)\n",
                 addressBookCopy.findSalesBySaleTag(new Tag("fruits")));
     }
 
@@ -153,11 +159,11 @@ public class AddressBookTest {
     @Test
     public void findContactsBySaleTag_saleTagInAddressBook_success() {
         AddressBook addressBookCopy = new AddressBook();
-        addressBookCopy.addPerson(ALICE);
-        addressBookCopy.addSaleToPerson(ALICE, TypicalSales.APPLE);
+        addressBookCopy.addPerson(BENSON);
+        addressBookCopy.addSale(TypicalSales.APPLE);
         assertEquals("The following 1 contact(s) have purchased items in this category: [fruits]\n"
-                        + "1. Alice Pauline Phone: 94351253 Email: alice@example.com "
-                + "Address: 123, Jurong West Ave 6, #08-111 Tags: [friends] Remark: Likes chocolates\n",
+                        + "1. Benson Meier Phone: 98765432 Email: johnd@example.com "
+                        + "Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends] Remark: Owes me $10\n",
                 addressBookCopy.findContactsBySaleTag(new Tag("fruits")));
     }
 
@@ -171,7 +177,8 @@ public class AddressBookTest {
     @Test
     public void listTags_withBothTags_success() {
         addressBook.addPerson(ALICE);
-        addressBook.addSaleToPerson(ALICE, TypicalSales.CAMERA);
+        addressBook.addPerson(CARL);
+        addressBook.addSale(TypicalSales.CAMERA);
         assertEquals("Listing contact tags:\n"
                 + "1. [friends]\n"
                 + "\n"
@@ -182,7 +189,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateReminder_throwsDuplicateReminderException() {
         List<Reminder> newReminders = Arrays.asList(CALL_ALICE, CALL_ALICE);
-        AddressBookStub newData = new AddressBookStub(Collections.emptyList(), Collections.emptyList(), newReminders);
+        AddressBookStub newData = new AddressBookStub(Collections.emptyList(), Collections.emptyList(),
+                newReminders, Collections.emptyList());
 
         assertThrows(DuplicateReminderException.class, () -> addressBook.resetData(newData));
     }
@@ -208,6 +216,11 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getReminderList().remove(0));
     }
 
+    @Test
+    public void getMonthMeetingsCount_valid_success() {
+        assertTrue(addressBook.getMonthMeetingsCount(Month.APRIL, Year.now()) >= 0);
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
@@ -217,13 +230,15 @@ public class AddressBookTest {
         private final ObservableList<Tag> contactTags = FXCollections.observableArrayList();
         private final ObservableList<Tag> saleTags = FXCollections.observableArrayList();
         private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
+        private final ObservableList<Sale> sales = FXCollections.observableArrayList();
 
 
         AddressBookStub(Collection<Person> persons, Collection<Meeting> meetings,
-                        Collection<Reminder> reminders) {
+                        Collection<Reminder> reminders, Collection<Sale> sales) {
             this.persons.setAll(persons);
             this.meetings.setAll(meetings);
             this.reminders.setAll(reminders);
+            this.sales.setAll(sales);
         }
 
         @Override
@@ -244,6 +259,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Reminder> getReminderList() {
             return reminders;
+        }
+
+        @Override
+        public ObservableList<Sale> getSaleList() {
+            return sales;
         }
 
         @Override

@@ -1,10 +1,14 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.Month;
+import java.time.Year;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -203,6 +207,28 @@ public interface Model {
     void updateSortedPersonList(Comparator<Person> comparator);
 
     /**
+     * Returns an unmodifiable view of the filtered sale list.
+     */
+    ObservableList<Sale> getFilteredSaleList();
+
+    /**
+     * Updates the filter of the filtered sale list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredSaleList(Predicate<Sale> predicate);
+
+    /**
+     * Returns an unmodifiable view of the sorted sale list.
+     */
+    ObservableList<Sale> getSortedSaleList();
+
+    /**
+     * Updates the comparator of the sorted sale list to sort by the given {@code comparator}.
+     */
+    void updateSortedSaleList(Comparator<Sale> comparator);
+
+    /**
      * Returns an unmodifiable view of the sorted meeting list.
      * .
      */
@@ -249,12 +275,38 @@ public interface Model {
     void addReminder(Reminder reminder);
 
     /**
-     * Adds the given sale item to the specified contact.
+     * Replaces the given reminder {@code target} with {@code editedReminder}.
+     * {@code target} must exist in the address book.
+     * The reminder {@code editedReminder} must not be the same as another existing reminder in the address
+     * book.
      */
-    void addSaleToPerson(Person person, Sale sale);
+    void setReminder(Reminder target, Reminder editedReminder);
 
     /**
-     * Removes the given sale item to the specified contact.
+     * Returns true if a sale with the same fields {@code sale} exists in StonksBook.
      */
-    void removeSaleFromPerson(Person person, Sale sale);
+    boolean hasSale(Sale sale);
+
+    /**
+     * Adds the given sale.
+     * {@code sale} must not already exist in StonksBook.
+     */
+    void addSale(Sale sale);
+
+    /**
+     * Removes the given sale.
+     * The sale must exist in StonksBook.
+     */
+    void removeSale(Sale sale);
+
+    /**
+     * Gets the number of meetings in {@code month} and {@code year}.
+     */
+    int getMonthMeetingsCount(Month month, Year year);
+
+    /**
+     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * the previous {@code numberOfMonths} - 1 months inclusive.
+     */
+    List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
 }

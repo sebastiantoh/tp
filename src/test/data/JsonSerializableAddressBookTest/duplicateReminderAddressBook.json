@@ -5,34 +5,37 @@
   "reminders": [
     {
       "person": {
-        "name": "Alice",
-        "phone": "99272758",
-        "email": "berniceyu@example.com",
-        "address": "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+        "id": 1,
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "email": "alice@example.com",
+        "address": "123, Jurong West Ave 6, #08-111",
         "tagged": [
-          "colleagues",
           "friends"
         ],
-        "remark": ""
+        "remark": "Likes chocolates",
+        "totalSalesAmount" : "0.80"
       },
       "message": "Call Alice",
       "scheduledDate": "2020-10-30T15:19"
     },
     {
       "person": {
-        "name": "Alice",
-        "phone": "99272758",
-        "email": "berniceyu@example.com",
-        "address": "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+        "id": 1,
+        "name": "Alice Pauline",
+        "phone": "94351253",
+        "email": "alice@example.com",
+        "address": "123, Jurong West Ave 6, #08-111",
         "tagged": [
-          "colleagues",
           "friends"
         ],
-        "remark": ""
+        "remark": "Likes chocolates",
+        "totalSalesAmount" : "0.80"
       },
       "message": "Call Alice",
       "scheduledDate": "2020-10-30T15:19"
     }
   ],
-  "meetings": []
+  "meetings": [],
+  "sales": []
 }
