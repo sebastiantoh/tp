@@ -8,19 +8,19 @@ start
 :Program parses input;
 
 if () then ([command is in valid format])
-    :Create a new Meeting object;
-
-    if () then ([meeting already exists])
-        : Add Meeting to meetings list;
-        : Show success message;
-
+    if () then ([arguments are valid])
+        :Create a new Meeting object;
+        if () then ([meeting already exists])
+            :Show duplicate meeting warning;
+        else ([else])
+            :Add Meeting to meetings list;
+            :Show success message;
+        endif
     else ([else])
-        : Show duplicate meeting warning;
+        :Show error message with correct required values;
     endif
-
 else ([else])
-    : Show an error and the
-    correct command format;
+    : Show error message with correct command format;
 endif
 
 stop
