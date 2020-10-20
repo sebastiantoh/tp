@@ -247,6 +247,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setSale(Sale target, Sale editedSale) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void removeSale(Sale sale) {
         throw new AssertionError("This method should not be called.");
     }

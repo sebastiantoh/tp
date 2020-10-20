@@ -54,7 +54,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
-        this.filteredSales.setPredicate(x -> false);
         this.sortedPersons = new SortedList<>(this.filteredPersons);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
@@ -225,6 +224,12 @@ public class ModelManager implements Model {
     @Override
     public void addSale(Sale sale) {
         addressBook.addSale(sale);
+    }
+
+    @Override
+    public void setSale(Sale target, Sale editedSale) {
+        requireAllNonNull(target, editedSale);
+        this.addressBook.setSale(target, editedSale);
     }
 
     @Override
