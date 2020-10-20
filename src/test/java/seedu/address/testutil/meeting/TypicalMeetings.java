@@ -34,15 +34,15 @@ public class TypicalMeetings {
                     Duration.ofMinutes(45));
 
     public static final Meeting LUNCH_FIONA =
-            new Meeting(FIONA, "Lunch with Fiona", LocalDateTime.of(2020, 8, 20, 12, 12),
+            new Meeting(FIONA, new Message("Lunch with Fiona"), LocalDateTime.of(2020, 8, 20, 12, 12),
                     Duration.ofMinutes(45));
 
     public static final Meeting LUNCH_DANIEL =
-            new Meeting(DANIEL, "Lunch with Daniel", LocalDateTime.of(2020, 1, 20, 12, 12),
+            new Meeting(DANIEL, new Message("Lunch with Daniel"), LocalDateTime.of(2020, 1, 20, 12, 12),
                     Duration.ofMinutes(45));
 
     public static final Meeting LUNCH_ELLE =
-            new Meeting(ELLE, "Lunch with Elle", LocalDateTime.of(2020, 2, 20, 12, 12),
+            new Meeting(ELLE, new Message("Lunch with Elle"), LocalDateTime.of(2020, 2, 20, 12, 12),
                     Duration.ofMinutes(45));
 
     private TypicalMeetings() {
