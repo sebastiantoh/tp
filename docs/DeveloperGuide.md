@@ -157,13 +157,13 @@ The feature consists of the following commands:
 - `meeting add` - Adds a meeting to the meeting list.
 - `meeting delete` - Delete a meeting from the meeting list.
 - `meeting edit` - Edit a meeting from the meeting list.
-- `meeting list` - Display the list of all meetings in the user interface
+- `meeting list` - Display the list of all meetings in the user interface.
 
-#### Parsing of commands
+#### Parsing of commands within the `Logic` component
 
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
 
-1. An `AddressBookParser` will if the command is meetings-related. The `AddressBookParser` will then create a `MeetingCommandsParser`
+1. An `AddressBookParser` will check if the command is meetings-related. The `AddressBookParser` will then create a `MeetingCommandsParser`.
 3. The `MeetingCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
     - `meeting add` command: `AddCommandParser`
     - `meeting delete` command: `DeleteCommandParser`
@@ -171,13 +171,15 @@ The parsing of commands begins once the `LogicManager` receives and tries to exe
     - `meeting list` command: `ListCommandParser`
 4. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
 
-Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(meeting add <args>)` API call.
+Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(meeting add <args>)` API call. 
+- Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user. 
+- For example, if the full command was `meeting add c/2 m/Lunch with Alice d/2020-10-30 10:10`, then `<args>` is equivalent to `c/2 m/Lunch with Alice d/2020-10-30 10:10`.
 
 ![Interactions Inside the Logic Component for the `meeting add <args>` Command](images/MeetingAddSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-#### Execution of commands
+#### Execution of commands within the `Logic` component
 
 After the respective parsers have parsed the user inputs, a `Command` object will be returned and executed by `LogicManager`.
 
@@ -193,9 +195,9 @@ For example, the activity diagram below illustrates the different outcomes that 
 
 * **Alternative 1 (current choice):** Store just the start date of a meeting, along with its duration.
   * Pros: 
-    * More user-friendly since users tend to schedule meetings based on start date and its duration.
+    * More user-friendly since users tend to schedule meetings based on a start date and its duration.
   * Cons: 
-    ** May have slight performance issues since the end date of a meeting may have to be computed repeatedly. 
+    * May have slight performance dip since the end date of a meeting may have to be computed repeatedly for display in the user interface.
 
 * **Alternative 2:** Store both start and end date of the meeting.
   * Pros: 
