@@ -175,7 +175,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         this.addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
     }
 
     @Override

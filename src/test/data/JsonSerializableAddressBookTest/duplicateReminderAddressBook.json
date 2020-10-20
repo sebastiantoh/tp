@@ -14,6 +14,7 @@
           "friends"
         ],
         "remark": "Likes chocolates",
+        "archived": false,
         "totalSalesAmount" : "0.80"
       },
       "message": "Call Alice",
@@ -30,6 +31,7 @@
           "friends"
         ],
         "remark": "Likes chocolates",
+        "archived": false,
         "totalSalesAmount" : "0.80"
       },
       "message": "Call Alice",

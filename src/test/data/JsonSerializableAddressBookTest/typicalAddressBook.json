@@ -11,6 +11,7 @@
         "friends"
       ],
       "remark": "Likes chocolates",
+      "archived": false,
       "totalSalesAmount" : "0.80"
     },
     {
@@ -24,6 +25,7 @@
         "friends"
       ],
       "remark": "Owes me $10",
+      "archived": false,
       "totalSalesAmount" : "35.00"
     },
     {
@@ -34,6 +36,7 @@
       "address": "wall street",
       "tagged": [],
       "remark": "",
+      "archived": false,
       "totalSalesAmount" : "2001.00"
     },
     {
@@ -46,6 +49,7 @@
         "friends"
       ],
       "remark": "",
+      "archived": false,
       "totalSalesAmount" : "0.00"
     },
     {
@@ -56,6 +60,7 @@
       "address": "michegan ave",
       "tagged": [],
       "remark": "",
+      "archived": false,
       "totalSalesAmount" : "0.00"
     },
     {
@@ -66,6 +71,7 @@
       "address": "little tokyo",
       "tagged": [],
       "remark": "",
+      "archived": true,
       "totalSalesAmount" : "0.00"
     },
     {
@@ -76,6 +82,7 @@
       "address": "4th street",
       "tagged": [],
       "remark": "",
+      "archived": true,
       "totalSalesAmount" : "0.00"
     }
   ],
@@ -142,6 +149,7 @@
           "friends"
         ],
         "remark": "Likes chocolates",
+        "archived": false,
         "totalSalesAmount" : "0.80"
       },
       "message": "Meet Alice to discuss pricing",
@@ -160,6 +168,7 @@
           "friends"
         ],
         "remark": "Owes me $10",
+        "archived": false,
         "totalSalesAmount" : "35.00"
       },
       "message": "Present proposal to Benson",
@@ -175,6 +184,7 @@
         "address": "wall street",
         "tagged": [],
         "remark": "",
+        "archived": false,
         "totalSalesAmount" : "2001.00"
       },
       "message": "Lunch with Carl",

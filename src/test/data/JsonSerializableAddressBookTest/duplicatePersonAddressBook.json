@@ -9,6 +9,7 @@
       "friends"
     ],
     "remark": "Likes chocolates",
+    "archived": false,
     "totalSalesAmount" : "0.80"
   },
     {
@@ -21,6 +22,7 @@
         "friends"
       ],
       "remark": "Likes chocolates",
+      "archived": false,
       "totalSalesAmount" : "0.80"
     }
   ],
