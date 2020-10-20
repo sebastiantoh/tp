@@ -27,9 +27,9 @@ import seedu.address.model.tag.Tag;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static int currentContactId = 1;
 
-    public static int CURRENT_CONTACT_ID;
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
 
@@ -188,6 +188,7 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         this.addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
+        currentContactId += 1;
     }
 
     @Override
@@ -425,16 +426,16 @@ public class ModelManager implements Model {
     public void initialiseCurrentContactId() {
         int currentId = 0;
         for (Person p : this.allPersons) {
-            if(currentId < p.getId()) {
+            if (currentId < p.getId()) {
                 currentId = p.getId();
             }
         }
-        CURRENT_CONTACT_ID = currentId;
+        currentContactId = currentId;
     }
 
     @Override
-    public void incrementCurrentContactId() {
-        CURRENT_CONTACT_ID += 1;
+    public int getCurrentContactId() {
+        return currentContactId;
     }
 
     @Override

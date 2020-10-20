@@ -327,5 +327,5 @@ public interface Model {
 
     void initialiseCurrentContactId();
 
-    void incrementCurrentContactId();
+    int getCurrentContactId();
 }
