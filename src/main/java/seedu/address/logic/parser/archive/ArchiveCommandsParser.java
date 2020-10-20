@@ -5,6 +5,7 @@ import java.util.List;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.UnknownCommand;
+import seedu.address.logic.commands.archive.AddCommand;
 import seedu.address.logic.commands.archive.ListCommand;
 import seedu.address.logic.commands.archive.RemoveCommand;
 import seedu.address.logic.parser.GroupCommandsParser;
@@ -29,6 +30,9 @@ public class ArchiveCommandsParser implements GroupCommandsParser {
     @Override
     public Command parse(String commandWord, String arguments) throws ParseException {
         switch (commandWord) {
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
+
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
 

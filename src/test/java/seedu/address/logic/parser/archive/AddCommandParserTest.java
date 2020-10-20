@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.contact;
+package seedu.address.logic.parser.archive;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -7,23 +7,23 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.contact.ArchiveCommand;
+import seedu.address.logic.commands.archive.AddCommand;
 
 /**
  * Contains user input validation tests for {@code ArchiveCommandParser}.
  */
-public class ArchiveCommandParserTest {
+public class AddCommandParserTest {
 
-    private ArchiveCommandParser parser = new ArchiveCommandParser();
+    private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_validArgs_returnsArchiveCommand() {
-        assertParseSuccess(parser, "1", new ArchiveCommand(INDEX_FIRST_ITEM));
+        assertParseSuccess(parser, "1", new AddCommand(INDEX_FIRST_ITEM));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

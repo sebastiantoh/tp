@@ -60,6 +60,7 @@ public class ModelManager implements Model {
         this.filteredSales.setPredicate(x -> false);
         this.sortedPersons = new SortedList<>(this.filteredPersons);
         this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
+        this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
         this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());

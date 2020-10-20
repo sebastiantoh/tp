@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.contact;
+package seedu.address.logic.commands.archive;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,17 +20,17 @@ import seedu.address.model.person.Person;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code ListCommand}.
  */
-public class ArchiveCommandTest {
+public class AddCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBookInReverse(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToArchive = model.getSortedPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
-        ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_ITEM);
+        AddCommand archiveCommand = new AddCommand(INDEX_FIRST_ITEM);
         assertFalse(personToArchive.isArchived());
 
-        String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PERSON_SUCCESS, personToArchive);
+        String expectedMessage = String.format(AddCommand.MESSAGE_ARCHIVE_PERSON_SUCCESS, personToArchive);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         Person archivedPerson = new Person(
@@ -52,7 +52,7 @@ public class ArchiveCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getSortedPersonList().size() + 1);
-        ArchiveCommand archiveCommand = new ArchiveCommand(outOfBoundIndex);
+        AddCommand archiveCommand = new AddCommand(outOfBoundIndex);
 
         assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -61,7 +61,7 @@ public class ArchiveCommandTest {
     public void execute_invalidFilteredList_throwsCommandException() {
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ARCHIVED_PERSONS);
         Person invalidPersonToArchive = model.getSortedPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
-        ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_ITEM);
+        AddCommand archiveCommand = new AddCommand(INDEX_FIRST_ITEM);
         assertTrue(invalidPersonToArchive.isArchived());
 
         assertCommandFailure(archiveCommand, model, Messages.MESSAGE_ARCHIVE_INVALIID_LIST);
@@ -69,14 +69,14 @@ public class ArchiveCommandTest {
 
     @Test
     public void equals() {
-        ArchiveCommand archiveFirstCommand = new ArchiveCommand(INDEX_FIRST_ITEM);
-        ArchiveCommand archiveSecondCommand = new ArchiveCommand(INDEX_SECOND_ITEM);
+        AddCommand archiveFirstCommand = new AddCommand(INDEX_FIRST_ITEM);
+        AddCommand archiveSecondCommand = new AddCommand(INDEX_SECOND_ITEM);
 
         // same object -> returns true
         assertTrue(archiveFirstCommand.equals(archiveFirstCommand));
 
         // same values -> returns true
-        ArchiveCommand archiveFirstCommandCopy = new ArchiveCommand(INDEX_FIRST_ITEM);
+        AddCommand archiveFirstCommandCopy = new AddCommand(INDEX_FIRST_ITEM);
         assertTrue(archiveFirstCommand.equals(archiveFirstCommandCopy));
 
         // different types -> returns false

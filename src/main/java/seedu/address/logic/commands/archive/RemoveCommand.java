@@ -39,27 +39,27 @@ public class RemoveCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToArchive = lastShownList.get(targetIndex.getZeroBased());
+        Person personToUnarchive = lastShownList.get(targetIndex.getZeroBased());
 
-        if (!personToArchive.isArchived()) {
+        if (!personToUnarchive.isArchived()) {
             throw new CommandException(Messages.MESSAGE_UNARCHIVE_INVALIID_LIST);
         }
 
-        Person archivedPerson = new Person(
-                personToArchive.getId(),
-                personToArchive.getName(),
-                personToArchive.getPhone(),
-                personToArchive.getEmail(),
-                personToArchive.getAddress(),
-                personToArchive.getTags(),
-                personToArchive.getRemark(),
+        Person unarchivedPerson = new Person(
+                personToUnarchive.getId(),
+                personToUnarchive.getName(),
+                personToUnarchive.getPhone(),
+                personToUnarchive.getEmail(),
+                personToUnarchive.getAddress(),
+                personToUnarchive.getTags(),
+                personToUnarchive.getRemark(),
                 false,
-                personToArchive.getTotalSalesAmount()
+                personToUnarchive.getTotalSalesAmount()
         );
-        model.setPerson(personToArchive, archivedPerson);
+        model.setPerson(personToUnarchive, unarchivedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, archivedPerson));
+        return new CommandResult(String.format(MESSAGE_REMOVE_SUCCESS, unarchivedPerson));
     }
 
     @Override

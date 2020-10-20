@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-//import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_UNARCHIVED_PERSONS;
 

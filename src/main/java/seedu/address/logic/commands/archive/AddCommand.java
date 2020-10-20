@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.contact;
+package seedu.address.logic.commands.archive;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_UNARCHIVED_PERSONS;
@@ -13,8 +13,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-public class ArchiveCommand extends Command {
-    public static final String COMMAND_WORD = "contact archive";
+public class AddCommand extends Command {
+    public static final String COMMAND_WORD = "archive add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Moves a contact to the archive.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
@@ -24,7 +24,7 @@ public class ArchiveCommand extends Command {
 
     private final Index targetIndex;
 
-    public ArchiveCommand(Index targetIndex) {
+    public AddCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -63,8 +63,8 @@ public class ArchiveCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || other instanceof ArchiveCommand
-                && this.targetIndex.equals(((ArchiveCommand) other).targetIndex);
+                || other instanceof AddCommand
+                && this.targetIndex.equals(((AddCommand) other).targetIndex);
     }
 
 }
