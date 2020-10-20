@@ -195,7 +195,7 @@ For example, the activity diagram below illustrates the different outcomes that 
  
 ![The different outcomes of the program that can occur from the `meeting add <args>` Command](images/MeetingAddActivityDiagram.png)
 
-#### Modelling meetings
+#### Modelling `Meeting`s
 
 Meetings are modelled according to the class diagram below. 
 
@@ -223,7 +223,7 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
     * Will need to implement some kind of placeholder text for `Meeting`s without a message when displaying meetings in the user interface.
     * Will have to be more careful in implementation of meeting commands to allow for an optional field.
 
-##### Aspect: What fields should be stored to represent a meeting
+##### Aspect: What fields should be stored to represent a `Meeting`
 
 * **Alternative 1 (current choice):** Store just the start date of a meeting, along with its duration.
   * Pros: 
@@ -243,6 +243,22 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
     * More performant since the end date need not be re-computed.
   * Cons: 
     * There is the possibility that the three fields may no longer be in sync. Extra emphasis must be taken to ensure that these fields remain synchronised whenever either of these fields changes. 
+
+#### Aspect: How to serialise the start date and duration of a `Meeting`
+* **Alternative 1 (current choice):** Deserialize them according to ISO-8601 format.
+   * Pros: 
+     * Unambiguous and well-defined method of representing dates and times
+   * Cons: 
+     * Should the user decide to open the data file, the ISO-8601 format may not be very familiar or readable. This
+      increases the likelihood of corruption of data.
+
+* **Alternative 2:** Serialize them in a format that is human readable. e.g. storing dates in dd-MM-yyyy and
+ durations in terms of minutes
+   * Pros: 
+     * Should the user decide to open the data file, he can easily understand and make relevant modifications without
+      corrupting the data format.
+   * Cons: 
+     * Parsing and deserializing the data may pose some difficulties. 
 
 ### \[Proposed\] Undo/redo feature
 
