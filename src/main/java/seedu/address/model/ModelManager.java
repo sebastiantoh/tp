@@ -405,6 +405,7 @@ public class ModelManager implements Model {
                 && this.userPrefs.equals(other.userPrefs)
                 && this.sortedPersons.equals(other.sortedPersons)
                 && this.sortedMeetings.equals(other.sortedMeetings)
-                && this.sortedReminders.equals(other.sortedReminders);
+                && this.sortedReminders.equals(other.sortedReminders)
+                && this.sortedSales.equals(other.sortedSales);
     }
 }

@@ -89,6 +89,18 @@ public class Sale implements Comparable<Sale> {
             return true;
         }
 
+
+//        System.out.println(otherSale.getItemName());
+//        System.out.println(getItemName());
+//        System.out.println(otherSale != null);
+//        System.out.println(otherSale.getItemName().equals(getItemName()));
+//        System.out.println(otherSale.getBuyerId() == (getBuyerId()));
+//        System.out.println(otherSale.getBuyerId());
+//        System.out.println(getBuyerId());
+//        System.out.println(otherSale.getDatetimeOfPurchase().equals(getDatetimeOfPurchase()));
+//        System.out.println(otherSale.getUnitPrice().equals(getUnitPrice()));
+//        System.out.println(otherSale.getQuantity().equals(getQuantity()));
+//        System.out.println("-----");
         return otherSale != null
                 && otherSale.getItemName().equals(getItemName())
                 && otherSale.getBuyerId() == (getBuyerId())

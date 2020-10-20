@@ -210,7 +210,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         sales.setSale(target, editedSale);
         for (Tag t : editedSale.getTags()) {
-            contactTags.add(t);
+            saleTags.add(t);
         }
     }
 

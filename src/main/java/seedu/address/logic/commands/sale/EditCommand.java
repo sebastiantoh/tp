@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -80,17 +81,19 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX);
         }
 
+        Sale saleToEdit = lastShownList.get(saleIndex.getZeroBased());
+
         if(personIndex != null) {
             List<Person> lastShownPeople = model.getSortedPersonList();
             if (personIndex.getZeroBased() >= lastShownPeople.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
-
             Person newBuyer = lastShownPeople.get(personIndex.getZeroBased());
             editSaleDescriptor.setBuyerId(newBuyer.getId());
+        } else {
+            editSaleDescriptor.setBuyerId(saleToEdit.getBuyerId());
         }
 
-        Sale saleToEdit = lastShownList.get(saleIndex.getZeroBased());
         Sale editedSale = createEditedSale(saleToEdit, editSaleDescriptor);
 
         if (!model.saleTagsExist(editedSale)) {
@@ -140,7 +143,8 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return saleIndex.equals(e.saleIndex)
-                && editSaleDescriptor.equals(e.editSaleDescriptor);
+                && editSaleDescriptor.equals(e.editSaleDescriptor)
+                && (Objects.equals(personIndex, e.personIndex));
     }
 
     /**
