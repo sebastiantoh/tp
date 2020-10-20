@@ -163,6 +163,11 @@ The feature consists of the following commands:
 
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
 
+In order to handle the many commands in our application, we introduced an intermediate layer between `AddressBookParser` and the relevant command parsers, e.g. `AddCommandParser`. 
+The intermediate layer will first determine which model type the command corresponds to, before dispatching it to the corresponding command parser.
+For all meeting-related commands, we have the `MeetingCommandsParser` which serves as the intermediate class.
+
+These are the steps that will be taken when parsing a meeting-related user command:
 1. An `AddressBookParser` will check if the command is meetings-related. The `AddressBookParser` will then create a `MeetingCommandsParser`.
 3. The `MeetingCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
     - `meeting add` command: `AddCommandParser`
@@ -183,14 +188,41 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 After the respective parsers have parsed the user inputs, a `Command` object will be returned and executed by `LogicManager`.
 
-The execution of these commands can have various outcomes depending on the state of StonksBook and whether the arguments supplied by the users are actually valid.
+In order to ensure data cleanliness and that the inputs by the users are valid, the execution of these commands 
+can have various outcomes.
 
 For example, the activity diagram below illustrates the different outcomes that can occur from `meeting add <args>` Command.
  
 ![The different outcomes of the program that can occur from the `meeting add <args>` Command](images/MeetingAddActivityDiagram.png)
 
+#### Modelling meetings
+
+Meetings are modelled according to the class diagram below. 
+
+![Class diagram used to model meetings](images/MeetingClassDiagram.png)
+
+`LocalDateTime` and `Duration` are classes from Java's `java.time` package.
+
+We enforce a composition relationship between `Meeting` and its attribute as we do not want `Meeting` to exist when either of its attributes no longer exist. 
+With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted as well. Similarly, we also enforce that all `Meeting`s must be associated with a non-empty `Message`. 
+
 #### Design consideration:              
-                                                    
+                
+##### Aspect: Whether it should be necessary to enforce a `message` field in a `Meeting` object
+* **Alternative 1 (current choice):**: Create a `Message` class which enforces a non-empty message association to a `Meeting` object.
+  * Pros:
+    * Easier implementation of meeting commands since every field is necessary.
+    * Better data cleanliness.
+  * Cons:
+    * Have to implement a separate class as well as implement validation of inputs.
+                                    
+* **Alternative 2:** Set the `Meeting` object to be associated to a `String` which acts as the message of a meeting.
+  * Pros:
+    * No need to implement validation of inputs for this `message` field.
+  * Cons:
+    * Will need to implement some kind of placeholder text for `Meeting`s without a message when displaying meetings in the user interface.
+    * Will have to be more careful in implementation of meeting commands to allow for an optional field.
+
 ##### Aspect: What fields should be stored to represent a meeting
 
 * **Alternative 1 (current choice):** Store just the start date of a meeting, along with its duration.
@@ -203,12 +235,12 @@ For example, the activity diagram below illustrates the different outcomes that 
   * Pros: 
     * May have slightly improved performance since there is no need to compute the end date.
   * Cons: 
-    * User will have to input both start and end date, which can be tedious.  
+    * User will have to input both start and end date, which can be tedious.
 
 * **Alternative 3:** Store start date, end date, and duration of the meeting.
   * Pros: 
-    * Similar to **Alternative 1**, this approach is more user-friendly. 
-    * Compared to **Alternative 1**, this alternative is also more performant since the end date need not be re-computed. 
+    * More user-friendly since users can schedule meetings using just the start date and its duration.
+    * More performant since the end date need not be re-computed.
   * Cons: 
     * There is the possibility that the three fields may no longer be in sync. Extra emphasis must be taken to ensure that these fields remain synchronised whenever either of these fields changes. 
 
