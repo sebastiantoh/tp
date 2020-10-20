@@ -72,6 +72,11 @@ public class MonthlyList<T> {
         return 0;
     }
 
+    public List<T> getItems(Month month, Year year) {
+        MonthAndYear key = new MonthAndYear(month, year);
+        return this.monthlyList.getOrDefault(key, Collections.emptyList());
+    }
+
     /**
      * Removes all entries in the monthlyList.
      */

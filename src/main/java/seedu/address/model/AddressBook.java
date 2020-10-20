@@ -493,7 +493,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return this.meetings.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
     }
 
-    //// util methods
+    public List<Sale> getMonthlySaleList(Month month, Year year) {
+        return this.sales.getMonthlySaleList(month, year);
+    }
+
+        //// util methods
 
     @Override
     public String toString() {

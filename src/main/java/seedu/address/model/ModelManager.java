@@ -403,6 +403,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public List<Sale> getMonthlySaleList(Month month, Year year) {
+        return this.addressBook.getMonthlySaleList(month, year);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
