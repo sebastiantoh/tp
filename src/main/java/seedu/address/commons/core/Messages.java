@@ -21,6 +21,11 @@ public class Messages {
     public static final String MESSAGE_INVALID_SALE_DISPLAYED_INDEX = "The sale index provided is invalid";
     public static final String MESSAGE_UNARCHIVE_INVALIID_LIST = "Please list all archived persons first!";
     public static final String MESSAGE_ARCHIVE_INVALIID_LIST = "Please list all contacts first!";
+    public static final String MESSAGE_INVALID_MONTH =
+            "Month must be an integer value in between 1 and 12 inclusive.";
+    public static final String MESSAGE_INVALID_YEAR = "Year must be an non negative integer.";
+    public static final String MESSAGE_INVALID_NUMBER_OF_MONTHS =
+            "The number of months must be an integer value in between 2 and 6 inclusive.";
     public static final String MESSAGE_SALE_TAGS_NOT_FOUND = "The provided sales tag(s) do not exist yet";
     public static final String MESSAGE_CONTACT_TAGS_NOT_FOUND = "The provided contact tag(s) do not exist yet";
 

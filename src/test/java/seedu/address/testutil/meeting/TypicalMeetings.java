@@ -3,6 +3,9 @@ package seedu.address.testutil.meeting;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.person.TypicalPersons.CARL;
+import static seedu.address.testutil.person.TypicalPersons.DANIEL;
+import static seedu.address.testutil.person.TypicalPersons.ELLE;
+import static seedu.address.testutil.person.TypicalPersons.FIONA;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -30,6 +33,17 @@ public class TypicalMeetings {
             new Meeting(CARL, new Message("Lunch with Carl"), LocalDateTime.of(2020, 12, 20, 12, 12),
                     Duration.ofMinutes(45));
 
+    public static final Meeting LUNCH_FIONA =
+            new Meeting(FIONA, new Message("Lunch with Fiona"), LocalDateTime.of(2020, 8, 20, 12, 12),
+                    Duration.ofMinutes(45));
+
+    public static final Meeting LUNCH_DANIEL =
+            new Meeting(DANIEL, new Message("Lunch with Daniel"), LocalDateTime.of(2020, 1, 20, 12, 12),
+                    Duration.ofMinutes(45));
+
+    public static final Meeting LUNCH_ELLE =
+            new Meeting(ELLE, new Message("Lunch with Elle"), LocalDateTime.of(2020, 2, 20, 12, 12),
+                    Duration.ofMinutes(45));
 
     private TypicalMeetings() {
     } // prevents instantiation

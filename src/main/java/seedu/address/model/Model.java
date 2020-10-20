@@ -1,10 +1,14 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.Month;
+import java.time.Year;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -309,4 +313,15 @@ public interface Model {
      * The sale must exist in StonksBook.
      */
     void removeSale(Sale sale);
+
+    /**
+     * Gets the number of meetings in {@code month} and {@code year}.
+     */
+    int getMonthMeetingsCount(Month month, Year year);
+
+    /**
+     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * the previous {@code numberOfMonths} - 1 months inclusive.
+     */
+    List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
 }

@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.application.HostServices;
@@ -11,6 +13,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -37,6 +40,9 @@ public class MainWindow extends UiPart<Stage> {
     private ReminderListPanel reminderListPanel;
     private ChatBox chatBox;
     private HelpWindow helpWindow;
+    private StatisticsWindow statisticsWindow;
+
+    private List<StatisticsWindow> openStatisticsWindows;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -77,6 +83,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow(hostServices);
+        openStatisticsWindows = new ArrayList<>();
     }
 
     public Stage getPrimaryStage() {
@@ -178,6 +185,21 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        this.openStatisticsWindows.forEach(StatisticsWindow::hide);
+    }
+
+
+    /**
+     * Opens a statistics window.
+     */
+    @FXML
+    public void handleStatisticsResult(List<MonthlyCountData> statisticResult) {
+        this.statisticsWindow = new StatisticsWindow(statisticResult);
+        this.statisticsWindow.getRoot()
+                .setOnCloseRequest(x -> this.openStatisticsWindows.remove(this.statisticsWindow));
+
+        this.openStatisticsWindows.add(this.statisticsWindow);
+        this.statisticsWindow.show();
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -205,6 +227,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isClear()) {
                 chatBox.clear();
+            }
+
+            if (commandResult.hasStatisticsResult()) {
+                handleStatisticsResult(commandResult.getStatisticResult());
             }
 
             // Force refresh of the following UI components which are time sensitive
