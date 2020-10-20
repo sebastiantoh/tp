@@ -83,7 +83,7 @@ public class EditCommand extends Command {
 
         Sale saleToEdit = lastShownList.get(saleIndex.getZeroBased());
 
-        if(personIndex != null) {
+        if (personIndex != null) {
             List<Person> lastShownPeople = model.getSortedPersonList();
             if (personIndex.getZeroBased() >= lastShownPeople.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

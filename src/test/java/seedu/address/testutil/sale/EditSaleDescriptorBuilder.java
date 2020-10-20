@@ -62,7 +62,7 @@ public class EditSaleDescriptorBuilder {
      * Sets the {@code localDateTime} of the {@code EditSaleDescriptor} that we are building.
      */
     public EditSaleDescriptorBuilder withDatetimeOfPurchase(String localDateTime) {
-        descriptor.setDatetimeOfPurchase(LocalDateTime.parse(localDateTime, ParserUtil.dateTimeFormatter));
+        descriptor.setDatetimeOfPurchase(LocalDateTime.parse(localDateTime, ParserUtil.DATE_TIME_FORMATTER));
         return this;
     }
 

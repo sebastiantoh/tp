@@ -2,11 +2,6 @@ package seedu.address.logic.parser.sale;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
@@ -63,7 +58,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SALE_CONTACT_INDEX).get());
         }
         if (argMultimap.getValue(PREFIX_SALE_DATE).isPresent()) {
-            editSaleDescriptor.setDatetimeOfPurchase(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_SALE_DATE).get()));
+            editSaleDescriptor.setDatetimeOfPurchase(
+                    ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_SALE_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_SALE_QUANTITY).isPresent()) {
             editSaleDescriptor.setQuantity(
@@ -71,7 +67,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editSaleDescriptor::setTags);
         if (argMultimap.getValue(PREFIX_SALE_UNIT_PRICE).isPresent()) {
-            editSaleDescriptor.setUnitPrice(ParserUtil.parseUnitPrice(argMultimap.getValue(PREFIX_SALE_UNIT_PRICE).get()));
+            editSaleDescriptor.setUnitPrice(
+                    ParserUtil.parseUnitPrice(argMultimap.getValue(PREFIX_SALE_UNIT_PRICE).get()));
         }
 
         if (!editSaleDescriptor.isAnyFieldEdited()) {
