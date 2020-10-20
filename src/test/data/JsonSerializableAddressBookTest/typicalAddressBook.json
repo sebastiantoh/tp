@@ -84,6 +84,26 @@
       "remark": "",
       "archived": true,
       "totalSalesAmount" : "0.00"
+    },
+    {
+      "id": 8,
+      "name": "Hugh Jackson",
+      "phone": "98874356",
+      "email": "hugh@example.com",
+      "address": "Sydney",
+      "remark": "Loves Deadpool",
+      "archived": true,
+      "totalSalesAmount" : "0.00"
+    },
+    {
+      "id": 9,
+      "name": "Jeff Jefferson",
+      "phone": "88290947",
+      "email": "jeff@example.com",
+      "address": "United Kingdom",
+      "remark": "",
+      "archived": true,
+      "totalSalesAmount" : "0.00"
     }
   ],
   "contactTags": [],
