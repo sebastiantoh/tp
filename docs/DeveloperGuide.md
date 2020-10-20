@@ -148,6 +148,68 @@ Classes used by multiple components are in the `seedu.StonksBook.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Meetings feature \[Sebastian Toh Shi Jian\]
+
+The meetings feature allows the user to add, delete, or update meetings in StonksBook. 
+Meetings are displayed in increasing order based on the start date of the meeting.
+
+The feature consists of the following commands:
+- `meeting add` - Adds a meeting to the meeting list.
+- `meeting delete` - Delete a meeting from the meeting list.
+- `meeting edit` - Edit a meeting from the meeting list.
+- `meeting list` - Display the list of all meetings in the user interface
+
+#### Parsing of commands
+
+The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
+
+1. An `AddressBookParser` will if the command is meetings-related. The `AddressBookParser` will then create a `MeetingCommandsParser`
+3. The `MeetingCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
+    - `meeting add` command: `AddCommandParser`
+    - `meeting delete` command: `DeleteCommandParser`
+    - `meeting edit` command: `EditCommandParser`
+    - `meeting list` command: `ListCommandParser`
+4. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+
+Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(meeting add <args>)` API call.
+
+![Interactions Inside the Logic Component for the `meeting add <args>` Command](images/MeetingAddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+#### Execution of commands
+
+After the respective parsers have parsed the user inputs, a `Command` object will be returned and executed by `LogicManager`.
+
+The execution of these commands can have various outcomes depending on the state of StonksBook and whether the arguments supplied by the users are actually valid.
+
+For example, the activity diagram below illustrates the different outcomes that can occur from `meeting add <args>` Command.
+ 
+![The different outcomes of the program that can occur from the `meeting add <args>` Command](images/MeetingAddActivityDiagram.png)
+
+#### Design consideration:              
+                                                    
+##### Aspect: What fields should be stored to represent a meeting
+
+* **Alternative 1 (current choice):** Store just the start date of a meeting, along with its duration.
+  * Pros: 
+    * More user-friendly since users tend to schedule meetings based on start date and its duration.
+  * Cons: 
+    ** May have slight performance issues since the end date of a meeting may have to be computed repeatedly. 
+
+* **Alternative 2:** Store both start and end date of the meeting.
+  * Pros: 
+    * May have slightly improved performance since there is no need to compute the end date.
+  * Cons: 
+    * User will have to input both start and end date, which can be tedious.  
+
+* **Alternative 3:** Store start date, end date, and duration of the meeting.
+  * Pros: 
+    * Similar to **Alternative 1**, this approach is more user-friendly. 
+    * Compared to **Alternative 1**, this alternative is also more performant since the end date need not be re-computed. 
+  * Cons: 
+    * There is the possibility that the three fields may no longer be in sync. Extra emphasis must be taken to ensure that these fields remain synchronised whenever either of these fields changes. 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
