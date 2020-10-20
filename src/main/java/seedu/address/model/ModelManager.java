@@ -430,7 +430,7 @@ public class ModelManager implements Model {
                 currentId = p.getId();
             }
         }
-        currentContactId = currentId;
+        currentContactId = currentId + 1;
     }
 
     @Override
