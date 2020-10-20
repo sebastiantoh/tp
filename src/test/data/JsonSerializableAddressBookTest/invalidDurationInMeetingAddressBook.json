@@ -6,17 +6,21 @@
   "meetings": [
     {
       "person": {
+        "id": 1,
         "name": "Alice Pauline",
         "phone": "94351253",
         "email": "alice@example.com",
         "address": "123, Jurong West Ave 6, #08-111",
         "tagged": [
           "friends"
-        ]
+        ],
+        "remark": "Likes chocolates",
+        "totalSalesAmount" : "0.80"
       },
       "message": "Lunch with Alice",
       "startDate": "2020-10-30T15:19",
       "duration": "PT30.5M"
     }
-  ]
+  ],
+  "sales": []
 }

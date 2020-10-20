@@ -1,6 +1,7 @@
 {
   "persons": [
     {
+      "id": 1,
       "name": "Hans Muster",
       "phone": "9482424",
       "email": "invalid@email!3e",
@@ -10,5 +11,6 @@
   "contactTags": [ ],
   "saleTags": [ ],
   "reminders": [],
-  "meetings": []
+  "meetings": [],
+  "sales": []
 }

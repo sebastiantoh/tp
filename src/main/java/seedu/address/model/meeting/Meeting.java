@@ -1,6 +1,7 @@
 package seedu.address.model.meeting;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.DateUtil.isSameDay;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -16,6 +17,10 @@ import seedu.address.model.person.Person;
 public class Meeting implements Comparable<Meeting> {
     // For formatting of the scheduled date that is to be printed to the UI.
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy, HH:mm");
+    // For formatting of dates without the time
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy");
+    // For formatting of just the hours and minutes
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     private final Person person;
     private final String message;
@@ -54,15 +59,32 @@ public class Meeting implements Comparable<Meeting> {
         return this.duration;
     }
 
+    /**
+     * Returns a formatted string representation of the meeting's start and end date.
+     * If the meeting starts and ends on the same date, then the format output would be "E, dd MMM yyyy, HH:mm - HH:mm".
+     * Otherwise, the format output is "E, dd MMM yyyy, HH:mm - E, dd MMM yyyy, HH:mm".
+     */
+    public String getFormattedStartEndDate() {
+        LocalDateTime start = getStartDate();
+        LocalDateTime end = getStartDate().plus(getDuration());
+        if (isSameDay(start, end)) {
+            return String.format("%s, %s - %s", start.format(DATE_FORMATTER),
+                    start.format(TIME_FORMATTER), end.format(TIME_FORMATTER));
+        } else {
+            return String.format("%s - %s",
+                    getStartDate().format(DATE_TIME_FORMATTER),
+                    getStartDate().plus(getDuration()).format(DATE_TIME_FORMATTER)
+            );
+        }
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
         builder.append(getMessage())
                 .append(String.format(" - %s ", getPerson().getName()))
-                .append(String.format("(%s - %s)",
-                        getStartDate().format(DATE_TIME_FORMATTER),
-                        getStartDate().plus(getDuration()).format(DATE_TIME_FORMATTER)));
+                .append(String.format("(%s)", getFormattedStartEndDate()));
 
         return builder.toString();
     }

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<<<<<<< HEAD
 
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="0.0" maxHeight="-Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="1004.0" prefHeight="150.0" vvalue="0.0" StackPane.alignment="TOP_LEFT">
@@ -11,5 +12,13 @@
          <padding>
             <Insets top="10.0" />
          </padding></VBox>
+=======
+<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
+           xmlns:fx="http://javafx.com/fxml/1">
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" hvalue="0.0" maxHeight="-Infinity"
+                maxWidth="Infinity" minHeight="-Infinity" prefHeight="150.0" vvalue="0.0"
+                StackPane.alignment="TOP_LEFT">
+        <VBox fx:id="dialogContainer" minWidth="1024" prefHeight="150" styleClass="result-display"/>
+>>>>>>> master
     </ScrollPane>
 </StackPane>

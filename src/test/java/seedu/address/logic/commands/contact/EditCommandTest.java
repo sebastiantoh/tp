@@ -14,6 +14,8 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookInR
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -25,6 +27,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.person.EditPersonDescriptorBuilder;
 import seedu.address.testutil.person.PersonBuilder;
 
@@ -37,8 +40,10 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        Person editedPerson = new PersonBuilder().withName("Allison Pauline")
+                .withTotalSalesAmount(new BigDecimal("0.8")).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson)
+                .withName("Allison Pauline").build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -51,6 +56,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
+        model.addContactTag(new Tag(VALID_TAG_HUSBAND));
         Index indexLastPerson = Index.fromOneBased(model.getSortedPersonList().size());
         Person lastPerson = model.getSortedPersonList().get(indexLastPerson.getZeroBased());
 

@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +28,7 @@ class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
+    private final int id;
     private final String name;
     private final String phone;
     private final String email;
@@ -34,16 +36,18 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String remark;
     private final boolean archived;
-    private final List<JsonAdaptedSale> saleList = new ArrayList<>();
+    private final String totalSalesAmount;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark,
-            @JsonProperty("archived") boolean archived, @JsonProperty("person") List<JsonAdaptedSale> saleList) {
+    public JsonAdaptedPerson(@JsonProperty("id") Integer id, @JsonProperty("name") String name,
+            @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+            @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("remark") String remark, @JsonProperty("archived") boolean archived, 
+            @JsonProperty("totalSalesAmount") String totalSalesAmount) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,16 +56,15 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.remark = remark;
-        if (saleList != null) {
-            this.saleList.addAll(saleList);
-        }
         this.archived = archived;
+        this.totalSalesAmount = totalSalesAmount;
     }
 
     /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        id = source.getId();
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
@@ -71,11 +74,7 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         remark = source.getRemark().value;
         archived = source.isArchived();
-        saleList.addAll(source.getSalesList()
-                .asUnmodifiableObservableList()
-                .stream()
-                .map(JsonAdaptedSale::new)
-                .collect(Collectors.toList()));
+        totalSalesAmount = source.getTotalSalesAmount().setScale(2).toPlainString();
     }
 
     /**
@@ -88,10 +87,6 @@ class JsonAdaptedPerson {
         final List<Sale> personSales = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
-        }
-
-        for (JsonAdaptedSale sale : saleList) {
-            personSales.add(sale.toModelType());
         }
 
         if (name == null) {
@@ -135,8 +130,28 @@ class JsonAdaptedPerson {
         }
         final Remark modelRemark = new Remark(remark);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelRemark, archived,
-                modelSales);
+        if (totalSalesAmount == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Total Sales Amount"));
+        }
+        try {
+            BigDecimal test = new BigDecimal(totalSalesAmount);
+
+            String string = test.stripTrailingZeros().toPlainString();
+            int index = string.indexOf(".");
+            int noOfDecimalPlaces = index < 0 ? 0 : string.length() - index - 1;
+
+            if (noOfDecimalPlaces < 3 && !(test.compareTo(BigDecimal.ZERO) >= 0)) {
+                throw new NumberFormatException();
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalValueException("Total Sales Amount should be a positive decimal number, "
+                    + "with at most 2 decimal places.");
+        }
+
+        final BigDecimal modelTotalSalesAmount = new BigDecimal(totalSalesAmount);
+
+        return new Person(id, modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, modelRemark, archived, modelTotalSalesAmount);
     }
 
 }

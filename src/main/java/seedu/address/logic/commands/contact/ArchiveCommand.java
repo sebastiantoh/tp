@@ -44,6 +44,7 @@ public class ArchiveCommand extends Command {
         }
 
         Person archivedPerson = new Person(
+                personToArchive.getId(),
                 personToArchive.getName(),
                 personToArchive.getPhone(),
                 personToArchive.getEmail(),
@@ -51,7 +52,7 @@ public class ArchiveCommand extends Command {
                 personToArchive.getTags(),
                 personToArchive.getRemark(),
                 true,
-                personToArchive.getSalesList()
+                personToArchive.getTotalSalesAmount()
         );
         model.setPerson(personToArchive, archivedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);

@@ -46,6 +46,7 @@ public class RemoveCommand extends Command {
         }
 
         Person archivedPerson = new Person(
+                personToArchive.getId(),
                 personToArchive.getName(),
                 personToArchive.getPhone(),
                 personToArchive.getEmail(),
@@ -53,7 +54,7 @@ public class RemoveCommand extends Command {
                 personToArchive.getTags(),
                 personToArchive.getRemark(),
                 false,
-                personToArchive.getSalesList()
+                personToArchive.getTotalSalesAmount()
         );
         model.setPerson(personToArchive, archivedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);

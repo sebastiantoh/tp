@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 //import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_UNARCHIVED_PERSONS;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -29,7 +30,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.sale.UniqueSaleList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -84,6 +84,10 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
+        if (!model.contactTagsExist(editedPerson)) {
+            throw new CommandException(Messages.MESSAGE_CONTACT_TAGS_NOT_FOUND);
+        }
+
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
@@ -100,16 +104,17 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
+        Integer id = personToEdit.getId();
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Remark updatedRemark = editPersonDescriptor.getRemark().orElse(personToEdit.getRemark());
-        UniqueSaleList updatedSaleList = personToEdit.getSalesList();
+        BigDecimal updatedTotalSalesAmount = personToEdit.getTotalSalesAmount();
 
-        return new Person(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, updatedRemark, false, updatedSaleList);
+        return new Person(id, updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, updatedRemark, personToEdit.isArchived(), updatedTotalSalesAmount);
     }
 
     @Override
@@ -135,6 +140,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+        private int id;
         private Name name;
         private Phone phone;
         private Email email;
@@ -149,6 +155,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+            setId(toCopy.id);
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -162,6 +169,14 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, remark);
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public Optional<Integer> getId() {
+            return Optional.ofNullable(id);
         }
 
         public void setName(Name name) {

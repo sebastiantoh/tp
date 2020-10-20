@@ -34,6 +34,7 @@ public class ArchiveCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         Person archivedPerson = new Person(
+                personToArchive.getId(),
                 personToArchive.getName(),
                 personToArchive.getPhone(),
                 personToArchive.getEmail(),
@@ -41,7 +42,7 @@ public class ArchiveCommandTest {
                 personToArchive.getTags(),
                 personToArchive.getRemark(),
                 !personToArchive.isArchived(),
-                personToArchive.getSalesList()
+                personToArchive.getTotalSalesAmount()
         );
         expectedModel.setPerson(personToArchive, archivedPerson);
 

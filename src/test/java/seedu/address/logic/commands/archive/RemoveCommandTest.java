@@ -41,6 +41,7 @@ public class RemoveCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         Person removedPerson = new Person(
+                personToRemove.getId(),
                 personToRemove.getName(),
                 personToRemove.getPhone(),
                 personToRemove.getEmail(),
@@ -48,7 +49,7 @@ public class RemoveCommandTest {
                 personToRemove.getTags(),
                 personToRemove.getRemark(),
                 !personToRemove.isArchived(),
-                personToRemove.getSalesList()
+                personToRemove.getTotalSalesAmount()
         );
         expectedModel.setPerson(personToRemove, removedPerson);
         expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_ARCHIVED_PERSONS);
