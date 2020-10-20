@@ -12,7 +12,8 @@
         "address": "123, Jurong West Ave 6, #08-111",
         "tagged": [
           "friends"
-        ]
+        ],
+        "archived": false
       },
       "message": "Call Alice",
       "scheduledDate": "2020-10-30T13:19"

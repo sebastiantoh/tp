@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Message;
 import seedu.address.model.ModelStub;
 import seedu.address.model.ModelStubWithSortedPersonList;
 import seedu.address.model.meeting.Meeting;
@@ -26,7 +27,7 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.person.PersonBuilder;
 
 public class AddCommandTest {
-    private static final String MESSAGE = "message";
+    private static final Message MESSAGE = new Message("message");
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
@@ -79,15 +80,18 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
+        Message lunchWithAlice = new Message("Lunch with Alice");
         AddCommand addLunchAliceMeetingCommand =
-                new AddCommand(INDEX_FIRST_ITEM, "Lunch with Alice", TYPICAL_DATE_1, TYPICAL_DURATION_ONE_HOUR);
+                new AddCommand(INDEX_FIRST_ITEM, lunchWithAlice, TYPICAL_DATE_1,
+                        TYPICAL_DURATION_ONE_HOUR);
 
         // same object -> returns true
         assertEquals(addLunchAliceMeetingCommand, addLunchAliceMeetingCommand);
 
         // same values -> returns true
         AddCommand addLunchAliceMeetingCommandCopy =
-                new AddCommand(INDEX_FIRST_ITEM, "Lunch with Alice", TYPICAL_DATE_1, TYPICAL_DURATION_ONE_HOUR);
+                new AddCommand(INDEX_FIRST_ITEM, lunchWithAlice, TYPICAL_DATE_1,
+                        TYPICAL_DURATION_ONE_HOUR);
         assertEquals(addLunchAliceMeetingCommand, addLunchAliceMeetingCommandCopy);
 
         // different types -> returns false
@@ -98,19 +102,23 @@ public class AddCommandTest {
 
         // different index -> returns false
         assertNotEquals(addLunchAliceMeetingCommand,
-                new AddCommand(INDEX_SECOND_ITEM, "Lunch with Alice", TYPICAL_DATE_1, TYPICAL_DURATION_ONE_HOUR));
+                new AddCommand(INDEX_SECOND_ITEM, lunchWithAlice, TYPICAL_DATE_1,
+                        TYPICAL_DURATION_ONE_HOUR));
 
         // different message -> returns false
         assertNotEquals(addLunchAliceMeetingCommand,
-                new AddCommand(INDEX_FIRST_ITEM, "Dinner with Alice", TYPICAL_DATE_1, TYPICAL_DURATION_ONE_HOUR));
+                new AddCommand(INDEX_FIRST_ITEM, new Message("Dinner with Alice"), TYPICAL_DATE_1,
+                        TYPICAL_DURATION_ONE_HOUR));
 
         // different date -> returns false
         assertNotEquals(addLunchAliceMeetingCommand,
-                new AddCommand(INDEX_FIRST_ITEM, "Lunch with Alice", TYPICAL_DATE_2, TYPICAL_DURATION_ONE_HOUR));
+                new AddCommand(INDEX_FIRST_ITEM, lunchWithAlice, TYPICAL_DATE_2,
+                        TYPICAL_DURATION_ONE_HOUR));
 
         // different duration -> returns false
         assertNotEquals(addLunchAliceMeetingCommand,
-                new AddCommand(INDEX_FIRST_ITEM, "Lunch with Alice", TYPICAL_DATE_1, TYPICAL_DURATION_HALF_HOUR));
+                new AddCommand(INDEX_FIRST_ITEM, lunchWithAlice, TYPICAL_DATE_1,
+                        TYPICAL_DURATION_HALF_HOUR));
     }
 
     /**

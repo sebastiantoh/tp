@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.enums.GroupEnum.ARCHIVE;
 import static seedu.address.commons.enums.GroupEnum.CONTACT;
 import static seedu.address.commons.enums.GroupEnum.MEETING;
 import static seedu.address.commons.enums.GroupEnum.REMINDER;
@@ -16,6 +17,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.PurgeCommand;
 import seedu.address.logic.commands.UnknownCommand;
+import seedu.address.logic.parser.archive.ArchiveCommandsParser;
 import seedu.address.logic.parser.contact.ContactCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meeting.MeetingCommandsParser;
@@ -110,8 +112,10 @@ public class AddressBookParser {
         boolean isReminderCommand = commandWord.equals(REMINDER.name().toLowerCase());
         boolean isMeetingCommand = commandWord.equals(MEETING.name().toLowerCase());
         boolean isSaleCommand = commandWord.equals(SALE.name().toLowerCase());
+        boolean isArchiveCommand = commandWord.equals(ARCHIVE.name().toLowerCase());
 
-        return isContactCommand || isTagCommand || isReminderCommand || isMeetingCommand || isSaleCommand;
+        return isContactCommand || isTagCommand || isReminderCommand || isMeetingCommand || isSaleCommand
+                || isArchiveCommand;
     }
 
     private Command parseTwoKeyWordCommand(String commandWord, String secondCommandWord, String arguments)
@@ -121,6 +125,8 @@ public class AddressBookParser {
 
         if (commandWord.equals(CONTACT.name().toLowerCase())) {
             return new ContactCommandsParser().parse(fullCommand, arguments);
+        } else if (commandWord.equals(ARCHIVE.name().toLowerCase())) {
+            return new ArchiveCommandsParser().parse(fullCommand, arguments);
         } else if (commandWord.equals(TAG.name().toLowerCase())) {
             return new TagCommandsParser().parse(fullCommand, arguments);
         } else if (commandWord.equals(REMINDER.name().toLowerCase())) {

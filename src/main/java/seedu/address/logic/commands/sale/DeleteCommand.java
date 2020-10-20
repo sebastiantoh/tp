@@ -65,7 +65,7 @@ public class DeleteCommand extends Command {
 
         Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
-                personToEdit.getRemark(), newTotalSalesAmount);
+                personToEdit.getRemark(), personToEdit.isArchived(), newTotalSalesAmount);
 
         model.removeSale(saleToDelete);
         model.setPerson(personToEdit, editedPerson);

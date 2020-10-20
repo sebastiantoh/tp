@@ -1,10 +1,14 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.Month;
+import java.time.Year;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -158,6 +162,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<Person> getAllPersons() {
+        return new UniquePersonList().asUnmodifiableObservableList();
+    }
+
+    @Override
     public ObservableList<Person> getFilteredPersonList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -237,6 +246,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasSale(Sale sale) {
         return false;
     }
@@ -248,6 +262,16 @@ public class ModelStub implements Model {
 
     @Override
     public void removeSale(Sale sale) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public int getMonthMeetingsCount(Month month, Year year) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         throw new AssertionError("This method should not be called.");
     }
 }

@@ -17,7 +17,7 @@
     </icons>
     <scene>
         <Scene>
-            <ScrollPane hbarPolicy="NEVER" fitToWidth="true">
+            <ScrollPane hbarPolicy="NEVER" fitToWidth="true" minHeight="700" prefHeight="700" maxHeight="700">
                 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: derive(#1d1d1d, 20%);
          -fx-fillbackground-color: #383838;">
                     <GridPane fx:id="table" HBox.hgrow="ALWAYS">

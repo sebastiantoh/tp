@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
+
+<fx:root minHeight="500" minWidth="1024" resizable="false" title="stats" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <scene>
+    <Scene>
+<AnchorPane minHeight="500" minWidth="1024">
+   <children>
+      <BarChart fx:id="barChart" minHeight="500" minWidth="1024" style="-fx-background-color: derive(#1d1d1d, 20%); -fx-fillbackground-color: #383838;" title="ok" verticalGridLinesVisible="false">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" tickLabelFill="WHITE" fx:id="x" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" side="LEFT" tickLabelFill="WHITE" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>
+    </Scene>
+    </scene>
+</fx:root>

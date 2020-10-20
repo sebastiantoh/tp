@@ -33,6 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Remark remark;
+    private boolean archived;
     private BigDecimal totalSalesAmount;
 
     /**
@@ -46,6 +47,7 @@ public class PersonBuilder {
         address = DEFAULT_ADDRESS;
         tags = new HashSet<>();
         remark = DEFAULT_REMARK;
+        archived = false;
         totalSalesAmount = DEFAULT_TOTAL_SALES_AMOUNT;
     }
 
@@ -61,6 +63,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         remark = personToCopy.getRemark();
+        archived = personToCopy.isArchived();
         totalSalesAmount = personToCopy.getTotalSalesAmount();
     }
 
@@ -121,7 +124,19 @@ public class PersonBuilder {
     }
 
     /**
+<<<<<<< HEAD
+     * Sets the {@code Archived} of the {@code Person} that we are building to {@code true}.
+     */
+    public PersonBuilder withArchived() {
+        this.archived = true;
+        return this;
+    }
+
+    /**
+     * Adds the {@code sales} into a {@code UniqueSaleList} and set it to the {@code Person} that we are building.
+=======
      * Sets the {@code Remark} of the {@code Person} that we are building.
+>>>>>>> master
      */
     public PersonBuilder withTotalSalesAmount(BigDecimal totalSalesAmount) {
         this.totalSalesAmount = totalSalesAmount;
@@ -129,7 +144,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(id, name, phone, email, address, tags, remark, totalSalesAmount);
+        return new Person(id, name, phone, email, address, tags, remark, archived, totalSalesAmount);
     }
 
 }

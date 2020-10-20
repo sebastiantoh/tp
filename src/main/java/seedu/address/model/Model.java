@@ -1,10 +1,14 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.Month;
+import java.time.Year;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -20,6 +24,16 @@ public interface Model {
      * {@code Predicate} that always evaluate to true.
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /**
+     * {@code Predicate} that checks whether the {@code Person} is not archived.
+     */
+    Predicate<Person> PREDICATE_SHOW_UNARCHIVED_PERSONS = person -> !person.isArchived();
+
+    /**
+     * {@code Predicate} that checks whether the {@code Person} is archived.
+     */
+    Predicate<Person> PREDICATE_SHOW_ARCHIVED_PERSONS = person -> person.isArchived();
 
     /**
      * {@code Comparator} that is used for default sorting of person list in alphabetical order,
@@ -181,6 +195,11 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
+     * Returns an unmodifiable view of the person list.
+     */
+    ObservableList<Person> getAllPersons();
+
+    /**
      * Returns an unmodifiable view of the filtered person list.
      */
     ObservableList<Person> getFilteredPersonList();
@@ -271,6 +290,14 @@ public interface Model {
     void addReminder(Reminder reminder);
 
     /**
+     * Replaces the given reminder {@code target} with {@code editedReminder}.
+     * {@code target} must exist in the address book.
+     * The reminder {@code editedReminder} must not be the same as another existing reminder in the address
+     * book.
+     */
+    void setReminder(Reminder target, Reminder editedReminder);
+
+    /**
      * Returns true if a sale with the same fields {@code sale} exists in StonksBook.
      */
     boolean hasSale(Sale sale);
@@ -286,4 +313,15 @@ public interface Model {
      * The sale must exist in StonksBook.
      */
     void removeSale(Sale sale);
+
+    /**
+     * Gets the number of meetings in {@code month} and {@code year}.
+     */
+    int getMonthMeetingsCount(Month month, Year year);
+
+    /**
+     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * the previous {@code numberOfMonths} - 1 months inclusive.
+     */
+    List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
 }
