@@ -29,6 +29,8 @@ import seedu.address.model.tag.Tag;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    public static int CURRENT_CONTACT_ID;
+
     private final AddressBook addressBook;
 
     private final UserPrefs userPrefs;
@@ -68,6 +70,8 @@ public class ModelManager implements Model {
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
         this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
+
+        initialiseCurrentContactId();
     }
 
     public ModelManager() {
@@ -415,6 +419,22 @@ public class ModelManager implements Model {
     @Override
     public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         return this.addressBook.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
+    }
+
+    @Override
+    public void initialiseCurrentContactId() {
+        int currentId = 0;
+        for (Person p : this.allPersons) {
+            if(currentId < p.getId()) {
+                currentId = p.getId();
+            }
+        }
+        CURRENT_CONTACT_ID = currentId;
+    }
+
+    @Override
+    public void incrementCurrentContactId() {
+        CURRENT_CONTACT_ID += 1;
     }
 
     @Override

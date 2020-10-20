@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.ModelManager.CURRENT_CONTACT_ID;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -72,21 +73,10 @@ public class AddCommand extends Command {
         this.remark = remark;
     }
 
-    private int getNewPersonId(Model model) {
-        List<Person> allPersons = model.getAllPersons();
-        int maxIdValue = 0;
-        for (Person p: allPersons) {
-            if (p.getId() > maxIdValue) {
-                maxIdValue = p.getId();
-            }
-        }
-        return maxIdValue + 1;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        int id = getNewPersonId(model);
+        int id = CURRENT_CONTACT_ID;
 
         Person toAdd = new Person(id, name, phone, email, address, tagList, remark, false, BigDecimal.ZERO);
 
@@ -99,6 +89,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.incrementCurrentContactId();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
