@@ -12,7 +12,8 @@
         "address": "123, Jurong West Ave 6, #08-111",
         "tagged": [
           "friends"
-        ]
+        ],
+        "archived": false
       },
       "message": "Call Alice",
       "scheduledDate": "2020-10-30T30:19"
@@ -26,7 +27,8 @@
         "tagged": [
           "owesMoney",
           "friends"
-        ]
+        ],
+        "archived": false
       },
       "message": "Email Benson",
       "scheduledDate": "2018-12-20T12:00"

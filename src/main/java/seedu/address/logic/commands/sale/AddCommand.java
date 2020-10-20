@@ -100,7 +100,7 @@ public class AddCommand extends Command {
 
         Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
                 personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
-                personToEdit.getRemark(), newTotalSalesAmount);
+                personToEdit.getRemark(), personToEdit.isArchived(), newTotalSalesAmount);
 
         if (model.hasSale(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SALE);

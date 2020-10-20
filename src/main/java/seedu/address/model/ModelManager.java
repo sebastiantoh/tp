@@ -33,6 +33,8 @@ public class ModelManager implements Model {
 
     private final UserPrefs userPrefs;
 
+    private final ObservableList<Person> allPersons;
+
     private final FilteredList<Person> filteredPersons;
 
     private final SortedList<Person> sortedPersons;
@@ -56,10 +58,12 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.allPersons = this.addressBook.getPersonList();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
         this.filteredSales.setPredicate(x -> false);
         this.sortedPersons = new SortedList<>(this.filteredPersons);
+        this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
@@ -179,7 +183,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         this.addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
     }
 
     @Override
@@ -240,6 +244,17 @@ public class ModelManager implements Model {
     @Override
     public void removeSale(Sale sale) {
         addressBook.removeSale(sale);
+    }
+
+    //=========== Unfiltered Person List Accessor ============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of unfiltered {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}.
+     */
+    @Override
+    public ObservableList<Person> getAllPersons() {
+        return this.allPersons;
     }
 
     //=========== Filtered Person List Accessors =============================================================

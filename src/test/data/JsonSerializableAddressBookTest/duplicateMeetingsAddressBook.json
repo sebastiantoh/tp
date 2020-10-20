@@ -15,6 +15,7 @@
           "friends"
         ],
         "remark": "Likes chocolates",
+        "archived": false,
         "totalSalesAmount" : "0.00"
       },
       "message": "Lunch with Alice",
@@ -32,6 +33,7 @@
           "friends"
         ],
         "remark": "Likes chocolates",
+        "archived": false,
         "totalSalesAmount" : "0.00"
       },
       "message": "Lunch with Alice",

@@ -39,17 +39,23 @@ public class TypicalPersons {
         .withTotalSalesAmount(new BigDecimal("2001.00")).build();
     public static final Person DANIEL = new PersonBuilder().withId(4).withName("Daniel Meier").withPhone("87652533")
         .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withId(5).withName("Elle Meyer").withPhone("9482224")
-        .withEmail("werner@example.com").withAddress("michegan ave").build();
+    public static final Person ELLE = new PersonBuilder().withId(5).withName("Elle Meyer")
+            .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withId(6).withName("Fiona Kunz").withPhone("9482427")
-        .withEmail("lydia@example.com").withAddress("little tokyo").build();
+            .withEmail("lydia@example.com").withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withId(7).withName("George Best").withPhone("9482442")
-        .withEmail("anna@example.com").withAddress("4th street").build();
+            .withEmail("anna@example.com").withAddress("4th street").build();
+
+    // Archived persons
+    public static final Person HUGH = new PersonBuilder().withId(8).withName("Hugh Jackson").withPhone("98874356")
+            .withEmail("hugh@example.com").withAddress("Sydney").withRemark("Loves Deadpool").withArchived().build();
+    public static final Person JEFF = new PersonBuilder().withId(9).withName("Jeff Jefferson").withPhone("88290947")
+            .withEmail("jeff@example.com").withAddress("United Kingdom").withArchived().build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withId(8).withName("Hoon Meier").withPhone("8482424")
+    public static final Person HOON = new PersonBuilder().withId(10).withName("Hoon Meier").withPhone("8482424")
         .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Person IDA = new PersonBuilder().withId(9).withName("Ida Mueller").withPhone("8482131")
+    public static final Person IDA = new PersonBuilder().withId(11).withName("Ida Mueller").withPhone("8482131")
         .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -77,11 +83,12 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HUGH, JEFF));
     }
 
     public static List<Person> getTypicalPersonsInReverse() {
-        List<Person> typicalPersons = new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        List<Person> typicalPersons = new ArrayList<>(
+                Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HUGH, JEFF));
         Collections.reverse(typicalPersons);
         return typicalPersons;
     }

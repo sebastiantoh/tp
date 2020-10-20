@@ -26,6 +26,16 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
+     * {@code Predicate} that checks whether the {@code Person} is not archived.
+     */
+    Predicate<Person> PREDICATE_SHOW_UNARCHIVED_PERSONS = person -> !person.isArchived();
+
+    /**
+     * {@code Predicate} that checks whether the {@code Person} is archived.
+     */
+    Predicate<Person> PREDICATE_SHOW_ARCHIVED_PERSONS = person -> person.isArchived();
+
+    /**
      * {@code Comparator} that is used for default sorting of person list in alphabetical order,
      * ignoring case.
      */
@@ -183,6 +193,11 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Returns an unmodifiable view of the person list.
+     */
+    ObservableList<Person> getAllPersons();
 
     /**
      * Returns an unmodifiable view of the filtered person list.

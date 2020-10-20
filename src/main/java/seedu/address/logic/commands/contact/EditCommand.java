@@ -7,7 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_UNARCHIVED_PERSONS;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -92,7 +93,12 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        if (editedPerson.isArchived()) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);
+        } else {
+            model.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -113,7 +119,7 @@ public class EditCommand extends Command {
         BigDecimal updatedTotalSalesAmount = personToEdit.getTotalSalesAmount();
 
         return new Person(id, updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedRemark, updatedTotalSalesAmount);
+                updatedTags, updatedRemark, personToEdit.isArchived(), updatedTotalSalesAmount);
     }
 
     @Override
