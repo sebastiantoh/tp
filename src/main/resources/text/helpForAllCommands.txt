@@ -7,10 +7,10 @@ contact list                Lists all contacts                                  
 contact find                Find contacts given search keyword(s)                       contact find KEYWORD [MORE_KEYWORDS]
 contact delete              Deletes a contact                                           contact delete INDEX
 contact sort                Sorts contact list                                          contact sort KEYWORD [ORDER]
-contact archive             Sends a contact to the archive                              contact archive INDEX
 
 Archive commands
 ----------------------
+archive add                 Sends a contact to the archive                              contact archive INDEX
 archive list                Lists all archived contacts                                 archive list
 archive remove              Removes a contact from the archive                          archive remove INDEX
 
