@@ -221,9 +221,6 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredSaleList().size());
 
         Sale sale = model.getFilteredSaleList().get(targetIndex.getZeroBased());
-        System.out.println(sale);
-        System.out.println(sale.getBuyerId());
-        System.out.println("_+_+_+_+_+_");
         model.updateFilteredSaleList(x -> x.equals(sale));
 
         assertEquals(1, model.getFilteredSaleList().size());
