@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.Message;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 
@@ -84,7 +85,7 @@ public class UniqueMeetingListTest {
     public void removeMeetingsWithContact_contactWithMultipleMeetings_associatedMeetingsRemoved() {
         uniqueMeetingList.add(MEET_ALICE);
         uniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
-        uniqueMeetingList.add(new Meeting(ALICE, "Second meeting with Alice",
+        uniqueMeetingList.add(new Meeting(ALICE, new Message("Second meeting with Alice"),
                 LocalDateTime.of(2021, 10, 30, 10, 19),
                 Duration.ofMinutes(60)));
 

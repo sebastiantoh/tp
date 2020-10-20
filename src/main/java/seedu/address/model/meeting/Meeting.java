@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import seedu.address.model.Message;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,7 +24,7 @@ public class Meeting implements Comparable<Meeting> {
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     private final Person person;
-    private final String message;
+    private final Message message;
     private final LocalDateTime startDate;
     private final Duration duration;
 
@@ -35,10 +36,10 @@ public class Meeting implements Comparable<Meeting> {
      * @param startDate The date this meeting starts.
      * @param duration  The duration of the meeting.
      */
-    public Meeting(Person person, String message, LocalDateTime startDate, Duration duration) {
+    public Meeting(Person person, Message message, LocalDateTime startDate, Duration duration) {
         requireAllNonNull(person, message, startDate, duration);
         this.person = person;
-        this.message = message.strip();
+        this.message = message;
         this.startDate = startDate;
         this.duration = duration;
     }
@@ -47,7 +48,7 @@ public class Meeting implements Comparable<Meeting> {
         return this.person;
     }
 
-    public String getMessage() {
+    public Message getMessage() {
         return this.message;
     }
 
@@ -107,8 +108,7 @@ public class Meeting implements Comparable<Meeting> {
         Meeting otherMeeting = (Meeting) other;
 
         return this.person.equals(otherMeeting.person)
-                // Case-insensitive equality checking
-                && this.message.toLowerCase().equals(otherMeeting.message.toLowerCase())
+                && this.message.equals(otherMeeting.message)
                 && this.startDate.equals(otherMeeting.startDate)
                 && this.duration.equals(otherMeeting.duration);
     }

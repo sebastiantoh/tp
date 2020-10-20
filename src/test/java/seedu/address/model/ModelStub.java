@@ -242,6 +242,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasSale(Sale sale) {
         return false;
     }

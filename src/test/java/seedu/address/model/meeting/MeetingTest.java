@@ -11,8 +11,10 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.Message;
+
 public class MeetingTest {
-    private static final String VALID_MESSAGE = "Some dummy message";
+    private static final Message VALID_MESSAGE = new Message("Some dummy message");
     private static final LocalDateTime VALID_DATETIME = LocalDateTime.of(2020, 10, 30, 15, 19);
     private static final Duration VALID_DURATION = Duration.ofMinutes(30);
 
@@ -25,13 +27,6 @@ public class MeetingTest {
         assertThrows(NullPointerException.class, () -> new Meeting(null, VALID_MESSAGE, null, null));
         assertThrows(NullPointerException.class, () -> new Meeting(null, null, VALID_DATETIME, null));
         assertThrows(NullPointerException.class, () -> new Meeting(null, null, null, VALID_DURATION));
-    }
-
-    @Test
-    public void constructor_messageWithWhiteSpace_returnsMeetingWithWhiteSpaceStripped() {
-        String message = WHITESPACE + VALID_MESSAGE + WHITESPACE;
-        Meeting meeting = new Meeting(ALICE, message, VALID_DATETIME, VALID_DURATION);
-        assertEquals(meeting.getMessage(), VALID_MESSAGE);
     }
 
     @Test
@@ -50,7 +45,8 @@ public class MeetingTest {
     @Test
     public void equals_sameFieldsWithDifferentCasing_returnsTrue() {
         Meeting meeting1 = new Meeting(ALICE, VALID_MESSAGE, VALID_DATETIME, VALID_DURATION);
-        Meeting meeting2 = new Meeting(ALICE, VALID_MESSAGE.toLowerCase(), VALID_DATETIME, VALID_DURATION);
+        Meeting meeting2 = new Meeting(ALICE, new Message(VALID_MESSAGE.message.toLowerCase()), VALID_DATETIME,
+                VALID_DURATION);
         assertEquals(meeting1, meeting2);
     }
 

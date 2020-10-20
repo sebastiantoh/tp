@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Message;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -46,7 +47,7 @@ public class AddCommand extends Command {
      * Index of the Person to be associated with this meeting.
      */
     private final Index index;
-    private final String message;
+    private final Message message;
     private final LocalDateTime startDate;
     private final Duration duration;
 
@@ -58,7 +59,7 @@ public class AddCommand extends Command {
      * @param startDate The start date of the Meeting.
      * @param duration  The duration of the Meeting.
      */
-    public AddCommand(Index index, String message, LocalDateTime startDate, Duration duration) {
+    public AddCommand(Index index, Message message, LocalDateTime startDate, Duration duration) {
         requireAllNonNull(index, message, startDate, duration);
         this.index = index;
         this.message = message;

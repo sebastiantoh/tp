@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Message;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
@@ -48,7 +49,7 @@ class JsonAdaptedMeeting {
      */
     public JsonAdaptedMeeting(Meeting source) {
         this.person = new JsonAdaptedPerson(source.getPerson());
-        this.message = source.getMessage();
+        this.message = source.getMessage().message;
         this.startDate = source.getStartDate().toString();
         this.duration = source.getDuration().toString();
     }
@@ -68,7 +69,7 @@ class JsonAdaptedMeeting {
         if (this.message == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Message"));
         }
-        final String message = this.message;
+        final Message message = new Message(this.message);
 
         if (this.startDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Date"));

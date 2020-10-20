@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Message;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 
@@ -41,7 +42,7 @@ class JsonAdaptedReminder {
      */
     public JsonAdaptedReminder(Reminder source) {
         this.person = new JsonAdaptedPerson(source.getPerson());
-        this.message = source.getMessage();
+        this.message = source.getMessage().message;
         this.scheduledDate = source.getScheduledDate().toString();
     }
 
@@ -59,12 +60,11 @@ class JsonAdaptedReminder {
         if (this.message == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Message"));
         }
-        final String message = this.message;
+        final Message message = new Message(this.message);
 
         if (this.scheduledDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DateTime"));
         }
-
 
         final LocalDateTime scheduledDate;
         try {

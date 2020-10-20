@@ -286,6 +286,14 @@ public interface Model {
     void addReminder(Reminder reminder);
 
     /**
+     * Replaces the given reminder {@code target} with {@code editedReminder}.
+     * {@code target} must exist in the address book.
+     * The reminder {@code editedReminder} must not be the same as another existing reminder in the address
+     * book.
+     */
+    void setReminder(Reminder target, Reminder editedReminder);
+
+    /**
      * Returns true if a sale with the same fields {@code sale} exists in StonksBook.
      */
     boolean hasSale(Sale sale);

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -424,6 +425,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeReminder(Reminder key) {
         reminders.remove(key);
+    }
+
+    /**
+     * Replaces the given reminder {@code target} in the list with {@code editedReminder}.
+     * {@code target} must exist in the address book.
+     * The reminder {@code editedReminder} must not be the same as another existing reminder in the address book.
+     */
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        requireAllNonNull(target, editedReminder);
+
+        reminders.setReminder(target, editedReminder);
     }
 
     /**

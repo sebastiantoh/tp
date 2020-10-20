@@ -19,6 +19,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,7 +70,10 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_MESSAGE_CALL_AMY = "Call Amy";
+    public static final String VALID_MESSAGE_CALL_BOB = "Call Bob";
     public static final String VALID_DATE_1 = "2020-10-30 15:19";
+    public static final String VALID_DATE_2 = "2018-12-20 12:00";
+    public static final String VALID_DATE_3 = "2020-12-20 12:12";
     public static final String VALID_REMARK_AMY = "";
     public static final String VALID_REMARK_BOB = "Likes cats";
     public static final String VALID_DURATION_ONE_HOUR = "60";
@@ -87,8 +91,11 @@ public class CommandTestUtil {
     public static final String REMARK_DESC_AMY = " " + PREFIX_CONTACT_REMARK + VALID_REMARK_AMY;
     public static final String REMARK_DESC_BOB = " " + PREFIX_CONTACT_REMARK + VALID_REMARK_BOB;
     public static final String MESSAGE_CALL_AMY = " " + PREFIX_MESSAGE + VALID_MESSAGE_CALL_AMY;
+    public static final String MESSAGE_CALL_BOB = " " + PREFIX_MESSAGE + VALID_MESSAGE_CALL_BOB;
     public static final String DATE_1 = " " + PREFIX_DATETIME + VALID_DATE_1;
+    public static final String DATE_2 = " " + PREFIX_DATETIME + VALID_DATE_2;
     public static final String CONTACT_INDEX_SECOND = " " + PREFIX_CONTACT + INDEX_SECOND_ITEM.getOneBased();
+    public static final String CONTACT_INDEX_THIRD = " " + PREFIX_CONTACT + INDEX_THIRD_ITEM.getOneBased();
     public static final String DURATION_ONE_HOUR = " " + PREFIX_DURATION + VALID_DURATION_ONE_HOUR;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_CONTACT_NAME + "James&"; // '&' not allowed in names
