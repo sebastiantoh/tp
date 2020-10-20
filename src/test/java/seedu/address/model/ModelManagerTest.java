@@ -15,6 +15,8 @@ import static seedu.address.testutil.reminder.TypicalReminders.EMAIL_BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Month;
+import java.time.Year;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -250,5 +252,10 @@ public class ModelManagerTest {
 
         assertEquals(meetingList.get(0), PRESENT_PROPOSAL_BENSON);
         assertEquals(meetingList.get(1), MEET_ALICE);
+    }
+
+    @Test
+    public void getMonthMeetingsCount_valid_success() {
+        assertTrue(modelManager.getMonthMeetingsCount(Month.APRIL, Year.now()) >= 0);
     }
 }
