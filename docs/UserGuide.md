@@ -235,41 +235,62 @@ Examples:
 
 Adds a sale of specified name, unit price and quantity, to the specified contact.
 
-Format: `sale add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY`
+Format: `sale add c/CONTACT_INDEX n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY [t/TAG]…`
 
 * Adds a sale made to the contact at the specified `CONTACT_INDEX`, with details such as the name of item sold, the unit price, and the quantity.
-* The `CONTACT_INDEX` refers to the index number shown in the displayed contact list.
-* The `CONTACT_INDEX` must be a positive integer 1, 2, 3, …​
-* `UNIT_PRICE` must be a positive number with 2 decimal places, in format `DOLLARS.CENTS`.
+* The `CONTACT_INDEX` refers to the index number shown in the displayed contact list. The contact index must be a positive integer 1, 2, 3, …​
+* The `DATETIME_OF_PURCHASE` must be in the format `yyyy-MM-dd HH:mm`
+* The `UNIT_PRICE` must be a positive number with 2 decimal places, in format `DOLLARS.CENTS`.
 * The `QUANTITY` must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `sale add c/4 n/Notebook p/6.00 q/2` Adds a sale made to the contact that is ordered 4th on the displayed contact list. This is a sale of 2 Notebooks, each of price $6.00.
+* `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery` adds a sale made to the contact that is ordered 4th on the displayed contact list. This is a sale of 2 Notebooks, each of price $6.00, made on 30 October at 3.00, with the tag "stationery".
 
-#### Listing all sales items: `sale list`
+
+#### Editing an existing sale: `sale edit`
+
+Edits an existing sale in StonksBook.
+
+Format: `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`
+
+* Edits the sale at the specified `SALE_INDEX`. 
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing a sale's tags, the existing tags of the sale will be removed i.e adding of tags is not cumulative.
+* You can remove all the sale’s tags by typing `t/` without specifying any tags after it.
+
+Examples:
+* `sale edit 2 n/B5 Notebook p/4.00 q/10` edits the name of the 2nd sale to be B5 Notebook, and assigns it a quantity of 10 with unit price $4.00.
+* `sale edit 3 t/` clears the tags of the 3rd sale.
+
+
+#### Listing all sales: `sale list`
 
 Shows a list of all sales to a specified contact.
 
 <img src="images/saleListMockup.png" alt="result for 'sale list'" width="400px">
 
-Format: `sale list CONTACT_INDEX`
+Format: `sale list [c/CONTACT_INDEX]`
 
-* Lists all sales made to a contact with the specified `CONTACT_INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index must be a positive integer 1, 2, 3, …​
+* If `CONTACT_INDEX` is not specified, all sales are listed.
+* If `CONTACT_INDEX` is  specified,  all sales made to a contact with the specified index.
+* The `CONTACT_INDEX` refers to the index number shown in the displayed contact list and must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `sale list` lists all sales.
+* `sale list c/5` lists all sales made to the 5th contact in the contact list. 
 
 #### Deleting a sales item: `sale delete`
 
 Deletes a sales item of specified index.
 
-Format: `sale delete c/CONTACT_INDEX s/SALE_INDEX`
+Format: `sale delete s/SALE_INDEX`
 
-* In the list of all sales made to a contact with the specified `CONTACT_INDEX`, the sale of `SALE_INDEX` is deleted.
-* The  `CONTACT_INDEX` refers to the index number shown in the displayed contact list, while `SALE_INDEX` refers to the index number shown in the sale list of the specified contact.
-* Both `CONTACT_INDEX` and `SALE_INDEX` must be a positive integer 1, 2, 3, …​
+* In the list of sales, the sale of `SALE_INDEX` is deleted.
+* The  `SALE_INDEX` refers to the index number shown in the displayed sale list, and must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `sale delete c/2 s/4` deletes the 4th sale made to the contact of index number 2.
+* `sale delete s/4` deletes the 4th sale made in the list.
 
 ### Scheduled Meetings
 
@@ -413,11 +434,12 @@ Action | Format, Examples
 **Contact Delete** | `contact delete INDEX` <br> e.g., `contact delete 3`
 **Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
 **Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `contact find James Jake`
-**Contact Sort** | `contact sort KEYWORD [ORDER]` <br> e.g., `contact sort n/ desc`
+**Contact Sort** | `contact sort KEYWORD [ORDER]` <br> e.g., `contact sort n/desc`
 **Contact List** | `contact list`
-**Sale Add** | `sale add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY` <br> e.g., `sale add c/4 n/Notebook p/6.00 q/2`
-**Sale List** | `sale list`
-**Sale Delete** | `sale delete c/CONTACT_INDEX s/SALE_INDEX` <br> e.g., `sale delete c/2 s/4`
+**Sale Add** | `sale add c/CONTACT_INDEX d/DATETIME_OF_PURCHASE n/ITEM_NAME p/UNIT_PRICE q/QUANTITY [t/TAG]…` <br> e.g., `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`
+**Sale Edit** | `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`  <br> e.g., `sale edit 2 n/B5 Notebook p/4.00 q/10`
+**Sale List** | `sale list [c/CONTACT_INDEX]`  <br> e.g., `sale delete c/3`
+**Sale Delete** | `sale delete s/SALE_INDEX` <br> e.g., `sale delete s/4`
 **Tag Add** | `tag add t/TAG` <br> e.g., `tag add t/important`
 **Tag List** | `tag list`
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
