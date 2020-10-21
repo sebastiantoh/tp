@@ -119,6 +119,7 @@ The `Model`,
     1. `ObservableList<Person>`
     2. `ObservableList<Meeting>`
     3. `ObservableList<Reminder>`
+    3. `ObservableList<Sale>`
 * does not depend on any of the other three components.
 
 
@@ -880,15 +881,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list all sales.
-2.  StonksBook shows all sales belonging to the specific contact.
+2.  StonksBook shows all sales.
 
     Use case ends.
-
-**Extensions**
-
-* 2a. The list of sales is empty.
-
-  Use case ends.
 
 **Use case: List all sales belonging to a contact**
 

@@ -37,6 +37,15 @@ Package Model <<Rectangle>> {
         Class Reminder
         Class UniqueReminderList
     }
+
+    Package Sale {
+        Class Sale
+        Class ItemName
+        Class UnitPrice
+        Class Quantity
+
+        Class UniqueSaleList
+    }
 }
 
 Class HiddenOutside #FFFFFF
@@ -70,6 +79,16 @@ UniqueReminderList o--> "*" Reminder
 Reminder *--> Person
 Reminder : Message message
 Reminder : LocalDateTime scheduledDate
+
+AddressBook *--> "1" UniqueSaleList
+UniqueSaleList o--> "*" Sale
+Sale *--> ItemName
+Sale *--> UnitPrice
+Sale *--> Quantity
+Sale *--> "1" Person
+Sale *--> "*" Tag
+Sale : LocalDateTime dateTimeOfPurchase
+
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
