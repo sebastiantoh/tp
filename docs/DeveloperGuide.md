@@ -301,12 +301,11 @@ These are the steps that will be taken when parsing a reminder-related user comm
     - `reminder edit` command: `EditCommandParser`
     - `reminder list` command: `ListCommandParser`
 3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
-4. Within the Parser#parse, static methods in ParserUtil may be called to parse the arguments.
+4. Within `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
 
 Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(reminder delete 1)` API call.
 
-![Interactions Inside the Logic Component for the `reminder delete 1>` Command](images/ReminderDeleteSequenceDiagram
-.png)
+![Interactions Inside the Logic Component for the `reminder delete 1>` Command](images/ReminderDeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -328,6 +327,16 @@ The sequence diagram below illustrates how the `DeleteCommand` that is created f
  executed.
  
 ![ReminderExecuteDeleteSequenceDiagram](images/ReminderExecuteDeleteSequenceDiagram.png)
+
+#### Error Handling within the `Logic` component
+
+The below activity diagram shows the overall process of execution of `reminder delete 1`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+* Incorrect command format is used (e.g. missing/incorrect prefixes)
+* Invalid index/values provided (e.g. non-positive and non-integer values are provided as index)
+
+![DeleteReminderActivityDiagram](images/DeleteReminderActivityDiagram.png)
 
 ### Sale Feature [Kwek Min Yih]
 
