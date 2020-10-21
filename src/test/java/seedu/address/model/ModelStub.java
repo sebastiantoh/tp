@@ -276,7 +276,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void initialiseCurrentContactId() {
+    public void initialiseLatestContactId() {
         throw new AssertionError("This method should not be called.");
     }
 

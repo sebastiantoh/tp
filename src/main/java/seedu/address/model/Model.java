@@ -325,7 +325,7 @@ public interface Model {
      */
     List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
 
-    void initialiseCurrentContactId();
+    void initialiseLatestContactId();
 
     int getLatestContactId();
 }

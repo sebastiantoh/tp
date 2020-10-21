@@ -71,7 +71,7 @@ public class ModelManager implements Model {
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
         this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
 
-        initialiseCurrentContactId();
+        initialiseLatestContactId();
     }
 
     public ModelManager() {
@@ -423,7 +423,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void initialiseCurrentContactId() {
+    public void initialiseLatestContactId() {
         int currentId = 0;
         for (Person p : this.allPersons) {
             if (currentId < p.getId()) {
