@@ -170,12 +170,12 @@ For all meeting-related commands, we have the `MeetingCommandsParser` which serv
 
 These are the steps that will be taken when parsing a meeting-related user command:
 1. An `AddressBookParser` will check if the command is meetings-related. The `AddressBookParser` will then create a `MeetingCommandsParser`.
-3. The `MeetingCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
+2. The `MeetingCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
     - `meeting add` command: `AddCommandParser`
     - `meeting delete` command: `DeleteCommandParser`
     - `meeting edit` command: `EditCommandParser`
     - `meeting list` command: `ListCommandParser`
-4. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
 
 Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(meeting add <args>)` API call. 
 - Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user. 
@@ -272,6 +272,44 @@ Because only future meetings are displayed by default, the slight performance di
 
 Alternative 1 is chosen as it is a well-established international standard which would facilitate the integration of
  other libraries if necessary.
+
+### Reminders feature \[Sebastian Toh Shi Jian\]
+The reminders feature allows the user to add, delete, or update reminders in StonksBook. 
+Reminders are displayed in increasing order based on the scheduled date of the reminder.
+
+The feature consists of the following commands:
+- `reminder add` - Adds a reminder to the reminder list.
+- `reminder delete` - Delete a reminder from the reminder list.
+- `reminder edit` - Edit a reminder from the reminder list.
+- `reminder list` - Display the list of all reminders in the user interface.
+
+#### Parsing of commands within the `Logic` component
+
+The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
+
+In order to handle the many commands in our application, we introduced an intermediate layer between
+ `AddressBookParser` and the relevant command parsers, e.g. `DeleteCommandParser`. 
+The intermediate layer will first determine which model type the command corresponds to, before dispatching it to the corresponding command parser.
+For all reminder-related commands, we have the `ReminderCommandsParser` which serves as the intermediate class.
+
+These are the steps that will be taken when parsing a reminder-related user command:
+1. An `AddressBookParser` will check if the command is reminder-related. The `AddressBookParser` will then create a
+ `ReminderCommandsParser`.
+2. The `ReminderCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
+    - `reminder add` command: `AddCommandParser`
+    - `reminder delete` command: `DeleteCommandParser`
+    - `reminder edit` command: `EditCommandParser`
+    - `reminder list` command: `ListCommandParser`
+3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+4. Within the Parser#parse, static methods in ParserUtil may be called to parse the arguments.
+
+Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(reminder delete 1)` API call.
+
+![Interactions Inside the Logic Component for the `reminder delete 1>` Command](images/ReminderDeleteSequenceDiagram
+.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Sale Feature [Kwek Min Yih]
 
