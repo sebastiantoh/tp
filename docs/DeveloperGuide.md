@@ -176,6 +176,7 @@ These are the steps that will be taken when parsing a meeting-related user comma
     - `meeting edit` command: `EditCommandParser`
     - `meeting list` command: `ListCommandParser`
 3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+4. Within `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
 
 Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(meeting add <args>)` API call. 
 - Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user. 
@@ -188,10 +189,32 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 #### Execution of commands within the `Logic` component
 
-After the respective parsers have parsed the user inputs, a `Command` object will be returned and executed by `LogicManager`.
+After the user input has been parsed into a `Command`, it is executed with `model` passed in as a parameter.
 
-In order to ensure data cleanliness and that the inputs by the users are valid, the execution of these commands 
-can have various outcomes.
+First, relevant methods in `model` are called to retrieve related objects or check for the existence of the sale.
+In this case, `getSortedPersonList()` is called to retrieve the `id` of the contact that is to be associated with the
+meeting and `hasMeeting(newMeeting)` is called to ensure that `newMeeting` to be added does not already exist.
+
+Second, objects to be added or edited are created. For `AddCommand`, the new `Meeting` object to be added is created
+
+Next, relevant `model` methods are called to edit the lists of `Meeting` objects. For `AddCommand`, `addMeeting` is
+ called to add the newly created meeting to the `model`. 
+
+Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+The sequence diagram below illustrates how the `AddCommand` that is created from parsing `meeting add <args>` is
+ executed.
+ 
+ ![MeetingExecuteAddSequenceDiagram](images/MeetingExecuteAddSequenceDiagram.png)
+ 
+ #### Error handling within the `Logic` component
+
+The below activity diagram shows the overall process of execution of reminder delete 1.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+- Incorrect command format is used (e.g. missing/incorrect prefixes)
+- Invalid index/values provided (e.g. non-positive and non-integer values are provided as index, non-alphanumeric
+ character included in message, unrecognised date formats, etc.)
 
 For example, the activity diagram below illustrates the different outcomes that can occur from `meeting add <args>` Command.
  

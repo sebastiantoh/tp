@@ -6,12 +6,9 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":MeetingCommandsParser" as MeetingCommandsParser LOGIC_COLOR
 participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
 participant "a:AddCommand" as AddCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
-end box
-
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute("meeting add <args>")
@@ -41,6 +38,30 @@ deactivate AddCommandParser
 MeetingCommandsParser -> AddCommandParser : parse(<args>)
 activate AddCommandParser
 
+AddCommandParser --> ParserUtil : parseIndex(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser --> ParserUtil : parseMessage(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser --> ParserUtil : parseDateTime(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser --> ParserUtil : parseDuration(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
 create AddCommand
 AddCommandParser -> AddCommand
 activate AddCommand
@@ -64,39 +85,5 @@ destroy MeetingCommandsParser
 
 AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
-
-LogicManager -> AddCommand : execute()
-activate AddCommand
-
-AddCommand -> Model : getSortedPersonList()
-activate Model
-
-Model --> AddCommand
-deactivate Model
-
-AddCommand -> Model : hasMeeting(meeting)
-activate Model
-
-Model --> AddCommand
-deactivate Model
-
-AddCommand -> Model : addMeeting(meeting)
-activate Model
-
-Model --> AddCommand
-deactivate Model
-
-create CommandResult
-AddCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> AddCommand
-deactivate CommandResult
-
-AddCommand --> LogicManager : result
-deactivate AddCommand
-
-[<--LogicManager
-deactivate LogicManager
 
 @enduml
