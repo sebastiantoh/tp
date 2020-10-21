@@ -22,11 +22,13 @@ Many salesmen waste their time manually managing their contacts and sales data. 
 
 ## Quick start
 
+This section will provide a quick guide to get StonksBook up and running on your computer.
+
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `stonksbook.jar` from [here](https://github.com/AY2021S1-CS2103T-T11-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your StonksBook.
+1. Copy the file to the folder you want to use as the _home folder_ for StonksBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    <img src="images/Ui.png" alt="Ui" width="400px">
