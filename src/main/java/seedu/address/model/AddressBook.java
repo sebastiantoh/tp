@@ -500,7 +500,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return this.sales.getMonthlySaleList(month, year);
     }
 
-    // util methods
+    //// util methods
 
     @Override
     public String toString() {
