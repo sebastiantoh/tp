@@ -206,10 +206,10 @@ The sequence diagram below illustrates how the `AddCommand` that is created from
  executed.
  
  ![MeetingExecuteAddSequenceDiagram](images/MeetingExecuteAddSequenceDiagram.png)
- 
- #### Error handling within the `Logic` component
+  
+#### Error handling within the `Logic` component
 
-The below activity diagram shows the overall process of execution of `meeting add <args>`.
+The below activity diagram shows the overall process of the execution of `meeting add <args>`.
 
 In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
 - Incorrect command format is used (e.g. missing/incorrect prefixes)
@@ -352,7 +352,7 @@ The sequence diagram below illustrates how the `DeleteCommand` that is created f
 
 #### Error Handling within the `Logic` component
 
-The below activity diagram shows the overall process of execution of `reminder delete 1`.
+The below activity diagram shows the overall process of the execution of `reminder delete 1`.
 
 In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
 * Incorrect command format is used (e.g. missing/incorrect prefixes)
