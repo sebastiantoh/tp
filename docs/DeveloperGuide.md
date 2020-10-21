@@ -274,7 +274,7 @@ Alternative 1 is chosen as it is the most user-friendly option. It also makes ma
 Because only future meetings are displayed by default, the slight performance dip associated with alternative 1 may
  not actually be an issue as we do not foresee the list of future meetings to be very large. 
  
-##### Aspect: How to serialise the start date and duration of a `Meeting`
+##### Aspect: How to serialize the start date and duration of a `Meeting`
 * **Alternative 1 (current choice):** Deserialize them according to ISO-8601 format.
    * Pros: 
      * Unambiguous and well-defined method of representing dates and times
@@ -395,7 +395,7 @@ A similar consideration was made when implementing [`Meeting`s](#aspect-whether-
 This further strengthened our choice to go for Alternative 1 given that the cost of having to validate the inputs
  would be spread over multiple features.
 
-##### Aspect: How to serialise the scheduled date of a `Reminder`
+##### Aspect: How to serialize the scheduled date of a `Reminder`
 * **Alternative 1 (current choice):** Deserialize the date according to ISO-8601 format.
    * Pros: 
      * Unambiguous and well-defined method of representing dates and times
@@ -412,7 +412,8 @@ This further strengthened our choice to go for Alternative 1 given that the cost
    * Cons: 
      * Parsing and deserializing the data may pose some difficulties. 
 
-A similar consideration was made when implementing [`Meeting`s](#aspect-how-to-serialise-the-start-date-and-duration-of-a-meeting).
+A similar consideration was made when implementing [`Meeting`s](#aspect-how-to-serialize-the-start-date-and-duration
+-of-a-meeting).
 Alternative 1 was chosen so as to have a consistent and standardised way of handling date and time handled within our code base.
  
 ### Sale Feature [Kwek Min Yih]
