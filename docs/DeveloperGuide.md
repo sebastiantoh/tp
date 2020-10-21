@@ -305,7 +305,7 @@ These are the steps that will be taken when parsing a reminder-related user comm
 
 Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(reminder delete 1)` API call.
 
-![Interactions Inside the Logic Component for the `reminder delete 1>` Command](images/ReminderDeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `reminder delete 1` Command](images/ReminderDeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandsParser` and `DeleteCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
  reaches the end of diagram.
