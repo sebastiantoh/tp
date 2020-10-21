@@ -332,7 +332,7 @@ Format: `meeting list [c/CONTACT_INDEX] [a/]`
 * When an index is specified, the list will only show meetings associated with the contact at the specified index.
 * You can show all meetings, including those that have passed, by typing `a/`.
 
-#### Deleting an meeting: `meeting delete`
+#### Deleting a meeting: `meeting delete`
 
 Deletes the specified meeting from StonksBook.
 
@@ -432,7 +432,7 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ (WIP)
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous StonksBook home folder.
@@ -462,6 +462,7 @@ Action | Format, Examples
 **Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
 **Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
+**Reminder Edit** | ` reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Follow up call d/2020-11-28 13:00`
 **Reminder List** | `reminder list`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
 **Help** | `help`
