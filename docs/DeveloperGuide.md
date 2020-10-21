@@ -351,6 +351,49 @@ We enforce a composition relationship between `Reminder` and its attribute as we
  either of its attributes no longer exist. With that, whenever a `Person` is deleted, all associated `Reminder`s are
   deleted as well. Similarly, we also enforce that all `Reminder`s must be associated with a non-empty `Message`.
 
+#### Design consideration:              
+                
+##### Aspect: Whether it should be necessary to enforce a `message` field in a `Reminder` object
+* **Alternative 1 (current choice):**: Create a `Message` class which enforces a non-empty message association to a
+ `Reminder` object.
+  * Pros:
+    * Easier implementation of reminder commands since every field is necessary.
+    * Better data cleanliness.
+  * Cons:
+    * Have to implement a separate class as well as implement validation of inputs.
+                                    
+* **Alternative 2:** Set the `Reminder` object to be associated to a `String` which acts as the message of a reminder.
+  * Pros:
+    * No need to implement validation of inputs for this `message` field.
+  * Cons:
+    * Will need to implement some kind of placeholder text for `Reminder`s without a message when displaying
+     reminders in the user interface.
+    * Will have to be more careful in implementation of reminder commands to allow for an optional field.
+
+A similar consideration was made when implementing [`Meeting`s](#aspect-whether-it-should-be-necessary-to-enforce-a-message-field-in-a-meeting-object).
+This further strengthened our choice to go for Alternative 1 given that the cost of having to validate the inputs
+ would be spread over multiple features.
+
+##### Aspect: How to serialise the scheduled date of a `Reminder`
+* **Alternative 1 (current choice):** Deserialize the date according to ISO-8601 format.
+   * Pros: 
+     * Unambiguous and well-defined method of representing dates and times
+     * Easier integration with other date and time libraries should such an integration be necessary.
+   * Cons: 
+     * Should the user decide to open the data file, the ISO-8601 format may not be very familiar or readable. This
+      increases the likelihood of corruption of data.
+
+* **Alternative 2:** Serialize them in a format that is human readable. e.g. storing dates in dd-MM-yyyy format and
+ durations as an integer representing number of minutes
+   * Pros: 
+     * Should the user decide to open the data file, he can easily understand and make relevant modifications without
+      corrupting the data format.
+   * Cons: 
+     * Parsing and deserializing the data may pose some difficulties. 
+
+A similar consideration was made when implementing [`Meeting`s](aspect-how-to-serialise-the-start-date-and-duration-of-a-meeting).
+Alternative 1 was chosen so as to have a consistent and standardised way of handling date and time handled within our code base.
+ 
 ### Sale Feature [Kwek Min Yih]
 
 The Sales feature allows users to add and manage Sales made to contacts in StonksBook. Sales are ordered from most to least recently made.
