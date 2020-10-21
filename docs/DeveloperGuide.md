@@ -311,6 +311,24 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+#### Execution of commands within the `Logic` component
+
+After the user input has been parsed into a `Command`, it is executed with `model` passed in as a parameter.
+
+First, relevant methods in `model` are called to retrieve related objects or check for the existence of the reminder.
+For the case of `DeleteCommand`, `getSortedReminder()` is called to retrieve the list of all reminders
+ that are currently displayed in the user interface. 
+ 
+Next, relevant model methods are called to edit the lists of `Reminder`objects. For `DeleteCommand`, `deleteReminder` 
+is used to delete the reminder corresponding to the specified index. 
+
+Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+The sequence diagram below illustrates how the `DeleteCommand` that is created from parsing `reminder delete 1` is
+ executed.
+ 
+![ReminderExecuteDeleteSequenceDiagram](images/ReminderExecuteDeleteSequenceDiagram.png)
+
 ### Sale Feature [Kwek Min Yih]
 
 The Sales feature allows users to add and manage Sales made to contacts in StonksBook. Sales are ordered from most to least recently made.
