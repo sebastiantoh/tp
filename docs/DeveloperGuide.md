@@ -959,8 +959,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `meeting add c/-1 m/Lunch with Bob d/2020-10-30 12:00 du/60`, `meeting
     add c/1 m/ d/2020-10-30 12:00 du/60`, `meeting add c/1 m/Lunch with Bob d/30/10/2020 12pm du/60`, `meeting add c
-    /1 m/Lunch with Bob d/2020-10-30 12:00 du/30min`
-   )<br>
+    /1 m/Lunch with Bob d/2020-10-30 12:00 du/30min`<br>
       Expected: Similar to previous.
       
 ### Deleting a meeting
@@ -976,8 +975,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `meeting delete`, `meeting delete x`, `...` (where x is larger than the
-    list
-    size)<br>
+    list size)<br>
       Expected: Similar to previous.
       
 ### Adding a reminder
@@ -995,8 +993,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No meeting is reminder. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `reminder add c/-1 m/Follow up with Bob d/2020-10-30 12:00`, `reminder
-    add c/1 m/ d/2020-10-30 12:00`, `reminder add c/1 m/Follow up with Bob d/30/10/2020 12pm`
-   )<br>
+    add c/1 m/ d/2020-10-30 12:00`, `reminder add c/1 m/Follow up with Bob d/30/10/2020 12pm`<br>
       Expected: Similar to previous.
       
 ### Deleting a reminder
@@ -1012,6 +1009,5 @@ testers are expected to do more *exploratory* testing.
       Expected: No reminder is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `reminder delete`, `reminder delete x`, `...` (where x is larger than the
-    list
-    size)<br>
+    list size)<br>
       Expected: Similar to previous.
