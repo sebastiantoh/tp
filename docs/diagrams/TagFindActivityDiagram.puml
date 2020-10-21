@@ -1,0 +1,30 @@
+@startuml
+start
+:User keys in command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:Program parses input;
+
+if () then ([command is in valid format])
+    if () then ([arguments are valid])
+        :Search for contacts or sales based on this tag;
+        if () then ([is contact tag])
+            :Show all contacts associated with this contact tag;
+        else ([else])
+            if () then ([user specified additional contact flag])
+                :Show all contacts who purchased items under this sales tag;
+            else ([else])
+                :Show all sales items associated with this sales tag;
+            endif
+        endif
+    else ([else])
+        :Show error message with correct required values;
+    endif
+else ([else])
+    : Show error message with correct command format;
+endif
+
+stop
+@enduml

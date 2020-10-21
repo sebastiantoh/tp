@@ -1,0 +1,127 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":EditressBookParser" as EditressBookParser LOGIC_COLOR
+participant ":TagCommandsParser" as TagCommandsParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "a:EditCommand" as EditCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tag edit <args>")
+note left: Full command is truncated for brevity
+activate LogicManager
+
+LogicManager -> EditressBookParser : parseCommand("tag edit <args>")
+activate EditressBookParser
+
+create TagCommandsParser
+EditressBookParser -> TagCommandsParser
+activate TagCommandsParser
+
+TagCommandsParser -> EditressBookParser
+deactivate TagCommandsParser
+
+EditressBookParser -> TagCommandsParser : parse("tag edit", <args>)
+activate TagCommandsParser
+
+create EditCommandParser
+TagCommandsParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser -> TagCommandsParser
+deactivate EditCommandParser
+
+TagCommandsParser -> EditCommandParser : parse(<args>)
+activate EditCommandParser
+
+EditCommandParser --> ParserUtil : parseIndex(str)
+activate ParserUtil
+
+ParserUtil --> EditCommandParser
+deactivate ParserUtil
+
+EditCommandParser --> ParserUtil : parseTag(str)
+activate ParserUtil
+
+ParserUtil --> EditCommandParser
+deactivate ParserUtil
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : a
+deactivate EditCommand
+
+EditCommandParser --> TagCommandsParser : a
+deactivate EditCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> TagCommandsParser
+destroy EditCommandParser
+
+TagCommandsParser --> EditressBookParser : a
+deactivate TagCommandsParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagCommandsParser -[hidden]-> EditressBookParser
+destroy TagCommandsParser
+
+EditressBookParser --> LogicManager : a
+deactivate EditressBookParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+alt isContact
+
+    EditCommand -> Model : hasContactTag(tag)
+    activate Model
+
+    Model --> EditCommand
+    deactivate Model
+
+    EditCommand -> Model : editContactTag(tag)
+    activate Model
+
+    Model --> EditCommand
+    deactivate Model
+
+else
+
+    EditCommand -> Model : hasSaleTag(tag)
+    activate Model
+
+    Model --> EditCommand
+    deactivate Model
+
+    EditCommand -> Model : editSaleTag(tag)
+    activate Model
+
+    Model --> EditCommand
+    deactivate Model
+
+end
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
