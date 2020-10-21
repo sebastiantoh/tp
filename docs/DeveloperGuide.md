@@ -252,7 +252,7 @@ Alternative 1 is chosen as it is the most user-friendly option. It also makes ma
 Because only future meetings are displayed by default, the slight performance dip associated with alternative 1 may
  not actually be an issue as we do not foresee list of future meetings to be very large. 
  
-#### Aspect: How to serialise the start date and duration of a `Meeting`
+##### Aspect: How to serialise the start date and duration of a `Meeting`
 * **Alternative 1 (current choice):** Deserialize them according to ISO-8601 format.
    * Pros: 
      * Unambiguous and well-defined method of representing dates and times
@@ -446,6 +446,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 #### Use case: Add a tag
+{:.no_toc}
 
 **MSS**
 
@@ -460,7 +461,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: View all tags**
+#### Use case: View all tags
+{:.no_toc}
 
 **MSS**
 
@@ -475,7 +477,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Update a tag**
+#### Use case: Update a tag
+{:.no_toc}
 
 **MSS**
 
@@ -500,7 +503,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Delete a tag**
+#### Use case: Delete a tag
+{:.no_toc}
 
 **MSS**
 
@@ -525,7 +529,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Retrieve entries by tag**
+#### Use case: Retrieve entries by tag
+{:.no_toc}
 
 **MSS**
 
@@ -548,7 +553,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Clear past interactions**
+#### Use case: Clear past interactions
+{:.no_toc}
 
 **MSS**
 1.  User enters the clear command.
@@ -556,7 +562,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Clear all data**
+#### Use case: Clear all data
+{:.no_toc}
 
 **MSS**
 1.  User enters the purge command.
@@ -570,7 +577,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Find a contact**
+#### Use case: Find a contact
+{:.no_toc}
 
 **MSS**
 
@@ -591,7 +599,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Add a meeting**
+#### Use case: Add a meeting
+{:.no_toc}
 
 **MSS**
 
@@ -632,7 +641,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: View all meetings**
+#### Use case: View all meetings
+{:.no_toc}
 
 **MSS**
 
@@ -653,7 +663,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Delete a meeting**
+#### Use case: Delete a meeting
+{:.no_toc}
 
 **MSS**
 
@@ -676,7 +687,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a reminder**
+#### Use case: Add a reminder
+{:.no_toc}
 
 **MSS**
 
@@ -711,7 +723,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: View all reminders**
+#### Use case: View all reminders
+{:.no_toc}
 
 **MSS**
 
@@ -726,7 +739,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Delete a reminder**
+#### Use case: Delete a reminder
+{:.no_toc}
 
 **MSS**
 
@@ -749,7 +763,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Get help on available commands**
+#### Use case: Get help on available commands
+{:.no_toc}
 
 **MSS**
 
@@ -758,7 +773,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Get help for a command**
+#### Use case: Get help for a command
+{:.no_toc}
 
 **MSS**
 
@@ -767,7 +783,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Add a sale to a contact**
+#### Use case: Add a sale to a contact
+{:.no_toc}
 
 **MSS**
 
@@ -802,7 +819,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: List all sales belonging to a contact**
+#### Use case: List all sales belonging to a contact
+{:.no_toc}
 
 **MSS**
 
@@ -825,7 +843,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a sale belonging to a contact**
+#### Use case: Delete a sale belonging to a contact
+{:.no_toc}
 
 **MSS**
 
