@@ -26,8 +26,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.contact.EditCommand;
+import seedu.address.logic.commands.contact.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.sale.EditCommand.EditSaleDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
@@ -37,8 +38,10 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.person.EditPersonDescriptorBuilder;
+import seedu.address.testutil.sale.EditSaleDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -111,8 +114,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditPersonDescriptor DESC_AMY;
+    public static final EditPersonDescriptor DESC_BOB;
 
     /* Sale commands */
     public static final String VALID_ITEM_NAME_APPLE = "Apple";
@@ -123,7 +126,7 @@ public class CommandTestUtil {
     public static final String VALID_QUANTITY_BALL = "1";
     public static final String VALID_UNIT_PRICE_APPLE = "3.50";
     public static final String VALID_UNIT_PRICE_BALL = "0.8";
-    public static final String VALID_EMPTY_SALE_TAG = "";
+    public static final String VALID_SALE_TAG_EMPTY = "";
     public static final String VALID_SALE_TAG_FRUITS = "fruits";
 
     public static final String INVALID_ITEM_NAME = " " + PREFIX_SALE_NAME + "@pple";
@@ -139,6 +142,9 @@ public class CommandTestUtil {
 
     public static final String VALID_SALE_TAG = " " + PREFIX_TAG + VALID_SALE_TAG_FRUITS;
 
+    public static final EditSaleDescriptor DESC_APPLE;
+    public static final EditSaleDescriptor DESC_BALL;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -146,6 +152,15 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    static {
+        DESC_APPLE = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_APPLE).withBuyer(1)
+                .withDatetimeOfPurchase(VALID_DATE_APPLE).withUnitPrice(VALID_UNIT_PRICE_APPLE)
+                .withQuantity(VALID_QUANTITY_APPLE).withTags(VALID_SALE_TAG_FRUITS).build();
+        DESC_BALL = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_BALL).withBuyer(2)
+                .withDatetimeOfPurchase(VALID_DATE_BALL).withUnitPrice(VALID_UNIT_PRICE_BALL)
+                .withQuantity(VALID_QUANTITY_BALL).withTags().build();
     }
 
     /**
@@ -203,6 +218,19 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the sale at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showSaleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredSaleList().size());
+
+        Sale sale = model.getFilteredSaleList().get(targetIndex.getZeroBased());
+        model.updateFilteredSaleList(x -> x.equals(sale));
+
+        assertEquals(1, model.getFilteredSaleList().size());
     }
 
     /**
