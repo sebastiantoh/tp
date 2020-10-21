@@ -12,7 +12,7 @@ import seedu.address.model.sale.Sale;
 public abstract class ListCommand extends Command {
     public static final String COMMAND_WORD = "sale list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of all sales to a specified contact.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of sales.\n"
             + "Parameters: "
             + "[" + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer)]"
             + "[" + PREFIX_MONTH + "MONTH " + PREFIX_YEAR + "YEAR]\n"
