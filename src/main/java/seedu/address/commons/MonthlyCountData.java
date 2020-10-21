@@ -2,6 +2,8 @@ package seedu.address.commons;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 /**
  * Store a data object for monthly count data statistic.
  */
@@ -25,6 +27,9 @@ public class MonthlyCountData {
      * Returns the String representation of MonthAndYear.
      */
     public String getMonthAndYearAsStr() {
+        assert !Objects.isNull(monthAndYear.getMonth())
+                && !Objects.isNull(monthAndYear.getYear());
+
         return String.format("%s %s", monthAndYear.getMonth(), monthAndYear.getYear());
     }
 
@@ -32,6 +37,8 @@ public class MonthlyCountData {
      * Returns the number of counts related to MonthAndYear object.
      */
     public int getCount() {
+        assert count >= 0;
+
         return count;
     }
 

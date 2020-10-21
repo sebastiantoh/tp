@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
@@ -70,6 +72,14 @@ public class Sale implements Comparable<Sale> {
 
     public BigDecimal getTotalCost() {
         return this.totalCost;
+    }
+
+    public Month getMonth() {
+        return datetimeOfPurchase.getMonth();
+    }
+
+    public Year getYear() {
+        return Year.of(datetimeOfPurchase.getYear());
     }
 
     /**

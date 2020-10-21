@@ -12,16 +12,21 @@ import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.person.TypicalPersons.IDA;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 import static seedu.address.testutil.reminder.TypicalReminders.EMAIL_BENSON;
+import static seedu.address.testutil.sale.TypicalSales.GUITAR;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Month;
 import java.time.Year;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.MonthAndYear;
+import seedu.address.commons.MonthlyCountData;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
@@ -256,6 +261,26 @@ public class ModelManagerTest {
 
     @Test
     public void getMonthMeetingsCount_valid_success() {
-        assertTrue(modelManager.getMonthMeetingsCount(Month.APRIL, Year.now()) >= 0);
+        modelManager.addMeeting(MEET_ALICE);
+        Month month = MEET_ALICE.getStartDate().getMonth();
+        Year year = Year.of(MEET_ALICE.getStartDate().getYear());
+        assertEquals(1, modelManager.getMonthMeetingsCount(month, year));
+    }
+
+    @Test
+    public void getMultipleMonthMeetingsCount_valid_success() {
+        modelManager.addMeeting(MEET_ALICE);
+        Month month = MEET_ALICE.getStartDate().getMonth();
+        Year year = Year.of(MEET_ALICE.getStartDate().getYear());
+        List<MonthlyCountData> expectedResult = Collections.singletonList(
+                new MonthlyCountData(new MonthAndYear(month, year), 1));
+        assertEquals(expectedResult, modelManager.getMultipleMonthMeetingsCount(month, year, 1));
+    }
+
+    @Test
+    public void getMonthlySaleList_valid_success() {
+        modelManager.addSale(GUITAR);
+        assertEquals(Collections.singletonList(GUITAR),
+                modelManager.getMonthlySaleList(GUITAR.getMonth(), GUITAR.getYear()));
     }
 }

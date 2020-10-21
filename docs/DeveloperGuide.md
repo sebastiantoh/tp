@@ -176,6 +176,7 @@ These are the steps that will be taken when parsing a meeting-related user comma
     - `meeting edit` command: `EditCommandParser`
     - `meeting list` command: `ListCommandParser`
 3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+4. Within `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
 
 Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(meeting add <args>)` API call. 
 - Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user. 
@@ -183,17 +184,37 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `meeting add <args>` Command](images/MeetingAddSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 #### Execution of commands within the `Logic` component
 
-After the respective parsers have parsed the user inputs, a `Command` object will be returned and executed by `LogicManager`.
+After the user input has been parsed into a `Command`, it is executed with `model` passed in as a parameter.
 
-In order to ensure data cleanliness and that the inputs by the users are valid, the execution of these commands 
-can have various outcomes.
+First, relevant methods in `model` are called to retrieve related objects or check for the existence of the sale.
+In this case, `getSortedPersonList()` is called to retrieve the `id` of the contact that is to be associated with the
+meeting and `hasMeeting(newMeeting)` is called to ensure that `newMeeting` to be added does not already exist.
 
-For example, the activity diagram below illustrates the different outcomes that can occur from `meeting add <args>` Command.
+Second, objects to be added or edited are created. For `AddCommand`, the new `Meeting` object to be added is created.
+
+Next, relevant `model` methods are called to edit the lists of `Meeting` objects. For `AddCommand`, `addMeeting` is
+ called to add the newly created meeting to the `model`. 
+
+Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+The sequence diagram below illustrates how the `AddCommand` that is created from parsing `meeting add <args>` is
+ executed.
+ 
+ ![MeetingExecuteAddSequenceDiagram](images/MeetingExecuteAddSequenceDiagram.png)
+  
+#### Error handling within the `Logic` component
+
+The below activity diagram shows the overall process of the execution of `meeting add <args>`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+- Incorrect command format is used (e.g. missing/incorrect prefixes)
+- Invalid index/values provided (e.g. non-positive and non-integer values are provided as index, non-alphanumeric
+ character included in message, unrecognised date formats, etc.)
  
 ![The different outcomes of the program that can occur from the `meeting add <args>` Command](images/MeetingAddActivityDiagram.png)
 
@@ -253,7 +274,7 @@ Alternative 1 is chosen as it is the most user-friendly option. It also makes ma
 Because only future meetings are displayed by default, the slight performance dip associated with alternative 1 may
  not actually be an issue as we do not foresee the list of future meetings to be very large. 
  
-##### Aspect: How to serialise the start date and duration of a `Meeting`
+##### Aspect: How to serialize the start date and duration of a `Meeting`
 * **Alternative 1 (current choice):** Deserialize them according to ISO-8601 format.
    * Pros: 
      * Unambiguous and well-defined method of representing dates and times
@@ -307,7 +328,7 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `reminder delete 1` Command](images/ReminderDeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandsParser` and `DeleteCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandsParser` and `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
  reaches the end of diagram.
 </div>
 
@@ -331,7 +352,7 @@ The sequence diagram below illustrates how the `DeleteCommand` that is created f
 
 #### Error Handling within the `Logic` component
 
-The below activity diagram shows the overall process of execution of `reminder delete 1`.
+The below activity diagram shows the overall process of the execution of `reminder delete 1`.
 
 In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
 * Incorrect command format is used (e.g. missing/incorrect prefixes)
@@ -374,7 +395,7 @@ A similar consideration was made when implementing [`Meeting`s](#aspect-whether-
 This further strengthened our choice to go for Alternative 1 given that the cost of having to validate the inputs
  would be spread over multiple features.
 
-##### Aspect: How to serialise the scheduled date of a `Reminder`
+##### Aspect: How to serialize the scheduled date of a `Reminder`
 * **Alternative 1 (current choice):** Deserialize the date according to ISO-8601 format.
    * Pros: 
      * Unambiguous and well-defined method of representing dates and times
@@ -391,7 +412,8 @@ This further strengthened our choice to go for Alternative 1 given that the cost
    * Cons: 
      * Parsing and deserializing the data may pose some difficulties. 
 
-A similar consideration was made when implementing [`Meeting`s](#aspect-how-to-serialise-the-start-date-and-duration-of-a-meeting).
+A similar consideration was made when implementing [`Meeting`s](#aspect-how-to-serialize-the-start-date-and-duration
+-of-a-meeting).
 Alternative 1 was chosen so as to have a consistent and standardised way of handling date and time handled within our code base.
  
 ### Sale Feature [Kwek Min Yih]

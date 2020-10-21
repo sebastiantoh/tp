@@ -15,8 +15,12 @@ Package Meeting <<Rectangle>>{
     UniqueMeetingList o--> "*" Meeting
 }
 
-Meeting *--> "1" LocalDateTime
+Package Person {
+    Class Person
+}
+
 Meeting *--> "1" Message
+Meeting *--> "1" LocalDateTime
 Meeting *--> "1" Duration
 Meeting *--> "1" Person
 
