@@ -27,8 +27,6 @@ import seedu.address.model.tag.Tag;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
-    private int latestContactId = 0;
-
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
@@ -48,6 +46,9 @@ public class ModelManager implements Model {
     private final FilteredList<Sale> filteredSales;
 
     private final SortedList<Sale> sortedSales;
+
+    private int latestContactId = 0;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
