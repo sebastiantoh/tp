@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":EditressBookParser" as EditressBookParser LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":TagCommandsParser" as TagCommandsParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
 participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
@@ -19,17 +19,17 @@ end box
 note left: Full command is truncated for brevity
 activate LogicManager
 
-LogicManager -> EditressBookParser : parseCommand("tag edit <args>")
-activate EditressBookParser
+LogicManager -> AddressBookParser : parseCommand("tag edit <args>")
+activate AddressBookParser
 
 create TagCommandsParser
-EditressBookParser -> TagCommandsParser
+AddressBookParser -> TagCommandsParser
 activate TagCommandsParser
 
-TagCommandsParser -> EditressBookParser
+TagCommandsParser -> AddressBookParser
 deactivate TagCommandsParser
 
-EditressBookParser -> TagCommandsParser : parse("tag edit", <args>)
+AddressBookParser -> TagCommandsParser : parse("tag edit", <args>)
 activate TagCommandsParser
 
 create EditCommandParser
@@ -68,15 +68,15 @@ deactivate EditCommandParser
 EditCommandParser -[hidden]-> TagCommandsParser
 destroy EditCommandParser
 
-TagCommandsParser --> EditressBookParser : a
+TagCommandsParser --> AddressBookParser : a
 deactivate TagCommandsParser
 
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-TagCommandsParser -[hidden]-> EditressBookParser
+TagCommandsParser -[hidden]-> AddressBookParser
 destroy TagCommandsParser
 
-EditressBookParser --> LogicManager : a
-deactivate EditressBookParser
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
 
 LogicManager -> EditCommand : execute()
 activate EditCommand

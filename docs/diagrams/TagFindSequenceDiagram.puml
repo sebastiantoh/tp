@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":FindressBookParser" as FindressBookParser LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":TagCommandsParser" as TagCommandsParser LOGIC_COLOR
 participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
 participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
@@ -19,17 +19,17 @@ end box
 note left: Full command is truncated for brevity
 activate LogicManager
 
-LogicManager -> FindressBookParser : parseCommand("tag find <args>")
-activate FindressBookParser
+LogicManager -> AddressBookParser : parseCommand("tag find <args>")
+activate AddressBookParser
 
 create TagCommandsParser
-FindressBookParser -> TagCommandsParser
+AddressBookParser -> TagCommandsParser
 activate TagCommandsParser
 
-TagCommandsParser -> FindressBookParser
+TagCommandsParser -> AddressBookParser
 deactivate TagCommandsParser
 
-FindressBookParser -> TagCommandsParser : parse("tag find", <args>)
+AddressBookParser -> TagCommandsParser : parse("tag find", <args>)
 activate TagCommandsParser
 
 create FindCommandParser
@@ -62,15 +62,15 @@ deactivate FindCommandParser
 FindCommandParser -[hidden]-> TagCommandsParser
 destroy FindCommandParser
 
-TagCommandsParser --> FindressBookParser : a
+TagCommandsParser --> AddressBookParser : a
 deactivate TagCommandsParser
 
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-TagCommandsParser -[hidden]-> FindressBookParser
+TagCommandsParser -[hidden]-> AddressBookParser
 destroy TagCommandsParser
 
-FindressBookParser --> LogicManager : a
-deactivate FindressBookParser
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
 
 LogicManager -> FindCommand : execute()
 activate FindCommand
