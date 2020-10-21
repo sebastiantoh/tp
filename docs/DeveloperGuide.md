@@ -391,7 +391,7 @@ This further strengthened our choice to go for Alternative 1 given that the cost
    * Cons: 
      * Parsing and deserializing the data may pose some difficulties. 
 
-A similar consideration was made when implementing [`Meeting`s](aspect-how-to-serialise-the-start-date-and-duration-of-a-meeting).
+A similar consideration was made when implementing [`Meeting`s](#aspect-how-to-serialise-the-start-date-and-duration-of-a-meeting).
 Alternative 1 was chosen so as to have a consistent and standardised way of handling date and time handled within our code base.
  
 ### Sale Feature [Kwek Min Yih]
