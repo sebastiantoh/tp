@@ -271,6 +271,60 @@ This feature consists of the following commands:
 * `sale edit` – Edits a sale to the sale list.
 * `sale list` – Display the list of all sales in the user interface.
 
+#### Parsing of commands within the `Logic` component
+
+The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
+
+In order to handle the many commands in our application, we introduced an intermediate layer between `AddressBookParser` and the relevant command parsers, e.g. `AddCommandParser`. 
+The intermediate layer will first determine which model type the command corresponds to, before dispatching it to the corresponding command parser.
+For all sale-related commands, we have the `SaleCommandsParser` which serves as the intermediate class.
+
+These are the steps that will be taken when parsing a sale-related user command:
+1. An `AddressBookParser` will check if the command is sale-related. The `AddressBookParser` will then create a `SaleCommandsParser`.
+3. The `SaleCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
+    - `sale add` command: `AddCommandParser`
+    - `sale delete` command: `DeleteCommandParser`
+    - `sale edit` command: `EditCommandParser`
+    - `sale list` command: `ListCommandParser`
+4. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+5. Within the `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
+
+Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(sale add <args>)` API call. 
+- Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user. 
+- For example, if the full command was `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`, then `<args>` is equivalent to `c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`.
+
+![SaleAddSequenceDiagram](images/SaleAddSequenceDiagram.png)
+
+
+#### Execution of commands within the `Logic` component
+
+After command has been parsed into an `AddCommand`, it is executed with `model` passed in as a parameter.
+
+First, relevant methods in `model` are called to retrieve related objects or check for the existence of the sale.
+In this case, `getSortedPersonList()` is called to retrieve the `id` of the buyer and `hasSale(newSale)` is called to ensure that the `sale` to be added does not already exist.
+
+Second, objects to be added or edited are created. 
+For `AddCommand`, the new `Sale` object to be added is created, and a new `editedPerson` object is created containing an updated `totalSalesAmount` variable.
+
+Next, relevant `model` methods are called to edit the lists of `Sale` and `Person` objects, 
+with `setPerson()` and `addSale()` being used to replace an existing `Person` object and add a new `Sale` object respectively.
+
+Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+![SaleExecuteAddSequenceDiagram](images/SaleExecuteAddSequenceDiagram.png)
+
+
+#### Error Handling within the `Logic` component
+
+The below activity diagram shows the overall process of execution of `sale add <args>`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+* Incorrect command format is used (e.g. missing/incorrect prefixes)
+* Invalid index/values provided (e.g. alphabetical characters provided for numerical fields such as `Quantity`)
+* Sale object provided already exists
+
+![AddSaleActivityDiagram](images/AddSaleActivityDiagram.png)
+
 #### Modelling `Sale`s
 
 `Sale` is modelled according to the class diagram below.

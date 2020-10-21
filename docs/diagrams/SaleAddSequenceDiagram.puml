@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SaleCommandsParser" as SaleCommandsParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("sale add <args>")
+note left: Full command is truncated for brevity
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("sale add <args>")
+activate AddressBookParser
+
+create SaleCommandsParser
+AddressBookParser -> SaleCommandsParser
+activate SaleCommandsParser
+
+SaleCommandsParser -> AddressBookParser
+deactivate SaleCommandsParser
+
+AddressBookParser -> SaleCommandsParser : parse("sale add", <args>)
+activate SaleCommandsParser
+
+create AddCommandParser
+SaleCommandsParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser -> SaleCommandsParser
+deactivate AddCommandParser
+
+SaleCommandsParser -> AddCommandParser : parse(<args>)
+activate AddCommandParser
+
+
+AddCommandParser --> ParserUtil : parseItemName(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser --> ParserUtil : parseDateTime(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser --> ParserUtil : parseQuantity(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser --> ParserUtil : parseUnitPrice(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> SaleCommandsParser : a
+deactivate AddCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> SaleCommandsParser
+destroy AddCommandParser
+
+SaleCommandsParser --> AddressBookParser : a
+deactivate SaleCommandsParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SaleCommandsParser -[hidden]-> AddressBookParser
+destroy SaleCommandsParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+@enduml
