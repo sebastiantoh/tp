@@ -284,4 +284,8 @@ public class ModelStub implements Model {
     public int getLatestContactId() {
         return 0;
     }
+
+    public List<Sale> getMonthlySaleList(Month month, Year year) {
+        throw new AssertionError("This method should not be called.");
+    }
 }

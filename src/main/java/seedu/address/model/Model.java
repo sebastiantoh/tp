@@ -328,4 +328,9 @@ public interface Model {
     void initialiseLatestContactId();
 
     int getLatestContactId();
+
+    /**
+     * Gets the monthly sale list for {@code month} and {@code year}.
+     */
+    List<Sale> getMonthlySaleList(Month month, Year year);
 }
