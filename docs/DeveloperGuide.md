@@ -899,15 +899,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `contact delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `contact delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the
+    list
+    size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
@@ -919,3 +921,76 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Adding a meeting
+
+1. Adding a meeting while all persons are being shown
+
+   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
+
+   1. Test case: `meeting add c/1 m/Lunch with Bob d/2020-10-30 12:00 du/60`<br>
+      Expected: A new meeting is created that is associated with the first contact in the currently displayed list of
+      persons, has message "Lunch with Bob", and is scheduled from 30 October 2020, 12pm to 1pm. The meeting list
+      should remain sorted in ascending order based on the scheduled date.
+
+   1. Test case: `meeting add`<br>
+      Expected: No meeting is added. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `meeting add c/-1 m/Lunch with Bob d/2020-10-30 12:00 du/60`, `meeting
+    add c/1 m/ d/2020-10-30 12:00 du/60`, `meeting add c/1 m/Lunch with Bob d/30/10/2020 12pm du/60`, `meeting add c
+    /1 m/Lunch with Bob d/2020-10-30 12:00 du/30min`
+   )<br>
+      Expected: Similar to previous.
+      
+### Deleting a meeting
+
+1. Deleting a meeting while all meetings are being shown
+
+   1. Prerequisites: List all meetings using the `meeting list` command. Multiple meetings in the list.
+
+   1. Test case: `meeting delete 1`<br>
+      Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message.
+
+   1. Test case: `meeting delete 0`<br>
+      Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `meeting delete`, `meeting delete x`, `...` (where x is larger than the
+    list
+    size)<br>
+      Expected: Similar to previous.
+      
+### Adding a reminder
+
+1. Adding a reminder while all persons are being shown
+
+   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
+
+   1. Test case: `reminder add c/1 m/Follow up with Bob d/2020-10-30 12:00`<br>
+      Expected: A new reminder is created that is associated with the first contact in the currently displayed list of
+      persons, has message "Follow up with Bob", and is scheduled on 30 October 2020, 12pm. The reminder list
+      should remain sorted in ascending order based on the scheduled date.
+
+   1. Test case: `reminder add`<br>
+      Expected: No meeting is reminder. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `reminder add c/-1 m/Follow up with Bob d/2020-10-30 12:00`, `reminder
+    add c/1 m/ d/2020-10-30 12:00`, `reminder add c/1 m/Follow up with Bob d/30/10/2020 12pm`
+   )<br>
+      Expected: Similar to previous.
+      
+### Deleting a reminder
+
+1. Deleting a reminder while all reminder are being shown
+
+   1. Prerequisites: List all reminder using the `reminder list` command. Multiple reminder in the list.
+
+   1. Test case: `reminder delete 1`<br>
+      Expected: First reminder is deleted from the list. Details of the deleted reminder shown in the status message.
+
+   1. Test case: `reminder delete 0`<br>
+      Expected: No reminder is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `reminder delete`, `reminder delete x`, `...` (where x is larger than the
+    list
+    size)<br>
+      Expected: Similar to previous.
