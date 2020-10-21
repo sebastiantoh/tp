@@ -325,6 +325,10 @@ public interface Model {
      */
     List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
 
+    void initialiseLatestContactId();
+
+    int getLatestContactId();
+
     /**
      * Gets the monthly sale list for {@code month} and {@code year}.
      */
