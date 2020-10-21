@@ -45,7 +45,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of four components:
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
@@ -225,6 +225,9 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
     * Will need to implement some kind of placeholder text for `Meeting`s without a message when displaying meetings in the user interface.
     * Will have to be more careful in implementation of meeting commands to allow for an optional field.
 
+Alternative 1 is chosen as we found that the importance of enforcing data cleanliness far outweighs the associated
+ cost that is required to implement this enforcement.
+
 ##### Aspect: What fields should be stored to represent a `Meeting`
 
 * **Alternative 1 (current choice):** Store just the start date of a meeting, along with its duration.
@@ -246,10 +249,15 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
   * Cons: 
     * There is the possibility that the three fields may no longer be in sync. Extra emphasis must be taken to ensure that these fields remain synchronised whenever either of these fields changes. 
 
-#### Aspect: How to serialise the start date and duration of a `Meeting`
+Alternative 1 is chosen as it is the most user-friendly option. It also makes maintaining the data easy. 
+Because only future meetings are displayed by default, the slight performance dip associated with alternative 1 may
+ not actually be an issue as we do not foresee the list of future meetings to be very large. 
+ 
+##### Aspect: How to serialise the start date and duration of a `Meeting`
 * **Alternative 1 (current choice):** Deserialize them according to ISO-8601 format.
    * Pros: 
      * Unambiguous and well-defined method of representing dates and times
+     * Easier integration with other date and time libraries should such an integration be necessary.
    * Cons: 
      * Should the user decide to open the data file, the ISO-8601 format may not be very familiar or readable. This
       increases the likelihood of corruption of data.
@@ -261,6 +269,9 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
       corrupting the data format.
    * Cons: 
      * Parsing and deserializing the data may pose some difficulties. 
+
+Alternative 1 is chosen as it is a well-established international standard which would facilitate the integration of
+ other libraries if necessary.
 
 ### Sale Feature [Kwek Min Yih]
 
@@ -356,7 +367,6 @@ The attributes are abstracted out into different classes, instead of being store
     * Accurate currency calculations are possible.
   * Cons:
     * Cumbersome currency calculations due to converting every hundred cents to dollars.
-
 
 ### \[Proposed\] Undo/redo feature
 
@@ -502,13 +512,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | salesman                          | delete sales belonging to contacts                            | ensure updated and correct sales information                                                  |
 | `* * *`  | efficient salesman                | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
-
+| `* *`    | visual user                       | quickly identify overdue reminders                            | work on it without further delay                                                              |
+| `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                          |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `StonksBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### Use case: Delete a person
+{:.no_toc}
 
 **MSS**
 
@@ -531,7 +543,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a tag**
+#### Use case: Add a tag
+{:.no_toc}
 
 **MSS**
 
@@ -546,7 +559,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: View all tags**
+#### Use case: View all tags
+{:.no_toc}
 
 **MSS**
 
@@ -561,7 +575,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Update a tag**
+#### Use case: Update a tag
+{:.no_toc}
 
 **MSS**
 
@@ -586,7 +601,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Delete a tag**
+#### Use case: Delete a tag
+{:.no_toc}
 
 **MSS**
 
@@ -611,7 +627,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Retrieve entries by tag**
+#### Use case: Retrieve entries by tag
+{:.no_toc}
 
 **MSS**
 
@@ -634,7 +651,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Clear past interactions**
+#### Use case: Clear past interactions
+{:.no_toc}
 
 **MSS**
 1.  User enters the clear command.
@@ -642,7 +660,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Clear all data**
+#### Use case: Clear all data
+{:.no_toc}
 
 **MSS**
 1.  User enters the purge command.
@@ -656,7 +675,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Find a contact**
+#### Use case: Find a contact
+{:.no_toc}
 
 **MSS**
 
@@ -677,7 +697,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Add a meeting**
+#### Use case: Add a meeting
+{:.no_toc}
 
 **MSS**
 
@@ -711,8 +732,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. StonksBook shows an error message.
 
       Use case resumes at step 2.
+      
+* 3d. The given meeting message is invalid.
 
-**Use case: View all meetings**
+    * 3b1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: View all meetings
+{:.no_toc}
 
 **MSS**
 
@@ -733,7 +761,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Delete a meeting**
+#### Use case: Delete a meeting
+{:.no_toc}
 
 **MSS**
 
@@ -756,7 +785,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a reminder**
+#### Use case: Add a reminder
+{:.no_toc}
 
 **MSS**
 
@@ -784,8 +814,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. StonksBook shows an error message.
 
       Use case resumes at step 2.
+      
+* 3c. The given reminder message is invalid.
 
-**Use case: View all reminders**
+    * 3b1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: View all reminders
+{:.no_toc}
 
 **MSS**
 
@@ -800,7 +837,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Delete a reminder**
+#### Use case: Delete a reminder
+{:.no_toc}
 
 **MSS**
 
@@ -823,7 +861,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Get help on available commands**
+#### Use case: Get help on available commands
+{:.no_toc}
 
 **MSS**
 
@@ -832,7 +871,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Get help for a command**
+#### Use case: Get help for a command
+{:.no_toc}
 
 **MSS**
 
@@ -841,7 +881,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Add a sale to a contact**
+#### Use case: Add a sale to a contact
+{:.no_toc}
 
 **MSS**
 
@@ -876,7 +917,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: List all sales**
+#### Use case: List all sales
+{:.no_toc}
 
 **MSS**
 
@@ -885,7 +927,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: List all sales belonging to a contact**
+
+#### Use case: List all sales belonging to a contact
+{:.no_toc}
 
 **MSS**
 
@@ -908,7 +952,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a sale**
+#### Use case: Delete a sale 
 
 **MSS**
 
@@ -979,15 +1023,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `contact delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `contact delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the
+    list
+    size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
@@ -999,3 +1045,72 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Adding a meeting
+
+1. Adding a meeting while all persons are being shown
+
+   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
+
+   1. Test case: `meeting add c/1 m/Lunch with Bob d/2020-10-30 12:00 du/60`<br>
+      Expected: A new meeting is created that is associated with the first contact in the currently displayed list of
+      persons, has message "Lunch with Bob", and is scheduled from 30 October 2020, 12pm to 1pm. The meeting list
+      should remain sorted in ascending order based on the scheduled date.
+
+   1. Test case: `meeting add`<br>
+      Expected: No meeting is added. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `meeting add c/-1 m/Lunch with Bob d/2020-10-30 12:00 du/60`, `meeting
+    add c/1 m/ d/2020-10-30 12:00 du/60`, `meeting add c/1 m/Lunch with Bob d/30/10/2020 12pm du/60`, `meeting add c
+    /1 m/Lunch with Bob d/2020-10-30 12:00 du/30min`<br>
+      Expected: Similar to previous.
+      
+### Deleting a meeting
+
+1. Deleting a meeting while all meetings are being shown
+
+   1. Prerequisites: List all meetings using the `meeting list` command. Multiple meetings in the list.
+
+   1. Test case: `meeting delete 1`<br>
+      Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message.
+
+   1. Test case: `meeting delete 0`<br>
+      Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `meeting delete`, `meeting delete x`, `...` (where x is larger than the
+    list size)<br>
+      Expected: Similar to previous.
+      
+### Adding a reminder
+
+1. Adding a reminder while all persons are being shown
+
+   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
+
+   1. Test case: `reminder add c/1 m/Follow up with Bob d/2020-10-30 12:00`<br>
+      Expected: A new reminder is created that is associated with the first contact in the currently displayed list of
+      persons, has message "Follow up with Bob", and is scheduled on 30 October 2020, 12pm. The reminder list
+      should remain sorted in ascending order based on the scheduled date.
+
+   1. Test case: `reminder add`<br>
+      Expected: No meeting is reminder. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `reminder add c/-1 m/Follow up with Bob d/2020-10-30 12:00`, `reminder
+    add c/1 m/ d/2020-10-30 12:00`, `reminder add c/1 m/Follow up with Bob d/30/10/2020 12pm`<br>
+      Expected: Similar to previous.
+      
+### Deleting a reminder
+
+1. Deleting a reminder while all reminder are being shown
+
+   1. Prerequisites: List all reminder using the `reminder list` command. Multiple reminder in the list.
+
+   1. Test case: `reminder delete 1`<br>
+      Expected: First reminder is deleted from the list. Details of the deleted reminder shown in the status message.
+
+   1. Test case: `reminder delete 0`<br>
+      Expected: No reminder is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `reminder delete`, `reminder delete x`, `...` (where x is larger than the
+    list size)<br>
+      Expected: Similar to previous.
