@@ -119,6 +119,7 @@ The `Model`,
     1. `ObservableList<Person>`
     2. `ObservableList<Meeting>`
     3. `ObservableList<Reminder>`
+    3. `ObservableList<Sale>`
 * does not depend on any of the other three components.
 
 
@@ -271,6 +272,101 @@ Because only future meetings are displayed by default, the slight performance di
 
 Alternative 1 is chosen as it is a well-established international standard which would facilitate the integration of
  other libraries if necessary.
+
+### Sale Feature [Kwek Min Yih]
+
+The Sales feature allows users to add and manage Sales made to contacts in StonksBook. Sales are ordered from most to least recently made.
+
+This feature consists of the following commands:
+* `sale add` – Adds a sale to the sale list.
+* `sale delete` – Deletes a sale to the sale list.
+* `sale edit` – Edits a sale to the sale list.
+* `sale list` – Display the list of all sales in the user interface.
+
+#### Parsing of commands within the `Logic` component
+
+The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
+
+In order to handle the many commands in our application, we introduced an intermediate layer between `AddressBookParser` and the relevant command parsers, e.g. `AddCommandParser`. 
+The intermediate layer will first determine which model type the command corresponds to, before dispatching it to the corresponding command parser.
+For all sale-related commands, we have the `SaleCommandsParser` which serves as the intermediate class.
+
+These are the steps that will be taken when parsing a sale-related user command:
+1. An `AddressBookParser` will check if the command is sale-related. The `AddressBookParser` will then create a `SaleCommandsParser`.
+3. The `SaleCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
+    - `sale add` command: `AddCommandParser`
+    - `sale delete` command: `DeleteCommandParser`
+    - `sale edit` command: `EditCommandParser`
+    - `sale list` command: `ListCommandParser`
+4. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+5. Within the `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
+
+Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(sale add <args>)` API call. 
+- Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user. 
+- For example, if the full command was `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`, then `<args>` is equivalent to `c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`.
+
+![SaleAddSequenceDiagram](images/SaleAddSequenceDiagram.png)
+
+
+#### Execution of commands within the `Logic` component
+
+After command has been parsed into an `AddCommand`, it is executed with `model` passed in as a parameter.
+
+First, relevant methods in `model` are called to retrieve related objects or check for the existence of the sale.
+In this case, `getSortedPersonList()` is called to retrieve the `id` of the buyer and `hasSale(newSale)` is called to ensure that the `sale` to be added does not already exist.
+
+Second, objects to be added or edited are created. 
+For `AddCommand`, the new `Sale` object to be added is created, and a new `editedPerson` object is created containing an updated `totalSalesAmount` variable.
+
+Next, relevant `model` methods are called to edit the lists of `Sale` and `Person` objects, 
+with `setPerson()` and `addSale()` being used to replace an existing `Person` object and add a new `Sale` object respectively.
+
+Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+![SaleExecuteAddSequenceDiagram](images/SaleExecuteAddSequenceDiagram.png)
+
+
+#### Error Handling within the `Logic` component
+
+The below activity diagram shows the overall process of execution of `sale add <args>`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+* Incorrect command format is used (e.g. missing/incorrect prefixes)
+* Invalid index/values provided (e.g. alphabetical characters provided for numerical fields such as `Quantity`)
+* Sale object provided already exists
+
+![AddSaleActivityDiagram](images/AddSaleActivityDiagram.png)
+
+#### Modelling `Sale`s
+
+`Sale` is modelled according to the class diagram below.
+
+![SaleClassDiagram](images/SaleClassDiagram.png)
+
+`Sale` objects are saved within a `UniqueSaleList` stored in `AddressBook`. 
+There is a composition relationship between `Sale` and its attributes, as we want the attributes (e.g. `ItemName`, `UnitPrice`) to exist dependently on the `Sale` object it belongs to.
+The attributes are abstracted out into different classes, instead of being stored as values within Sale, to allow for greater input validation and attribute specific functionality.
+
+#### Design Consideration:
+ 
+##### Aspect: How to implement currency related fields
+* **Alternative 1 (current choice):**: Use BigDecimal to store currency related fields.
+  * Pros:
+    * Accurate currency calculations are possible.
+  * Cons:
+    * Need to import the BigDecimal package.
+                                    
+* **Alternative 2:** Use Float variables to store currency variables.
+  * Pros:
+    * No need to import any packages.
+  * Cons:
+    * Will likely result in accurate currency calculations due to float rounding errors. 
+
+* **Alternative 3:** Store dollars and cents independently as integers
+  * Pros:
+    * Accurate currency calculations are possible.
+  * Cons:
+    * Cumbersome currency calculations due to converting every hundred cents to dollars.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -809,17 +905,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 4a. The given sale already exists
+* 3b. The given sale already exists
 
-    * 4a1. StonksBook shows an error message.
+    * 3b1. StonksBook shows an error message stating that the given sale already exists.
 
       Use case ends.
 
-* 5a. The given parameters (unit price and quantity) are not in the correct format.
+* 3c. The given parameters (e.g. unit price, quantity) are not in the correct format.
 
-    * 5a1. StonksBook shows an error message.
+    * 3c1. StonksBook shows an error message, reminding the user of the correct format.
 
       Use case resumes at step 2.
+
+#### Use case: List all sales
+{:.no_toc}
+
+**MSS**
+
+1.  User requests to list all sales.
+2.  StonksBook shows all sales.
+
+    Use case ends.
+
 
 #### Use case: List all sales belonging to a contact
 {:.no_toc}
@@ -845,29 +952,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Delete a sale belonging to a contact
-{:.no_toc}
+#### Use case: Delete a sale 
 
 **MSS**
 
-1.  User requests to list contacts.
-2.  StonksBook shows a list of contacts.
-3.  User requests to delete a sale belonging to a specific contact in the list.
+1.  User requests to list sales.
+2.  StonksBook shows a list of sales.
+3.  User requests to delete a sale of a specified index.
 4.  StonksBook deletes the specified sale.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list of contacts is empty.
+* 2a. The list of sales is empty.
 
   Use case ends.
 
-* 3a. The list of sales is empty.
-
-  Use case ends.
-
-* 4a. The given contact index or sale index is invalid.
+* 4a. The given sale index is invalid.
 
     * 4a1. StonksBook shows an error message.
 

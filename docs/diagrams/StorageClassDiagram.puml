@@ -20,7 +20,9 @@ JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonAddressBookStorage .left.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
 JsonSerializableAddressBookStorage ..> JsonAdaptedPerson
+JsonSerializableAddressBookStorage ..> JsonAdaptedSale
 JsonSerializableAddressBookStorage ..> JsonAdaptedReminder
 JsonSerializableAddressBookStorage ..> JsonAdaptedMeeting
 JsonAdaptedPerson ..> JsonAdaptedTag
+JsonAdaptedSale ..> JsonAdaptedTag
 @enduml

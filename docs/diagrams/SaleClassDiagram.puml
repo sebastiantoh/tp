@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class AddressBook
+
+Package Sale <<Rectangle>>{
+
+Class Sale
+Class ItemName
+Class UnitPrice
+Class Quantity
+
+Class UniqueSaleList
+
+AddressBook *--> "1" UniqueSaleList
+UniqueSaleList o--> "*" Sale
+
+Sale *--> "1" ItemName
+Sale *--> "1" UnitPrice
+Sale *--> "1" Quantity
+
+}
+
+Class Person
+Sale *--> "1" Person
+Sale *--> "1" LocalDateTime
+
+Package Tag <<Rectangle>>{
+
+Class Tag
+Sale *--> "*" Tag
+
+}
+
+
+
+@enduml
