@@ -307,7 +307,8 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `reminder delete 1>` Command](images/ReminderDeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandsParser` and `DeleteCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+ reaches the end of diagram.
 </div>
 
 #### Execution of commands within the `Logic` component
@@ -337,6 +338,18 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 * Invalid index/values provided (e.g. non-positive and non-integer values are provided as index)
 
 ![DeleteReminderActivityDiagram](images/DeleteReminderActivityDiagram.png)
+
+#### Modelling `Reminder`s
+
+`Reminder` is modelled according to the class diagram below.
+
+![ReminderClassDiagram](images/ReminderClassDiagram.png)
+
+`Reminder` objects are saved within a `UniqueReminderList` stored in `AddressBook`. 
+
+We enforce a composition relationship between `Reminder` and its attribute as we do not want `Reminder` to exist when
+ either of its attributes no longer exist. With that, whenever a `Person` is deleted, all associated `Reminder`s are
+  deleted as well. Similarly, we also enforce that all `Reminder`s must be associated with a non-empty `Message`.
 
 ### Sale Feature [Kwek Min Yih]
 

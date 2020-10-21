@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class AddressBook
+
+Package Reminder <<Rectangle>>{
+    Class Reminder
+    Class UniqueReminderList
+}
+
+AddressBook *--> "1" UniqueReminderList
+UniqueReminderList o--> "*" Reminder
+
+Package Person {
+    Class Person
+}
+
+Reminder *--> "1" Person
+Reminder *--> "1" Message
+Reminder *--> "1" LocalDateTime
+
+@enduml
