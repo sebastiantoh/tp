@@ -27,7 +27,7 @@ import seedu.address.model.tag.Tag;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
-    private static int currentContactId = 1;
+    private int currentContactId = 0;
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
@@ -430,7 +430,7 @@ public class ModelManager implements Model {
                 currentId = p.getId();
             }
         }
-        currentContactId = currentId + 1;
+        currentContactId = currentId;
     }
 
     @Override
