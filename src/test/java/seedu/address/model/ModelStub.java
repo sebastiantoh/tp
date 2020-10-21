@@ -281,7 +281,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public int getCurrentContactId() {
+    public int getLatestContactId() {
         return 0;
     }
 }

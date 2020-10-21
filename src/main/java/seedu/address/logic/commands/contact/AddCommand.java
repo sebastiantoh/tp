@@ -74,7 +74,7 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        int id = model.getCurrentContactId() + 1;
+        int id = model.getLatestContactId() + 1;
 
         Person toAdd = new Person(id, name, phone, email, address, tagList, remark, false, BigDecimal.ZERO);
 
