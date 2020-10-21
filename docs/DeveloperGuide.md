@@ -408,7 +408,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3b. The user specifies a different model to search for.
 
     * 3b1. StonksBook displays items of the specified model under the given tag.
-    
+ 
 **Use case: Clear past interactions**
 
 **MSS**
