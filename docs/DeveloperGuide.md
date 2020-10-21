@@ -45,7 +45,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of four components:
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
@@ -224,6 +224,9 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
     * Will need to implement some kind of placeholder text for `Meeting`s without a message when displaying meetings in the user interface.
     * Will have to be more careful in implementation of meeting commands to allow for an optional field.
 
+Alternative 1 is chosen as we found that the importance of enforcing data cleanliness far outweights the associated
+ cost that is required to implement this enforcement.
+
 ##### Aspect: What fields should be stored to represent a `Meeting`
 
 * **Alternative 1 (current choice):** Store just the start date of a meeting, along with its duration.
@@ -245,10 +248,15 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
   * Cons: 
     * There is the possibility that the three fields may no longer be in sync. Extra emphasis must be taken to ensure that these fields remain synchronised whenever either of these fields changes. 
 
+Alternative 1 is chosen as it is the most user-friendly option. It also makes maintaining the data easy. 
+Because only future meetings are displayed by default, the slight performance dip associated with alternative 1 may
+ not actually be an issue as we do not foresee list of future meetings to be very large. 
+ 
 #### Aspect: How to serialise the start date and duration of a `Meeting`
 * **Alternative 1 (current choice):** Deserialize them according to ISO-8601 format.
    * Pros: 
      * Unambiguous and well-defined method of representing dates and times
+     * Easier integration with other date and time libraries should such an integration be necessary.
    * Cons: 
      * Should the user decide to open the data file, the ISO-8601 format may not be very familiar or readable. This
       increases the likelihood of corruption of data.
@@ -260,6 +268,8 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
       corrupting the data format.
    * Cons: 
      * Parsing and deserializing the data may pose some difficulties. 
+
+Alternative 1 is chosen as it is a well-established international standard.
 
 ### \[Proposed\] Undo/redo feature
 
