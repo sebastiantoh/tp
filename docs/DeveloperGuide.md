@@ -262,8 +262,8 @@ Because only future meetings are displayed by default, the slight performance di
      * Should the user decide to open the data file, the ISO-8601 format may not be very familiar or readable. This
       increases the likelihood of corruption of data.
 
-* **Alternative 2:** Serialize them in a format that is human readable. e.g. storing dates in dd-MM-yyyy and
- durations in terms of minutes
+* **Alternative 2:** Serialize them in a format that is human readable. e.g. storing dates in dd-MM-yyyy format and
+ durations as an integer representing number of minutes
    * Pros: 
      * Should the user decide to open the data file, he can easily understand and make relevant modifications without
       corrupting the data format.
