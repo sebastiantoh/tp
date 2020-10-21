@@ -324,4 +324,9 @@ public interface Model {
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
+
+    /**
+     * Gets the monthly sale list for {@code month} and {@code year}.
+     */
+    List<Sale> getMonthlySaleList(Month month, Year year);
 }

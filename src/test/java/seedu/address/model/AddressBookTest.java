@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
@@ -219,6 +220,11 @@ public class AddressBookTest {
     @Test
     public void getMonthMeetingsCount_valid_success() {
         assertTrue(addressBook.getMonthMeetingsCount(Month.APRIL, Year.now()) >= 0);
+    }
+
+    @Test
+    public void getMonthlySaleList_valid_success() {
+        assertFalse(Objects.isNull(addressBook.getMonthlySaleList(Month.NOVEMBER, Year.of(2020))));
     }
 
     /**
