@@ -133,6 +133,47 @@ Classes used by multiple components are in the `seedu.StonksBook.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sale Feature [Kwek Min Yih]
+
+The Sales feature allows users to add and manage Sales made to contacts in StonksBook. Sales are ordered from most to least recently made.
+
+This feature consists of the following commands:
+* `sale add` – Adds a sale to the sale list.
+* `sale delete` – Deletes a sale to the sale list.
+* `sale edit` – Edits a sale to the sale list.
+* `sale list` – Display the list of all sales in the user interface.
+
+#### Modelling `Sale`s
+
+`Sale` is modelled according to the class diagram below.
+
+![SaleClassDiagram](images/SaleClassDiagram.png)
+
+`Sale` objects are saved within a `UniqueSaleList` stored in `AddressBook`. 
+There is a composition relationship between `Sale` and its attributes, as we want the attributes (e.g. `ItemName`, `UnitPrice`) to exist dependently on the `Sale` object it belongs to.
+The attributes are abstracted out into different classes, instead of being stored as values within Sale, to allow for greater input validation and attribute specific functionality.
+
+#### Design Consideration:
+ 
+##### Aspect: How to implement currency related fields
+* **Alternative 1 (current choice):**: Use BigDecimal to store currency related fields.
+  * Pros:
+    * Accurate currency calculations are possible.
+  * Cons:
+    * Need to import the BigDecimal package.
+                                    
+* **Alternative 2:** Use Float variables to store currency variables.
+  * Pros:
+    * No need to import any packages.
+  * Cons:
+    * Will likely result in accurate currency calculations due to float rounding errors. 
+
+* **Alternative 3:** Store dollars and cents independently as integers
+  * Pros:
+    * Accurate currency calculations are possible.
+  * Cons:
+    * Cumbersome currency calculations due to converting every hundred cents to dollars.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
