@@ -27,6 +27,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
+    private final boolean archived;
     private final BigDecimal totalSalesAmount;
 
     /**
@@ -38,9 +39,10 @@ public class Person {
      * @param address Address of the person.
      * @param tags Set of tags associated with the person.
      * @param remark Remark associated with the person.
+     * @param salesList UniqueSaleList of sales made to the person.
      */
     public Person(Integer id, Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, Remark remark, BigDecimal totalSalesAmount) {
+                  Set<Tag> tags, Remark remark, boolean archived, BigDecimal totalSalesAmount) {
         requireAllNonNull(name, phone, email, address, tags, remark);
         this.id = id;
         this.name = name;
@@ -49,6 +51,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.remark = remark;
+        this.archived = archived;
         this.totalSalesAmount = totalSalesAmount;
     }
 
@@ -86,6 +89,10 @@ public class Person {
 
     public BigDecimal getTotalSalesAmount() {
         return totalSalesAmount;
+    }
+
+    public boolean isArchived() {
+        return archived;
     }
 
     public String getTotalSalesAmountString() {

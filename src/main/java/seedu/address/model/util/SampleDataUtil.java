@@ -37,24 +37,25 @@ public class SampleDataUtil {
      */
     private static final Person ALEX_YEOH = new Person(1, new Name("Alex Yeoh"), new Phone("87438807"),
             new Email("alexyeoh@example.com"), new Address("Blk 30 Geylang Street 29, #06-40"),
-            getTagSet("friends"), new Remark("Not available on Fridays"), new BigDecimal("3382.5"));
+            getTagSet("friends"), new Remark("Not available on Fridays"), false,
+            new BigDecimal("3382.5"));
     private static final Person BERNICE_YU = new Person(2, new Name("Bernice Yu"),
             new Phone("99272758"), new Email("berniceyu@example.com"),
             new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet("colleagues", "friends"),
-            new Remark("Owns a small stationery business"), new BigDecimal("1788"));
+            new Remark("Owns a small stationery business"), false, new BigDecimal("1788"));
     private static final Person CHARLOTTE_OLIVEIRO = new Person(3, new Name("Charlotte Oliveiro"),
             new Phone("93210283"), new Email("charlotte@example.com"),
             new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), getTagSet("neighbours"),
-            new Remark(""), new BigDecimal("960"));
+            new Remark(""), false, new BigDecimal("960"));
     private static final Person DAVID_LI = new Person(4, new Name("David Li"), new Phone("91031282"),
             new Email("lidavid@example.com"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-            getTagSet("family"), new Remark(""), BigDecimal.ZERO);
+            getTagSet("family"), new Remark(""), false, BigDecimal.ZERO);
     private static final Person IRFAN_IBRAHIM = new Person(5, new Name("Irfan Ibrahim"), new Phone("92492021"),
             new Email("irfan@example.com"), new Address("Blk 47 Tampines Street 20, #17-35"),
-            getTagSet("classmates"), new Remark("Interested in paper-based products"), BigDecimal.ZERO);
+            getTagSet("classmates"), new Remark("Interested in paper-based products"), false, BigDecimal.ZERO);
     private static final Person ROY_BALAKRISHNAN = new Person(6, new Name("Roy Balakrishnan"), new Phone("92624417"),
             new Email("royb@example.com"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-            getTagSet("colleagues"), new Remark(""), BigDecimal.ZERO);
+            getTagSet("colleagues"), new Remark(""), false, BigDecimal.ZERO);
 
     /**
      * Sales
