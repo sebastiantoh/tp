@@ -10,7 +10,7 @@ contact sort                Sorts contact list                                  
 
 Archive commands
 ----------------------
-archive add                 Sends a contact to the archive                              contact archive INDEX
+archive add                 Sends a contact to the archive                              archive add INDEX
 archive list                Lists all archived contacts                                 archive list
 archive remove              Removes a contact from the archive                          archive remove INDEX
 
