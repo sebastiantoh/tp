@@ -11,12 +11,12 @@ import java.util.Map;
 /**
  * Stores a list of items of type T based on the key of < month, year >
  */
-public class MonthlyList<T> {
+public class MonthlyListMap<T> {
 
-    private final Map<MonthAndYear, List<T>> monthlyList;
+    private final Map<MonthAndYear, List<T>> monthlyListMap;
 
-    public MonthlyList() {
-        this.monthlyList = new HashMap<>();
+    public MonthlyListMap() {
+        this.monthlyListMap = new HashMap<>();
     }
 
     /**
@@ -29,10 +29,10 @@ public class MonthlyList<T> {
      */
     public void addItem(Month month, Year year, T item) {
         MonthAndYear key = new MonthAndYear(month, year);
-        if (this.monthlyList.containsKey(key)) {
-            this.monthlyList.get(key).add(item);
+        if (this.monthlyListMap.containsKey(key)) {
+            this.monthlyListMap.get(key).add(item);
         } else {
-            this.monthlyList.put(key, new ArrayList<>(Collections.singleton(item)));
+            this.monthlyListMap.put(key, new ArrayList<>(Collections.singleton(item)));
         }
     }
 
@@ -46,11 +46,11 @@ public class MonthlyList<T> {
      */
     public void removeItem(Month month, Year year, T item) {
         MonthAndYear key = new MonthAndYear(month, year);
-        if (this.monthlyList.containsKey(key)) {
-            if (this.monthlyList.get(key).size() == 1) {
-                this.monthlyList.remove(key);
+        if (this.monthlyListMap.containsKey(key)) {
+            if (this.monthlyListMap.get(key).size() == 1) {
+                this.monthlyListMap.remove(key);
             } else {
-                this.monthlyList.get(key).remove(item);
+                this.monthlyListMap.get(key).remove(item);
             }
         }
     }
@@ -66,8 +66,8 @@ public class MonthlyList<T> {
      */
     public int getItemCount(Month month, Year year) {
         MonthAndYear key = new MonthAndYear(month, year);
-        if (this.monthlyList.containsKey(key)) {
-            return this.monthlyList.get(key).size();
+        if (this.monthlyListMap.containsKey(key)) {
+            return this.monthlyListMap.get(key).size();
         }
         return 0;
     }
@@ -80,14 +80,14 @@ public class MonthlyList<T> {
      */
     public List<T> getItems(Month month, Year year) {
         MonthAndYear key = new MonthAndYear(month, year);
-        return this.monthlyList.getOrDefault(key, Collections.emptyList());
+        return this.monthlyListMap.getOrDefault(key, Collections.emptyList());
     }
 
     /**
      * Removes all entries in the monthlyList.
      */
     public void clear() {
-        this.monthlyList.clear();
+        this.monthlyListMap.clear();
     }
 
     /**
@@ -103,12 +103,12 @@ public class MonthlyList<T> {
 
         MonthAndYear currentMonthAndYear = new MonthAndYear(month, year);
         result.add(new MonthlyCountData(currentMonthAndYear,
-                this.monthlyList.getOrDefault(currentMonthAndYear, Collections.emptyList()).size()));
+                this.monthlyListMap.getOrDefault(currentMonthAndYear, Collections.emptyList()).size()));
 
         for (int i = 1; i < numberOfMonths; i++) {
             MonthAndYear previousMonthAndYear = getPreviousMonthAndYear(month, year);
             result.add(new MonthlyCountData(previousMonthAndYear,
-                    this.monthlyList.getOrDefault(previousMonthAndYear, Collections.emptyList()).size()));
+                    this.monthlyListMap.getOrDefault(previousMonthAndYear, Collections.emptyList()).size()));
             month = previousMonthAndYear.getMonth();
             year = previousMonthAndYear.getYear();
         }

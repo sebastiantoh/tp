@@ -12,7 +12,7 @@ import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyList;
+import seedu.address.commons.MonthlyListMap;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
 import seedu.address.model.sale.exceptions.SaleNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -34,7 +34,7 @@ public class UniqueSaleList implements Iterable<Sale> {
     private final ObservableList<Sale> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    private final MonthlyList<Sale> monthlySaleList = new MonthlyList<>();
+    private final MonthlyListMap<Sale> monthlyListMap = new MonthlyListMap<>();
 
     /**
      * Returns true if the list contains an equivalent sale as the given argument.
@@ -55,7 +55,7 @@ public class UniqueSaleList implements Iterable<Sale> {
         }
         internalList.add(toAdd);
 
-        monthlySaleList.addItem(toAdd.getPurchaseMonth(), toAdd.getPurchaseYear(), toAdd);
+        monthlyListMap.addItem(toAdd.getMonth(), toAdd.getYear(), toAdd);
 
         return this;
     }
@@ -79,8 +79,8 @@ public class UniqueSaleList implements Iterable<Sale> {
 
         internalList.set(index, editedSale);
 
-        monthlySaleList.removeItem(target.getPurchaseMonth(), target.getPurchaseYear(), target);
-        monthlySaleList.addItem(editedSale.getPurchaseMonth(), editedSale.getPurchaseYear(), editedSale);
+        monthlyListMap.removeItem(target.getMonth(), target.getYear(), target);
+        monthlyListMap.addItem(editedSale.getMonth(), editedSale.getYear(), editedSale);
     }
 
     /**
@@ -92,13 +92,13 @@ public class UniqueSaleList implements Iterable<Sale> {
         if (!internalList.remove(toRemove)) {
             throw new SaleNotFoundException();
         }
-        monthlySaleList.removeItem(toRemove.getPurchaseMonth(), toRemove.getPurchaseYear(), toRemove);
+        monthlyListMap.removeItem(toRemove.getMonth(), toRemove.getYear(), toRemove);
     }
 
     public UniqueSaleList setSales(UniqueSaleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-        this.setMonthlySaleList(replacement.internalList);
+        this.setMonthlyListMap(replacement.internalList);
         return this;
     }
 
@@ -113,13 +113,13 @@ public class UniqueSaleList implements Iterable<Sale> {
         }
 
         internalList.setAll(sales);
-        this.setMonthlySaleList(sales);
+        this.setMonthlyListMap(sales);
     }
 
-    private void setMonthlySaleList(List<Sale> list) {
-        this.monthlySaleList.clear();
-        list.forEach(x -> this.monthlySaleList.addItem(
-                x.getPurchaseMonth(), x.getPurchaseYear(), x));
+    private void setMonthlyListMap(List<Sale> list) {
+        this.monthlyListMap.clear();
+        list.forEach(x -> this.monthlyListMap.addItem(
+                x.getMonth(), x.getYear(), x));
     }
 
     /**
@@ -143,10 +143,10 @@ public class UniqueSaleList implements Iterable<Sale> {
                         original.getUnitPrice(),
                         tags);
                 internalList.set(i, newSale);
-                monthlySaleList.removeItem(original.getPurchaseMonth(),
-                        original.getPurchaseYear(), original);
-                monthlySaleList.addItem(newSale.getPurchaseMonth(),
-                        newSale.getPurchaseYear(), newSale);
+                monthlyListMap.removeItem(original.getMonth(),
+                        original.getYear(), original);
+                monthlyListMap.addItem(newSale.getMonth(),
+                        newSale.getYear(), newSale);
             }
         }
     }
@@ -170,16 +170,19 @@ public class UniqueSaleList implements Iterable<Sale> {
                         original.getUnitPrice(),
                         tags);
                 internalList.set(i, newSale);
-                monthlySaleList.removeItem(original.getPurchaseMonth(),
-                        original.getPurchaseYear(), original);
-                monthlySaleList.addItem(newSale.getPurchaseMonth(),
-                        newSale.getPurchaseYear(), newSale);
+                monthlyListMap.removeItem(original.getMonth(),
+                        original.getYear(), original);
+                monthlyListMap.addItem(newSale.getMonth(),
+                        newSale.getYear(), newSale);
             }
         }
     }
 
+    /**
+     * Gets the monthly sale list for {@code month} and {@code year}.
+     */
     public List<Sale> getMonthlySaleList(Month month, Year year) {
-        return this.monthlySaleList.getItems(month, year);
+        return this.monthlyListMap.getItems(month, year);
     }
 
     /**

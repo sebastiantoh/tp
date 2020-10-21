@@ -74,11 +74,11 @@ public class Sale implements Comparable<Sale> {
         return this.totalCost;
     }
 
-    public Month getPurchaseMonth() {
+    public Month getMonth() {
         return datetimeOfPurchase.getMonth();
     }
 
-    public Year getPurchaseYear() {
+    public Year getYear() {
         return Year.of(datetimeOfPurchase.getYear());
     }
 

@@ -4,7 +4,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.List;
+
 import seedu.address.logic.commands.Command;
+import seedu.address.model.sale.Sale;
 
 public abstract class ListCommand extends Command {
     public static final String COMMAND_WORD = "sale list";
@@ -16,4 +19,14 @@ public abstract class ListCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SALE_CONTACT_INDEX + "3 or "
             + COMMAND_WORD + " " + PREFIX_MONTH + "10 " + PREFIX_YEAR + "2020";
+
+    String formatSaleListOutput(List<Sale> saleList) {
+        StringBuilder formattedSaleListAsStr = new StringBuilder();
+        int index = 1;
+        for (Sale sale : saleList) {
+            formattedSaleListAsStr.append(index).append(". ").append(sale.toString()).append("\n");
+            index++;
+        }
+        return formattedSaleListAsStr.toString();
+    }
 }

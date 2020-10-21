@@ -18,6 +18,14 @@ import seedu.address.model.sale.Sale;
  */
 public class AllListCommand extends ListCommand {
 
+    private static final String MESSAGE_SUCCESS_ALL_SALES_PRESENT = "Listing all sales:\n%s";
+
+    private static final String MESSAGE_SUCCESS_CONTACT_SALES_PRESENT = "Sales made to %s:\n%s";
+
+    private static final String MESSAGE_SUCCESS_ALL_SALES_EMPTY = "No sales made!";
+
+    private static final String MESSAGE_SUCCESS_CONTACT_SALES_EMPTY = "No sales made to %s!";
+
     private final boolean showAll;
     private final Index targetIndex;
 
@@ -40,12 +48,13 @@ public class AllListCommand extends ListCommand {
 
         if (showAll) {
             model.updateFilteredSaleList(x -> true);
-            output = output.append("Listing all sales:\n");
 
             if (sales.size() == 0) {
-                return new CommandResult("No sales made!");
+                return new CommandResult(MESSAGE_SUCCESS_ALL_SALES_EMPTY);
             }
 
+            String formattedListAsStr = this.formatSaleListOutput(sales);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_ALL_SALES_PRESENT, formattedListAsStr));
         } else {
             if (targetIndex.getZeroBased() >= sortedPersonList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -55,20 +64,16 @@ public class AllListCommand extends ListCommand {
             Predicate<Sale> filterByContact = x -> x.getBuyerId() == personToShow.getId();
 
             model.updateFilteredSaleList(filterByContact);
-            output = output.append("Sales made to ").append(personToShow.getName()).append(":\n");
 
             if (sales.size() == 0) {
-                return new CommandResult("No sales made to " + personToShow.getName() + "!");
+                return new CommandResult(String.format(
+                        MESSAGE_SUCCESS_CONTACT_SALES_EMPTY, personToShow.getName()));
             }
-        }
 
-        int index = 1;
-        for (Sale sale : sales) {
-            output.append(index).append(". ").append(sale.toString()).append("\n");
-            index++;
+            String formattedListAsStr = this.formatSaleListOutput(sales);
+            return new CommandResult(String.format(
+                    MESSAGE_SUCCESS_CONTACT_SALES_PRESENT, personToShow.getName(), formattedListAsStr));
         }
-
-        return new CommandResult(output.toString());
     }
 
     @Override
