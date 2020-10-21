@@ -72,6 +72,12 @@ public class MonthlyList<T> {
         return 0;
     }
 
+    /**
+     * Gets the monthly item list for {@code month} and {@code year}.
+     * @param month valid month
+     * @param year  valid year
+     * @return list of items in its natural order
+     */
     public List<T> getItems(Month month, Year year) {
         MonthAndYear key = new MonthAndYear(month, year);
         return this.monthlyList.getOrDefault(key, Collections.emptyList());
