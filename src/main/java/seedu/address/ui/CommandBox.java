@@ -53,7 +53,10 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
-        userInputHistory.addToHistory(commandTextField.getText());
+        if (!commandTextField.getText().equals("")) {
+            userInputHistory.addToHistory(commandTextField.getText());
+        }
+
         try {
             commandExecutor.execute(commandTextField.getText());
             commandTextField.setText("");

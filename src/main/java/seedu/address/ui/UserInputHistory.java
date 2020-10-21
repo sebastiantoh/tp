@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 /**
@@ -13,11 +14,25 @@ public class UserInputHistory {
     private ListIterator<String> inputHistoryIterator;
 
     /**
-     * Instantiates an instance of {@code UserInputHistory} with an empty list and its iterator.
+     * Initialises an instance of {@code UserInputHistory} with an empty list and its iterator.
      */
     public UserInputHistory() {
         this.inputHistory = new LinkedList<>();
         this.inputHistoryIterator = inputHistory.listIterator(inputHistory.size());
+    }
+
+    /**
+     * Gets the input history list. Should only be used for tests.
+     */
+    List<String> getHistoryList() {
+        return inputHistory;
+    }
+
+    /**
+     * Gets the history list iterator. Should only be used for tests.
+     */
+    ListIterator<String> getListIterator() {
+        return inputHistoryIterator;
     }
 
     /**
