@@ -9,11 +9,18 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps.
+StonksBook is a contact management application that is created for salesmen. 
 
+Many salesmen waste their time manually managing their contacts and sales data. They often require
+ several different applications to carry out these tasks. 
+ 
+ StonksBook aims to integrate the key tools used by salesmen into an all-in-one application that can empower them to
+  effectively curate their contact list. StonksBook also provides many tools that can boost one's sales peformance 
+  through the use of sophisticated data analysis techniques.
+ 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start (WIP)
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
