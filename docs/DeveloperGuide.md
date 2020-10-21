@@ -5,6 +5,18 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+## **Introduction**
+
+### Software overview
+
+StonksBook is a sales-optimised contact management application. It is targeted at salesmen who are seeking an all-in-one application that can empower them to effectively curate their contact list. 
+StonksBook also provides many tools that can boost one's sales peformance through the use of sophisticated data analysis techniques.
+
+### Purpose & scope
+
+This document describes the software architecture and software design decisions for the implementation
+of StonksBook. The intended audience of this document is the developers, designers, and software testers of StonksBook.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -51,7 +63,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `contact delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -86,9 +98,9 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("contact delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `contact delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -103,7 +115,10 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes the following unmodifiable lists that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+    1. `ObservableList<Person>`
+    2. `ObservableList<Meeting>`
+    3. `ObservableList<Reminder>`
 * does not depend on any of the other three components.
 
 
@@ -132,6 +147,119 @@ Classes used by multiple components are in the `seedu.StonksBook.commons` packag
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Meetings feature \[Sebastian Toh Shi Jian\]
+
+The meetings feature allows the user to add, delete, or update meetings in StonksBook. 
+Meetings are displayed in increasing order based on the start date of the meeting.
+
+The feature consists of the following commands:
+- `meeting add` - Adds a meeting to the meeting list.
+- `meeting delete` - Delete a meeting from the meeting list.
+- `meeting edit` - Edit a meeting from the meeting list.
+- `meeting list` - Display the list of all meetings in the user interface.
+
+#### Parsing of commands within the `Logic` component
+
+The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
+
+In order to handle the many commands in our application, we introduced an intermediate layer between `AddressBookParser` and the relevant command parsers, e.g. `AddCommandParser`. 
+The intermediate layer will first determine which model type the command corresponds to, before dispatching it to the corresponding command parser.
+For all meeting-related commands, we have the `MeetingCommandsParser` which serves as the intermediate class.
+
+These are the steps that will be taken when parsing a meeting-related user command:
+1. An `AddressBookParser` will check if the command is meetings-related. The `AddressBookParser` will then create a `MeetingCommandsParser`.
+3. The `MeetingCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
+    - `meeting add` command: `AddCommandParser`
+    - `meeting delete` command: `DeleteCommandParser`
+    - `meeting edit` command: `EditCommandParser`
+    - `meeting list` command: `ListCommandParser`
+4. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+
+Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(meeting add <args>)` API call. 
+- Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user. 
+- For example, if the full command was `meeting add c/2 m/Lunch with Alice d/2020-10-30 10:10`, then `<args>` is equivalent to `c/2 m/Lunch with Alice d/2020-10-30 10:10`.
+
+![Interactions Inside the Logic Component for the `meeting add <args>` Command](images/MeetingAddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Execution of commands within the `Logic` component
+
+After the respective parsers have parsed the user inputs, a `Command` object will be returned and executed by `LogicManager`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, the execution of these commands 
+can have various outcomes.
+
+For example, the activity diagram below illustrates the different outcomes that can occur from `meeting add <args>` Command.
+ 
+![The different outcomes of the program that can occur from the `meeting add <args>` Command](images/MeetingAddActivityDiagram.png)
+
+#### Modelling `Meeting`s
+
+Meetings are modelled according to the class diagram below. 
+
+![Class diagram used to model meetings](images/MeetingClassDiagram.png)
+
+`LocalDateTime` and `Duration` are classes from Java's `java.time` package.
+
+We enforce a composition relationship between `Meeting` and its attribute as we do not want `Meeting` to exist when either of its attributes no longer exist. 
+With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted as well. Similarly, we also enforce that all `Meeting`s must be associated with a non-empty `Message`. 
+
+#### Design consideration:              
+                
+##### Aspect: Whether it should be necessary to enforce a `message` field in a `Meeting` object
+* **Alternative 1 (current choice):**: Create a `Message` class which enforces a non-empty message association to a `Meeting` object.
+  * Pros:
+    * Easier implementation of meeting commands since every field is necessary.
+    * Better data cleanliness.
+  * Cons:
+    * Have to implement a separate class as well as implement validation of inputs.
+                                    
+* **Alternative 2:** Set the `Meeting` object to be associated to a `String` which acts as the message of a meeting.
+  * Pros:
+    * No need to implement validation of inputs for this `message` field.
+  * Cons:
+    * Will need to implement some kind of placeholder text for `Meeting`s without a message when displaying meetings in the user interface.
+    * Will have to be more careful in implementation of meeting commands to allow for an optional field.
+
+##### Aspect: What fields should be stored to represent a `Meeting`
+
+* **Alternative 1 (current choice):** Store just the start date of a meeting, along with its duration.
+  * Pros: 
+    * More user-friendly since users tend to schedule meetings based on a start date and its duration.
+  * Cons: 
+    * May have slight performance dip since the end date of a meeting may have to be computed repeatedly for display in the user interface.
+
+* **Alternative 2:** Store both start and end date of the meeting.
+  * Pros: 
+    * May have slightly improved performance since there is no need to compute the end date.
+  * Cons: 
+    * User will have to input both start and end date, which can be tedious.
+
+* **Alternative 3:** Store start date, end date, and duration of the meeting.
+  * Pros: 
+    * More user-friendly since users can schedule meetings using just the start date and its duration.
+    * More performant since the end date need not be re-computed.
+  * Cons: 
+    * There is the possibility that the three fields may no longer be in sync. Extra emphasis must be taken to ensure that these fields remain synchronised whenever either of these fields changes. 
+
+#### Aspect: How to serialise the start date and duration of a `Meeting`
+* **Alternative 1 (current choice):** Deserialize them according to ISO-8601 format.
+   * Pros: 
+     * Unambiguous and well-defined method of representing dates and times
+   * Cons: 
+     * Should the user decide to open the data file, the ISO-8601 format may not be very familiar or readable. This
+      increases the likelihood of corruption of data.
+
+* **Alternative 2:** Serialize them in a format that is human readable. e.g. storing dates in dd-MM-yyyy and
+ durations in terms of minutes
+   * Pros: 
+     * Should the user decide to open the data file, he can easily understand and make relevant modifications without
+      corrupting the data format.
+   * Cons: 
+     * Parsing and deserializing the data may pose some difficulties. 
 
 ### \[Proposed\] Undo/redo feature
 

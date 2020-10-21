@@ -1,0 +1,19 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+Package Meeting {
+    Class Meeting
+    Class UniqueMeetingList
+}
+
+UniqueMeetingList o--> "*" Meeting
+Meeting *--> "startDate" LocalDateTime
+Meeting *--> Message
+Meeting *--> Duration
+Meeting *--> Person
+
+@enduml

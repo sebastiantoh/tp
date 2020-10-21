@@ -1,0 +1,102 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":MeetingCommandsParser" as MeetingCommandsParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("meeting add <args>")
+note left: Full command is truncated for brevity
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("meeting add <args>")
+activate AddressBookParser
+
+create MeetingCommandsParser
+AddressBookParser -> MeetingCommandsParser
+activate MeetingCommandsParser
+
+MeetingCommandsParser -> AddressBookParser
+deactivate MeetingCommandsParser
+
+AddressBookParser -> MeetingCommandsParser : parse("meeting add", <args>)
+activate MeetingCommandsParser
+
+create AddCommandParser
+MeetingCommandsParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser -> MeetingCommandsParser
+deactivate AddCommandParser
+
+MeetingCommandsParser -> AddCommandParser : parse(<args>)
+activate AddCommandParser
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> MeetingCommandsParser : a
+deactivate AddCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> MeetingCommandsParser
+destroy AddCommandParser
+
+MeetingCommandsParser --> AddressBookParser : a
+deactivate MeetingCommandsParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MeetingCommandsParser -[hidden]-> AddressBookParser
+destroy MeetingCommandsParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : getSortedPersonList()
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+AddCommand -> Model : hasMeeting(meeting)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+AddCommand -> Model : addMeeting(meeting)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
