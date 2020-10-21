@@ -44,7 +44,6 @@ public class AllListCommand extends ListCommand {
         requireNonNull(model);
         List<Person> sortedPersonList = model.getSortedPersonList();
         List<Sale> sales = model.getFilteredSaleList();
-        StringBuilder output = new StringBuilder();
 
         if (showAll) {
             model.updateFilteredSaleList(x -> true);
