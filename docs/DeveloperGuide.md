@@ -337,7 +337,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 * Incorrect command format is used (e.g. missing/incorrect prefixes)
 * Invalid index/values provided (e.g. non-positive and non-integer values are provided as index)
 
-![DeleteReminderActivityDiagram](images/DeleteReminderActivityDiagram.png)
+![DeleteReminderActivityDiagram](images/ReminderDeleteActivityDiagram.png)
 
 #### Modelling `Reminder`s
 
