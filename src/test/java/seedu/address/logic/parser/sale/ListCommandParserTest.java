@@ -54,8 +54,10 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_invalidMonthlyList_failure() {
-        assertParseFailure(parser, ListCommand.COMMAND_WORD + "m/10", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, "y/2020", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, ListCommand.COMMAND_WORD + "m/10",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "y/2020",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
     }
 
     @Test

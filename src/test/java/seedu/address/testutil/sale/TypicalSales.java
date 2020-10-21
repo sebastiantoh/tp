@@ -41,11 +41,11 @@ public class TypicalSales {
     private TypicalSales() {} // prevents instantiation
 
     public static List<Sale> getTypicalSales() {
-        return new ArrayList<>(Arrays.asList(APPLE, BALL, CAMERA, GUITAR, DRUMS));
+        return new ArrayList<>(Arrays.asList(APPLE, BALL, CAMERA));
     }
 
     public static List<Sale> getTypicalSalesInReverse() {
-        List<Sale> typicalSales = new ArrayList<>(Arrays.asList(APPLE, BALL, CAMERA, GUITAR, DRUMS));
+        List<Sale> typicalSales = new ArrayList<>(Arrays.asList(APPLE, BALL, CAMERA));
         Collections.reverse(typicalSales);
         return typicalSales;
     }

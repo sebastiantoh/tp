@@ -4,12 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.sale.TypicalSales.CAMERA;
-import static seedu.address.testutil.sale.TypicalSales.DRUMS;
-import static seedu.address.testutil.sale.TypicalSales.GUITAR;
 
 import java.time.Month;
 import java.time.Year;
-import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,10 +35,10 @@ class MonthlyListCommandTest {
     public void execute_valid_success() {
         MonthlyListCommand monthlyListCommand = new MonthlyListCommand(Month.NOVEMBER, Year.of(2020));
         String expectedFormattedString = monthlyListCommand
-                .formatSaleListOutput(Arrays.asList(CAMERA, GUITAR, DRUMS));
+                .formatSaleListOutput(Collections.singletonList(CAMERA));
 
         String expectedResult = String.format(MonthlyListCommand.MESSAGE_SUCCESS,
-                3, Month.NOVEMBER, Year.of(2020), expectedFormattedString);
+                1, Month.NOVEMBER, Year.of(2020), expectedFormattedString);
 
         CommandResult actualCommandResult = monthlyListCommand.execute(model);
         assertEquals(new CommandResult(expectedResult), actualCommandResult);

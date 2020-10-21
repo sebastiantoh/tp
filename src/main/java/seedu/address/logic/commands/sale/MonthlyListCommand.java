@@ -13,9 +13,9 @@ import seedu.address.model.sale.Sale;
 
 public class MonthlyListCommand extends ListCommand {
 
-    private static final Comparator<Sale> SORT_BY_DATE = Comparator.comparing(Sale::getDatetimeOfPurchase);
-
     public static final String MESSAGE_SUCCESS = "You have sold %d items in %s %s!\n%s";
+
+    private static final Comparator<Sale> SORT_BY_DATE = Comparator.comparing(Sale::getDatetimeOfPurchase);
 
     private final Month month;
 
