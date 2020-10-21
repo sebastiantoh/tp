@@ -280,7 +280,9 @@ Format: `sale delete c/CONTACT_INDEX s/SALE_INDEX`
 Examples:
 * `sale delete c/2 s/4` deletes the 4th sale made to the contact of index number 2.
 
-### Scheduled Meetings
+### Scheduled Meetings \[Sebastian Toh Shi Jian\]
+
+StonksBook allows you to manage your scheduled meetings within the application. 
 
 #### Adding a scheduled meeting: `meeting add`
 
@@ -322,7 +324,9 @@ Format: `meeting delete INDEX`
 Examples:
 * `meeting list 5` followed by `meeting delete 2` deletes the 2nd meeting that is associated with the 5th contact in StonksBook.
 
-### Reminders
+### Reminders \[Sebastian Toh Shi Jian\]
+
+StonksBook allows you to manage your reminders within the application. 
 
 #### Adding reminders: `reminder add`
 
