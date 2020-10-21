@@ -5,6 +5,8 @@ import static seedu.address.testutil.meeting.TypicalMeetings.LUNCH_DANIEL;
 import static seedu.address.testutil.meeting.TypicalMeetings.LUNCH_ELLE;
 import static seedu.address.testutil.meeting.TypicalMeetings.LUNCH_FIONA;
 import static seedu.address.testutil.meeting.TypicalMeetings.MEET_ALICE;
+import static seedu.address.testutil.sale.TypicalSales.DRUMS;
+import static seedu.address.testutil.sale.TypicalSales.GUITAR;
 
 import java.time.Month;
 import java.time.Year;
@@ -15,66 +17,67 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.sale.Sale;
 
-public class MonthlyListTest {
+public class MonthlyListMapTest {
 
-    private MonthlyList<Meeting> meetingMonthlyList;
+    private MonthlyListMap<Meeting> meetingMonthlyListMap;
 
     @BeforeEach
     public void init() {
-        this.meetingMonthlyList = new MonthlyList<>();
+        this.meetingMonthlyListMap = new MonthlyListMap<>();
     }
 
     @Test
     public void addItem_validInputs_success() {
         Month month = MEET_ALICE.getStartDate().getMonth();
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
-        this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        assertEquals(1, this.meetingMonthlyList.getItemCount(month, year));
-        this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        assertEquals(2, this.meetingMonthlyList.getItemCount(month, year));
+        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
+        assertEquals(1, this.meetingMonthlyListMap.getItemCount(month, year));
+        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
+        assertEquals(2, this.meetingMonthlyListMap.getItemCount(month, year));
     }
 
     @Test
     public void removeItem_validInputs_success() {
         Month month = MEET_ALICE.getStartDate().getMonth();
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
-        this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        this.meetingMonthlyList.removeItem(month, year, MEET_ALICE);
-        assertEquals(1, this.meetingMonthlyList.getItemCount(month, year));
-        this.meetingMonthlyList.removeItem(month, year, MEET_ALICE);
-        assertEquals(0, this.meetingMonthlyList.getItemCount(month, year));
-        this.meetingMonthlyList.removeItem(month, year, MEET_ALICE);
-        assertEquals(0, this.meetingMonthlyList.getItemCount(month, year));
+        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
+        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
+        this.meetingMonthlyListMap.removeItem(month, year, MEET_ALICE);
+        assertEquals(1, this.meetingMonthlyListMap.getItemCount(month, year));
+        this.meetingMonthlyListMap.removeItem(month, year, MEET_ALICE);
+        assertEquals(0, this.meetingMonthlyListMap.getItemCount(month, year));
+        this.meetingMonthlyListMap.removeItem(month, year, MEET_ALICE);
+        assertEquals(0, this.meetingMonthlyListMap.getItemCount(month, year));
     }
 
     @Test
     public void clear_noInput_success() {
         Month month = MEET_ALICE.getStartDate().getMonth();
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
-        this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        assertEquals(2, this.meetingMonthlyList.getItemCount(month, year));
-        this.meetingMonthlyList.clear();
-        assertEquals(0, this.meetingMonthlyList.getItemCount(month, year));
+        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
+        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
+        assertEquals(2, this.meetingMonthlyListMap.getItemCount(month, year));
+        this.meetingMonthlyListMap.clear();
+        assertEquals(0, this.meetingMonthlyListMap.getItemCount(month, year));
     }
 
     @Test
     public void getMultipleMonthCount_valid_success() {
         Month month = MEET_ALICE.getStartDate().getMonth();
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
-        this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
-        this.meetingMonthlyList.addItem(month, year, MEET_ALICE);
+        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
+        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
+        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
+        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
 
         Month month1 = LUNCH_FIONA.getStartDate().getMonth();
         Year year1 = Year.of(LUNCH_FIONA.getStartDate().getYear());
-        this.meetingMonthlyList.addItem(month1, year1, LUNCH_FIONA);
-        this.meetingMonthlyList.addItem(month1, year1, LUNCH_FIONA);
+        this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_FIONA);
+        this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_FIONA);
 
-        List<MonthlyCountData> actual = this.meetingMonthlyList
+        List<MonthlyCountData> actual = this.meetingMonthlyListMap
                 .getMultipleMonthCount(month, year, 3);
         List<MonthlyCountData> expected = Arrays.asList(
                 new MonthlyCountData(new MonthAndYear(month1, year1), 2),
@@ -87,14 +90,14 @@ public class MonthlyListTest {
     public void getMultipleMonthCount_validButMonthStartFromFeb_success() {
         Month month = LUNCH_DANIEL.getStartDate().getMonth();
         Year year = Year.of(LUNCH_DANIEL.getStartDate().getYear());
-        this.meetingMonthlyList.addItem(month, year, LUNCH_DANIEL);
-        this.meetingMonthlyList.addItem(month, year, LUNCH_DANIEL);
+        this.meetingMonthlyListMap.addItem(month, year, LUNCH_DANIEL);
+        this.meetingMonthlyListMap.addItem(month, year, LUNCH_DANIEL);
 
         Month month1 = LUNCH_ELLE.getStartDate().getMonth();
         Year year1 = Year.of(LUNCH_ELLE.getStartDate().getYear());
-        this.meetingMonthlyList.addItem(month1, year1, LUNCH_ELLE);
+        this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_ELLE);
 
-        List<MonthlyCountData> actual = this.meetingMonthlyList
+        List<MonthlyCountData> actual = this.meetingMonthlyListMap
                 .getMultipleMonthCount(month1, year1, 6);
         List<MonthlyCountData> expected = Arrays.asList(
                 new MonthlyCountData(new MonthAndYear(month.minus(4), year.minusYears(1)), 0),
@@ -104,6 +107,19 @@ public class MonthlyListTest {
                 new MonthlyCountData(new MonthAndYear(month, year), 2),
                 new MonthlyCountData(new MonthAndYear(month1, year1), 1));
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getItems_validInputs_success() {
+        MonthlyListMap<Sale> saleMonthlyListMap = new MonthlyListMap<>();
+
+        Month month = GUITAR.getDatetimeOfPurchase().getMonth();
+        Year year = Year.of(GUITAR.getDatetimeOfPurchase().getYear());
+        saleMonthlyListMap.addItem(month, year, GUITAR);
+        saleMonthlyListMap.addItem(month, year, DRUMS);
+
+        List<Sale> expectedSaleList = Arrays.asList(GUITAR, DRUMS);
+        assertEquals(expectedSaleList, saleMonthlyListMap.getItems(month, year));
     }
 
 }

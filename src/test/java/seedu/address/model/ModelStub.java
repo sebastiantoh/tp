@@ -274,4 +274,9 @@ public class ModelStub implements Model {
     public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public List<Sale> getMonthlySaleList(Month month, Year year) {
+        throw new AssertionError("This method should not be called.");
+    }
 }
