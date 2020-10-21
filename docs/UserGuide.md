@@ -319,11 +319,11 @@ Format: `sale delete s/SALE_INDEX`
 Examples:
 * `sale delete s/4` deletes the 4th sale made in the list.
 
-### Scheduled Meetings \[Sebastian Toh Shi Jian\]
+### Scheduled Meetings 
 
 StonksBook allows you to manage your scheduled meetings within the application. 
 
-#### Adding a scheduled meeting: `meeting add`
+#### Adding a scheduled meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
 Adds a scheduled meeting with the specified contact in StonksBook.
 
@@ -339,7 +339,7 @@ Examples:
 * `meeting add c/2 m/Follow-up meeting d/2020-10-30 15:00 du/60` Adds a 1-hour long meeting titled `Follow-up meeting` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
 * `meeting add c/3 m/Call to finalise details d/2020-10-30 08:00 du/30` Adds a 30-minute long meeting titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
 
-#### Listing all meetings: `meeting list`
+#### Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
 
 Shows a list of all meetings. By default, the list only shows upcoming meetings. This list is sorted in increasing order based on the date the meeting is scheduled.
 
@@ -350,7 +350,7 @@ Format: `meeting list [c/CONTACT_INDEX] [a/]`
 * When an index is specified, the list will only show meetings associated with the contact at the specified index.
 * You can show all meetings, including those that have passed, by typing `a/`.
 
-#### Deleting a meeting: `meeting delete`
+#### Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified meeting from StonksBook.
 
@@ -393,11 +393,11 @@ Examples:
 * `meeting stats 3` will return a bar chart containing the number of meetings whose start date is within
    June 2020, July 2020 and August 2020 respectively if the current month is August and the current year is 2020.
  
-### Reminders \[Sebastian Toh Shi Jian\]
+### Reminders 
 
 StonksBook allows you to manage your reminders within the application. 
 
-#### Adding reminders: `reminder add`
+#### Adding reminders: `reminder add` \[Sebastian Toh Shi Jian\]
 
 Adds a reminder scheduled on a particular date that is associated with the specified contact to StonksBook.
 
@@ -411,7 +411,7 @@ Format: `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`
 Examples:
 * `reminder add c/2 m/Send follow-up email d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact that is scheduled for 30th October 2020 3PM, with the message `Send follow-up email`
 
-#### Editing a reminder: `reminder edit`
+#### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\]
 Edits an existing reminder in StonksBook.
 
 Format: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]`
@@ -424,7 +424,7 @@ Examples:
 * `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.
 * `reminder edit 3 m/Follow up call d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Follow up call" and "28th November 2020, 1PM" respectively.
 
-#### Listing all reminders: `reminder list`
+#### Listing all reminders: `reminder list` \[Sebastian Toh Shi Jian\]
 
 Shows a list of all reminders created, sorted in increasing order based on the date the reminder is scheduled.
 
@@ -432,7 +432,7 @@ Shows a list of all reminders created, sorted in increasing order based on the d
 
 Format: `reminder list`
 
-#### Deleting a reminder: `reminder delete`
+#### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified reminder from StonksBook.
 
@@ -510,7 +510,7 @@ Action | Format, Examples
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
 **Meeting Stats** | `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]` <br> e.g., `meeting stats 3`
 **Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
-**Reminder Edit** | ` reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Follow up call d/2020-11-28 13:00`
+**Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Follow up call d/2020-11-28 13:00`
 **Reminder List** | `reminder list`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
 **Help** | `help`
