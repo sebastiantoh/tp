@@ -106,7 +106,7 @@ Shows a list of all contacts in StonksBook.
 Format:`contact list`
 
 #### Locating contacts by name: `contact find`
-Find contacts whose names exactly match or is similar to any of the given keywords.
+Finds contacts whose names exactly match or is similar to any of the given keywords.
 
 Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
@@ -122,23 +122,26 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
 * The contact list is ordered by non-ascending similarity.
 
-* Exact matches (if exists) will appear as the first few results.
+* Exact matches (if exist) will appear as the first few results.
 
 <img src="images/contactFindMockup.png" alt="result for 'contact find keyword'" width="400px">
 
 Examples:
 * `contact find alex david` returns Alex Yeoh, David Li
 * `contact find alx` returns Alex Yeoh
-* `contact find alx dvd` returns Alex Yeoh, David Li
+* `contact find alx david` returns David Li, Alex Yeoh
 
 #### Sorting contacts: `contact sort`
-Sort contacts based on the name, email address or the total sales amount of a contact.
+Sorts contacts based on the name, email address or the total sale amount associated to the contact.
 
 Format: `contact sort KEYWORD [ORDER]`
 
-* `KEYWORD` can only either be `n/` for name, `e/` for email address, or 's/' for total sales amount.
+* `KEYWORD` must exactly match to one of the following:
+    * `n/` for name
+    * `e/` for email address
+    * `s/` for total sales amount
 
-* `ORDER` can only be `desc`.
+* If `ORDER` is present, `ORDER` must exactly match `desc`.
 
 * If `ORDER` is absent, contacts will be sorted in non-descending order. Otherwise, contacts will be sorted in non-ascending order.
 
@@ -275,19 +278,34 @@ Examples:
 
 #### Listing all sales: `sale list`
 
-Shows a list of all sales to a specified contact.
+Shows a list of sales.
 
 <img src="images/saleListMockup.png" alt="result for 'sale list'" width="400px">
 
-Format: `sale list [c/CONTACT_INDEX]`
+Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 
-* If `CONTACT_INDEX` is not specified, all sales are listed.
-* If `CONTACT_INDEX` is  specified,  all sales made to a contact with the specified index.
-* The `CONTACT_INDEX` refers to the index number shown in the displayed contact list and must be a positive integer 1, 2, 3, …​
+
+* At most one optional parameter can be present.
+
+* `CONTACT_INDEX` refers to the index number 
+  shown in the displayed contact list and 
+  must be a positive integer 1, 2, 3, …​
+* `MONTH` must be an integer between 1 and 12 inclusive.
+* `YEAR` must be an integer greater than 0.
+
+* If no optional parameter is present:
+   * all sales are listed.
+   
+* If optional parameter `CONTACT_INDEX` is present:
+   * all sales made to a contact with the specified index are listed.
+
+* If optional parameter `[m/MONTH y/YEAR]` is present:
+   * all sales whose associated date is in the specified `MONTH` and `YEAR` are listed.
 
 Examples:
 * `sale list` lists all sales.
 * `sale list c/5` lists all sales made to the 5th contact in the contact list. 
+* `sale list m/6 y/2020` lists all sales whose associated date is within June 2020.
 
 #### Deleting a sales item: `sale delete`
 
@@ -345,6 +363,36 @@ Format: `meeting delete INDEX`
 Examples:
 * `meeting list 5` followed by `meeting delete 2` deletes the 2nd meeting that is associated with the 5th contact in StonksBook.
 
+#### Analysing meetings: `meeting stats`
+Analyses the meeting data and visualises the statistical result.
+
+Format: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
+
+* At most one optional parameter can be present.
+
+* `NUMBER_OF_MONTHS` refers to the number of months to be included in the result.
+* `NUMBER_OF_MONTHS` must be an integer between 2 and 6 inclusive.
+* `MONTH` must be an integer between 1 and 12 inclusive.
+* `YEAR` must be an integer greater than 0.
+
+* If no optional parameter is present:
+   * The result is the number of meetings whose start date is in the current month and year
+   
+* If optional parameter `[m/MONTH y/YEAR]` is present:
+   * The result is the number of meetings whose start date is in the specified `MONTH` and `YEAR`
+
+* If optional parameter `[NUMBER_OF_MONTHS]` is present:
+   * The result is a bar chart on the number of meetings
+     whose start date is within each of the previous `NUMBER_OF_MONTHS` - 1 months and
+     the current month and year.
+
+Examples:
+* `meeting stats` will return the number of meetings whose start date is in the October 2020
+   if the current month is October and the current year is 2020.
+* `meeting stats m/8 y/2020` will return the number of meetings whose start date is in August 2020.
+* `meeting stats 3` will return a bar chart containing the number of meetings whose start date is within
+   June 2020, July 2020 and August 2020 respectively if the current month is August and the current year is 2020.
+ 
 ### Reminders \[Sebastian Toh Shi Jian\]
 
 StonksBook allows you to manage your reminders within the application. 
@@ -408,11 +456,10 @@ Examples:
 * `contacta ` will return a suggestion of `contact add`
 
 #### Viewing help: `help`
-Lists useful information about the available commands.
+Lists the command word, command description and example
+usage for each available command as well as the link to the User Guide.
 
 Format: `help`
-
- * Lists the available commands, command description and example usage as well as the link to the User Guide.
 
 <img src="images/helpAllMockup.png" alt="result for 'help'" width="400px">
 
@@ -447,11 +494,11 @@ Action | Format, Examples
 **Contact Delete** | `contact delete INDEX` <br> e.g., `contact delete 3`
 **Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
 **Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `contact find James Jake`
-**Contact Sort** | `contact sort KEYWORD [ORDER]` <br> e.g., `contact sort n/desc`
+**Contact Sort** | `contact sort KEYWORD [ORDER]` <br> e.g., `contact sort n/ desc`
 **Contact List** | `contact list`
 **Sale Add** | `sale add c/CONTACT_INDEX d/DATETIME_OF_PURCHASE n/ITEM_NAME p/UNIT_PRICE q/QUANTITY [t/TAG]…` <br> e.g., `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`
 **Sale Edit** | `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`  <br> e.g., `sale edit 2 n/B5 Notebook p/4.00 q/10`
-**Sale List** | `sale list [c/CONTACT_INDEX]`  <br> e.g., `sale delete c/3`
+**Sale List** | `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`  <br> e.g., `sale delete c/3`
 **Sale Delete** | `sale delete s/SALE_INDEX` <br> e.g., `sale delete s/4`
 **Tag Add** | `tag add t/TAG` <br> e.g., `tag add t/important`
 **Tag List** | `tag list`
@@ -461,6 +508,7 @@ Action | Format, Examples
 **Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Follow-up meeting d/2020-10-30 15:00 du/60`
 **Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
+**Meeting Stats** | `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]` <br> e.g., `meeting stats 3`
 **Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
 **Reminder Edit** | ` reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Follow up call d/2020-11-28 13:00`
 **Reminder List** | `reminder list`
