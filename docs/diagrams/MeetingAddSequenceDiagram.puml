@@ -8,7 +8,6 @@ participant ":MeetingCommandsParser" as MeetingCommandsParser LOGIC_COLOR
 participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
 participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
 participant "a:AddCommand" as AddCommand LOGIC_COLOR
-participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 [-> LogicManager : execute("meeting add <args>")

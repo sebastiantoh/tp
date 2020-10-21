@@ -195,7 +195,7 @@ First, relevant methods in `model` are called to retrieve related objects or che
 In this case, `getSortedPersonList()` is called to retrieve the `id` of the contact that is to be associated with the
 meeting and `hasMeeting(newMeeting)` is called to ensure that `newMeeting` to be added does not already exist.
 
-Second, objects to be added or edited are created. For `AddCommand`, the new `Meeting` object to be added is created
+Second, objects to be added or edited are created. For `AddCommand`, the new `Meeting` object to be added is created.
 
 Next, relevant `model` methods are called to edit the lists of `Meeting` objects. For `AddCommand`, `addMeeting` is
  called to add the newly created meeting to the `model`. 
@@ -209,14 +209,12 @@ The sequence diagram below illustrates how the `AddCommand` that is created from
  
  #### Error handling within the `Logic` component
 
-The below activity diagram shows the overall process of execution of reminder delete 1.
+The below activity diagram shows the overall process of execution of `meeting add <args>`.
 
 In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
 - Incorrect command format is used (e.g. missing/incorrect prefixes)
 - Invalid index/values provided (e.g. non-positive and non-integer values are provided as index, non-alphanumeric
  character included in message, unrecognised date formats, etc.)
-
-For example, the activity diagram below illustrates the different outcomes that can occur from `meeting add <args>` Command.
  
 ![The different outcomes of the program that can occur from the `meeting add <args>` Command](images/MeetingAddActivityDiagram.png)
 
