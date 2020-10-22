@@ -12,7 +12,7 @@ Package Reminder <<Rectangle>>{
 }
 
 AddressBook *--> "1" UniqueReminderList
-UniqueReminderList o--> "*" Reminder
+UniqueReminderList --> "*" Reminder
 
 Package Person {
     Class Person

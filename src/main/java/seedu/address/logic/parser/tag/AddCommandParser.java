@@ -10,8 +10,8 @@ import seedu.address.logic.commands.tag.AddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
 
 public class AddCommandParser implements Parser<AddCommand> {
 
@@ -32,14 +32,12 @@ public class AddCommandParser implements Parser<AddCommand> {
                     AddCommand.MESSAGE_USAGE));
         }
 
-        Tag tag = new Tag(tagName);
-
         if (!argMultimap.getValue(PREFIX_CONTACT).isEmpty() && !argMultimap.getValue(PREFIX_SALE).isEmpty()) {
             throw new ParseException(AddCommand.MESSAGE_CONFLICT_TYPES);
         } else if (!argMultimap.getValue(PREFIX_SALE).isEmpty()) {
-            return new AddCommand(tag, false);
+            return new AddCommand(ParserUtil.parseTag(tagName), false);
         } else if (!argMultimap.getValue(PREFIX_CONTACT).isEmpty()) {
-            return new AddCommand(tag, true);
+            return new AddCommand(ParserUtil.parseTag(tagName), true);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }

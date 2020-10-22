@@ -47,6 +47,9 @@ public class ModelManager implements Model {
 
     private final SortedList<Sale> sortedSales;
 
+    private int latestContactId = 0;
+
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -61,13 +64,14 @@ public class ModelManager implements Model {
         this.allPersons = this.addressBook.getPersonList();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
-        this.filteredSales.setPredicate(x -> false);
         this.sortedPersons = new SortedList<>(this.filteredPersons);
         this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
         this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
+
+        initialiseLatestContactId();
     }
 
     public ModelManager() {
@@ -184,6 +188,7 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         this.addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
+        latestContactId += 1;
     }
 
     @Override
@@ -239,6 +244,12 @@ public class ModelManager implements Model {
     @Override
     public void addSale(Sale sale) {
         addressBook.addSale(sale);
+    }
+
+    @Override
+    public void setSale(Sale target, Sale editedSale) {
+        requireAllNonNull(target, editedSale);
+        this.addressBook.setSale(target, editedSale);
     }
 
     @Override
@@ -418,6 +429,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void initialiseLatestContactId() {
+        int currentId = 0;
+        for (Person p : this.allPersons) {
+            if (currentId < p.getId()) {
+                currentId = p.getId();
+            }
+        }
+        latestContactId = currentId;
+    }
+
+    @Override
+    public int getLatestContactId() {
+        return latestContactId;
+    }
+
     public List<Sale> getMonthlySaleList(Month month, Year year) {
         return this.addressBook.getMonthlySaleList(month, year);
     }
@@ -440,6 +466,7 @@ public class ModelManager implements Model {
                 && this.userPrefs.equals(other.userPrefs)
                 && this.sortedPersons.equals(other.sortedPersons)
                 && this.sortedMeetings.equals(other.sortedMeetings)
-                && this.sortedReminders.equals(other.sortedReminders);
+                && this.sortedReminders.equals(other.sortedReminders)
+                && this.sortedSales.equals(other.sortedSales);
     }
 }

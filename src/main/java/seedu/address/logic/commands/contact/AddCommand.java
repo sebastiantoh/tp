@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
@@ -72,21 +71,10 @@ public class AddCommand extends Command {
         this.remark = remark;
     }
 
-    private int getNewPersonId(Model model) {
-        List<Person> allPersons = model.getAllPersons();
-        int maxIdValue = 0;
-        for (Person p: allPersons) {
-            if (p.getId() > maxIdValue) {
-                maxIdValue = p.getId();
-            }
-        }
-        return maxIdValue + 1;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        int id = getNewPersonId(model);
+        int id = model.getLatestContactId() + 1;
 
         Person toAdd = new Person(id, name, phone, email, address, tagList, remark, false, BigDecimal.ZERO);
 

@@ -45,6 +45,8 @@ public class RemoveCommand extends Command {
             throw new CommandException(Messages.MESSAGE_UNARCHIVE_INVALIID_LIST);
         }
 
+        assert personToUnarchive.isArchived();
+
         Person unarchivedPerson = new Person(
                 personToUnarchive.getId(),
                 personToUnarchive.getName(),

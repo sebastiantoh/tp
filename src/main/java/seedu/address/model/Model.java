@@ -43,6 +43,11 @@ public interface Model {
             person1.getName().fullName.compareToIgnoreCase(person2.getName().fullName));
 
     /**
+     * {@code Predicate} that always evaluate to true.
+     */
+    Predicate<Sale> PREDICATE_SHOW_ALL_SALES = unused -> true;
+
+    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
@@ -309,6 +314,13 @@ public interface Model {
     void addSale(Sale sale);
 
     /**
+     * Replaces the given sale {@code target} with {@code editedSale}.
+     * {@code target} must exist in the address book.
+     * The sale identity of {@code editedSale} must not be the same as another existing sale in the address book.
+     */
+    void setSale(Sale target, Sale editedSale);
+
+    /**
      * Removes the given sale.
      * The sale must exist in StonksBook.
      */
@@ -324,6 +336,10 @@ public interface Model {
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
+
+    void initialiseLatestContactId();
+
+    int getLatestContactId();
 
     /**
      * Gets the monthly sale list for {@code month} and {@code year}.

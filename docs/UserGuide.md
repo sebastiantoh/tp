@@ -79,6 +79,8 @@ Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMAR
 
 :bulb: Tip: A contact can have any number of tags (including 0)
 
+* The contact tags provided must exist in StonksBook before you can associate this contact with them.
+
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal r/blacklisted`
@@ -95,6 +97,7 @@ Format: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… 
 * When editing a contact's tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
 * When editing a contact's remark, the previous remark will also be removed/overwritten.
 * You can remove all the contact’s tags/remark by typing `t/` or  `r/` respectively without specifying any tags/remark after it.
+* The contact tags provided must exist in StonksBook before you can associate this contact with them.
 
 Examples:
 * `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
@@ -247,17 +250,18 @@ Examples:
 
 Adds a sale of specified name, unit price and quantity, to the specified contact.
 
-Format: `sale add c/CONTACT_INDEX n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY [t/TAG]…`
+Format: `sale add c/CONTACT_INDEX n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`
 
 * Adds a sale made to the contact at the specified `CONTACT_INDEX`, with details such as the name of item sold, the unit price, and the quantity.
 * The `CONTACT_INDEX` refers to the index number shown in the displayed contact list. The contact index must be a positive integer 1, 2, 3, …​
 * The `DATETIME_OF_PURCHASE` must be in the format `yyyy-MM-dd HH:mm`
 * The `UNIT_PRICE` must be a positive number with 2 decimal places, in format `DOLLARS.CENTS`.
 * The `QUANTITY` must be a positive integer 1, 2, 3, …​
+* It is compulsory to have a tag for the sales item. This is to ensure the ease of data analytics.
+* The tags provided must exist in StonksBook first before you can associate the sales item to them.
 
 Examples:
-* `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery` adds a sale made to the contact that is ordered 4th on the displayed contact list. This is a sale of 2 Notebooks, each of price $6.00, made on 30 October at 3.00, with the tag "stationery".
-
+* `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery` Adds a sale made to the contact that is ordered 4th on the displayed contact list. This is a sale of 2 Notebooks, each of price $6.00, made on 30 October at 3.00, with the tag "stationery".
 
 #### Editing an existing sale: `sale edit`
 
@@ -548,11 +552,11 @@ Action | Format, Examples
 **Sale Edit** | `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`  <br> e.g., `sale edit 2 n/B5 Notebook p/4.00 q/10`
 **Sale List** | `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`  <br> e.g., `sale delete c/3`
 **Sale Delete** | `sale delete s/SALE_INDEX` <br> e.g., `sale delete s/4`
-**Tag Add** | `tag add t/TAG` <br> e.g., `tag add t/important`
+**Tag Add** | `tag add c/ (or s/) t/TAG` <br> e.g., `tag add c/ t/important`
 **Tag List** | `tag list`
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
 **Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
-**Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 contact`
+**Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 c/`
 **Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Follow-up meeting d/2020-10-30 15:00 du/60`
 **Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`

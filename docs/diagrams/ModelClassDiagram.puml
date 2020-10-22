@@ -68,14 +68,14 @@ Person *--> Address
 Person *--> "*" Tag
 
 AddressBook *--> "1" UniqueMeetingList
-UniqueMeetingList o--> "*" Meeting
+UniqueMeetingList --> "*" Meeting
 Meeting *--> Person
 Meeting : Message message
 Meeting : LocalDateTime startDate
 Meeting : Duration duration
 
 AddressBook *--> "1" UniqueReminderList
-UniqueReminderList o--> "*" Reminder
+UniqueReminderList --> "*" Reminder
 Reminder *--> Person
 Reminder : Message message
 Reminder : LocalDateTime scheduledDate
