@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MOST_SIMILAR_COMMAND;
+import static seedu.address.logic.parser.archive.ArchiveCommandsParser.ALL_ARCHIVE_COMMAND_WORDS;
 import static seedu.address.logic.parser.contact.ContactCommandsParser.ALL_CONTACT_COMMAND_WORDS;
 import static seedu.address.logic.parser.meeting.MeetingCommandsParser.ALL_MEETING_COMMAND_WORDS;
 import static seedu.address.logic.parser.reminder.ReminderCommandsParser.ALL_REMINDER_COMMAND_WORDS;
@@ -30,8 +31,8 @@ public class UnknownCommand extends Command {
     private static final Map<String, String> SEARCH_WORDS_TO_COMMAND_WORDS =
             Stream.of(Arrays.asList(ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD,
                     PurgeCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD),
-                    ALL_CONTACT_COMMAND_WORDS, ALL_TAG_COMMAND_WORDS, ALL_REMINDER_COMMAND_WORDS,
-                    ALL_MEETING_COMMAND_WORDS, ALL_SALE_COMMAND_WORDS)
+                    ALL_CONTACT_COMMAND_WORDS, ALL_ARCHIVE_COMMAND_WORDS, ALL_TAG_COMMAND_WORDS,
+                    ALL_REMINDER_COMMAND_WORDS, ALL_MEETING_COMMAND_WORDS, ALL_SALE_COMMAND_WORDS)
                     .flatMap(Collection::stream)
                     .collect(Collectors.toMap(x -> String.join("", x.split("\\s+")), x -> x));
 
