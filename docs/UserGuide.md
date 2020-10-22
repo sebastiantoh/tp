@@ -445,6 +445,51 @@ Format: `reminder delete INDEX`
 Examples:
 * `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
 
+
+### Archive
+
+StonksBook allows you to archive contacts who are no longer active so that you can focus on contacts who can bring you the Stonks.
+
+#### Adding a contact to the archive: `archive add`
+
+Adds the specified contact to the archive.
+
+Format: `archive add INDEX`
+
+* Adds the contact at the specified `INDEX` to the archive.
+* Can only be used when the contacts list is displayed.
+* The index must be a positive integer 1, 2, 3, …
+
+Example:
+* When the contact list is displayed on your StonksBook, entering `archive add 3` adds the third contact on your list to the archive.
+
+#### Listing contacts in the archive: `archive list`
+
+Shows the list of your archived contacts.
+
+Format: `archive list`
+
+* When entered, if the contacts list is displayed it will be replaced with the archived contacts list.
+* You can edit and delete contacts in the archive using `contact edit` and `contact delete` when the archived contacts list is displayed.
+
+Examples:
+* Entering `archive list` displays all your archived contacts.
+* Entering `archive list` followed by `contact delete 2` deletes the second contact on your archived contacts list from StonksBook.
+
+#### Removing contacts from the archive: `archive remove`
+
+Removes the specified contact from the archive. The specified contact will appear on your contact list again.
+
+Format: `archive remove INDEX`
+
+* Removes the contact at the specified `INDEX` from the archive.
+* Does not delete the contact from StonksBook. To delete the contact use `contact delete`.
+* Can only be used when the archived contacts list is displayed.
+* The index must be a positive integer 1, 2, 3, …
+
+Example:
+* When the archived contacts list is displayed on your StonksBook, entering `archive remove 2` removes the fourth contact on your list from the archive back to your contacts list.
+
 ### Miscellaneous
 
 #### Error resolution suggestion:
