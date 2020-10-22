@@ -39,7 +39,6 @@ public class Person {
      * @param address Address of the person.
      * @param tags Set of tags associated with the person.
      * @param remark Remark associated with the person.
-     * @param salesList UniqueSaleList of sales made to the person.
      */
     public Person(Integer id, Name name, Phone phone, Email email, Address address,
                   Set<Tag> tags, Remark remark, boolean archived, BigDecimal totalSalesAmount) {

@@ -1,0 +1,109 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TagCommandsParser" as TagCommandsParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "a:FindCommand" as FindCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tag find <args>")
+note left: Full command is truncated for brevity
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("tag find <args>")
+activate AddressBookParser
+
+create TagCommandsParser
+AddressBookParser -> TagCommandsParser
+activate TagCommandsParser
+
+TagCommandsParser -> AddressBookParser
+deactivate TagCommandsParser
+
+AddressBookParser -> TagCommandsParser : parse("tag find", <args>)
+activate TagCommandsParser
+
+create FindCommandParser
+TagCommandsParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser -> TagCommandsParser
+deactivate FindCommandParser
+
+TagCommandsParser -> FindCommandParser : parse(<args>)
+activate FindCommandParser
+
+FindCommandParser --> ParserUtil : parseIndex(str)
+activate ParserUtil
+
+ParserUtil --> FindCommandParser
+deactivate ParserUtil
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser : a
+deactivate FindCommand
+
+FindCommandParser --> TagCommandsParser : a
+deactivate FindCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> TagCommandsParser
+destroy FindCommandParser
+
+TagCommandsParser --> AddressBookParser : a
+deactivate TagCommandsParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagCommandsParser -[hidden]-> AddressBookParser
+destroy TagCommandsParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+alt isSaleTag
+
+    FindCommand -> Model : findBySaleTag(tag)
+    activate Model
+
+    Model --> FindCommand
+    deactivate Model
+
+else
+
+    FindCommand -> Model : findByContact(tag)
+    activate Model
+
+    Model --> FindCommand
+    deactivate Model
+
+end
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

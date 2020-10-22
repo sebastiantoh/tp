@@ -43,6 +43,8 @@ public class AddCommand extends Command {
             throw new CommandException(Messages.MESSAGE_ARCHIVE_INVALIID_LIST);
         }
 
+        assert !personToArchive.isArchived();
+
         Person archivedPerson = new Person(
                 personToArchive.getId(),
                 personToArchive.getName(),
@@ -51,7 +53,7 @@ public class AddCommand extends Command {
                 personToArchive.getAddress(),
                 personToArchive.getTags(),
                 personToArchive.getRemark(),
-                true,
+                !personToArchive.isArchived(),
                 personToArchive.getTotalSalesAmount()
         );
         model.setPerson(personToArchive, archivedPerson);

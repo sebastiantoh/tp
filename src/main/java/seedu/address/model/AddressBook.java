@@ -205,6 +205,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given sale {@code target} in the list with {@code editedSale}.
+     * {@code target} must exist in the address book.
+     * The sale identity of {@code editedSale} must not be the same as another existing sale in the address book.
+     */
+    public void setSale(Sale target, Sale editedSale) {
+        requireNonNull(editedSale);
+
+        sales.setSale(target, editedSale);
+        for (Tag t : editedSale.getTags()) {
+            saleTags.add(t);
+        }
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      *

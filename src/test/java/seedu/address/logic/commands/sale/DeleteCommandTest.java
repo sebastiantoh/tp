@@ -33,6 +33,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_noSalesListed_throwsCommandException() {
+        model.updateFilteredSaleList(x -> false);
         Sale saleToDelete = model.getSortedSaleList().get(0);
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_SECOND_ITEM);
 
