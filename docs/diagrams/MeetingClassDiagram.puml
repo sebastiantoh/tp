@@ -12,7 +12,7 @@ Package Meeting <<Rectangle>>{
     Class UniqueMeetingList
 
     AddressBook *--> "1" UniqueMeetingList
-    UniqueMeetingList o--> "*" Meeting
+    UniqueMeetingList --> "*" Meeting
 }
 
 Package Person {
