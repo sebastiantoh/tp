@@ -45,7 +45,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of four components:
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
@@ -119,6 +119,7 @@ The `Model`,
     1. `ObservableList<Person>`
     2. `ObservableList<Meeting>`
     3. `ObservableList<Reminder>`
+    3. `ObservableList<Sale>`
 * does not depend on any of the other three components.
 
 
@@ -169,12 +170,13 @@ For all meeting-related commands, we have the `MeetingCommandsParser` which serv
 
 These are the steps that will be taken when parsing a meeting-related user command:
 1. An `AddressBookParser` will check if the command is meetings-related. The `AddressBookParser` will then create a `MeetingCommandsParser`.
-3. The `MeetingCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
+2. The `MeetingCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
     - `meeting add` command: `AddCommandParser`
     - `meeting delete` command: `DeleteCommandParser`
     - `meeting edit` command: `EditCommandParser`
     - `meeting list` command: `ListCommandParser`
-4. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+4. Within `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
 
 Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(meeting add <args>)` API call. 
 - Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user. 
@@ -182,17 +184,37 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `meeting add <args>` Command](images/MeetingAddSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandsParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 #### Execution of commands within the `Logic` component
 
-After the respective parsers have parsed the user inputs, a `Command` object will be returned and executed by `LogicManager`.
+After the user input has been parsed into a `Command`, it is executed with `model` passed in as a parameter.
 
-In order to ensure data cleanliness and that the inputs by the users are valid, the execution of these commands 
-can have various outcomes.
+First, relevant methods in `model` are called to retrieve related objects or check for the existence of the sale.
+In this case, `getSortedPersonList()` is called to retrieve the `id` of the contact that is to be associated with the
+meeting and `hasMeeting(newMeeting)` is called to ensure that `newMeeting` to be added does not already exist.
 
-For example, the activity diagram below illustrates the different outcomes that can occur from `meeting add <args>` Command.
+Second, objects to be added or edited are created. For `AddCommand`, the new `Meeting` object to be added is created.
+
+Next, relevant `model` methods are called to edit the lists of `Meeting` objects. For `AddCommand`, `addMeeting` is
+ called to add the newly created meeting to the `model`. 
+
+Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+The sequence diagram below illustrates how the `AddCommand` that is created from parsing `meeting add <args>` is
+ executed.
+ 
+ ![MeetingExecuteAddSequenceDiagram](images/MeetingExecuteAddSequenceDiagram.png)
+  
+#### Error handling within the `Logic` component
+
+The below activity diagram shows the overall process of the execution of `meeting add <args>`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+- Incorrect command format is used (e.g. missing/incorrect prefixes)
+- Invalid index/values provided (e.g. non-positive and non-integer values are provided as index, non-alphanumeric
+ character included in message, unrecognised date formats, etc.)
  
 ![The different outcomes of the program that can occur from the `meeting add <args>` Command](images/MeetingAddActivityDiagram.png)
 
@@ -224,6 +246,9 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
     * Will need to implement some kind of placeholder text for `Meeting`s without a message when displaying meetings in the user interface.
     * Will have to be more careful in implementation of meeting commands to allow for an optional field.
 
+Alternative 1 is chosen as we found that the importance of enforcing data cleanliness far outweighs the associated
+ cost that is required to implement this enforcement.
+
 ##### Aspect: What fields should be stored to represent a `Meeting`
 
 * **Alternative 1 (current choice):** Store just the start date of a meeting, along with its duration.
@@ -245,21 +270,246 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
   * Cons: 
     * There is the possibility that the three fields may no longer be in sync. Extra emphasis must be taken to ensure that these fields remain synchronised whenever either of these fields changes. 
 
-#### Aspect: How to serialise the start date and duration of a `Meeting`
+Alternative 1 is chosen as it is the most user-friendly option. It also makes maintaining the data easy. 
+Because only future meetings are displayed by default, the slight performance dip associated with alternative 1 may
+ not actually be an issue as we do not foresee the list of future meetings to be very large. 
+ 
+##### Aspect: How to serialize the start date and duration of a `Meeting`
 * **Alternative 1 (current choice):** Deserialize them according to ISO-8601 format.
    * Pros: 
      * Unambiguous and well-defined method of representing dates and times
+     * Easier integration with other date and time libraries should such an integration be necessary.
    * Cons: 
      * Should the user decide to open the data file, the ISO-8601 format may not be very familiar or readable. This
       increases the likelihood of corruption of data.
 
-* **Alternative 2:** Serialize them in a format that is human readable. e.g. storing dates in dd-MM-yyyy and
- durations in terms of minutes
+* **Alternative 2:** Serialize them in a format that is human readable. e.g. storing dates in dd-MM-yyyy format and
+ durations as an integer representing number of minutes
    * Pros: 
      * Should the user decide to open the data file, he can easily understand and make relevant modifications without
       corrupting the data format.
    * Cons: 
      * Parsing and deserializing the data may pose some difficulties. 
+
+Alternative 1 is chosen as it is a well-established international standard which would facilitate the integration of
+ other libraries if necessary.
+
+### Reminders feature \[Sebastian Toh Shi Jian\]
+The reminders feature allows the user to add, delete, or update reminders in StonksBook. 
+Reminders are displayed in increasing order based on the scheduled date of the reminder.
+
+The feature consists of the following commands:
+- `reminder add` - Adds a reminder to the reminder list.
+- `reminder delete` - Delete a reminder from the reminder list.
+- `reminder edit` - Edit a reminder from the reminder list.
+- `reminder list` - Display the list of all reminders in the user interface.
+
+#### Parsing of commands within the `Logic` component
+
+The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
+
+In order to handle the many commands in our application, we introduced an intermediate layer between
+ `AddressBookParser` and the relevant command parsers, e.g. `DeleteCommandParser`. 
+The intermediate layer will first determine which model type the command corresponds to, before dispatching it to the corresponding command parser.
+For all reminder-related commands, we have the `ReminderCommandsParser` which serves as the intermediate class.
+
+These are the steps that will be taken when parsing a reminder-related user command:
+1. An `AddressBookParser` will check if the command is reminder-related. The `AddressBookParser` will then create a
+ `ReminderCommandsParser`.
+2. The `ReminderCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
+    - `reminder add` command: `AddCommandParser`
+    - `reminder delete` command: `DeleteCommandParser`
+    - `reminder edit` command: `EditCommandParser`
+    - `reminder list` command: `ListCommandParser`
+3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+4. Within `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
+
+Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(reminder delete 1)` API call.
+
+![Interactions Inside the Logic Component for the `reminder delete 1` Command](images/ReminderDeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandsParser` and `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+ reaches the end of diagram.
+</div>
+
+#### Execution of commands within the `Logic` component
+
+After the user input has been parsed into a `Command`, it is executed with `model` passed in as a parameter.
+
+First, relevant methods in `model` are called to retrieve related objects or check for the existence of the reminder.
+For the case of `DeleteCommand`, `getSortedReminder()` is called to retrieve the list of all reminders
+ that are currently displayed in the user interface. 
+ 
+Next, relevant model methods are called to edit the lists of `Reminder`objects. For `DeleteCommand`, `deleteReminder` 
+is used to delete the reminder corresponding to the specified index. 
+
+Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+The sequence diagram below illustrates how the `DeleteCommand` that is created from parsing `reminder delete 1` is
+ executed.
+ 
+![ReminderExecuteDeleteSequenceDiagram](images/ReminderExecuteDeleteSequenceDiagram.png)
+
+#### Error Handling within the `Logic` component
+
+The below activity diagram shows the overall process of the execution of `reminder delete 1`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+* Incorrect command format is used (e.g. missing/incorrect prefixes)
+* Invalid index/values provided (e.g. non-positive and non-integer values are provided as index)
+
+![DeleteReminderActivityDiagram](images/ReminderDeleteActivityDiagram.png)
+
+#### Modelling `Reminder`s
+
+`Reminder` is modelled according to the class diagram below.
+
+![ReminderClassDiagram](images/ReminderClassDiagram.png)
+
+`Reminder` objects are saved within a `UniqueReminderList` stored in `AddressBook`. 
+
+We enforce a composition relationship between `Reminder` and its attribute as we do not want `Reminder` to exist when
+ either of its attributes no longer exist. With that, whenever a `Person` is deleted, all associated `Reminder`s are
+  deleted as well. Similarly, we also enforce that all `Reminder`s must be associated with a non-empty `Message`.
+
+#### Design consideration:              
+                
+##### Aspect: Whether it should be necessary to enforce a `message` field in a `Reminder` object
+* **Alternative 1 (current choice):**: Create a `Message` class which enforces a non-empty message association to a
+ `Reminder` object.
+  * Pros:
+    * Easier implementation of reminder commands since every field is necessary.
+    * Better data cleanliness.
+  * Cons:
+    * Have to implement a separate class as well as implement validation of inputs.
+                                    
+* **Alternative 2:** Set the `Reminder` object to be associated to a `String` which acts as the message of a reminder.
+  * Pros:
+    * No need to implement validation of inputs for this `message` field.
+  * Cons:
+    * Will need to implement some kind of placeholder text for `Reminder`s without a message when displaying
+     reminders in the user interface.
+    * Will have to be more careful in implementation of reminder commands to allow for an optional field.
+
+A similar consideration was made when implementing [`Meeting`s](#aspect-whether-it-should-be-necessary-to-enforce-a-message-field-in-a-meeting-object).
+This further strengthened our choice to go for Alternative 1 given that the cost of having to validate the inputs
+ would be spread over multiple features.
+
+##### Aspect: How to serialize the scheduled date of a `Reminder`
+* **Alternative 1 (current choice):** Deserialize the date according to ISO-8601 format.
+   * Pros: 
+     * Unambiguous and well-defined method of representing dates and times
+     * Easier integration with other date and time libraries should such an integration be necessary.
+   * Cons: 
+     * Should the user decide to open the data file, the ISO-8601 format may not be very familiar or readable. This
+      increases the likelihood of corruption of data.
+
+* **Alternative 2:** Serialize them in a format that is human readable. e.g. storing dates in dd-MM-yyyy format and
+ durations as an integer representing number of minutes
+   * Pros: 
+     * Should the user decide to open the data file, he can easily understand and make relevant modifications without
+      corrupting the data format.
+   * Cons: 
+     * Parsing and deserializing the data may pose some difficulties. 
+
+A similar consideration was made when implementing [`Meeting`s](#aspect-how-to-serialize-the-start-date-and-duration
+-of-a-meeting).
+Alternative 1 was chosen so as to have a consistent and standardised way of handling date and time handled within our code base.
+ 
+### Sale Feature [Kwek Min Yih]
+
+The Sales feature allows users to add and manage Sales made to contacts in StonksBook. Sales are ordered from most to least recently made.
+
+This feature consists of the following commands:
+* `sale add` – Adds a sale to the sale list.
+* `sale delete` – Deletes a sale to the sale list.
+* `sale edit` – Edits a sale to the sale list.
+* `sale list` – Display the list of all sales in the user interface.
+
+#### Parsing of commands within the `Logic` component
+
+The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
+
+In order to handle the many commands in our application, we introduced an intermediate layer between `AddressBookParser` and the relevant command parsers, e.g. `AddCommandParser`. 
+The intermediate layer will first determine which model type the command corresponds to, before dispatching it to the corresponding command parser.
+For all sale-related commands, we have the `SaleCommandsParser` which serves as the intermediate class.
+
+These are the steps that will be taken when parsing a sale-related user command:
+1. An `AddressBookParser` will check if the command is sale-related. The `AddressBookParser` will then create a `SaleCommandsParser`.
+3. The `SaleCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
+    - `sale add` command: `AddCommandParser`
+    - `sale delete` command: `DeleteCommandParser`
+    - `sale edit` command: `EditCommandParser`
+    - `sale list` command: `ListCommandParser`
+4. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+5. Within the `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
+
+Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(sale add <args>)` API call. 
+- Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user. 
+- For example, if the full command was `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`, then `<args>` is equivalent to `c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`.
+
+![SaleAddSequenceDiagram](images/SaleAddSequenceDiagram.png)
+
+
+#### Execution of commands within the `Logic` component
+
+After command has been parsed into an `AddCommand`, it is executed with `model` passed in as a parameter.
+
+First, relevant methods in `model` are called to retrieve related objects or check for the existence of the sale.
+In this case, `getSortedPersonList()` is called to retrieve the `id` of the buyer and `hasSale(newSale)` is called to ensure that the `sale` to be added does not already exist.
+
+Second, objects to be added or edited are created. 
+For `AddCommand`, the new `Sale` object to be added is created, and a new `editedPerson` object is created containing an updated `totalSalesAmount` variable.
+
+Next, relevant `model` methods are called to edit the lists of `Sale` and `Person` objects, 
+with `setPerson()` and `addSale()` being used to replace an existing `Person` object and add a new `Sale` object respectively.
+
+Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+![SaleExecuteAddSequenceDiagram](images/SaleExecuteAddSequenceDiagram.png)
+
+
+#### Error Handling within the `Logic` component
+
+The below activity diagram shows the overall process of execution of `sale add <args>`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+* Incorrect command format is used (e.g. missing/incorrect prefixes)
+* Invalid index/values provided (e.g. alphabetical characters provided for numerical fields such as `Quantity`)
+* Sale object provided already exists
+
+![AddSaleActivityDiagram](images/AddSaleActivityDiagram.png)
+
+#### Modelling `Sale`s
+
+`Sale` is modelled according to the class diagram below.
+
+![SaleClassDiagram](images/SaleClassDiagram.png)
+
+`Sale` objects are saved within a `UniqueSaleList` stored in `AddressBook`. 
+There is a composition relationship between `Sale` and its attributes, as we want the attributes (e.g. `ItemName`, `UnitPrice`) to exist dependently on the `Sale` object it belongs to.
+The attributes are abstracted out into different classes, instead of being stored as values within Sale, to allow for greater input validation and attribute specific functionality.
+
+#### Design Consideration:
+ 
+##### Aspect: How to implement currency related fields
+* **Alternative 1 (current choice):**: Use BigDecimal to store currency related fields.
+  * Pros:
+    * Accurate currency calculations are possible.
+  * Cons:
+    * Need to import the BigDecimal package.
+                                    
+* **Alternative 2:** Use Float variables to store currency variables.
+  * Pros:
+    * No need to import any packages.
+  * Cons:
+    * Will likely result in accurate currency calculations due to float rounding errors. 
+
+* **Alternative 3:** Store dollars and cents independently as integers
+  * Pros:
+    * Accurate currency calculations are possible.
+  * Cons:
+    * Cumbersome currency calculations due to converting every hundred cents to dollars.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -405,13 +655,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | salesman                          | delete sales belonging to contacts                            | ensure updated and correct sales information                                                  |
 | `* * *`  | efficient salesman                | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
-
+| `* *`    | visual user                       | quickly identify overdue reminders                            | work on it without further delay                                                              |
+| `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                          |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `StonksBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### Use case: Delete a person
+{:.no_toc}
 
 **MSS**
 
@@ -434,7 +686,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a tag**
+#### Use case: Add a tag
+{:.no_toc}
 
 **MSS**
 
@@ -449,7 +702,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: View all tags**
+#### Use case: View all tags
+{:.no_toc}
 
 **MSS**
 
@@ -464,7 +718,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Update a tag**
+#### Use case: Update a tag
+{:.no_toc}
 
 **MSS**
 
@@ -489,7 +744,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Delete a tag**
+#### Use case: Delete a tag
+{:.no_toc}
 
 **MSS**
 
@@ -514,7 +770,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Retrieve entries by tag**
+#### Use case: Retrieve entries by tag
+{:.no_toc}
 
 **MSS**
 
@@ -537,7 +794,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Clear past interactions**
+#### Use case: Clear past interactions
+{:.no_toc}
 
 **MSS**
 1.  User enters the clear command.
@@ -545,7 +803,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Clear all data**
+#### Use case: Clear all data
+{:.no_toc}
 
 **MSS**
 1.  User enters the purge command.
@@ -559,7 +818,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: Find a contact**
+#### Use case: Find a contact
+{:.no_toc}
 
 **MSS**
 
@@ -580,7 +840,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Add a meeting**
+#### Use case: Add a meeting
+{:.no_toc}
 
 **MSS**
 
@@ -614,8 +875,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. StonksBook shows an error message.
 
       Use case resumes at step 2.
+      
+* 3d. The given meeting message is invalid.
 
-**Use case: View all meetings**
+    * 3b1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: View all meetings
+{:.no_toc}
 
 **MSS**
 
@@ -636,7 +904,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Delete a meeting**
+#### Use case: Delete a meeting
+{:.no_toc}
 
 **MSS**
 
@@ -659,7 +928,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a reminder**
+#### Use case: Add a reminder
+{:.no_toc}
 
 **MSS**
 
@@ -687,8 +957,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. StonksBook shows an error message.
 
       Use case resumes at step 2.
+      
+* 3c. The given reminder message is invalid.
 
-**Use case: View all reminders**
+    * 3b1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: View all reminders
+{:.no_toc}
 
 **MSS**
 
@@ -703,7 +980,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Delete a reminder**
+#### Use case: Delete a reminder
+{:.no_toc}
 
 **MSS**
 
@@ -726,7 +1004,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Get help on available commands**
+#### Use case: Get help on available commands
+{:.no_toc}
 
 **MSS**
 
@@ -735,7 +1014,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Get help for a command**
+#### Use case: Get help for a command
+{:.no_toc}
 
 **MSS**
 
@@ -744,7 +1024,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Add a sale to a contact**
+#### Use case: Add a sale to a contact
+{:.no_toc}
 
 **MSS**
 
@@ -767,19 +1048,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-* 4a. The given sale already exists
+* 3b. The given sale already exists
 
-    * 4a1. StonksBook shows an error message.
+    * 3b1. StonksBook shows an error message stating that the given sale already exists.
 
       Use case ends.
 
-* 5a. The given parameters (unit price and quantity) are not in the correct format.
+* 3c. The given parameters (e.g. unit price, quantity) are not in the correct format.
 
-    * 5a1. StonksBook shows an error message.
+    * 3c1. StonksBook shows an error message, reminding the user of the correct format.
 
       Use case resumes at step 2.
 
-**Use case: List all sales belonging to a contact**
+#### Use case: List all sales
+{:.no_toc}
+
+**MSS**
+
+1.  User requests to list all sales.
+2.  StonksBook shows all sales.
+
+    Use case ends.
+
+
+#### Use case: List all sales belonging to a contact
+{:.no_toc}
 
 **MSS**
 
@@ -802,28 +1095,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a sale belonging to a contact**
+#### Use case: Delete a sale 
 
 **MSS**
 
-1.  User requests to list contacts.
-2.  StonksBook shows a list of contacts.
-3.  User requests to delete a sale belonging to a specific contact in the list.
+1.  User requests to list sales.
+2.  StonksBook shows a list of sales.
+3.  User requests to delete a sale of a specified index.
 4.  StonksBook deletes the specified sale.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list of contacts is empty.
+* 2a. The list of sales is empty.
 
   Use case ends.
 
-* 3a. The list of sales is empty.
-
-  Use case ends.
-
-* 4a. The given contact index or sale index is invalid.
+* 4a. The given sale index is invalid.
 
     * 4a1. StonksBook shows an error message.
 
@@ -877,15 +1166,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `contact delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `contact delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the
+    list
+    size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
@@ -897,3 +1188,72 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Adding a meeting
+
+1. Adding a meeting while all persons are being shown
+
+   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
+
+   1. Test case: `meeting add c/1 m/Lunch with Bob d/2020-10-30 12:00 du/60`<br>
+      Expected: A new meeting is created that is associated with the first contact in the currently displayed list of
+      persons, has message "Lunch with Bob", and is scheduled from 30 October 2020, 12pm to 1pm. The meeting list
+      should remain sorted in ascending order based on the scheduled date.
+
+   1. Test case: `meeting add`<br>
+      Expected: No meeting is added. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `meeting add c/-1 m/Lunch with Bob d/2020-10-30 12:00 du/60`, `meeting
+    add c/1 m/ d/2020-10-30 12:00 du/60`, `meeting add c/1 m/Lunch with Bob d/30/10/2020 12pm du/60`, `meeting add c
+    /1 m/Lunch with Bob d/2020-10-30 12:00 du/30min`<br>
+      Expected: Similar to previous.
+      
+### Deleting a meeting
+
+1. Deleting a meeting while all meetings are being shown
+
+   1. Prerequisites: List all meetings using the `meeting list` command. Multiple meetings in the list.
+
+   1. Test case: `meeting delete 1`<br>
+      Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message.
+
+   1. Test case: `meeting delete 0`<br>
+      Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `meeting delete`, `meeting delete x`, `...` (where x is larger than the
+    list size)<br>
+      Expected: Similar to previous.
+      
+### Adding a reminder
+
+1. Adding a reminder while all persons are being shown
+
+   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
+
+   1. Test case: `reminder add c/1 m/Follow up with Bob d/2020-10-30 12:00`<br>
+      Expected: A new reminder is created that is associated with the first contact in the currently displayed list of
+      persons, has message "Follow up with Bob", and is scheduled on 30 October 2020, 12pm. The reminder list
+      should remain sorted in ascending order based on the scheduled date.
+
+   1. Test case: `reminder add`<br>
+      Expected: No meeting is reminder. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `reminder add c/-1 m/Follow up with Bob d/2020-10-30 12:00`, `reminder
+    add c/1 m/ d/2020-10-30 12:00`, `reminder add c/1 m/Follow up with Bob d/30/10/2020 12pm`<br>
+      Expected: Similar to previous.
+      
+### Deleting a reminder
+
+1. Deleting a reminder while all reminder are being shown
+
+   1. Prerequisites: List all reminder using the `reminder list` command. Multiple reminder in the list.
+
+   1. Test case: `reminder delete 1`<br>
+      Expected: First reminder is deleted from the list. Details of the deleted reminder shown in the status message.
+
+   1. Test case: `reminder delete 0`<br>
+      Expected: No reminder is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `reminder delete`, `reminder delete x`, `...` (where x is larger than the
+    list size)<br>
+      Expected: Similar to previous.

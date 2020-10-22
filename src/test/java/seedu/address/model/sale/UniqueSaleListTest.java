@@ -8,6 +8,9 @@ import static seedu.address.testutil.sale.TypicalSales.APPLE;
 import static seedu.address.testutil.sale.TypicalSales.BALL;
 
 import java.math.BigDecimal;
+import java.time.Month;
+import java.time.Year;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -45,7 +48,12 @@ public class UniqueSaleListTest {
 
     @Test
     public void add_duplicateSale_throwsDuplicateSaleException() {
+        Month month = APPLE.getMonth();
+        Year year = APPLE.getYear();
+        List<Sale> oldMonthlySaleList = new ArrayList<>(uniqueSaleList.getMonthlySaleList(month, year));
         uniqueSaleList.add(APPLE);
+        oldMonthlySaleList.add(APPLE);
+        assertEquals(oldMonthlySaleList, uniqueSaleList.getMonthlySaleList(month, year));
         assertThrows(DuplicateSaleException.class, () -> uniqueSaleList.add(APPLE));
     }
 
@@ -66,11 +74,15 @@ public class UniqueSaleListTest {
 
     @Test
     public void setSale_editedSaleIsSameSale_success() {
+        Month month = APPLE.getMonth();
+        Year year = APPLE.getYear();
         uniqueSaleList.add(APPLE);
+        List<Sale> oldMonthlySaleList = new ArrayList<>(uniqueSaleList.getMonthlySaleList(month, year));
         uniqueSaleList.setSale(APPLE, APPLE);
         UniqueSaleList expectedUniqueSaleList = new UniqueSaleList();
         expectedUniqueSaleList.add(APPLE);
         assertEquals(expectedUniqueSaleList, uniqueSaleList);
+        assertEquals(oldMonthlySaleList, uniqueSaleList.getMonthlySaleList(month, year));
     }
 
     @Test
@@ -111,10 +123,14 @@ public class UniqueSaleListTest {
 
     @Test
     public void remove_existingSale_removesSale() {
+        Month month = APPLE.getMonth();
+        Year year = APPLE.getYear();
         uniqueSaleList.add(APPLE);
         uniqueSaleList.remove(APPLE);
         UniqueSaleList expectedUniqueSaleList = new UniqueSaleList();
         assertEquals(expectedUniqueSaleList, uniqueSaleList);
+        assertEquals(Collections.emptyList(), uniqueSaleList.getMonthlySaleList(month, year));
+
     }
 
     @Test

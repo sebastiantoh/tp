@@ -29,6 +29,14 @@ public class TypicalSales {
             .withQuantity("2")
             .withDatetimeOfPurchase(LocalDateTime.of(2020, 11, 1, 9, 5))
             .withUnitPrice(new BigDecimal("1000.5")).withTags("electronics").build();
+    public static final Sale GUITAR = new SaleBuilder().withItemName("Fender guitar").withBuyerId(BENSON.getId())
+            .withQuantity("5")
+            .withDatetimeOfPurchase(LocalDateTime.of(2020, 11, 1, 9, 5))
+            .withUnitPrice(new BigDecimal("7000.0")).withTags("electronics").build();
+    public static final Sale DRUMS = new SaleBuilder().withItemName("Yamaha Drum set").withBuyerId(BENSON.getId())
+            .withQuantity("1")
+            .withDatetimeOfPurchase(LocalDateTime.of(2020, 11, 1, 9, 5))
+            .withUnitPrice(new BigDecimal("20000.0")).withTags("electronics").build();
 
     private TypicalSales() {} // prevents instantiation
 
