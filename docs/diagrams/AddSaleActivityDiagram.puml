@@ -1,0 +1,28 @@
+@startuml
+start
+:User keys in command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:Program parses input;
+
+if () then ([command is in valid format])
+    if () then ([index and arguments are valid])
+        :Create a new Sale object;
+        if () then ([sale already exists])
+            :Show duplicate sale warning;
+        else ([else])
+            :Add Sale to sale list;
+            :Edit the buyer of the Sale object;
+            :Show success message;
+        endif
+    else ([else])
+        :Show error message with correct required values;
+    endif
+else ([else])
+    : Show error message with correct command format;
+endif
+
+stop
+@enduml

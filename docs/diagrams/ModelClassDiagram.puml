@@ -4,29 +4,48 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
-Interface Model <<Interface>>
-Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
-Class Model
-Class ModelManager
-Class UserPrefs
-Class ReadOnlyUserPrefs
+Package Model <<Rectangle>> {
+    Interface ReadOnlyAddressBook <<Interface>>
+    Interface Model <<Interface>>
+    Interface ObservableList <<Interface>>
+    Class AddressBook
+    Class ReadOnlyAddressBook
+    Class Model
+    Class ModelManager
+    Class UserPrefs
+    Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
-}
+    Package Person {
+        Class Person
+        Class Address
+        Class Email
+        Class Name
+        Class Phone
+        Class UniquePersonList
+    }
 
-Package Tag {
-Class Tag
-}
+    Package Tag {
+        Class Tag
+    }
+
+    Package Meeting {
+        Class Meeting
+        Class UniqueMeetingList
+    }
+
+    Package Reminder {
+        Class Reminder
+        Class UniqueReminderList
+    }
+
+    Package Sale {
+        Class Sale
+        Class ItemName
+        Class UnitPrice
+        Class Quantity
+
+        Class UniqueSaleList
+    }
 }
 
 Class HiddenOutside #FFFFFF
@@ -48,9 +67,35 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 
+AddressBook *--> "1" UniqueMeetingList
+UniqueMeetingList --> "*" Meeting
+Meeting *--> Person
+Meeting : Message message
+Meeting : LocalDateTime startDate
+Meeting : Duration duration
+
+AddressBook *--> "1" UniqueReminderList
+UniqueReminderList --> "*" Reminder
+Reminder *--> Person
+Reminder : Message message
+Reminder : LocalDateTime scheduledDate
+
+AddressBook *--> "1" UniqueSaleList
+UniqueSaleList o--> "*" Sale
+Sale *--> ItemName
+Sale *--> UnitPrice
+Sale *--> Quantity
+Sale *--> "1" Person
+Sale *--> "*" Tag
+Sale : LocalDateTime dateTimeOfPurchase
+
+
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager -->"1" Person : filtered list
+
+show Reminder fields
+show Meeting fields
 @enduml

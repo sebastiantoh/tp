@@ -64,6 +64,8 @@ skinparam Participant {
     Padding 20
 }
 
+
+skinparam ClassAttributeFontColor white
 skinparam MinClassWidth 50
 skinparam ParticipantPadding 10
 skinparam Shadowing false

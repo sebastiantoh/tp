@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":MeetingCommandsParser" as MeetingCommandsParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("meeting add <args>")
+note left: Full command is truncated for brevity
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("meeting add <args>")
+activate AddressBookParser
+
+create MeetingCommandsParser
+AddressBookParser -> MeetingCommandsParser
+activate MeetingCommandsParser
+
+MeetingCommandsParser -> AddressBookParser
+deactivate MeetingCommandsParser
+
+AddressBookParser -> MeetingCommandsParser : parse("meeting add", <args>)
+activate MeetingCommandsParser
+
+create AddCommandParser
+MeetingCommandsParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser -> MeetingCommandsParser
+deactivate AddCommandParser
+
+MeetingCommandsParser -> AddCommandParser : parse(<args>)
+activate AddCommandParser
+
+AddCommandParser --> ParserUtil : parseIndex(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser --> ParserUtil : parseMessage(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser --> ParserUtil : parseDateTime(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser --> ParserUtil : parseDuration(str)
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> MeetingCommandsParser : a
+deactivate AddCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> MeetingCommandsParser
+destroy AddCommandParser
+
+MeetingCommandsParser --> AddressBookParser : a
+deactivate MeetingCommandsParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MeetingCommandsParser -[hidden]-> AddressBookParser
+destroy MeetingCommandsParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+@enduml
