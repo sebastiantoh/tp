@@ -561,6 +561,9 @@ Action | Format, Examples
 **Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Follow up call d/2020-11-28 13:00`
 **Reminder List** | `reminder list`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
+**Archive Add** | `archive add INDEX` <br> e.g., `archive add 1`
+**Archive List** | `archive list`
+**Archive Remove** | `archive remove INDEX` <br> e.g., `archive remove 2`
 **Help** | `help`
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
