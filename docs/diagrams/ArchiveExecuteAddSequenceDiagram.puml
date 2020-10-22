@@ -40,7 +40,7 @@ activate CommandResult
 
 CommandResult --> AddCommand
 deactivate CommandResult
- 
+
 AddCommand --> LogicManager : result
 deactivate
 
