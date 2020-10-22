@@ -343,9 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list tags.
 2.  StonksBook shows a list of tags.
 3.  User requests to update a specific tag in the list.
-4.  StonksBook requests for confirmation.
-5.  User confirms.
-6.  StonksBook updates the tag and updates all items associated with this tag.
+4.  StonksBook updates the tag and updates all items associated with this tag.
 
     Use case ends.
 
@@ -368,9 +366,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to list tags.
 2.  StonksBook shows a list of tags.
 3.  User requests to delete a specific tag in the list.
-4.  StonksBook requests for confirmation.
-5.  User confirms.
-6.  StonksBook deletes the tag and updates all items associated with this tag.
+4.  StonksBook deletes the tag and updates all items associated with this tag.
 
     Use case ends.
 
@@ -408,6 +404,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. StonksBook shows an error message.
 
         Use case resumes at step 2.
+
+* 3b. The user specifies a different model to search for.
+
+    * 3b1. StonksBook displays items of the specified model under the given tag.
 
 **Use case: Clear past interactions**
 
