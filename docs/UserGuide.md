@@ -9,15 +9,15 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-StonksBook is a contact management application that is created for salesmen. 
+StonksBook is a contact management application that is created for salesmen.
 
 Many salesmen waste their time manually managing their contacts and sales data. They often require
- several different applications to carry out these tasks. 
- 
+ several different applications to carry out these tasks.
+
  StonksBook aims to integrate the key tools used by salesmen into an all-in-one application that can empower them to
-  effectively curate their contact list. StonksBook also provides many tools that can boost one's sales peformance 
+  effectively curate their contact list. StonksBook also provides many tools that can boost one's sales peformance
   through the use of sophisticated data analysis techniques.
- 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -269,7 +269,7 @@ Edits an existing sale in StonksBook.
 
 Format: `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`
 
-* Edits the sale at the specified `SALE_INDEX`. 
+* Edits the sale at the specified `SALE_INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing a sale's tags, the existing tags of the sale will be removed i.e adding of tags is not cumulative.
@@ -291,15 +291,15 @@ Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 
 * At most one optional parameter can be present.
 
-* `CONTACT_INDEX` refers to the index number 
-  shown in the displayed contact list and 
+* `CONTACT_INDEX` refers to the index number
+  shown in the displayed contact list and
   must be a positive integer 1, 2, 3, …​
 * `MONTH` must be an integer between 1 and 12 inclusive.
 * `YEAR` must be an integer greater than 0.
 
 * If no optional parameter is present:
    * all sales are listed.
-   
+
 * If optional parameter `CONTACT_INDEX` is present:
    * all sales made to a contact with the specified index are listed.
 
@@ -308,7 +308,7 @@ Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 
 Examples:
 * `sale list` lists all sales.
-* `sale list c/5` lists all sales made to the 5th contact in the contact list. 
+* `sale list c/5` lists all sales made to the 5th contact in the contact list.
 * `sale list m/6 y/2020` lists all sales whose associated date is within June 2020.
 
 #### Deleting a sales item: `sale delete`
@@ -323,9 +323,9 @@ Format: `sale delete s/SALE_INDEX`
 Examples:
 * `sale delete s/4` deletes the 4th sale made in the list.
 
-### Scheduled Meetings 
+### Scheduled Meetings
 
-StonksBook allows you to manage your scheduled meetings within the application. 
+StonksBook allows you to manage your scheduled meetings within the application.
 
 #### Adding a scheduled meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
@@ -381,7 +381,7 @@ Format: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
 
 * If no optional parameter is present:
    * The result is the number of meetings whose start date is in the current month and year
-   
+
 * If optional parameter `[m/MONTH y/YEAR]` is present:
    * The result is the number of meetings whose start date is in the specified `MONTH` and `YEAR`
 
@@ -396,10 +396,10 @@ Examples:
 * `meeting stats m/8 y/2020` will return the number of meetings whose start date is in August 2020.
 * `meeting stats 3` will return a bar chart containing the number of meetings whose start date is within
    June 2020, July 2020 and August 2020 respectively if the current month is August and the current year is 2020.
- 
-### Reminders 
 
-StonksBook allows you to manage your reminders within the application. 
+### Reminders
+
+StonksBook allows you to manage your reminders within the application.
 
 #### Adding reminders: `reminder add` \[Sebastian Toh Shi Jian\]
 
@@ -449,6 +449,51 @@ Format: `reminder delete INDEX`
 Examples:
 * `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
 
+
+### Archive
+
+StonksBook allows you to archive contacts who are no longer active so that you can focus on contacts who can bring you the Stonks.
+
+#### Adding a contact to the archive: `archive add`
+
+Adds the specified contact to the archive.
+
+Format: `archive add INDEX`
+
+* Adds the contact at the specified `INDEX` to the archive.
+* Can only be used when the contacts list is displayed.
+* The index must be a positive integer 1, 2, 3, …
+
+Example:
+* When the contact list is displayed on your StonksBook, entering `archive add 3` adds the third contact on your list to the archive.
+
+#### Listing contacts in the archive: `archive list`
+
+Shows the list of your archived contacts.
+
+Format: `archive list`
+
+* When entered, if the contacts list is displayed it will be replaced with the archived contacts list.
+* You can edit and delete contacts in the archive using `contact edit` and `contact delete` when the archived contacts list is displayed.
+
+Examples:
+* Entering `archive list` displays all your archived contacts.
+* Entering `archive list` followed by `contact delete 2` deletes the second contact on your archived contacts list from StonksBook.
+
+#### Removing contacts from the archive: `archive remove`
+
+Removes the specified contact from the archive. The specified contact will appear on your contact list again.
+
+Format: `archive remove INDEX`
+
+* Removes the contact at the specified `INDEX` from the archive.
+* Does not delete the contact from StonksBook. To delete the contact use `contact delete`.
+* Can only be used when the archived contacts list is displayed.
+* The index must be a positive integer 1, 2, 3, …
+
+Example:
+* When the archived contacts list is displayed on your StonksBook, entering `archive remove 2` removes the fourth contact on your list from the archive back to your contacts list.
+
 ### Miscellaneous
 
 #### Error resolution suggestion:
@@ -458,6 +503,9 @@ Examples:
 * `contac add` will return a suggestion of `contact add`
 * `contt ad` will return a suggestion of `contact add`
 * `contacta ` will return a suggestion of `contact add`
+
+#### Navigate between previous inputs within the session:
+Pressing the up and down keys retrieves the previous and next input respectively, if there is one.
 
 #### Viewing help: `help`
 Lists the command word, command description and example
@@ -517,6 +565,9 @@ Action | Format, Examples
 **Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Follow up call d/2020-11-28 13:00`
 **Reminder List** | `reminder list`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
+**Archive Add** | `archive add INDEX` <br> e.g., `archive add 1`
+**Archive List** | `archive list`
+**Archive Remove** | `archive remove INDEX` <br> e.g., `archive remove 2`
 **Help** | `help`
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`

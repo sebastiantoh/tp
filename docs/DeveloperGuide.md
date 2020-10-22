@@ -9,7 +9,7 @@ title: Developer Guide
 
 ### Software overview
 
-StonksBook is a sales-optimised contact management application. It is targeted at salesmen who are seeking an all-in-one application that can empower them to effectively curate their contact list. 
+StonksBook is a sales-optimised contact management application. It is targeted at salesmen who are seeking an all-in-one application that can empower them to effectively curate their contact list.
 StonksBook also provides many tools that can boost one's sales peformance through the use of sophisticated data analysis techniques.
 
 ### Purpose & scope
@@ -151,7 +151,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Meetings feature \[Sebastian Toh Shi Jian\]
 
-The meetings feature allows the user to add, delete, or update meetings in StonksBook. 
+The meetings feature allows the user to add, delete, or update meetings in StonksBook.
 Meetings are displayed in increasing order based on the start date of the meeting.
 
 The feature consists of the following commands:
@@ -164,7 +164,7 @@ The feature consists of the following commands:
 
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
 
-In order to handle the many commands in our application, we introduced an intermediate layer between `AddressBookParser` and the relevant command parsers, e.g. `AddCommandParser`. 
+In order to handle the many commands in our application, we introduced an intermediate layer between `AddressBookParser` and the relevant command parsers, e.g. `AddCommandParser`.
 The intermediate layer will first determine which model type the command corresponds to, before dispatching it to the corresponding command parser.
 For all meeting-related commands, we have the `MeetingCommandsParser` which serves as the intermediate class.
 
@@ -178,8 +178,8 @@ These are the steps that will be taken when parsing a meeting-related user comma
 3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
 4. Within `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
 
-Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(meeting add <args>)` API call. 
-- Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user. 
+Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(meeting add <args>)` API call.
+- Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user.
 - For example, if the full command was `meeting add c/2 m/Lunch with Alice d/2020-10-30 10:10`, then `<args>` is equivalent to `c/2 m/Lunch with Alice d/2020-10-30 10:10`.
 
 ![Interactions Inside the Logic Component for the `meeting add <args>` Command](images/MeetingAddSequenceDiagram.png)
@@ -198,15 +198,15 @@ meeting and `hasMeeting(newMeeting)` is called to ensure that `newMeeting` to be
 Second, objects to be added or edited are created. For `AddCommand`, the new `Meeting` object to be added is created.
 
 Next, relevant `model` methods are called to edit the lists of `Meeting` objects. For `AddCommand`, `addMeeting` is
- called to add the newly created meeting to the `model`. 
+ called to add the newly created meeting to the `model`.
 
 Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
 
 The sequence diagram below illustrates how the `AddCommand` that is created from parsing `meeting add <args>` is
  executed.
- 
+
  ![MeetingExecuteAddSequenceDiagram](images/MeetingExecuteAddSequenceDiagram.png)
-  
+
 #### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `meeting add <args>`.
@@ -215,22 +215,22 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 - Incorrect command format is used (e.g. missing/incorrect prefixes)
 - Invalid index/values provided (e.g. non-positive and non-integer values are provided as index, non-alphanumeric
  character included in message, unrecognised date formats, etc.)
- 
+
 ![The different outcomes of the program that can occur from the `meeting add <args>` Command](images/MeetingAddActivityDiagram.png)
 
 #### Modelling `Meeting`s
 
-Meetings are modelled according to the class diagram below. 
+Meetings are modelled according to the class diagram below.
 
 ![Class diagram used to model meetings](images/MeetingClassDiagram.png)
 
 `LocalDateTime` and `Duration` are classes from Java's `java.time` package.
 
-We enforce a composition relationship between `Meeting` and its attribute as we do not want `Meeting` to exist when either of its attributes no longer exist. 
-With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted as well. Similarly, we also enforce that all `Meeting`s must be associated with a non-empty `Message`. 
+We enforce a composition relationship between `Meeting` and its attribute as we do not want `Meeting` to exist when either of its attributes no longer exist.
+With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted as well. Similarly, we also enforce that all `Meeting`s must be associated with a non-empty `Message`.
 
-#### Design consideration:              
-                
+#### Design consideration:
+
 ##### Aspect: Whether it should be necessary to enforce a `message` field in a `Meeting` object
 * **Alternative 1 (current choice):**: Create a `Message` class which enforces a non-empty message association to a `Meeting` object.
   * Pros:
@@ -238,7 +238,7 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
     * Better data cleanliness.
   * Cons:
     * Have to implement a separate class as well as implement validation of inputs.
-                                    
+                      
 * **Alternative 2:** Set the `Meeting` object to be associated to a `String` which acts as the message of a meeting.
   * Pros:
     * No need to implement validation of inputs for this `message` field.
@@ -252,50 +252,50 @@ Alternative 1 is chosen as we found that the importance of enforcing data cleanl
 ##### Aspect: What fields should be stored to represent a `Meeting`
 
 * **Alternative 1 (current choice):** Store just the start date of a meeting, along with its duration.
-  * Pros: 
+  * Pros:
     * More user-friendly since users tend to schedule meetings based on a start date and its duration.
-  * Cons: 
+  * Cons:
     * May have slight performance dip since the end date of a meeting may have to be computed repeatedly for display in the user interface.
 
 * **Alternative 2:** Store both start and end date of the meeting.
-  * Pros: 
+  * Pros:
     * May have slightly improved performance since there is no need to compute the end date.
-  * Cons: 
+  * Cons:
     * User will have to input both start and end date, which can be tedious.
 
 * **Alternative 3:** Store start date, end date, and duration of the meeting.
-  * Pros: 
+  * Pros:
     * More user-friendly since users can schedule meetings using just the start date and its duration.
     * More performant since the end date need not be re-computed.
-  * Cons: 
-    * There is the possibility that the three fields may no longer be in sync. Extra emphasis must be taken to ensure that these fields remain synchronised whenever either of these fields changes. 
+  * Cons:
+    * There is the possibility that the three fields may no longer be in sync. Extra emphasis must be taken to ensure that these fields remain synchronised whenever either of these fields changes.
 
-Alternative 1 is chosen as it is the most user-friendly option. It also makes maintaining the data easy. 
+Alternative 1 is chosen as it is the most user-friendly option. It also makes maintaining the data easy.
 Because only future meetings are displayed by default, the slight performance dip associated with alternative 1 may
- not actually be an issue as we do not foresee the list of future meetings to be very large. 
- 
+ not actually be an issue as we do not foresee the list of future meetings to be very large.
+
 ##### Aspect: How to serialize the start date and duration of a `Meeting`
 * **Alternative 1 (current choice):** Deserialize them according to ISO-8601 format.
-   * Pros: 
+   * Pros:
      * Unambiguous and well-defined method of representing dates and times
      * Easier integration with other date and time libraries should such an integration be necessary.
-   * Cons: 
+   * Cons:
      * Should the user decide to open the data file, the ISO-8601 format may not be very familiar or readable. This
       increases the likelihood of corruption of data.
 
 * **Alternative 2:** Serialize them in a format that is human readable. e.g. storing dates in dd-MM-yyyy format and
  durations as an integer representing number of minutes
-   * Pros: 
+   * Pros:
      * Should the user decide to open the data file, he can easily understand and make relevant modifications without
       corrupting the data format.
-   * Cons: 
-     * Parsing and deserializing the data may pose some difficulties. 
+   * Cons:
+     * Parsing and deserializing the data may pose some difficulties.
 
 Alternative 1 is chosen as it is a well-established international standard which would facilitate the integration of
  other libraries if necessary.
 
 ### Reminders feature \[Sebastian Toh Shi Jian\]
-The reminders feature allows the user to add, delete, or update reminders in StonksBook. 
+The reminders feature allows the user to add, delete, or update reminders in StonksBook.
 Reminders are displayed in increasing order based on the scheduled date of the reminder.
 
 The feature consists of the following commands:
@@ -309,7 +309,7 @@ The feature consists of the following commands:
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
 
 In order to handle the many commands in our application, we introduced an intermediate layer between
- `AddressBookParser` and the relevant command parsers, e.g. `DeleteCommandParser`. 
+ `AddressBookParser` and the relevant command parsers, e.g. `DeleteCommandParser`.
 The intermediate layer will first determine which model type the command corresponds to, before dispatching it to the corresponding command parser.
 For all reminder-related commands, we have the `ReminderCommandsParser` which serves as the intermediate class.
 
@@ -338,16 +338,16 @@ After the user input has been parsed into a `Command`, it is executed with `mode
 
 First, relevant methods in `model` are called to retrieve related objects or check for the existence of the reminder.
 For the case of `DeleteCommand`, `getSortedReminder()` is called to retrieve the list of all reminders
- that are currently displayed in the user interface. 
- 
-Next, relevant model methods are called to edit the lists of `Reminder`objects. For `DeleteCommand`, `deleteReminder` 
-is used to delete the reminder corresponding to the specified index. 
+ that are currently displayed in the user interface.
+
+Next, relevant model methods are called to edit the lists of `Reminder`objects. For `DeleteCommand`, `deleteReminder`
+is used to delete the reminder corresponding to the specified index.
 
 Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
 
 The sequence diagram below illustrates how the `DeleteCommand` that is created from parsing `reminder delete 1` is
  executed.
- 
+
 ![ReminderExecuteDeleteSequenceDiagram](images/ReminderExecuteDeleteSequenceDiagram.png)
 
 #### Error Handling within the `Logic` component
@@ -366,14 +366,14 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![ReminderClassDiagram](images/ReminderClassDiagram.png)
 
-`Reminder` objects are saved within a `UniqueReminderList` stored in `AddressBook`. 
+`Reminder` objects are saved within a `UniqueReminderList` stored in `AddressBook`.
 
 We enforce a composition relationship between `Reminder` and its attribute as we do not want `Reminder` to exist when
  either of its attributes no longer exist. With that, whenever a `Person` is deleted, all associated `Reminder`s are
   deleted as well. Similarly, we also enforce that all `Reminder`s must be associated with a non-empty `Message`.
 
-#### Design consideration:              
-                
+#### Design consideration:
+
 ##### Aspect: Whether it should be necessary to enforce a `message` field in a `Reminder` object
 * **Alternative 1 (current choice):**: Create a `Message` class which enforces a non-empty message association to a
  `Reminder` object.
@@ -382,7 +382,7 @@ We enforce a composition relationship between `Reminder` and its attribute as we
     * Better data cleanliness.
   * Cons:
     * Have to implement a separate class as well as implement validation of inputs.
-                                    
+
 * **Alternative 2:** Set the `Reminder` object to be associated to a `String` which acts as the message of a reminder.
   * Pros:
     * No need to implement validation of inputs for this `message` field.
@@ -397,25 +397,25 @@ This further strengthened our choice to go for Alternative 1 given that the cost
 
 ##### Aspect: How to serialize the scheduled date of a `Reminder`
 * **Alternative 1 (current choice):** Deserialize the date according to ISO-8601 format.
-   * Pros: 
+   * Pros:
      * Unambiguous and well-defined method of representing dates and times
      * Easier integration with other date and time libraries should such an integration be necessary.
-   * Cons: 
+   * Cons:
      * Should the user decide to open the data file, the ISO-8601 format may not be very familiar or readable. This
       increases the likelihood of corruption of data.
 
 * **Alternative 2:** Serialize them in a format that is human readable. e.g. storing dates in dd-MM-yyyy format and
  durations as an integer representing number of minutes
-   * Pros: 
+   * Pros:
      * Should the user decide to open the data file, he can easily understand and make relevant modifications without
       corrupting the data format.
-   * Cons: 
-     * Parsing and deserializing the data may pose some difficulties. 
+   * Cons:
+     * Parsing and deserializing the data may pose some difficulties.
 
 A similar consideration was made when implementing [`Meeting`s](#aspect-how-to-serialize-the-start-date-and-duration
 -of-a-meeting).
 Alternative 1 was chosen so as to have a consistent and standardised way of handling date and time handled within our code base.
- 
+
 ### Sale Feature [Kwek Min Yih]
 
 The Sales feature allows users to add and manage Sales made to contacts in StonksBook. Sales are ordered from most to least recently made.
@@ -430,7 +430,7 @@ This feature consists of the following commands:
 
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
 
-In order to handle the many commands in our application, we introduced an intermediate layer between `AddressBookParser` and the relevant command parsers, e.g. `AddCommandParser`. 
+In order to handle the many commands in our application, we introduced an intermediate layer between `AddressBookParser` and the relevant command parsers, e.g. `AddCommandParser`.
 The intermediate layer will first determine which model type the command corresponds to, before dispatching it to the corresponding command parser.
 For all sale-related commands, we have the `SaleCommandsParser` which serves as the intermediate class.
 
@@ -444,8 +444,8 @@ These are the steps that will be taken when parsing a sale-related user command:
 4. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
 5. Within the `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
 
-Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(sale add <args>)` API call. 
-- Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user. 
+Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(sale add <args>)` API call.
+- Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user.
 - For example, if the full command was `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`, then `<args>` is equivalent to `c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`.
 
 ![SaleAddSequenceDiagram](images/SaleAddSequenceDiagram.png)
@@ -458,10 +458,10 @@ After command has been parsed into an `AddCommand`, it is executed with `model` 
 First, relevant methods in `model` are called to retrieve related objects or check for the existence of the sale.
 In this case, `getSortedPersonList()` is called to retrieve the `id` of the buyer and `hasSale(newSale)` is called to ensure that the `sale` to be added does not already exist.
 
-Second, objects to be added or edited are created. 
+Second, objects to be added or edited are created.
 For `AddCommand`, the new `Sale` object to be added is created, and a new `editedPerson` object is created containing an updated `totalSalesAmount` variable.
 
-Next, relevant `model` methods are called to edit the lists of `Sale` and `Person` objects, 
+Next, relevant `model` methods are called to edit the lists of `Sale` and `Person` objects,
 with `setPerson()` and `addSale()` being used to replace an existing `Person` object and add a new `Sale` object respectively.
 
 Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
@@ -486,30 +486,83 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![SaleClassDiagram](images/SaleClassDiagram.png)
 
-`Sale` objects are saved within a `UniqueSaleList` stored in `AddressBook`. 
+`Sale` objects are saved within a `UniqueSaleList` stored in `AddressBook`.
 There is a composition relationship between `Sale` and its attributes, as we want the attributes (e.g. `ItemName`, `UnitPrice`) to exist dependently on the `Sale` object it belongs to.
 The attributes are abstracted out into different classes, instead of being stored as values within Sale, to allow for greater input validation and attribute specific functionality.
 
 #### Design Consideration:
- 
+
 ##### Aspect: How to implement currency related fields
 * **Alternative 1 (current choice):**: Use BigDecimal to store currency related fields.
   * Pros:
     * Accurate currency calculations are possible.
   * Cons:
     * Need to import the BigDecimal package.
-                                    
+
 * **Alternative 2:** Use Float variables to store currency variables.
   * Pros:
     * No need to import any packages.
   * Cons:
-    * Will likely result in accurate currency calculations due to float rounding errors. 
+    * Will likely result in accurate currency calculations due to float rounding errors.
 
 * **Alternative 3:** Store dollars and cents independently as integers
   * Pros:
     * Accurate currency calculations are possible.
   * Cons:
     * Cumbersome currency calculations due to converting every hundred cents to dollars.
+
+### Archive feature \[Leong Jin Ming\]
+
+The Archive feature allows users to archive contacts who are no longer active.
+
+This feature consists of the following commands:
+* `archive add` — Adds a contact to the archive.
+* `archive list` — Lists all contacts in the archive.
+* `archive remove` — Removes a contact from the archive.
+
+#### Parsing of commands within the `Logic` component
+
+Much like other core features, we introduced an intermediate layer between the `AddressBookParser` and the archive command parsers, which in this case is the `ArchiveCommandsParser`.
+
+These are the steps that will be taken when parsing an archive-related user command:
+1. The `AddressBookParser` checks if the user command is archive-related. Then, it creates an `ArchiveCommandsParser`.
+1. The `ArchiveCommandsParser` checks what type of command it is and creates the corresponding parsers/commands as follows:
+    - `archive add` command: `AddCommandParser`
+    - `archive list` command: `ListCommand`
+    - `archive remove` command: `RemoveCommandParser`
+1. The relevant parser, which implements the `Parser` interface, parses the command via `Parser#parse`.
+1. If the user command is valid, the parser creates the corresponding `Command` object for execution.
+
+Given below is a sequence diagram for interactions inside the Logic component for the `execute("archive add 1")` API call.
+![ArchiveAddSequenceDiagram](images/ArchiveAddSequenceDiagram.png)
+
+#### Execution of commands within the `Logic` component
+
+Since the execution of the `RemoveCommand` is similar to the `AddCommand`, we shall only look at the execution of the latter.
+
+When an `AddCommand` is created by the `AddCommandParser`, it is executed with `model` passed in as the parameter.
+
+Firstly, relevant methods in `model` are called to retrieve related objects or check for the existence of the contact. Here, `getSortedPersonList()` is called to get the list of contacts currently being displayed in the UI.
+
+Secondly, objects to be added or edited are created. In this case, a new `archivedPerson` is created with the `archived` flag set to `true`.
+
+Next, relevant `model` methods are called to edit the list of `Person` objects, with `setPerson()` used to replace an existing Person object.
+
+Finally, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+![ArchiveExecuteAddSequenceDiagram](images/ArchiveExecuteAddSequenceDiagram.png)
+
+#### Error Handling within the `Logic` component
+
+The below activity diagram shows the overall process of execution of `archive add 1`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+
+- Incorrect command format is used (i.e. missing index as argument)
+- Invalid index is provided
+- The incorrect list is being displayed
+
+![ArchiveAddActivityDiagram](images/ArchiveAddActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -657,6 +710,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
 | `* *`    | visual user                       | quickly identify overdue reminders                            | work on it without further delay                                                              |
 | `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                          |
+| `* *`    | well-connected salesman           | archive contacts who are no longer active                     | I can focus on contacts that are more likely to respond                                       |
 
 ### Use cases
 
@@ -875,7 +929,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. StonksBook shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3d. The given meeting message is invalid.
 
     * 3b1. StonksBook shows an error message.
@@ -957,7 +1011,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. StonksBook shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3c. The given reminder message is invalid.
 
     * 3b1. StonksBook shows an error message.
@@ -1095,7 +1149,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Delete a sale 
+#### Use case: Delete a sale
 
 **MSS**
 
@@ -1115,6 +1169,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4a. The given sale index is invalid.
 
     * 4a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: Add contact to archive
+
+**MSS**
+
+1.  User requests to list contacts.
+2.  StonksBook shows a list of contacts.
+3.  User requests to add a specific person in the list to archive.
+4.  StonksBook adds the person to archive.
+
+  Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+    * 3a1. StonksBook shows an error message.
 
       Use case resumes at step 2.
 
@@ -1207,7 +1280,7 @@ testers are expected to do more *exploratory* testing.
     add c/1 m/ d/2020-10-30 12:00 du/60`, `meeting add c/1 m/Lunch with Bob d/30/10/2020 12pm du/60`, `meeting add c
     /1 m/Lunch with Bob d/2020-10-30 12:00 du/30min`<br>
       Expected: Similar to previous.
-      
+
 ### Deleting a meeting
 
 1. Deleting a meeting while all meetings are being shown
@@ -1223,7 +1296,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `meeting delete`, `meeting delete x`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
-      
+
 ### Adding a reminder
 
 1. Adding a reminder while all persons are being shown
@@ -1241,7 +1314,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `reminder add c/-1 m/Follow up with Bob d/2020-10-30 12:00`, `reminder
     add c/1 m/ d/2020-10-30 12:00`, `reminder add c/1 m/Follow up with Bob d/30/10/2020 12pm`<br>
       Expected: Similar to previous.
-      
+
 ### Deleting a reminder
 
 1. Deleting a reminder while all reminder are being shown
