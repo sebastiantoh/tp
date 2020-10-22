@@ -511,6 +511,59 @@ The attributes are abstracted out into different classes, instead of being store
   * Cons:
     * Cumbersome currency calculations due to converting every hundred cents to dollars.
 
+### Archive feature \[Leong Jin Ming\]
+
+The Archive feature allows users to archive contacts who are no longer active.
+
+This feature consists of the following commands:
+* `archive add` — Adds a contact to the archive.
+* `archive list` — Lists all contacts in the archive.
+* `archive remove` — Removes a contact from the archive.
+
+#### Parsing of commands within the `Logic` component
+
+Much like other core features, we introduced an intermediate layer between the `AddressBookParser` and the archive command parsers, which in this case is the `ArchiveCommandsParser`.
+
+These are the steps that will be taken when parsing an archive-related user command:
+1. The `AddressBookParser` checks if the user command is archive-related. Then, it creates an `ArchiveCommandsParser`.
+1. The `ArchiveCommandsParser` checks what type of command it is and creates the corresponding parsers/commands as follows:
+    - `archive add` command: `AddCommandParser`
+    - `archive list` command: `ListCommand`
+    - `archive remove` command: `RemoveCommandParser`
+1. The relevant parser, which implements the `Parser` interface, parses the command via `Parser#parse`.
+1. If the user command is valid, the parser creates the corresponding `Command` object for execution.
+
+Given below is a sequence diagram for interactions inside the Logic component for the `execute("archive add 1")` API call.
+![ArchiveAddSequenceDiagram](images/ArchiveAddSequenceDiagram.png)
+
+#### Execution of commands within the `Logic` component
+
+Since the execution of the `RemoveCommand` is similar to the `AddCommand`, we shall only look at the execution of the latter.
+
+When an `AddCommand` is created by the `AddCommandParser`, it is executed with `model` passed in as the parameter.
+
+Firstly, relevant methods in `model` are called to retrieve related objects or check for the existence of the contact. Here, `getSortedPersonList()` is called to get the list of contacts currently being displayed in the UI.
+
+Secondly, objects to be added or edited are created. In this case, a new `archivedPerson` is created with the `archived` flag set to `true`.
+
+Next, relevant `model` methods are called to edit the list of `Person` objects, with `setPerson()` used to replace an existing Person object.
+
+Finally, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+![ArchiveExecuteAddSequenceDiagram](images/ArchiveExecuteAddSequenceDiagram.png)
+
+#### Error Handling within the `Logic` component
+
+The below activity diagram shows the overall process of execution of `archive add 1`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+
+- Incorrect command format is used (i.e. missing index as argument)
+- Invalid index is provided
+- The incorrect list is being displayed
+
+![ArchiveAddActivityDiagram](images/ArchiveAddActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -657,6 +710,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
 | `* *`    | visual user                       | quickly identify overdue reminders                            | work on it without further delay                                                              |
 | `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                          |
+| `* *`    | well-connected salesman           | archive contacts who are no longer active                     | I can focus on contacts that are more likely to respond                                       | 
 
 ### Use cases
 
@@ -1115,6 +1169,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4a. The given sale index is invalid.
 
     * 4a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: Add contact to archive
+
+**MSS**
+
+1.  User requests to list contacts.
+2.  StonksBook shows a list of contacts.
+3.  User requests to add a specific person in the list to archive.
+4.  StonksBook adds the person to archive.
+
+  Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+    * 3a1. StonksBook shows an error message.
 
       Use case resumes at step 2.
 
