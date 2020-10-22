@@ -500,6 +500,9 @@ Examples:
 * `contt ad` will return a suggestion of `contact add`
 * `contacta ` will return a suggestion of `contact add`
 
+#### Navigate between previous inputs within the session:
+Pressing the up and down keys retrieves the previous and next input respectively, if there is one.
+
 #### Viewing help: `help`
 Lists the command word, command description and example
 usage for each available command as well as the link to the User Guide.
