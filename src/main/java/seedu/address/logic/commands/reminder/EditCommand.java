@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_STATUS;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,6 +35,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CONTACT + "CONTACT_INDEX] "
             + "[" + PREFIX_MESSAGE + "MESSAGE] "
             + "[" + PREFIX_DATETIME + "DATETIME] "
+            + "[" + PREFIX_REMINDER_STATUS + "STATUS] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MESSAGE + "Follow up with Bob "
             + PREFIX_DATETIME + "2020-11-30 12:30";
@@ -95,8 +97,9 @@ public class EditCommand extends Command {
         Message updatedMessage = editReminderDescriptor.getMessage().orElse(reminderToEdit.getMessage());
         LocalDateTime updatedScheduledDate =
                 editReminderDescriptor.getScheduledDate().orElse(reminderToEdit.getScheduledDate());
+        boolean updatedCompletionStatus = editReminderDescriptor.isCompleted();
 
-        return new Reminder(updatedPerson, updatedMessage, updatedScheduledDate);
+        return new Reminder(updatedPerson, updatedMessage, updatedScheduledDate, updatedCompletionStatus);
     }
 
     @Override
@@ -125,6 +128,7 @@ public class EditCommand extends Command {
         private Index contactIndex;
         private Message message;
         private LocalDateTime scheduledDate;
+        private boolean completed;
 
         public EditReminderDescriptor() {
         }
@@ -137,13 +141,14 @@ public class EditCommand extends Command {
             setContactIndex(toCopy.contactIndex);
             setMessage(toCopy.message);
             setScheduledDate(toCopy.scheduledDate);
+            setCompleted(toCopy.completed);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(contactIndex, message, scheduledDate);
+            return CollectionUtil.isAnyNonNull(contactIndex, message, scheduledDate, completed);
         }
 
         public void setContactIndex(Index contactIndex) {
@@ -158,6 +163,10 @@ public class EditCommand extends Command {
             this.message = message;
         }
 
+        public void setCompleted(boolean completed) {
+            this.completed = completed;
+        }
+
         public Optional<Message> getMessage() {
             return Optional.ofNullable(message);
         }
@@ -168,6 +177,10 @@ public class EditCommand extends Command {
 
         public Optional<LocalDateTime> getScheduledDate() {
             return Optional.ofNullable(scheduledDate);
+        }
+
+        public boolean isCompleted() {
+            return completed;
         }
 
         @Override
@@ -187,7 +200,8 @@ public class EditCommand extends Command {
 
             return getContactIndex().equals(e.getContactIndex())
                     && getMessage().equals(e.getMessage())
-                    && getScheduledDate().equals(e.getScheduledDate());
+                    && getScheduledDate().equals(e.getScheduledDate())
+                    && isCompleted() == e.isCompleted();
         }
     }
 }

@@ -20,7 +20,7 @@ public class Reminder implements Comparable<Reminder> {
     private final Person person;
     private final Message message;
     private final LocalDateTime scheduledDate;
-    private final boolean completed;
+    private final Boolean completed;
 
     /**
      * Constructs a {@code Reminder}. Every field must be present and not null. By default, the reminder is set to
@@ -47,7 +47,7 @@ public class Reminder implements Comparable<Reminder> {
      * @param scheduledDate The date this reminder is scheduled for.
      * @param completed     The completion status of this reminder.
      */
-    public Reminder(Person person, Message message, LocalDateTime scheduledDate, boolean completed) {
+    public Reminder(Person person, Message message, LocalDateTime scheduledDate, Boolean completed) {
         requireAllNonNull(person, message, scheduledDate);
         this.person = person;
         this.message = message;
