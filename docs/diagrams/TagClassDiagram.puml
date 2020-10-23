@@ -16,8 +16,8 @@ Class UniqueSaleTagList
 
 AddressBook *--> "1" UniqueContactTagList
 AddressBook *--> "1" UniqueSaleTagList
-UniqueContactTagList o--> "*" Tag
-UniqueSaleTagList o--> "*" Tag
+UniqueContactTagList --> "*" Tag
+UniqueSaleTagList --> "*" Tag
 
 Tag *--> "1" TagName
 
