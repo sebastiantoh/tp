@@ -21,5 +21,6 @@ Package Person {
 Reminder *--> "1" Person
 Reminder *--> "1" Message
 Reminder *--> "1" LocalDateTime
+Reminder *--> "1" Completed
 
 @enduml

@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ReminderCommandsParser" as ReminderCommandsParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "d:EditCommand" as EditCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("reminder edit <args>")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("reminder edit <args>")
+activate AddressBookParser
+
+create ReminderCommandsParser
+AddressBookParser -> ReminderCommandsParser
+activate ReminderCommandsParser
+
+ReminderCommandsParser -> AddressBookParser
+deactivate ReminderCommandsParser
+
+AddressBookParser -> ReminderCommandsParser : parse("reminder edit", <args>)
+activate ReminderCommandsParser
+
+create EditCommandParser
+ReminderCommandsParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser -> ReminderCommandsParser
+deactivate EditCommandParser
+
+ReminderCommandsParser -> EditCommandParser : parse(<args>)
+activate EditCommandParser
+
+EditCommandParser --> ParserUtil : parseIndex(1)
+activate ParserUtil
+
+ParserUtil --> EditCommandParser
+deactivate ParserUtil
+
+EditCommandParser --> ParserUtil : parseCompletionStatus(str)
+activate ParserUtil
+
+ParserUtil --> EditCommandParser
+deactivate ParserUtil
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : d
+deactivate EditCommand
+
+EditCommandParser --> ReminderCommandsParser : d
+deactivate EditCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> ReminderCommandsParser
+destroy EditCommandParser
+
+ReminderCommandsParser --> AddressBookParser : d
+deactivate ReminderCommandsParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ReminderCommandsParser -[hidden]-> AddressBookParser
+destroy ReminderCommandsParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+@enduml
