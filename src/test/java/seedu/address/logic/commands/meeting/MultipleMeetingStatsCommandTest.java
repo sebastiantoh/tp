@@ -9,11 +9,10 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
 import java.time.ZoneId;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.MonthlyCountData;
+import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -34,8 +33,9 @@ public class MultipleMeetingStatsCommandTest {
         Month currentMonth = LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth();
         Year currentYear = Year.now();
         int numberOfMonths = 3;
-        List<MonthlyCountData> expectedResult =
+        MonthlyCountDataSet expectedResult =
                 expectedModel.getMultipleMonthMeetingsCount(currentMonth, currentYear, numberOfMonths);
+        expectedResult.setTitle(MultipleMeetingStatsCommand.DATASET_TITLE);
 
         StatsCommand statsCommand = new MultipleMeetingStatsCommand(numberOfMonths);
         CommandResult expectedCommandResult = new CommandResult(
