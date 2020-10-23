@@ -29,7 +29,7 @@ public class JsonAdaptedReminderTest {
     @Test
     public void toModelType_nullPerson_throwsIllegalValueException() {
         JsonAdaptedReminder reminder =
-            new JsonAdaptedReminder(null, VALID_MESSAGE, VALID_DATE);
+            new JsonAdaptedReminder(null, VALID_MESSAGE, VALID_DATE, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, reminder::toModelType);
     }
@@ -37,7 +37,7 @@ public class JsonAdaptedReminderTest {
     @Test
     public void toModelType_nullMessage_throwsIllegalValueException() {
         JsonAdaptedReminder reminder =
-            new JsonAdaptedReminder(VALID_PERSON, null, VALID_DATE);
+            new JsonAdaptedReminder(VALID_PERSON, null, VALID_DATE, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Message");
         assertThrows(IllegalValueException.class, expectedMessage, reminder::toModelType);
     }
@@ -45,17 +45,25 @@ public class JsonAdaptedReminderTest {
     @Test
     public void toModelType_nullDate_throwsIllegalValueException() {
         JsonAdaptedReminder reminder =
-            new JsonAdaptedReminder(VALID_PERSON, VALID_MESSAGE, null);
+            new JsonAdaptedReminder(VALID_PERSON, VALID_MESSAGE, null, false);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "DateTime");
+        assertThrows(IllegalValueException.class, expectedMessage, reminder::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullStatus_throwsIllegalValueException() {
+        JsonAdaptedReminder reminder =
+                new JsonAdaptedReminder(VALID_PERSON, VALID_MESSAGE, VALID_DATE, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Status");
         assertThrows(IllegalValueException.class, expectedMessage, reminder::toModelType);
     }
 
     @Test
     public void toModelType_invalidDate_throwsIllegalValueException() {
         JsonAdaptedReminder reminder1 =
-            new JsonAdaptedReminder(VALID_PERSON, VALID_MESSAGE, INVALID_DATE_1);
+            new JsonAdaptedReminder(VALID_PERSON, VALID_MESSAGE, INVALID_DATE_1, false);
         JsonAdaptedReminder reminder2 =
-            new JsonAdaptedReminder(VALID_PERSON, VALID_MESSAGE, INVALID_DATE_2);
+            new JsonAdaptedReminder(VALID_PERSON, VALID_MESSAGE, INVALID_DATE_2, false);
         String expectedMessage = MESSAGE_INVALID_DATETIME;
         assertThrows(IllegalValueException.class, expectedMessage, reminder1::toModelType);
         assertThrows(IllegalValueException.class, expectedMessage, reminder2::toModelType);

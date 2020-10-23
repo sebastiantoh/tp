@@ -54,8 +54,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_REMINDER_STATUS).isPresent()) {
             editReminderDescriptor.setCompleted(ParserUtil
                     .parseCompletionStatus(argMultimap.getValue(PREFIX_REMINDER_STATUS).get()));
-        } else {
-            editReminderDescriptor.setCompleted(false);
         }
 
         if (!editReminderDescriptor.isAnyFieldEdited()) {

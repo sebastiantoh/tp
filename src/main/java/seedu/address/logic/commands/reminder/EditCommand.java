@@ -97,7 +97,8 @@ public class EditCommand extends Command {
         Message updatedMessage = editReminderDescriptor.getMessage().orElse(reminderToEdit.getMessage());
         LocalDateTime updatedScheduledDate =
                 editReminderDescriptor.getScheduledDate().orElse(reminderToEdit.getScheduledDate());
-        boolean updatedCompletionStatus = editReminderDescriptor.isCompleted();
+        boolean updatedCompletionStatus =
+                reminderToEdit.isCompleted() ? reminderToEdit.isCompleted() : editReminderDescriptor.isCompleted();
 
         return new Reminder(updatedPerson, updatedMessage, updatedScheduledDate, updatedCompletionStatus);
     }
