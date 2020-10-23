@@ -70,10 +70,6 @@ class JsonAdaptedReminder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "DateTime"));
         }
 
-        if (this.completed == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Status"));
-        }
-
         final LocalDateTime scheduledDate;
         try {
             scheduledDate = LocalDateTime.parse(this.scheduledDate);
@@ -81,6 +77,6 @@ class JsonAdaptedReminder {
             throw new IllegalValueException(MESSAGE_INVALID_DATETIME);
         }
 
-        return new Reminder(person, message, scheduledDate, completed);
+        return new Reminder(person, message, scheduledDate, this.completed == null ? false : completed);
     }
 }

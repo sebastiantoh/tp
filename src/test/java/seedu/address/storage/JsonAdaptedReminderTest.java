@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static seedu.address.storage.JsonAdaptedReminder.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -51,11 +52,10 @@ public class JsonAdaptedReminderTest {
     }
 
     @Test
-    public void toModelType_nullStatus_throwsIllegalValueException() {
+    public void toModelType_nullStatus_defaultsToPending() throws IllegalValueException {
         JsonAdaptedReminder reminder =
                 new JsonAdaptedReminder(VALID_PERSON, VALID_MESSAGE, VALID_DATE, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Status");
-        assertThrows(IllegalValueException.class, expectedMessage, reminder::toModelType);
+        assertFalse(reminder.toModelType().isCompleted());
     }
 
     @Test

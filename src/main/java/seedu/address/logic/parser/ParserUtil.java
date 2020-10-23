@@ -5,8 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DURATION;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MONTH;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NUMBER_OF_MONTHS;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_YEAR;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REMINDER_STATUS;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_YEAR;
 
 import java.math.BigDecimal;
 import java.time.DateTimeException;
@@ -193,6 +193,9 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a {@code status} into a boolean flag that indicates whether a reminder is completed.
+     */
     public static Boolean parseCompletionStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
