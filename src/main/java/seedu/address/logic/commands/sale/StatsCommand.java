@@ -1,8 +1,6 @@
 package seedu.address.logic.commands.sale;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -23,10 +21,8 @@ public class StatsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Outputs statistics on sales.\n"
-            + "Parameters: "
-            + PREFIX_MONTH + "MONTH "
-            + PREFIX_YEAR + "YEAR "
-            + "Example: " + COMMAND_WORD + " m/10 y/2020";
+            + "Parameters: NUMBER_OF_MONTHS "
+            + "Example: " + COMMAND_WORD + " 5";
 
     public static final String MESSAGE_SUCCESS = "Opened a new window!";
 
