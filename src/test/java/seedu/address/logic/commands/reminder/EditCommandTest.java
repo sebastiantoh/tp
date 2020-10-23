@@ -42,6 +42,7 @@ public class EditCommandTest {
                 .withContactIndex(Index.fromZeroBased(6))
                 .withMessage(VALID_MESSAGE_CALL_AMY)
                 .withScheduledDate(TypicalDates.TYPICAL_DATE_1)
+                .withStatus(false)
                 .build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
 
@@ -59,10 +60,12 @@ public class EditCommandTest {
         Reminder lastReminder = model.getSortedReminderList().get(indexLastReminder.getZeroBased());
 
         Reminder editedReminder =
-                new Reminder(lastReminder.getPerson(), lastReminder.getMessage(), TypicalDates.TYPICAL_DATE_3);
+                new Reminder(lastReminder.getPerson(), lastReminder.getMessage(), TypicalDates.TYPICAL_DATE_3, true);
 
-        EditReminderDescriptor descriptor =
-                new EditReminderDescriptorBuilder().withScheduledDate(TypicalDates.TYPICAL_DATE_3).build();
+        EditReminderDescriptor descriptor = new EditReminderDescriptorBuilder()
+                .withScheduledDate(TypicalDates.TYPICAL_DATE_3)
+                .withStatus(true)
+                .build();
 
         EditCommand editCommand = new EditCommand(indexLastReminder, descriptor);
 
@@ -93,6 +96,7 @@ public class EditCommandTest {
                 .withContactIndex(Index.fromZeroBased(model.getSortedPersonList().indexOf(firstReminder.getPerson())))
                 .withScheduledDate(firstReminder.getScheduledDate())
                 .withMessage(firstReminder.getMessage().message)
+                .withStatus(false)
                 .build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_ITEM, descriptor);
 
@@ -115,7 +119,9 @@ public class EditCommandTest {
                 new EditReminderDescriptorBuilder()
                         .withMessage(VALID_MESSAGE_CALL_AMY)
                         .withContactIndex(INDEX_SECOND_ITEM)
-                        .withScheduledDate(TypicalDates.TYPICAL_DATE_3).build();
+                        .withScheduledDate(TypicalDates.TYPICAL_DATE_3)
+                        .withStatus(false)
+                        .build();
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
 
         // same values -> returns true
