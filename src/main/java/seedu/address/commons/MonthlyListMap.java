@@ -96,9 +96,9 @@ public class MonthlyListMap<T> {
      * @param month valid month
      * @param year  valid year
      * @param numberOfMonths  non-negative integer
-     * @return list of MonthlyCountData objects, ordered by non-decreasing year and month
+     * @return MonthlyCountDataSet object, where the data is ordered by non-decreasing year and month
      */
-    public List<MonthlyCountData> getMultipleMonthCount(Month month, Year year, int numberOfMonths) {
+    public MonthlyCountDataSet getMultipleMonthCount(Month month, Year year, int numberOfMonths) {
         List<MonthlyCountData> result = new ArrayList<>();
 
         MonthAndYear currentMonthAndYear = new MonthAndYear(month, year);
@@ -114,7 +114,7 @@ public class MonthlyListMap<T> {
         }
 
         Collections.reverse(result);
-        return result;
+        return new MonthlyCountDataSet(result);
     }
 
     /**

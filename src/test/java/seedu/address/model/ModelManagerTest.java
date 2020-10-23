@@ -20,13 +20,13 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.MonthAndYear;
 import seedu.address.commons.MonthlyCountData;
+import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
@@ -272,8 +272,8 @@ public class ModelManagerTest {
         modelManager.addMeeting(MEET_ALICE);
         Month month = MEET_ALICE.getStartDate().getMonth();
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
-        List<MonthlyCountData> expectedResult = Collections.singletonList(
-                new MonthlyCountData(new MonthAndYear(month, year), 1));
+        MonthlyCountDataSet expectedResult = new MonthlyCountDataSet(Collections.singletonList(
+                new MonthlyCountData(new MonthAndYear(month, year), 1)));
         assertEquals(expectedResult, modelManager.getMultipleMonthMeetingsCount(month, year, 1));
     }
 

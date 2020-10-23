@@ -13,7 +13,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import seedu.address.commons.MonthlyCountData;
+import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -193,7 +193,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens a statistics window.
      */
     @FXML
-    public void handleStatisticsResult(List<MonthlyCountData> statisticResult) {
+    public void handleStatisticsResult(MonthlyCountDataSet statisticResult) {
         this.statisticsWindow = new StatisticsWindow(statisticResult);
         this.statisticsWindow.getRoot()
                 .setOnCloseRequest(x -> this.openStatisticsWindows.remove(this.statisticsWindow));
