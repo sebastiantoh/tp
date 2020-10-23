@@ -131,19 +131,11 @@ public class AddCommand extends Command implements MassSaleCommand {
     }
 
     private String generateSuccessMessage(List<Sale> sales) {
-        StringBuilder listOfSalesAdded = new StringBuilder();
-        for (int i = 0; i < sales.size(); i++) {
-            listOfSalesAdded.append(i + 1).append(". ").append(sales.get(i));
-        }
-        return MESSAGE_SUCCESS + "\n" + listOfSalesAdded.toString();
+        return MESSAGE_SUCCESS + listAllSales(sales);
     }
 
     private String generateDuplicateSaleMessage(List<Sale> sales) {
-        StringBuilder listOfSalesAdded = new StringBuilder();
-        for (int i = 0; i < sales.size(); i++) {
-            listOfSalesAdded.append(i + 1).append(". ").append(sales.get(i));
-        }
-        return MESSAGE_DUPLICATE_SALE + "\n" + listOfSalesAdded.toString();
+        return MESSAGE_DUPLICATE_SALE + listAllSales(sales);
     }
 
     @Override
