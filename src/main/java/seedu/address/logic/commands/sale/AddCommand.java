@@ -33,7 +33,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Adds a sale associated with a contact to StonksBook.
  */
-public class AddCommand extends Command {
+public class AddCommand extends Command implements MassSaleCommand {
     public static final String COMMAND_WORD = "sale add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a sale of specified item name, unit price, "
@@ -136,14 +136,6 @@ public class AddCommand extends Command {
             listOfSalesAdded.append(i + 1).append(". ").append(sales.get(i));
         }
         return MESSAGE_SUCCESS + "\n" + listOfSalesAdded.toString();
-    }
-
-    private String generateInvalidIndexMessage(List<Index> invalidIndexes) {
-        StringBuilder listOfInvalidIndexes = new StringBuilder();
-        for (int i = 0; i < invalidIndexes.size(); i++) {
-            listOfInvalidIndexes.append(i + 1).append(". ").append(invalidIndexes.get(i));
-        }
-        return MESSAGE_INVALID_PERSON_DISPLAYED_INDEXES + "\n" + listOfInvalidIndexes.toString();
     }
 
     private String generateDuplicateSaleMessage(List<Sale> sales) {
