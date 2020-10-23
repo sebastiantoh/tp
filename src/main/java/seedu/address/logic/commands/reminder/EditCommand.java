@@ -98,7 +98,9 @@ public class EditCommand extends Command {
         LocalDateTime updatedScheduledDate =
                 editReminderDescriptor.getScheduledDate().orElse(reminderToEdit.getScheduledDate());
         boolean updatedCompletionStatus =
-                reminderToEdit.isCompleted() ? reminderToEdit.isCompleted() : editReminderDescriptor.isCompleted();
+                editReminderDescriptor.isCompleted() == null
+                        ? reminderToEdit.isCompleted()
+                        : editReminderDescriptor.isCompleted();
 
         return new Reminder(updatedPerson, updatedMessage, updatedScheduledDate, updatedCompletionStatus);
     }
@@ -129,7 +131,7 @@ public class EditCommand extends Command {
         private Index contactIndex;
         private Message message;
         private LocalDateTime scheduledDate;
-        private boolean completed;
+        private Boolean completed;
 
         public EditReminderDescriptor() {
         }
@@ -164,7 +166,7 @@ public class EditCommand extends Command {
             this.message = message;
         }
 
-        public void setCompleted(boolean completed) {
+        public void setCompleted(Boolean completed) {
             this.completed = completed;
         }
 
@@ -180,7 +182,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(scheduledDate);
         }
 
-        public boolean isCompleted() {
+        public Boolean isCompleted() {
             return completed;
         }
 
