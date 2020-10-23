@@ -9,6 +9,7 @@ public class Messages {
     public static final String MOST_SIMILAR_COMMAND = MESSAGE_UNKNOWN_COMMAND + "\nDo you mean: %1$s?";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEXES = "The person indexes provided are invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_SALES_LISTED_OVERVIEW = "%1$d sale items listed!";
     public static final String MESSAGE_INVALID_DATETIME =

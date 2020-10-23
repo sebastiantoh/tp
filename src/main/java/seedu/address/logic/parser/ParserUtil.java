@@ -15,8 +15,10 @@ import java.time.Month;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -62,6 +64,18 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code Collection<String> oneBasedIndexes} into a {@code List<Index>}.
+     */
+    public static List<Index> parseIndexes(Collection<String> oneBasedIndexes) throws ParseException {
+        requireNonNull(oneBasedIndexes);
+        final List<Index> indexList = new ArrayList<>();
+        for (String indexString : oneBasedIndexes) {
+            indexList.add(parseIndex(indexString));
+        }
+        return indexList;
     }
 
     /**

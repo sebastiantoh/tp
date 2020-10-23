@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -42,13 +43,18 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_SALE_CONTACT_INDEX, PREFIX_SALE_NAME, PREFIX_SALE_DATE,
                 PREFIX_SALE_QUANTITY, PREFIX_SALE_UNIT_PRICE, PREFIX_TAG)
             || !argMultimap.getPreamble().isEmpty()) {
+            System.out.println("111");
+            System.out.println(!arePrefixesPresent(argMultimap, PREFIX_SALE_CONTACT_INDEX, PREFIX_SALE_NAME, PREFIX_SALE_DATE,
+                    PREFIX_SALE_QUANTITY, PREFIX_SALE_UNIT_PRICE, PREFIX_TAG));
+            System.out.println(argMultimap.getPreamble());
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+//        sale add c/1 c/2 c/3 n/multiply d/2020-10-10 p/1.00 q/200
 
-        Index index;
+        List<Index> indexList;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SALE_CONTACT_INDEX).get());
+            indexList = ParserUtil.parseIndexes(argMultimap.getAllValues(PREFIX_SALE_CONTACT_INDEX));
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE), pe);
         }
@@ -60,6 +66,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
 
-        return new AddCommand(index, itemName, dateOfPurchase, quantity, unitPrice, tagList);
+        return new AddCommand(indexList, itemName, dateOfPurchase, quantity, unitPrice, tagList);
     }
 }
