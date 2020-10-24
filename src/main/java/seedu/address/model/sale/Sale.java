@@ -148,8 +148,9 @@ public class Sale implements Comparable<Sale> {
                 .append(getUnitPrice())
                 .append(", Tags: ")
                 .append(getTags())
-                .append("), Made to: ")
-                .append(getBuyer().getName().fullName);
+                .append(") (Client: ")
+                .append(getBuyer().getName().fullName)
+                .append(")");
         return builder.toString();
     }
 

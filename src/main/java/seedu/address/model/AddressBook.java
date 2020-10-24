@@ -284,13 +284,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         int count = 0;
         for (Sale s : sales.asUnmodifiableObservableList()) {
             if (s.getTags().contains(target)) {
-                Person buyer = persons.asUnmodifiableObservableList().stream()
-                        .filter(person -> person.equals(s.getBuyer()))
-                        .findAny()
-                        .orElse(null);
-                assert buyer != null;
-
-                output.append(String.format("%d. %s (Client: %s)\n", count + 1, s, buyer.getName()));
+                output.append(String.format("%d. %s\n", count + 1, s));
                 count += 1;
             }
         }
