@@ -255,9 +255,14 @@ public interface Model {
     ObservableList<Meeting> getSortedMeetingList();
 
     /**
-     * Returns true if an meeting with same fields as {@code meeting} exists in StonksBook.
+     * Returns true if a meeting with same fields as {@code meeting} exists in StonksBook.
      */
     boolean hasMeeting(Meeting meeting);
+
+    /**
+     * Returns true if {@code meeting} conflicts with at least one other meeting in StonksBook.
+     */
+    boolean hasConflictWithOtherMeetings(Meeting meeting);
 
     /**
      * Deletes the given meeting.

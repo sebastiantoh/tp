@@ -42,6 +42,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in StonksBook.";
+    public static final String MESSAGE_CONFLICTING_MEETING =
+            "This meeting conflicts with your other meetings!";
 
     /**
      * Index of the Person to be associated with this meeting.
@@ -83,7 +85,9 @@ public class AddCommand extends Command {
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
-
+        if (model.hasConflictWithOtherMeetings(toAdd)) {
+            throw new CommandException(MESSAGE_CONFLICTING_MEETING);
+        }
         model.addMeeting(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

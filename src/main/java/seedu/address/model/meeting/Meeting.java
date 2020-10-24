@@ -88,7 +88,7 @@ public class Meeting implements Comparable<Meeting> {
      * A meeting is considered conflicting with another if and only if the time interval for which the meeting is
      * active overlaps.
      */
-    public boolean isConflictingWithOtherMeeting(Meeting otherMeeting) {
+    public boolean isConflicting(Meeting otherMeeting) {
         return this.startDate.isBefore(otherMeeting.getEndDate()) && this.getEndDate()
                 .isAfter(otherMeeting.getStartDate());
     }

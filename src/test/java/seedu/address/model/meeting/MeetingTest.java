@@ -32,33 +32,33 @@ public class MeetingTest {
     }
 
     @Test
-    public void isConflictingWithOtherMeeting_sameInterval_returnsTrue() {
+    public void isConflicting_sameInterval_returnsTrue() {
         Meeting meeting = new Meeting(ALICE, VALID_MESSAGE, VALID_DATETIME, VALID_DURATION);
         Meeting otherMeeting = new Meeting(ALICE, VALID_MESSAGE, VALID_DATETIME, VALID_DURATION);
-        assertTrue(meeting.isConflictingWithOtherMeeting(otherMeeting));
-        assertTrue(otherMeeting.isConflictingWithOtherMeeting(meeting));
+        assertTrue(meeting.isConflicting(otherMeeting));
+        assertTrue(otherMeeting.isConflicting(meeting));
     }
 
     @Test
-    public void isConflictingWithOtherMeeting_disjointInterval_returnsFalse() {
+    public void isConflicting_disjointInterval_returnsFalse() {
         Meeting meeting = new Meeting(ALICE, VALID_MESSAGE, VALID_DATETIME, VALID_DURATION);
         Meeting otherMeeting =
                 new Meeting(ALICE, VALID_MESSAGE, LocalDateTime.of(2019, 10, 30, 15, 19), VALID_DURATION);
-        assertFalse(meeting.isConflictingWithOtherMeeting(otherMeeting));
-        assertFalse(otherMeeting.isConflictingWithOtherMeeting(meeting));
+        assertFalse(meeting.isConflicting(otherMeeting));
+        assertFalse(otherMeeting.isConflicting(meeting));
     }
 
     @Test
-    public void isConflictingWithOtherMeeting_oneIntervalContainedInTheOther_returnsTrue() {
+    public void isConflicting_oneIntervalContainedInTheOther_returnsTrue() {
         Meeting meeting = new Meeting(ALICE, VALID_MESSAGE, VALID_DATETIME, VALID_DURATION);
         Meeting otherMeeting =
                 new Meeting(ALICE, VALID_MESSAGE, LocalDateTime.of(2019, 10, 30, 15, 19), Duration.ofDays(1000));
-        assertTrue(meeting.isConflictingWithOtherMeeting(otherMeeting));
-        assertTrue(otherMeeting.isConflictingWithOtherMeeting(meeting));
+        assertTrue(meeting.isConflicting(otherMeeting));
+        assertTrue(otherMeeting.isConflicting(meeting));
     }
 
     @Test
-    public void isConflictingWithOtherMeeting_backToBackIntervals_returnsFalse() {
+    public void isConflicting_backToBackIntervals_returnsFalse() {
         int minutes = 20;
         Meeting meeting = new Meeting(ALICE, VALID_MESSAGE,
                 LocalDateTime.of(2019, 10, 30, 15, 19),
@@ -67,8 +67,8 @@ public class MeetingTest {
                 new Meeting(ALICE, VALID_MESSAGE,
                         LocalDateTime.of(2019, 10, 30, 15, 19 + minutes),
                         Duration.ofMinutes(minutes));
-        assertFalse(meeting.isConflictingWithOtherMeeting(otherMeeting));
-        assertFalse(otherMeeting.isConflictingWithOtherMeeting(meeting));
+        assertFalse(meeting.isConflicting(otherMeeting));
+        assertFalse(otherMeeting.isConflicting(meeting));
     }
 
     @Test

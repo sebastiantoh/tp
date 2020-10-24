@@ -138,6 +138,11 @@ public class AddCommandTest {
             requireNonNull(meeting);
             meetingsAdded.add(meeting);
         }
+
+        @Override
+        public boolean hasConflictWithOtherMeetings(Meeting meeting) {
+            return false;
+        }
     }
 
     /**

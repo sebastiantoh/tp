@@ -403,6 +403,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if {@code meeting} conflicts with at least one other meeting in StonksBook.
+     */
+    public boolean hasConflictWithOtherMeetings(Meeting meeting) {
+        for (Meeting meetingToCheckAgainst : meetings) {
+            if (meetingToCheckAgainst.isConflicting(meeting)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Adds an meeting to the address book.
      * The meeting must not already exist in the address book.
      */

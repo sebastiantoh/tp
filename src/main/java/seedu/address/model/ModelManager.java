@@ -204,6 +204,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasConflictWithOtherMeetings(Meeting meeting) {
+        return addressBook.hasConflictWithOtherMeetings(meeting);
+    }
+
+    @Override
     public void deleteMeeting(Meeting target) {
         addressBook.removeMeeting(target);
     }

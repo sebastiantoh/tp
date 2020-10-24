@@ -216,6 +216,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasConflictWithOtherMeetings(Meeting meeting) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteMeeting(Meeting target) {
         throw new AssertionError("This method should not be called.");
     }
