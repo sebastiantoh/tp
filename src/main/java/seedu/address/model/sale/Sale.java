@@ -3,6 +3,7 @@ package seedu.address.model.sale;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Year;
@@ -62,6 +63,10 @@ public class Sale implements Comparable<Sale> {
         return datetimeOfPurchase;
     }
 
+    public String getFormattedDatetimeOfPurchase() {
+        return getDatetimeOfPurchase().format(DATE_TIME_FORMATTER);
+    }
+
     public Quantity getQuantity() {
         return quantity;
     }
@@ -70,9 +75,18 @@ public class Sale implements Comparable<Sale> {
         return unitPrice;
     }
 
+    public String getUnitPriceString() {
+        return NumberFormat.getCurrencyInstance().format(unitPrice.amount);
+    }
+
     public BigDecimal getTotalCost() {
         return this.totalCost;
     }
+
+    public String getTotalCostString() {
+        return NumberFormat.getCurrencyInstance().format(totalCost);
+    }
+
 
     public Month getMonth() {
         return datetimeOfPurchase.getMonth();
@@ -141,7 +155,7 @@ public class Sale implements Comparable<Sale> {
         final StringBuilder builder = new StringBuilder();
         builder.append(getItemName())
                 .append(" (Date of Purchase: ")
-                .append(getDatetimeOfPurchase().format(DATE_TIME_FORMATTER))
+                .append(getFormattedDatetimeOfPurchase())
                 .append(", Quantity: ")
                 .append(getQuantity())
                 .append(", Unit Price: ")

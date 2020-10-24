@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private MeetingListPanel meetingListPanel;
     private ReminderListPanel reminderListPanel;
+    private SaleListPanel saleListPanel;
     private ChatBox chatBox;
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
@@ -58,6 +59,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane reminderListPanelPlaceholder;
+
+    @FXML
+    private StackPane saleListPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -136,6 +140,9 @@ public class MainWindow extends UiPart<Stage> {
 
         reminderListPanel = new ReminderListPanel(logic.getSortedReminderList());
         reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
+
+        saleListPanel = new SaleListPanel(logic.getSortedSaleList());
+        saleListPanelPlaceholder.getChildren().add(saleListPanel.getRoot());
 
         chatBox = new ChatBox();
         chatBoxPlaceholder.getChildren().add(chatBox.getRoot());

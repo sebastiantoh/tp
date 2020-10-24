@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.sale.Sale;
 
 /**
  * API of the Logic component
@@ -51,6 +52,11 @@ public interface Logic {
      * Returns an unmodifiable view of the sorted list of reminders.
      */
     ObservableList<Reminder> getSortedReminderList();
+
+    /**
+     * Returns an unmodifiable view of the sorted list of sales.
+     */
+    ObservableList<Sale> getSortedSaleList();
 
     /**
      * Returns the user prefs' address book file path.
