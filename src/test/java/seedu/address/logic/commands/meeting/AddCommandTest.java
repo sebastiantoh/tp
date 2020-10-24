@@ -140,7 +140,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasConflictWithOtherMeetings(Meeting meeting) {
+        public boolean hasConflictWithOtherMeetings(Meeting meeting, Meeting... meetingsToExclude) {
             return false;
         }
     }

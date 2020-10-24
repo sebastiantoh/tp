@@ -37,12 +37,12 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Meeting editedMeeting = new Meeting(GEORGE, new Message(VALID_MESSAGE_CALL_AMY),
-                TypicalDates.TYPICAL_DATE_1, TypicalDurations.TYPICAL_DURATION_ONE_HOUR);
+                TypicalDates.TYPICAL_DATE_3, TypicalDurations.TYPICAL_DURATION_ONE_HOUR);
         EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder()
                 // George appears as the 6th item
                 .withContactIndex(Index.fromZeroBased(6))
                 .withMessage(VALID_MESSAGE_CALL_AMY)
-                .withStartDate(TypicalDates.TYPICAL_DATE_1)
+                .withStartDate(TypicalDates.TYPICAL_DATE_3)
                 .withDuration(TypicalDurations.TYPICAL_DURATION_ONE_HOUR)
                 .build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);

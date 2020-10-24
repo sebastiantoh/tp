@@ -44,6 +44,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book.";
+    public static final String MESSAGE_CONFLICTING_MEETING =
+            "Editing this meeting would create a conflicts with your other meetings!";
 
     private final Index index;
     private final EditMeetingDescriptor editMeetingDescriptor;
@@ -74,6 +76,10 @@ public class EditCommand extends Command {
 
         if (!meetingToEdit.equals(editedMeeting) && model.hasMeeting(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+        }
+
+        if (model.hasConflictWithOtherMeetings(editedMeeting, meetingToEdit)) {
+            throw new CommandException(MESSAGE_CONFLICTING_MEETING);
         }
 
         model.setMeeting(meetingToEdit, editedMeeting);

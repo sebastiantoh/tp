@@ -404,9 +404,16 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns true if {@code meeting} conflicts with at least one other meeting in StonksBook.
+     * Any meetings specified in {@code meetingsToExclude} are not checked against for conflits.
      */
-    public boolean hasConflictWithOtherMeetings(Meeting meeting) {
+    public boolean hasConflictWithOtherMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+        List<Meeting> excludedMeetings = List.of(meetingsToExclude);
+
         for (Meeting meetingToCheckAgainst : meetings) {
+            if (excludedMeetings.contains(meetingToCheckAgainst)) {
+                continue;
+            }
+
             if (meetingToCheckAgainst.isConflicting(meeting)) {
                 return true;
             }

@@ -261,8 +261,9 @@ public interface Model {
 
     /**
      * Returns true if {@code meeting} conflicts with at least one other meeting in StonksBook.
+     * Any meetings specified in {@code meetingsToExclude} are not checked against for conflits.
      */
-    boolean hasConflictWithOtherMeetings(Meeting meeting);
+    boolean hasConflictWithOtherMeetings(Meeting meeting, Meeting... meetingsToExclude);
 
     /**
      * Deletes the given meeting.
