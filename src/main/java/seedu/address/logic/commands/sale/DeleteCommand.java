@@ -65,6 +65,8 @@ public class DeleteCommand extends Command {
         }
 
         List<Sale> deletedSales = new ArrayList<>();
+        List<Person> previousPersons = new ArrayList<>();
+        List<Person> editedPersons = new ArrayList<>();
         for (Index saleIndex : saleIndexes) {
             Sale saleToDelete = sales.get(saleIndex.getZeroBased());
             Person personToEdit = people.stream()
@@ -79,11 +81,15 @@ public class DeleteCommand extends Command {
                     personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
                     personToEdit.getRemark(), personToEdit.isArchived(), newTotalSalesAmount);
 
-            model.removeSale(saleToDelete);
-            model.setPerson(personToEdit, editedPerson);
             deletedSales.add(saleToDelete);
+            previousPersons.add(personToEdit);
+            editedPersons.add(editedPerson);
         }
 
+        for (int i = 0; i < deletedSales.size(); i++) {
+            model.removeSale(deletedSales.get(i));
+            model.setPerson(previousPersons.get(i), editedPersons.get(i));
+        }
 
         return new CommandResult(String.format(generateSuccessMessage(deletedSales)));
     }
