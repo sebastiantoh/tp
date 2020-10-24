@@ -43,6 +43,8 @@ public class ModelManager implements Model {
 
     private final SortedList<Reminder> sortedReminders;
 
+    private final FilteredList<Reminder> filteredReminders;
+
     private final FilteredList<Sale> filteredSales;
 
     private final SortedList<Sale> sortedSales;
@@ -69,6 +71,7 @@ public class ModelManager implements Model {
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
+        this.filteredReminders = new FilteredList<>(this.addressBook.getReminderList());
         this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
 
         initialiseLatestContactId();
@@ -233,6 +236,11 @@ public class ModelManager implements Model {
     public void setReminder(Reminder target, Reminder editedReminder) {
         requireAllNonNull(target, editedReminder);
         this.addressBook.setReminder(target, editedReminder);
+    }
+
+    @Override
+    public void updateFilteredRemindersList(Predicate<Reminder> predicate) {
+        this.filteredReminders.setPredicate(predicate);
     }
 
     @Override

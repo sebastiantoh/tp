@@ -303,6 +303,11 @@ public interface Model {
     void setReminder(Reminder target, Reminder editedReminder);
 
     /**
+     * Returns all completed reminders as a String.
+     */
+    void updateFilteredRemindersList(Predicate<Reminder> predicate);
+
+    /**
      * Returns true if a sale with the same fields {@code sale} exists in StonksBook.
      */
     boolean hasSale(Sale sale);
