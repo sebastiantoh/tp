@@ -71,8 +71,7 @@ public class ModelManager implements Model {
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
         this.filteredReminders = new FilteredList<>(sortedReminders);
-        // Uncomment the next line if we would like to show only pending reminders after starting.
-        // this.updateFilteredRemindersList(PREDICATE_SHOW_COMPLETED_REMINDERS);
+        this.updateFilteredRemindersList(PREDICATE_SHOW_COMPLETED_REMINDERS);
         this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
 
         initialiseLatestContactId();

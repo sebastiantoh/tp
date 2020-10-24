@@ -19,8 +19,7 @@ public class FindCommand extends Command {
             + "Parameters: STATUS (must be either completed or pending) "
             + "Example: " + COMMAND_WORD + " st/completed ";
 
-    public static final String MESSAGE_FIND_REMINDER_SUCCESS = "Listed all %1$s reminders.";
-    public static final String MESSAGE_NOT_FOUND = "No %1$s reminders found.";
+    public static final String MESSAGE_FIND_REMINDER_SUCCESS = "Listed %d %s reminders!";
 
     private final Boolean isCompleted;
 
@@ -41,10 +40,14 @@ public class FindCommand extends Command {
 
         if (isCompleted) {
             model.updateFilteredRemindersList(Reminder::isCompleted);
-            return new CommandResult(String.format(MESSAGE_FIND_REMINDER_SUCCESS, "completed"));
+            return new CommandResult(String.format(MESSAGE_FIND_REMINDER_SUCCESS,
+                    model.getFilteredReminderList().size(),
+                    "completed"));
         } else {
             model.updateFilteredRemindersList(reminder -> !reminder.isCompleted());
-            return new CommandResult(String.format(MESSAGE_FIND_REMINDER_SUCCESS, "pending"));
+            return new CommandResult(String.format(MESSAGE_FIND_REMINDER_SUCCESS,
+                    model.getFilteredReminderList().size(),
+                    "pending"));
         }
     }
 

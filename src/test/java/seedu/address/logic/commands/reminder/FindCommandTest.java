@@ -20,7 +20,7 @@ class FindCommandTest {
     public void execute_completedReminderList_success() {
         FindCommand findCommand = new FindCommand(false);
 
-        String expectedMessage = String.format(FindCommand.MESSAGE_FIND_REMINDER_SUCCESS, "pending");
+        String expectedMessage = String.format(FindCommand.MESSAGE_FIND_REMINDER_SUCCESS, 3, "pending");
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredRemindersList(reminder -> !reminder.isCompleted());
 
@@ -31,7 +31,7 @@ class FindCommandTest {
     public void execute_pendingReminderList_success() {
         FindCommand findCommand = new FindCommand(true);
 
-        String expectedMessage = String.format(FindCommand.MESSAGE_FIND_REMINDER_SUCCESS, "completed");
+        String expectedMessage = String.format(FindCommand.MESSAGE_FIND_REMINDER_SUCCESS, 0, "completed");
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.updateFilteredRemindersList(Reminder::isCompleted);
 

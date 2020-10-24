@@ -285,7 +285,8 @@ public class ModelManagerTest {
 
         ObservableList<Reminder> filteredReminderList = modelManager.getFilteredReminderList();
 
-        assertEquals(2, filteredReminderList.size());
+        // By default StonksBook displays all pending reminders.
+        assertEquals(1, filteredReminderList.size());
     }
 
     @Test
