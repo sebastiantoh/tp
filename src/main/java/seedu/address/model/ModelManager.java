@@ -214,6 +214,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+        this.addressBook.setMeeting(target, editedMeeting);
+    }
+
+    @Override
     public boolean hasReminder(Reminder reminder) {
         requireNonNull(reminder);
         return addressBook.hasReminder(reminder);

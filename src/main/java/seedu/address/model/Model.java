@@ -272,6 +272,14 @@ public interface Model {
     void addMeeting(Meeting meeting);
 
     /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting {@code editedMeeting} must not be the same as another existing meeting in the address
+     * book.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
+
+    /**
      * Returns an unmodifiable view of the reminder list
      * .
      */

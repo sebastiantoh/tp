@@ -226,6 +226,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Reminder> getSortedReminderList() {
         throw new AssertionError("This method should not be called.");
     }

@@ -101,6 +101,26 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         this.setMonthlyListMap(meetings);
     }
 
+    /**
+     * Replaces the meeting {@code target} in the list with {@code editedMeeting}.
+     * {@code target} must exist in the list.
+     * The meeting {@code editedMeeting} must not be the same as another existing meeting in the list.
+     */
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new MeetingNotFoundException();
+        }
+
+        if (!target.equals(editedMeeting) && contains(editedMeeting)) {
+            throw new DuplicateMeetingException();
+        }
+
+        internalList.set(index, editedMeeting);
+    }
+
     private void setMonthlyListMap(List<Meeting> list) {
         this.monthlyListMap.clear();
         list.forEach(x -> this.monthlyListMap.addItem(
