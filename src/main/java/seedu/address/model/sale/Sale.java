@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,7 +24,7 @@ public class Sale implements Comparable<Sale> {
 
     /** Identity fields */
     private final ItemName itemName;
-    private final int buyerId;
+    private final Person buyer;
 
     /** Data fields */
     private final LocalDateTime datetimeOfPurchase;
@@ -37,11 +38,11 @@ public class Sale implements Comparable<Sale> {
     /**
      * Every field must be present and not null.
      */
-    public Sale(ItemName itemName, int buyerId, LocalDateTime datetimeOfPurchase, Quantity quantity,
+    public Sale(ItemName itemName, Person buyer, LocalDateTime datetimeOfPurchase, Quantity quantity,
                 UnitPrice unitPrice, Set<Tag> tags) {
         requireAllNonNull(itemName, datetimeOfPurchase, quantity, unitPrice);
         this.itemName = itemName;
-        this.buyerId = buyerId;
+        this.buyer = buyer;
         this.quantity = quantity;
         this.datetimeOfPurchase = datetimeOfPurchase;
         this.unitPrice = unitPrice;
@@ -53,9 +54,8 @@ public class Sale implements Comparable<Sale> {
         return itemName;
     }
 
-
-    public int getBuyerId() {
-        return buyerId;
+    public Person getBuyer() {
+        return buyer;
     }
 
     public LocalDateTime getDatetimeOfPurchase() {
@@ -101,7 +101,7 @@ public class Sale implements Comparable<Sale> {
 
         return otherSale != null
                 && otherSale.getItemName().equals(getItemName())
-                && otherSale.getBuyerId() == (getBuyerId())
+                && otherSale.getBuyer().equals(getBuyer())
                 && otherSale.getDatetimeOfPurchase().equals(getDatetimeOfPurchase())
                 && otherSale.getUnitPrice().equals(getUnitPrice())
                 && otherSale.getQuantity().equals(getQuantity());
@@ -123,7 +123,7 @@ public class Sale implements Comparable<Sale> {
 
         Sale otherSale = (Sale) other;
         return otherSale.getItemName().equals(getItemName())
-                && otherSale.getBuyerId() == (getBuyerId())
+                && otherSale.getBuyer().equals(getBuyer())
                 && otherSale.getDatetimeOfPurchase().equals(getDatetimeOfPurchase())
                 && otherSale.getUnitPrice().equals(getUnitPrice())
                 && otherSale.getQuantity().equals(getQuantity())
@@ -133,7 +133,7 @@ public class Sale implements Comparable<Sale> {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(itemName, buyerId, datetimeOfPurchase, quantity, unitPrice);
+        return Objects.hash(itemName, buyer, datetimeOfPurchase, quantity, unitPrice);
     }
 
     @Override
@@ -164,7 +164,7 @@ public class Sale implements Comparable<Sale> {
     @Override
     public int compareTo(Sale otherSale) {
         return Comparator.comparing(Sale::getDatetimeOfPurchase)
-                .thenComparing(s -> s.getBuyerId())
+                .thenComparing(s -> s.getBuyer().getId())
                 .thenComparing(s -> s.getItemName().name)
                 .compare(this, otherSale);
     }

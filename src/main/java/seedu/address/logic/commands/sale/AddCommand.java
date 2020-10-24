@@ -102,7 +102,7 @@ public class AddCommand extends Command implements MassSaleCommand {
 
         for (Index index : indexList) {
             Person personToEdit = lastShownList.get(index.getZeroBased());
-            Sale toAdd = new Sale(itemName, personToEdit.getId(), dateOfPurchase, quantity, unitPrice, tagList);
+            Sale toAdd = new Sale(itemName, personToEdit, dateOfPurchase, quantity, unitPrice, tagList);
 
             if (!model.saleTagsExist(toAdd)) {
                 throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);

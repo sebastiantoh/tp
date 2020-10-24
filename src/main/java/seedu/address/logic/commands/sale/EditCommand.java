@@ -99,9 +99,9 @@ public class EditCommand extends Command implements MassSaleCommand {
                     throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
                 }
                 Person newBuyer = lastShownPeople.get(personIndex.getZeroBased());
-                editSaleDescriptor.setBuyerId(newBuyer.getId());
+                editSaleDescriptor.setBuyer(newBuyer);
             } else {
-                editSaleDescriptor.setBuyerId(saleToEdit.getBuyerId());
+                editSaleDescriptor.setBuyer(saleToEdit.getBuyer());
             }
 
             Sale editedSale = createEditedSale(saleToEdit, editSaleDescriptor);
@@ -137,14 +137,14 @@ public class EditCommand extends Command implements MassSaleCommand {
         assert saleToEdit != null;
 
         ItemName updatedItemName = editSaleDescriptor.getItemName().orElse(saleToEdit.getItemName());
-        int updatedBuyerId = editSaleDescriptor.getBuyerId().orElse(saleToEdit.getBuyerId());
+        Person updatedBuyer = editSaleDescriptor.getBuyer().orElse(saleToEdit.getBuyer());
         LocalDateTime updatedDatetimeOfPurchase = editSaleDescriptor.getDatetimeOfPurchase()
                 .orElse(saleToEdit.getDatetimeOfPurchase());
         UnitPrice updatedUnitPrice = editSaleDescriptor.getUnitPrice().orElse(saleToEdit.getUnitPrice());
         Quantity updatedQuantity = editSaleDescriptor.getQuantity().orElse(saleToEdit.getQuantity());
         Set<Tag> updatedTags = editSaleDescriptor.getTags().orElse(saleToEdit.getTags());
 
-        return new Sale(updatedItemName, updatedBuyerId, updatedDatetimeOfPurchase, updatedQuantity, updatedUnitPrice,
+        return new Sale(updatedItemName, updatedBuyer, updatedDatetimeOfPurchase, updatedQuantity, updatedUnitPrice,
                 updatedTags);
     }
 
@@ -172,7 +172,7 @@ public class EditCommand extends Command implements MassSaleCommand {
      * corresponding field value of the sale.
      */
     public static class EditSaleDescriptor {
-        private int buyerId;
+        private Person buyer;
         private ItemName itemName;
         private LocalDateTime datetimeOfPurchase;
         private Quantity quantity;
@@ -187,7 +187,7 @@ public class EditCommand extends Command implements MassSaleCommand {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditSaleDescriptor(EditSaleDescriptor toCopy) {
-            setBuyerId(toCopy.buyerId);
+            setBuyer(toCopy.buyer);
             setItemName(toCopy.itemName);
             setDatetimeOfPurchase(toCopy.datetimeOfPurchase);
             setUnitPrice(toCopy.unitPrice);
@@ -199,15 +199,15 @@ public class EditCommand extends Command implements MassSaleCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(buyerId, itemName, datetimeOfPurchase, unitPrice, quantity, tagList);
+            return CollectionUtil.isAnyNonNull(buyer, itemName, datetimeOfPurchase, unitPrice, quantity, tagList);
         }
 
-        public void setBuyerId(int id) {
-            this.buyerId = id;
+        public void setBuyer(Person buyer) {
+            this.buyer = buyer;
         }
 
-        public Optional<Integer> getBuyerId() {
-            return Optional.ofNullable(buyerId);
+        public Optional<Person> getBuyer() {
+            return Optional.ofNullable(buyer);
         }
 
         public void setItemName(ItemName itemName) {
@@ -274,7 +274,7 @@ public class EditCommand extends Command implements MassSaleCommand {
             // state check
             EditSaleDescriptor e = (EditSaleDescriptor) other;
 
-            return getBuyerId().equals(e.getBuyerId())
+            return getBuyer().equals(e.getBuyer())
                     && getItemName().equals(e.getItemName())
                     && getDatetimeOfPurchase().equals(e.getDatetimeOfPurchase())
                     && getUnitPrice().equals(e.getUnitPrice())

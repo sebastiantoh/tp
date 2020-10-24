@@ -9,11 +9,14 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.MonthlyListMap;
+import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
 import seedu.address.model.sale.exceptions.SaleNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -104,6 +107,22 @@ public class UniqueSaleList implements Iterable<Sale> {
     }
 
     /**
+     * Removes all sales associated with the given {@code contact} from the list.
+     *
+     * @param contact The contact whose associated reminders are to be removed.
+     */
+    public void removeSalesWithContact(Person contact) {
+        requireNonNull(contact);
+        List<Sale> salesToRemove =
+                internalList.stream().filter(sale -> sale.getBuyer().equals(contact))
+                        .collect(Collectors.toList());
+
+        for (Sale sale : salesToRemove) {
+            this.remove(sale);
+        }
+    }
+
+    /**
      * Replaces the contents of this list with {@code sales}.
      * {@code sales} must not contain duplicate sales.
      */
@@ -138,7 +157,7 @@ public class UniqueSaleList implements Iterable<Sale> {
                 tags.add(editedTag);
 
                 Sale newSale = new Sale(original.getItemName(),
-                        original.getBuyerId(),
+                        original.getBuyer(),
                         original.getDatetimeOfPurchase(),
                         original.getQuantity(),
                         original.getUnitPrice(),
@@ -165,7 +184,7 @@ public class UniqueSaleList implements Iterable<Sale> {
             if (tags.contains(toRemove)) {
                 tags.remove(toRemove);
                 Sale newSale = new Sale(original.getItemName(),
-                        original.getBuyerId(),
+                        original.getBuyer(),
                         original.getDatetimeOfPurchase(),
                         original.getQuantity(),
                         original.getUnitPrice(),

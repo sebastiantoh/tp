@@ -168,6 +168,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
         meetings.removeMeetingsWithContact(key);
         reminders.removeRemindersWithContact(key);
+        sales.removeSalesWithContact(key);
     }
 
     //// tag-level operations
@@ -284,7 +285,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Sale s : sales.asUnmodifiableObservableList()) {
             if (s.getTags().contains(target)) {
                 Person buyer = persons.asUnmodifiableObservableList().stream()
-                        .filter(person -> person.getId().equals(s.getBuyerId()))
+                        .filter(person -> person.equals(s.getBuyer()))
                         .findAny()
                         .orElse(null);
                 assert buyer != null;
@@ -312,7 +313,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Sale s : sales.asUnmodifiableObservableList()) {
             if (s.getTags().contains(target)) {
                 Person buyer = persons.asUnmodifiableObservableList().stream()
-                        .filter(person -> person.getId().equals(s.getBuyerId()))
+                        .filter(person -> person.equals(s.getBuyer()))
                         .findAny()
                         .orElse(null);
                 assert buyer != null;

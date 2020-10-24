@@ -60,7 +60,7 @@ public class AllListCommand extends ListCommand {
             }
 
             Person personToShow = sortedPersonList.get(targetIndex.getZeroBased());
-            Predicate<Sale> filterByContact = x -> x.getBuyerId() == personToShow.getId();
+            Predicate<Sale> filterByContact = x -> x.getBuyer().equals(personToShow);
 
             model.updateFilteredSaleList(filterByContact);
 

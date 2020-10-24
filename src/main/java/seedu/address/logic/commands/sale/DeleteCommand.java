@@ -67,7 +67,7 @@ public class DeleteCommand extends Command implements MassSaleCommand {
         for (Index saleIndex : saleIndexes) {
             Sale saleToDelete = sales.get(saleIndex.getZeroBased());
             Person personToEdit = people.stream()
-                    .filter(person -> person.getId().equals(saleToDelete.getBuyerId()))
+                    .filter(person -> person.getId().equals(saleToDelete.getBuyer()))
                     .findAny()
                     .orElse(null);
             assert personToEdit != null;
