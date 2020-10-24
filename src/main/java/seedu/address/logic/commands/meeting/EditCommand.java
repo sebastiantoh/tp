@@ -203,7 +203,7 @@ public class EditCommand extends Command {
             return getContactIndex().equals(e.getContactIndex())
                     && getMessage().equals(e.getMessage())
                     && getStartDate().equals(e.getStartDate())
-                    && getDuration() == e.getDuration();
+                    && getDuration().equals(e.getDuration());
         }
     }
 }
