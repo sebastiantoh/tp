@@ -407,6 +407,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Any meetings specified in {@code meetingsToExclude} are not checked against for conflits.
      */
     public boolean hasConflictWithOtherMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+        assert meeting != null;
+        assert meetingsToExclude != null;
+
         List<Meeting> excludedMeetings = List.of(meetingsToExclude);
 
         for (Meeting meetingToCheckAgainst : meetings) {

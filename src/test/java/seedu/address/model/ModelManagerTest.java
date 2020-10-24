@@ -194,6 +194,12 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasConflictWithOtherMeetings_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasConflictWithOtherMeetings(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasConflictWithOtherMeetings(null, MEET_ALICE));
+    }
+
+    @Test
     public void deleteMeeting_invalidMeeting_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.deleteMeeting(null));
     }
