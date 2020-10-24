@@ -10,12 +10,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SALES;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -34,7 +36,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing sale in the address book.
  */
-public class EditCommand extends Command {
+public class EditCommand extends Command implements MassSaleCommand {
 
     public static final String COMMAND_WORD = "sale edit";
 
@@ -51,23 +53,23 @@ public class EditCommand extends Command {
             + PREFIX_SALE_NAME + "File "
             + PREFIX_SALE_QUANTITY + "25 ";
 
-    public static final String MESSAGE_EDIT_SALE_SUCCESS = "Edited Sale: %1$s";
+    public static final String MESSAGE_EDIT_SALE_SUCCESS = "Edited Sale(s): ";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_SALE = "This sale already exists in the address book.";
 
-    private final Index saleIndex;
+    private final List<Index> saleIndexes;
     private final Index personIndex;
     private final EditSaleDescriptor editSaleDescriptor;
 
     /**
      * Constructs a new EditCommand.
-     * @param saleIndex of the sale in the filtered sale list to edit
+     * @param saleIndexes of the sales in the filtered sale list to edit
      * @param editSaleDescriptor details to edit the sale with.
      * @param personIndex of the person in the contact to assign as buyer.
      */
-    public EditCommand(Index saleIndex, EditSaleDescriptor editSaleDescriptor, Index personIndex) {
-        requireAllNonNull(saleIndex, editSaleDescriptor);
-        this.saleIndex = saleIndex;
+    public EditCommand(List<Index> saleIndexes, EditSaleDescriptor editSaleDescriptor, Index personIndex) {
+        requireAllNonNull(saleIndexes, editSaleDescriptor);
+        this.saleIndexes = saleIndexes;
         this.editSaleDescriptor = new EditSaleDescriptor(editSaleDescriptor);
         this.personIndex = personIndex;
     }
@@ -77,36 +79,54 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Sale> lastShownList = model.getFilteredSaleList();
 
-        if (saleIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX);
+        List<Index> invalidIndexes = saleIndexes
+                .parallelStream().filter(personIndex -> personIndex.getZeroBased() >= lastShownList.size())
+                .collect(Collectors.toList());
+
+        if (!invalidIndexes.isEmpty()) {
+            throw new CommandException(generateInvalidIndexMessage(invalidIndexes));
         }
 
-        Sale saleToEdit = lastShownList.get(saleIndex.getZeroBased());
+        List<Sale> editedSales = new ArrayList<>();
+        List<Sale> invalidSales = new ArrayList<>();
 
-        if (personIndex != null) {
-            List<Person> lastShownPeople = model.getSortedPersonList();
-            if (personIndex.getZeroBased() >= lastShownPeople.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        for (Index saleIndex : saleIndexes) {
+            Sale saleToEdit = lastShownList.get(saleIndex.getZeroBased());
+
+            if (personIndex != null) {
+                List<Person> lastShownPeople = model.getSortedPersonList();
+                if (personIndex.getZeroBased() >= lastShownPeople.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                }
+                Person newBuyer = lastShownPeople.get(personIndex.getZeroBased());
+                editSaleDescriptor.setBuyerId(newBuyer.getId());
+            } else {
+                editSaleDescriptor.setBuyerId(saleToEdit.getBuyerId());
             }
-            Person newBuyer = lastShownPeople.get(personIndex.getZeroBased());
-            editSaleDescriptor.setBuyerId(newBuyer.getId());
-        } else {
-            editSaleDescriptor.setBuyerId(saleToEdit.getBuyerId());
+
+            Sale editedSale = createEditedSale(saleToEdit, editSaleDescriptor);
+
+            if (!model.saleTagsExist(editedSale)) {
+                throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
+            }
+
+            if (!saleToEdit.isSameSale(editedSale) && model.hasSale(editedSale)) {
+                invalidSales.add(editedSale);
+            } else {
+                model.setSale(saleToEdit, editedSale);
+                editedSales.add(editedSale);
+            }
         }
 
-        Sale editedSale = createEditedSale(saleToEdit, editSaleDescriptor);
-
-        if (!model.saleTagsExist(editedSale)) {
-            throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
-        }
-
-        if (!saleToEdit.isSameSale(editedSale) && model.hasSale(editedSale)) {
-            throw new CommandException(MESSAGE_DUPLICATE_SALE);
-        }
-
-        model.setSale(saleToEdit, editedSale);
         model.updateFilteredSaleList(PREDICATE_SHOW_ALL_SALES);
-        return new CommandResult(String.format(MESSAGE_EDIT_SALE_SUCCESS, editedSale));
+
+        String result = MESSAGE_EDIT_SALE_SUCCESS + listAllSales(editedSales);
+
+        if (invalidSales.size() > 0) {
+            result += MESSAGE_DUPLICATE_SALE + listAllSales(invalidSales);
+        }
+
+        return new CommandResult(result);
     }
 
     /**
@@ -142,7 +162,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return saleIndex.equals(e.saleIndex)
+        return saleIndexes.equals(e.saleIndexes)
                 && editSaleDescriptor.equals(e.editSaleDescriptor)
                 && (Objects.equals(personIndex, e.personIndex));
     }
