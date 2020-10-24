@@ -24,6 +24,7 @@ class JsonAdaptedReminder {
     private final String message;
     // Serialised and stored in ISO-8601 format
     private final String scheduledDate;
+    private final Boolean completed;
 
     /**
      * Constructs a {@code JsonAdaptedReminder} with the given reminder details.
@@ -31,10 +32,12 @@ class JsonAdaptedReminder {
     @JsonCreator
     public JsonAdaptedReminder(@JsonProperty("person") JsonAdaptedPerson person,
                                @JsonProperty("message") String message,
-                               @JsonProperty("scheduledDate") String scheduledDate) {
+                               @JsonProperty("scheduledDate") String scheduledDate,
+                               @JsonProperty("completed") Boolean completed) {
         this.person = person;
         this.message = message;
         this.scheduledDate = scheduledDate;
+        this.completed = completed;
     }
 
     /**
@@ -44,6 +47,7 @@ class JsonAdaptedReminder {
         this.person = new JsonAdaptedPerson(source.getPerson());
         this.message = source.getMessage().message;
         this.scheduledDate = source.getScheduledDate().toString();
+        this.completed = source.isCompleted();
     }
 
     /**
@@ -73,6 +77,6 @@ class JsonAdaptedReminder {
             throw new IllegalValueException(MESSAGE_INVALID_DATETIME);
         }
 
-        return new Reminder(person, message, scheduledDate);
+        return new Reminder(person, message, scheduledDate, this.completed == null ? false : completed);
     }
 }

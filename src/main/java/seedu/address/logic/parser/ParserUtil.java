@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DURATION;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MONTH;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NUMBER_OF_MONTHS;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REMINDER_STATUS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_YEAR;
 
 import java.math.BigDecimal;
@@ -207,6 +208,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code status} into a boolean flag that indicates whether a reminder is completed.
+     */
+    public static Boolean parseCompletionStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+
+        if (trimmedStatus.equals(ReminderStatus.COMPLETED.getStatus())) {
+            return true;
+        } else if (trimmedStatus.equals(ReminderStatus.PENDING.getStatus())) {
+            return false;
+        }
+
+        throw new ParseException(MESSAGE_INVALID_REMINDER_STATUS);
+    }
+
+    /**
      * Parses a {@code String duration} into a {@code Duration}.
      *
      * @throws ParseException if the given {@code duration} is not a positive integer.
@@ -323,6 +340,21 @@ public class ParserUtil {
             return numberOfMonths;
         } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_NUMBER_OF_MONTHS);
+        }
+    }
+
+    public enum ReminderStatus {
+        COMPLETED("completed"),
+        PENDING("pending");
+
+        private String status;
+
+        ReminderStatus(String status) {
+            this.status = status;
+        }
+
+        public String getStatus() {
+            return status;
         }
     }
 }

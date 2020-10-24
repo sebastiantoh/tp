@@ -169,7 +169,7 @@ Examples:
 
 ### Tags
 
-#### Adding a tag: `tag add`
+#### Adding a tag: `tag add` \[Wang Luo\]
 
 Adds a new customised tag of the specified name to either the contact tags or sales tags. If there is an existing tag with this name, this command will not result in any change in state.
 
@@ -184,7 +184,7 @@ Examples:
 
 * `tag add s/ t/electronics` adds the tag `electronics` to the sales tag list in StonksBook.
 
-#### Listing all tags: `tag list`
+#### Listing all tags: `tag list` \[Wang Luo\]
 
 Displays a list of all tags created so far.
 
@@ -196,7 +196,7 @@ Examples:
 
 * `tag list` displays all tags available in StonksBook.
 
-#### Editing a tag: `tag edit`
+#### Editing a tag: `tag edit` \[Wang Luo\]
 
 Edits an existing tag in StonksBook to the specified tag name. All entries previously associated with this tag will be updated to associated with the updated tag.
 
@@ -211,7 +211,7 @@ Examples:
 
 * `tag edit 1 n/friends` updates the name of the first tag to `close friends`.
 
-#### Deleting a tag: `tag delete`
+#### Deleting a tag: `tag delete` \[Wang Luo\]
 
 Deletes the specified tag from the tag list. The tag information in all entries previously associated with this tag will also be cleared.
 
@@ -226,7 +226,7 @@ Examples:
 
 * `tag delete 1` deletes the first tag from the tag list.
 
-#### Retrieving entries by tag: `tag find`
+#### Retrieving entries by tag: `tag find` \[Wang Luo\]
 
 Displays all entries (including contacts, items, etc.) that are associated with the specified tag.
 
@@ -415,14 +415,15 @@ Format: `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`
 Examples:
 * `reminder add c/2 m/Send follow-up email d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact that is scheduled for 30th October 2020 3PM, with the message `Send follow-up email`
 
-#### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\]
+#### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
 Edits an existing reminder in StonksBook.
 
-Format: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]`
+Format: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]`
 
 * Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* `STATUS` can be either `pending` or `completed`.
 
 Examples:
 * `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.

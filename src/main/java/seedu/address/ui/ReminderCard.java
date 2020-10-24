@@ -15,8 +15,11 @@ import seedu.address.model.reminder.Reminder;
  */
 public class ReminderCard extends UiPart<Region> {
 
+    // The shade of green that is used to indicate completed reminders
+    private static final String GREEN = "#2EA44E";
     // The shade of red that is used to indicate overdue reminders
     private static final String RED = "#ff0266";
+    private static final String COMPLETED_DATE_STYLE_CLASS = "completed";
     private static final String OVERDUE_DATE_STYLE_CLASS = "overdue";
     private static final String FXML = "ReminderListCard.fxml";
 
@@ -48,6 +51,8 @@ public class ReminderCard extends UiPart<Region> {
 
         if (reminder.isOverdue()) {
             setStyleToIndicateOverdue();
+        } else if (reminder.isCompleted()) {
+            setStyleToIndicateCompleted();
         }
     }
 
@@ -60,6 +65,18 @@ public class ReminderCard extends UiPart<Region> {
         ObservableList<String> scheduledDateStyleClass = scheduledDate.getStyleClass();
         if (!scheduledDateStyleClass.contains(OVERDUE_DATE_STYLE_CLASS)) {
             scheduledDateStyleClass.add(OVERDUE_DATE_STYLE_CLASS);
+        }
+    }
+
+    /**
+     * Sets the reminder card style to indicate a completed reminder.
+     */
+    private void setStyleToIndicateCompleted() {
+        calendarIcon.setIconColor(Paint.valueOf(GREEN));
+
+        ObservableList<String> scheduledDateStyleClass = scheduledDate.getStyleClass();
+        if (!scheduledDateStyleClass.contains(COMPLETED_DATE_STYLE_CLASS)) {
+            scheduledDateStyleClass.add(COMPLETED_DATE_STYLE_CLASS);
         }
     }
 

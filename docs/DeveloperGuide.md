@@ -1018,6 +1018,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+#### Use case: Edit a reminder
+
+This use case is similar to `Add a reminder` except that the user has the additional option to update the status of the reminder to indicate whether the reminder is completed.
+
 #### Use case: View all reminders
 {:.no_toc}
 
