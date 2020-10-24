@@ -68,7 +68,7 @@ public class SaleBuilder {
     /**
      * Sets the {@code Buyer} of the {@code Sale} that we are building.
      */
-    public SaleBuilder withBuyerId(Person buyer) {
+    public SaleBuilder withBuyer(Person buyer) {
         this.buyer = buyer;
         return this;
     }

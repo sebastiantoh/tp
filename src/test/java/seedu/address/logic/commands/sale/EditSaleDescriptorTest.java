@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BALL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BALL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BALL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_PRICE_BALL;
+import static seedu.address.testutil.person.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +41,7 @@ public class EditSaleDescriptorTest {
         assertFalse(DESC_APPLE.equals(editedApple));
 
         // different buyer id -> returns false
-        editedApple = new EditSaleDescriptorBuilder(DESC_APPLE).withBuyer(10).build();
+        editedApple = new EditSaleDescriptorBuilder(DESC_APPLE).withBuyer(BOB).build();
         assertFalse(DESC_APPLE.equals(editedApple));
 
         // different datetime -> returns false

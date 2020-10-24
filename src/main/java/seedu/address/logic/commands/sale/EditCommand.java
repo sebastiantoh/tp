@@ -36,7 +36,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing sale in the address book.
  */
-public class EditCommand extends Command implements MassSaleCommand {
+public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "sale edit";
 
@@ -54,6 +54,7 @@ public class EditCommand extends Command implements MassSaleCommand {
             + PREFIX_SALE_QUANTITY + "25 ";
 
     public static final String MESSAGE_EDIT_SALE_SUCCESS = "Edited Sale(s): ";
+    public static final String MESSAGE_EDIT_SALE_FAILED = "No sales edited.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_SALE = "This sale already exists in the address book.";
 
@@ -84,7 +85,8 @@ public class EditCommand extends Command implements MassSaleCommand {
                 .collect(Collectors.toList());
 
         if (!invalidIndexes.isEmpty()) {
-            throw new CommandException(generateInvalidIndexMessage(invalidIndexes));
+            throw new CommandException(MassSaleCommandUtil.generateInvalidIndexMessage(
+                    Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX, invalidIndexes));
         }
 
         List<Sale> editedSales = new ArrayList<>();
@@ -120,10 +122,16 @@ public class EditCommand extends Command implements MassSaleCommand {
 
         model.updateFilteredSaleList(PREDICATE_SHOW_ALL_SALES);
 
-        String result = MESSAGE_EDIT_SALE_SUCCESS + listAllSales(editedSales);
+        String result = "";
+
+        if (editedSales.size() > 0) {
+            result = MESSAGE_EDIT_SALE_SUCCESS + MassSaleCommandUtil.listAllSales(editedSales);
+        } else {
+            result = MESSAGE_EDIT_SALE_FAILED;
+        }
 
         if (invalidSales.size() > 0) {
-            result += MESSAGE_DUPLICATE_SALE + listAllSales(invalidSales);
+            result += "\n" + MESSAGE_DUPLICATE_SALE + MassSaleCommandUtil.listAllSales(invalidSales);
         }
 
         return new CommandResult(result);

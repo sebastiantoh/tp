@@ -33,7 +33,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Adds a sale associated with a contact to StonksBook.
  */
-public class AddCommand extends Command implements MassSaleCommand {
+public class AddCommand extends Command {
     public static final String COMMAND_WORD = "sale add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a sale of specified item name, unit price, "
@@ -54,6 +54,7 @@ public class AddCommand extends Command implements MassSaleCommand {
         + PREFIX_TAG + "fruits";
 
     public static final String MESSAGE_SUCCESS = "New sale(s) added: ";
+    public static final String MESSAGE_FAILED = "No sales added.";
     public static final String MESSAGE_DUPLICATE_SALE = "The following sale(s) already exists in StonksBook.";
 
     private final List<Index> indexList;
@@ -94,7 +95,8 @@ public class AddCommand extends Command implements MassSaleCommand {
                 .collect(Collectors.toList());
 
         if (!invalidIndexes.isEmpty()) {
-            throw new CommandException(generateInvalidIndexMessage(invalidIndexes));
+            throw new CommandException(MassSaleCommandUtil.generateInvalidIndexMessage(
+                    Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEXES, invalidIndexes));
         }
 
         List<Sale> duplicatedSales = new ArrayList<>();
@@ -131,11 +133,15 @@ public class AddCommand extends Command implements MassSaleCommand {
     }
 
     private String generateSuccessMessage(List<Sale> sales) {
-        return MESSAGE_SUCCESS + listAllSales(sales);
+        if (sales.isEmpty()) {
+            return MESSAGE_FAILED;
+        }
+        return MESSAGE_SUCCESS + MassSaleCommandUtil.listAllSales(sales);
     }
 
     private String generateDuplicateSaleMessage(List<Sale> sales) {
-        return MESSAGE_DUPLICATE_SALE + listAllSales(sales);
+        assert !sales.isEmpty();
+        return MESSAGE_DUPLICATE_SALE + MassSaleCommandUtil.listAllSales(sales);
     }
 
     @Override

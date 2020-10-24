@@ -20,7 +20,7 @@ import seedu.address.model.sale.Sale;
 /**
  * Deletes a sale based on its displayed index in the sale list.
  */
-public class DeleteCommand extends Command implements MassSaleCommand {
+public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "sale delete";
 
@@ -29,7 +29,7 @@ public class DeleteCommand extends Command implements MassSaleCommand {
         + "Parameters: SALE_INDEX (must be a positive integer)\n"
         + "Example: " + COMMAND_WORD + " 3";
 
-    public static final String MESSAGE_DELETE_SALE_SUCCESS = "Deleted Sale(s):\n";
+    public static final String MESSAGE_DELETE_SALE_SUCCESS = "Deleted Sale(s):";
 
     public static final String MESSAGE_NO_SALES_DISPLAYED = "No sales displayed, use `sale list` "
             + "to display sales before executing the `sale delete` command";
@@ -60,14 +60,15 @@ public class DeleteCommand extends Command implements MassSaleCommand {
                 .collect(Collectors.toList());
 
         if (!invalidIndexes.isEmpty()) {
-            throw new CommandException(generateInvalidIndexMessage(invalidIndexes));
+            throw new CommandException(MassSaleCommandUtil.generateInvalidIndexMessage(
+                    Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX, invalidIndexes));
         }
 
         List<Sale> deletedSales = new ArrayList<>();
         for (Index saleIndex : saleIndexes) {
             Sale saleToDelete = sales.get(saleIndex.getZeroBased());
             Person personToEdit = people.stream()
-                    .filter(person -> person.getId().equals(saleToDelete.getBuyer()))
+                    .filter(person -> person.equals(saleToDelete.getBuyer()))
                     .findAny()
                     .orElse(null);
             assert personToEdit != null;
@@ -88,7 +89,7 @@ public class DeleteCommand extends Command implements MassSaleCommand {
     }
 
     private String generateSuccessMessage(List<Sale> deletedSales) {
-        return MESSAGE_DELETE_SALE_SUCCESS + listAllSales(deletedSales);
+        return MESSAGE_DELETE_SALE_SUCCESS + MassSaleCommandUtil.listAllSales(deletedSales);
     }
 
     @Override

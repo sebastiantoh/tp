@@ -20,6 +20,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
+import static seedu.address.testutil.person.TypicalPersons.ALICE;
+import static seedu.address.testutil.person.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -155,10 +157,10 @@ public class CommandTestUtil {
     }
 
     static {
-        DESC_APPLE = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_APPLE).withBuyer(1)
+        DESC_APPLE = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_APPLE).withBuyer(ALICE)
                 .withDatetimeOfPurchase(VALID_DATE_APPLE).withUnitPrice(VALID_UNIT_PRICE_APPLE)
                 .withQuantity(VALID_QUANTITY_APPLE).withTags(VALID_SALE_TAG_FRUITS).build();
-        DESC_BALL = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_BALL).withBuyer(2)
+        DESC_BALL = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_BALL).withBuyer(BENSON)
                 .withDatetimeOfPurchase(VALID_DATE_BALL).withUnitPrice(VALID_UNIT_PRICE_BALL)
                 .withQuantity(VALID_QUANTITY_BALL).withTags().build();
     }
