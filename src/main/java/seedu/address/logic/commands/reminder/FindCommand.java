@@ -21,7 +21,6 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_FIND_REMINDER_SUCCESS = "Listed all %1$s reminders.";
     public static final String MESSAGE_NOT_FOUND = "No %1$s reminders found.";
-    public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in the address book.";
 
     private final Boolean isCompleted;
 
@@ -47,5 +46,22 @@ public class FindCommand extends Command {
             model.updateFilteredRemindersList(reminder -> !reminder.isCompleted());
             return new CommandResult(String.format(MESSAGE_FIND_REMINDER_SUCCESS, "pending"));
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FindCommand)) {
+            return false;
+        }
+
+        // state check
+        FindCommand f = (FindCommand) other;
+        return isCompleted.equals(f.isCompleted);
     }
 }

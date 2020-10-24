@@ -23,7 +23,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             if (argMultimap.getValue(PREFIX_REMINDER_STATUS).isPresent()) {
                 completed = ParserUtil.parseCompletionStatus(argMultimap.getValue(PREFIX_REMINDER_STATUS).get());
             } else {
-                completed = false;
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
             }
             return new FindCommand(completed);
         } catch (ParseException pe) {

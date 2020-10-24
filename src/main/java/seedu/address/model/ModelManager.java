@@ -486,6 +486,7 @@ public class ModelManager implements Model {
                 && this.sortedPersons.equals(other.sortedPersons)
                 && this.sortedMeetings.equals(other.sortedMeetings)
                 && this.sortedReminders.equals(other.sortedReminders)
-                && this.sortedSales.equals(other.sortedSales);
+                && this.sortedSales.equals(other.sortedSales)
+                && this.filteredReminders.equals(other.filteredReminders);
     }
 }
