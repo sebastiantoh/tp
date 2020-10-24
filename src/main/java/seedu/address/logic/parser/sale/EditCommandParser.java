@@ -18,7 +18,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.sale.AddCommand;
 import seedu.address.logic.commands.sale.EditCommand;
 import seedu.address.logic.commands.sale.EditCommand.EditSaleDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -79,7 +78,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     ParserUtil.parseUnitPrice(argMultimap.getValue(PREFIX_SALE_UNIT_PRICE).get()));
         }
 
-        if (!editSaleDescriptor.isAnyFieldEdited()) {
+        if (!editSaleDescriptor.isAnyFieldEdited() && !argMultimap.getValue(PREFIX_SALE_CONTACT_INDEX).isPresent()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
