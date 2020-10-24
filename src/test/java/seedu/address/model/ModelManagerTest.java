@@ -257,7 +257,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredReminderList_completedReminder() {
+    public void getFilteredReminderList_completedReminders() {
         modelManager.addReminder(CALL_ALICE_COMPLETED);
         modelManager.addReminder(EMAIL_BENSON);
 
@@ -268,11 +268,21 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredReminderList_pendingReminder() {
+    public void getFilteredReminderList_pendingReminders() {
         modelManager.addReminder(CALL_ALICE);
         modelManager.addReminder(EMAIL_BENSON);
 
         modelManager.updateFilteredRemindersList(PREDICATE_SHOW_PENDING_REMINDERS);
+        ObservableList<Reminder> filteredReminderList = modelManager.getFilteredReminderList();
+
+        assertEquals(2, filteredReminderList.size());
+    }
+
+    @Test
+    public void getFilteredReminderList_allRemindersByDefault() {
+        modelManager.addReminder(CALL_ALICE_COMPLETED);
+        modelManager.addReminder(EMAIL_BENSON);
+
         ObservableList<Reminder> filteredReminderList = modelManager.getFilteredReminderList();
 
         assertEquals(2, filteredReminderList.size());
