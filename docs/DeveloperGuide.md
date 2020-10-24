@@ -1062,6 +1062,22 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.
 
+#### Use case: Find reminders
+{:.no_toc}
+
+**MSS**
+
+1. User requests to find reminders by completion status
+2. StonksBook shows a list of completed or pending reminders
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. The list of reminders is empty.
+
+  Use case ends.
+
 #### Use case: Get help on available commands
 {:.no_toc}
 

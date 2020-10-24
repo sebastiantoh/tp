@@ -450,6 +450,17 @@ Format: `reminder delete INDEX`
 Examples:
 * `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
 
+#### Filtering reminders: `reminder find` \[Wang Luo\]
+
+Finds the reminders displayed based on the completion status.
+
+Format: `reminder find st/STATUS`
+
+* `STATUS` can be either `completed` or `pending`.
+
+Examples:
+* `reminder find st/completed` displays all reminders that have been marked as completed.
+
 
 ### Archive
 
