@@ -55,7 +55,7 @@ public class DeleteCommandTest {
         expectedModel.updateFilteredSaleList(x -> true);
 
         Person toEdit = expectedModel.getSortedPersonList().stream()
-                .filter(person -> person.getId().equals(saleToDelete.getBuyerId()))
+                .filter(person -> person.equals(saleToDelete.getBuyer()))
                 .findAny()
                 .orElse(null);
 

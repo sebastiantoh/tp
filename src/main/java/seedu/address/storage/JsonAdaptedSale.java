@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.sale.ItemName;
@@ -61,7 +63,7 @@ class JsonAdaptedSale {
      */
     public JsonAdaptedSale(Sale source) {
         itemName = source.getItemName().name;
-        buyerId = source.getBuyerId();
+        buyerId = source.getBuyer().getId();
         datetimeOfPurchase = source.getDatetimeOfPurchase().toString();
         quantity = source.getQuantity().toString();
         unitPrice = source.getUnitPrice().getUnitPriceString();
@@ -75,7 +77,7 @@ class JsonAdaptedSale {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted sale.
      */
-    public Sale toModelType() throws IllegalValueException {
+    public Sale toModelType(ObservableList<Person> personList) throws IllegalValueException {
         final List<Tag> saleTags = new ArrayList<>();
 
         for (JsonAdaptedTag tag : tagged) {
@@ -94,7 +96,8 @@ class JsonAdaptedSale {
         if (this.buyerId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName()));
         }
-        final Integer modelBuyer = this.buyerId;
+        final Person modelBuyer = personList.stream().filter(person -> person.getId().equals(this.buyerId))
+                .findFirst().orElseThrow(() -> new IllegalValueException("Invalid buyer specified"));
 
         if (datetimeOfPurchase == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Datetime of Purchase"));

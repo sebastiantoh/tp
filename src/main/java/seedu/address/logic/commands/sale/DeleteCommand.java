@@ -56,7 +56,7 @@ public class DeleteCommand extends Command {
 
         Sale saleToDelete = sales.get(saleIndex.getZeroBased());
         Person personToEdit = people.stream()
-                .filter(person -> person.getId().equals(saleToDelete.getBuyerId()))
+                .filter(person -> person.equals(saleToDelete.getBuyer()))
                 .findAny()
                 .orElse(null);
         assert personToEdit != null;

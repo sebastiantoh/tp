@@ -113,7 +113,7 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedSale jsonAdaptedSale : sales) {
-            Sale sale = jsonAdaptedSale.toModelType();
+            Sale sale = jsonAdaptedSale.toModelType(addressBook.getPersonList());
             if (addressBook.hasSale(sale)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_SALE);
             }

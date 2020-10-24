@@ -19,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.sale.UniqueSaleList;
@@ -67,7 +68,7 @@ public class AddCommandTest {
     public void execute_saleAcceptedByModel_addSuccessful() throws Exception {
         Person validPerson = new PersonBuilder(BOB).build();
         Sale validSale = new SaleBuilder(APPLE).build();
-        Sale toAdd = new SaleBuilder(BALL).withBuyerId(validPerson.getId()).build();
+        Sale toAdd = new SaleBuilder(BALL).withBuyerId(validPerson).build();
         ModelManager model = new ModelManager();
         model.addSale(validSale);
         model.addPerson(validPerson);
@@ -88,7 +89,7 @@ public class AddCommandTest {
     @Test
     public void execute_duplicateSale_throwsCommandException() {
         Person validPerson = new PersonBuilder(BOB).build();
-        Sale validSale = new SaleBuilder(APPLE).withBuyerId(validPerson.getId()).build();
+        Sale validSale = new SaleBuilder(APPLE).withBuyerId(validPerson).build();
 
         ModelManager model = new ModelManager();
         model.addPerson(validPerson);
