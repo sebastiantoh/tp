@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.sale;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_INDEX;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -24,9 +25,9 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "sale delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the sale identified by the index number used in the displayed sale list.\n"
-        + "Parameters: SALE_INDEX (must be a positive integer)\n"
-        + "Example: " + COMMAND_WORD + " 3";
+        + ": Deletes the sale(s) identified by the index number used in the displayed sale list.\n"
+        + "Parameters: " + PREFIX_SALE_INDEX + " SALE_INDEX... (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " " + PREFIX_SALE_INDEX + " 3";
 
     public static final String MESSAGE_DELETE_SALE_SUCCESS = "Deleted Sale(s):";
 

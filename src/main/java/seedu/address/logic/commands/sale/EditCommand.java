@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
@@ -40,18 +41,17 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "sale edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the sale identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the sale(s) identified "
             + "by the index number used in the displayed sale list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "+ PREFIX_SALE_INDEX + "INDEX... "
             + "[" + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX] "
             + "[" + PREFIX_SALE_NAME + "ITEM_NAME] "
             + "[" + PREFIX_SALE_DATE + "DATETIME_OF_PURCHASE] "
             + "[" + PREFIX_SALE_UNIT_PRICE + "UNIT_PRICE] "
             + "[" + PREFIX_SALE_QUANTITY + "QUANTITY]\n"
-            + "Example: " + COMMAND_WORD + " 3 "
-            + PREFIX_SALE_NAME + "File "
-            + PREFIX_SALE_QUANTITY + "25 ";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_SALE_INDEX + " 3 "
+            + PREFIX_SALE_NAME + "File " + PREFIX_SALE_QUANTITY + "25 ";
 
     public static final String MESSAGE_EDIT_SALE_SUCCESS = "Edited Sale(s): ";
     public static final String MESSAGE_EDIT_SALE_FAILED = "No sales edited.";

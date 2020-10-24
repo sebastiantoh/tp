@@ -36,9 +36,9 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "sale add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a sale of specified item name, unit price, "
-        + "quantity and tags (optional), to the specified contact.\n"
+        + "quantity and tags (optional), to the specified contact(s).\n"
         + "Parameters: "
-        + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer) "
+        + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX... (must be a positive integer) "
         + PREFIX_SALE_NAME + "ITEM_NAME "
         + PREFIX_SALE_DATE + "DATETIME_OF_PURCHASE "
         + PREFIX_SALE_UNIT_PRICE + "UNIT_PRICE "
