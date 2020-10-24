@@ -55,7 +55,7 @@ public interface Model {
     /**
      * {@code Predicate} that is used for filtering pending reminders.
      */
-    Predicate<Reminder> PREDICATE_SHOW_PENDING_REMIDNERS = reminder -> !reminder.isCompleted();
+    Predicate<Reminder> PREDICATE_SHOW_PENDING_REMINDERS = reminder -> !reminder.isCompleted();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
