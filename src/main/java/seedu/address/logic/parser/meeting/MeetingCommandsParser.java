@@ -7,6 +7,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.UnknownCommand;
 import seedu.address.logic.commands.meeting.AddCommand;
 import seedu.address.logic.commands.meeting.DeleteCommand;
+import seedu.address.logic.commands.meeting.EditCommand;
 import seedu.address.logic.commands.meeting.ListCommand;
 import seedu.address.logic.commands.meeting.StatsCommand;
 import seedu.address.logic.parser.GroupCommandsParser;
@@ -21,6 +22,7 @@ public class MeetingCommandsParser implements GroupCommandsParser {
             AddCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
+            EditCommand.COMMAND_WORD,
             StatsCommand.COMMAND_WORD
     );
 
@@ -43,6 +45,9 @@ public class MeetingCommandsParser implements GroupCommandsParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommandParser().parse(arguments);
