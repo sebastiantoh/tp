@@ -139,7 +139,6 @@ public class Sale implements Comparable<Sale> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        // TODO: settle printing of buyer when implementing GUI
         builder.append(getItemName())
                 .append(" (Date of Purchase: ")
                 .append(getDatetimeOfPurchase().format(DATE_TIME_FORMATTER))
@@ -149,13 +148,14 @@ public class Sale implements Comparable<Sale> {
                 .append(getUnitPrice())
                 .append(", Tags: ")
                 .append(getTags())
-                .append(")");
+                .append("), Made to: ")
+                .append(getBuyer().getName().fullName);
         return builder.toString();
     }
 
     /**
      * Compares this sale to the specified Sale. A Sale is "less" than another Sale if and only if, from highest to
-     * lowest priority: has an earlier datetime of purchase, has a buyer that was added least recently,
+     * lowest priority: has an earlier datetime of purchase, has a lower lexicographical order of buyer name,
      * has a lower lexicographical order of item name.
      *
      * @param otherSale The other Sale to compare to
@@ -164,7 +164,7 @@ public class Sale implements Comparable<Sale> {
     @Override
     public int compareTo(Sale otherSale) {
         return Comparator.comparing(Sale::getDatetimeOfPurchase)
-                .thenComparing(s -> s.getBuyer().getId())
+                .thenComparing(s -> s.getBuyer().getName().fullName)
                 .thenComparing(s -> s.getItemName().name)
                 .compare(this, otherSale);
     }
