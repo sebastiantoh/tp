@@ -36,8 +36,8 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_noSalesListed_throwsCommandException() {
-        model.updateFilteredSaleList(x -> false);
         Sale saleToDelete = model.getSortedSaleList().get(0);
+        model.updateFilteredSaleList(x -> false);
         DeleteCommand deleteCommand = new DeleteCommand(new ArrayList<>(Arrays.asList(INDEX_SECOND_ITEM)));
 
         ModelManager expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -50,7 +50,7 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         model.updateFilteredSaleList(x -> true);
 
-        Sale saleToDelete = model.getFilteredSaleList().get(1);
+        Sale saleToDelete = model.getSortedSaleList().get(1);
         DeleteCommand deleteCommand = new DeleteCommand(new ArrayList<>(Arrays.asList(INDEX_SECOND_ITEM)));
 
         String expectedMessage = DeleteCommand.MESSAGE_DELETE_SALE_SUCCESS

@@ -78,7 +78,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Sale> lastShownList = model.getFilteredSaleList();
+        List<Sale> lastShownList = model.getSortedSaleList();
 
         List<Index> invalidIndexes = saleIndexes
                 .parallelStream().filter(personIndex -> personIndex.getZeroBased() >= lastShownList.size())

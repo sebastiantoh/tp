@@ -31,21 +31,15 @@ public class AllListCommandTest {
 
     @Test
     public void execute_noIndex_showsAllSales() {
-        String saleListResult = "Listing all sales:\n"
-                + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, "
-                + "Quantity: 10, Unit Price: 3.50, Tags: [[fruits]]) (Client: Benson Meier)\n"
-                + "2. Ball (Date of Purchase: Tue, 22 Sep 2020, 12:40, "
-                + "Quantity: 1, Unit Price: 0.80, Tags: [[sports]]) (Client: Alice Pauline)\n"
-                + "3. Camera (Date of Purchase: Sun, 01 Nov 2020, 09:05, "
-                + "Quantity: 2, Unit Price: 1000.50, Tags: [[electronics]]) (Client: Carl Kurz)\n";
+        String saleListResult = "Listed all sales.";
         assertCommandSuccess(new AllListCommand(true, null), model, saleListResult, expectedModel);
     }
 
     @Test
     public void execute_validIndex_showsSales() {
-        String saleListResult = "Sales made to Benson Meier:\n"
-                + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, "
-                + "Quantity: 10, Unit Price: 3.50, Tags: [[fruits]]) (Client: Benson Meier)\n";
+        String saleListResult = "Listed all sales made to Benson Meier.";
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.updateFilteredSaleList(x -> x.getBuyer().getId().equals(2));
         assertCommandSuccess(new AllListCommand(false, INDEX_SECOND_ITEM), model, saleListResult, expectedModel);
     }
 
@@ -60,6 +54,8 @@ public class AllListCommandTest {
     @Test
     public void execute_emptySalesListWithIndex_displaysEmptySalesListMessage() {
         String saleListResult = "No sales made to Daniel Meier!";
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.updateFilteredSaleList(sale -> false);
         assertCommandSuccess(new AllListCommand(false, Index.fromOneBased(4)), model, saleListResult, expectedModel);
     }
 

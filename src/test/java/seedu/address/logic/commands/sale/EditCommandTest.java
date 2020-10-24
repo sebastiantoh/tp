@@ -52,7 +52,7 @@ public class EditCommandTest {
                 + MassSaleCommandUtil.listAllSales(new ArrayList<>(Arrays.asList(editedSale)));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setSale(model.getSortedSaleList().get(2), editedSale);
+        expectedModel.setSale(model.getFilteredSaleList().get(2), editedSale);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -61,7 +61,7 @@ public class EditCommandTest {
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         model.addContactTag(new Tag(VALID_SALE_TAG_FRUITS));
         Index indexLastSale = Index.fromOneBased(model.getSortedSaleList().size());
-        Sale lastSale = model.getSortedSaleList().get(indexLastSale.getZeroBased());
+        Sale lastSale = model.getFilteredSaleList().get(indexLastSale.getZeroBased());
 
         SaleBuilder saleInList = new SaleBuilder(lastSale);
         Sale editedSale = saleInList.withItemName(VALID_ITEM_NAME_BALL).withQuantity(VALID_QUANTITY_APPLE)
@@ -116,7 +116,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Sale firstSale = model.getSortedSaleList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Sale firstSale = model.getFilteredSaleList().get(INDEX_FIRST_ITEM.getZeroBased());
         EditSaleDescriptor descriptor = new EditSaleDescriptorBuilder(firstSale).build();
         EditCommand editCommand = new EditCommand(
                 new ArrayList<>(Arrays.asList(INDEX_FIRST_ITEM)), descriptor, INDEX_FIRST_ITEM);
