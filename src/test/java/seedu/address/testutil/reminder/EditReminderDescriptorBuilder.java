@@ -45,6 +45,13 @@ public class EditReminderDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code status} of the {@code EditReminderDescriptor} that we are building.
+     */
+    public EditReminderDescriptorBuilder withStatus(Boolean status) {
+        descriptor.setCompleted(status);
+        return this;
+    }
 
     public EditReminderDescriptor build() {
         return descriptor;

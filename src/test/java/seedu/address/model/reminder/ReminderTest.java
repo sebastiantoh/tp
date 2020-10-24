@@ -55,4 +55,11 @@ public class ReminderTest {
         Reminder reminder2 = new Reminder(BOB, VALID_MESSAGE, VALID_DATETIME);
         assertNotEquals(reminder1, reminder2);
     }
+
+    @Test
+    public void equals_differentStatus_returnsFalse() {
+        Reminder completedReminder = new Reminder(ALICE, VALID_MESSAGE, VALID_DATETIME, true);
+        Reminder pendingReminder = new Reminder(ALICE, VALID_MESSAGE, VALID_DATETIME, false);
+        assertNotEquals(completedReminder, pendingReminder);
+    }
 }

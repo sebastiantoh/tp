@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_STATUS;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.reminder.EditCommand;
@@ -28,8 +29,11 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CONTACT, PREFIX_MESSAGE, PREFIX_DATETIME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                        PREFIX_CONTACT,
+                        PREFIX_MESSAGE,
+                        PREFIX_DATETIME,
+                        PREFIX_REMINDER_STATUS);
 
         Index index;
 
@@ -49,6 +53,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             editReminderDescriptor
                     .setScheduledDate(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_REMINDER_STATUS).isPresent()) {
+            editReminderDescriptor.setCompleted(ParserUtil
+                    .parseCompletionStatus(argMultimap.getValue(PREFIX_REMINDER_STATUS).get()));
         }
 
         if (!editReminderDescriptor.isAnyFieldEdited()) {
