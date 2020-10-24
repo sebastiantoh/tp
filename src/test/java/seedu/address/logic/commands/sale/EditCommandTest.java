@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BALL;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACT_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BALL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_APPLE;
@@ -15,10 +14,8 @@ import static seedu.address.logic.commands.CommandTestUtil.showSaleAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookInReverse;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -124,7 +121,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(
                 new ArrayList<>(Arrays.asList(INDEX_FIRST_ITEM)), descriptor, INDEX_FIRST_ITEM);
 
-        String expectedMessage =  EditCommand.MESSAGE_EDIT_SALE_FAILED + "\n" + EditCommand.MESSAGE_DUPLICATE_SALE
+        String expectedMessage = EditCommand.MESSAGE_EDIT_SALE_FAILED + "\n" + EditCommand.MESSAGE_DUPLICATE_SALE
                 + MassSaleCommandUtil.listAllSales(new ArrayList<>(Arrays.asList(firstSale)));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -141,7 +138,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(new ArrayList<>(Arrays.asList(INDEX_FIRST_ITEM)),
             new EditSaleDescriptorBuilder(saleInList).build(), INDEX_FIRST_ITEM);
 
-        String expectedMessage =  EditCommand.MESSAGE_EDIT_SALE_FAILED + "\n" + EditCommand.MESSAGE_DUPLICATE_SALE
+        String expectedMessage = EditCommand.MESSAGE_EDIT_SALE_FAILED + "\n" + EditCommand.MESSAGE_DUPLICATE_SALE
                 + MassSaleCommandUtil.listAllSales(new ArrayList<>(Arrays.asList(saleInList)));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());

@@ -2,16 +2,8 @@ package seedu.address.logic.parser.sale;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_1;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ITEM_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUANTITY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_SALE_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -19,12 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_UNIT_PRICE;
 import static seedu.address.logic.commands.CommandTestUtil.ITEM_NAME_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.ITEM_NAME_DESC_BALL;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC_BALL;
-import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.REMARK_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.SALE_DATE_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.SALE_DATE_DESC_BALL;
 import static seedu.address.logic.commands.CommandTestUtil.SALE_TAG_FRUITS;
@@ -32,26 +20,13 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.UNIT_PRICE_DESC_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.UNIT_PRICE_DESC_BALL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BALL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BALL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_APPLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SALE_TAG_FRUITS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UNIT_PRICE_APPLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -60,9 +35,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
-import static seedu.address.testutil.person.TypicalPersons.ALICE;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -72,22 +45,15 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.sale.EditCommand;
 import seedu.address.logic.commands.sale.EditCommand.EditSaleDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
 import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.person.EditPersonDescriptorBuilder;
 import seedu.address.testutil.sale.EditSaleDescriptorBuilder;
 
 public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
-
-    private static final String REMARK_EMPTY = " " + PREFIX_CONTACT_REMARK;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -166,7 +132,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_ITEM;
-        String userInput = " " + PREFIX_SALE_INDEX.toString() + targetIndex.getOneBased() + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE;
+        String userInput = " " + PREFIX_SALE_INDEX.toString() + targetIndex.getOneBased()
+                + QUANTITY_DESC_APPLE + UNIT_PRICE_DESC_APPLE;
 
         EditSaleDescriptor descriptor = new EditSaleDescriptorBuilder().withQuantity(VALID_QUANTITY_APPLE)
                 .withUnitPrice(VALID_UNIT_PRICE_APPLE).build();
@@ -224,7 +191,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_ITEM;
         String userInput = " " + PREFIX_SALE_INDEX.toString() + targetIndex.getOneBased() + " "
                 + PREFIX_SALE_CONTACT_INDEX.toString() + targetIndex.getOneBased() + ITEM_NAME_DESC_BALL
-                + ITEM_NAME_DESC_APPLE  + SALE_DATE_DESC_APPLE + SALE_DATE_DESC_BALL + UNIT_PRICE_DESC_BALL
+                + ITEM_NAME_DESC_APPLE + SALE_DATE_DESC_APPLE + SALE_DATE_DESC_BALL + UNIT_PRICE_DESC_BALL
                 + UNIT_PRICE_DESC_APPLE + QUANTITY_DESC_BALL + QUANTITY_DESC_APPLE + SALE_TAG_FRUITS;
 
         EditSaleDescriptor descriptor = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_APPLE)

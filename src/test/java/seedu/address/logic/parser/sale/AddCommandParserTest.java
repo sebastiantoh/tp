@@ -33,7 +33,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.sale.AddCommand;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;

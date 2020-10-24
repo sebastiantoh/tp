@@ -95,7 +95,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicateSale_displaysDuplicateMessage() throws CommandException{
+    public void execute_duplicateSale_displaysDuplicateMessage() throws CommandException {
         Person validPerson = new PersonBuilder(BOB).build();
         Sale validSale = new SaleBuilder(APPLE).withBuyer(validPerson).build();
 

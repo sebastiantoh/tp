@@ -3,7 +3,6 @@ package seedu.address.logic.commands.sale;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -54,8 +53,8 @@ public class DeleteCommandTest {
         Sale saleToDelete = model.getFilteredSaleList().get(1);
         DeleteCommand deleteCommand = new DeleteCommand(new ArrayList<>(Arrays.asList(INDEX_SECOND_ITEM)));
 
-        String expectedMessage = DeleteCommand.MESSAGE_DELETE_SALE_SUCCESS +
-                MassSaleCommandUtil.listAllSales(new ArrayList<>(Arrays.asList(saleToDelete)));
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_SALE_SUCCESS
+                + MassSaleCommandUtil.listAllSales(new ArrayList<>(Arrays.asList(saleToDelete)));
         ModelManager expectedModel = new ModelManager(getTypicalAddressBookInReverse(), new UserPrefs());
         expectedModel.updateFilteredSaleList(x -> true);
 

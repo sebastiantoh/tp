@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.MonthlyListMap;
 import seedu.address.model.person.Person;
-import seedu.address.model.reminder.Reminder;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
 import seedu.address.model.sale.exceptions.SaleNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -99,13 +98,6 @@ public class UniqueSaleList implements Iterable<Sale> {
         monthlyListMap.removeItem(toRemove.getMonth(), toRemove.getYear(), toRemove);
     }
 
-    public UniqueSaleList setSales(UniqueSaleList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-        this.setMonthlyListMap(replacement.internalList);
-        return this;
-    }
-
     /**
      * Removes all sales associated with the given {@code contact} from the list.
      *
@@ -134,6 +126,14 @@ public class UniqueSaleList implements Iterable<Sale> {
 
         internalList.setAll(sales);
         this.setMonthlyListMap(sales);
+    }
+
+
+    public UniqueSaleList setSales(UniqueSaleList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+        this.setMonthlyListMap(replacement.internalList);
+        return this;
     }
 
     private void setMonthlyListMap(List<Sale> list) {
