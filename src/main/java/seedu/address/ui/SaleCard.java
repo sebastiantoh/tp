@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.meeting.Meeting;
@@ -23,6 +26,8 @@ public class SaleCard extends UiPart<Region> {
     @FXML
     private Label itemName;
     @FXML
+    private FlowPane tags;
+    @FXML
     private Label datetimeOfPurchase;
     @FXML
     private Label price;
@@ -35,6 +40,9 @@ public class SaleCard extends UiPart<Region> {
         this.sale = sale;
         id.setText(displayedIndex + ". ");
         itemName.setText(setTitleText(sale));
+        sale.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         datetimeOfPurchase.setText(sale.getFormattedDatetimeOfPurchase());
         price.setText(setPriceText(sale));
     }
