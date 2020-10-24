@@ -34,11 +34,9 @@ class MonthlyListCommandTest {
     @Test
     public void execute_valid_success() {
         MonthlyListCommand monthlyListCommand = new MonthlyListCommand(Month.NOVEMBER, Year.of(2020));
-        String expectedFormattedString = monthlyListCommand
-                .formatSaleListOutput(Collections.singletonList(CAMERA));
 
         String expectedResult = String.format(MonthlyListCommand.MESSAGE_SUCCESS,
-                1, Month.NOVEMBER, Year.of(2020), expectedFormattedString);
+                1, Month.NOVEMBER, Year.of(2020));
 
         CommandResult actualCommandResult = monthlyListCommand.execute(model);
         assertEquals(new CommandResult(expectedResult), actualCommandResult);

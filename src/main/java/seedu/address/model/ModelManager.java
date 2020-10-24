@@ -65,11 +65,11 @@ public class ModelManager implements Model {
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
         this.sortedPersons = new SortedList<>(this.filteredPersons);
+        this.sortedSales = new SortedList<>(this.filteredSales, Comparator.naturalOrder());
         this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
-        this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
 
         initialiseLatestContactId();
     }

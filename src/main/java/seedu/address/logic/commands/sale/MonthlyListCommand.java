@@ -13,7 +13,7 @@ import seedu.address.model.sale.Sale;
 
 public class MonthlyListCommand extends ListCommand {
 
-    public static final String MESSAGE_SUCCESS = "You have sold %d items in %s %s!\n%s";
+    public static final String MESSAGE_SUCCESS = "You have sold %d items in %s %s!";
 
     private static final Comparator<Sale> SORT_BY_DATE = Comparator.comparing(Sale::getDatetimeOfPurchase);
 
@@ -42,13 +42,12 @@ public class MonthlyListCommand extends ListCommand {
      */
     @Override
     public CommandResult execute(Model model) {
-
         List<Sale> monthlySaleList = model.getMonthlySaleList(month, year);
-        monthlySaleList.sort(SORT_BY_DATE);
 
-        String formattedListAsStr = this.formatSaleListOutput(monthlySaleList);
-        return new CommandResult(String.format(MESSAGE_SUCCESS,
-                monthlySaleList.size(), month, year, formattedListAsStr));
+        model.updateFilteredSaleList(sale -> monthlySaleList.contains(sale));
+        model.updateSortedSaleList(SORT_BY_DATE);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, monthlySaleList.size(), month, year));
     }
 
     @Override

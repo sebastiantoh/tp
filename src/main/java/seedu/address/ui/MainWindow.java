@@ -141,7 +141,7 @@ public class MainWindow extends UiPart<Stage> {
         reminderListPanel = new ReminderListPanel(logic.getSortedReminderList());
         reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
-        saleListPanel = new SaleListPanel(logic.getFilteredSaleList());
+        saleListPanel = new SaleListPanel(logic.getSortedSaleList());
         saleListPanelPlaceholder.getChildren().add(saleListPanel.getRoot());
 
         chatBox = new ChatBox();
