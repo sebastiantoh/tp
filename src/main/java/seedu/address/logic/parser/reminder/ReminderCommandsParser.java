@@ -5,10 +5,7 @@ import java.util.List;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.UnknownCommand;
-import seedu.address.logic.commands.reminder.AddCommand;
-import seedu.address.logic.commands.reminder.DeleteCommand;
-import seedu.address.logic.commands.reminder.EditCommand;
-import seedu.address.logic.commands.reminder.ListCommand;
+import seedu.address.logic.commands.reminder.*;
 import seedu.address.logic.parser.GroupCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -46,6 +43,9 @@ public class ReminderCommandsParser implements GroupCommandsParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
         default:
             return new UnknownCommand(commandWord);

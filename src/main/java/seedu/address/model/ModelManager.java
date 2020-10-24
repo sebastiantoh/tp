@@ -51,7 +51,6 @@ public class ModelManager implements Model {
 
     private int latestContactId = 0;
 
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -71,7 +70,9 @@ public class ModelManager implements Model {
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
-        this.filteredReminders = new FilteredList<>(this.addressBook.getReminderList());
+        this.filteredReminders = new FilteredList<>(sortedReminders);
+        // Uncomment the next line if we would like to show only pending reminders after starting.
+        // this.updateFilteredRemindersList(PREDICATE_SHOW_COMPLETED_REMINDERS);
         this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
 
         initialiseLatestContactId();
@@ -241,6 +242,11 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredRemindersList(Predicate<Reminder> predicate) {
         this.filteredReminders.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return this.filteredReminders;
     }
 
     @Override
