@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -26,9 +27,11 @@
         <Label fx:id="itemName" text="\$itemName" wrapText="true" styleClass="cell_big_label"/>
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
+        <FontIcon iconLiteral="far-calendar-alt" iconColor="white" iconSize="16"/>
         <Label fx:id="datetimeOfPurchase" styleClass="cell_small_label" text="\$datetimeOfPurchase" wrapText="true"/>
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
+        <FontIcon iconLiteral="far-money-bill-alt" iconColor="white" iconSize="13"/>
         <Label fx:id="price" styleClass="cell_small_label" text="\$price" wrapText="true"/>
       </HBox>
     </VBox>

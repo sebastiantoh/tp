@@ -27,7 +27,6 @@ public class SaleCard extends UiPart<Region> {
     @FXML
     private Label price;
 
-
     /**
      * Creates a {@code SaleCard} with the given {@code Sale} and index to display.
      */
