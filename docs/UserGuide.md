@@ -343,6 +343,19 @@ Examples:
 * `meeting add c/2 m/Follow-up meeting d/2020-10-30 15:00 du/60` Adds a 1-hour long meeting titled `Follow-up meeting` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
 * `meeting add c/3 m/Call to finalise details d/2020-10-30 08:00 du/30` Adds a 30-minute long meeting titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
 
+#### Editing a meeting: `meeting edit` \[Sebastian Toh Shi Jian\]
+Edits an existing meeting in StonksBook.
+
+Format: `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [du/DURATION]`
+
+* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+* `meeting edit 1 c/2` edits the 1st meeting to be associated with the second contact in the displayed contact list.
+* `meeting edit 3 d/2020-11-28 13:00 du/90` sets the start date of the 3rd meeting to 28th November, 1pm and the duration to 90 minutes.
+
 #### Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
 
 Shows a list of all meetings. By default, the list only shows upcoming meetings. This list is sorted in increasing order based on the date the meeting is scheduled.
