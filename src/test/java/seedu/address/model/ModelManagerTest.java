@@ -204,6 +204,13 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setMeeting_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(null, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(null, MEET_ALICE));
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(MEET_ALICE, null));
+    }
+
+    @Test
     public void hasReminder_nullReminder_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasReminder(null));
     }
@@ -235,7 +242,6 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.setReminder(null, CALL_ALICE));
         assertThrows(NullPointerException.class, () -> modelManager.setReminder(CALL_ALICE, null));
     }
-
 
     @Test
     public void getSortedReminderList_reminderWithEarlierDateAdded_meetingInSortedOrder() {
