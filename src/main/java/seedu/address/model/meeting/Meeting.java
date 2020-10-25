@@ -93,6 +93,14 @@ public class Meeting implements Comparable<Meeting> {
                 .isAfter(otherMeeting.getStartDate());
     }
 
+    /**
+     * Returns true if and only if the current meeting is over.
+     * A meeting is considered over if the meeting's end date is past the current time.
+     */
+    public boolean isOver() {
+        return LocalDateTime.now().isAfter(this.getEndDate());
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
