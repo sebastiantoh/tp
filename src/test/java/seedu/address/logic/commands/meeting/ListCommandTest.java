@@ -1,15 +1,22 @@
 package seedu.address.logic.commands.meeting;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.PurgeCommand;
+import seedu.address.logic.commands.meeting.ListCommand.ListMeetingDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.testutil.meeting.ListMeetingDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -26,14 +33,60 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_noExtraArguments_displayUpcomingMeetingsSuccessMessage() {
+        ListMeetingDescriptor descriptor = new ListMeetingDescriptorBuilder().build();
+        assertCommandSuccess(new ListCommand(descriptor), model, ListCommand.MESSAGE_SUCCESS_UPCOMING, expectedModel);
+    }
+
+    @Test
+    public void execute_showAllMeetings_displayAllMeetingsSuccessMessage() {
+        ListMeetingDescriptor descriptor = new ListMeetingDescriptorBuilder().withShouldShowAll(true).build();
+        expectedModel.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
+        assertCommandSuccess(new ListCommand(descriptor), model, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidContactIndex_exceptionThrown() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedPersonList().size() + 1);
+        ListMeetingDescriptor descriptor = new ListMeetingDescriptorBuilder().withContactIndex(outOfBoundIndex).build();
+        assertCommandFailure(new ListCommand(descriptor), model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        ListCommand listFirstCommand = new ListCommand();
-        ListCommand listSecondCommand = new ListCommand();
-        assertEquals(listFirstCommand, listSecondCommand);
+        ListMeetingDescriptor descriptor =
+                new ListMeetingDescriptorBuilder()
+                        .withShouldShowAll(true)
+                        .withContactIndex(Index.fromOneBased(2))
+                        .build();
+
+        final ListCommand standardCommand = new ListCommand(descriptor);
+
+        // same values -> returns true
+        ListMeetingDescriptor copyDescriptor =
+                new ListMeetingDescriptorBuilder()
+                        .withShouldShowAll(true)
+                        .withContactIndex(Index.fromOneBased(2))
+                        .build();
+        ListCommand commandWithSameValues = new ListCommand(copyDescriptor);
+
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new PurgeCommand()));
+
+        // different descriptor -> returns false
+        ListMeetingDescriptor diffDescriptor =
+                new ListMeetingDescriptorBuilder()
+                        .withShouldShowAll(false)
+                        .withContactIndex(Index.fromOneBased(3))
+                        .build();
+        assertFalse(standardCommand.equals(new ListCommand(diffDescriptor)));
     }
 }

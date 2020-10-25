@@ -33,7 +33,9 @@ public class ListCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CONTACT + "3";
 
-    public static final String MESSAGE_SUCCESS = "Listed all meetings.";
+    public static final String MESSAGE_SUCCESS_UPCOMING = "Listed all upcoming meetings.";
+
+    public static final String MESSAGE_SUCCESS_ALL = "Listed all upcoming meetings.";
 
     private final ListMeetingDescriptor listMeetingDescriptor;
 
@@ -52,7 +54,7 @@ public class ListCommand extends Command {
 
         if (!listMeetingDescriptor.isAnyFieldPresent()) {
             model.updateFilteredMeetingList(PREDICATE_SHOW_UPCOMING_MEETINGS);
-            return new CommandResult(MESSAGE_SUCCESS);
+            return new CommandResult(MESSAGE_SUCCESS_UPCOMING);
         }
 
         Predicate<Meeting> predicate;
@@ -81,7 +83,7 @@ public class ListCommand extends Command {
 
         model.updateFilteredMeetingList(predicate);
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(shouldShowAll ? MESSAGE_SUCCESS_ALL : MESSAGE_SUCCESS_UPCOMING);
     }
 
     @Override
@@ -106,7 +108,7 @@ public class ListCommand extends Command {
      */
     public static class ListMeetingDescriptor {
         private Index contactIndex;
-        private boolean shouldShowAll;
+        private Boolean shouldShowAll;
 
         public ListMeetingDescriptor() {
         }
