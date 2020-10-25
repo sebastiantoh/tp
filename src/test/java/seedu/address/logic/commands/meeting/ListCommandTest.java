@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +18,8 @@ import seedu.address.logic.commands.meeting.ListCommand.ListMeetingDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.Person;
 import seedu.address.testutil.meeting.ListMeetingDescriptorBuilder;
 
 /**
@@ -35,6 +39,7 @@ public class ListCommandTest {
     @Test
     public void execute_noExtraArguments_displayUpcomingMeetingsSuccessMessage() {
         ListMeetingDescriptor descriptor = new ListMeetingDescriptorBuilder().build();
+        expectedModel.updateFilteredMeetingList(Model.PREDICATE_SHOW_UPCOMING_MEETINGS);
         assertCommandSuccess(new ListCommand(descriptor), model, ListCommand.MESSAGE_SUCCESS_UPCOMING, expectedModel);
     }
 
@@ -43,6 +48,39 @@ public class ListCommandTest {
         ListMeetingDescriptor descriptor = new ListMeetingDescriptorBuilder().withShouldShowAll(true).build();
         expectedModel.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
         assertCommandSuccess(new ListCommand(descriptor), model, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
+    }
+
+    @Test
+    public void execute_showAllMeetingsWithContact_displayAllMeetingsSuccessMessage() {
+        Index secondPersonIndex = Index.fromOneBased(2);
+        Person secondPerson = model.getSortedPersonList().get(secondPersonIndex.getZeroBased());
+
+        ListMeetingDescriptor descriptor =
+                new ListMeetingDescriptorBuilder()
+                        .withShouldShowAll(true)
+                        .withContactIndex(secondPersonIndex)
+                        .build();
+
+        expectedModel.updateFilteredMeetingList(meeting -> meeting.getPersonId() == secondPerson.getId());
+
+        assertCommandSuccess(new ListCommand(descriptor), model, ListCommand.MESSAGE_SUCCESS_ALL, expectedModel);
+    }
+
+    @Test
+    public void execute_showUpcomingMeetingsWithContact_displayUpcomingMeetingsSuccessMessage() {
+        Index secondPersonIndex = Index.fromOneBased(2);
+        Person secondPerson = model.getSortedPersonList().get(secondPersonIndex.getZeroBased());
+
+        ListMeetingDescriptor descriptor =
+                new ListMeetingDescriptorBuilder()
+                        .withContactIndex(secondPersonIndex)
+                        .build();
+
+        Predicate<Meeting> showUpcomingMeetingsWithContact =
+                Model.PREDICATE_SHOW_UPCOMING_MEETINGS.and(meeting -> meeting.getPersonId() == secondPerson.getId());
+        expectedModel.updateFilteredMeetingList(showUpcomingMeetingsWithContact);
+
+        assertCommandSuccess(new ListCommand(descriptor), model, ListCommand.MESSAGE_SUCCESS_UPCOMING, expectedModel);
     }
 
     @Test
