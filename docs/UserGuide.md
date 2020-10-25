@@ -327,7 +327,7 @@ Examples:
 
 StonksBook allows you to manage your scheduled meetings within the application.
 
-#### Adding a scheduled meeting: `meeting add` \[Sebastian Toh Shi Jian\]
+#### Adding a meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
 Adds a scheduled meeting with the specified contact in StonksBook.
 
