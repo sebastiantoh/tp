@@ -373,6 +373,10 @@ Format: `meeting list [c/CONTACT_INDEX] [a/]`
 * When an index is specified, the list will only show meetings associated with the contact at the specified index.
 * You can show all meetings, including past meetings, by typing `a/`.
 
+Examples:
+* `meeting list c/5 a/` displays a list of all meetings that you have had with the 5th contact currently
+ displayed in StonksBook.
+ 
 #### Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified meeting from StonksBook.
@@ -384,7 +388,8 @@ Format: `meeting delete INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `meeting list 5` followed by `meeting delete 2` deletes the 2nd meeting that is associated with the 5th contact in StonksBook.
+* `meeting list c/5` followed by `meeting delete 2` deletes the 2nd upcoming meeting that is associated with the 5th
+ contact in StonksBook.
 
 #### Analysing meetings: `meeting stats`
 Analyses the meeting data and visualises the statistical result.
