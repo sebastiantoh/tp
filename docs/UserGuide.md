@@ -429,13 +429,18 @@ Examples:
 * `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.
 * `reminder edit 3 m/Follow up call d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Follow up call" and "28th November 2020, 1PM" respectively.
 
-#### Listing all reminders: `reminder list` \[Sebastian Toh Shi Jian\]
+#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
 
 Shows a list of all reminders created, sorted in increasing order based on the date the reminder is scheduled.
 
 <img src="images/reminderListMockup.png" alt="result for 'reminder list'" width="400px">
 
-Format: `reminder list`
+Format: `reminder list st/STATUS`
+
+* `STATUS` can be either `completed` or `pending`.
+
+Examples:
+* `reminder list st/completed` displays all reminders that have been marked as completed.
 
 #### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
 
@@ -449,18 +454,6 @@ Format: `reminder delete INDEX`
 
 Examples:
 * `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
-
-#### Filtering reminders: `reminder find` \[Wang Luo\]
-
-Finds the reminders displayed based on the completion status.
-
-Format: `reminder find st/STATUS`
-
-* `STATUS` can be either `completed` or `pending`.
-
-Examples:
-* `reminder find st/completed` displays all reminders that have been marked as completed.
-
 
 ### Archive
 

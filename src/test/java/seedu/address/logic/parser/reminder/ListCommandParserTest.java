@@ -7,23 +7,23 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.reminder.FindCommand;
+import seedu.address.logic.commands.reminder.ListCommand;
 
-class FindCommandParserTest {
+class ListCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private ListCommandParser parser = new ListCommandParser();
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsListCommand() {
         assertParseSuccess(parser,
                 " " + PREFIX_REMINDER_STATUS + "completed",
-                new FindCommand(true));
+                new ListCommand(true));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser,
                 " " + PREFIX_REMINDER_STATUS + "random",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
     }
 }

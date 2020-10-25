@@ -313,7 +313,7 @@ public interface Model {
     void setReminder(Reminder target, Reminder editedReminder);
 
     /**
-     * Returns all completed reminders as a String.
+     * Set the predicate for filtering of reminders list.
      */
     void updateFilteredRemindersList(Predicate<Reminder> predicate);
 
