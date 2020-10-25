@@ -426,7 +426,7 @@ public class AddressBook implements ReadOnlyAddressBook {
                 conflictingMeetings.add(meetingToCheckAgainst);
             }
         }
-        
+
         Collections.sort(conflictingMeetings);
 
         return conflictingMeetings;

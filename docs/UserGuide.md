@@ -329,7 +329,7 @@ StonksBook allows you to manage your scheduled meetings within the application.
 
 #### Adding a scheduled meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
-Adds a scheduled meeting with the specified contact in StonksBook. 
+Adds a scheduled meeting with the specified contact in StonksBook.
 
 To prevent the situation in which you end up with conflicting meetings, StonksBook will not allow you to add a new
  meeting if it conflicts with some meeting in StonksBook!
@@ -351,7 +351,7 @@ Edits an existing meeting in StonksBook.
 
 Similar to when adding a meeting, StonksBook will not allow you to edit a meeting if it will conflicts with some meeting
  in StonksBook!
- 
+
 Format: `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [du/DURATION]`
 
 * Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index must be a positive integer 1, 2, 3, …​
