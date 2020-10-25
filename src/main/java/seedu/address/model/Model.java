@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.dataset.DataSet;
 import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.commons.dataset.tag.SaleTagCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -343,6 +344,11 @@ public interface Model {
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     DataSet<MonthlyCountData> getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths);
+
+    /**
+     * Gets a breakdown of the proportion of sales in each tag.
+     */
+    DataSet<SaleTagCountData> getSaleTagCount();
 
     void initialiseLatestContactId();
 

@@ -13,6 +13,7 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.commons.dataset.DataSet;
 import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.commons.dataset.tag.SaleTagCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
@@ -516,6 +517,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public DataSet<MonthlyCountData> getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
         return this.sales.getMultipleMonthSaleCount(month, year, numberOfMonths);
+    }
+
+    /**
+     * Gets a breakdown of the proportion of sales in each tag.
+     */
+    public DataSet<SaleTagCountData> getSaleTagCount() {
+        return this.sales.getSaleTagCount();
     }
 
     //// util methods

@@ -16,6 +16,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.dataset.DataSet;
 import seedu.address.commons.dataset.date.MonthlyCountData;
 import seedu.address.commons.dataset.date.MonthlyListMap;
+import seedu.address.commons.dataset.tag.SaleTagCountData;
+import seedu.address.commons.dataset.tag.SaleTagListMap;
 import seedu.address.model.person.Person;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
 import seedu.address.model.sale.exceptions.SaleNotFoundException;
@@ -39,6 +41,7 @@ public class UniqueSaleList implements Iterable<Sale> {
             FXCollections.unmodifiableObservableList(internalList);
 
     private final MonthlyListMap<Sale> monthlyListMap = new MonthlyListMap<>();
+    private final SaleTagListMap saleTagListMap = new SaleTagListMap();
 
     /**
      * Returns true if the list contains an equivalent sale as the given argument.
@@ -214,6 +217,12 @@ public class UniqueSaleList implements Iterable<Sale> {
         return this.monthlyListMap.getMultipleMonthCount(month, year, numberOfMonths);
     }
 
+    /**
+     * Gets a breakdown of the proportion of sales in each tag.
+     */
+    public DataSet<SaleTagCountData> getSaleTagCount() {
+        return this.saleTagListMap.getSaleTagCount();
+    }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
