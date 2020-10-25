@@ -216,12 +216,22 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteMeeting(Meeting target) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void addMeeting(Meeting meeting) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
         throw new AssertionError("This method should not be called.");
     }
 

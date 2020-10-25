@@ -28,6 +28,11 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Constructs a new DeleteCommand for Meeting.
+     *
+     * @param targetIndex The index of the meeting to be deleted
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

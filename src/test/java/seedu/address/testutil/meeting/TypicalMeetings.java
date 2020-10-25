@@ -30,7 +30,7 @@ public class TypicalMeetings {
                     Duration.ofMinutes(90));
 
     public static final Meeting LUNCH_CARL =
-            new Meeting(CARL, new Message("Lunch with Carl"), LocalDateTime.of(2020, 12, 20, 12, 12),
+            new Meeting(CARL, new Message("Lunch with Carl"), LocalDateTime.of(2020, 12, 21, 12, 12),
                     Duration.ofMinutes(45));
 
     public static final Meeting LUNCH_FIONA =

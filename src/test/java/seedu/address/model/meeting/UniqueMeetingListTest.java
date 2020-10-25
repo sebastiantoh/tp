@@ -117,6 +117,52 @@ public class UniqueMeetingListTest {
     }
 
     @Test
+    public void setMeeting_nullTargetMeeting_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueMeetingList.setMeeting(null, MEET_ALICE));
+    }
+
+    @Test
+    public void setMeeting_nullEditedMeeting_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueMeetingList.setMeeting(MEET_ALICE, null));
+    }
+
+    @Test
+    public void setMeeting_targetMeetingNotInList_throwsMeetingNotFoundException() {
+        assertThrows(MeetingNotFoundException.class, () -> uniqueMeetingList.setMeeting(MEET_ALICE, MEET_ALICE));
+    }
+
+    @Test
+    public void setMeeting_editedMeetingIsSameMeeting_success() {
+        uniqueMeetingList.add(MEET_ALICE);
+        uniqueMeetingList.setMeeting(MEET_ALICE, MEET_ALICE);
+
+        UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
+        expectedUniqueMeetingList.add(MEET_ALICE);
+
+        assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+    }
+
+    @Test
+    public void setMeeting_editedMeetingIsDifferent_success() {
+        uniqueMeetingList.add(MEET_ALICE);
+        uniqueMeetingList.setMeeting(MEET_ALICE, PRESENT_PROPOSAL_BENSON);
+
+        UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
+        expectedUniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
+
+        assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+    }
+
+    @Test
+    public void setMeeting_editedMeetingExists_throwsDuplicateMeetingException() {
+        uniqueMeetingList.add(MEET_ALICE);
+        uniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
+
+        assertThrows(DuplicateMeetingException.class, () ->
+                uniqueMeetingList.setMeeting(MEET_ALICE, PRESENT_PROPOSAL_BENSON));
+    }
+
+    @Test
     public void setMeetings_nullUniqueMeetingList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueMeetingList.setMeetings((UniqueMeetingList) null));
     }

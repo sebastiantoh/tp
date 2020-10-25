@@ -204,6 +204,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+        requireAllNonNull(meeting, meetingsToExclude);
+        return addressBook.getConflictingMeetings(meeting, meetingsToExclude);
+    }
+
+    @Override
     public void deleteMeeting(Meeting target) {
         addressBook.removeMeeting(target);
     }
@@ -211,6 +217,12 @@ public class ModelManager implements Model {
     @Override
     public void addMeeting(Meeting meeting) {
         addressBook.addMeeting(meeting);
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+        this.addressBook.setMeeting(target, editedMeeting);
     }
 
     @Override

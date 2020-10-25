@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -42,6 +43,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in StonksBook.";
+    public static final String MESSAGE_CONFLICTING_MEETING =
+            "This meeting conflicts with the following meeting(s)!\n%s";
 
     /**
      * Index of the Person to be associated with this meeting.
@@ -82,6 +85,17 @@ public class AddCommand extends Command {
 
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+        }
+
+        List<Meeting> conflictingMeetings = model.getConflictingMeetings(toAdd);
+        if (conflictingMeetings.size() != 0) {
+            String formattedConflictingMeetings =
+                    conflictingMeetings.stream()
+                            .map(meeting -> "- " + meeting.toString())
+                            .collect(Collectors.joining("\n"));
+
+            throw new CommandException(String.format(MESSAGE_CONFLICTING_MEETING, formattedConflictingMeetings));
+
         }
 
         model.addMeeting(toAdd);
