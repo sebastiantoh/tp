@@ -62,7 +62,7 @@ public class StatisticsWindow extends UiPart<Stage> {
         XYChart.Series<String, Integer> bars = new XYChart.Series<>();
         for (MonthlyCountData data : statisticResult.getMonthlyCountDataList()) {
             XYChart.Data<String, Integer> data1 = new XYChart.Data<>(
-                    data.getMonthAndYearAsStr(), data.getCount());
+                    data.getKeyAsStr(), data.getCount());
             bars.getData().add(data1);
             maxValue = Math.max(maxValue, data.getCount());
         }

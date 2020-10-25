@@ -4,49 +4,36 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.commons.dataset.Data;
+
 /**
  * Store a data object for monthly count data statistic.
  */
-public class MonthlyCountData {
-
-    private final MonthAndYear monthAndYear;
-
-    private final int count;
+public class MonthlyCountData extends Data<MonthAndYear> {
 
     /**
      * Creates MonthlyCountData Object from the given {@code monthAndYear} and {@code count}.
      */
     public MonthlyCountData(MonthAndYear monthAndYear, int count) {
-        requireNonNull(monthAndYear);
-
-        this.monthAndYear = monthAndYear;
-        this.count = count;
+        super(monthAndYear, count);
     }
 
     /**
      * Returns the String representation of MonthAndYear.
      */
-    public String getMonthAndYearAsStr() {
-        assert !Objects.isNull(monthAndYear.getMonth())
-                && !Objects.isNull(monthAndYear.getYear());
+    @Override
+    public String getKeyAsStr() {
+        assert !Objects.isNull(key.getMonth())
+                && !Objects.isNull(key.getYear());
 
-        return String.format("%s %s", monthAndYear.getMonth(), monthAndYear.getYear());
-    }
-
-    /**
-     * Returns the number of counts related to MonthAndYear object.
-     */
-    public int getCount() {
-        assert count >= 0;
-
-        return count;
+        return String.format("%s %s", key.getMonth(), key.getYear());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof MonthlyCountData // instanceof handles nulls
-                && this.monthAndYear.equals(((MonthlyCountData) other).monthAndYear)
+                && this.key.equals(((MonthlyCountData) other).key)
                 && this.count == ((MonthlyCountData) other).count);
     }
 }
