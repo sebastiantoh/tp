@@ -35,7 +35,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_UPCOMING = "Listed all upcoming meetings.";
 
-    public static final String MESSAGE_SUCCESS_ALL = "Listed all upcoming meetings.";
+    public static final String MESSAGE_SUCCESS_ALL = "Listed all meetings.";
 
     private final ListMeetingDescriptor listMeetingDescriptor;
 
