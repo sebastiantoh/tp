@@ -260,10 +260,15 @@ public interface Model {
     boolean hasMeeting(Meeting meeting);
 
     /**
-     * Returns true if {@code meeting} conflicts with at least one other meeting in StonksBook.
-     * Any meetings specified in {@code meetingsToExclude} are not checked against for conflits.
+     * Returns the list of meetings that conflict with {@code meeting}.
+     * Meetings in {@code meetingsToExclude} will not be included in the return list even if they do conflict
+     * with {@code meeting}.
+     *
+     * @param meeting           The meeting to check for conflicts against.
+     * @param meetingsToExclude The meetings that should not be checked for conflicts.
+     * @return A list of meetings that conflict with @{meeting}
      */
-    boolean hasConflictWithOtherMeetings(Meeting meeting, Meeting... meetingsToExclude);
+    List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude);
 
     /**
      * Deletes the given meeting.

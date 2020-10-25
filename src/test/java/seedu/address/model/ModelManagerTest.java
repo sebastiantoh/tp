@@ -194,9 +194,9 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasConflictWithOtherMeetings_nullGiven_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasConflictWithOtherMeetings(null));
-        assertThrows(NullPointerException.class, () -> modelManager.hasConflictWithOtherMeetings(null, MEET_ALICE));
+    public void getConflictingMeetings_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.getConflictingMeetings(null));
+        assertThrows(NullPointerException.class, () -> modelManager.getConflictingMeetings(null, MEET_ALICE));
     }
 
     @Test

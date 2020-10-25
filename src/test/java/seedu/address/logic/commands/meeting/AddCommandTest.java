@@ -14,6 +14,7 @@ import static seedu.address.testutil.person.TypicalPersons.BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -140,8 +141,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasConflictWithOtherMeetings(Meeting meeting, Meeting... meetingsToExclude) {
-            return false;
+        public List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+            return new ArrayList<>();
         }
     }
 

@@ -204,9 +204,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasConflictWithOtherMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+    public List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude) {
         requireAllNonNull(meeting, meetingsToExclude);
-        return addressBook.hasConflictWithOtherMeetings(meeting, meetingsToExclude);
+        return addressBook.getConflictingMeetings(meeting, meetingsToExclude);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CONTACT + "CONTACT_INDEX] "
             + "[" + PREFIX_MESSAGE + "MESSAGE] "
             + "[" + PREFIX_DATETIME + "DATETIME] "
-            + "[" + PREFIX_REMINDER_STATUS + "STATUS] "
+            + "[" + PREFIX_REMINDER_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MESSAGE + "Follow up with Bob "
             + PREFIX_DATETIME + "2020-11-30 12:30";
@@ -48,6 +48,8 @@ public class EditCommand extends Command {
     private final EditReminderDescriptor editReminderDescriptor;
 
     /**
+     * Constructs a new EditCommand for Reminder.
+     *
      * @param index                  of the reminder in the filtered reminder list to edit.
      * @param editReminderDescriptor details to edit the reminder with.
      */

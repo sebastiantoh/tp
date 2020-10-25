@@ -216,7 +216,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasConflictWithOtherMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+    public List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude) {
         throw new AssertionError("This method should not be called.");
     }
 
