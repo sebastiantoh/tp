@@ -402,26 +402,30 @@ public class AddressBook implements ReadOnlyAddressBook {
         return meetings.contains(meeting);
     }
 
+
     /**
-     * Returns true if {@code meeting} conflicts with at least one other meeting in StonksBook.
-     * Any meetings specified in {@code meetingsToExclude} are not checked against for conflits.
+     * Returns the list of meetings that conflict with {@code meeting}.
+     * Meetings in {@code meetingsToExclude} will not be included in the return list even if they do conflict
+     * with {@code meeting}.
+     *
+     * @param meeting           The meeting to check for conflicts against.
+     * @param meetingsToExclude The meetings that should not be checked for conflicts.
+     * @return A list of meetings that conflict with @{meeting}
      */
-    public boolean hasConflictWithOtherMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+    public List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude) {
         assert meeting != null;
         assert meetingsToExclude != null;
 
         List<Meeting> excludedMeetings = List.of(meetingsToExclude);
 
+        List<Meeting> conflictingMeetings = new ArrayList<>();
         for (Meeting meetingToCheckAgainst : meetings) {
-            if (excludedMeetings.contains(meetingToCheckAgainst)) {
-                continue;
-            }
-
-            if (meetingToCheckAgainst.isConflicting(meeting)) {
-                return true;
+            if (!excludedMeetings.contains(meetingToCheckAgainst)
+                    && meetingToCheckAgainst.isConflicting(meeting)) {
+                conflictingMeetings.add(meetingToCheckAgainst);
             }
         }
-        return false;
+        return conflictingMeetings;
     }
 
     /**

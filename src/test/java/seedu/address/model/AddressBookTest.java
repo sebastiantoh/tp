@@ -214,14 +214,21 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasConflictWithOtherMeetings_noConflicts_returnsFalse() {
-        assertFalse(addressBook.hasConflictWithOtherMeetings(MEET_ALICE));
+    public void getConflictingMeetings_noConflicts_returnsEmptyList() {
+        assertEquals(Collections.EMPTY_LIST, addressBook.getConflictingMeetings(MEET_ALICE));
     }
 
     @Test
-    public void hasConflictWithOtherMeetings_hasConflicts_returnsTrue() {
+    public void getConflictingMeetings_hasConflicts_returnsListOfConflictingMeetings() {
         addressBook.addMeeting(MEET_ALICE);
-        assertTrue(addressBook.hasConflictWithOtherMeetings(MEET_ALICE));
+        List<Meeting> expectedConflictingMeeting = List.of(MEET_ALICE);
+        assertEquals(expectedConflictingMeeting, addressBook.getConflictingMeetings(MEET_ALICE));
+    }
+
+    @Test
+    public void getConflictingMeetings_hasConflictsButExcluded_returnsEmptyList() {
+        addressBook.addMeeting(MEET_ALICE);
+        assertEquals(Collections.EMPTY_LIST, addressBook.getConflictingMeetings(MEET_ALICE, MEET_ALICE));
     }
 
     @Test

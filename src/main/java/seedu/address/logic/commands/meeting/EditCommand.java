@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -36,21 +37,23 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CONTACT + "CONTACT_INDEX] "
             + "[" + PREFIX_MESSAGE + "MESSAGE] "
             + "[" + PREFIX_DATETIME + "DATETIME] "
-            + "[" + PREFIX_DURATION + "DURATION] "
+            + "[" + PREFIX_DURATION + "DURATION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DATETIME + "2020-11-30 12:30"
+            + PREFIX_DATETIME + "2020-11-30 12:30 "
             + PREFIX_DURATION + "90";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book.";
     public static final String MESSAGE_CONFLICTING_MEETING =
-            "Editing this meeting would create a conflicts with your other meetings!";
+            "Editing this meeting would create a conflicts with the following other meeting(s)!\n%s";
 
     private final Index index;
     private final EditMeetingDescriptor editMeetingDescriptor;
 
     /**
+     * Constructs a new EditCommand for Meeting.
+     *
      * @param index                 of the meeting in the filtered meeting list to edit.
      * @param editMeetingDescriptor details to edit the meeting with.
      */
@@ -78,8 +81,14 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
-        if (model.hasConflictWithOtherMeetings(editedMeeting, meetingToEdit)) {
-            throw new CommandException(MESSAGE_CONFLICTING_MEETING);
+        List<Meeting> conflictingMeetings = model.getConflictingMeetings(editedMeeting, meetingToEdit);
+        if (conflictingMeetings.size() != 0) {
+            String formattedConflictingMeetings =
+                    conflictingMeetings.stream()
+                            .map(meeting -> "- " + meeting.toString())
+                            .collect(Collectors.joining("\n"));
+
+            throw new CommandException(String.format(MESSAGE_CONFLICTING_MEETING, formattedConflictingMeetings));
         }
 
         model.setMeeting(meetingToEdit, editedMeeting);

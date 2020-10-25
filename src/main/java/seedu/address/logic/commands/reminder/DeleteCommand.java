@@ -20,14 +20,19 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "reminder delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the reminder identified by the index number used in the displayed reminder list.\n"
-        + "Parameters: INDEX (must be a positive integer)\n"
-        + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the reminder identified by the index number used in the displayed reminder list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Deleted Reminder: %1$s.";
 
     private final Index targetIndex;
 
+    /**
+     * Constructs a new DeleteCommand for Reminder.
+     *
+     * @param targetIndex The index of the reminder to be deleted
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
