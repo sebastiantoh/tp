@@ -12,6 +12,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.dataset.date.MonthAndYear;
+import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.commons.dataset.date.MonthlyCountDataSet;
+
 class MonthlyCountDataSetTest {
 
     private final List<MonthlyCountData> monthlyCountDataList =

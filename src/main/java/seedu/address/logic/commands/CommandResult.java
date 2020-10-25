@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.address.commons.MonthlyCountDataSet;
+import seedu.address.commons.dataset.date.MonthlyCountDataSet;
 
 /**
  * Represents the result of a command execution.

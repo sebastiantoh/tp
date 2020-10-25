@@ -16,6 +16,10 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.dataset.date.MonthAndYear;
+import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.commons.dataset.date.MonthlyCountDataSet;
+import seedu.address.commons.dataset.date.MonthlyListMap;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.sale.Sale;
 

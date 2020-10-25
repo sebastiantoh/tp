@@ -9,6 +9,8 @@ import java.time.Year;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.dataset.date.MonthAndYear;
+
 public class MonthAndYearTest {
 
     private final MonthAndYear monthAndYear =

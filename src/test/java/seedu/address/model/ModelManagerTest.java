@@ -24,9 +24,9 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthAndYear;
-import seedu.address.commons.MonthlyCountData;
-import seedu.address.commons.MonthlyCountDataSet;
+import seedu.address.commons.dataset.date.MonthAndYear;
+import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.commons.dataset.date.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
