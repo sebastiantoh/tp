@@ -35,6 +35,12 @@ activate Model
 Model -> AddCommand
 deactivate Model
 
+AddCommand -> Model : hasConflictWithOtherMeetings(newMeeting)
+activate Model
+
+Model -> AddCommand
+deactivate Model
+
 AddCommand -> Model : addMeeting(newMeeting)
 activate Model
 
