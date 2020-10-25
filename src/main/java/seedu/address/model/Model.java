@@ -282,7 +282,7 @@ public interface Model {
     boolean hasMeeting(Meeting meeting);
 
     /**
-     * Returns the list of meetings that conflict with {@code meeting}.
+     * Returns a sorted list of meetings that conflict with {@code meeting}.
      * Meetings in {@code meetingsToExclude} will not be included in the return list even if they do conflict
      * with {@code meeting}.
      *
