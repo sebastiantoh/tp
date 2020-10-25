@@ -1062,12 +1062,12 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.
 
-#### Use case: Find reminders
+#### Use case: Filter reminders
 {:.no_toc}
 
 **MSS**
 
-1. User requests to find reminders by completion status
+1. User requests to list reminders based on completion status
 2. StonksBook shows a list of completed or pending reminders
 
   Use case ends.

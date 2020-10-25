@@ -14,9 +14,8 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "reminder list";
 
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Find reminders based on completion status\n"
-            + "Parameters: STATUS (must be either completed or pending) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List reminders based on completion status\n"
+            + "Parameters: st/STATUS (must be either completed or pending) "
             + "Example: " + COMMAND_WORD + " st/completed ";
 
     public static final String MESSAGE_LIST_ALL_SUCCESS = "Listed all reminders!";
