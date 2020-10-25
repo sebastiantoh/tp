@@ -3,11 +3,9 @@ package seedu.address.logic.commands.sale;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.address.testutil.sale.TypicalSales.CAMERA;
 
 import java.time.Month;
 import java.time.Year;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 

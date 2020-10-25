@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showSaleAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookInReverse;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class EditCommandTest {
         Sale editedSale = new SaleBuilder().withItemName("Tissue Box").withBuyer(ALICE).build();
         EditSaleDescriptor descriptor = new EditSaleDescriptorBuilder(editedSale).withItemName("Tissue Box").build();
         EditCommand editCommand = new EditCommand(
-                new ArrayList<>(Arrays.asList(INDEX_FIRST_ITEM)), descriptor, INDEX_FIRST_ITEM);
+                new ArrayList<>(Arrays.asList(INDEX_SECOND_ITEM)), descriptor, INDEX_FIRST_ITEM);
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_SALE_SUCCESS
                 + MassSaleCommandUtil.listAllSales(new ArrayList<>(Arrays.asList(editedSale)));
@@ -70,7 +71,7 @@ public class EditCommandTest {
         EditSaleDescriptor descriptor = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_BALL)
             .withQuantity(VALID_QUANTITY_APPLE).withTags(VALID_SALE_TAG_FRUITS).build();
         EditCommand editCommand = new EditCommand(
-                new ArrayList<>(Arrays.asList(INDEX_FIRST_ITEM)), descriptor, INDEX_FIRST_ITEM);
+                new ArrayList<>(Arrays.asList(INDEX_SECOND_ITEM)), descriptor, INDEX_FIRST_ITEM);
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_SALE_SUCCESS
                 + MassSaleCommandUtil.listAllSales(new ArrayList<>(Arrays.asList(editedSale)));
@@ -84,7 +85,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(
-                new ArrayList<>(Arrays.asList(INDEX_FIRST_ITEM)), new EditSaleDescriptor(), null);
+                new ArrayList<>(Arrays.asList(INDEX_THIRD_ITEM)), new EditSaleDescriptor(), null);
         Sale editedSale = model.getFilteredSaleList().get(INDEX_FIRST_ITEM.getZeroBased());
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_SALE_SUCCESS
@@ -115,11 +116,11 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateSaleUnfilteredList_failure() {
         Sale firstSale = model.getFilteredSaleList().get(INDEX_FIRST_ITEM.getZeroBased());
         EditSaleDescriptor descriptor = new EditSaleDescriptorBuilder(firstSale).build();
         EditCommand editCommand = new EditCommand(
-                new ArrayList<>(Arrays.asList(INDEX_FIRST_ITEM)), descriptor, INDEX_FIRST_ITEM);
+                new ArrayList<>(Arrays.asList(INDEX_FIRST_ITEM)), descriptor, INDEX_THIRD_ITEM);
 
         String expectedMessage = EditCommand.MESSAGE_EDIT_SALE_FAILED + "\n" + EditCommand.MESSAGE_DUPLICATE_SALE
                 + MassSaleCommandUtil.listAllSales(new ArrayList<>(Arrays.asList(firstSale)));

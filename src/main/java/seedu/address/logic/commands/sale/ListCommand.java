@@ -4,10 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_CONTACT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.List;
-
 import seedu.address.logic.commands.Command;
-import seedu.address.model.sale.Sale;
 
 public abstract class ListCommand extends Command {
     public static final String COMMAND_WORD = "sale list";
