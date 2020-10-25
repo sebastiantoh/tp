@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER_STATUS;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -15,7 +16,8 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "reminder list";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List reminders based on completion status\n"
-            + "Parameters: st/STATUS (must be either completed or pending) "
+            + "Parameters: "
+            + "[" + PREFIX_REMINDER_STATUS + "STATUS (must be either completed or pending)]\n"
             + "Example: " + COMMAND_WORD + " st/completed ";
 
     public static final String MESSAGE_LIST_ALL_SUCCESS = "Listed all reminders!";
