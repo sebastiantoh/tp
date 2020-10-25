@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.Month;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -404,7 +405,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
 
     /**
-     * Returns the list of meetings that conflict with {@code meeting}.
+     * Returns a sorted list of meetings that conflict with {@code meeting}.
      * Meetings in {@code meetingsToExclude} will not be included in the return list even if they do conflict
      * with {@code meeting}.
      *
@@ -425,6 +426,9 @@ public class AddressBook implements ReadOnlyAddressBook {
                 conflictingMeetings.add(meetingToCheckAgainst);
             }
         }
+        
+        Collections.sort(conflictingMeetings);
+
         return conflictingMeetings;
     }
 
