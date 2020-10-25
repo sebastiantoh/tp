@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.dataset.date.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.dataset.date.MonthlyCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -335,13 +336,13 @@ public interface Model {
      * Gets multiple number of meeting count for months between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
-    MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
+    DataSet<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
 
     /**
      * Gets multiple number of sale count for months between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
-    MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths);
+    DataSet<MonthlyCountData> getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths);
 
     void initialiseLatestContactId();
 

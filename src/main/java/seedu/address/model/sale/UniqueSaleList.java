@@ -13,7 +13,8 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.dataset.date.MonthlyCountDataSet;
+import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.dataset.date.MonthlyCountData;
 import seedu.address.commons.dataset.date.MonthlyListMap;
 import seedu.address.model.person.Person;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
@@ -209,7 +210,7 @@ public class UniqueSaleList implements Iterable<Sale> {
      * Gets multiple number of sale count for months between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
-    public MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
         return this.monthlyListMap.getMultipleMonthCount(month, year, numberOfMonths);
     }
 

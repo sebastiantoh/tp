@@ -7,7 +7,8 @@ import java.time.Month;
 import java.time.Year;
 import java.time.ZoneId;
 
-import seedu.address.commons.dataset.date.MonthlyCountDataSet;
+import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.dataset.date.MonthlyCountData;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
@@ -44,7 +45,7 @@ public class MultipleMeetingStatsCommand extends StatsCommand {
         Month currentMonth = LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth();
         Year currentYear = Year.now();
 
-        MonthlyCountDataSet result = model
+        DataSet<MonthlyCountData> result = model
                 .getMultipleMonthMeetingsCount(currentMonth, currentYear, numberOfMonths);
 
         result.setTitle(DATASET_TITLE);

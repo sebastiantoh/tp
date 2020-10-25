@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.address.commons.dataset.date.MonthlyCountDataSet;
+import seedu.address.commons.dataset.Data;
+import seedu.address.commons.dataset.DataSet;
 
 /**
  * Represents the result of a command execution.
@@ -22,7 +23,7 @@ public class CommandResult {
     /** The chat box should be cleared. */
     private final boolean clear;
 
-    private final MonthlyCountDataSet statisticResult;
+    private final DataSet<? extends Data> statisticResult;
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
@@ -37,7 +38,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp,
-                         boolean exit, boolean clear, MonthlyCountDataSet statisticResult) {
+                         boolean exit, boolean clear, DataSet<? extends Data> statisticResult) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -49,7 +50,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code statisticResult},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, MonthlyCountDataSet statisticResult) {
+    public CommandResult(String feedbackToUser, DataSet<? extends Data> statisticResult) {
         this(feedbackToUser, false, false, false, statisticResult);
     }
 
@@ -81,7 +82,7 @@ public class CommandResult {
         return !Objects.isNull(this.statisticResult);
     }
 
-    public MonthlyCountDataSet getStatisticResult() {
+    public DataSet<? extends Data> getStatisticResult() {
         return statisticResult;
     }
 

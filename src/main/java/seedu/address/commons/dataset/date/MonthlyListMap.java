@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import seedu.address.commons.dataset.DataSet;
+
 /**
  * Stores a list of items of type T based on the key of < month, year >
  */
@@ -98,7 +100,7 @@ public class MonthlyListMap<T> {
      * @param numberOfMonths  non-negative integer
      * @return MonthlyCountDataSet object, where the data is ordered by non-decreasing year and month
      */
-    public MonthlyCountDataSet getMultipleMonthCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthCount(Month month, Year year, int numberOfMonths) {
         List<MonthlyCountData> result = new ArrayList<>();
 
         MonthAndYear currentMonthAndYear = new MonthAndYear(month, year);
@@ -114,7 +116,7 @@ public class MonthlyListMap<T> {
         }
 
         Collections.reverse(result);
-        return new MonthlyCountDataSet(result);
+        return new DataSet<MonthlyCountData>(result);
     }
 
     /**
