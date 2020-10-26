@@ -68,6 +68,8 @@ public class StatisticsWindow extends UiPart<Stage> {
             maxValue = Math.max(maxValue, data.getCount());
         }
 
+        System.out.println(bars.getData().size());
+
         List<String> barColors = Arrays.asList("blue", "red", "purple", "yellow", "orange", "green");
 
         this.barChart.getData().add(bars);

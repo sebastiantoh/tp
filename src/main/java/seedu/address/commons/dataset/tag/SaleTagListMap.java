@@ -4,10 +4,14 @@ import java.time.Month;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import seedu.address.commons.dataset.Data;
 import seedu.address.commons.dataset.DataSet;
 import seedu.address.commons.dataset.date.MonthAndYear;
 import seedu.address.commons.dataset.date.MonthlyCountData;
@@ -28,33 +32,39 @@ public class SaleTagListMap {
     /**
      * Adds {@code sale} to an sale list based on the key of {@code tag}.
      *
-     * @param tag a valid month tag.
      * @param sale a valid year sale.
      */
-    public void addSale(Tag tag, Sale sale) {
-        TagKey key = new TagKey(tag);
-        if (this.saleTagListMap.containsKey(key)) {
-            this.saleTagListMap.get(key).add(sale);
-        } else {
-            this.saleTagListMap.put(key, new ArrayList<>(Collections.singleton(sale)));
-        }
+    public void addSale(Sale sale) {
+        Set<Tag> tags = sale.getTags();
+
+        tags.forEach(tag -> {
+            TagKey key = new TagKey(tag);
+            if (this.saleTagListMap.containsKey(key)) {
+                this.saleTagListMap.get(key).add(sale);
+            } else {
+                this.saleTagListMap.put(key, new ArrayList<>(Collections.singleton(sale)));
+            }
+        });
     }
 
     /**
      * Removes {@code sale} from an sale list based on the key of {@code key} if exists.
      *
-     * @param tag a valid month tag
      * @param sale a valid year sale
      */
-    public void removeSale(Tag tag, Sale sale) {
-        TagKey key = new TagKey(tag);
-        if (this.saleTagListMap.containsKey(key)) {
-            if (this.saleTagListMap.get(key).size() == 1) {
-                this.saleTagListMap.remove(key);
-            } else {
-                this.saleTagListMap.get(key).remove(sale);
+    public void removeSale(Sale sale) {
+        Set<Tag> tags = sale.getTags();
+
+        tags.forEach(tag -> {
+            TagKey key = new TagKey(tag);
+            if (this.saleTagListMap.containsKey(key)) {
+                if (this.saleTagListMap.get(key).size() == 1) {
+                    this.saleTagListMap.remove(key);
+                } else {
+                    this.saleTagListMap.get(key).remove(sale);
+                }
             }
-        }
+        });
     }
 
     /**
@@ -102,7 +112,10 @@ public class SaleTagListMap {
             result.add(new SaleTagCountData(tagKey, getSaleCount(tagKey.getTag())));
         }));
 
-        Collections.reverse(result);
-        return new DataSet<>(result);
+        result.sort(Comparator.comparingInt(Data::getCount));
+        List<SaleTagCountData> topSaleTagCountData = result.stream().limit(5).collect(Collectors.toList());
+        Collections.reverse(topSaleTagCountData);
+
+        return new DataSet<>(topSaleTagCountData);
     }
 }

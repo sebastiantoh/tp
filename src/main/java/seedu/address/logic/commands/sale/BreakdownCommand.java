@@ -7,11 +7,14 @@ import java.time.Month;
 import java.time.Year;
 import java.time.ZoneId;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.dataset.DataSet;
 import seedu.address.commons.dataset.date.MonthlyCountData;
 import seedu.address.commons.dataset.tag.SaleTagCountData;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Message;
 import seedu.address.model.Model;
 
 /**
@@ -28,7 +31,7 @@ public class BreakdownCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Opened a new window!";
 
-    public static final String DATASET_TITLE = "Sale Count";
+    public static final String DATASET_TITLE = "Breakdown of Sales by Sale Tags (Top 5)";
 
 
     /**
@@ -46,10 +49,16 @@ public class BreakdownCommand extends Command {
      * and the multiple monthly count result
      */
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException{
         requireNonNull(model);
 
         DataSet<SaleTagCountData> result = model.getSaleTagCount();
+
+        result.getDataList().forEach(x -> System.out.println(x.getKeyAsStr() + " " + x.getCount()));
+
+        if (result.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_DATASET);
+        }
 
         result.setTitle(DATASET_TITLE);
         return new CommandResult(MESSAGE_SUCCESS, result);

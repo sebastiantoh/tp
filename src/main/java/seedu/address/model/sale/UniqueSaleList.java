@@ -63,6 +63,7 @@ public class UniqueSaleList implements Iterable<Sale> {
         internalList.add(toAdd);
 
         monthlyListMap.addItem(toAdd.getMonth(), toAdd.getYear(), toAdd);
+        saleTagListMap.addSale(toAdd);
 
         return this;
     }
@@ -88,6 +89,8 @@ public class UniqueSaleList implements Iterable<Sale> {
 
         monthlyListMap.removeItem(target.getMonth(), target.getYear(), target);
         monthlyListMap.addItem(editedSale.getMonth(), editedSale.getYear(), editedSale);
+        saleTagListMap.removeSale(target);
+        saleTagListMap.addSale(editedSale);
     }
 
     /**
@@ -100,6 +103,7 @@ public class UniqueSaleList implements Iterable<Sale> {
             throw new SaleNotFoundException();
         }
         monthlyListMap.removeItem(toRemove.getMonth(), toRemove.getYear(), toRemove);
+        saleTagListMap.removeSale(toRemove);
     }
 
     /**
@@ -130,6 +134,7 @@ public class UniqueSaleList implements Iterable<Sale> {
 
         internalList.setAll(sales);
         this.setMonthlyListMap(sales);
+        this.setSaleTagListMap(sales);
     }
 
 
@@ -137,6 +142,7 @@ public class UniqueSaleList implements Iterable<Sale> {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         this.setMonthlyListMap(replacement.internalList);
+        this.setSaleTagListMap(replacement.internalList);
         return this;
     }
 
@@ -144,6 +150,11 @@ public class UniqueSaleList implements Iterable<Sale> {
         this.monthlyListMap.clear();
         list.forEach(x -> this.monthlyListMap.addItem(
                 x.getMonth(), x.getYear(), x));
+    }
+
+    private void setSaleTagListMap(List<Sale> list) {
+        this.saleTagListMap.clear();
+        list.forEach(this.saleTagListMap::addSale);
     }
 
     /**

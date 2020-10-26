@@ -3,7 +3,6 @@ package seedu.address.commons.dataset.tag;
 import java.util.Objects;
 
 import seedu.address.commons.dataset.Data;
-import seedu.address.commons.dataset.date.MonthAndYear;
 
 /**
  * Store a data object for sale tag data statistic.

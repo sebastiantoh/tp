@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Stores Data objects and a title to describe the DataSet
+ * Stores Data objects and a title to describe the DataSet.
  */
 public class DataSet<T extends Data> {
 
@@ -25,6 +25,10 @@ public class DataSet<T extends Data> {
 
     public List<T> getDataList() {
         return dataList;
+    }
+
+    public boolean isEmpty() {
+        return dataList.isEmpty();
     }
 
     @Override
