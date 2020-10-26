@@ -158,6 +158,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : editedPerson.getTags()) {
             contactTags.add(t);
         }
+        sales.updateSalesWithContact(editedPerson);
     }
 
     /**
