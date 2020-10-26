@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
+import static seedu.address.testutil.person.TypicalPersons.FIONA;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 import static seedu.address.testutil.reminder.TypicalReminders.EMAIL_BENSON;
 
@@ -16,8 +17,10 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Message;
+import seedu.address.model.person.Person;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
+import seedu.address.testutil.person.PersonBuilder;
 
 public class UniqueReminderListTest {
     private final UniqueReminderList uniqueReminderList = new UniqueReminderList();
@@ -93,6 +96,45 @@ public class UniqueReminderListTest {
 
         assertEquals(expectedUniqueReminderList, uniqueReminderList);
     }
+
+    @Test
+    public void updateRemindersWithContact_contactWithMultipleReminders_associatedRemindersUpdated() {
+        uniqueReminderList.add(CALL_ALICE);
+        uniqueReminderList.add(EMAIL_BENSON);
+        Reminder secondReminderWithAlice = new Reminder(ALICE, new Message("Second reminder with Alice"),
+                LocalDateTime.of(2021, 10, 30, 10, 19));
+        uniqueReminderList.add(secondReminderWithAlice);
+
+        Person aliceRenamedToAlicia = new PersonBuilder(ALICE).withName("Alicia Pauline").build();
+        uniqueReminderList.updateRemindersWithContact(aliceRenamedToAlicia);
+
+        UniqueReminderList expectedUniqueReminderList = new UniqueReminderList();
+        Reminder callAlicia =
+                new Reminder(aliceRenamedToAlicia, CALL_ALICE.getMessage(), CALL_ALICE.getScheduledDate());
+        expectedUniqueReminderList.add(callAlicia);
+        expectedUniqueReminderList.add(EMAIL_BENSON);
+        Reminder secondReminderWithAlicia =
+                new Reminder(aliceRenamedToAlicia, secondReminderWithAlice.getMessage(),
+                        secondReminderWithAlice.getScheduledDate());
+        expectedUniqueReminderList.add(secondReminderWithAlicia);
+
+        assertEquals(expectedUniqueReminderList, uniqueReminderList);
+    }
+
+    @Test
+    public void updateRemindersWithContact_contactNotAssociatedWithReminders_noChange() {
+        uniqueReminderList.add(CALL_ALICE);
+        uniqueReminderList.add(EMAIL_BENSON);
+
+        uniqueReminderList.updateRemindersWithContact(FIONA);
+
+        UniqueReminderList expectedUniqueReminderList = new UniqueReminderList();
+        expectedUniqueReminderList.add(CALL_ALICE);
+        expectedUniqueReminderList.add(EMAIL_BENSON);
+
+        assertEquals(expectedUniqueReminderList, uniqueReminderList);
+    }
+
 
     @Test
     public void setReminder_nullTargetReminder_throwsNullPointerException() {
