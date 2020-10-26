@@ -20,6 +20,7 @@ public class MonthlyListMap<T> {
     }
 
     /**
+     *
      * Adds {@code item} of type T to an item list
      * based on the key of {@code month} and {@code year}.
      *
@@ -84,7 +85,7 @@ public class MonthlyListMap<T> {
     }
 
     /**
-     * Removes all entries in the monthlyList.
+     * Removes all entries in the monthlyListMap.
      */
     public void clear() {
         this.monthlyListMap.clear();
@@ -102,15 +103,13 @@ public class MonthlyListMap<T> {
         List<MonthlyCountData> result = new ArrayList<>();
 
         MonthAndYear currentMonthAndYear = new MonthAndYear(month, year);
-        result.add(new MonthlyCountData(currentMonthAndYear,
-                this.monthlyListMap.getOrDefault(currentMonthAndYear, Collections.emptyList()).size()));
+        result.add(new MonthlyCountData(currentMonthAndYear, this.getItems(month, year).size()));
 
         for (int i = 1; i < numberOfMonths; i++) {
             MonthAndYear previousMonthAndYear = getPreviousMonthAndYear(month, year);
-            result.add(new MonthlyCountData(previousMonthAndYear,
-                    this.monthlyListMap.getOrDefault(previousMonthAndYear, Collections.emptyList()).size()));
             month = previousMonthAndYear.getMonth();
             year = previousMonthAndYear.getYear();
+            result.add(new MonthlyCountData(previousMonthAndYear, this.getItems(month, year).size()));
         }
 
         Collections.reverse(result);

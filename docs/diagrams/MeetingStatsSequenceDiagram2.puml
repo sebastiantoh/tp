@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":UniqueMeetingList" as UniqueMeetingList MODEL_COLOR
+participant ":MonthlyListMap" as MonthlyListMap MODEL_COLOR
+participant "m:MonthAndYear" as MonthAndYear MODEL_COLOR
+participant ":MonthlyListDataSet" as MonthlyListDataSet MODEL_COLOR
+
+end box
+
+box
+
+ModelManager -> AddressBook : getMultipleMonthMeetingsCount(currentMonth, currentYear, numberOfMonths)
+activate AddressBook
+
+AddressBook -> UniqueMeetingList : getMultipleMonthMeetingsCount(currentMonth, currentYear, numberOfMonths)
+activate UniqueMeetingList
+
+UniqueMeetingList -> MonthlyListMap : getMultipleMonthCount(currentMonth, currentYear,  numberOfMonths)
+activate MonthlyListMap
+
+
+create MonthAndYear
+MonthlyListMap --> MonthAndYear : currentMonth, currentYear
+activate MonthAndYear
+MonthAndYear --> MonthlyListMap
+deactivate MonthAndYear
+
+ref over MonthlyListMap: getMonthlyData
+
+
+'MonthlyListMap --> MonthlyListMap : getItems(currentMonth, currentYear)
+'activate MonthlyListMap
+
+'MonthlyListMap --> MonthlyListMap : list of meetings
+'deactivate MonthlyListMap
+'create MonthlyData
+'MonthlyListMap --> MonthlyData : m, meetings list size
+'activate MonthlyData
+'MonthlyData --> MonthlyListMap
+'deactivate MonthlyData
+
+
+loop numberOfMonths - 1 times
+    ref over MonthlyListMap: getPreviousMonthlyData
+end
+
+create MonthlyListDataSet
+MonthlyListMap --> MonthlyListDataSet : list of monthlyData
+activate MonthlyListDataSet
+MonthlyListDataSet --> MonthlyListMap
+deactivate MonthlyListDataSet
+
+MonthlyListMap --> UniqueMeetingList : monthlyListDataSet
+deactivate MonthlyListMap
+
+UniqueMeetingList --> AddressBook : monthlyListDataSet
+deactivate UniqueMeetingList
+
+AddressBook --> ModelManager : monthlyListDataSet
+deactivate AddressBook
+
+@enduml

@@ -564,6 +564,141 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![ArchiveAddActivityDiagram](images/ArchiveAddActivityDiagram.png)
 
+
+
+
+
+
+
+
+
+
+
+
+
+### Monthly Statistics Feature
+
+#### Implementation
+
+The monthly statistics feature mechanism is facilitated by `MonthlyListMap` and `StatisticsWindow`.
+`MonthlyListMap` gets the monthly statistics data and
+`StatisticsWindow` populates the UI with the data.
+
+`MonthlyListMap` has two sets of operations, Data Retrieval and Data Manipulation:
+
+##### Data Manipulation
+* `MonthlyListMap#addItem(Month month, Year year, T item)` — Adds item of type T to an item list based on the key of month and code year.
+* `MonthlyListMap#removeItem(Month month, Year year, T item)` — Removes item of type T from an item list based on the key of month and year if exists.
+* `MonthlyListMap#clear()` — Removes all entries in the monthlyListMap.
+
+These Data Manipulation operations are used to propagate changes to the meetings objects
+when meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed
+to keep the data in the `MonthlyListMap` up to date.
+
+This is the class diagram for Meeting stats.
+![MeetingStatsClassDiagram](images/MeetingStatsClassDiagram.png)
+
+After initialisation with 2 meetings, m1 that starts on August 2020 and m2 that starts on December 2020:
+![MeetingStatsObjectDiagram1](images/MeetingStatsObjectDiagram1.png)
+
+After `meeting add ` of meeting m3 that starts on August 2020
+![MeetingStatsObjectDiagram1](images/MeetingStatsObjectDiagram2.png)
+
+After `meeting delete ` of meeting m2 that starts on December 2020
+![MeetingStatsObjectDiagram1](images/MeetingStatsObjectDiagram3.png)
+
+
+After `meeting edit ` of meeting m2 that starts on
+August 2020 to meeting m4 that starts on December 2020
+![MeetingStatsObjectDiagram1](images/MeetingStatsObjectDiagram4.png)
+
+
+
+##### Data Retrieval
+* `MonthlyListMap#getItemCount(Month month, Year year)` — Gets the number of items in an item list based on the key of month and year.
+* `MonthlyListMap#getItems(Month month, Year year)` — Gets the monthly item list for month and year.
+* `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` — Gets the item counts in the item list for the given month and year and the previous (numberOfMonths - 1) months.
+* `MonthlyListMap#getPreviousMonthAndYear(Month month, Year year)` —  Gets the month and year for one month before month and year.
+
+These operations except for 
+are exposed in the `Model` interface as
+`Model#getItemCount(Month month, Year year, int numberOfMonths)`,
+ and `Model#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` respectively.
+
+The following sequence diagram shows how the undo operation works:
+
+![MeetingStatsDiagram1](images/MeetingStatsSequenceDiagram.png)
+
+![MeetingStatsDiagram2](images/MeetingStatsSequenceDiagram2.png)
+
+![MeetingStatsDiagram3](images/MeetingStatsSequenceDiagram3.png)
+
+![MeetingStatsDiagram3](images/MeetingStatsSequenceDiagram4.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![CommitActivityDiagram](images/CommitActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How undo & redo executes
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
