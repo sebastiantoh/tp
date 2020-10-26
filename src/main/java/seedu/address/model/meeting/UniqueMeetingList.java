@@ -81,6 +81,26 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
     }
 
+    /**
+     * Updates the contact details of all meetings within the list that are associated with {@code contact}.
+     * This is necessary when the contact details has been updated, but the meeting is still storing an outdated
+     * version of the contact details.
+     *
+     * @param contact The contact whose information has been updated.
+     */
+    public void updateMeetingsWithContact(Person contact) {
+        requireNonNull(contact);
+        List<Meeting> meetingsToUpdate =
+                internalList.stream().filter(meeting -> meeting.getPersonId() == contact.getId())
+                        .collect(Collectors.toList());
+
+        for (Meeting meeting : meetingsToUpdate) {
+            Meeting updatedMeeting =
+                    new Meeting(contact, meeting.getMessage(), meeting.getStartDate(), meeting.getDuration());
+            this.setMeeting(meeting, updatedMeeting);
+        }
+    }
+
     public void setMeetings(UniqueMeetingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

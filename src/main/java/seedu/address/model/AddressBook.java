@@ -148,7 +148,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with {@code editedPerson}. This change will also
+     * propagate to all associated meetings and reminders.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
@@ -159,6 +160,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : editedPerson.getTags()) {
             contactTags.add(t);
         }
+
+        meetings.updateMeetingsWithContact(editedPerson);
+        reminders.updateRemindersWithContact(editedPerson);
     }
 
     /**
