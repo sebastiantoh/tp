@@ -69,7 +69,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane chatBoxPlaceholder;
-    
+
     @FXML
     private Scene scene;
 

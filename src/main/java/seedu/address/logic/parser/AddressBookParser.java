@@ -79,7 +79,7 @@ public class AddressBookParser {
         case LightThemeCommand.COMMAND_WORD:
         case ClearCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
-        case ExitCommand.COMMAND_WORD:  
+        case ExitCommand.COMMAND_WORD:
             return true;
 
         default:
@@ -97,7 +97,7 @@ public class AddressBookParser {
 
         case DarkThemeCommand.COMMAND_WORD:
             return new DarkThemeCommand();
-                
+
         case LightThemeCommand.COMMAND_WORD:
             return new LightThemeCommand();
 
