@@ -61,7 +61,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane reminderListPanelPlaceholder;
 
     @FXML
-    private StackPane saleListPanelPlaceholder;
+    private StackPane adHocPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -142,7 +142,7 @@ public class MainWindow extends UiPart<Stage> {
         reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         saleListPanel = new SaleListPanel(logic.getSortedSaleList());
-        saleListPanelPlaceholder.getChildren().add(saleListPanel.getRoot());
+        adHocPanelPlaceholder.getChildren().add(saleListPanel.getRoot());
 
         chatBox = new ChatBox();
         chatBoxPlaceholder.getChildren().add(chatBox.getRoot());
@@ -245,6 +245,15 @@ public class MainWindow extends UiPart<Stage> {
             this.reminderListPanel.refresh();
             // Past meetings should be filtered out
             this.meetingListPanel.refresh();
+
+            if (commandResult.isSaleGuiShown()) {
+                adHocPanelPlaceholder.getChildren().setAll(saleListPanel.getRoot());
+            }
+
+            if (commandResult.isTagGuiShown()) {
+                // TODO: replace saleListPanel with tagListPanel
+                // adHocPanelPlaceholder.getChildren().setAll(saleListPanel.getRoot());
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {

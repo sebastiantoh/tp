@@ -22,6 +22,12 @@ public class CommandResult {
     /** The chat box should be cleared. */
     private final boolean clear;
 
+    /** The Tag GUI should be shown */
+    private final boolean isTagGuiShown;
+
+    /** The Sale GUI should be shown */
+    private final boolean isSaleGuiShown;
+
     private final MonthlyCountDataSet statisticResult;
 
     /**
@@ -30,19 +36,21 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean clear) {
-        this(feedbackToUser, showHelp, exit, clear, null);
+        this(feedbackToUser, showHelp, exit, clear, null, false, false);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp,
-                         boolean exit, boolean clear, MonthlyCountDataSet statisticResult) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean clear,
+                         MonthlyCountDataSet statisticResult, boolean isTagGuiShown, boolean isSaleGuiShown) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.clear = clear;
         this.statisticResult = statisticResult;
+        this.isTagGuiShown = isTagGuiShown;
+        this.isSaleGuiShown = isSaleGuiShown;
     }
 
     /**
@@ -50,7 +58,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, MonthlyCountDataSet statisticResult) {
-        this(feedbackToUser, false, false, false, statisticResult);
+        this(feedbackToUser, false, false, false, statisticResult, false, false);
     }
 
     /**
@@ -58,7 +66,15 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, null, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, {@code isTagGuiShown} and
+     * {@code isSaleGuiShown} and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showTagGui, boolean showSaleGui) {
+        this(feedbackToUser, false, false, false, null, showTagGui, showSaleGui);
     }
 
     public String getFeedbackToUser() {
@@ -75,6 +91,14 @@ public class CommandResult {
 
     public boolean isClear() {
         return clear;
+    }
+
+    public boolean isTagGuiShown() {
+        return isTagGuiShown;
+    }
+
+    public boolean isSaleGuiShown() {
+        return isSaleGuiShown;
     }
 
     public boolean hasStatisticsResult() {
