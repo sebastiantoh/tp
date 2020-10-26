@@ -393,6 +393,15 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
+
+        // There seems to be some form of caching in the filtered list especially when
+        // the predicate passed in as the argument is the same predicate currently used
+        // to filter the list. This is undesirable since predicates involving meetings may be
+        // time-sensitive and the results may differ over time.
+        // This line of code is used to reset the filter, therefore forcing the filtered
+        // list to re-filter the elements with the new predicate passed in as arguments.
+        this.filteredMeetings.setPredicate(null);
+
         this.filteredMeetings.setPredicate(predicate);
     }
 
