@@ -23,6 +23,9 @@ public class CommandResult {
     /** The chat box should be cleared. */
     private final boolean clear;
 
+    /** 0 denotes dark theme, 1 denotes light theme, null if not theme command. */
+    private final Integer theme;
+
     private final List<MonthlyCountData> statisticResult;
 
     /**
@@ -31,19 +34,28 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean clear) {
-        this(feedbackToUser, showHelp, exit, clear, null);
+        this(feedbackToUser, showHelp, exit, clear, null, null);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp,
-                         boolean exit, boolean clear, List<MonthlyCountData> statisticResult) {
+                         boolean exit, boolean clear, Integer theme, List<MonthlyCountData> statisticResult) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.clear = clear;
+        this.theme = theme;
         this.statisticResult = statisticResult;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code theme},
+     * and other fields set to default value.
+     */
+    public CommandResult(String feedbackToUser, Integer theme) {
+        this(feedbackToUser, false, false, false, theme, null);
     }
 
     /**
@@ -51,7 +63,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, List<MonthlyCountData> statisticResult) {
-        this(feedbackToUser, false, false, false, statisticResult);
+        this(feedbackToUser, false, false, false, null, statisticResult);
     }
 
     /**
@@ -84,6 +96,10 @@ public class CommandResult {
 
     public List<MonthlyCountData> getStatisticResult() {
         return statisticResult;
+    }
+
+    public Integer getTheme() {
+        return theme;
     }
 
     @Override

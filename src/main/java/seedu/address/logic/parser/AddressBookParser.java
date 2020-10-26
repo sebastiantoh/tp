@@ -12,9 +12,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DarkThemeCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LightThemeCommand;
 import seedu.address.logic.commands.PurgeCommand;
 import seedu.address.logic.commands.UnknownCommand;
 import seedu.address.logic.parser.archive.ArchiveCommandsParser;
@@ -73,9 +75,11 @@ public class AddressBookParser {
     private boolean isSingleKeyWordCommand(String commandWord) {
         switch (commandWord) {
         case PurgeCommand.COMMAND_WORD:
+        case DarkThemeCommand.COMMAND_WORD:
+        case LightThemeCommand.COMMAND_WORD:
         case ClearCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
-        case ExitCommand.COMMAND_WORD:
+        case ExitCommand.COMMAND_WORD:  
             return true;
 
         default:
@@ -90,6 +94,12 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case DarkThemeCommand.COMMAND_WORD:
+            return new DarkThemeCommand();
+                
+        case LightThemeCommand.COMMAND_WORD:
+            return new LightThemeCommand();
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
