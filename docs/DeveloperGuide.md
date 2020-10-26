@@ -238,7 +238,7 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
     * Better data cleanliness.
   * Cons:
     * Have to implement a separate class as well as implement validation of inputs.
-                      
+         
 * **Alternative 2:** Set the `Meeting` object to be associated to a `String` which acts as the message of a meeting.
   * Pros:
     * No need to implement validation of inputs for this `message` field.

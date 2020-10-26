@@ -48,6 +48,10 @@ public class Meeting implements Comparable<Meeting> {
         return this.person;
     }
 
+    public int getPersonId() {
+        return this.person.getId();
+    }
+
     public Message getMessage() {
         return this.message;
     }
@@ -58,6 +62,10 @@ public class Meeting implements Comparable<Meeting> {
 
     public Duration getDuration() {
         return this.duration;
+    }
+
+    private LocalDateTime getEndDate() {
+        return this.startDate.plus(getDuration());
     }
 
     /**
@@ -74,9 +82,19 @@ public class Meeting implements Comparable<Meeting> {
         } else {
             return String.format("%s - %s",
                     getStartDate().format(DATE_TIME_FORMATTER),
-                    getStartDate().plus(getDuration()).format(DATE_TIME_FORMATTER)
+                    getEndDate().format(DATE_TIME_FORMATTER)
             );
         }
+    }
+
+    /**
+     * Returns true if and only if this meeting conflicts with the {@code otherMeeting}.
+     * A meeting is considered conflicting with another if and only if the time interval for which the meeting is
+     * active overlaps.
+     */
+    public boolean isConflicting(Meeting otherMeeting) {
+        return this.startDate.isBefore(otherMeeting.getEndDate()) && this.getEndDate()
+                .isAfter(otherMeeting.getStartDate());
     }
 
     @Override
