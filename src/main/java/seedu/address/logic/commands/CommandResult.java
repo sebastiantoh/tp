@@ -2,10 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.Objects;
 
-import seedu.address.commons.MonthlyCountData;
+import seedu.address.commons.MonthlyCountDataSet;
 
 /**
  * Represents the result of a command execution.
@@ -26,7 +25,7 @@ public class CommandResult {
     /** 0 denotes dark theme, 1 denotes light theme, null if not theme command. */
     private final Integer theme;
 
-    private final List<MonthlyCountData> statisticResult;
+    private final MonthlyCountDataSet statisticResult;
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
@@ -41,7 +40,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp,
-                         boolean exit, boolean clear, Integer theme, List<MonthlyCountData> statisticResult) {
+                         boolean exit, boolean clear, Integer theme, MonthlyCountDataSet statisticResult) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -62,7 +61,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code statisticResult},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, List<MonthlyCountData> statisticResult) {
+    public CommandResult(String feedbackToUser, MonthlyCountDataSet statisticResult) {
         this(feedbackToUser, false, false, false, null, statisticResult);
     }
 
@@ -94,7 +93,7 @@ public class CommandResult {
         return !Objects.isNull(this.statisticResult);
     }
 
-    public List<MonthlyCountData> getStatisticResult() {
+    public MonthlyCountDataSet getStatisticResult() {
         return statisticResult;
     }
 
@@ -118,6 +117,7 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && clear == otherCommandResult.clear
                 && exit == otherCommandResult.exit
+                && theme == otherCommandResult.theme
                 && ((Objects.isNull(statisticResult)
                     && Objects.isNull(otherCommandResult.statisticResult))
                     || (!Objects.isNull(statisticResult)
@@ -126,7 +126,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, clear, statisticResult);
+        return Objects.hash(feedbackToUser, showHelp, exit, clear, theme, statisticResult);
     }
 
 }

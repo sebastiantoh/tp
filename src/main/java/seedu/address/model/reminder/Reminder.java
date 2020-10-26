@@ -20,9 +20,11 @@ public class Reminder implements Comparable<Reminder> {
     private final Person person;
     private final Message message;
     private final LocalDateTime scheduledDate;
+    private final Boolean completed;
 
     /**
-     * Constructs a {@code Reminder}. Every field must be present and not null.
+     * Constructs a {@code Reminder}. Every field must be present and not null. By default, the reminder is set to
+     * be incomplete.
      *
      * @param person        The person associated with this reminder.
      * @param message       The message associated with this reminder.
@@ -33,10 +35,32 @@ public class Reminder implements Comparable<Reminder> {
         this.person = person;
         this.message = message;
         this.scheduledDate = scheduledDate;
+        this.completed = false;
+    }
+
+    /**
+     * Constructs a {@code Reminder}. Every field must be present and not null. The completion status of this
+     * reminder depends on the field.
+     *
+     * @param person        The person associated with this reminder.
+     * @param message       The message associated with this reminder.
+     * @param scheduledDate The date this reminder is scheduled for.
+     * @param completed     The completion status of this reminder.
+     */
+    public Reminder(Person person, Message message, LocalDateTime scheduledDate, Boolean completed) {
+        requireAllNonNull(person, message, scheduledDate);
+        this.person = person;
+        this.message = message;
+        this.scheduledDate = scheduledDate;
+        this.completed = completed;
     }
 
     public Person getPerson() {
         return this.person;
+    }
+
+    public int getPersonId() {
+        return this.person.getId();
     }
 
     public Message getMessage() {
@@ -57,10 +81,16 @@ public class Reminder implements Comparable<Reminder> {
 
     /**
      * Returns true if the reminder is not yet complete and the scheduled date is past the current date.
-     * TODO: Add check that the reminder is not yet complete
      */
     public boolean isOverdue() {
-        return this.getScheduledDate().isBefore(LocalDateTime.now());
+        return !this.completed && this.getScheduledDate().isBefore(LocalDateTime.now());
+    }
+
+    /**
+     * Returns true if the reminder has been marked as completed.
+     */
+    public boolean isCompleted() {
+        return this.completed;
     }
 
     @Override
@@ -93,12 +123,13 @@ public class Reminder implements Comparable<Reminder> {
 
         return this.person.equals(otherReminder.person)
                 && this.message.equals(otherReminder.message)
-                && this.scheduledDate.equals(otherReminder.scheduledDate);
+                && this.scheduledDate.equals(otherReminder.scheduledDate)
+                && this.completed == otherReminder.completed;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.person, this.message, this.scheduledDate);
+        return Objects.hash(this.person, this.message, this.scheduledDate, this.completed);
     }
 
     /**

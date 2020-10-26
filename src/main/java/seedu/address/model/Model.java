@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyCountData;
+import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -255,9 +255,20 @@ public interface Model {
     ObservableList<Meeting> getSortedMeetingList();
 
     /**
-     * Returns true if an meeting with same fields as {@code meeting} exists in StonksBook.
+     * Returns true if a meeting with same fields as {@code meeting} exists in StonksBook.
      */
     boolean hasMeeting(Meeting meeting);
+
+    /**
+     * Returns a sorted list of meetings that conflict with {@code meeting}.
+     * Meetings in {@code meetingsToExclude} will not be included in the return list even if they do conflict
+     * with {@code meeting}.
+     *
+     * @param meeting           The meeting to check for conflicts against.
+     * @param meetingsToExclude The meetings that should not be checked for conflicts.
+     * @return A list of meetings that conflict with @{meeting}
+     */
+    List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude);
 
     /**
      * Deletes the given meeting.
@@ -270,6 +281,14 @@ public interface Model {
      * {@code meeting} must not already exist in StonksBook.
      */
     void addMeeting(Meeting meeting);
+
+    /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting {@code editedMeeting} must not be the same as another existing meeting in the address
+     * book.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
 
     /**
      * Returns an unmodifiable view of the reminder list
@@ -335,7 +354,13 @@ public interface Model {
      * Gets multiple number of meeting count for months between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
-    List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
+    MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
+
+    /**
+     * Gets multiple number of sale count for months between {@code month} and {@code year} and
+     * the previous {@code numberOfMonths} - 1 months inclusive.
+     */
+    MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths);
 
     void initialiseLatestContactId();
 

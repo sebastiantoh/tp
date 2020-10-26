@@ -77,12 +77,12 @@ public class MonthlyListMapTest {
         this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_FIONA);
         this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_FIONA);
 
-        List<MonthlyCountData> actual = this.meetingMonthlyListMap
+        MonthlyCountDataSet actual = this.meetingMonthlyListMap
                 .getMultipleMonthCount(month, year, 3);
-        List<MonthlyCountData> expected = Arrays.asList(
+        MonthlyCountDataSet expected = new MonthlyCountDataSet(Arrays.asList(
                 new MonthlyCountData(new MonthAndYear(month1, year1), 2),
                 new MonthlyCountData(new MonthAndYear(month.minus(1), year), 0),
-                new MonthlyCountData(new MonthAndYear(month, year), 4));
+                new MonthlyCountData(new MonthAndYear(month, year), 4)));
         assertEquals(expected, actual);
     }
 
@@ -97,15 +97,15 @@ public class MonthlyListMapTest {
         Year year1 = Year.of(LUNCH_ELLE.getStartDate().getYear());
         this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_ELLE);
 
-        List<MonthlyCountData> actual = this.meetingMonthlyListMap
+        MonthlyCountDataSet actual = this.meetingMonthlyListMap
                 .getMultipleMonthCount(month1, year1, 6);
-        List<MonthlyCountData> expected = Arrays.asList(
+        MonthlyCountDataSet expected = new MonthlyCountDataSet(Arrays.asList(
                 new MonthlyCountData(new MonthAndYear(month.minus(4), year.minusYears(1)), 0),
                 new MonthlyCountData(new MonthAndYear(month.minus(3), year.minusYears(1)), 0),
                 new MonthlyCountData(new MonthAndYear(month.minus(2), year.minusYears(1)), 0),
                 new MonthlyCountData(new MonthAndYear(month.minus(1), year.minusYears(1)), 0),
                 new MonthlyCountData(new MonthAndYear(month, year), 2),
-                new MonthlyCountData(new MonthAndYear(month1, year1), 1));
+                new MonthlyCountData(new MonthAndYear(month1, year1), 1)));
         assertEquals(expected, actual);
     }
 

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import seedu.address.commons.MonthlyCountData;
+import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meeting.Meeting;
@@ -204,6 +204,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+        requireAllNonNull(meeting, meetingsToExclude);
+        return addressBook.getConflictingMeetings(meeting, meetingsToExclude);
+    }
+
+    @Override
     public void deleteMeeting(Meeting target) {
         addressBook.removeMeeting(target);
     }
@@ -211,6 +217,12 @@ public class ModelManager implements Model {
     @Override
     public void addMeeting(Meeting meeting) {
         addressBook.addMeeting(meeting);
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+        this.addressBook.setMeeting(target, editedMeeting);
     }
 
     @Override
@@ -424,8 +436,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+    public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         return this.addressBook.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
+    }
+
+    @Override
+    public MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
+        return this.addressBook.getMultipleMonthSaleCount(month, year, numberOfMonths);
     }
 
     @Override

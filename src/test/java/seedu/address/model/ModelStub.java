@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyCountData;
+import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -216,12 +216,22 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteMeeting(Meeting target) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void addMeeting(Meeting meeting) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -276,7 +286,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public List<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+    public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
         throw new AssertionError("This method should not be called.");
     }
 

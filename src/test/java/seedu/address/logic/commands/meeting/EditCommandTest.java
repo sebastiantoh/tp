@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.reminder;
+package seedu.address.logic.commands.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,15 +16,16 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PurgeCommand;
-import seedu.address.logic.commands.reminder.EditCommand.EditReminderDescriptor;
+import seedu.address.logic.commands.meeting.EditCommand.EditMeetingDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Message;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.reminder.Reminder;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.testutil.TypicalDates;
-import seedu.address.testutil.reminder.EditReminderDescriptorBuilder;
+import seedu.address.testutil.TypicalDurations;
+import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
@@ -35,54 +36,55 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Reminder editedReminder = new Reminder(GEORGE, new Message(VALID_MESSAGE_CALL_AMY),
-                TypicalDates.TYPICAL_DATE_1);
-        EditReminderDescriptor descriptor = new EditReminderDescriptorBuilder()
+        Meeting editedMeeting = new Meeting(GEORGE, new Message(VALID_MESSAGE_CALL_AMY),
+                TypicalDates.TYPICAL_DATE_3, TypicalDurations.TYPICAL_DURATION_ONE_HOUR);
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder()
                 // George appears as the 6th item
                 .withContactIndex(Index.fromZeroBased(6))
                 .withMessage(VALID_MESSAGE_CALL_AMY)
-                .withScheduledDate(TypicalDates.TYPICAL_DATE_1)
-                .withStatus(false)
+                .withStartDate(TypicalDates.TYPICAL_DATE_3)
+                .withDuration(TypicalDurations.TYPICAL_DURATION_ONE_HOUR)
                 .build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_REMINDER_SUCCESS, editedReminder);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setReminder(model.getSortedReminderList().get(0), editedReminder);
+        expectedModel.setMeeting(model.getSortedMeetingList().get(0), editedMeeting);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastReminder = Index.fromOneBased(model.getSortedReminderList().size());
-        Reminder lastReminder = model.getSortedReminderList().get(indexLastReminder.getZeroBased());
+        Index indexLastMeeting = Index.fromOneBased(model.getSortedMeetingList().size());
+        Meeting lastMeeting = model.getSortedMeetingList().get(indexLastMeeting.getZeroBased());
 
-        Reminder editedReminder =
-                new Reminder(lastReminder.getPerson(), lastReminder.getMessage(), TypicalDates.TYPICAL_DATE_3, true);
+        Meeting editedMeeting =
+                new Meeting(lastMeeting.getPerson(), lastMeeting.getMessage(), TypicalDates.TYPICAL_DATE_3,
+                        TypicalDurations.TYPICAL_DURATION_TWO_DAYS);
 
-        EditReminderDescriptor descriptor = new EditReminderDescriptorBuilder()
-                .withScheduledDate(TypicalDates.TYPICAL_DATE_3)
-                .withStatus(true)
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder()
+                .withStartDate(TypicalDates.TYPICAL_DATE_3)
+                .withDuration(TypicalDurations.TYPICAL_DURATION_TWO_DAYS)
                 .build();
 
-        EditCommand editCommand = new EditCommand(indexLastReminder, descriptor);
+        EditCommand editCommand = new EditCommand(indexLastMeeting, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_REMINDER_SUCCESS, editedReminder);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setReminder(lastReminder, editedReminder);
+        expectedModel.setMeeting(lastMeeting, editedMeeting);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, new EditReminderDescriptor());
-        Reminder editedReminder = model.getSortedReminderList().get(INDEX_FIRST_ITEM.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, new EditMeetingDescriptor());
+        Meeting editedMeeting = model.getSortedMeetingList().get(INDEX_FIRST_ITEM.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_REMINDER_SUCCESS, editedReminder);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
@@ -90,42 +92,42 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicateReminderUnfilteredList_failure() {
-        Reminder firstReminder = model.getSortedReminderList().get(INDEX_FIRST_ITEM.getZeroBased());
-        EditReminderDescriptor descriptor = new EditReminderDescriptorBuilder()
-                .withContactIndex(Index.fromZeroBased(model.getSortedPersonList().indexOf(firstReminder.getPerson())))
-                .withScheduledDate(firstReminder.getScheduledDate())
-                .withMessage(firstReminder.getMessage().message)
-                .withStatus(false)
+    public void execute_duplicateMeetingUnfilteredList_failure() {
+        Meeting firstMeeting = model.getSortedMeetingList().get(INDEX_FIRST_ITEM.getZeroBased());
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder()
+                .withContactIndex(Index.fromZeroBased(model.getSortedPersonList().indexOf(firstMeeting.getPerson())))
+                .withStartDate(firstMeeting.getStartDate())
+                .withMessage(firstMeeting.getMessage().message)
+                .withDuration(firstMeeting.getDuration())
                 .build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_ITEM, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_REMINDER);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_MEETING);
     }
 
     @Test
-    public void execute_invalidReminderIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getSortedReminderList().size() + 1);
-        EditReminderDescriptor descriptor =
-                new EditReminderDescriptorBuilder().withMessage(VALID_MESSAGE_CALL_BOB).build();
+    public void execute_invalidMeetingIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedMeetingList().size() + 1);
+        EditMeetingDescriptor descriptor =
+                new EditMeetingDescriptorBuilder().withMessage(VALID_MESSAGE_CALL_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        EditReminderDescriptor descriptor =
-                new EditReminderDescriptorBuilder()
+        EditMeetingDescriptor descriptor =
+                new EditMeetingDescriptorBuilder()
                         .withMessage(VALID_MESSAGE_CALL_AMY)
                         .withContactIndex(INDEX_SECOND_ITEM)
-                        .withScheduledDate(TypicalDates.TYPICAL_DATE_3)
-                        .withStatus(false)
+                        .withStartDate(TypicalDates.TYPICAL_DATE_3)
+                        .withDuration(TypicalDurations.TYPICAL_DURATION_ONE_HOUR)
                         .build();
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
 
         // same values -> returns true
-        EditReminderDescriptor copyDescriptor = new EditReminderDescriptor(descriptor);
+        EditMeetingDescriptor copyDescriptor = new EditMeetingDescriptor(descriptor);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_ITEM, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -142,9 +144,9 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ITEM, descriptor)));
 
         // different descriptor -> returns false
-        EditReminderDescriptor diffDescriptor =
-                new EditReminderDescriptorBuilder()
-                        .withScheduledDate(TypicalDates.TYPICAL_DATE_2)
+        EditMeetingDescriptor diffDescriptor =
+                new EditMeetingDescriptorBuilder()
+                        .withStartDate(TypicalDates.TYPICAL_DATE_2)
                         .build();
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ITEM, diffDescriptor)));
     }

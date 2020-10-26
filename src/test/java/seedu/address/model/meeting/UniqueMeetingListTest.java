@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.meeting.TypicalMeetings.MEET_ALICE;
 import static seedu.address.testutil.meeting.TypicalMeetings.PRESENT_PROPOSAL_BENSON;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
+import static seedu.address.testutil.person.TypicalPersons.FIONA;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -21,6 +22,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Message;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.person.PersonBuilder;
 
 
 public class UniqueMeetingListTest {
@@ -114,6 +117,92 @@ public class UniqueMeetingListTest {
         expectedUniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
 
         assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+    }
+
+    @Test
+    public void updateMeetingsWithContact_contactWithMultipleMeetings_associatedMeetingsUpdated() {
+        uniqueMeetingList.add(MEET_ALICE);
+        uniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
+        Meeting secondMeetingWithAlice = new Meeting(ALICE, new Message("Second meeting with Alice"),
+                LocalDateTime.of(2021, 10, 30, 10, 19),
+                Duration.ofMinutes(60));
+        uniqueMeetingList.add(secondMeetingWithAlice);
+
+        Person aliceRenamedToAlicia = new PersonBuilder(ALICE).withName("Alicia Pauline").build();
+        uniqueMeetingList.updateMeetingsWithContact(aliceRenamedToAlicia);
+
+        UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
+        Meeting meetAlicia = new Meeting(aliceRenamedToAlicia, MEET_ALICE.getMessage(), MEET_ALICE.getStartDate(),
+                MEET_ALICE.getDuration());
+        expectedUniqueMeetingList.add(meetAlicia);
+        expectedUniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
+        Meeting secondMeetingWithAlicia =
+                new Meeting(aliceRenamedToAlicia, secondMeetingWithAlice.getMessage(),
+                        secondMeetingWithAlice.getStartDate(),
+                        secondMeetingWithAlice.getDuration());
+        expectedUniqueMeetingList.add(secondMeetingWithAlicia);
+
+        assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+    }
+
+    @Test
+    public void updateMeetingsWithContact_contactNotAssociatedWithReminders_noChange() {
+        uniqueMeetingList.add(MEET_ALICE);
+        uniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
+
+        uniqueMeetingList.updateMeetingsWithContact(FIONA);
+
+        UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
+        expectedUniqueMeetingList.add(MEET_ALICE);
+        expectedUniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
+
+        assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+    }
+
+    @Test
+    public void setMeeting_nullTargetMeeting_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueMeetingList.setMeeting(null, MEET_ALICE));
+    }
+
+    @Test
+    public void setMeeting_nullEditedMeeting_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueMeetingList.setMeeting(MEET_ALICE, null));
+    }
+
+    @Test
+    public void setMeeting_targetMeetingNotInList_throwsMeetingNotFoundException() {
+        assertThrows(MeetingNotFoundException.class, () -> uniqueMeetingList.setMeeting(MEET_ALICE, MEET_ALICE));
+    }
+
+    @Test
+    public void setMeeting_editedMeetingIsSameMeeting_success() {
+        uniqueMeetingList.add(MEET_ALICE);
+        uniqueMeetingList.setMeeting(MEET_ALICE, MEET_ALICE);
+
+        UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
+        expectedUniqueMeetingList.add(MEET_ALICE);
+
+        assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+    }
+
+    @Test
+    public void setMeeting_editedMeetingIsDifferent_success() {
+        uniqueMeetingList.add(MEET_ALICE);
+        uniqueMeetingList.setMeeting(MEET_ALICE, PRESENT_PROPOSAL_BENSON);
+
+        UniqueMeetingList expectedUniqueMeetingList = new UniqueMeetingList();
+        expectedUniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
+
+        assertEquals(expectedUniqueMeetingList, uniqueMeetingList);
+    }
+
+    @Test
+    public void setMeeting_editedMeetingExists_throwsDuplicateMeetingException() {
+        uniqueMeetingList.add(MEET_ALICE);
+        uniqueMeetingList.add(PRESENT_PROPOSAL_BENSON);
+
+        assertThrows(DuplicateMeetingException.class, () ->
+                uniqueMeetingList.setMeeting(MEET_ALICE, PRESENT_PROPOSAL_BENSON));
     }
 
     @Test

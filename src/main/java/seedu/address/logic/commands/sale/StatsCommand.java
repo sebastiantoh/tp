@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.meeting;
+package seedu.address.logic.commands.sale;
 
 import static java.util.Objects.requireNonNull;
 
@@ -8,24 +8,32 @@ import java.time.Year;
 import java.time.ZoneId;
 
 import seedu.address.commons.MonthlyCountDataSet;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Gets multiple monthly meeting counts
+ * Statistics on Sales
  */
-public class MultipleMeetingStatsCommand extends StatsCommand {
+public class StatsCommand extends Command {
+
+    public static final String COMMAND_WORD = "sale stats";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Outputs statistics on sales.\n"
+            + "Parameters: NUMBER_OF_MONTHS "
+            + "Example: " + COMMAND_WORD + " 5";
 
     public static final String MESSAGE_SUCCESS = "Opened a new window!";
 
-    public static final String DATASET_TITLE = "Meeting Count";
+    public static final String DATASET_TITLE = "Sale Count";
 
     private final int numberOfMonths;
 
     /**
-     * Creates a MultipleMeetingStatsCommand with the given {@code numberOfMonths}.
+     * Creates a StatsCommand with the given {@code numberOfMonths}.
      */
-    public MultipleMeetingStatsCommand(int numberOfMonths) {
+    public StatsCommand(int numberOfMonths) {
         this.numberOfMonths = numberOfMonths;
     }
 
@@ -45,7 +53,7 @@ public class MultipleMeetingStatsCommand extends StatsCommand {
         Year currentYear = Year.now();
 
         MonthlyCountDataSet result = model
-                .getMultipleMonthMeetingsCount(currentMonth, currentYear, numberOfMonths);
+                .getMultipleMonthSaleCount(currentMonth, currentYear, numberOfMonths);
 
         result.setTitle(DATASET_TITLE);
         return new CommandResult(MESSAGE_SUCCESS, result);
@@ -54,7 +62,7 @@ public class MultipleMeetingStatsCommand extends StatsCommand {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof MultipleMeetingStatsCommand
-                && numberOfMonths == (((MultipleMeetingStatsCommand) other).numberOfMonths));
+                || (other instanceof StatsCommand
+                && numberOfMonths == (((StatsCommand) other).numberOfMonths));
     }
 }

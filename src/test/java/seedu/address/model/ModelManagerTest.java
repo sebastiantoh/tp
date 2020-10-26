@@ -20,13 +20,13 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.MonthAndYear;
 import seedu.address.commons.MonthlyCountData;
+import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
@@ -194,6 +194,12 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getConflictingMeetings_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.getConflictingMeetings(null));
+        assertThrows(NullPointerException.class, () -> modelManager.getConflictingMeetings(null, MEET_ALICE));
+    }
+
+    @Test
     public void deleteMeeting_invalidMeeting_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.deleteMeeting(null));
     }
@@ -201,6 +207,13 @@ public class ModelManagerTest {
     @Test
     public void deleteMeeting_invalidMeeting_throwsMeetingNotFoundException() {
         assertThrows(MeetingNotFoundException.class, () -> modelManager.deleteMeeting(MEET_ALICE));
+    }
+
+    @Test
+    public void setMeeting_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(null, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(null, MEET_ALICE));
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(MEET_ALICE, null));
     }
 
     @Test
@@ -235,7 +248,6 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.setReminder(null, CALL_ALICE));
         assertThrows(NullPointerException.class, () -> modelManager.setReminder(CALL_ALICE, null));
     }
-
 
     @Test
     public void getSortedReminderList_reminderWithEarlierDateAdded_meetingInSortedOrder() {
@@ -272,8 +284,8 @@ public class ModelManagerTest {
         modelManager.addMeeting(MEET_ALICE);
         Month month = MEET_ALICE.getStartDate().getMonth();
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
-        List<MonthlyCountData> expectedResult = Collections.singletonList(
-                new MonthlyCountData(new MonthAndYear(month, year), 1));
+        MonthlyCountDataSet expectedResult = new MonthlyCountDataSet(Collections.singletonList(
+                new MonthlyCountData(new MonthAndYear(month, year), 1)));
         assertEquals(expectedResult, modelManager.getMultipleMonthMeetingsCount(month, year, 1));
     }
 

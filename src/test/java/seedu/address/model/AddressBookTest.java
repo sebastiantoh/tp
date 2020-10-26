@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.meeting.TypicalMeetings.MEET_ALICE;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.person.TypicalPersons.CARL;
@@ -194,6 +195,45 @@ public class AddressBookTest {
                 newReminders, Collections.emptyList());
 
         assertThrows(DuplicateReminderException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void hasMeeting_nullMeeting_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasMeeting(null));
+    }
+
+    @Test
+    public void hasMeeting_meetingNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasMeeting(MEET_ALICE));
+    }
+
+    @Test
+    public void hasMeeting_meetingInAddressBook_returnsTrue() {
+        addressBook.addMeeting(MEET_ALICE);
+        assertTrue(addressBook.hasMeeting(MEET_ALICE));
+    }
+
+    @Test
+    public void getConflictingMeetings_noConflicts_returnsEmptyList() {
+        assertEquals(Collections.EMPTY_LIST, addressBook.getConflictingMeetings(MEET_ALICE));
+    }
+
+    @Test
+    public void getConflictingMeetings_hasConflicts_returnsListOfConflictingMeetings() {
+        addressBook.addMeeting(MEET_ALICE);
+        List<Meeting> expectedConflictingMeeting = List.of(MEET_ALICE);
+        assertEquals(expectedConflictingMeeting, addressBook.getConflictingMeetings(MEET_ALICE));
+    }
+
+    @Test
+    public void getConflictingMeetings_hasConflictsButExcluded_returnsEmptyList() {
+        addressBook.addMeeting(MEET_ALICE);
+        assertEquals(Collections.EMPTY_LIST, addressBook.getConflictingMeetings(MEET_ALICE, MEET_ALICE));
+    }
+
+    @Test
+    public void getMeetingList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getMeetingList().remove(0));
     }
 
     @Test
