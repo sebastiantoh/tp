@@ -1,0 +1,27 @@
+@startuml
+start
+:User keys in command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:Program parses input;
+
+if () then ([command is in valid format])
+    if () then ([arguments are valid])
+        :Create a new Meeting object;
+        if () then ([meeting already exists])
+            :Show duplicate meeting warning;
+        else ([else])
+            :Add Meeting to meetings list;
+            :Show success message;
+        endif
+    else ([else])
+        :Show error message with correct required values;
+    endif
+else ([else])
+    : Show error message with correct command format;
+endif
+
+stop
+@enduml

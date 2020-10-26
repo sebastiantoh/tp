@@ -9,17 +9,26 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-StonksBook is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps.
+StonksBook is a contact management application that is created for salesmen.
+
+Many salesmen waste their time manually managing their contacts and sales data. They often require
+ several different applications to carry out these tasks.
+
+ StonksBook aims to integrate the key tools used by salesmen into an all-in-one application that can empower them to
+  effectively curate their contact list. StonksBook also provides many tools that can boost one's sales peformance
+  through the use of sophisticated data analysis techniques.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start (WIP)
+## Quick start
+
+This section will provide a quick guide to get StonksBook up and running on your computer.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `stonksbook.jar` from [here](https://github.com/AY2021S1-CS2103T-T11-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your StonksBook.
+1. Copy the file to the folder you want to use as the _home folder_ for StonksBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    <img src="images/Ui.png" alt="Ui" width="400px">
@@ -70,6 +79,8 @@ Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMAR
 
 :bulb: Tip: A contact can have any number of tags (including 0)
 
+* The contact tags provided must exist in StonksBook before you can associate this contact with them.
+
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal r/blacklisted`
@@ -86,6 +97,7 @@ Format: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… 
 * When editing a contact's tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
 * When editing a contact's remark, the previous remark will also be removed/overwritten.
 * You can remove all the contact’s tags/remark by typing `t/` or  `r/` respectively without specifying any tags/remark after it.
+* The contact tags provided must exist in StonksBook before you can associate this contact with them.
 
 Examples:
 * `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
@@ -97,7 +109,7 @@ Shows a list of all contacts in StonksBook.
 Format:`contact list`
 
 #### Locating contacts by name: `contact find`
-Find contacts whose names exactly match or is similar to any of the given keywords.
+Finds contacts whose names exactly match or is similar to any of the given keywords.
 
 Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
@@ -113,23 +125,26 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
 * The contact list is ordered by non-ascending similarity.
 
-* Exact matches (if exists) will appear as the first few results.
+* Exact matches (if exist) will appear as the first few results.
 
 <img src="images/contactFindMockup.png" alt="result for 'contact find keyword'" width="400px">
 
 Examples:
 * `contact find alex david` returns Alex Yeoh, David Li
 * `contact find alx` returns Alex Yeoh
-* `contact find alx dvd` returns Alex Yeoh, David Li
+* `contact find alx david` returns David Li, Alex Yeoh
 
 #### Sorting contacts: `contact sort`
-Sort contacts based on the name, email address or the total sales amount of a contact.
+Sorts contacts based on the name, email address or the total sale amount associated to the contact.
 
 Format: `contact sort KEYWORD [ORDER]`
 
-* `KEYWORD` can only either be `n/` for name, `e/` for email address, or 's/' for total sales amount.
+* `KEYWORD` must exactly match to one of the following:
+    * `n/` for name
+    * `e/` for email address
+    * `s/` for total sales amount
 
-* `ORDER` can only be `desc`.
+* If `ORDER` is present, `ORDER` must exactly match `desc`.
 
 * If `ORDER` is absent, contacts will be sorted in non-descending order. Otherwise, contacts will be sorted in non-ascending order.
 
@@ -235,45 +250,84 @@ Examples:
 
 Adds a sale of specified name, unit price and quantity, to the specified contact.
 
-Format: `sale add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY`
+Format: `sale add c/CONTACT_INDEX n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`
 
 * Adds a sale made to the contact at the specified `CONTACT_INDEX`, with details such as the name of item sold, the unit price, and the quantity.
-* The `CONTACT_INDEX` refers to the index number shown in the displayed contact list.
-* The `CONTACT_INDEX` must be a positive integer 1, 2, 3, …​
-* `UNIT_PRICE` must be a positive number with 2 decimal places, in format `DOLLARS.CENTS`.
+* The `CONTACT_INDEX` refers to the index number shown in the displayed contact list. The contact index must be a positive integer 1, 2, 3, …​
+* The `DATETIME_OF_PURCHASE` must be in the format `yyyy-MM-dd HH:mm`
+* The `UNIT_PRICE` must be a positive number with 2 decimal places, in format `DOLLARS.CENTS`.
 * The `QUANTITY` must be a positive integer 1, 2, 3, …​
+* It is compulsory to have a tag for the sales item. This is to ensure the ease of data analytics.
+* The tags provided must exist in StonksBook first before you can associate the sales item to them.
 
 Examples:
-* `sale add c/4 n/Notebook p/6.00 q/2` Adds a sale made to the contact that is ordered 4th on the displayed contact list. This is a sale of 2 Notebooks, each of price $6.00.
+* `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery` Adds a sale made to the contact that is ordered 4th on the displayed contact list. This is a sale of 2 Notebooks, each of price $6.00, made on 30 October at 3.00, with the tag "stationery".
 
-#### Listing all sales items: `sale list`
+#### Editing an existing sale: `sale edit`
 
-Shows a list of all sales to a specified contact.
+Edits an existing sale in StonksBook.
+
+Format: `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`
+
+* Edits the sale at the specified `SALE_INDEX`.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing a sale's tags, the existing tags of the sale will be removed i.e adding of tags is not cumulative.
+* You can remove all the sale’s tags by typing `t/` without specifying any tags after it.
+
+Examples:
+* `sale edit 2 n/B5 Notebook p/4.00 q/10` edits the name of the 2nd sale to be B5 Notebook, and assigns it a quantity of 10 with unit price $4.00.
+* `sale edit 3 t/` clears the tags of the 3rd sale.
+
+
+#### Listing all sales: `sale list`
+
+Shows a list of sales.
 
 <img src="images/saleListMockup.png" alt="result for 'sale list'" width="400px">
 
-Format: `sale list CONTACT_INDEX`
+Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 
-* Lists all sales made to a contact with the specified `CONTACT_INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index must be a positive integer 1, 2, 3, …​
+
+* At most one optional parameter can be present.
+
+* `CONTACT_INDEX` refers to the index number
+  shown in the displayed contact list and
+  must be a positive integer 1, 2, 3, …​
+* `MONTH` must be an integer between 1 and 12 inclusive.
+* `YEAR` must be an integer greater than 0.
+
+* If no optional parameter is present:
+   * all sales are listed.
+
+* If optional parameter `CONTACT_INDEX` is present:
+   * all sales made to a contact with the specified index are listed.
+
+* If optional parameter `[m/MONTH y/YEAR]` is present:
+   * all sales whose associated date is in the specified `MONTH` and `YEAR` are listed.
+
+Examples:
+* `sale list` lists all sales.
+* `sale list c/5` lists all sales made to the 5th contact in the contact list.
+* `sale list m/6 y/2020` lists all sales whose associated date is within June 2020.
 
 #### Deleting a sales item: `sale delete`
 
 Deletes a sales item of specified index.
 
-Format: `sale delete c/CONTACT_INDEX s/SALE_INDEX`
+Format: `sale delete s/SALE_INDEX`
 
-* In the list of all sales made to a contact with the specified `CONTACT_INDEX`, the sale of `SALE_INDEX` is deleted.
-* The  `CONTACT_INDEX` refers to the index number shown in the displayed contact list, while `SALE_INDEX` refers to the index number shown in the sale list of the specified contact.
-* Both `CONTACT_INDEX` and `SALE_INDEX` must be a positive integer 1, 2, 3, …​
+* In the list of sales, the sale of `SALE_INDEX` is deleted.
+* The  `SALE_INDEX` refers to the index number shown in the displayed sale list, and must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `sale delete c/2 s/4` deletes the 4th sale made to the contact of index number 2.
+* `sale delete s/4` deletes the 4th sale made in the list.
 
 ### Scheduled Meetings
 
-#### Adding a scheduled meeting: `meeting add`
+StonksBook allows you to manage your scheduled meetings within the application.
+
+#### Adding a scheduled meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
 Adds a scheduled meeting with the specified contact in StonksBook.
 
@@ -289,7 +343,7 @@ Examples:
 * `meeting add c/2 m/Follow-up meeting d/2020-10-30 15:00 du/60` Adds a 1-hour long meeting titled `Follow-up meeting` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
 * `meeting add c/3 m/Call to finalise details d/2020-10-30 08:00 du/30` Adds a 30-minute long meeting titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
 
-#### Listing all meetings: `meeting list`
+#### Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
 
 Shows a list of all meetings. By default, the list only shows upcoming meetings. This list is sorted in increasing order based on the date the meeting is scheduled.
 
@@ -300,7 +354,7 @@ Format: `meeting list [c/CONTACT_INDEX] [a/]`
 * When an index is specified, the list will only show meetings associated with the contact at the specified index.
 * You can show all meetings, including those that have passed, by typing `a/`.
 
-#### Deleting an meeting: `meeting delete`
+#### Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified meeting from StonksBook.
 
@@ -313,9 +367,41 @@ Format: `meeting delete INDEX`
 Examples:
 * `meeting list 5` followed by `meeting delete 2` deletes the 2nd meeting that is associated with the 5th contact in StonksBook.
 
+#### Analysing meetings: `meeting stats`
+Analyses the meeting data and visualises the statistical result.
+
+Format: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
+
+* At most one optional parameter can be present.
+
+* `NUMBER_OF_MONTHS` refers to the number of months to be included in the result.
+* `NUMBER_OF_MONTHS` must be an integer between 2 and 6 inclusive.
+* `MONTH` must be an integer between 1 and 12 inclusive.
+* `YEAR` must be an integer greater than 0.
+
+* If no optional parameter is present:
+   * The result is the number of meetings whose start date is in the current month and year
+
+* If optional parameter `[m/MONTH y/YEAR]` is present:
+   * The result is the number of meetings whose start date is in the specified `MONTH` and `YEAR`
+
+* If optional parameter `[NUMBER_OF_MONTHS]` is present:
+   * The result is a bar chart on the number of meetings
+     whose start date is within each of the previous `NUMBER_OF_MONTHS` - 1 months and
+     the current month and year.
+
+Examples:
+* `meeting stats` will return the number of meetings whose start date is in the October 2020
+   if the current month is October and the current year is 2020.
+* `meeting stats m/8 y/2020` will return the number of meetings whose start date is in August 2020.
+* `meeting stats 3` will return a bar chart containing the number of meetings whose start date is within
+   June 2020, July 2020 and August 2020 respectively if the current month is August and the current year is 2020.
+
 ### Reminders
 
-#### Adding reminders: `reminder add`
+StonksBook allows you to manage your reminders within the application.
+
+#### Adding reminders: `reminder add` \[Sebastian Toh Shi Jian\]
 
 Adds a reminder scheduled on a particular date that is associated with the specified contact to StonksBook.
 
@@ -329,7 +415,7 @@ Format: `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`
 Examples:
 * `reminder add c/2 m/Send follow-up email d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact that is scheduled for 30th October 2020 3PM, with the message `Send follow-up email`
 
-#### Editing a reminder: `reminder edit`
+#### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\]
 Edits an existing reminder in StonksBook.
 
 Format: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]`
@@ -342,7 +428,7 @@ Examples:
 * `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.
 * `reminder edit 3 m/Follow up call d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Follow up call" and "28th November 2020, 1PM" respectively.
 
-#### Listing all reminders: `reminder list`
+#### Listing all reminders: `reminder list` \[Sebastian Toh Shi Jian\]
 
 Shows a list of all reminders created, sorted in increasing order based on the date the reminder is scheduled.
 
@@ -350,7 +436,7 @@ Shows a list of all reminders created, sorted in increasing order based on the d
 
 Format: `reminder list`
 
-#### Deleting a reminder: `reminder delete`
+#### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified reminder from StonksBook.
 
@@ -363,6 +449,51 @@ Format: `reminder delete INDEX`
 Examples:
 * `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
 
+
+### Archive
+
+StonksBook allows you to archive contacts who are no longer active so that you can focus on contacts who can bring you the Stonks.
+
+#### Adding a contact to the archive: `archive add`
+
+Adds the specified contact to the archive.
+
+Format: `archive add INDEX`
+
+* Adds the contact at the specified `INDEX` to the archive.
+* Can only be used when the contacts list is displayed.
+* The index must be a positive integer 1, 2, 3, …
+
+Example:
+* When the contact list is displayed on your StonksBook, entering `archive add 3` adds the third contact on your list to the archive.
+
+#### Listing contacts in the archive: `archive list`
+
+Shows the list of your archived contacts.
+
+Format: `archive list`
+
+* When entered, if the contacts list is displayed it will be replaced with the archived contacts list.
+* You can edit and delete contacts in the archive using `contact edit` and `contact delete` when the archived contacts list is displayed.
+
+Examples:
+* Entering `archive list` displays all your archived contacts.
+* Entering `archive list` followed by `contact delete 2` deletes the second contact on your archived contacts list from StonksBook.
+
+#### Removing contacts from the archive: `archive remove`
+
+Removes the specified contact from the archive. The specified contact will appear on your contact list again.
+
+Format: `archive remove INDEX`
+
+* Removes the contact at the specified `INDEX` from the archive.
+* Does not delete the contact from StonksBook. To delete the contact use `contact delete`.
+* Can only be used when the archived contacts list is displayed.
+* The index must be a positive integer 1, 2, 3, …
+
+Example:
+* When the archived contacts list is displayed on your StonksBook, entering `archive remove 2` removes the fourth contact on your list from the archive back to your contacts list.
+
 ### Miscellaneous
 
 #### Error resolution suggestion:
@@ -373,12 +504,14 @@ Examples:
 * `contt ad` will return a suggestion of `contact add`
 * `contacta ` will return a suggestion of `contact add`
 
+#### Navigate between previous inputs within the session:
+Pressing the up and down keys retrieves the previous and next input respectively, if there is one.
+
 #### Viewing help: `help`
-Lists useful information about the available commands.
+Lists the command word, command description and example
+usage for each available command as well as the link to the User Guide.
 
 Format: `help`
-
- * Lists the available commands, command description and example usage as well as the link to the User Guide.
 
 <img src="images/helpAllMockup.png" alt="result for 'help'" width="400px">
 
@@ -398,7 +531,7 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ (WIP)
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous StonksBook home folder.
@@ -415,20 +548,26 @@ Action | Format, Examples
 **Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `contact find James Jake`
 **Contact Sort** | `contact sort KEYWORD [ORDER]` <br> e.g., `contact sort n/ desc`
 **Contact List** | `contact list`
-**Sale Add** | `sale add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY` <br> e.g., `sale add c/4 n/Notebook p/6.00 q/2`
-**Sale List** | `sale list`
-**Sale Delete** | `sale delete c/CONTACT_INDEX s/SALE_INDEX` <br> e.g., `sale delete c/2 s/4`
-**Tag Add** | `tag add t/TAG` <br> e.g., `tag add t/important`
+**Sale Add** | `sale add c/CONTACT_INDEX d/DATETIME_OF_PURCHASE n/ITEM_NAME p/UNIT_PRICE q/QUANTITY [t/TAG]…` <br> e.g., `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`
+**Sale Edit** | `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`  <br> e.g., `sale edit 2 n/B5 Notebook p/4.00 q/10`
+**Sale List** | `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`  <br> e.g., `sale delete c/3`
+**Sale Delete** | `sale delete s/SALE_INDEX` <br> e.g., `sale delete s/4`
+**Tag Add** | `tag add c/ (or s/) t/TAG` <br> e.g., `tag add c/ t/important`
 **Tag List** | `tag list`
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
 **Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
-**Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 contact`
+**Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 c/`
 **Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Follow-up meeting d/2020-10-30 15:00 du/60`
 **Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
+**Meeting Stats** | `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]` <br> e.g., `meeting stats 3`
 **Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
+**Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Follow up call d/2020-11-28 13:00`
 **Reminder List** | `reminder list`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
+**Archive Add** | `archive add INDEX` <br> e.g., `archive add 1`
+**Archive List** | `archive list`
+**Archive Remove** | `archive remove INDEX` <br> e.g., `archive remove 2`
 **Help** | `help`
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`

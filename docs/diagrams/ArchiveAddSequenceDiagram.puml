@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ArchiveCommandsParser" as ArchiveCommandsParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("archive add 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("archive add 1")
+activate AddressBookParser
+
+create ArchiveCommandsParser
+AddressBookParser -> ArchiveCommandsParser
+activate ArchiveCommandsParser
+
+ArchiveCommandsParser -> AddressBookParser
+deactivate ArchiveCommandsParser
+
+AddressBookParser -> ArchiveCommandsParser : parse("archive add", "1")
+activate ArchiveCommandsParser
+
+create AddCommandParser
+ArchiveCommandsParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser -> ArchiveCommandsParser
+deactivate AddCommandParser
+
+ArchiveCommandsParser -> AddCommandParser : parse("1")
+activate AddCommandParser
+
+AddCommandParser -> ParserUtil : parseIndex("1")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> ArchiveCommandsParser : a
+deactivate AddCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> ArchiveCommandsParser
+destroy AddCommandParser
+
+ArchiveCommandsParser --> AddressBookParser : a
+deactivate ArchiveCommandsParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ArchiveCommandsParser -[hidden]-> AddressBookParser
+destroy ArchiveCommandsParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+@enduml

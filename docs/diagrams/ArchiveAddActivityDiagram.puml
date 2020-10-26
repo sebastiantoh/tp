@@ -1,0 +1,30 @@
+@startuml
+start
+:User keys in command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:Program parses input;
+
+if () then ([command is in correct format])
+    if () then ([index is a positive integer])
+        :Create a new index object;
+        if () then ([index does not refer to an existing contact])
+            :Show invalid index warning;
+        else ([else])
+            if () then ([incorrect list displayed])
+                :Show invalid list warning;
+            else ([else])
+                :Add contact to archive;
+                :Show success message;
+            endif
+        endif
+    else ([else])
+        :Show error message with correct required values;
+    endif
+else ([else])
+    :Show error message with correct command format;
+endif
+stop
+@enduml
