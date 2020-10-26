@@ -105,7 +105,7 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedReminder jsonAdaptedReminder : reminders) {
-            Reminder reminder = jsonAdaptedReminder.toModelType();
+            Reminder reminder = jsonAdaptedReminder.toModelType(addressBook.getPersonList());
             if (addressBook.hasReminder(reminder)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_REMINDER);
             }

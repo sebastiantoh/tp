@@ -24,7 +24,7 @@ public class JsonAdaptedMeetingTest {
     private static final String INVALID_DURATION = "30 minutes";
     private static final String INVALID_DURATION_DECIMAL = "PT30.5M";
 
-    private static final JsonAdaptedPerson VALID_PERSON = new JsonAdaptedPerson(ALICE);
+    private static final Integer VALID_PERSON_ID = ALICE.getId();
     private static final String VALID_MESSAGE = "Lunch";
     private static final String VALID_DATE = "2020-10-30T15:19";
     private static final String VALID_DURATION_MINUTE = "PT1H40M";
@@ -60,7 +60,7 @@ public class JsonAdaptedMeetingTest {
 
     @Test
     public void toModelType_nullMessage_throwsIllegalValueException() {
-        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(ALICE.getId(), null, VALID_DATE,
+        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(VALID_PERSON_ID, null, VALID_DATE,
                 VALID_DURATION_MINUTE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Message");
         assertThrows(IllegalValueException.class, expectedMessage, () -> meeting.toModelType(personList));
@@ -68,7 +68,7 @@ public class JsonAdaptedMeetingTest {
 
     @Test
     public void toModelType_nullDate_throwsIllegalValueException() {
-        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(ALICE.getId(), VALID_MESSAGE, null,
+        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(VALID_PERSON_ID, VALID_MESSAGE, null,
                 VALID_DURATION_MINUTE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Date");
         assertThrows(IllegalValueException.class, expectedMessage, () -> meeting.toModelType(personList));
@@ -77,9 +77,9 @@ public class JsonAdaptedMeetingTest {
     @Test
     public void toModelType_invalidDate_throwsIllegalValueException() {
         JsonAdaptedMeeting meeting1 =
-                new JsonAdaptedMeeting(ALICE.getId(), VALID_MESSAGE, INVALID_DATE_1, VALID_DURATION_MINUTE);
+                new JsonAdaptedMeeting(VALID_PERSON_ID, VALID_MESSAGE, INVALID_DATE_1, VALID_DURATION_MINUTE);
         JsonAdaptedMeeting meeting2 =
-                new JsonAdaptedMeeting(ALICE.getId(), VALID_MESSAGE, INVALID_DATE_2, VALID_DURATION_MINUTE);
+                new JsonAdaptedMeeting(VALID_PERSON_ID, VALID_MESSAGE, INVALID_DATE_2, VALID_DURATION_MINUTE);
         String expectedMessage = MESSAGE_INVALID_DATETIME;
         assertThrows(IllegalValueException.class, expectedMessage, () -> meeting1.toModelType(personList));
         assertThrows(IllegalValueException.class, expectedMessage, () -> meeting2.toModelType(personList));
@@ -87,7 +87,7 @@ public class JsonAdaptedMeetingTest {
 
     @Test
     public void toModelType_nullDuration_throwsIllegalValueException() {
-        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(ALICE.getId(), VALID_MESSAGE, VALID_DATE,
+        JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(VALID_PERSON_ID, VALID_MESSAGE, VALID_DATE,
                 null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Duration");
         assertThrows(IllegalValueException.class, expectedMessage, () -> meeting.toModelType(personList));
@@ -96,9 +96,9 @@ public class JsonAdaptedMeetingTest {
     @Test
     public void toModelType_invalidDuration_throwsIllegalValueException() {
         JsonAdaptedMeeting meeting1 =
-                new JsonAdaptedMeeting(ALICE.getId(), VALID_MESSAGE, VALID_DATE, INVALID_DURATION);
+                new JsonAdaptedMeeting(VALID_PERSON_ID, VALID_MESSAGE, VALID_DATE, INVALID_DURATION);
         JsonAdaptedMeeting meeting2 =
-                new JsonAdaptedMeeting(ALICE.getId(), VALID_MESSAGE, VALID_DATE, INVALID_DURATION_DECIMAL);
+                new JsonAdaptedMeeting(VALID_PERSON_ID, VALID_MESSAGE, VALID_DATE, INVALID_DURATION_DECIMAL);
         String expectedMessage = DESERIALIZING_DURATION_ERROR_MESSAGE;
         assertThrows(IllegalValueException.class, expectedMessage, () -> meeting1.toModelType(personList));
         assertThrows(IllegalValueException.class, expectedMessage, () -> meeting2.toModelType(personList));
