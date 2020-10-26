@@ -134,7 +134,7 @@ public class EditCommand extends Command {
             result += "\n" + MESSAGE_DUPLICATE_SALE + MassSaleCommandUtil.listAllSales(invalidSales);
         }
 
-        return new CommandResult(result);
+        return new CommandResult(result, false, true);
     }
 
     /**
