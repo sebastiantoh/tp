@@ -253,7 +253,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isTagGuiShown()) {
                 // TODO: replace saleListPanel with tagListPanel when implemented
                 // TODO: replace CommandResult constructors to specify isTagGuiShown for tag methods
-                 adHocPanelPlaceholder.getChildren().setAll(saleListPanel.getRoot());
+                adHocPanelPlaceholder.getChildren().setAll(saleListPanel.getRoot());
             }
 
             return commandResult;
