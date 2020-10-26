@@ -97,7 +97,7 @@ class JsonSerializableAddressBook {
         addressBook.sortTags();
 
         for (JsonAdaptedMeeting jsonAdaptedMeeting : meetings) {
-            Meeting meeting = jsonAdaptedMeeting.toModelType();
+            Meeting meeting = jsonAdaptedMeeting.toModelType(addressBook.getPersonList());
             if (addressBook.hasMeeting(meeting)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MEETING);
             }
