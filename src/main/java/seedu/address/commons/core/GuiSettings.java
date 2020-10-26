@@ -68,7 +68,7 @@ public class GuiSettings implements Serializable {
         return windowWidth == o.windowWidth
                 && windowHeight == o.windowHeight
                 && Objects.equals(windowCoordinates, o.windowCoordinates)
-                && theme.equals(o.theme);
+                && Objects.equals(theme, o.theme);
     }
 
     @Override
