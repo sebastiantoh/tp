@@ -35,7 +35,7 @@ public interface Model {
     /**
      * {@code Predicate} that checks whether the {@code Person} is archived.
      */
-    Predicate<Person> PREDICATE_SHOW_ARCHIVED_PERSONS = person -> person.isArchived();
+    Predicate<Person> PREDICATE_SHOW_ARCHIVED_PERSONS = Person::isArchived;
 
     /**
      * {@code Comparator} that is used for default sorting of person list in alphabetical order,
@@ -48,6 +48,16 @@ public interface Model {
      * {@code Predicate} that always evaluate to true.
      */
     Predicate<Sale> PREDICATE_SHOW_ALL_SALES = unused -> true;
+
+    /**
+     * {@code Predicate} that is used for filtering completed reminders.
+     */
+    Predicate<Reminder> PREDICATE_SHOW_COMPLETED_REMINDERS = Reminder::isCompleted;
+
+    /**
+     * {@code Predicate} that is used for filtering pending reminders.
+     */
+    Predicate<Reminder> PREDICATE_SHOW_PENDING_REMINDERS = reminder -> !reminder.isCompleted();
 
     /**
      * {@code Predicate} that always evaluate to true.
@@ -346,6 +356,16 @@ public interface Model {
     void setReminder(Reminder target, Reminder editedReminder);
 
     /**
+     * Set the predicate for filtering of reminders list.
+     */
+    void updateFilteredRemindersList(Predicate<Reminder> predicate);
+
+    /**
+     * Returns an unmodifiable list view of filtered reminders.
+     */
+    ObservableList<Reminder> getFilteredReminderList();
+
+    /**
      * Returns true if a sale with the same fields {@code sale} exists in StonksBook.
      */
     boolean hasSale(Sale sale);
@@ -375,13 +395,13 @@ public interface Model {
     int getMonthMeetingsCount(Month month, Year year);
 
     /**
-     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * Gets the monthly meeting count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     DataSet<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
 
     /**
-     * Gets multiple number of sale count for months between {@code month} and {@code year} and
+     * Gets the monthly sale count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     DataSet<MonthlyCountData> getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths);

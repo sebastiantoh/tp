@@ -13,7 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Gets multiple monthly meeting counts
+ * Gets multiple monthly meeting counts.
  */
 public class MultipleMeetingStatsCommand extends StatsCommand {
 
@@ -31,12 +31,12 @@ public class MultipleMeetingStatsCommand extends StatsCommand {
     }
 
     /**
-     * Gets multiple monthly meeting counts for months between
+     * Gets the monthly meeting count for each month between
      * the current month and the previous numberOfMonths - 1 months inclusive.
      *
-     * @param model {@code Model} which the command should operate on
+     * @param model {@code Model} which the command should operate on.
      * @return CommandResult object storing the success message
-     * and the multiple monthly count result
+     * and the multiple monthly count result.
      */
     @Override
     public CommandResult execute(Model model) {

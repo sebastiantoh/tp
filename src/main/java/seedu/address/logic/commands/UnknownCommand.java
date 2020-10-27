@@ -16,8 +16,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.commons.SimilarCommandWords;
-import seedu.address.commons.SimilarItems;
+import seedu.address.logic.similarityhandler.SimilarCommandWords;
+import seedu.address.logic.similarityhandler.SimilarItems;
 import seedu.address.model.Model;
 
 /**
@@ -27,6 +27,8 @@ public class UnknownCommand extends Command {
 
     private static final double SIMILARITY_THRESHOLD = 0.4;
 
+    // stores all command words with the key as the no whitespace version
+    // of the command word and the value as the command word itself.
     private static final Map<String, String> SEARCH_WORDS_TO_COMMAND_WORDS =
             Stream.of(Arrays.asList(ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD,
                     PurgeCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD),
@@ -39,8 +41,6 @@ public class UnknownCommand extends Command {
 
     /**
      * Creates an UnknownCommand Object with the attribute {@code unknownInput}.
-     *
-     * @param unknownInput attribute of UnknownCommand class
      */
     public UnknownCommand(String unknownInput) {
         requireNonNull(unknownInput);
@@ -48,12 +48,12 @@ public class UnknownCommand extends Command {
     }
 
     /**
-     * Finds an approximate most similar command word to a user input.
+     * Finds an approximate to the most similar command word to a user input.
      * If none exists, no suggestion will be given.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult object containing
-     *  the approximate most similar command word suggestion or no suggestion
+     * @return CommandResult object containing the approximate to the
+     * most similar command word suggestion or no suggestion.
      */
     @Override
     public CommandResult execute(Model model) {

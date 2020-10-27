@@ -73,7 +73,7 @@ public class MainWindow extends UiPart<Stage> {
     private HostServices hostServices;
 
     /**
-     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic} and {@code HostServices}.
      */
     public MainWindow(Stage primaryStage, Logic logic, HostServices hostServices) {
         super(FXML, primaryStage);

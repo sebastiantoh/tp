@@ -11,6 +11,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.sale.Sale;
 
+/**
+ * Lists sale items for a particular month and year.
+ */
 public class MonthlyListCommand extends ListCommand {
 
     public static final String MESSAGE_SUCCESS = "You have sold %d items in %s %s!";
@@ -22,7 +25,7 @@ public class MonthlyListCommand extends ListCommand {
     private final Year year;
 
     /**
-     * Creates a MonthlyListCommand object with the given {@code month} and {@code year}
+     * Creates a MonthlyListCommand object with the given {@code month} and {@code year}.
      */
     public MonthlyListCommand(Month month, Year year) {
         requireNonNull(month);
@@ -38,7 +41,7 @@ public class MonthlyListCommand extends ListCommand {
      * and sorts the list by the sale date.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return formatted String representation of the monthly sale list
+     * @return formatted String representation of the monthly sale list.
      */
     @Override
     public CommandResult execute(Model model) {

@@ -14,7 +14,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Statistics on Sales
+ * Statistics on Sales.
  */
 public class StatsCommand extends Command {
 

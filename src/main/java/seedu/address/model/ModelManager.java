@@ -47,12 +47,13 @@ public class ModelManager implements Model {
 
     private final SortedList<Reminder> sortedReminders;
 
+    private final FilteredList<Reminder> filteredReminders;
+
     private final FilteredList<Sale> filteredSales;
 
     private final SortedList<Sale> sortedSales;
 
     private int latestContactId = 0;
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -68,14 +69,18 @@ public class ModelManager implements Model {
 
         this.allPersons = this.addressBook.getPersonList();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.sortedPersons = new SortedList<>(this.filteredPersons);
+        this.sortedPersons = new SortedList<>(this.filteredPersons, DEFAULT_PERSON_COMPARATOR);
+        this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
+
+        this.filteredReminders =
+                new FilteredList<>(this.addressBook.getReminderList(), PREDICATE_SHOW_PENDING_REMINDERS);
+        this.sortedReminders = new SortedList<>(this.filteredReminders, Comparator.naturalOrder());
+
         this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
         this.sortedSales = new SortedList<>(this.filteredSales, Comparator.naturalOrder());
-        this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
-        this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
+
+        this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList(), PREDICATE_SHOW_UPCOMING_MEETINGS);
-        this.sortedMeetings = new SortedList<>(this.filteredMeetings, Comparator.naturalOrder());
-        this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
 
         initialiseLatestContactId();
     }
@@ -251,6 +256,16 @@ public class ModelManager implements Model {
     public void setReminder(Reminder target, Reminder editedReminder) {
         requireAllNonNull(target, editedReminder);
         this.addressBook.setReminder(target, editedReminder);
+    }
+
+    @Override
+    public void updateFilteredRemindersList(Predicate<Reminder> predicate) {
+        this.filteredReminders.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return this.filteredReminders;
     }
 
     @Override
@@ -524,6 +539,7 @@ public class ModelManager implements Model {
                 && this.sortedPersons.equals(other.sortedPersons)
                 && this.sortedMeetings.equals(other.sortedMeetings)
                 && this.sortedReminders.equals(other.sortedReminders)
-                && this.sortedSales.equals(other.sortedSales);
+                && this.sortedSales.equals(other.sortedSales)
+                && this.filteredReminders.equals(other.filteredReminders);
     }
 }
