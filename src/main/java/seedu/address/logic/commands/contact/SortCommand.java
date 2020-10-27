@@ -15,8 +15,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * sorts the contacts by a particular contact attribute
- * in non-ascending or non-descending order
+ * Sorts the contacts by a particular contact attribute
+ * in non-ascending or non-descending order.
  */
 public class SortCommand extends Command {
 
@@ -30,7 +30,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SUCCESS = "sorted!";
 
     public static final String MESSAGE_SORTING_ATTRIBUTE_INVALID =
-            "The given attribute to sort by is not valid";
+            "The given attribute to sort by is not valid.";
 
     private final Prefix sortingAttribute;
 
@@ -40,7 +40,7 @@ public class SortCommand extends Command {
 
     /**
      * Creates a SortCommand to sort the contacts by {@code sortingAttribute}
-     * and the sort order determined by {@code isDesc}.
+     * and the sort order is determined by {@code isDesc}.
      *
      */
     public SortCommand(Prefix sortingAttribute, boolean isDesc) {
@@ -55,8 +55,8 @@ public class SortCommand extends Command {
      * in non-descending order otherwise.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return the success message of the SortCommand
-     * @throws CommandException if sorting attribute is not valid
+     * @return the success message of the SortCommand.
+     * @throws CommandException if sorting attribute is not valid.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {

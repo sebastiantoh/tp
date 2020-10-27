@@ -33,6 +33,7 @@ public class MeetingListPanel extends UiPart<Region> {
      * Refreshes (redraws) the MeetingListPanel. Use when you want to force an update of the UI.
      */
     public void refresh() {
+        logger.fine("Refreshing meetings list...");
         this.meetingListView.refresh();
     }
 

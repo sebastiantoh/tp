@@ -3,7 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_COMPLETED_REMINDERS;
+import static seedu.address.model.Model.PREDICATE_SHOW_PENDING_REMINDERS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.meeting.TypicalMeetings.MEET_ALICE;
 import static seedu.address.testutil.meeting.TypicalMeetings.PRESENT_PROPOSAL_BENSON;
@@ -11,6 +14,7 @@ import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.person.TypicalPersons.IDA;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
+import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE_COMPLETED;
 import static seedu.address.testutil.reminder.TypicalReminders.EMAIL_BENSON;
 import static seedu.address.testutil.sale.TypicalSales.GUITAR;
 
@@ -24,10 +28,9 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthAndYear;
-import seedu.address.commons.MonthlyCountData;
-import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.statistics.MonthlyCountData;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -56,7 +59,7 @@ public class ModelManagerTest {
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
-        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
+        userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4, "dark"));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
@@ -73,7 +76,7 @@ public class ModelManagerTest {
 
     @Test
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
-        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4, "dark");
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
     }
@@ -194,6 +197,12 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getConflictingMeetings_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.getConflictingMeetings(null));
+        assertThrows(NullPointerException.class, () -> modelManager.getConflictingMeetings(null, MEET_ALICE));
+    }
+
+    @Test
     public void deleteMeeting_invalidMeeting_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.deleteMeeting(null));
     }
@@ -201,6 +210,13 @@ public class ModelManagerTest {
     @Test
     public void deleteMeeting_invalidMeeting_throwsMeetingNotFoundException() {
         assertThrows(MeetingNotFoundException.class, () -> modelManager.deleteMeeting(MEET_ALICE));
+    }
+
+    @Test
+    public void setMeeting_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(null, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(null, MEET_ALICE));
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(MEET_ALICE, null));
     }
 
     @Test
@@ -236,7 +252,6 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.setReminder(CALL_ALICE, null));
     }
 
-
     @Test
     public void getSortedReminderList_reminderWithEarlierDateAdded_meetingInSortedOrder() {
         modelManager.addReminder(CALL_ALICE);
@@ -248,8 +263,53 @@ public class ModelManagerTest {
         assertEquals(reminderList.get(1), CALL_ALICE);
     }
 
+
+    @Test
+    public void getSortedReminderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedReminderList().remove(0));
+    }
+
+    @Test
+    public void getFilteredReminderList_completedReminders() {
+        modelManager.addReminder(CALL_ALICE_COMPLETED);
+        modelManager.addReminder(EMAIL_BENSON);
+
+        modelManager.updateFilteredRemindersList(PREDICATE_SHOW_COMPLETED_REMINDERS);
+        ObservableList<Reminder> filteredReminderList = modelManager.getFilteredReminderList();
+
+        assertEquals(1, filteredReminderList.size());
+    }
+
+    @Test
+    public void getFilteredReminderList_pendingReminders() {
+        modelManager.addReminder(CALL_ALICE);
+        modelManager.addReminder(EMAIL_BENSON);
+
+        modelManager.updateFilteredRemindersList(PREDICATE_SHOW_PENDING_REMINDERS);
+        ObservableList<Reminder> filteredReminderList = modelManager.getFilteredReminderList();
+
+        assertEquals(2, filteredReminderList.size());
+    }
+
+    @Test
+    public void getFilteredReminderList_allRemindersByDefault() {
+        modelManager.addReminder(CALL_ALICE_COMPLETED);
+        modelManager.addReminder(EMAIL_BENSON);
+
+        ObservableList<Reminder> filteredReminderList = modelManager.getFilteredReminderList();
+
+        // By default StonksBook displays all pending reminders.
+        assertEquals(1, filteredReminderList.size());
+    }
+
+    @Test
+    public void getFilteredReminderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredReminderList().remove(0));
+    }
+
     @Test
     public void getSortedMeetingList_meetingWithEarlierDateAdded_meetingInSortedOrder() {
+        modelManager.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         modelManager.addMeeting(MEET_ALICE);
         modelManager.addMeeting(PRESENT_PROPOSAL_BENSON);
 

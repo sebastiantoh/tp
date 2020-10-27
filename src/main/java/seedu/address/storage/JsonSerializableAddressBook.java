@@ -97,7 +97,7 @@ class JsonSerializableAddressBook {
         addressBook.sortTags();
 
         for (JsonAdaptedMeeting jsonAdaptedMeeting : meetings) {
-            Meeting meeting = jsonAdaptedMeeting.toModelType();
+            Meeting meeting = jsonAdaptedMeeting.toModelType(addressBook.getPersonList());
             if (addressBook.hasMeeting(meeting)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MEETING);
             }
@@ -105,7 +105,7 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedReminder jsonAdaptedReminder : reminders) {
-            Reminder reminder = jsonAdaptedReminder.toModelType();
+            Reminder reminder = jsonAdaptedReminder.toModelType(addressBook.getPersonList());
             if (addressBook.hasReminder(reminder)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_REMINDER);
             }

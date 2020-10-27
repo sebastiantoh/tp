@@ -55,6 +55,7 @@ public interface Logic {
     ObservableList<Reminder> getSortedReminderList();
 
     /**
+<<<<<<< HEAD
      * Returns an unmodifiable view of the sorted list of sales.
      */
     ObservableList<Sale> getSortedSaleList();
@@ -68,6 +69,11 @@ public interface Logic {
      * Returns an unmodifiable view of the list of sales tags.
      */
     ObservableList<Tag> getSalesTagList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of reminders.
+     */
+    ObservableList<Reminder> getFilteredReminderList();
 
     /**
      * Returns the user prefs' address book file path.

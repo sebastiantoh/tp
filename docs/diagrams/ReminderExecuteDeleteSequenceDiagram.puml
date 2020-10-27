@@ -14,7 +14,7 @@ end box
 LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
 
-DeleteCommand -> Model : getSortedPersonList()
+DeleteCommand -> Model : getSortedReminderList()
 activate Model
 
 Model --> DeleteCommand

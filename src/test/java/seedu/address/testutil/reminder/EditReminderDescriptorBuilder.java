@@ -38,7 +38,7 @@ public class EditReminderDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditReminderDescriptor} that we are building.
+     * Sets the {@code scheduledDate} of the {@code EditReminderDescriptor} that we are building.
      */
     public EditReminderDescriptorBuilder withScheduledDate(LocalDateTime scheduledDate) {
         descriptor.setScheduledDate(scheduledDate);
