@@ -3,7 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_COMPLETED_REMINDERS;
+import static seedu.address.model.Model.PREDICATE_SHOW_PENDING_REMINDERS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.meeting.TypicalMeetings.MEET_ALICE;
 import static seedu.address.testutil.meeting.TypicalMeetings.PRESENT_PROPOSAL_BENSON;
@@ -11,6 +14,7 @@ import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.person.TypicalPersons.IDA;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
+import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE_COMPLETED;
 import static seedu.address.testutil.reminder.TypicalReminders.EMAIL_BENSON;
 import static seedu.address.testutil.sale.TypicalSales.GUITAR;
 
@@ -259,8 +263,53 @@ public class ModelManagerTest {
         assertEquals(reminderList.get(1), CALL_ALICE);
     }
 
+
+    @Test
+    public void getSortedReminderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedReminderList().remove(0));
+    }
+
+    @Test
+    public void getFilteredReminderList_completedReminders() {
+        modelManager.addReminder(CALL_ALICE_COMPLETED);
+        modelManager.addReminder(EMAIL_BENSON);
+
+        modelManager.updateFilteredRemindersList(PREDICATE_SHOW_COMPLETED_REMINDERS);
+        ObservableList<Reminder> filteredReminderList = modelManager.getFilteredReminderList();
+
+        assertEquals(1, filteredReminderList.size());
+    }
+
+    @Test
+    public void getFilteredReminderList_pendingReminders() {
+        modelManager.addReminder(CALL_ALICE);
+        modelManager.addReminder(EMAIL_BENSON);
+
+        modelManager.updateFilteredRemindersList(PREDICATE_SHOW_PENDING_REMINDERS);
+        ObservableList<Reminder> filteredReminderList = modelManager.getFilteredReminderList();
+
+        assertEquals(2, filteredReminderList.size());
+    }
+
+    @Test
+    public void getFilteredReminderList_allRemindersByDefault() {
+        modelManager.addReminder(CALL_ALICE_COMPLETED);
+        modelManager.addReminder(EMAIL_BENSON);
+
+        ObservableList<Reminder> filteredReminderList = modelManager.getFilteredReminderList();
+
+        // By default StonksBook displays all pending reminders.
+        assertEquals(1, filteredReminderList.size());
+    }
+
+    @Test
+    public void getFilteredReminderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredReminderList().remove(0));
+    }
+
     @Test
     public void getSortedMeetingList_meetingWithEarlierDateAdded_meetingInSortedOrder() {
+        modelManager.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         modelManager.addMeeting(MEET_ALICE);
         modelManager.addMeeting(PRESENT_PROPOSAL_BENSON);
 

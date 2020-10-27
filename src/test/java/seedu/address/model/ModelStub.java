@@ -206,6 +206,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Meeting> getSortedMeetingList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -257,6 +267,16 @@ public class ModelStub implements Model {
 
     @Override
     public void setReminder(Reminder target, Reminder editedReminder) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredRemindersList(Predicate<Reminder> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -327,7 +327,7 @@ Examples:
 
 StonksBook allows you to manage your scheduled meetings within the application.
 
-#### Adding a scheduled meeting: `meeting add` \[Sebastian Toh Shi Jian\]
+#### Adding a meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
 Adds a scheduled meeting with the specified contact in StonksBook.
 
@@ -371,8 +371,12 @@ Shows a list of all meetings. By default, the list only shows upcoming meetings.
 Format: `meeting list [c/CONTACT_INDEX] [a/]`
 
 * When an index is specified, the list will only show meetings associated with the contact at the specified index.
-* You can show all meetings, including those that have passed, by typing `a/`.
+* You can show all meetings, including past meetings, by typing `a/`.
 
+Examples:
+* `meeting list c/5 a/` displays a list of all meetings that you have had with the 5th contact currently
+ displayed in StonksBook.
+ 
 #### Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified meeting from StonksBook.
@@ -384,7 +388,8 @@ Format: `meeting delete INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `meeting list 5` followed by `meeting delete 2` deletes the 2nd meeting that is associated with the 5th contact in StonksBook.
+* `meeting list c/5` followed by `meeting delete 2` deletes the 2nd upcoming meeting that is associated with the 5th
+ contact in StonksBook.
 
 #### Analysing meetings: `meeting stats`
 Analyses the meeting data and visualises the statistical result.
@@ -448,13 +453,18 @@ Examples:
 * `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.
 * `reminder edit 3 m/Follow up call d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Follow up call" and "28th November 2020, 1PM" respectively.
 
-#### Listing all reminders: `reminder list` \[Sebastian Toh Shi Jian\]
+#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
 
 Shows a list of all reminders created, sorted in increasing order based on the date the reminder is scheduled.
 
 <img src="images/reminderListMockup.png" alt="result for 'reminder list'" width="400px">
 
-Format: `reminder list`
+Format: `reminder list [st/STATUS]`
+
+* `STATUS` can be either `completed` or `pending`.
+
+Examples:
+* `reminder list st/completed` displays all reminders that have been marked as completed.
 
 #### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
 
@@ -468,7 +478,6 @@ Format: `reminder delete INDEX`
 
 Examples:
 * `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
-
 
 ### Archive
 
