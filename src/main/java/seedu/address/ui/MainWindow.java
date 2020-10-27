@@ -150,7 +150,7 @@ public class MainWindow extends UiPart<Stage> {
         adHocPanelPlaceholder.getChildren().add(saleListPanel.getRoot());
 
         contactTagListPanel = new ContactTagListPanel(logic.getContactTagList());
-        salesTagListPanel = new SalesTagListPanel(logic.getSalesTagList(), logic.getContactTagList().size());
+        salesTagListPanel = new SalesTagListPanel(logic.getSalesTagList());
 
         chatBox = new ChatBox();
         chatBoxPlaceholder.getChildren().add(chatBox.getRoot());

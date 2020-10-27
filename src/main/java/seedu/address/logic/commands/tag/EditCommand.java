@@ -33,15 +33,17 @@ public class EditCommand extends Command {
 
     private final Index targetIndex;
     private final EditTagDescriptor editTagDescriptor;
+    private final boolean isContact;
 
     /**
      *
      * @param targetIndex of the tag in the tag list to edit.
      * @param editTagDescriptor details to edit the tag with.
      */
-    public EditCommand(Index targetIndex, EditTagDescriptor editTagDescriptor) {
+    public EditCommand(Index targetIndex, EditTagDescriptor editTagDescriptor, boolean isContact) {
         this.targetIndex = targetIndex;
         this.editTagDescriptor = editTagDescriptor;
+        this.isContact = isContact;
     }
 
     @Override
@@ -50,14 +52,15 @@ public class EditCommand extends Command {
         List<Tag> contactTagList = model.getContactTagList();
         List<Tag> saleTagList = model.getSaleTagList();
 
-        if (targetIndex.getOneBased() > contactTagList.size() + saleTagList.size() || targetIndex.getOneBased() < 0) {
+        if (isContact && targetIndex.getOneBased() > contactTagList.size()
+                || !isContact && targetIndex.getOneBased() > saleTagList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
         }
 
         Tag tagToEdit;
         Tag editedTag;
-        if (targetIndex.getOneBased() > contactTagList.size()) {
-            tagToEdit = saleTagList.get(targetIndex.getZeroBased() - contactTagList.size());
+        if (!isContact) {
+            tagToEdit = saleTagList.get(targetIndex.getZeroBased());
             editedTag = createEditedTag(tagToEdit, editTagDescriptor);
 
             if (tagToEdit.isSameTag(editedTag) && model.hasSaleTag(editedTag)) {
@@ -104,7 +107,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return targetIndex.equals(e.targetIndex)
-                && editTagDescriptor.equals(e.editTagDescriptor);
+                && editTagDescriptor.equals(e.editTagDescriptor) && isContact == e.isContact;
     }
 
     /**

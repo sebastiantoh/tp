@@ -16,7 +16,6 @@ import seedu.address.model.tag.Tag;
 public class SalesTagListPanel extends UiPart<Region> {
     private static final String FXML = "SalesTagListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(SalesTagListPanel.class);
-    private int offset;
 
     @FXML
     private ListView<Tag> salesTagListView;
@@ -24,11 +23,10 @@ public class SalesTagListPanel extends UiPart<Region> {
     /**
      * Creates a {@code SalesTagListViewPanel} with the given {@code ObservableList}.
      */
-    public SalesTagListPanel(ObservableList<Tag> tagList, int offset) {
+    public SalesTagListPanel(ObservableList<Tag> tagList) {
         super(FXML);
         salesTagListView.setItems(tagList);
         salesTagListView.setCellFactory(listView -> new SalesTagListViewCell());
-        this.offset = offset;
     }
 
     /**
@@ -50,7 +48,7 @@ public class SalesTagListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TagCard(tag, getIndex() + 1 + offset).getRoot());
+                setGraphic(new TagCard(tag, getIndex() + 1).getRoot());
             }
         }
     }
