@@ -219,8 +219,7 @@ Deletes the specified tag from the tag list. The tag information in all entries 
 
 Format: `tag delete (st/ or ct/)INDEX`
 
-* Deletes the name of the contact tag or sales tag at the specified `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
-* `ct/` stands for contact tag, `st/` stands for sales tag.
+* Deletes the the contact tag or sales tag at the specified `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `INDEX` field must be provided.
 * All contacts that have been previously associated with this tag will be updated so that their associations with this tag will be cleared.
@@ -239,15 +238,14 @@ Displays all entries (including contacts, items, etc.) that are associated with 
 Format: `tag find (ct/ or st/)INDEX [cl/]`
 
 * Displays all entries of associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
-* `ct/` stands for contact tag, `st/` stands for sales tag, and `cl/` stands for client.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `INDEX` field must be provided.
-* An additional `c/` field can be provided when performing searching on sales tags. This field results in all contacts who purchased sales items associated with this tag to be displayed. Adding this field will have no effect on the search results for contact tags.
+* An additional `cl/` field can be provided when performing searching on sales tags. This field results in all contacts who purchased sales items associated with this tag to be displayed. Adding this field will have no effect on the search results for contact tags.
 
 Examples:
 * `tag find ct/1` displays all contacts associated with the first contact tag displayed by the `tag list` command.
 * `tag find st/2` displays all sales associated with the second sales tag displayed by the `tag list` command.
-* `tag find st/3 c/` displays all contacts who have purchased items associated with the third sales tag.
+* `tag find st/3 cl/` displays all contacts who have purchased items associated with the third sales tag.
 
 ### Sales
 

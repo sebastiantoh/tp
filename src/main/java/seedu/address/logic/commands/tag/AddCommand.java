@@ -2,6 +2,7 @@ package seedu.address.logic.commands.tag;
 
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALES_TAG;
 
 import seedu.address.logic.commands.Command;
@@ -20,7 +21,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Adds a tag (for contacts or for sales) to the StonksBook. "
             + "Parameters: "
-            + "ct/ (or st/) TAG\n"
+            + String.format("%s (or %s) TAG\n", PREFIX_CONTACT_TAG, PREFIX_SALES_TAG)
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SALES_TAG + "fruits";
 
@@ -29,7 +30,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CONTACT_TAG = "This contact tag already exists in StonksBook";
     public static final String MESSAGE_DUPLICATE_SALES_TAG = "This sales tag already exists in StonksBook";
     public static final String MESSAGE_CONFLICT_TYPES =
-            "Invalid tag type provided! Please use either ct/ or st/, but not both.\n";
+            String.format("Invalid tag type provided! Please use either %s or %s, but not both.\n",
+                    PREFIX_CONTACT_TAG, PREFIX_SALES_TAG);
 
     private final Tag toAdd;
     private final boolean isContact;

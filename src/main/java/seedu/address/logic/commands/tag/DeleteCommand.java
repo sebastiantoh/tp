@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALES_TAG;
 
 import java.util.List;
 
@@ -9,7 +11,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
@@ -23,8 +24,8 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the tag identified by the index number used in the displayed reminder list. "
             + "Note that all associations with this tag will be cleared.\n"
-            + "Parameters: INDEX (must be a positive integer) MODEL (must be either contact or sales)\n"
-            + "Example: " + COMMAND_WORD + " " + CliSyntax.PREFIX_CONTACT_TAG + "1";
+            + String.format("Parameters: (%s or %s) INDEX \n", PREFIX_CONTACT_TAG, PREFIX_SALES_TAG)
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CONTACT_TAG + "1";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag: %1$s";
 
