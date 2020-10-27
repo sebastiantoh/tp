@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tag.Tag;
 
 /**
- * Panel containing the list of sale.
+ * Panel containing the list of sales tags.
  */
 public class SalesTagListPanel extends UiPart<Region> {
     private static final String FXML = "SalesTagListPanel.fxml";
@@ -39,7 +39,7 @@ public class SalesTagListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Meeting} using a {@code MeetingCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Tag} using a {@code TagCard}.
      */
     class SalesTagListViewCell extends ListCell<Tag> {
         @Override
