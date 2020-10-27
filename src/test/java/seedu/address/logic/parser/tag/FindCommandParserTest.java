@@ -17,11 +17,18 @@ class FindCommandParserTest {
 
     @Test
     public void parse_validIndex_returnsFindCommand() {
-        assertParseSuccess(parser, "1", new FindCommand(INDEX_FIRST_TAG));
+        assertParseSuccess(parser, "1 c/", new FindCommand(INDEX_FIRST_TAG, true));
     }
 
     @Test
     public void parse_invalidIndex_throwsParseException() {
-        assertParseFailure(parser, "one", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "one c/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_missingModel_throwsParseException() {
+        assertParseFailure(parser, "1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 }

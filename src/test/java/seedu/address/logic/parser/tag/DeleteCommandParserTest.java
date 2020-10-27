@@ -16,7 +16,7 @@ class DeleteCommandParserTest {
 
     @Test
     void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_TAG));
+        assertParseSuccess(parser, "1 c/", new DeleteCommand(INDEX_FIRST_TAG, true));
     }
 
     @Test
