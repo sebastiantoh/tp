@@ -22,6 +22,9 @@ public class CommandResult {
     /** The chat box should be cleared. */
     private final boolean clear;
 
+    /** 0 denotes dark theme, 1 denotes light theme, null if not theme command. */
+    private final Integer theme;
+
     private final MonthlyCountDataSet statisticResult;
 
     /**
@@ -30,19 +33,28 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean clear) {
-        this(feedbackToUser, showHelp, exit, clear, null);
+        this(feedbackToUser, showHelp, exit, clear, null, null);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp,
-                         boolean exit, boolean clear, MonthlyCountDataSet statisticResult) {
+                         boolean exit, boolean clear, Integer theme, MonthlyCountDataSet statisticResult) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.clear = clear;
+        this.theme = theme;
         this.statisticResult = statisticResult;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code theme},
+     * and other fields set to default value.
+     */
+    public CommandResult(String feedbackToUser, Integer theme) {
+        this(feedbackToUser, false, false, false, theme, null);
     }
 
     /**
@@ -50,7 +62,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser, MonthlyCountDataSet statisticResult) {
-        this(feedbackToUser, false, false, false, statisticResult);
+        this(feedbackToUser, false, false, false, null, statisticResult);
     }
 
     /**
@@ -85,6 +97,10 @@ public class CommandResult {
         return statisticResult;
     }
 
+    public Integer getTheme() {
+        return theme;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -101,6 +117,7 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && clear == otherCommandResult.clear
                 && exit == otherCommandResult.exit
+                && theme == otherCommandResult.theme
                 && ((Objects.isNull(statisticResult)
                     && Objects.isNull(otherCommandResult.statisticResult))
                     || (!Objects.isNull(statisticResult)
@@ -109,7 +126,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, clear, statisticResult);
+        return Objects.hash(feedbackToUser, showHelp, exit, clear, theme, statisticResult);
     }
 
 }
