@@ -87,7 +87,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-        if (logic.getGuiSettings().getTheme().equals("dark")) {
+        if (logic.getGuiSettings().getTheme() == null || logic.getGuiSettings().getTheme().equals("dark")) {
             setTheme(true);
             isDarkTheme = true;
         } else {
