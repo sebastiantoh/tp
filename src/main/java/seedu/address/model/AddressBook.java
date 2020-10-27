@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.statistics.MonthlyCountDataSet;
+import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.commons.dataset.tag.SaleTagCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
@@ -543,7 +545,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Gets the monthly meeting count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
-    public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         return this.meetings.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
     }
 
@@ -558,8 +560,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Gets the monthly sale count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
-    public MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
         return this.sales.getMultipleMonthSaleCount(month, year, numberOfMonths);
+    }
+
+    /**
+     * Gets a breakdown of the proportion of sales in each tag.
+     */
+    public DataSet<SaleTagCountData> getSaleTagCount() {
+        return this.sales.getSaleTagCount();
     }
 
     //// util methods

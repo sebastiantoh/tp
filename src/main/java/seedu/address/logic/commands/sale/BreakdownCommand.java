@@ -2,40 +2,35 @@ package seedu.address.logic.commands.sale;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
-import java.time.ZoneId;
-
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.dataset.DataSet;
-import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.commons.dataset.tag.SaleTagCountData;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Statistics on Sales.
+ * Statistics on Sales
  */
-public class StatsCommand extends Command {
+public class BreakdownCommand extends Command {
 
-    public static final String COMMAND_WORD = "sale stats";
+    public static final String COMMAND_WORD = "sale breakdown";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Outputs statistics on sales.\n"
+            + ": Outputs breakdown of sales categories.\n"
             + "Parameters: NUMBER_OF_MONTHS "
             + "Example: " + COMMAND_WORD + " 5";
 
     public static final String MESSAGE_SUCCESS = "Opened a new window!";
 
-    public static final String DATASET_TITLE = "Sale Count";
+    public static final String DATASET_TITLE = "Breakdown of Sales by Sale Tags (Top 5)";
 
-    private final int numberOfMonths;
 
     /**
-     * Creates a StatsCommand with the given {@code numberOfMonths}.
+     * Creates a BreakdownCommand.
      */
-    public StatsCommand(int numberOfMonths) {
-        this.numberOfMonths = numberOfMonths;
+    public BreakdownCommand() {
     }
 
     /**
@@ -47,14 +42,16 @@ public class StatsCommand extends Command {
      * and the multiple monthly count result
      */
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Month currentMonth = LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth();
-        Year currentYear = Year.now();
+        DataSet<SaleTagCountData> result = model.getSaleTagCount();
 
-        DataSet<MonthlyCountData> result = model
-                .getMultipleMonthSaleCount(currentMonth, currentYear, numberOfMonths);
+        result.getDataList().forEach(x -> System.out.println(x.getKeyAsStr() + " " + x.getCount()));
+
+        if (result.isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_DATASET);
+        }
 
         result.setTitle(DATASET_TITLE);
         return new CommandResult(MESSAGE_SUCCESS, result);
@@ -62,8 +59,6 @@ public class StatsCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof StatsCommand
-                && numberOfMonths == (((StatsCommand) other).numberOfMonths));
+        return other == this || (other instanceof BreakdownCommand);
     }
 }
