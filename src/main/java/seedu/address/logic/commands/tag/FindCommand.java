@@ -61,10 +61,10 @@ public class FindCommand extends Command {
             if (isContact) {
                 return new CommandResult(model.findContactsBySaleTag(tagToFind));
             }
-            return new CommandResult(model.findSalesBySaleTag(tagToFind));
+            return new CommandResult(model.findSalesBySaleTag(tagToFind), true, false);
         } else {
             tagToFind = contactTagList.get(targetIndex.getZeroBased());
-            return new CommandResult(model.findByContactTag(tagToFind));
+            return new CommandResult(model.findByContactTag(tagToFind), true, false);
         }
     }
 

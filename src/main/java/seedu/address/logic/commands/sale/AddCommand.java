@@ -124,7 +124,7 @@ public class AddCommand extends Command {
         }
 
         if (duplicatedSales.isEmpty()) {
-            return new CommandResult(generateSuccessMessage(salesAdded));
+            return new CommandResult(generateSuccessMessage(salesAdded), false, true);
         }
 
         return new CommandResult(generateSuccessMessage(salesAdded)

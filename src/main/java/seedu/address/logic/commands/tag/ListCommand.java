@@ -14,9 +14,11 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "tag list";
 
+    public static final String MESSAGE_LIST_TAGS_SUCCESS = "Listed all tags!";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return new CommandResult(model.listTags());
+        return new CommandResult(MESSAGE_LIST_TAGS_SUCCESS, true, false);
     }
 }

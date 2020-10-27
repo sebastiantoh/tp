@@ -52,7 +52,7 @@ public class DeleteCommand extends Command {
             tagToDelete = contactTagList.get(targetIndex.getZeroBased());
             model.deleteContactTag(tagToDelete);
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagToDelete), true, false);
     }
 
     @Override

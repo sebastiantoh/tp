@@ -55,13 +55,13 @@ public class AddCommand extends Command {
                 throw new CommandException(MESSAGE_DUPLICATE_CONTACT_TAG);
             }
             model.addContactTag(toAdd);
-            return new CommandResult(String.format(MESSAGE_CONTACT_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_CONTACT_SUCCESS, toAdd), true, false);
         } else {
             if (model.hasSaleTag(toAdd)) {
                 throw new CommandException(MESSAGE_DUPLICATE_SALES_TAG);
             }
             model.addSaleTag(toAdd);
-            return new CommandResult(String.format(MESSAGE_SALES_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_SALES_SUCCESS, toAdd), true, false);
         }
     }
 

@@ -73,7 +73,7 @@ public class EditCommand extends Command {
             }
             model.editContactTag(tagToEdit, editedTag);
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag));
+        return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag), true, false);
     }
 
     /**
