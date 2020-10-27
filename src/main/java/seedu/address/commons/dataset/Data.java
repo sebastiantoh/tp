@@ -48,8 +48,8 @@ public class Data<T> {
             return false;
         }
         Data<?> data = (Data<?>) o;
-        return count == data.count &&
-                key.equals(data.key);
+        return count == data.count
+                && key.equals(data.key);
     }
 
     @Override

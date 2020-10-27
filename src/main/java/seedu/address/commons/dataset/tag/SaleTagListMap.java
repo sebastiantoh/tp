@@ -1,7 +1,5 @@
 package seedu.address.commons.dataset.tag;
 
-import java.time.Month;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,13 +11,11 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.dataset.Data;
 import seedu.address.commons.dataset.DataSet;
-import seedu.address.commons.dataset.date.MonthAndYear;
-import seedu.address.commons.dataset.date.MonthlyCountData;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 
 /**
- * Stores a list of items of type T based on the key of < month, year >
+ * Stores a list of sales based on the key of < tag >
  */
 public class SaleTagListMap {
 
@@ -103,7 +99,7 @@ public class SaleTagListMap {
     /**
      * Gets the sale counts in the sale list for every {@code tag}.
      *
-     * @return DataSet<SaleTagCountData> object, where the data is ordered by non-decreasing year and month
+     * @return A DataSet object containing SaleTagCountData.
      */
     public DataSet<SaleTagCountData> getSaleTagCount() {
         List<SaleTagCountData> result = new ArrayList<>();

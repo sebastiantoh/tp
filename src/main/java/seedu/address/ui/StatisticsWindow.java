@@ -10,10 +10,9 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.dataset.Data;
 import seedu.address.commons.dataset.DataSet;
-import seedu.address.commons.dataset.date.MonthlyCountData;
-import seedu.address.commons.core.LogsCenter;
 
 /**
  * Controller for a statistics page

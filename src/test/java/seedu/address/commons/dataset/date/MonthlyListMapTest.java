@@ -1,4 +1,4 @@
-package seedu.address.commons;
+package seedu.address.commons.dataset.date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.meeting.TypicalMeetings.LUNCH_DANIEL;
@@ -17,9 +17,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.dataset.DataSet;
-import seedu.address.commons.dataset.date.MonthAndYear;
-import seedu.address.commons.dataset.date.MonthlyCountData;
-import seedu.address.commons.dataset.date.MonthlyListMap;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.sale.Sale;
 

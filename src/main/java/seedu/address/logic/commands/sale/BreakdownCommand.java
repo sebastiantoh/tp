@@ -2,19 +2,12 @@ package seedu.address.logic.commands.sale;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
-import java.time.ZoneId;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.dataset.DataSet;
-import seedu.address.commons.dataset.date.MonthlyCountData;
 import seedu.address.commons.dataset.tag.SaleTagCountData;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Message;
 import seedu.address.model.Model;
 
 /**
@@ -49,7 +42,7 @@ public class BreakdownCommand extends Command {
      * and the multiple monthly count result
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException{
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         DataSet<SaleTagCountData> result = model.getSaleTagCount();

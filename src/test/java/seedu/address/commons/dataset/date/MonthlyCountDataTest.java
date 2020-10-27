@@ -1,4 +1,4 @@
-package seedu.address.commons;
+package seedu.address.commons.dataset.date;
 
 import static java.time.Month.AUGUST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,10 +9,6 @@ import java.time.Month;
 import java.time.Year;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.address.commons.dataset.date.MonthAndYear;
-import seedu.address.commons.dataset.date.MonthlyCountData;
-
 
 public class MonthlyCountDataTest {
 
