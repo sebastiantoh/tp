@@ -21,9 +21,11 @@ public class FindCommandParser implements Parser<FindCommand> {
     @Override
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CONTACT_TAG, PREFIX_SALES_TAG, PREFIX_CLIENT);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_CONTACT_TAG, PREFIX_SALES_TAG, PREFIX_CLIENT);
 
-        if (argMultimap.getValue(PREFIX_CONTACT_TAG).isEmpty() && argMultimap.getValue(PREFIX_SALES_TAG).isEmpty()) {
+        if (argMultimap.getValue(PREFIX_CONTACT_TAG).isEmpty()
+                && argMultimap.getValue(PREFIX_SALES_TAG).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 

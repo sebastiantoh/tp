@@ -3,6 +3,7 @@ package seedu.address.logic.parser.tag;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,11 +17,17 @@ class DeleteCommandParserTest {
 
     @Test
     void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1 c/", new DeleteCommand(INDEX_FIRST_TAG, true));
+        assertParseSuccess(parser, " ct/1", new DeleteCommand(INDEX_FIRST_TAG, true));
     }
 
     @Test
     void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "one", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " ct/one", MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    void parse_missingModel_throwsParseException() {
+        assertParseFailure(parser, " 1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }

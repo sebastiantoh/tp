@@ -30,9 +30,11 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Index index;
 
-        if (argMultimap.getValue(PREFIX_CONTACT_TAG).isEmpty() && argMultimap.getValue(PREFIX_SALES_TAG).isEmpty()) {
+        if (argMultimap.getValue(PREFIX_CONTACT_TAG).isEmpty()
+                && argMultimap.getValue(PREFIX_SALES_TAG).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
-        } else if (argMultimap.getValue(PREFIX_CONTACT_TAG).isPresent() && argMultimap.getValue(PREFIX_SALES_TAG).isPresent()) {
+        } else if (argMultimap.getValue(PREFIX_CONTACT_TAG).isPresent()
+                && argMultimap.getValue(PREFIX_SALES_TAG).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
