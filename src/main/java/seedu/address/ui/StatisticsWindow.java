@@ -10,9 +10,9 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
-import seedu.address.commons.MonthlyCountData;
-import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.statistics.MonthlyCountData;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
 
 /**
  * Controller for a statistics page
@@ -49,16 +49,19 @@ public class StatisticsWindow extends UiPart<Stage> {
         this(new Stage(), statisticResult);
     }
 
-
     /**
      * Populates the statistics window with the statistics data from {@code statisticResult}.
      */
     private void populateStatisticsWindow(MonthlyCountDataSet statisticResult) {
-        this.barChart.setTitle(statisticResult.getTitle());
-        int maxValue = 0;
-        this.y.setTickUnit(1);
-        this.y.setAutoRanging(false);
-        this.y.setMinorTickVisible(false);
+        long maxCount = this.addBarsToBarChart(statisticResult);
+
+        addColorsToBars();
+
+        configureBarChart(statisticResult, maxCount);
+    }
+
+    private long addBarsToBarChart(MonthlyCountDataSet statisticResult) {
+        long maxValue = 0;
         XYChart.Series<String, Integer> bars = new XYChart.Series<>();
         for (MonthlyCountData data : statisticResult.getMonthlyCountDataList()) {
             XYChart.Data<String, Integer> data1 = new XYChart.Data<>(
@@ -66,17 +69,32 @@ public class StatisticsWindow extends UiPart<Stage> {
             bars.getData().add(data1);
             maxValue = Math.max(maxValue, data.getCount());
         }
+        this.barChart.getData().add(bars);
+        return maxValue;
+    }
+
+    private void addColorsToBars() {
+        assert this.barChart.getData().size() == 1;
 
         List<String> barColors = Arrays.asList("blue", "red", "purple", "yellow", "orange", "green");
+        XYChart.Series<String, Integer> bars = this.barChart.getData().get(0);
 
-        this.barChart.getData().add(bars);
         for (int i = 0; i < bars.getData().size(); i++) {
             bars.getData().get(i).getNode().setStyle("-fx-bar-fill: " + barColors.get(i));
         }
+    }
 
+    private void configureBarChart(MonthlyCountDataSet statisticResult, long maxValue) {
+        XYChart.Series<String, Integer> bars = this.barChart.getData().get(0);
+        int categoryGap = 300 / bars.getData().size();
+
+        this.barChart.setTitle(statisticResult.getTitle());
+        this.y.setTickUnit(1);
+        this.y.setAutoRanging(false);
+        this.y.setMinorTickVisible(false);
         this.barChart.setLegendVisible(false);
         this.barChart.setBarGap(-1);
-        this.barChart.setCategoryGap(300 / bars.getData().size());
+        this.barChart.setCategoryGap(categoryGap);
         this.y.setUpperBound(maxValue);
         this.barChart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
         this.barChart.lookup(".chart-title").setStyle("-fx-text-fill: WHITE");

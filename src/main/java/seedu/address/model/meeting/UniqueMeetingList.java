@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyCountDataSet;
-import seedu.address.commons.MonthlyListMap;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
+import seedu.address.model.MonthlyListMap;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.person.Person;
@@ -162,7 +162,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * Gets the monthly meeting count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {

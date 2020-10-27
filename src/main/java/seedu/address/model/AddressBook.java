@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyCountDataSet;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
@@ -545,7 +545,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * Gets the monthly meeting count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
@@ -560,7 +560,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Gets multiple number of sale count for months between {@code month} and {@code year} and
+     * Gets the monthly sale count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     public MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {

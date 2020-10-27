@@ -1,4 +1,4 @@
-package seedu.address.commons;
+package seedu.address.commons.statistics;
 
 import java.util.List;
 import java.util.Objects;

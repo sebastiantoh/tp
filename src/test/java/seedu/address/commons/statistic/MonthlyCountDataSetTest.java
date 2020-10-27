@@ -1,4 +1,4 @@
-package seedu.address.commons;
+package seedu.address.commons.statistic;
 
 import static java.time.Month.APRIL;
 import static java.time.Month.AUGUST;
@@ -11,6 +11,10 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.statistics.MonthlyCountData;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
+import seedu.address.model.MonthAndYear;
 
 class MonthlyCountDataSetTest {
 

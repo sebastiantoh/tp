@@ -1,4 +1,4 @@
-package seedu.address.commons;
+package seedu.address.logic.similarityhandler;
 
 public class SimilarCommandWords extends SimilarItems<String> {
 

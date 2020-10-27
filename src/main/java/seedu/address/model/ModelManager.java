@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -67,9 +67,8 @@ public class ModelManager implements Model {
 
         this.allPersons = this.addressBook.getPersonList();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.sortedPersons = new SortedList<>(this.filteredPersons);
+        this.sortedPersons = new SortedList<>(this.filteredPersons, DEFAULT_PERSON_COMPARATOR);
         this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
-        this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
 
         this.filteredReminders =
                 new FilteredList<>(this.addressBook.getReminderList(), PREDICATE_SHOW_PENDING_REMINDERS);

@@ -42,7 +42,7 @@ reminder edit               Edits an existing reminder                          
 reminder list               Lists all reminders                                         reminder list
 reminder delete	            Deletes the specified reminder                              reminder delete INDEX
 
-Miscellaneous commands
+Other commands
 ----------------------
 Clear                       Clears chat bot history                                     clear
 Purge                       Clears all data                                             purge

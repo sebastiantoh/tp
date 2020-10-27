@@ -1,4 +1,4 @@
-package seedu.address.commons;
+package seedu.address.logic.similarityhandler;
 
 import static java.util.Objects.requireNonNull;
 
