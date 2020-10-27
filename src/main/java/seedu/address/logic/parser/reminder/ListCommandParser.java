@@ -27,6 +27,9 @@ public class ListCommandParser implements Parser<ListCommand> {
             return new ListCommand(null);
         }
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_REMINDER_STATUS);
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
 
         try {
             Boolean completed;
