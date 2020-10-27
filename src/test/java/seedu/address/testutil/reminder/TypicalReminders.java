@@ -23,6 +23,9 @@ public class TypicalReminders {
             LocalDateTime.of(2018, 12, 20, 12, 0));
     public static final Reminder SET_MEETING_CARL = new Reminder(CARL, new Message("Set meeting with Carl"),
             LocalDateTime.of(2020, 12, 20, 12, 12));
+    public static final Reminder CALL_ALICE_COMPLETED = new Reminder(ALICE, new Message("Call Alice"),
+            LocalDateTime.of(2020, 10, 30, 15, 19),
+            true);
 
     // prevents instantiation
     private TypicalReminders() {

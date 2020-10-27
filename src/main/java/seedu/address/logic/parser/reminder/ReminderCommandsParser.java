@@ -41,11 +41,11 @@ public class ReminderCommandsParser implements GroupCommandsParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommandParser().parse(arguments);
 
         default:
             return new UnknownCommand(commandWord);

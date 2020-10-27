@@ -7,13 +7,13 @@ import java.time.Month;
 import java.time.Year;
 import java.time.ZoneId;
 
-import seedu.address.commons.MonthlyCountDataSet;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Statistics on Sales
+ * Statistics on Sales.
  */
 public class StatsCommand extends Command {
 

@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyCountDataSet;
-import seedu.address.commons.MonthlyListMap;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
+import seedu.address.model.MonthlyListMap;
 import seedu.address.model.person.Person;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
 import seedu.address.model.sale.exceptions.SaleNotFoundException;
@@ -115,6 +115,27 @@ public class UniqueSaleList implements Iterable<Sale> {
     }
 
     /**
+     * Updates the buyer details of all sales within the list that are associated with {@code buyer}.
+     * This is necessary when the buyer details has been updated, but the sale is still storing an outdated
+     * version of the buyer details.
+     *
+     * @param buyer The buyer whose information has been updated.
+     */
+    public void updateSalesWithContact(Person buyer) {
+        requireNonNull(buyer);
+        List<Sale> salesToUpdate =
+                internalList.stream().filter(sale -> sale.getBuyer().getId() == buyer.getId())
+                        .collect(Collectors.toList());
+
+        for (Sale sale : salesToUpdate) {
+            Sale updatedSale =
+                    new Sale(sale.getItemName(), buyer, sale.getDatetimeOfPurchase(),
+                            sale.getQuantity(), sale.getUnitPrice(), sale.getTags());
+            this.setSale(sale, updatedSale);
+        }
+    }
+
+    /**
      * Replaces the contents of this list with {@code sales}.
      * {@code sales} must not contain duplicate sales.
      */
@@ -206,13 +227,12 @@ public class UniqueSaleList implements Iterable<Sale> {
     }
 
     /**
-     * Gets multiple number of sale count for months between {@code month} and {@code year} and
+     * Gets the monthly sale count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     public MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
         return this.monthlyListMap.getMultipleMonthCount(month, year, numberOfMonths);
     }
-
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

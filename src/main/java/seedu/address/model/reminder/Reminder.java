@@ -59,6 +59,10 @@ public class Reminder implements Comparable<Reminder> {
         return this.person;
     }
 
+    public int getPersonId() {
+        return this.person.getId();
+    }
+
     public Message getMessage() {
         return this.message;
     }

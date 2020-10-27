@@ -5,11 +5,12 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -33,7 +34,7 @@ public interface Model {
     /**
      * {@code Predicate} that checks whether the {@code Person} is archived.
      */
-    Predicate<Person> PREDICATE_SHOW_ARCHIVED_PERSONS = person -> person.isArchived();
+    Predicate<Person> PREDICATE_SHOW_ARCHIVED_PERSONS = Person::isArchived;
 
     /**
      * {@code Comparator} that is used for default sorting of person list in alphabetical order,
@@ -46,6 +47,26 @@ public interface Model {
      * {@code Predicate} that always evaluate to true.
      */
     Predicate<Sale> PREDICATE_SHOW_ALL_SALES = unused -> true;
+
+    /**
+     * {@code Predicate} that is used for filtering completed reminders.
+     */
+    Predicate<Reminder> PREDICATE_SHOW_COMPLETED_REMINDERS = Reminder::isCompleted;
+
+    /**
+     * {@code Predicate} that is used for filtering pending reminders.
+     */
+    Predicate<Reminder> PREDICATE_SHOW_PENDING_REMINDERS = reminder -> !reminder.isCompleted();
+
+    /**
+     * {@code Predicate} that always evaluate to true.
+     */
+    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
+
+    /**
+     * {@code Predicate} that checks whether the {@code Meeting} is not yet over.
+     */
+    Predicate<Meeting> PREDICATE_SHOW_UPCOMING_MEETINGS = meeting -> !meeting.isOver();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -163,7 +184,7 @@ public interface Model {
     /**
      * Returns if the {@code sale} item's tags are present in StonksBook.
      */
-    boolean saleTagsExist(Sale sale);
+    boolean saleTagsExist(Set<Tag> tags);
 
     /**
      * Returns if the {@code person}'s tags are present in StonksBook.
@@ -249,15 +270,38 @@ public interface Model {
     void updateSortedSaleList(Comparator<Sale> comparator);
 
     /**
+     * Returns an unmodifiable view of the filtered meeting list.
+     */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
+     * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    /**
      * Returns an unmodifiable view of the sorted meeting list.
      * .
      */
     ObservableList<Meeting> getSortedMeetingList();
 
     /**
-     * Returns true if an meeting with same fields as {@code meeting} exists in StonksBook.
+     * Returns true if a meeting with same fields as {@code meeting} exists in StonksBook.
      */
     boolean hasMeeting(Meeting meeting);
+
+    /**
+     * Returns a sorted list of meetings that conflict with {@code meeting}.
+     * Meetings in {@code meetingsToExclude} will not be included in the return list even if they do conflict
+     * with {@code meeting}.
+     *
+     * @param meeting           The meeting to check for conflicts against.
+     * @param meetingsToExclude The meetings that should not be checked for conflicts.
+     * @return A list of meetings that conflict with @{meeting}
+     */
+    List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude);
 
     /**
      * Deletes the given meeting.
@@ -270,6 +314,14 @@ public interface Model {
      * {@code meeting} must not already exist in StonksBook.
      */
     void addMeeting(Meeting meeting);
+
+    /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting {@code editedMeeting} must not be the same as another existing meeting in the address
+     * book.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
 
     /**
      * Returns an unmodifiable view of the reminder list
@@ -303,6 +355,16 @@ public interface Model {
     void setReminder(Reminder target, Reminder editedReminder);
 
     /**
+     * Set the predicate for filtering of reminders list.
+     */
+    void updateFilteredRemindersList(Predicate<Reminder> predicate);
+
+    /**
+     * Returns an unmodifiable list view of filtered reminders.
+     */
+    ObservableList<Reminder> getFilteredReminderList();
+
+    /**
      * Returns true if a sale with the same fields {@code sale} exists in StonksBook.
      */
     boolean hasSale(Sale sale);
@@ -332,13 +394,13 @@ public interface Model {
     int getMonthMeetingsCount(Month month, Year year);
 
     /**
-     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * Gets the monthly meeting count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths);
 
     /**
-     * Gets multiple number of sale count for months between {@code month} and {@code year} and
+     * Gets the monthly sale count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths);

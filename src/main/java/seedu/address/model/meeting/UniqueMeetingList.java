@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyCountDataSet;
-import seedu.address.commons.MonthlyListMap;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
+import seedu.address.model.MonthlyListMap;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.person.Person;
@@ -81,6 +81,26 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
     }
 
+    /**
+     * Updates the contact details of all meetings within the list that are associated with {@code contact}.
+     * This is necessary when the contact details has been updated, but the meeting is still storing an outdated
+     * version of the contact details.
+     *
+     * @param contact The contact whose information has been updated.
+     */
+    public void updateMeetingsWithContact(Person contact) {
+        requireNonNull(contact);
+        List<Meeting> meetingsToUpdate =
+                internalList.stream().filter(meeting -> meeting.getPersonId() == contact.getId())
+                        .collect(Collectors.toList());
+
+        for (Meeting meeting : meetingsToUpdate) {
+            Meeting updatedMeeting =
+                    new Meeting(contact, meeting.getMessage(), meeting.getStartDate(), meeting.getDuration());
+            this.setMeeting(meeting, updatedMeeting);
+        }
+    }
+
     public void setMeetings(UniqueMeetingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -99,6 +119,26 @@ public class UniqueMeetingList implements Iterable<Meeting> {
 
         internalList.setAll(meetings);
         this.setMonthlyListMap(meetings);
+    }
+
+    /**
+     * Replaces the meeting {@code target} in the list with {@code editedMeeting}.
+     * {@code target} must exist in the list.
+     * The meeting {@code editedMeeting} must not be the same as another existing meeting in the list.
+     */
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new MeetingNotFoundException();
+        }
+
+        if (!target.equals(editedMeeting) && contains(editedMeeting)) {
+            throw new DuplicateMeetingException();
+        }
+
+        internalList.set(index, editedMeeting);
     }
 
     private void setMonthlyListMap(List<Meeting> list) {
@@ -122,7 +162,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * Gets the monthly meeting count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
     public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {

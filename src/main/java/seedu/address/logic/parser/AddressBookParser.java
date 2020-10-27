@@ -13,8 +13,10 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DarkThemeCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LightThemeCommand;
 import seedu.address.logic.commands.PurgeCommand;
 import seedu.address.logic.commands.UnknownCommand;
 import seedu.address.logic.parser.archive.ArchiveCommandsParser;
@@ -38,23 +40,23 @@ public class AddressBookParser {
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @param userInput full user input string.
+     * @return the command based on the user input.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher firstCommandWordMatcher = this.getMatcherFromInput(userInput);
-
         final String commandWord = firstCommandWordMatcher.group("commandWord");
         final String arguments = firstCommandWordMatcher.group("arguments");
 
         if (this.isSingleKeyWordCommand(commandWord)) {
             return this.parseSingleKeyWordCommand(commandWord);
         } else if (this.isDoubleKeyWordCommand(commandWord, arguments)) {
-            final Matcher secondCommandWordMatcher = this.getMatcherFromInput(arguments);
 
+            final Matcher secondCommandWordMatcher = this.getMatcherFromInput(arguments);
             final String secondCommandWord = secondCommandWordMatcher.group("commandWord");
             final String trueArguments = secondCommandWordMatcher.group("arguments");
+
             return this.parseTwoKeyWordCommand(commandWord, secondCommandWord, trueArguments);
         } else {
             String fullCommand = String.format("%s %s", commandWord, arguments);
@@ -73,6 +75,8 @@ public class AddressBookParser {
     private boolean isSingleKeyWordCommand(String commandWord) {
         switch (commandWord) {
         case PurgeCommand.COMMAND_WORD:
+        case DarkThemeCommand.COMMAND_WORD:
+        case LightThemeCommand.COMMAND_WORD:
         case ClearCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
         case ExitCommand.COMMAND_WORD:
@@ -83,13 +87,19 @@ public class AddressBookParser {
         }
     }
 
-    private Command parseSingleKeyWordCommand(String commandWord) throws ParseException {
+    private Command parseSingleKeyWordCommand(String commandWord) {
         switch (commandWord) {
         case PurgeCommand.COMMAND_WORD:
             return new PurgeCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case DarkThemeCommand.COMMAND_WORD:
+            return new DarkThemeCommand();
+
+        case LightThemeCommand.COMMAND_WORD:
+            return new LightThemeCommand();
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

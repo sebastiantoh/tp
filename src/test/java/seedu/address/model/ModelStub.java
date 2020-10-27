@@ -5,11 +5,12 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -132,7 +133,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean saleTagsExist(Sale sale) {
+    public boolean saleTagsExist(Set<Tag> tag) {
         return true;
     }
 
@@ -206,6 +207,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Meeting> getSortedMeetingList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -216,12 +227,22 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteMeeting(Meeting target) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void addMeeting(Meeting meeting) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -247,6 +268,16 @@ public class ModelStub implements Model {
 
     @Override
     public void setReminder(Reminder target, Reminder editedReminder) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredRemindersList(Predicate<Reminder> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -1,20 +1,22 @@
 {
   "persons": [
+    {
+      "id": 1,
+      "name": "Alice P@uline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "tagged": [
+        "friends"
+      ],
+      "archived": false
+    }
   ],
   "contactTags": [],
   "saleTags": [],
   "reminders": [
     {
-      "person": {
-        "name": "Alice P@uline",
-        "phone": "94351253",
-        "email": "alice@example.com",
-        "address": "123, Jurong West Ave 6, #08-111",
-        "tagged": [
-          "friends"
-        ],
-        "archived": false
-      },
+      "personId": 1,
       "message": "Call Alice",
       "scheduledDate": "2020-10-30T13:19"
     }
