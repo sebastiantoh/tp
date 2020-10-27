@@ -54,6 +54,10 @@ public class ModelManager implements Model {
 
     private final SortedList<Sale> sortedSales;
 
+    private final SortedList<Tag> sortedContactTags;
+
+    private final SortedList<Tag> sortedSalesTags;
+
     private int latestContactId = 0;
 
     /**
@@ -70,6 +74,10 @@ public class ModelManager implements Model {
 
         this.allPersons = this.addressBook.getPersonList();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        this.sortedContactTags = new SortedList<>(this.addressBook.getContactTagList(), Comparator.naturalOrder());
+        this.sortedSalesTags = new SortedList<>(this.addressBook.getSaleTagList(), Comparator.naturalOrder());
+
         this.sortedPersons = new SortedList<>(this.filteredPersons, DEFAULT_PERSON_COMPARATOR);
         this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
 
@@ -431,11 +439,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String listTags() {
-        return addressBook.listTags();
-    }
-
-    @Override
     public boolean saleTagsExist(Set<Tag> tags) {
         return addressBook.saleTagsExist(tags);
     }
@@ -473,12 +476,12 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Tag> getContactTagList() {
-        return addressBook.getContactTagList();
+        return this.sortedContactTags;
     }
 
     @Override
     public ObservableList<Tag> getSaleTagList() {
-        return addressBook.getSaleTagList();
+        return this.sortedSalesTags;
     }
 
     @Override

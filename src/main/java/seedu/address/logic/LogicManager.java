@@ -18,6 +18,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.sale.Sale;
+import seedu.address.model.tag.Tag;
 import seedu.address.storage.Storage;
 
 /**
@@ -85,6 +86,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Sale> getSortedSaleList() {
         return model.getSortedSaleList();
+    }
+
+    @Override
+    public ObservableList<Tag> getContactTagList() {
+        return model.getContactTagList();
+    }
+
+    @Override
+    public ObservableList<Tag> getSalesTagList() {
+        return model.getSaleTagList();
     }
 
     @Override

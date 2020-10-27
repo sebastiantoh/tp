@@ -24,7 +24,7 @@ class DeleteCommandTest {
     @Test
     public void execute_validIndexContactTagList_success() {
         Tag tagToDelete = model.getContactTagList().get(INDEX_FIRST_ITEM.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM, true);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TAG_SUCCESS, tagToDelete);
 
@@ -37,22 +37,22 @@ class DeleteCommandTest {
     @Test
     public void execute_invalidIndexContactTagList_failure() {
         Index outOfBoundIndex =
-                Index.fromOneBased(model.getContactTagList().size() + model.getSaleTagList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+                Index.fromOneBased(model.getContactTagList().size() + 1);
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex, true);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_ITEM);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_ITEM);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_ITEM, true);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_ITEM, true);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same indices -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ITEM);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ITEM, true);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

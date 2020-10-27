@@ -49,10 +49,10 @@ public class AllListCommand extends ListCommand {
             model.updateFilteredSaleList(x -> true);
 
             if (sales.size() == 0) {
-                return new CommandResult(MESSAGE_SUCCESS_ALL_SALES_EMPTY);
+                return new CommandResult(MESSAGE_SUCCESS_ALL_SALES_EMPTY, false, true);
             }
 
-            return new CommandResult(MESSAGE_SUCCESS_ALL_SALES_PRESENT);
+            return new CommandResult(MESSAGE_SUCCESS_ALL_SALES_PRESENT, false, true);
         } else {
             if (targetIndex.getZeroBased() >= sortedPersonList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

@@ -179,11 +179,6 @@ public interface Model {
     String findContactsBySaleTag(Tag target);
 
     /**
-     * Lists all existing tags.
-     */
-    String listTags();
-
-    /**
      * Returns if the {@code sale} item's tags are present in StonksBook.
      */
     boolean saleTagsExist(Set<Tag> tags);

@@ -2,6 +2,8 @@ package seedu.address.logic.parser.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALES_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Optional;
@@ -24,14 +26,16 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_SALES_TAG, PREFIX_CONTACT_TAG, PREFIX_TAG);
 
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        if (argMultimap.getValue(PREFIX_CONTACT_TAG).isEmpty()
+                && argMultimap.getValue(PREFIX_SALES_TAG).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        } else if (argMultimap.getValue(PREFIX_CONTACT_TAG).isPresent()
+                && argMultimap.getValue(PREFIX_SALES_TAG).isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
         EditTagDescriptor editTagDescriptor = new EditTagDescriptor();
@@ -42,6 +46,14 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_MISSING_FIELD);
         }
 
-        return new EditCommand(index, editTagDescriptor);
+        if (argMultimap.getValue(PREFIX_CONTACT_TAG).isPresent()) {
+            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONTACT_TAG).get());
+        } else if (argMultimap.getValue(PREFIX_SALES_TAG).isPresent()) {
+            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SALES_TAG).get());
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+
+        return new EditCommand(index, editTagDescriptor, argMultimap.getValue(PREFIX_CONTACT_TAG).isPresent());
     }
 }

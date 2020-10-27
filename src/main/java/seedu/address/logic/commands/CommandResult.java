@@ -46,7 +46,6 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean clear, Integer theme,
                 DataSet<? extends Data> statisticResult, boolean isTagGuiShown, boolean isSaleGuiShown) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
@@ -71,6 +70,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code statisticResult},
      * and other fields set to their default value.
      */
+
     public CommandResult(String feedbackToUser, DataSet<? extends Data> statisticResult) {
         this(feedbackToUser, false, false, false, null, statisticResult, false, false);
     }

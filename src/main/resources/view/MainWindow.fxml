@@ -71,12 +71,12 @@
               <StackPane fx:id="reminderListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
 
-            <!-- This is a placeholder component that is to be deleted once the adhoc section is done -->
             <VBox fx:id="adHocList" styleClass="pane-with-border" prefHeight="550" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
               </padding>
               <StackPane fx:id="adHocPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="adHocSecondaryPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
           </VBox>
         </HBox>
