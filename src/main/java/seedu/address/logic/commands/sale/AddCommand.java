@@ -128,7 +128,7 @@ public class AddCommand extends Command {
         }
 
         return new CommandResult(generateSuccessMessage(salesAdded)
-                + "\n" + generateDuplicateSaleMessage(duplicatedSales));
+                + "\n" + generateDuplicateSaleMessage(duplicatedSales), false, true);
     }
 
     private String generateSuccessMessage(List<Sale> sales) {

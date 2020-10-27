@@ -48,10 +48,10 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Sale> sales = model.getFilteredSaleList();
+        List<Sale> sales = model.getSortedSaleList();
         List<Person> people = model.getSortedPersonList();
 
-        if (model.getSortedSaleList().size() > sales.size() && model.getFilteredSaleList().size() == 0) {
+        if (model.getSortedSaleList().size() == 0) {
             throw new CommandException(MESSAGE_NO_SALES_DISPLAYED);
         }
 
@@ -91,7 +91,7 @@ public class DeleteCommand extends Command {
             model.setPerson(previousPersons.get(i), editedPersons.get(i));
         }
 
-        return new CommandResult(String.format(generateSuccessMessage(deletedSales)));
+        return new CommandResult(String.format(generateSuccessMessage(deletedSales)), false, true);
     }
 
     private String generateSuccessMessage(List<Sale> deletedSales) {

@@ -18,9 +18,9 @@ import seedu.address.model.sale.Sale;
  */
 public class AllListCommand extends ListCommand {
 
-    private static final String MESSAGE_SUCCESS_ALL_SALES_PRESENT = "Listing all sales:\n%s";
+    private static final String MESSAGE_SUCCESS_ALL_SALES_PRESENT = "Listed all sales.";
 
-    private static final String MESSAGE_SUCCESS_CONTACT_SALES_PRESENT = "Sales made to %s:\n%s";
+    private static final String MESSAGE_SUCCESS_CONTACT_SALES_PRESENT = "Listed all sales made to %s.";
 
     private static final String MESSAGE_SUCCESS_ALL_SALES_EMPTY = "No sales made!";
 
@@ -52,8 +52,7 @@ public class AllListCommand extends ListCommand {
                 return new CommandResult(MESSAGE_SUCCESS_ALL_SALES_EMPTY);
             }
 
-            String formattedListAsStr = this.formatSaleListOutput(sales);
-            return new CommandResult(String.format(MESSAGE_SUCCESS_ALL_SALES_PRESENT, formattedListAsStr));
+            return new CommandResult(MESSAGE_SUCCESS_ALL_SALES_PRESENT);
         } else {
             if (targetIndex.getZeroBased() >= sortedPersonList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -69,9 +68,8 @@ public class AllListCommand extends ListCommand {
                         MESSAGE_SUCCESS_CONTACT_SALES_EMPTY, personToShow.getName()));
             }
 
-            String formattedListAsStr = this.formatSaleListOutput(sales);
-            return new CommandResult(String.format(
-                    MESSAGE_SUCCESS_CONTACT_SALES_PRESENT, personToShow.getName(), formattedListAsStr));
+            return new CommandResult(
+                    String.format(MESSAGE_SUCCESS_CONTACT_SALES_PRESENT, personToShow.getName()), false, true);
         }
     }
 
