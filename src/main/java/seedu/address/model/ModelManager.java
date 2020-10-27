@@ -62,17 +62,21 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
         this.allPersons = this.addressBook.getPersonList();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
         this.sortedPersons = new SortedList<>(this.filteredPersons);
         this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
+
+        this.filteredReminders =
+                new FilteredList<>(this.addressBook.getReminderList(), PREDICATE_SHOW_PENDING_REMINDERS);
+        this.sortedReminders = new SortedList<>(this.filteredReminders, Comparator.naturalOrder());
+
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
-        this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
-        this.filteredReminders = new FilteredList<>(sortedReminders);
-        this.updateFilteredRemindersList(PREDICATE_SHOW_PENDING_REMINDERS);
+
         this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
+        this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
 
         initialiseLatestContactId();
     }
