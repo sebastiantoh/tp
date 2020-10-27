@@ -48,7 +48,6 @@ public interface Model {
     Predicate<Sale> PREDICATE_SHOW_ALL_SALES = unused -> true;
 
     /**
-<<<<<<< HEAD
      * {@code Predicate} that is used for filtering completed reminders.
      */
     Predicate<Reminder> PREDICATE_SHOW_COMPLETED_REMINDERS = Reminder::isCompleted;
