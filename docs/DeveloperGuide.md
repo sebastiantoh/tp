@@ -584,7 +584,11 @@ The monthly statistics feature mechanism is facilitated by `MonthlyListMap` and 
 `MonthlyListMap` gets the monthly statistics data and
 `StatisticsWindow` populates the UI with the data.
 
-`MonthlyListMap` has two sets of operations, Data Retrieval and Data Manipulation:
+The commands `meeting stats` and `sale stats` implement this feature.
+
+This feature will be demonstrated in the context of `meeting stats`.
+
+`MonthlyListMap` has two sets of operations, Data Manipulation and Data Retrieval:
 
 ##### Data Manipulation
 * `MonthlyListMap#addItem(Month month, Year year, T item)` — Adds item of type T to an item list based on the key of month and code year.
@@ -602,15 +606,15 @@ After initialisation with 2 meetings, m1 that starts on August 2020 and m2 that 
 ![MeetingStatsObjectDiagram1](images/MeetingStatsObjectDiagram1.png)
 
 After `meeting add ` of meeting m3 that starts on August 2020
-![MeetingStatsObjectDiagram1](images/MeetingStatsObjectDiagram2.png)
+![MeetingStatsObjectDiagram2](images/MeetingStatsObjectDiagram2.png)
 
 After `meeting delete ` of meeting m2 that starts on December 2020
-![MeetingStatsObjectDiagram1](images/MeetingStatsObjectDiagram3.png)
+![MeetingStatsObjectDiagram3](images/MeetingStatsObjectDiagram3.png)
 
 
-After `meeting edit ` of meeting m2 that starts on
+After `meeting edit ` of meeting m3 that starts on
 August 2020 to meeting m4 that starts on December 2020
-![MeetingStatsObjectDiagram1](images/MeetingStatsObjectDiagram4.png)
+![MeetingStatsObjectDiagram4](images/MeetingStatsObjectDiagram4.png)
 
 
 
@@ -633,26 +637,28 @@ The following sequence diagram shows how the undo operation works:
 
 ![MeetingStatsDiagram3](images/MeetingStatsSequenceDiagram3.png)
 
-![MeetingStatsDiagram3](images/MeetingStatsSequenceDiagram4.png)
+![MeetingStatsDiagram4](images/MeetingStatsSequenceDiagram4.png)
+
+![MeetingStatsDiagram5](images/MeetingStatsSequenceDiagram5.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+![CommitActivityDiagram](images/MeetingStatsActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How Monthly Statistics executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Make `MonthlyListMap` as a part of `UniqueMeetingList`.
+  * Pros: Easy to implement and less error-prone as all changes to meetings are exposed by UniqueMeetingList methods
+   and it is easy to propagate the change to `MonthListMap` in the methods that are exposed by `UniqueMeetingList`.
+  * Cons: High coupling between `MonthlyListMap` and `UniqueMeetingList`.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** separate `MonthlyListMap` from `UniqueMeetingList`.
+  * Pros: Lower coupling between `MonthlyListMap` and `UniqueMeetingList`.
+  * Cons: We must ensure that whenever the meeting objects in the `UniqueMeetingList` are changed,
+   the changes are reflected to the `MonthlyListMap` to keep the data reliable.
 
-_{more aspects and alternatives to be added}_
 
 
 

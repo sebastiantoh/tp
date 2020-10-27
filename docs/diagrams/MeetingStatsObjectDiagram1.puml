@@ -27,10 +27,6 @@ title After "Initialisation"
 
     }
 
-    class "<u>m3:meeting" {
-
-    }
-
     "__:UniqueMeetingList__" -- "__:MonthlyListMap__"
     "__:MonthlyListMap__" -- "<u>m1:MonthAndYear"
     "__:MonthlyListMap__" -- "<u>m2:MonthAndYear"

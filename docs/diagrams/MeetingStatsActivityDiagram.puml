@@ -1,0 +1,13 @@
+@startuml
+start
+:User excecutes the command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+: Get the meeting count for each month;
+
+: Populate and open the statistics window;
+
+stop
+@enduml
