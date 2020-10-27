@@ -16,9 +16,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.dataset.DataSet;
 import seedu.address.commons.dataset.date.MonthAndYear;
 import seedu.address.commons.dataset.date.MonthlyCountData;
-import seedu.address.commons.dataset.date.MonthlyCountDataSet;
 import seedu.address.commons.dataset.date.MonthlyListMap;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.sale.Sale;
@@ -81,9 +81,9 @@ public class MonthlyListMapTest {
         this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_FIONA);
         this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_FIONA);
 
-        MonthlyCountDataSet actual = this.meetingMonthlyListMap
+        DataSet<MonthlyCountData> actual = this.meetingMonthlyListMap
                 .getMultipleMonthCount(month, year, 3);
-        MonthlyCountDataSet expected = new MonthlyCountDataSet(Arrays.asList(
+        DataSet<MonthlyCountData> expected = new DataSet<MonthlyCountData>(Arrays.asList(
                 new MonthlyCountData(new MonthAndYear(month1, year1), 2),
                 new MonthlyCountData(new MonthAndYear(month.minus(1), year), 0),
                 new MonthlyCountData(new MonthAndYear(month, year), 4)));
@@ -101,9 +101,9 @@ public class MonthlyListMapTest {
         Year year1 = Year.of(LUNCH_ELLE.getStartDate().getYear());
         this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_ELLE);
 
-        MonthlyCountDataSet actual = this.meetingMonthlyListMap
+        DataSet<MonthlyCountData> actual = this.meetingMonthlyListMap
                 .getMultipleMonthCount(month1, year1, 6);
-        MonthlyCountDataSet expected = new MonthlyCountDataSet(Arrays.asList(
+        DataSet<MonthlyCountData> expected = new DataSet<MonthlyCountData>(Arrays.asList(
                 new MonthlyCountData(new MonthAndYear(month.minus(4), year.minusYears(1)), 0),
                 new MonthlyCountData(new MonthAndYear(month.minus(3), year.minusYears(1)), 0),
                 new MonthlyCountData(new MonthAndYear(month.minus(2), year.minusYears(1)), 0),

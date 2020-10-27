@@ -40,8 +40,11 @@ public class DataSet<T extends Data> {
             return false;
         }
         DataSet<?> dataSet = (DataSet<?>) o;
-        return title.equals(dataSet.title) &&
-                dataList.equals(dataSet.dataList);
+
+        boolean isTitleNullOrEqual = (Objects.isNull(this.title) && Objects.isNull(dataSet.title))
+                || title.equals(dataSet.title);
+
+        return isTitleNullOrEqual && dataList.equals(dataSet.dataList);
     }
 
     @Override

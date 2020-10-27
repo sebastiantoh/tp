@@ -35,7 +35,7 @@ public class MonthlyCountDataTest {
         MonthlyCountData monthlyCountData =
                 new MonthlyCountData(new MonthAndYear(AUGUST, Year.now()), 1);
 
-        assertEquals(expectedString, monthlyCountData.getMonthAndYearAsStr());
+        assertEquals(expectedString, monthlyCountData.getKeyAsStr());
     }
 
     @Test

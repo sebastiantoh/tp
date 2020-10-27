@@ -9,7 +9,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.dataset.date.MonthlyCountDataSet;
+import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.dataset.date.MonthlyCountData;
 
 public class CommandResultTest {
     @Test
@@ -44,9 +45,9 @@ public class CommandResultTest {
 
         // different statistics result -> returns false
         assertFalse(commandResult.equals(new CommandResult(
-                "feedback", new MonthlyCountDataSet(Collections.emptyList()))));
+                "feedback", new DataSet<MonthlyCountData>(Collections.emptyList()))));
         assertFalse(new CommandResult(
-                "feedback", new MonthlyCountDataSet(Collections.emptyList())).equals(commandResult));
+                "feedback", new DataSet<MonthlyCountData>(Collections.emptyList())).equals(commandResult));
     }
 
     @Test
@@ -73,6 +74,6 @@ public class CommandResultTest {
 
         // different statistic result -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
-                new CommandResult("feedback", new MonthlyCountDataSet(Collections.emptyList())).hashCode());
+                new CommandResult("feedback", new DataSet<MonthlyCountData>(Collections.emptyList())).hashCode());
     }
 }

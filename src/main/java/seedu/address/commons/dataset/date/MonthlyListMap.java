@@ -116,7 +116,7 @@ public class MonthlyListMap<T> {
         }
 
         Collections.reverse(result);
-        return new DataSet<MonthlyCountData>(result);
+        return new DataSet<>(result);
     }
 
     /**
