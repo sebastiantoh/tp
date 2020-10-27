@@ -11,7 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Gets single month meeting count
+ * Gets single month meeting count.
  */
 public class SingleMeetingStatsCommand extends StatsCommand {
 
@@ -45,7 +45,7 @@ public class SingleMeetingStatsCommand extends StatsCommand {
      * Gets the number of meetings started in a particular month
      * stated by the attributes month and year.
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult object storing the result string
+     * @return CommandResult object storing the result string.
      */
     @Override
     public CommandResult execute(Model model) {

@@ -1,8 +1,10 @@
-package seedu.address.commons;
+package seedu.address.commons.statistics;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+
+import seedu.address.model.MonthAndYear;
 
 /**
  * Store a data object for monthly count data statistic.

@@ -21,12 +21,15 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Controller for a help page
+ * Controller for a help page.
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t11-1.github.io/tp/UserGuide.html";
+    public static final String USER_GUIDE_URL = "https://ay2021s1-cs2103t-t11-1.github.io/tp/UserGuide.html";
+
     public static final String HELP_MESSAGE = "Refer to the user guide: ";
+
+    public static final String MINIMUM_FOUR_WHITESPACE = "\\s{4,}";
 
     public static final String COMMAND_HELP_LEGEND = "\nThe information below is formatted"
             + " as (COMMAND NAME, COMMAND DESCRIPTION, COMMAND USAGE).";
@@ -36,6 +39,8 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String FXML = "HelpWindow.fxml";
 
     private final CommandTable commandTable = new CommandTable();
+
+    private boolean isUserGuideLinkOpened = false;
 
     @FXML
     private Text helpMessage;
@@ -80,21 +85,22 @@ public class HelpWindow extends UiPart<Stage> {
      */
     private void populateHelpWindow() throws IOException {
         helpMessage.setText(HELP_MESSAGE);
-        helpLink.setText(USERGUIDE_URL);
+        helpLink.setText(USER_GUIDE_URL);
 
         commandHelpLegend.setText(COMMAND_HELP_LEGEND);
 
         try (InputStream resource = this.getClass().getClassLoader()
                 .getResourceAsStream("text/helpForAllCommands.txt")) {
+
             new BufferedReader(new InputStreamReader(resource, StandardCharsets.UTF_8))
                     .lines().forEachOrdered(this::addToCommandTable);
         }
     }
 
     private void addToCommandTable(String line) {
-        String[] components = line.split("\\s{4,}");
+        String[] components = line.split(MINIMUM_FOUR_WHITESPACE);
 
-        if (components.length == 1 && !components[0].isBlank()) {
+        if (this.commandTable.isHeader(components)) {
             this.commandTable.addHeaders(components[0]);
         } else {
             this.commandTable.addCommandDescription(components);
@@ -112,10 +118,14 @@ public class HelpWindow extends UiPart<Stage> {
 
         private int currentRowIdx = STARTING_ROW_INDEX;
 
+        private boolean isHeader(String[] components) {
+            return components.length == 1 && !components[0].isBlank();
+        }
+
         /**
          * Adds colored command headers.
          *
-         * @param headerText header text to be added
+         * @param headerText header text to be added.
          */
         private void addHeaders(String headerText) {
             Label header = new Label(headerText);
@@ -128,7 +138,7 @@ public class HelpWindow extends UiPart<Stage> {
         /**
          * Adds command description.
          *
-         * @param descriptionParts parts of the command description to be added
+         * @param descriptionParts parts of the command description to be added.
          */
         private void addCommandDescription(String[] descriptionParts) {
             List<Label> commandDescParts = new ArrayList<>();
@@ -196,7 +206,15 @@ public class HelpWindow extends UiPart<Stage> {
      */
     @FXML
     private void openLink() {
-        this.hostServices.showDocument(USERGUIDE_URL);
+        if (!this.isUserGuideLinkOpened) {
+            this.isUserGuideLinkOpened = true;
+            this.setActionsOnLink();
+        }
+
+        this.hostServices.showDocument(USER_GUIDE_URL);
+    }
+
+    private void setActionsOnLink() {
         this.helpLink.setStyle("-fx-text-fill: grey");
         this.helpLink.setOnMouseMoved((v) -> this.helpLink.setStyle("-fx-text-fill: #0b6df3"));
         this.helpLink.setOnMouseExited((v) -> this.helpLink.setStyle("-fx-text-fill: grey"));

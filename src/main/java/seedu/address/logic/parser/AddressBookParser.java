@@ -38,23 +38,23 @@ public class AddressBookParser {
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @param userInput full user input string.
+     * @return the command based on the user input.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher firstCommandWordMatcher = this.getMatcherFromInput(userInput);
-
         final String commandWord = firstCommandWordMatcher.group("commandWord");
         final String arguments = firstCommandWordMatcher.group("arguments");
 
         if (this.isSingleKeyWordCommand(commandWord)) {
             return this.parseSingleKeyWordCommand(commandWord);
         } else if (this.isDoubleKeyWordCommand(commandWord, arguments)) {
-            final Matcher secondCommandWordMatcher = this.getMatcherFromInput(arguments);
 
+            final Matcher secondCommandWordMatcher = this.getMatcherFromInput(arguments);
             final String secondCommandWord = secondCommandWordMatcher.group("commandWord");
             final String trueArguments = secondCommandWordMatcher.group("arguments");
+
             return this.parseTwoKeyWordCommand(commandWord, secondCommandWord, trueArguments);
         } else {
             String fullCommand = String.format("%s %s", commandWord, arguments);
@@ -83,7 +83,7 @@ public class AddressBookParser {
         }
     }
 
-    private Command parseSingleKeyWordCommand(String commandWord) throws ParseException {
+    private Command parseSingleKeyWordCommand(String commandWord) {
         switch (commandWord) {
         case PurgeCommand.COMMAND_WORD:
             return new PurgeCommand();
