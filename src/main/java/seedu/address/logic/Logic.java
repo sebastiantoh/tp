@@ -12,6 +12,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.sale.Sale;
+import seedu.address.model.tag.Tag;
 
 /**
  * API of the Logic component
@@ -57,6 +58,16 @@ public interface Logic {
      * Returns an unmodifiable view of the sorted list of sales.
      */
     ObservableList<Sale> getSortedSaleList();
+
+    /**
+     * Returns an unmodifiable view of the list of contact tags.
+     */
+    ObservableList<Tag> getContactTagList();
+
+    /**
+     * Returns an unmodifiable view of the list of sales tags.
+     */
+    ObservableList<Tag> getSalesTagList();
 
     /**
      * Returns the user prefs' address book file path.
