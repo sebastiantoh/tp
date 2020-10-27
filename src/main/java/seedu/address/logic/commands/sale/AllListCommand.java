@@ -68,7 +68,8 @@ public class AllListCommand extends ListCommand {
                         MESSAGE_SUCCESS_CONTACT_SALES_EMPTY, personToShow.getName()));
             }
 
-            return new CommandResult(String.format(MESSAGE_SUCCESS_CONTACT_SALES_PRESENT, personToShow.getName()));
+            return new CommandResult(
+                    String.format(MESSAGE_SUCCESS_CONTACT_SALES_PRESENT, personToShow.getName()), false, true);
         }
     }
 

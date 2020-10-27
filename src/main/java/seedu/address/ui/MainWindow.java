@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -29,6 +30,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+
+    private static final String[] DARK_THEME = new String[] {"view/DarkTheme.css", "view/Extensions.css"};
+    private static final String[] LIGHT_THEME = new String[] {"view/LightTheme.css", "view/LightExtensions.css"};
+    private boolean isDarkTheme;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -62,13 +67,16 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane reminderListPanelPlaceholder;
 
     @FXML
-    private StackPane saleListPanelPlaceholder;
+    private StackPane adHocPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
 
     @FXML
     private StackPane chatBoxPlaceholder;
+
+    @FXML
+    private Scene scene;
 
     private HostServices hostServices;
 
@@ -84,6 +92,13 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        if (logic.getGuiSettings().getTheme() == null || logic.getGuiSettings().getTheme().equals("dark")) {
+            setTheme(true);
+            isDarkTheme = true;
+        } else {
+            setTheme(false);
+            isDarkTheme = false;
+        }
 
         setAccelerators();
 
@@ -143,7 +158,7 @@ public class MainWindow extends UiPart<Stage> {
         reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         saleListPanel = new SaleListPanel(logic.getSortedSaleList());
-        saleListPanelPlaceholder.getChildren().add(saleListPanel.getRoot());
+        adHocPanelPlaceholder.getChildren().add(saleListPanel.getRoot());
 
         chatBox = new ChatBox();
         chatBoxPlaceholder.getChildren().add(chatBox.getRoot());
@@ -167,6 +182,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private void setTheme(boolean isDarkTheme) {
+        scene.getStylesheets().clear();
+        if (isDarkTheme) {
+            scene.getStylesheets().addAll(DARK_THEME);
+        } else {
+            scene.getStylesheets().addAll(LIGHT_THEME);
+        }
+        this.isDarkTheme = isDarkTheme;
+    }
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -189,7 +213,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), (isDarkTheme ? "dark" : "light"));
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -241,11 +265,29 @@ public class MainWindow extends UiPart<Stage> {
                 handleStatisticsResult(commandResult.getStatisticResult());
             }
 
+            if (commandResult.getTheme() != null) {
+                if (commandResult.getTheme() == 0) {
+                    setTheme(true);
+                } else {
+                    setTheme(false);
+                }
+            }
+
             // Force refresh of the following UI components which are time sensitive
             // Overdue reminders should be displayed differently
             this.reminderListPanel.refresh();
             // Past meetings should be filtered out
             this.meetingListPanel.refresh();
+
+            if (commandResult.isSaleGuiShown()) {
+                adHocPanelPlaceholder.getChildren().setAll(saleListPanel.getRoot());
+            }
+
+            if (commandResult.isTagGuiShown()) {
+                // TODO: replace saleListPanel with tagListPanel when implemented
+                // TODO: replace CommandResult constructors to specify isTagGuiShown for tag methods
+                adHocPanelPlaceholder.getChildren().setAll(saleListPanel.getRoot());
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {

@@ -91,7 +91,7 @@ public class DeleteCommand extends Command {
             model.setPerson(previousPersons.get(i), editedPersons.get(i));
         }
 
-        return new CommandResult(String.format(generateSuccessMessage(deletedSales)));
+        return new CommandResult(String.format(generateSuccessMessage(deletedSales)), false, true);
     }
 
     private String generateSuccessMessage(List<Sale> deletedSales) {

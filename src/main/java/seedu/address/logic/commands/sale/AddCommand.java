@@ -105,7 +105,7 @@ public class AddCommand extends Command {
             Person personToEdit = lastShownList.get(index.getZeroBased());
             Sale toAdd = new Sale(itemName, personToEdit, dateOfPurchase, quantity, unitPrice, tagList);
 
-            if (!model.saleTagsExist(toAdd)) {
+            if (!model.saleTagsExist(toAdd.getTags())) {
                 throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
             }
             BigDecimal newTotalSalesAmount = toAdd.getTotalCost().add(personToEdit.getTotalSalesAmount());
@@ -128,7 +128,7 @@ public class AddCommand extends Command {
         }
 
         return new CommandResult(generateSuccessMessage(salesAdded)
-                + "\n" + generateDuplicateSaleMessage(duplicatedSales));
+                + "\n" + generateDuplicateSaleMessage(duplicatedSales), false, true);
     }
 
     private String generateSuccessMessage(List<Sale> sales) {

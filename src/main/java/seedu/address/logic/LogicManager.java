@@ -86,6 +86,7 @@ public class LogicManager implements Logic {
     public ObservableList<Sale> getSortedSaleList() {
         return model.getSortedSaleList();
     }
+
     @Override
     public ObservableList<Reminder> getFilteredReminderList() {
         return model.getFilteredReminderList();

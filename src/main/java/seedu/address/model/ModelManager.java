@@ -8,6 +8,7 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -435,8 +436,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean saleTagsExist(Sale sale) {
-        return addressBook.saleTagsExist(sale);
+    public boolean saleTagsExist(Set<Tag> tags) {
+        return addressBook.saleTagsExist(tags);
     }
 
     @Override

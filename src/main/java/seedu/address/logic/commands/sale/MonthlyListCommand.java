@@ -50,7 +50,7 @@ public class MonthlyListCommand extends ListCommand {
         model.updateFilteredSaleList(sale -> monthlySaleList.contains(sale));
         model.updateSortedSaleList(SORT_BY_DATE);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, monthlySaleList.size(), month, year));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, monthlySaleList.size(), month, year), false, true);
     }
 
     @Override

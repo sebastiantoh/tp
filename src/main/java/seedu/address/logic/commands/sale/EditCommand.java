@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SALES;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,7 +51,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SALE_DATE + "DATETIME_OF_PURCHASE] "
             + "[" + PREFIX_SALE_UNIT_PRICE + "UNIT_PRICE] "
             + "[" + PREFIX_SALE_QUANTITY + "QUANTITY]\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_SALE_INDEX + " 3 "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_SALE_INDEX + "3 "
             + PREFIX_SALE_NAME + "File " + PREFIX_SALE_QUANTITY + "25 ";
 
     public static final String MESSAGE_EDIT_SALE_SUCCESS = "Edited Sale(s): ";
@@ -84,9 +85,17 @@ public class EditCommand extends Command {
                 .parallelStream().filter(personIndex -> personIndex.getZeroBased() >= lastShownList.size())
                 .collect(Collectors.toList());
 
+        // Check if indexes are provided
         if (!invalidIndexes.isEmpty()) {
             throw new CommandException(MassSaleCommandUtil.generateInvalidIndexMessage(
                     Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX, invalidIndexes));
+        }
+
+        // Check if new tags are valid
+        if (editSaleDescriptor.getTags().isPresent()) {
+            if (!model.saleTagsExist(editSaleDescriptor.getTags().get())) {
+                throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
+            }
         }
 
         List<Sale> editedSales = new ArrayList<>();
@@ -94,27 +103,47 @@ public class EditCommand extends Command {
 
         for (Index saleIndex : saleIndexes) {
             Sale saleToEdit = lastShownList.get(saleIndex.getZeroBased());
+            Sale editedSale = createEditedSale(saleToEdit, editSaleDescriptor);
+            BigDecimal previousCost = saleToEdit.getTotalCost();
+            BigDecimal newCost = editedSale.getTotalCost();
+            Person initialBuyer = saleToEdit.getBuyer();
+            Person newBuyer = initialBuyer;
 
             if (personIndex != null) {
                 List<Person> lastShownPeople = model.getSortedPersonList();
                 if (personIndex.getZeroBased() >= lastShownPeople.size()) {
                     throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
                 }
-                Person newBuyer = lastShownPeople.get(personIndex.getZeroBased());
-                editSaleDescriptor.setBuyer(newBuyer);
+
+                initialBuyer = Person.changeSaleAmount(initialBuyer,
+                        initialBuyer.getTotalSalesAmount().subtract(previousCost));
+
+                newBuyer = lastShownPeople.get(personIndex.getZeroBased());
+
+                editSaleDescriptor.setBuyer(
+                        Person.changeSaleAmount(newBuyer, newBuyer.getTotalSalesAmount().add(newCost)));
             } else {
-                editSaleDescriptor.setBuyer(saleToEdit.getBuyer());
+                BigDecimal changeToSalesAmount = newCost.subtract(previousCost);
+
+                newBuyer = Person.changeSaleAmount(initialBuyer,
+                        initialBuyer.getTotalSalesAmount().subtract(changeToSalesAmount));
+
+                editSaleDescriptor.setBuyer(newBuyer);
             }
 
-            Sale editedSale = createEditedSale(saleToEdit, editSaleDescriptor);
-
-            if (!model.saleTagsExist(editedSale)) {
-                throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
-            }
+            // Re-edit sale with new buyer
+            editedSale = createEditedSale(saleToEdit, editSaleDescriptor);
 
             if (!saleToEdit.isSameSale(editedSale) && model.hasSale(editedSale)) {
                 invalidSales.add(editedSale);
             } else {
+                if (initialBuyer.isSamePerson(newBuyer)) {
+                    model.setPerson(initialBuyer, newBuyer);
+                } else {
+                    model.setPerson(saleToEdit.getBuyer(), initialBuyer);
+                    model.setPerson(newBuyer, editedSale.getBuyer());
+                }
+
                 model.setSale(saleToEdit, editedSale);
                 editedSales.add(editedSale);
             }
@@ -134,7 +163,7 @@ public class EditCommand extends Command {
             result += "\n" + MESSAGE_DUPLICATE_SALE + MassSaleCommandUtil.listAllSales(invalidSales);
         }
 
-        return new CommandResult(result);
+        return new CommandResult(result, false, true);
     }
 
     /**

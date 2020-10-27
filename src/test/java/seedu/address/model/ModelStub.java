@@ -5,6 +5,7 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -134,7 +135,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean saleTagsExist(Sale sale) {
+    public boolean saleTagsExist(Set<Tag> tag) {
         return true;
     }
 

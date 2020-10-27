@@ -123,6 +123,27 @@ public class UniqueSaleList implements Iterable<Sale> {
     }
 
     /**
+     * Updates the buyer details of all sales within the list that are associated with {@code buyer}.
+     * This is necessary when the buyer details has been updated, but the sale is still storing an outdated
+     * version of the buyer details.
+     *
+     * @param buyer The buyer whose information has been updated.
+     */
+    public void updateSalesWithContact(Person buyer) {
+        requireNonNull(buyer);
+        List<Sale> salesToUpdate =
+                internalList.stream().filter(sale -> sale.getBuyer().getId() == buyer.getId())
+                        .collect(Collectors.toList());
+
+        for (Sale sale : salesToUpdate) {
+            Sale updatedSale =
+                    new Sale(sale.getItemName(), buyer, sale.getDatetimeOfPurchase(),
+                            sale.getQuantity(), sale.getUnitPrice(), sale.getTags());
+            this.setSale(sale, updatedSale);
+        }
+    }
+
+    /**
      * Replaces the contents of this list with {@code sales}.
      * {@code sales} must not contain duplicate sales.
      */
