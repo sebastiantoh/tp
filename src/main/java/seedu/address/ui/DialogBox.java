@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.io.IOException;
 import java.util.Collections;
 
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,7 +25,7 @@ public class DialogBox extends HBox {
     @FXML
     private Label dialog;
 
-    private DialogBox(String text) {
+    private DialogBox(String text, ReadOnlyDoubleProperty parentWidthProperty) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -34,6 +35,7 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        dialog.maxWidthProperty().bind(parentWidthProperty.subtract(15));
         dialog.setText(text);
     }
 
@@ -50,8 +52,8 @@ public class DialogBox extends HBox {
     /**
      * Displays user dialog.
      */
-    public static DialogBox getUserDialog(String text) {
-        var db = new DialogBox(userName + " " + text);
+    public static DialogBox getUserDialog(String text, ReadOnlyDoubleProperty parentWidthProperty) {
+        var db = new DialogBox(userName + " " + text, parentWidthProperty);
         db.flip();
         return db;
     }
@@ -59,8 +61,8 @@ public class DialogBox extends HBox {
     /**
      * Displays StonksBot's response dialog.
      */
-    public static DialogBox getStonksBotDialog(String text) {
-        var db = new DialogBox(botName + ": " + text);
+    public static DialogBox getStonksBotDialog(String text, ReadOnlyDoubleProperty parentWidthProperty) {
+        var db = new DialogBox(botName + ": " + text, parentWidthProperty);
         db.flip();
         return db;
     }
