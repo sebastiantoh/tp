@@ -5,6 +5,7 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -183,7 +184,7 @@ public interface Model {
     /**
      * Returns if the {@code sale} item's tags are present in StonksBook.
      */
-    boolean saleTagsExist(Sale sale);
+    boolean saleTagsExist(Set<Tag> tags);
 
     /**
      * Returns if the {@code person}'s tags are present in StonksBook.

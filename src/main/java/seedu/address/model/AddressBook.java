@@ -160,7 +160,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : editedPerson.getTags()) {
             contactTags.add(t);
         }
-
+        sales.updateSalesWithContact(editedPerson);
         meetings.updateMeetingsWithContact(editedPerson);
         reminders.updateRemindersWithContact(editedPerson);
     }
@@ -173,6 +173,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
         meetings.removeMeetingsWithContact(key);
         reminders.removeRemindersWithContact(key);
+        sales.removeSalesWithContact(key);
     }
 
     //// tag-level operations
@@ -288,13 +289,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         int count = 0;
         for (Sale s : sales.asUnmodifiableObservableList()) {
             if (s.getTags().contains(target)) {
-                Person buyer = persons.asUnmodifiableObservableList().stream()
-                        .filter(person -> person.getId().equals(s.getBuyerId()))
-                        .findAny()
-                        .orElse(null);
-                assert buyer != null;
-
-                output.append(String.format("%d. %s (Client: %s)\n", count + 1, s, buyer.getName()));
+                output.append(String.format("%d. %s\n", count + 1, s));
                 count += 1;
             }
         }
@@ -317,7 +312,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Sale s : sales.asUnmodifiableObservableList()) {
             if (s.getTags().contains(target)) {
                 Person buyer = persons.asUnmodifiableObservableList().stream()
-                        .filter(person -> person.getId().equals(s.getBuyerId()))
+                        .filter(person -> person.equals(s.getBuyer()))
                         .findAny()
                         .orElse(null);
                 assert buyer != null;
@@ -368,8 +363,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if all the tags of the provided {@code sale} item exist in StonksBook.
      */
-    public boolean saleTagsExist(Sale sale) {
-        for (Tag t : sale.getTags()) {
+    public boolean saleTagsExist(Set<Tag> tags) {
+        for (Tag t : tags) {
             if (!saleTags.contains(t)) {
                 return false;
             }

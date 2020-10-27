@@ -9,11 +9,13 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.statistics.MonthlyCountDataSet;
 import seedu.address.model.MonthlyListMap;
+import seedu.address.model.person.Person;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
 import seedu.address.model.sale.exceptions.SaleNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -96,11 +98,41 @@ public class UniqueSaleList implements Iterable<Sale> {
         monthlyListMap.removeItem(toRemove.getMonth(), toRemove.getYear(), toRemove);
     }
 
-    public UniqueSaleList setSales(UniqueSaleList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-        this.setMonthlyListMap(replacement.internalList);
-        return this;
+    /**
+     * Removes all sales associated with the given {@code contact} from the list.
+     *
+     * @param contact The contact whose associated reminders are to be removed.
+     */
+    public void removeSalesWithContact(Person contact) {
+        requireNonNull(contact);
+        List<Sale> salesToRemove =
+                internalList.stream().filter(sale -> sale.getBuyer().equals(contact))
+                        .collect(Collectors.toList());
+
+        for (Sale sale : salesToRemove) {
+            this.remove(sale);
+        }
+    }
+
+    /**
+     * Updates the buyer details of all sales within the list that are associated with {@code buyer}.
+     * This is necessary when the buyer details has been updated, but the sale is still storing an outdated
+     * version of the buyer details.
+     *
+     * @param buyer The buyer whose information has been updated.
+     */
+    public void updateSalesWithContact(Person buyer) {
+        requireNonNull(buyer);
+        List<Sale> salesToUpdate =
+                internalList.stream().filter(sale -> sale.getBuyer().getId() == buyer.getId())
+                        .collect(Collectors.toList());
+
+        for (Sale sale : salesToUpdate) {
+            Sale updatedSale =
+                    new Sale(sale.getItemName(), buyer, sale.getDatetimeOfPurchase(),
+                            sale.getQuantity(), sale.getUnitPrice(), sale.getTags());
+            this.setSale(sale, updatedSale);
+        }
     }
 
     /**
@@ -115,6 +147,14 @@ public class UniqueSaleList implements Iterable<Sale> {
 
         internalList.setAll(sales);
         this.setMonthlyListMap(sales);
+    }
+
+
+    public UniqueSaleList setSales(UniqueSaleList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+        this.setMonthlyListMap(replacement.internalList);
+        return this;
     }
 
     private void setMonthlyListMap(List<Sale> list) {
@@ -138,7 +178,7 @@ public class UniqueSaleList implements Iterable<Sale> {
                 tags.add(editedTag);
 
                 Sale newSale = new Sale(original.getItemName(),
-                        original.getBuyerId(),
+                        original.getBuyer(),
                         original.getDatetimeOfPurchase(),
                         original.getQuantity(),
                         original.getUnitPrice(),
@@ -165,7 +205,7 @@ public class UniqueSaleList implements Iterable<Sale> {
             if (tags.contains(toRemove)) {
                 tags.remove(toRemove);
                 Sale newSale = new Sale(original.getItemName(),
-                        original.getBuyerId(),
+                        original.getBuyer(),
                         original.getDatetimeOfPurchase(),
                         original.getQuantity(),
                         original.getUnitPrice(),
