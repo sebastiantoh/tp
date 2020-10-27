@@ -20,6 +20,9 @@ public class ChatBox extends UiPart<Region> {
     @FXML
     private ScrollPane scrollPane;
 
+    /**
+     * Initialises a ChatBox object.
+     */
     public ChatBox() {
         super(FXML);
         dialogContainer.maxWidthProperty().bind(scrollPane.widthProperty().subtract(10));
