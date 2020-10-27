@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
 import seedu.address.commons.statistics.MonthlyCountDataSet;
 import seedu.address.model.MonthlyListMap;
+import seedu.address.model.person.Person;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
 import seedu.address.model.sale.exceptions.SaleNotFoundException;
 import seedu.address.model.tag.Tag;

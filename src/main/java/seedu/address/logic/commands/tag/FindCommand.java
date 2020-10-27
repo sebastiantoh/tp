@@ -19,9 +19,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "tag find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all the contacts or sales items associated with this tag. "
-            + "Note that all contacts or sales associated with this tag "
-            + "will be updated automatically with the updated tag.\n"
+            + ": Finds all the contacts or sales items associated with this tag.\n"
             + "Parameters:  ct/INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " ct/1";
 

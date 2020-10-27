@@ -45,7 +45,9 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp,
-                         boolean exit, boolean clear, Integer theme, MonthlyCountDataSet statisticResult, boolean isTagGuiShown, boolean isSaleGuiShown) {
+                         boolean exit, boolean clear, Integer theme,
+                         MonthlyCountDataSet statisticResult,
+                         boolean isTagGuiShown, boolean isSaleGuiShown) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -140,7 +142,7 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && clear == otherCommandResult.clear
                 && exit == otherCommandResult.exit
-                && theme.equals(otherCommandResult.theme)
+                && theme == otherCommandResult.theme
                 && ((Objects.isNull(statisticResult)
                     && Objects.isNull(otherCommandResult.statisticResult))
                     || (!Objects.isNull(statisticResult)

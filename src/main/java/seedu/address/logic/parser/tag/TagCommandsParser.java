@@ -13,6 +13,9 @@ import seedu.address.logic.commands.tag.ListCommand;
 import seedu.address.logic.parser.GroupCommandsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses the command word to create a Tag Command object corresponding to the command word.
+ */
 public class TagCommandsParser implements GroupCommandsParser {
 
     public static final List<String> ALL_TAG_COMMAND_WORDS = Arrays.asList(
