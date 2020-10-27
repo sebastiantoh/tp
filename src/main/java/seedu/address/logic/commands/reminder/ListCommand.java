@@ -13,7 +13,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "reminder list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all reminders";
+    public static final String MESSAGE_SUCCESS = "Listed all reminders.";
 
     @Override
     public CommandResult execute(Model model) {

@@ -39,6 +39,8 @@ public class ModelManager implements Model {
 
     private final SortedList<Person> sortedPersons;
 
+    private final FilteredList<Meeting> filteredMeetings;
+
     private final SortedList<Meeting> sortedMeetings;
 
     private final SortedList<Reminder> sortedReminders;
@@ -61,15 +63,20 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
         this.allPersons = this.addressBook.getPersonList();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
         this.sortedPersons = new SortedList<>(this.filteredPersons);
         this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
-        this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
-        this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
+
+        this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
         this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
+
+        this.filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList(), PREDICATE_SHOW_UPCOMING_MEETINGS);
+        this.sortedMeetings = new SortedList<>(this.filteredMeetings, Comparator.naturalOrder());
+
+        this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
 
         initialiseLatestContactId();
     }
@@ -368,11 +375,40 @@ public class ModelManager implements Model {
         this.sortedSales.setComparator(comparator);
     }
 
-    //=========== Meeting List Accessors =============================================================
+    //=========== Filtered Meeting List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
-     * {@code versionedAddressBook}.
+     * Returns an unmodifiable view of the filtered list of {@code Meeting}
+     */
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return this.filteredMeetings;
+    }
+
+    /**
+     * Updates the predicate used to filter meeting list.
+     *
+     * @param predicate predicate to filter meeting list
+     */
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+
+        // There seems to be some form of caching in the filtered list especially when
+        // the predicate passed in as the argument is the same predicate currently used
+        // to filter the list. This is undesirable since predicates involving meetings may be
+        // time-sensitive and the results may differ over time.
+        // This line of code is used to reset the filter, therefore forcing the filtered
+        // list to re-filter the elements with the new predicate passed in as arguments.
+        this.filteredMeetings.setPredicate(null);
+
+        this.filteredMeetings.setPredicate(predicate);
+    }
+
+    //=========== Sorted Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the sorted list of {@code Meeting}
      */
     @Override
     public ObservableList<Meeting> getSortedMeetingList() {

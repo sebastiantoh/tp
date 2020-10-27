@@ -48,6 +48,16 @@ public interface Model {
     Predicate<Sale> PREDICATE_SHOW_ALL_SALES = unused -> true;
 
     /**
+     * {@code Predicate} that always evaluate to true.
+     */
+    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
+
+    /**
+     * {@code Predicate} that checks whether the {@code Meeting} is not yet over.
+     */
+    Predicate<Meeting> PREDICATE_SHOW_UPCOMING_MEETINGS = meeting -> !meeting.isOver();
+
+    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
@@ -247,6 +257,18 @@ public interface Model {
      * Updates the comparator of the sorted sale list to sort by the given {@code comparator}.
      */
     void updateSortedSaleList(Comparator<Sale> comparator);
+
+    /**
+     * Returns an unmodifiable view of the filtered meeting list.
+     */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
+     * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
     /**
      * Returns an unmodifiable view of the sorted meeting list.
