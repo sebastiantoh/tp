@@ -127,11 +127,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public String listTags() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public boolean saleTagsExist(Sale sale) {
         return true;
     }

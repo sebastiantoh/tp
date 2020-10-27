@@ -374,11 +374,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String listTags() {
-        return addressBook.listTags();
-    }
-
-    @Override
     public boolean saleTagsExist(Sale sale) {
         return addressBook.saleTagsExist(sale);
     }

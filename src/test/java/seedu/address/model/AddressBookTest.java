@@ -9,7 +9,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
-import static seedu.address.testutil.person.TypicalPersons.CARL;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 
 import java.time.Month;
@@ -166,25 +165,6 @@ public class AddressBookTest {
                         + "1. Benson Meier Phone: 98765432 Email: johnd@example.com "
                         + "Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends] Remark: Owes me $10\n",
                 addressBookCopy.findContactsBySaleTag(new Tag("fruits")));
-    }
-
-    @Test
-    public void listTags_noSaleTags_success() {
-        addressBook.addPerson(ALICE);
-        assertEquals("No sale tags found! Listing contact tags:\n"
-                + "1. [friends]\n", addressBook.listTags());
-    }
-
-    @Test
-    public void listTags_withBothTags_success() {
-        addressBook.addPerson(ALICE);
-        addressBook.addPerson(CARL);
-        addressBook.addSale(TypicalSales.CAMERA);
-        assertEquals("Listing contact tags:\n"
-                + "1. [friends]\n"
-                + "\n"
-                + "Listing sale tags:\n"
-                + "2. [electronics]\n", addressBook.listTags());
     }
 
     @Test
