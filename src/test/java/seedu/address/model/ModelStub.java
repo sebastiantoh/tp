@@ -271,6 +271,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void updateFilteredRemindersList(Predicate<Reminder> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasSale(Sale sale) {
         return false;
     }

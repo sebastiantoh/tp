@@ -33,7 +33,7 @@ public interface Model {
     /**
      * {@code Predicate} that checks whether the {@code Person} is archived.
      */
-    Predicate<Person> PREDICATE_SHOW_ARCHIVED_PERSONS = person -> person.isArchived();
+    Predicate<Person> PREDICATE_SHOW_ARCHIVED_PERSONS = Person::isArchived;
 
     /**
      * {@code Comparator} that is used for default sorting of person list in alphabetical order,
@@ -46,6 +46,16 @@ public interface Model {
      * {@code Predicate} that always evaluate to true.
      */
     Predicate<Sale> PREDICATE_SHOW_ALL_SALES = unused -> true;
+
+    /**
+     * {@code Predicate} that is used for filtering completed reminders.
+     */
+    Predicate<Reminder> PREDICATE_SHOW_COMPLETED_REMINDERS = Reminder::isCompleted;
+
+    /**
+     * {@code Predicate} that is used for filtering pending reminders.
+     */
+    Predicate<Reminder> PREDICATE_SHOW_PENDING_REMINDERS = reminder -> !reminder.isCompleted();
 
     /**
      * {@code Predicate} that always evaluate to true.
@@ -342,6 +352,16 @@ public interface Model {
      * book.
      */
     void setReminder(Reminder target, Reminder editedReminder);
+
+    /**
+     * Set the predicate for filtering of reminders list.
+     */
+    void updateFilteredRemindersList(Predicate<Reminder> predicate);
+
+    /**
+     * Returns an unmodifiable list view of filtered reminders.
+     */
+    ObservableList<Reminder> getFilteredReminderList();
 
     /**
      * Returns true if a sale with the same fields {@code sale} exists in StonksBook.
