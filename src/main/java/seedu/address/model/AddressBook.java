@@ -363,8 +363,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if all the tags of the provided {@code sale} item exist in StonksBook.
      */
-    public boolean saleTagsExist(Sale sale) {
-        for (Tag t : sale.getTags()) {
+    public boolean saleTagsExist(Set<Tag> tags) {
+        for (Tag t : tags) {
             if (!saleTags.contains(t)) {
                 return false;
             }

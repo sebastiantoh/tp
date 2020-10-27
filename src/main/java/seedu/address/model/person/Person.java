@@ -119,6 +119,13 @@ public class Person {
                 && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
     }
 
+    public static Person changeSaleAmount(Person personToEdit, BigDecimal newSaleAmount) {
+        Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
+                personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
+                personToEdit.getRemark(), personToEdit.isArchived(), newSaleAmount);
+        return editedPerson;
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
