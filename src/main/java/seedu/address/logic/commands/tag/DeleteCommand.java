@@ -24,7 +24,7 @@ public class DeleteCommand extends Command {
             + ": Deletes the tag identified by the index number used in the displayed reminder list. "
             + "Note that all associations with this tag will be cleared.\n"
             + "Parameters: INDEX (must be a positive integer) MODEL (must be either contact or sales)\n"
-            + "Example: " + COMMAND_WORD + " 1 " + CliSyntax.PREFIX_CONTACT;
+            + "Example: " + COMMAND_WORD + " " + CliSyntax.PREFIX_CONTACT_TAG + "1";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag: %1$s";
 

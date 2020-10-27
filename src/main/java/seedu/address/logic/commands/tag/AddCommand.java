@@ -2,8 +2,7 @@ package seedu.address.logic.commands.tag;
 
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALES_TAG;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -21,18 +20,16 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Adds a tag (for contacts or for sales) to the StonksBook. "
             + "Parameters: "
-            + "c/ (or s/) "
-            + PREFIX_TAG + "TAG\n"
+            + "ct/ (or st/) TAG\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_SALE + " "
-            + PREFIX_TAG + "fruits";
+            + PREFIX_SALES_TAG + "fruits";
 
     public static final String MESSAGE_CONTACT_SUCCESS = "New contact tag added: %1$s";
     public static final String MESSAGE_SALES_SUCCESS = "New sales tag added: %1$s";
     public static final String MESSAGE_DUPLICATE_CONTACT_TAG = "This contact tag already exists in StonksBook";
     public static final String MESSAGE_DUPLICATE_SALES_TAG = "This sales tag already exists in StonksBook";
     public static final String MESSAGE_CONFLICT_TYPES =
-            "Invalid tag type provided! Please use either c/ or s/, but not both.\n";
+            "Invalid tag type provided! Please use either ct/ or st/, but not both.\n";
 
     private final Tag toAdd;
     private final boolean isContact;
