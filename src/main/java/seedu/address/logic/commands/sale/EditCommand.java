@@ -120,7 +120,8 @@ public class EditCommand extends Command {
 
                 newBuyer = lastShownPeople.get(personIndex.getZeroBased());
 
-                editSaleDescriptor.setBuyer(Person.changeSaleAmount(newBuyer, newBuyer.getTotalSalesAmount().add(newCost)));
+                editSaleDescriptor.setBuyer(
+                        Person.changeSaleAmount(newBuyer, newBuyer.getTotalSalesAmount().add(newCost)));
             } else {
                 BigDecimal changeToSalesAmount = newCost.subtract(previousCost);
 
@@ -136,7 +137,7 @@ public class EditCommand extends Command {
             if (!saleToEdit.isSameSale(editedSale) && model.hasSale(editedSale)) {
                 invalidSales.add(editedSale);
             } else {
-                if(initialBuyer.isSamePerson(newBuyer)) {
+                if (initialBuyer.isSamePerson(newBuyer)) {
                     model.setPerson(initialBuyer, newBuyer);
                 } else {
                     model.setPerson(saleToEdit.getBuyer(), initialBuyer);
