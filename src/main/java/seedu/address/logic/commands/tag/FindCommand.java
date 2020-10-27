@@ -31,7 +31,10 @@ public class FindCommand extends Command {
     /**
      * Instantiates a FindCommand object depending on whether the user specified whether to find contacts or sales.
      */
-    public FindCommand(Index targetIndex, boolean isContact) {
+    public FindCommand(Index targetIndex, Boolean isContact) {
+        requireNonNull(targetIndex);
+        requireNonNull(isContact);
+
         this.targetIndex = targetIndex;
         this.isContact = isContact;
     }
@@ -40,6 +43,8 @@ public class FindCommand extends Command {
      * Instantiates a FindCommand object that finds sales.
      */
     public FindCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
+
         this.targetIndex = targetIndex;
         this.isContact = false;
     }

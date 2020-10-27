@@ -7,15 +7,16 @@ import java.util.logging.Logger;
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.statistics.MonthlyCountDataSet;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,6 +29,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+
+    private static final String[] DARK_THEME = new String[] {"view/DarkTheme.css", "view/Extensions.css"};
+    private static final String[] LIGHT_THEME = new String[] {"view/LightTheme.css", "view/LightExtensions.css"};
+    private boolean isDarkTheme;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -65,10 +70,13 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane chatBoxPlaceholder;
 
+    @FXML
+    private Scene scene;
+
     private HostServices hostServices;
 
     /**
-     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic} and {@code HostServices}.
      */
     public MainWindow(Stage primaryStage, Logic logic, HostServices hostServices) {
         super(FXML, primaryStage);
@@ -79,6 +87,13 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        if (logic.getGuiSettings().getTheme() == null || logic.getGuiSettings().getTheme().equals("dark")) {
+            setTheme(true);
+            isDarkTheme = true;
+        } else {
+            setTheme(false);
+            isDarkTheme = false;
+        }
 
         setAccelerators();
 
@@ -159,6 +174,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private void setTheme(boolean isDarkTheme) {
+        scene.getStylesheets().clear();
+        if (isDarkTheme) {
+            scene.getStylesheets().addAll(DARK_THEME);
+        } else {
+            scene.getStylesheets().addAll(LIGHT_THEME);
+        }
+        this.isDarkTheme = isDarkTheme;
+    }
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -181,7 +205,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), (isDarkTheme ? "dark" : "light"));
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -231,6 +255,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.hasStatisticsResult()) {
                 handleStatisticsResult(commandResult.getStatisticResult());
+            }
+
+            if (commandResult.getTheme() != null) {
+                if (commandResult.getTheme() == 0) {
+                    setTheme(true);
+                } else {
+                    setTheme(false);
+                }
             }
 
             // Force refresh of the following UI components which are time sensitive

@@ -4,11 +4,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESC_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TOTAL_SALES;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.contact.SortCommandParser.ORDER_KEYWORD;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,14 +34,14 @@ public class SortCommandParserTest {
 
     @Test
     public void parse_nameAndDesc_success() {
-        String args = " " + PREFIX_CONTACT_NAME.getPrefix() + " " + ORDER_KEYWORD;
+        String args = " " + PREFIX_CONTACT_NAME.getPrefix() + " " + PREFIX_DESC_ORDER;
         SortCommand expectedSortCommand = new SortCommand(PREFIX_CONTACT_NAME, true);
         assertParseSuccess(sortCommandParser, args, expectedSortCommand);
     }
 
     @Test
     public void parse_emailAndDesc_success() {
-        String args = " " + PREFIX_CONTACT_EMAIL.getPrefix() + " " + ORDER_KEYWORD;
+        String args = " " + PREFIX_CONTACT_EMAIL.getPrefix() + " " + PREFIX_DESC_ORDER;
         SortCommand expectedSortCommand = new SortCommand(PREFIX_CONTACT_EMAIL, true);
         assertParseSuccess(sortCommandParser, args, expectedSortCommand);
     }
@@ -55,7 +55,7 @@ public class SortCommandParserTest {
 
     @Test
     public void parse_totalSalesAndDesc_success() {
-        String args = " " + PREFIX_TOTAL_SALES.getPrefix() + " " + ORDER_KEYWORD;
+        String args = " " + PREFIX_TOTAL_SALES.getPrefix() + " " + PREFIX_DESC_ORDER;
         SortCommand expectedSortCommand = new SortCommand(PREFIX_TOTAL_SALES, true);
         assertParseSuccess(sortCommandParser, args, expectedSortCommand);
     }
@@ -83,7 +83,7 @@ public class SortCommandParserTest {
 
     @Test
     public void parse_noAttributeAndDesc_failure() {
-        String args = " " + ORDER_KEYWORD;
+        String args = " " + PREFIX_DESC_ORDER;
         assertParseFailure(sortCommandParser, args,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
@@ -114,21 +114,7 @@ public class SortCommandParserTest {
     @Test
     public void parse_twoAttributesAndDesc_failure() {
         String args = " " + PREFIX_CONTACT_EMAIL + " " + PREFIX_CONTACT_NAME
-                + " " + ORDER_KEYWORD;
-        assertParseFailure(sortCommandParser, args,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_validAttributeAndNotDesc_failure() {
-        String args = " " + PREFIX_CONTACT_EMAIL + " " + "lol";
-        assertParseFailure(sortCommandParser, args,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_validAttributeAndDescUpperCase_failure() {
-        String args = " " + PREFIX_CONTACT_EMAIL + " " + ORDER_KEYWORD.toUpperCase();
+                + " " + PREFIX_DESC_ORDER;
         assertParseFailure(sortCommandParser, args,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
