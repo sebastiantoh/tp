@@ -68,6 +68,7 @@ public class ModelManager implements Model {
         this.allPersons = this.addressBook.getPersonList();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList(), PREDICATE_SHOW_UNARCHIVED_PERSONS);
         this.sortedPersons = new SortedList<>(this.filteredPersons, DEFAULT_PERSON_COMPARATOR);
+        this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
 
         this.filteredReminders =
                 new FilteredList<>(this.addressBook.getReminderList(), PREDICATE_SHOW_PENDING_REMINDERS);
