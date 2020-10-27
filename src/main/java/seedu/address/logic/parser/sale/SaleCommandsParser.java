@@ -6,6 +6,7 @@ import java.util.List;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.UnknownCommand;
 import seedu.address.logic.commands.sale.AddCommand;
+import seedu.address.logic.commands.sale.BreakdownCommand;
 import seedu.address.logic.commands.sale.DeleteCommand;
 import seedu.address.logic.commands.sale.EditCommand;
 import seedu.address.logic.commands.sale.ListCommand;
@@ -22,7 +23,9 @@ public class SaleCommandsParser implements GroupCommandsParser {
             AddCommand.COMMAND_WORD,
             DeleteCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
-            StatsCommand.COMMAND_WORD
+            EditCommand.COMMAND_WORD,
+            StatsCommand.COMMAND_WORD,
+            BreakdownCommand.COMMAND_WORD
     );
 
     /**
@@ -50,6 +53,9 @@ public class SaleCommandsParser implements GroupCommandsParser {
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommandParser().parse(arguments);
+
+        case BreakdownCommand.COMMAND_WORD:
+            return new BreakdownCommand();
 
         default:
             return new UnknownCommand(commandWord);

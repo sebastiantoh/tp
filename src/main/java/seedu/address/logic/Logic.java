@@ -55,7 +55,6 @@ public interface Logic {
     ObservableList<Reminder> getSortedReminderList();
 
     /**
-<<<<<<< HEAD
      * Returns an unmodifiable view of the sorted list of sales.
      */
     ObservableList<Sale> getSortedSaleList();

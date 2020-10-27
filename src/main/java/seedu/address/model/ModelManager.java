@@ -8,6 +8,7 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -16,7 +17,9 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.statistics.MonthlyCountDataSet;
+import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.commons.dataset.tag.SaleTagCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -71,17 +74,21 @@ public class ModelManager implements Model {
 
         this.allPersons = this.addressBook.getPersonList();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
-        this.sortedPersons = new SortedList<>(this.filteredPersons);
-        this.sortedSales = new SortedList<>(this.filteredSales, Comparator.naturalOrder());
-        this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
-        this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
-        this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
-        this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
+
         this.sortedContactTags = new SortedList<>(this.addressBook.getContactTagList(), Comparator.naturalOrder());
         this.sortedSalesTags = new SortedList<>(this.addressBook.getSaleTagList(), Comparator.naturalOrder());
+
+        this.sortedPersons = new SortedList<>(this.filteredPersons, DEFAULT_PERSON_COMPARATOR);
+        this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
+
         this.filteredReminders =
                 new FilteredList<>(this.addressBook.getReminderList(), PREDICATE_SHOW_PENDING_REMINDERS);
+        this.sortedReminders = new SortedList<>(this.filteredReminders, Comparator.naturalOrder());
+
+        this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
+        this.sortedSales = new SortedList<>(this.filteredSales, Comparator.naturalOrder());
+
+        this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList(), PREDICATE_SHOW_UPCOMING_MEETINGS);
 
         initialiseLatestContactId();
@@ -432,8 +439,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean saleTagsExist(Sale sale) {
-        return addressBook.saleTagsExist(sale);
+    public boolean saleTagsExist(Set<Tag> tags) {
+        return addressBook.saleTagsExist(tags);
     }
 
     @Override
@@ -483,13 +490,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         return this.addressBook.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
     }
 
     @Override
-    public MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
         return this.addressBook.getMultipleMonthSaleCount(month, year, numberOfMonths);
+    }
+
+    @Override
+    public DataSet<SaleTagCountData> getSaleTagCount() {
+        return this.addressBook.getSaleTagCount();
     }
 
     @Override

@@ -16,7 +16,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.statistics.MonthlyCountDataSet;
+import seedu.address.commons.dataset.Data;
+import seedu.address.commons.dataset.DataSet;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -232,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens a statistics window.
      */
     @FXML
-    public void handleStatisticsResult(MonthlyCountDataSet statisticResult) {
+    public void handleStatisticsResult(DataSet<? extends Data> statisticResult) {
         this.statisticsWindow = new StatisticsWindow(statisticResult);
         this.statisticsWindow.getRoot()
                 .setOnCloseRequest(x -> this.openStatisticsWindows.remove(this.statisticsWindow));

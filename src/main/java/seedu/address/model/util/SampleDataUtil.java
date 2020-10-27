@@ -78,22 +78,22 @@ public class SampleDataUtil {
     private static final Sale RULER = new Sale(new ItemName("Ruler"), BERNICE_YU,
             LocalDateTime.of(2020, 11, 1, 19, 00),
             new Quantity("1200"), new UnitPrice(new BigDecimal("0.99")), getTagSet("stationery"));
-    private static final Sale GUITAR = new Sale(new ItemName("guitar"), DAVID_LI.getId(),
+    private static final Sale GUITAR = new Sale(new ItemName("guitar"), DAVID_LI,
             LocalDateTime.of(2020, 11, 3, 19, 00),
             new Quantity("3"), new UnitPrice(new BigDecimal("4000.00")), getTagSet("music"));
-    private static final Sale GUITAR_PICK = new Sale(new ItemName("guitar pick"), ROY_BALAKRISHNAN.getId(),
+    private static final Sale GUITAR_PICK = new Sale(new ItemName("guitar pick"), ROY_BALAKRISHNAN,
             LocalDateTime.of(2020, 8, 3, 19, 00),
             new Quantity("4000"), new UnitPrice(new BigDecimal("1.00")), getTagSet("music"));
-    private static final Sale GUITAR_STRAP = new Sale(new ItemName("guitar strap"), BERNICE_YU.getId(),
+    private static final Sale GUITAR_STRAP = new Sale(new ItemName("guitar strap"), BERNICE_YU,
             LocalDateTime.of(2020, 8, 3, 19, 00),
             new Quantity("4"), new UnitPrice(new BigDecimal("76.00")), getTagSet("music"));
-    private static final Sale DRUM_SET = new Sale(new ItemName("drum set"), BERNICE_YU.getId(),
+    private static final Sale DRUM_SET = new Sale(new ItemName("drum set"), BERNICE_YU,
             LocalDateTime.of(2020, 7, 3, 19, 00),
             new Quantity("2"), new UnitPrice(new BigDecimal("14530.40")), getTagSet("music"));
-    private static final Sale DRUM_STICKS = new Sale(new ItemName("guitar"), ALEX_YEOH.getId(),
+    private static final Sale DRUM_STICKS = new Sale(new ItemName("guitar"), ALEX_YEOH,
             LocalDateTime.of(2020, 6, 3, 19, 00),
             new Quantity("400"), new UnitPrice(new BigDecimal("17.95")), getTagSet("music"));
-    private static final Sale MICROPHONE = new Sale(new ItemName("microphone"), CHARLOTTE_OLIVEIRO.getId(),
+    private static final Sale MICROPHONE = new Sale(new ItemName("microphone"), CHARLOTTE_OLIVEIRO,
             LocalDateTime.of(2020, 9, 3, 19, 00),
             new Quantity("7"), new UnitPrice(new BigDecimal("123.60")), getTagSet("music"));
 
