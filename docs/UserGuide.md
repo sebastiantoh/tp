@@ -331,9 +331,6 @@ StonksBook allows you to manage your scheduled meetings within the application.
 
 Adds a scheduled meeting with the specified contact in StonksBook.
 
-To prevent the situation in which you end up with conflicting meetings, StonksBook will not allow you to add a new
- meeting if it conflicts with some meeting in StonksBook!
-
 Format: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 
 * Adds a scheduled meeting with the contact at the specified `CONTACT_INDEX`.
@@ -342,15 +339,26 @@ Format: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 * The start datetime must be in the format `yyyy-MM-dd HH:mm`
 * The duration is specified in minutes and must be a positive integer.
 
-Examples:
-* `meeting add c/2 m/Follow-up meeting d/2020-10-30 15:00 du/60` Adds a 1-hour long meeting titled `Follow-up meeting` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
-* `meeting add c/3 m/Call to finalise details d/2020-10-30 08:00 du/30` Adds a 30-minute long meeting titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
+Example:
+Let's say that you successfully secured a lunch meeting with John Doe that is scheduled for 3 December 2020 12pm
+and lasts 60 minutes. Here's how you can add this new meeting into StonksBook.
+ 
+ 1. Identify the index corresponding to John Doe in the contact list. If you have a large list of contacts, it may be
+  convenient to search for John Doe by typing `contact find John Doe` in the command box. The contact list will update
+   to show all contacts with the name John Doe. 
+ 
+ 2. Suppose John Doe is at the second index in the contact list. Then, type `meeting add c/2 m/Lunch with John Doe d/2020-12-03 12:00 du/90` 
+ in the command box, and press Enter to execute it.
+ 
+ 3. You should see the newly created meeting in the meetings list. 
+
+<div markdown="block" class="alert alert-info">
+To prevent the situation in which you unknowingly scheduled conflicting meetings, StonksBook will not allow you to
+ add a new meeting if it conflicts with some meeting in StonksBook!
+</div>
 
 #### Editing a meeting: `meeting edit` \[Sebastian Toh Shi Jian\]
 Edits an existing meeting in StonksBook.
-
-Similar to when adding a meeting, StonksBook will not allow you to edit a meeting if it will conflicts with some meeting
- in StonksBook!
 
 Format: `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [du/DURATION]`
 
@@ -358,9 +366,23 @@ Format: `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [du/DURAT
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-Examples:
-* `meeting edit 1 c/2` edits the 1st meeting to be associated with the second contact in the displayed contact list.
-* `meeting edit 3 d/2020-11-28 13:00 du/90` sets the start date of the 3rd meeting to 28th November, 1pm and the duration to 90 minutes.
+Example:
+Let's say that you have just received an email from John Doe who wishes to reschedule his lunch meeting with you to 15
+ December 2020, 12pm. Here's how you can make this change in StonksBook:
+ 
+ 1. Identify the index corresponding to the meeting to be rescheduled in the meeting list. If you have a large list of
+  meetings, it may be convenient to filter for all meetings with John Doe. Assuming that John Doe is the 2nd contact
+   currently displayed in the contact list, you can type `meeting list c/2` and the meeting list will update to show
+    only upcoming meetings with John Doe.
+    
+ 2. Suppose the meeting to be rescheduled is at the third index in the meeting list. Then, type `meeting edit 3 d/2020-12-15 12:00` in the command box, and press Enter to execute it.
+  
+ 3. You should see that the meeting has been updated to reflect this new scheduled date.
+
+<div markdown="block" class="alert alert-info">
+Similar to when adding a meeting, StonksBook will not allow you to edit a meeting if it will conflicts with some meeting
+ in StonksBook!
+</div>
 
 #### Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
 
@@ -383,8 +405,18 @@ Format: `meeting delete INDEX`
 * The index refers to the index number shown in the displayed meetings list.
 * The index must be a positive integer 1, 2, 3, …​
 
-Examples:
-* `meeting list 5` followed by `meeting delete 2` deletes the 2nd meeting that is associated with the 5th contact in StonksBook.
+Example:
+Let's say that you have just received an unfortunate email from John Doe who no longer wishes to meet with you on 15
+ December 2020, 12pm. Here's how you can delete this meeting in StonksBook:
+
+ 1. Identify the index corresponding to the meeting to be deleted in the meeting list. If you have a large list of
+    meetings, it may be convenient to filter for all meetings with John Doe. Assuming that John Doe is the 2nd contact
+    currently displayed in the contact list, you can type `meeting list c/2` and the meeting list will update to show
+    only upcoming meetings with John Doe.
+    
+ 2. Suppose the meeting to be deleted is at the third index in the meeting list. Then, type `meeting delete 3` in the command box, and press Enter to execute it.
+ 
+ 3. You should see that the meeting has been deleted from the meeting list.
 
 #### Analysing meetings: `meeting stats`
 Analyses the meeting data and visualises the statistical result.
