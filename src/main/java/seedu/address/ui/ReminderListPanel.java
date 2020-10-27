@@ -33,6 +33,7 @@ public class ReminderListPanel extends UiPart<Region> {
      * Refreshes (redraws) the ReminderListPanel. Use when you want to force an update of the UI.
      */
     void refresh() {
+        logger.fine("Refreshing reminders list...");
         this.reminderListView.refresh();
     }
 

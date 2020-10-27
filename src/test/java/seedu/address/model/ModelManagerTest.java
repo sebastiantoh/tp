@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.meeting.TypicalMeetings.MEET_ALICE;
@@ -194,6 +195,12 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getConflictingMeetings_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.getConflictingMeetings(null));
+        assertThrows(NullPointerException.class, () -> modelManager.getConflictingMeetings(null, MEET_ALICE));
+    }
+
+    @Test
     public void deleteMeeting_invalidMeeting_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.deleteMeeting(null));
     }
@@ -201,6 +208,13 @@ public class ModelManagerTest {
     @Test
     public void deleteMeeting_invalidMeeting_throwsMeetingNotFoundException() {
         assertThrows(MeetingNotFoundException.class, () -> modelManager.deleteMeeting(MEET_ALICE));
+    }
+
+    @Test
+    public void setMeeting_nullGiven_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(null, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(null, MEET_ALICE));
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(MEET_ALICE, null));
     }
 
     @Test
@@ -236,7 +250,6 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.setReminder(CALL_ALICE, null));
     }
 
-
     @Test
     public void getSortedReminderList_reminderWithEarlierDateAdded_meetingInSortedOrder() {
         modelManager.addReminder(CALL_ALICE);
@@ -250,6 +263,7 @@ public class ModelManagerTest {
 
     @Test
     public void getSortedMeetingList_meetingWithEarlierDateAdded_meetingInSortedOrder() {
+        modelManager.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         modelManager.addMeeting(MEET_ALICE);
         modelManager.addMeeting(PRESENT_PROPOSAL_BENSON);
 
