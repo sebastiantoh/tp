@@ -47,6 +47,10 @@ public class ModelManager implements Model {
 
     private final SortedList<Sale> sortedSales;
 
+    private final SortedList<Tag> sortedContactTags;
+
+    private final SortedList<Tag> sortedSalesTags;
+
     private int latestContactId = 0;
 
 
@@ -70,6 +74,8 @@ public class ModelManager implements Model {
         this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
         this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
+        this.sortedContactTags = new SortedList<>(this.addressBook.getContactTagList(), Comparator.naturalOrder());
+        this.sortedSalesTags = new SortedList<>(this.addressBook.getSaleTagList(), Comparator.naturalOrder());
 
         initialiseLatestContactId();
     }
@@ -410,12 +416,12 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Tag> getContactTagList() {
-        return addressBook.getContactTagList();
+        return this.sortedContactTags;
     }
 
     @Override
     public ObservableList<Tag> getSaleTagList() {
-        return addressBook.getSaleTagList();
+        return this.sortedSalesTags;
     }
 
     @Override

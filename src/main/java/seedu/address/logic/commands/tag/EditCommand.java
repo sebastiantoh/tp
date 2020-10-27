@@ -47,8 +47,8 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tag> contactTagList = model.getAddressBook().getContactTagList();
-        List<Tag> saleTagList = model.getAddressBook().getSaleTagList();
+        List<Tag> contactTagList = model.getContactTagList();
+        List<Tag> saleTagList = model.getSaleTagList();
 
         if (targetIndex.getOneBased() > contactTagList.size() + saleTagList.size() || targetIndex.getOneBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);

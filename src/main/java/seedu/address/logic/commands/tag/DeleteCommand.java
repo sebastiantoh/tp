@@ -37,8 +37,8 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // Contact tags will be displayed in front of Sale tags.
-        List<Tag> contactTagList = model.getAddressBook().getContactTagList();
-        List<Tag> saleTagList = model.getAddressBook().getSaleTagList();
+        List<Tag> contactTagList = model.getContactTagList();
+        List<Tag> saleTagList = model.getSaleTagList();
 
         if (targetIndex.getOneBased() > contactTagList.size() + saleTagList.size() || targetIndex.getOneBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
