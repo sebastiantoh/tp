@@ -30,4 +30,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_YEAR = new Prefix("y/");
     public static final Prefix PREFIX_SALE = new Prefix("s/");
     public static final Prefix PREFIX_REMINDER_STATUS = new Prefix("st/");
+    public static final Prefix PREFIX_SHOW_ALL = new Prefix("a/");
 }

@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.Month;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -147,7 +148,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given person {@code target} in the list with {@code editedPerson}. This change will also
+     * propagate to all associated meetings and reminders.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
      */
@@ -158,6 +160,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : editedPerson.getTags()) {
             contactTags.add(t);
         }
+
+        meetings.updateMeetingsWithContact(editedPerson);
+        reminders.updateRemindersWithContact(editedPerson);
     }
 
     /**
@@ -402,6 +407,35 @@ public class AddressBook implements ReadOnlyAddressBook {
         return meetings.contains(meeting);
     }
 
+
+    /**
+     * Returns a sorted list of meetings that conflict with {@code meeting}.
+     * Meetings in {@code meetingsToExclude} will not be included in the return list even if they do conflict
+     * with {@code meeting}.
+     *
+     * @param meeting           The meeting to check for conflicts against.
+     * @param meetingsToExclude The meetings that should not be checked for conflicts.
+     * @return A list of meetings that conflict with @{meeting}
+     */
+    public List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude) {
+        assert meeting != null;
+        assert meetingsToExclude != null;
+
+        List<Meeting> excludedMeetings = List.of(meetingsToExclude);
+
+        List<Meeting> conflictingMeetings = new ArrayList<>();
+        for (Meeting meetingToCheckAgainst : meetings) {
+            if (!excludedMeetings.contains(meetingToCheckAgainst)
+                    && meetingToCheckAgainst.isConflicting(meeting)) {
+                conflictingMeetings.add(meetingToCheckAgainst);
+            }
+        }
+
+        Collections.sort(conflictingMeetings);
+
+        return conflictingMeetings;
+    }
+
     /**
      * Adds an meeting to the address book.
      * The meeting must not already exist in the address book.
@@ -416,6 +450,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeMeeting(Meeting key) {
         meetings.remove(key);
+    }
+
+    /**
+     * Replaces the given meeting {@code target} in the list with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting {@code editedMeeting} must not be the same as another existing meeting in the address book.
+     */
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        meetings.setMeeting(target, editedMeeting);
     }
 
     //// reminder-level operations

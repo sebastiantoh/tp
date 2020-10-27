@@ -48,6 +48,7 @@ public interface Model {
     Predicate<Sale> PREDICATE_SHOW_ALL_SALES = unused -> true;
 
     /**
+<<<<<<< HEAD
      * {@code Predicate} that is used for filtering completed reminders.
      */
     Predicate<Reminder> PREDICATE_SHOW_COMPLETED_REMINDERS = Reminder::isCompleted;
@@ -56,6 +57,16 @@ public interface Model {
      * {@code Predicate} that is used for filtering pending reminders.
      */
     Predicate<Reminder> PREDICATE_SHOW_PENDING_REMINDERS = reminder -> !reminder.isCompleted();
+
+    /**
+     * {@code Predicate} that always evaluate to true.
+     */
+    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
+
+    /**
+     * {@code Predicate} that checks whether the {@code Meeting} is not yet over.
+     */
+    Predicate<Meeting> PREDICATE_SHOW_UPCOMING_MEETINGS = meeting -> !meeting.isOver();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -259,15 +270,38 @@ public interface Model {
     void updateSortedSaleList(Comparator<Sale> comparator);
 
     /**
+     * Returns an unmodifiable view of the filtered meeting list.
+     */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    /**
+     * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
+
+    /**
      * Returns an unmodifiable view of the sorted meeting list.
      * .
      */
     ObservableList<Meeting> getSortedMeetingList();
 
     /**
-     * Returns true if an meeting with same fields as {@code meeting} exists in StonksBook.
+     * Returns true if a meeting with same fields as {@code meeting} exists in StonksBook.
      */
     boolean hasMeeting(Meeting meeting);
+
+    /**
+     * Returns a sorted list of meetings that conflict with {@code meeting}.
+     * Meetings in {@code meetingsToExclude} will not be included in the return list even if they do conflict
+     * with {@code meeting}.
+     *
+     * @param meeting           The meeting to check for conflicts against.
+     * @param meetingsToExclude The meetings that should not be checked for conflicts.
+     * @return A list of meetings that conflict with @{meeting}
+     */
+    List<Meeting> getConflictingMeetings(Meeting meeting, Meeting... meetingsToExclude);
 
     /**
      * Deletes the given meeting.
@@ -280,6 +314,14 @@ public interface Model {
      * {@code meeting} must not already exist in StonksBook.
      */
     void addMeeting(Meeting meeting);
+
+    /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting {@code editedMeeting} must not be the same as another existing meeting in the address
+     * book.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
 
     /**
      * Returns an unmodifiable view of the reminder list
