@@ -9,12 +9,12 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.dataset.Data;
 import seedu.address.commons.dataset.DataSet;
-import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 
@@ -70,6 +70,7 @@ public class SaleTagListMap {
         });
     }
 
+    // TODO: potentially remove
     /**
      * Gets the number of items in an sale list based on the key of {@code key}.
      * If the key of {@code key} does not exist, the number is 0.
@@ -79,12 +80,9 @@ public class SaleTagListMap {
      */
     public int getSaleCount(Tag tag) {
         requireNonNull(tag);
-
         TagKey key = new TagKey(tag);
-        if (this.saleTagListMap.containsKey(key)) {
-            return this.saleTagListMap.get(key).size();
-        }
-        return 0;
+        assert this.saleTagListMap.containsKey(key);
+        return this.saleTagListMap.get(key).size();
     }
 
     /**
@@ -106,9 +104,13 @@ public class SaleTagListMap {
      */
     public void editTag(Tag previousTag, Tag newTag) {
         requireAllNonNull(previousTag, newTag);
-        TagKey tagKeyToEdit = saleTagListMap.keySet().stream()
+        Optional<TagKey> possibleTagKeyToEdit = saleTagListMap.keySet().stream()
                 .filter(tagKey -> tagKey.getTag().equals(previousTag))
-                .findFirst().orElseThrow();
+                .findFirst();
+
+        assert possibleTagKeyToEdit.isPresent();
+
+        TagKey tagKeyToEdit = possibleTagKeyToEdit.get();
         tagKeyToEdit.setTag(newTag);
     }
 

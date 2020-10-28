@@ -26,7 +26,7 @@ public class MonthlyCountDataTest {
     }
 
     @Test
-    public void getMonthAndYearAsStr_valid_success() {
+    public void getKeyAsStr_valid_success() {
         String expectedString = String.format("%s %s", AUGUST, Year.now());
         MonthlyCountData monthlyCountData =
                 new MonthlyCountData(new MonthAndYear(AUGUST, Year.now()), 1);

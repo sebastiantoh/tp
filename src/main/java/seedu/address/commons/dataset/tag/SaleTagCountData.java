@@ -1,5 +1,7 @@
 package seedu.address.commons.dataset.tag;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 
 import seedu.address.commons.dataset.Data;
