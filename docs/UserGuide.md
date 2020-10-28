@@ -327,9 +327,9 @@ Deletes a sales item of specified index.
 **Examples**:
 * `sale delete s/4` deletes the 4th sale made in the list.
 
-### Scheduled Meetings
+### Meetings
 
-StonksBook allows you to manage your scheduled meetings within the application.
+StonksBook allows you to manage your meetings within the application.
 
 #### Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
 
@@ -367,7 +367,7 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
 
 #### Adding a meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
-Adds a scheduled meeting with the specified contact in StonksBook.
+Adds a meeting with the specified contact in StonksBook.
 
 <div markdown="block" class="alert alert-info">
 To prevent the situation in which you unknowingly scheduled conflicting meetings, StonksBook will not allow you to
@@ -376,7 +376,7 @@ To prevent the situation in which you unknowingly scheduled conflicting meetings
 
 **Format**: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 
-* Adds a scheduled meeting with the contact at the specified `CONTACT_INDEX`.
+* Adds a meeting with the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index must be a positive integer 1, 2, 3, …​
 * The start datetime must be in the format `yyyy-MM-dd HH:mm`
@@ -396,7 +396,7 @@ and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
   
     <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
  
- 3. Type `meeting add c/2 m/Lunch with Alex Yeoh d/2020-12-03 12:00 du/90` in the **Command Box** and press <kbd>Enter</kbd>.
+ 3. Type `meeting add c/1 m/Lunch with Alex Yeoh d/2020-12-03 12:00 du/90` in the **Command Box** and press <kbd >Enter</kbd>.
  
     <img src="images/meeting-add/meeting-add.png" alt="Enter 'meeting add' in the command box" width="900px">
   
