@@ -9,6 +9,10 @@ import seedu.address.model.tag.Tag;
 public class TagKey {
     private Tag tag;
 
+    /**
+     * Creates a TagKey with the specified {@code tag}.
+     * @param tag The tag to be stored in the TagKey.
+     */
     public TagKey(Tag tag) {
         requireNonNull(tag);
         this.tag = tag;
