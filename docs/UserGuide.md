@@ -133,7 +133,7 @@ Finds contacts whose names exactly match or is similar to any of the given keywo
 e.g. You want to find the contact Alex Yeoh but you only roughly remember the spellng the of the name as alx yo and you can do this as shown.
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
 <img src="images/contactfindfirststep.png" alt="result for 'contact sort keyword'" width="400px">
-2. the contact list now contains contacts whose name is similar to alx yo.
+2. The contact list now contains contacts whose name is similar to alx yo.
 <img src="images/contactfindsecondstep.png" alt="result for 'contact sort keyword'" width="400px">
 3. Alex Yeoh appears as the first contact on the list.
 
