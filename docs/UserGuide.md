@@ -250,9 +250,45 @@ Examples:
 
 ### Sales
 
-#### Adding a sale to a customer: `sale add`
+StonksBook allows you to manage the sales you made within the application. 
 
-Adds a sale of specified name, unit price and quantity, to the specified contact.
+#### Listing all sales: `sale list` [Kwek Min Yih]
+
+Shows a list of sales. By default, all sales will be listed. 
+This list is sorted in increasing order based on the date the sale is made.
+
+Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
+
+* When used without any arguments, all sales will be shown.
+* When an contact index is specified, the list will only show sales associated with the contact at the specified index.
+* When both month and year are specified, the list will only show sales made in the specified month and year.
+* Only either contact index or month and year can be specified.
+
+Example: Let's say you want to view all sales made to Bernice Yu. This is what you need to do:
+
+1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
+    - This is to identify the contact index corresponding to Bernice Yu.
+     
+    <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
+    
+2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
+ show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.
+ 
+    <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
+ 
+3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <img src="images/meeting-list/meeting-list.png" alt="Enter 'meeting list c/1' in the command box" width="900px">
+
+4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
+ show a list of upcoming sales scheduled with Bernice Yu.
+
+    <img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="900px">
+
+
+#### Adding a sale to a customer: `sale add` [Kwek Min Yih]
+
+Adds a sale to the specified contact in StonksBook.
 
 Format: `sale add c/CONTACT_INDEX n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`
 
@@ -267,7 +303,7 @@ Format: `sale add c/CONTACT_INDEX n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRIC
 Examples:
 * `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery` Adds a sale made to the contact that is ordered 4th on the displayed contact list. This is a sale of 2 Notebooks, each of price $6.00, made on 30 October at 3.00, with the tag "stationery".
 
-#### Editing an existing sale: `sale edit`
+#### Editing an existing sale: `sale edit` [Kwek Min Yih]
 
 Edits an existing sale in StonksBook.
 
@@ -284,13 +320,6 @@ Examples:
 * `sale edit 3 t/` clears the tags of the 3rd sale.
 
 
-#### Listing all sales: `sale list`
-
-Shows a list of sales.
-
-<img src="images/saleListMockup.png" alt="result for 'sale list'" width="400px">
-
-Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 
 
 * At most one optional parameter can be present.
@@ -315,7 +344,7 @@ Examples:
 * `sale list c/5` lists all sales made to the 5th contact in the contact list.
 * `sale list m/6 y/2020` lists all sales whose associated date is within June 2020.
 
-#### Deleting a sales item: `sale delete`
+#### Deleting a sales item: `sale delete` [Kwek Min Yih]
 
 Deletes a sales item of specified index.
 
