@@ -346,21 +346,21 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
     - This is to identify the contact index corresponding to Alex Yeoh. Let us assume that Alex Yeoh is at the first
      index.
      
-<img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
+    <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
     
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
  show only contacts with the name 'Alex'
  
-<img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
+    <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
  
 3. Type `meeting list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<img src="images/meeting-list/meeting-list.png" alt="Enter 'meeting list c/1' in the command box" width="900px">
+    <img src="images/meeting-list/meeting-list.png" alt="Enter 'meeting list c/1' in the command box" width="900px">
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Meeting List** will
  show a list of upcoming meetings scheduled with Alex Yeoh.
 
-<img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="900px">
+    <img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="900px">
 
 #### Adding a meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
@@ -381,49 +381,56 @@ To prevent the situation in which you unknowingly scheduled conflicting meetings
 
 **Example**:
 Let's say that you successfully secured a lunch meeting with Alex Yeoh that is scheduled for 3 December 2020 12pm
-and lasts 60 minutes. Here's how you can add this new meeting into StonksBook:
+and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
  
  1. Type `contact find alex` in the **Command Box** and press <kbd>Enter</kbd>. 
      - This is to identify the contact index corresponding to Alex Yeoh. Let us assume that Alex Yeoh is at the first
       index.
       
- <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
+    <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
  
  2. The **Result Box** will display a message of the number of contacts listed.
   
- <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
+    <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
  
  3. Type `meeting add c/2 m/Lunch with Alex Yeoh d/2020-12-03 12:00 du/90` in the **Command Box** and press <kbd>Enter</kbd>.
  
- <img src="images/meeting-add/meeting add.png" alt="Enter 'meeting add' in the command box" width="900px">
+    <img src="images/meeting-add/meeting add.png" alt="Enter 'meeting add' in the command box" width="900px">
   
 4. The **Result Box** will display a message noting that the command was successful, and the **Meeting List** will
  contain this newly created meeting.
+    - You may have to scroll through your **Meeting List** to find this newly created meeting since meetings are
+     sorted in increasing order based on the date the meeting is scheduled.
  
-  <img src="images/meeting-add/meeting-add-result.png" alt="Result for 'meeting add'" width="900px">
+    <img src="images/meeting-add/meeting-add-result.png" alt="Result for 'meeting add'" width="900px">
 
 #### Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified meeting from StonksBook.
 
-Format: `meeting delete INDEX`
+**Format**: `meeting delete INDEX`
 
 * Deletes the schedule at the specified `INDEX`.
 * The index refers to the index number shown in the displayed meetings list.
 * The index must be a positive integer 1, 2, 3, …​
 
-Example:
-Let's say that you have just received an unfortunate email from John Doe who no longer wishes to meet with you on 15
+**Example**:
+Let's say that you have just received an unfortunate email from Alex Yeoh who no longer wishes to meet with you on 3
  December 2020, 12pm. Here's how you can delete this meeting in StonksBook:
 
- 1. Identify the index corresponding to the meeting to be deleted in the meeting list. If you have a large list of
-    meetings, it may be convenient to filter for all meetings with John Doe. Assuming that John Doe is the 2nd contact
-    currently displayed in the contact list, you can type `meeting list c/2` and the meeting list will update to show
-    only upcoming meetings with John Doe.
+ 1. Type `meeting list` in the **Command Box** and press <kbd>Enter</kbd>. 
+     - This is to display all upcoming meetings in the **Meeting List**, which is necessary to identify the index of
+      the meeting that is to be deleted. Let us assume that the meeting is at the third index.
     
- 2. Suppose the meeting to be deleted is at the third index in the meeting list. Then, type `meeting delete 3` in the command box, and press Enter to execute it.
+    <img src="images/meeting-delete/meeting-third-index.png" alt="Result for 'meeting list'" width="900px">
+
+ 2. Type `meeting delete 3` in the command box, and press Enter to execute it.
  
+    <img src="images/meeting-delete/meeting delete.png" alt="Enter command 'meeting delete'" width="900px">
+     
  3. You should see that the meeting has been deleted from the meeting list.
+ 
+    <img src="images/meeting-delete/meeting-delete-result.png" alt="Result for 'meeting delete'" width="900px">
  
 #### Editing a meeting: `meeting edit` \[Sebastian Toh Shi Jian\]
 Edits an existing meeting in StonksBook.
