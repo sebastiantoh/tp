@@ -16,7 +16,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.statistics.MonthlyCountDataSet;
+import seedu.address.commons.dataset.Data;
+import seedu.address.commons.dataset.DataSet;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -44,6 +45,8 @@ public class MainWindow extends UiPart<Stage> {
     private MeetingListPanel meetingListPanel;
     private ReminderListPanel reminderListPanel;
     private SaleListPanel saleListPanel;
+    private ContactTagListPanel contactTagListPanel;
+    private SalesTagListPanel salesTagListPanel;
     private ChatBox chatBox;
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
@@ -67,6 +70,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane adHocPanelPlaceholder;
+
+    @FXML
+    private StackPane adHocSecondaryPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -159,6 +165,9 @@ public class MainWindow extends UiPart<Stage> {
         saleListPanel = new SaleListPanel(logic.getSortedSaleList());
         adHocPanelPlaceholder.getChildren().add(saleListPanel.getRoot());
 
+        contactTagListPanel = new ContactTagListPanel(logic.getContactTagList());
+        salesTagListPanel = new SalesTagListPanel(logic.getSalesTagList());
+
         chatBox = new ChatBox();
         chatBoxPlaceholder.getChildren().add(chatBox.getRoot());
 
@@ -224,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens a statistics window.
      */
     @FXML
-    public void handleStatisticsResult(MonthlyCountDataSet statisticResult) {
+    public void handleStatisticsResult(DataSet<? extends Data> statisticResult) {
         this.statisticsWindow = new StatisticsWindow(statisticResult);
         this.statisticsWindow.getRoot()
                 .setOnCloseRequest(x -> this.openStatisticsWindows.remove(this.statisticsWindow));
@@ -280,12 +289,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isSaleGuiShown()) {
                 adHocPanelPlaceholder.getChildren().setAll(saleListPanel.getRoot());
+                adHocSecondaryPanelPlaceholder.getChildren().clear();
             }
 
             if (commandResult.isTagGuiShown()) {
-                // TODO: replace saleListPanel with tagListPanel when implemented
-                // TODO: replace CommandResult constructors to specify isTagGuiShown for tag methods
-                adHocPanelPlaceholder.getChildren().setAll(saleListPanel.getRoot());
+                adHocPanelPlaceholder.getChildren().setAll(contactTagListPanel.getRoot());
+                adHocSecondaryPanelPlaceholder.getChildren().setAll(salesTagListPanel.getRoot());
             }
 
             return commandResult;
