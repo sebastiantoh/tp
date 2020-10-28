@@ -353,7 +353,7 @@ Here's how you can delete this sale in StonksBook:
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu. Identify the index of the sale to be deleted. Let us assume it is at the third index.
 
-5. Type `sale delete s/3` in the command box, and press <kbd>Enter</kbd> to execute it.
+5. Type `sale delete s/3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
  
      
 6. You should see that the sale has been deleted from the sale list.
@@ -380,7 +380,7 @@ Here's how you can edit her sale in StonksBook:
    currently displayed in the contact list, you can type `sale list c/2` and the sale list will update to show
     only sales made to Bernice Yu.
     
-2. Suppose the sale to be edited is at the third index in the sale list. Then, type `sale edit s/3 q/20` in the command box, and press <kbd>Enter</kbd> to execute it.
+2. Suppose the sale to be edited is at the third index in the sale list. Then, type `sale edit s/3 q/20` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
   
 3. You should see that the sale has been updated to reflect this new quantity.
 
