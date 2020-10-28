@@ -348,7 +348,8 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
      
 <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
     
-2. The **Result Box** will display a message of the number of contacts listed.
+2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
+ show only contacts with the name 'Alex'
  
 <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
  
@@ -365,7 +366,12 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
 
 Adds a scheduled meeting with the specified contact in StonksBook.
 
-Format: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
+<div markdown="block" class="alert alert-info">
+To prevent the situation in which you unknowingly scheduled conflicting meetings, StonksBook will not allow you to
+ add a new meeting if it conflicts with some meeting in StonksBook!
+</div>
+
+**Format**: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 
 * Adds a scheduled meeting with the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
@@ -373,23 +379,28 @@ Format: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 * The start datetime must be in the format `yyyy-MM-dd HH:mm`
 * The duration is specified in minutes and must be a positive integer.
 
-Example:
-Let's say that you successfully secured a lunch meeting with John Doe that is scheduled for 3 December 2020 12pm
-and lasts 60 minutes. Here's how you can add this new meeting into StonksBook.
+**Example**:
+Let's say that you successfully secured a lunch meeting with Alex Yeoh that is scheduled for 3 December 2020 12pm
+and lasts 60 minutes. Here's how you can add this new meeting into StonksBook:
  
- 1. Identify the index corresponding to John Doe in the contact list. If you have a large list of contacts, it may be
-  convenient to search for John Doe by typing `contact find John Doe` in the command box. The contact list will update
-   to show all contacts with the name John Doe. 
+ 1. Type `contact find alex` in the **Command Box** and press <kbd>Enter</kbd>. 
+     - This is to identify the contact index corresponding to Alex Yeoh. Let us assume that Alex Yeoh is at the first
+      index.
+      
+ <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
  
- 2. Suppose John Doe is at the second index in the contact list. Then, type `meeting add c/2 m/Lunch with John Doe d/2020-12-03 12:00 du/90` 
- in the command box, and press Enter to execute it.
+ 2. The **Result Box** will display a message of the number of contacts listed.
+  
+ <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
  
- 3. You should see the newly created meeting in the meetings list. 
-
-<div markdown="block" class="alert alert-info">
-To prevent the situation in which you unknowingly scheduled conflicting meetings, StonksBook will not allow you to
- add a new meeting if it conflicts with some meeting in StonksBook!
-</div>
+ 3. Type `meeting add c/2 m/Lunch with Alex Yeoh d/2020-12-03 12:00 du/90` in the **Command Box** and press <kbd>Enter</kbd>.
+ 
+ <img src="images/meeting-add/meeting add.png" alt="Enter 'meeting add' in the command box" width="900px">
+  
+4. The **Result Box** will display a message noting that the command was successful, and the **Meeting List** will
+ contain this newly created meeting.
+ 
+  <img src="images/meeting-add/meeting-add-result.png" alt="Result for 'meeting add'" width="900px">
 
 #### Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
 
