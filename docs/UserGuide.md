@@ -340,7 +340,7 @@ Shows a list of all meetings. By default, the list only shows upcoming meetings.
 
 * When a contact index is specified, the list will only show meetings associated with the contact at the specified
  contact index.
-* You can show all meetings, including past meetings, by typing `a/`.
+* You can show all meetings, including past meetings, by including `a/`.
 
 **Example**:
 Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is what you need to do:
