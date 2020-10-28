@@ -926,14 +926,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3c. The given meeting duration is invalid.
 
-    * 3b1. StonksBook shows an error message.
+    * 3c1. StonksBook shows an error message.
 
       Use case resumes at step 2.
 
 * 3d. The given meeting message is invalid.
 
-    * 3b1. StonksBook shows an error message.
+    * 3d1. StonksBook shows an error message.
 
+      Use case resumes at step 2.
+
+* 3e. The given meeting conflicts with some existing meetings.
+    
+    * 3e1. StonksBook shows an error message.
+    
       Use case resumes at step 2.
 
 #### Use case: View all meetings
@@ -1014,7 +1020,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3c. The given reminder message is invalid.
 
-    * 3b1. StonksBook shows an error message.
+    * 3c1. StonksBook shows an error message.
 
       Use case resumes at step 2.
 
