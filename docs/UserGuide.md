@@ -129,6 +129,13 @@ Format: `contact find KEYWORD [MORE_KEYWORDS]`
 
 <img src="images/contactFindMockup.png" alt="result for 'contact find keyword'" width="400px">
 
+e.g. You want to find the contact Alex Yeoh but you only roughly remember the spellng the of the name as alx yo and you can do this as shown.
+1. type `contact find alx yo` in the command box and press `Enter`.
+<img src="images/contactfindfirststep.png" alt="result for 'contact sort keyword'" width="400px">
+2. the contact list now contains contacts whose name is similar to alx yo.
+<img src="images/contactfindsecondstep.png" alt="result for 'contact sort keyword'" width="400px">
+3. Alex Yeoh appears as the first contact on the list.
+
 Examples:
 * `contact find alex david` returns Alex Yeoh, David Li
 * `contact find alx` returns Alex Yeoh
@@ -149,6 +156,14 @@ Format: `contact sort KEYWORD [ORDER]`
 * If `ORDER` is absent, contacts will be sorted in non-descending order. Otherwise, contacts will be sorted in non-ascending order.
 
 * The sorted result will last until other contact commands (except `contact delete`) are executed.
+
+e.g. You want to see the contacts who have paid you the most for your sales and you can do so as shown.
+1. Type `contact sort s/ desc` in the command box and press `Enter`.
+<img src="images/contactsortfirststep.png" alt="result for 'contact sort keyword'" width="400px">
+2. The contact list is sorted by the total sales amount, from highest to lowest.
+3. Your top paying contacts will be at the top of the list.
+<img src="images/contactsortsecondstep.png" alt="result for 'contact sort keyword'" width="400px">
+
 
 Examples:
 * `contact sort e/ desc` sorts the contact list based on the email address in non-ascending order
@@ -308,6 +323,12 @@ Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 
 * If optional parameter `[m/MONTH y/YEAR]` is present:
    * all sales whose associated date is in the specified `MONTH` and `YEAR` are listed.
+   
+e.g. you want to see the sales you have made in August 2020, you can do so as shown.
+1. Type `sale list m/8 y/2020` in the command box and press `Enter`.
+<img src="images/salelistfirststep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/salelistsecondstep.png" alt="result for 'contact sort keyword'" width="400px">
+
 
 Examples:
 * `sale list` lists all sales.
@@ -416,6 +437,14 @@ Format: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
    * The result is a bar chart on the number of meetings
      whose start date is within each of the previous `NUMBER_OF_MONTHS` - 1 months and
      the current month and year.
+     
+e.g. You can compare the number of meetings you have had in the past 6 months as shown.
+
+1. Type `meeting stats 6` and press `Enter`.
+<img src="images/meetingStatsFirstStep.png" alt="result for 'contact sort keyword'" width="400px">
+
+2. A new window containing the bar chart pops up.
+<img src="images/meetingStatsSecondStep.png" alt="result for 'contact sort keyword'" width="400px">
 
 Examples:
 * `meeting stats` will return the number of meetings whose start date is in the October 2020
@@ -542,6 +571,12 @@ Pressing the up and down keys retrieves the previous and next input respectively
 #### Viewing help: `help`
 Lists the command word, command description and example
 usage for each available command as well as the link to the User Guide.
+
+You can access the help page quickly as shown.
+1. Type `help' in the commandbox and press `Enter`.
+<img src="images/helpFirstStep.png" alt="result for 'contact sort keyword'" width="400px">
+2. The help window pops up.
+<img src="images/helpSecondStep.png" alt="result for 'contact sort keyword'" width="400px">
 
 Format: `help`
 
