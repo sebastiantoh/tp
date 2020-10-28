@@ -346,7 +346,8 @@ Format: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 * The duration is specified in minutes and must be a positive integer.
 
 Examples:
-* `meeting add c/2 m/Follow-up meeting d/2020-10-30 15:00 du/60` Adds a 1-hour long meeting titled `Follow-up meeting` with the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
+* `meeting add c/2 m/Product Demo d/2020-10-30 15:00 du/60` Adds a 1-hour long meeting titled `Product Demo` with
+ the 2nd contact in StonksBook that is scheduled for 30th October 2020 at 3PM.
 * `meeting add c/3 m/Call to finalise details d/2020-10-30 08:00 du/30` Adds a 30-minute long meeting titled `Call to finalise details` with the 3rd contact in StonksBook that is scheduled for 30th October 2020 at 8AM.
 
 #### Editing a meeting: `meeting edit` \[Sebastian Toh Shi Jian\]
@@ -440,7 +441,8 @@ Format: `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`
 * The datetime must be in the format `yyyy-MM-dd HH:mm`
 
 Examples:
-* `reminder add c/2 m/Send follow-up email d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact that is scheduled for 30th October 2020 3PM, with the message `Send follow-up email`
+* `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact
+ that is scheduled for 30th October 2020 3PM, with the message `Send email to follow up`
 
 #### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
 Edits an existing reminder in StonksBook.
@@ -454,7 +456,7 @@ Format: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STAT
 
 Examples:
 * `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.
-* `reminder edit 3 m/Follow up call d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Follow up call" and "28th November 2020, 1PM" respectively.
+* `reminder edit 3 m/ d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Call to follow up" and "28th November 2020, 1PM" respectively.
 
 #### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
 
@@ -589,12 +591,12 @@ Action | Format, Examples
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
 **Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
 **Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 c/`
-**Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Follow-up meeting d/2020-10-30 15:00 du/60`
+**Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Product Demo d/2020-10-30 15:00 du/60`
 **Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
 **Meeting Stats** | `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]` <br> e.g., `meeting stats 3`
-**Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
-**Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Follow up call d/2020-11-28 13:00`
+**Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send email to follow up d/2020-10-30 15:00`
+**Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Call to follow up d/2020-11-28 13:00`
 **Reminder List** | `reminder list`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
 **Archive Add** | `archive add INDEX` <br> e.g., `archive add 1`
