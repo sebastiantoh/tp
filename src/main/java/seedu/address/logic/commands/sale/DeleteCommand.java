@@ -3,18 +3,14 @@ package seedu.address.logic.commands.sale;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_INDEX;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.sale.Sale;
 
 /**
@@ -49,47 +45,21 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
 
         List<Sale> sales = model.getSortedSaleList();
-        List<Person> people = model.getSortedPersonList();
 
         if (model.getSortedSaleList().size() == 0) {
             throw new CommandException(MESSAGE_NO_SALES_DISPLAYED);
         }
 
-        List<Index> invalidIndexes = saleIndexes
-                .parallelStream().filter(personIndex -> personIndex.getZeroBased() >= sales.size())
-                .collect(Collectors.toList());
-
-        if (!invalidIndexes.isEmpty()) {
-            throw new CommandException(MassSaleCommandUtil.generateInvalidIndexMessage(
-                    Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX, invalidIndexes));
-        }
+        MassSaleCommandUtil.areSaleIndexesValid(sales, saleIndexes);
 
         List<Sale> deletedSales = new ArrayList<>();
-        List<Person> previousPersons = new ArrayList<>();
-        List<Person> editedPersons = new ArrayList<>();
         for (Index saleIndex : saleIndexes) {
             Sale saleToDelete = sales.get(saleIndex.getZeroBased());
-            Person personToEdit = people.stream()
-                    .filter(person -> person.equals(saleToDelete.getBuyer()))
-                    .findAny()
-                    .orElse(null);
-            assert personToEdit != null;
-
-            BigDecimal newTotalSalesAmount = personToEdit.getTotalSalesAmount().subtract(saleToDelete.getTotalCost());
-
-            Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
-                    personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
-                    personToEdit.getRemark(), personToEdit.isArchived(), newTotalSalesAmount);
-
             deletedSales.add(saleToDelete);
-            previousPersons.add(personToEdit);
-            editedPersons.add(editedPerson);
         }
 
-        for (int i = 0; i < deletedSales.size(); i++) {
-            model.removeSale(deletedSales.get(i));
-            model.setPerson(previousPersons.get(i), editedPersons.get(i));
-        }
+        // Need to remove sales after selecting all sales to be deleted, otherwise the indexing will be off
+        deletedSales.forEach(model::removeSale);
 
         return new CommandResult(String.format(generateSuccessMessage(deletedSales)), false, true);
     }

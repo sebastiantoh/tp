@@ -41,8 +41,7 @@ public class AddCommandTest {
                 personToArchive.getAddress(),
                 personToArchive.getTags(),
                 personToArchive.getRemark(),
-                !personToArchive.isArchived(),
-                personToArchive.getTotalSalesAmount()
+                !personToArchive.isArchived()
         );
         expectedModel.setPerson(personToArchive, archivedPerson);
 

@@ -53,8 +53,7 @@ public class AddCommand extends Command {
                 personToArchive.getAddress(),
                 personToArchive.getTags(),
                 personToArchive.getRemark(),
-                !personToArchive.isArchived(),
-                personToArchive.getTotalSalesAmount()
+                !personToArchive.isArchived()
         );
         model.setPerson(personToArchive, archivedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);

@@ -48,8 +48,7 @@ public class RemoveCommandTest {
                 personToRemove.getAddress(),
                 personToRemove.getTags(),
                 personToRemove.getRemark(),
-                !personToRemove.isArchived(),
-                personToRemove.getTotalSalesAmount()
+                !personToRemove.isArchived()
         );
         expectedModel.setPerson(personToRemove, removedPerson);
         expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_ARCHIVED_PERSONS);

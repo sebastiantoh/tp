@@ -65,8 +65,7 @@ public class DeleteCommandTest {
 
         assertNotNull(toEdit);
 
-        Person newPerson = new PersonBuilder(toEdit)
-                .withTotalSalesAmount(toEdit.getTotalSalesAmount().subtract(saleToDelete.getTotalCost())).build();
+        Person newPerson = new PersonBuilder(toEdit).build();
 
         expectedModel.setPerson(toEdit, newPerson);
         expectedModel.removeSale(saleToDelete);
