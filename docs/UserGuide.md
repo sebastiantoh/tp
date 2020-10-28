@@ -285,7 +285,7 @@ This list is sorted in ascending order based on the date the sale is made.
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example. 
  
-3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.\
+3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu.
