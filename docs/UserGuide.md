@@ -17,6 +17,10 @@ Many salesmen waste their time manually managing their contacts and sales data. 
  StonksBook aims to integrate the key tools used by salesmen into an all-in-one application that can empower them to
   effectively curate their contact list. StonksBook also provides many tools that can boost one's sales peformance
   through the use of sophisticated data analysis techniques.
+  
+This is what StonksBook looks like:
+  
+<img src="images/LabelledUiDiagram.png" alt="LabelledUiDiagram">
 
 --------------------------------------------------------------------------------------------------------------------
 
