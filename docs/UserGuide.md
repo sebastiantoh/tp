@@ -396,7 +396,7 @@ and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
   
     <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
  
- 3. Type `meeting add c/1 m/Lunch with Alex Yeoh d/2020-12-03 12:00 du/90` in the **Command Box** and press <kbd >Enter</kbd>.
+ 3. Type `meeting add c/1 m/Lunch with Alex Yeoh d/2020-12-03 12:00 du/90` in the **Command Box** and press <kbd>Enter</kbd>.
  
     <img src="images/meeting-add/meeting-add.png" alt="Enter 'meeting add' in the command box" width="900px">
   
