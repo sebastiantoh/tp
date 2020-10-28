@@ -128,8 +128,6 @@ Finds contacts whose names exactly match or is similar to any of the given keywo
 
 * Exact matches (if exist) will appear as the first few results.
 
-<img src="images/contactFindMockup.png" alt="result for 'contact find keyword'" width="400px">
-
 e.g. You want to find the contact Alex Yeoh but you only roughly remember the spellng the of the name as alx yo and you can do this as shown.
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
 <img src="images/contactfindfirststep.png" alt="result for 'contact sort keyword'" width="400px">
@@ -346,6 +344,26 @@ Deletes a sales item of specified index.
 
 **Examples**:
 * `sale delete s/4` deletes the 4th sale made in the list.
+
+#### Analysing sales: `sale stats`
+Analyses the sale data and visualises the statistical result.
+
+**Format**: `sale stats NUMBER_OF_MONTHS`
+
+* `NUMBER_OF_MONTHS` refers to the number of months to be included in the result.
+* `NUMBER_OF_MONTHS` must be an integer between 2 and 6 inclusive.
+     
+e.g. You can compare the number of meetings you have had in the past 6 months as shown.
+
+1. Type `sale stats 6` and press <kbd>Enter</kbd>.
+<img src="images/saleStatsFirstStep.png" alt="result for 'contact sort keyword'" width="400px">
+
+2. A new window containing the bar chart pops up.
+<img src="images/saleStatsSecondStep.png" alt="result for 'contact sort keyword'" width="400px">
+
+**Examples**:
+* `sale stats 3` will return a bar chart containing the number of sale whose sale date is within
+   June 2020, July 2020 and August 2020 respectively if the current month is August and the current year is 2020.
 
 ### Scheduled Meetings
 
