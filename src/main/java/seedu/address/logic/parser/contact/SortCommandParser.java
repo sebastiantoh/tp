@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESC_ORDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TOTAL_SALES;
 
 import seedu.address.logic.commands.contact.SortCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -26,8 +25,7 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, PREFIX_TOTAL_SALES,
-                    PREFIX_DESC_ORDER);
+            ArgumentTokenizer.tokenize(args, PREFIX_CONTACT_NAME, PREFIX_CONTACT_EMAIL, PREFIX_DESC_ORDER);
 
         Prefix sortingAttribute = null;
 
@@ -39,10 +37,6 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
         if (argMultimap.getValue(PREFIX_CONTACT_EMAIL).isPresent()) {
             sortingAttribute = PREFIX_CONTACT_EMAIL;
-            presentSortingAttributeCounter++;
-        }
-        if (argMultimap.getValue(PREFIX_TOTAL_SALES).isPresent()) {
-            sortingAttribute = PREFIX_TOTAL_SALES;
             presentSortingAttributeCounter++;
         }
 

@@ -40,8 +40,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().withName("Allison Pauline")
-                .withTotalSalesAmount(new BigDecimal("0.8")).build();
+        Person editedPerson = new PersonBuilder().withName("Allison Pauline").build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson)
                 .withName("Allison Pauline").build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
