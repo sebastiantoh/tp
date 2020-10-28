@@ -71,7 +71,7 @@ public class RemoveCommandTest {
         RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_ITEM);
         assertFalse(invalidPersonToArchive.isArchived());
 
-        assertCommandFailure(removeCommand, model, Messages.MESSAGE_UNARCHIVE_INVALIID_LIST);
+        assertCommandFailure(removeCommand, model, Messages.MESSAGE_UNARCHIVE_INVALID_LIST);
     }
 
     @Test

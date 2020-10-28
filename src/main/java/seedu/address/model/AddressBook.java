@@ -237,6 +237,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if deleting this tag {@code target} will result in some Sales not having any tags.
+     */
+    public boolean anySalesWithoutTags(Tag target) {
+        return sales.anySalesWithoutTags(target);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      *
