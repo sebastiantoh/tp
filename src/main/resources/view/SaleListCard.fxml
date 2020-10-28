@@ -29,11 +29,11 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <FontIcon iconLiteral="far-calendar-alt" iconColor="white" iconSize="16"/>
+        <FontIcon iconLiteral="far-calendar-alt" styleClass="big-icon"/>
         <Label fx:id="datetimeOfPurchase" styleClass="cell_small_label" text="\$datetimeOfPurchase" wrapText="true"/>
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <FontIcon iconLiteral="far-money-bill-alt" iconColor="white" iconSize="13"/>
+        <FontIcon iconLiteral="far-money-bill-alt" styleClass="small-icon"/>
         <Label fx:id="price" styleClass="cell_small_label" text="\$price" wrapText="true"/>
       </HBox>
     </VBox>
