@@ -381,6 +381,14 @@ Here's how you can edit her sale in StonksBook:
   
 3. You should see that the meeting has been updated to reflect this new scheduled date.
 
+#### Viewing a breakdown of sales made in each tag: `sale breakdown` [Kwek Min Yih]
+
+Displays a breakdown of the top 5 tags and the number of sales with each tag.
+
+**Format:** `sale breakdown`
+
+* This will display a bar graph showing the top 5 tags and the number of sales with each tag in an external window.
+
 ### Scheduled Meetings
 
 StonksBook allows you to manage your scheduled meetings within the application.
