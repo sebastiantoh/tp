@@ -11,6 +11,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.contact.ListCommand;
+import seedu.address.logic.parser.archive.ArchiveCommandsParser;
 import seedu.address.logic.parser.contact.ContactCommandsParser;
 import seedu.address.logic.parser.meeting.MeetingCommandsParser;
 import seedu.address.logic.parser.reminder.ReminderCommandsParser;
@@ -63,6 +64,11 @@ public class UnknownCommandTest {
     @Test
     public void execute_similarContactCommandWords_success() {
         testAllCommandWords(ContactCommandsParser.ALL_CONTACT_COMMAND_WORDS);
+    }
+
+    @Test
+    public void execute_similarArchiveCommandWords_success() {
+        testAllCommandWords(ArchiveCommandsParser.ALL_ARCHIVE_COMMAND_WORDS);
     }
 
     @Test

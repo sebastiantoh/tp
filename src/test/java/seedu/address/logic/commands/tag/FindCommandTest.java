@@ -26,7 +26,7 @@ class FindCommandTest {
     public void execute_validIndexFindByContactTag_success() {
         Tag tagToFind = model.getContactTagList().get(INDEX_FIRST_ITEM.getZeroBased());
 
-        FindCommand findCommand = new FindCommand(INDEX_FIRST_ITEM);
+        FindCommand findCommand = new FindCommand(INDEX_FIRST_ITEM, true);
 
         String expectedMessage = "Listing 3 contacts associated with: [friends]\n"
                 + "1. Alice Pauline Phone: 94351253 Email: alice@example.com "
@@ -43,26 +43,56 @@ class FindCommandTest {
     }
 
     @Test
+    public void execute_validIndexFindBySalesTag_success() {
+        Tag tagToFind = model.getSaleTagList().get(INDEX_FIRST_ITEM.getZeroBased());
+
+        FindCommand findCommand = new FindCommand(INDEX_FIRST_ITEM, false);
+
+        String expectedMessage = "Listing 1 sales items associated with: [electronics]\n"
+                + "1. Camera (Date of Purchase: Sun, 01 Nov 2020, 09:05, "
+                + "Quantity: 2, Unit Price: 1000.50, Tags: [[electronics]]) (Client: Carl Kurz)\n";
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.findSalesBySaleTag(tagToFind);
+
+        assertCommandSuccess(findCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexFindByContactTag_failure() {
         Index outOfBoundIndex =
-                Index.fromOneBased(model.getContactTagList().size() + model.getSaleTagList().size() + 1);
+                Index.fromOneBased(model.getContactTagList().size() + 1);
 
-        FindCommand findCommand = new FindCommand(outOfBoundIndex);
+        FindCommand findCommand = new FindCommand(outOfBoundIndex, true);
+
+        assertCommandFailure(findCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidIndexFindBySaleTag_failure() {
+        Index outOfBoundIndex =
+                Index.fromOneBased(model.getSaleTagList().size() + 1);
+
+        FindCommand findCommand = new FindCommand(outOfBoundIndex, false);
 
         assertCommandFailure(findCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        FindCommand findFirstCommand = new FindCommand(INDEX_FIRST_ITEM);
-        FindCommand findSecondCommand = new FindCommand(INDEX_SECOND_ITEM);
+        FindCommand findFirstCommand = new FindCommand(INDEX_FIRST_ITEM, true);
+        FindCommand findSecondCommand = new FindCommand(INDEX_SECOND_ITEM, true);
+        FindCommand findThirdCommand = new FindCommand(INDEX_FIRST_ITEM, false);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same indices -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(INDEX_FIRST_ITEM);
+        FindCommand findFirstCommandCopy = new FindCommand(INDEX_FIRST_ITEM, true);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+
+        // different model types -> returns false
+        assertFalse(findFirstCommand.equals(findThirdCommand));
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));

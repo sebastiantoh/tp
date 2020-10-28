@@ -8,15 +8,18 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.commons.dataset.tag.SaleTagCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
@@ -39,16 +42,23 @@ public class ModelManager implements Model {
 
     private final SortedList<Person> sortedPersons;
 
+    private final FilteredList<Meeting> filteredMeetings;
+
     private final SortedList<Meeting> sortedMeetings;
 
     private final SortedList<Reminder> sortedReminders;
+
+    private final FilteredList<Reminder> filteredReminders;
 
     private final FilteredList<Sale> filteredSales;
 
     private final SortedList<Sale> sortedSales;
 
-    private int latestContactId = 0;
+    private final SortedList<Tag> sortedContactTags;
 
+    private final SortedList<Tag> sortedSalesTags;
+
+    private int latestContactId = 0;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -61,15 +71,25 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
         this.allPersons = this.addressBook.getPersonList();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
-        this.sortedPersons = new SortedList<>(this.filteredPersons);
+
+        this.sortedContactTags = new SortedList<>(this.addressBook.getContactTagList(), Comparator.naturalOrder());
+        this.sortedSalesTags = new SortedList<>(this.addressBook.getSaleTagList(), Comparator.naturalOrder());
+
+        this.sortedPersons = new SortedList<>(this.filteredPersons, DEFAULT_PERSON_COMPARATOR);
         this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
-        this.updateSortedPersonList(DEFAULT_PERSON_COMPARATOR);
-        this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
-        this.sortedReminders = new SortedList<>(this.addressBook.getReminderList(), Comparator.naturalOrder());
-        this.sortedSales = new SortedList<>(this.addressBook.getSaleList(), Comparator.naturalOrder());
+
+        this.filteredReminders =
+                new FilteredList<>(this.addressBook.getReminderList(), PREDICATE_SHOW_PENDING_REMINDERS);
+        this.sortedReminders = new SortedList<>(this.filteredReminders, Comparator.naturalOrder());
+
+        this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
+        this.sortedSales = new SortedList<>(this.filteredSales, Comparator.naturalOrder());
+
+        this.filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList(), PREDICATE_SHOW_UPCOMING_MEETINGS);
+        this.sortedMeetings = new SortedList<>(this.filteredMeetings, Comparator.naturalOrder());
 
         initialiseLatestContactId();
     }
@@ -248,6 +268,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredRemindersList(Predicate<Reminder> predicate) {
+        this.filteredReminders.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return this.filteredReminders;
+    }
+
+    @Override
     public boolean hasSale(Sale sale) {
         requireNonNull(sale);
         return addressBook.hasSale(sale);
@@ -368,11 +398,40 @@ public class ModelManager implements Model {
         this.sortedSales.setComparator(comparator);
     }
 
-    //=========== Meeting List Accessors =============================================================
+    //=========== Filtered Meeting List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
-     * {@code versionedAddressBook}.
+     * Returns an unmodifiable view of the filtered list of {@code Meeting}
+     */
+    @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        return this.filteredMeetings;
+    }
+
+    /**
+     * Updates the predicate used to filter meeting list.
+     *
+     * @param predicate predicate to filter meeting list
+     */
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        requireNonNull(predicate);
+
+        // There seems to be some form of caching in the filtered list especially when
+        // the predicate passed in as the argument is the same predicate currently used
+        // to filter the list. This is undesirable since predicates involving meetings may be
+        // time-sensitive and the results may differ over time.
+        // This line of code is used to reset the filter, therefore forcing the filtered
+        // list to re-filter the elements with the new predicate passed in as arguments.
+        this.filteredMeetings.setPredicate(null);
+
+        this.filteredMeetings.setPredicate(predicate);
+    }
+
+    //=========== Sorted Meeting List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the sorted list of {@code Meeting}
      */
     @Override
     public ObservableList<Meeting> getSortedMeetingList() {
@@ -380,13 +439,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String listTags() {
-        return addressBook.listTags();
-    }
-
-    @Override
-    public boolean saleTagsExist(Sale sale) {
-        return addressBook.saleTagsExist(sale);
+    public boolean saleTagsExist(Set<Tag> tags) {
+        return addressBook.saleTagsExist(tags);
     }
 
     @Override
@@ -422,12 +476,12 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Tag> getContactTagList() {
-        return addressBook.getContactTagList();
+        return this.sortedContactTags;
     }
 
     @Override
     public ObservableList<Tag> getSaleTagList() {
-        return addressBook.getSaleTagList();
+        return this.sortedSalesTags;
     }
 
     @Override
@@ -436,13 +490,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         return this.addressBook.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
     }
 
     @Override
-    public MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
         return this.addressBook.getMultipleMonthSaleCount(month, year, numberOfMonths);
+    }
+
+    @Override
+    public DataSet<SaleTagCountData> getSaleTagCount() {
+        return this.addressBook.getSaleTagCount();
     }
 
     @Override
@@ -484,6 +543,7 @@ public class ModelManager implements Model {
                 && this.sortedPersons.equals(other.sortedPersons)
                 && this.sortedMeetings.equals(other.sortedMeetings)
                 && this.sortedReminders.equals(other.sortedReminders)
-                && this.sortedSales.equals(other.sortedSales);
+                && this.sortedSales.equals(other.sortedSales)
+                && this.filteredReminders.equals(other.filteredReminders);
     }
 }

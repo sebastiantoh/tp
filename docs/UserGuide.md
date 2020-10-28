@@ -200,31 +200,34 @@ Examples:
 
 Edits an existing tag in StonksBook to the specified tag name. All entries previously associated with this tag will be updated to associated with the updated tag.
 
-Format: `tag edit INDEX t/NAME`
+Format: `tag edit (ct/ or st/)INDEX t/TAG`
 
-* Edits the name of the tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
+* Edits the name of the contact tag or sales tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the contact tags list or sales tags list displayed by the `tag list` command.
+* `ct/` stands for contact tag, `st/` stands for sales tag.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
-* The `NAME` and `INDEX` fields must be provided.
+* The `TAG` and `INDEX` fields must be provided.
 * All contacts or sales that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
 
 Examples:
 
-* `tag edit 1 n/friends` updates the name of the first tag to `close friends`.
+* `tag edit ct/1 t/friends` updates the name of the first contact tag to `friends`.
+* `tag edit st/1 t/electronics` updates the name of the first sales tag to `electronics`.
 
 #### Deleting a tag: `tag delete` \[Wang Luo\]
 
 Deletes the specified tag from the tag list. The tag information in all entries previously associated with this tag will also be cleared.
 
-Format: `tag delete INDEX`
+Format: `tag delete (st/ or ct/)INDEX`
 
-* Deletes the name of the tag at the specified `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
+* Deletes the the contact tag or sales tag at the specified `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `INDEX` field must be provided.
 * All contacts that have been previously associated with this tag will be updated so that their associations with this tag will be cleared.
 
 Examples:
 
-* `tag delete 1` deletes the first tag from the tag list.
+* `tag delete ct/1` deletes the first contact tag from the contact tags list.
+* `tag delete st/1` deletes the first sales tag from the sales tags list.
 
 #### Retrieving entries by tag: `tag find` \[Wang Luo\]
 
@@ -232,17 +235,17 @@ Displays all entries (including contacts, items, etc.) that are associated with 
 
 <img src="images/tagFindMockup.png" alt="result for 'tag find'" width="400px">
 
-Format: `tag find INDEX [c/]`
+Format: `tag find (ct/ or st/)INDEX [cl/]`
 
 * Displays all entries of associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `INDEX` field must be provided.
-* An additional `c/` field can be provided when performing searching on sales tags. This field results in all contacts who purchased sales items associated with this tag to be displayed. Adding this field will have no effect on the search results for contact tags.
+* An additional `cl/` field can be provided when performing searching on sales tags. This field results in all contacts who purchased sales items associated with this tag to be displayed. Adding this field will have no effect on the search results for contact tags.
 
 Examples:
-* `tag find 1` displays all contacts associated with the first tag displayed by the `tag list` command, assuming there are more than one contact tags.
-* `tag find 5` displays all sales associated with the seventh tag displayed by the `tag list` command, assuming there are less than five contact tags.
-* `tag find 5 c/` displays all contacts who have purchased items associated with the tenth tag, assuming there are less than five contact tags.
+* `tag find ct/1` displays all contacts associated with the first contact tag displayed by the `tag list` command.
+* `tag find st/2` displays all sales associated with the second sales tag displayed by the `tag list` command.
+* `tag find st/3 cl/` displays all contacts who have purchased items associated with the third sales tag.
 
 ### Sales
 
@@ -327,7 +330,7 @@ Examples:
 
 StonksBook allows you to manage your scheduled meetings within the application.
 
-#### Adding a scheduled meeting: `meeting add` \[Sebastian Toh Shi Jian\]
+#### Adding a meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
 Adds a scheduled meeting with the specified contact in StonksBook.
 
@@ -393,8 +396,12 @@ Shows a list of all meetings. By default, the list only shows upcoming meetings.
 Format: `meeting list [c/CONTACT_INDEX] [a/]`
 
 * When an index is specified, the list will only show meetings associated with the contact at the specified index.
-* You can show all meetings, including those that have passed, by typing `a/`.
+* You can show all meetings, including past meetings, by typing `a/`.
 
+Examples:
+* `meeting list c/5 a/` displays a list of all meetings that you have had with the 5th contact currently
+ displayed in StonksBook.
+ 
 #### Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified meeting from StonksBook.
@@ -464,7 +471,8 @@ Format: `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`
 * The datetime must be in the format `yyyy-MM-dd HH:mm`
 
 Examples:
-* `reminder add c/2 m/Send follow-up email d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact that is scheduled for 30th October 2020 3PM, with the message `Send follow-up email`
+* `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact
+ that is scheduled for 30th October 2020 3PM, with the message `Send email to follow up`
 
 #### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
 Edits an existing reminder in StonksBook.
@@ -478,15 +486,20 @@ Format: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STAT
 
 Examples:
 * `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.
-* `reminder edit 3 m/Follow up call d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Follow up call" and "28th November 2020, 1PM" respectively.
+* `reminder edit 3 m/ d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Call to follow up" and "28th November 2020, 1PM" respectively.
 
-#### Listing all reminders: `reminder list` \[Sebastian Toh Shi Jian\]
+#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
 
 Shows a list of all reminders created, sorted in increasing order based on the date the reminder is scheduled.
 
 <img src="images/reminderListMockup.png" alt="result for 'reminder list'" width="400px">
 
-Format: `reminder list`
+Format: `reminder list [st/STATUS]`
+
+* `STATUS` can be either `completed` or `pending`.
+
+Examples:
+* `reminder list st/completed` displays all reminders that have been marked as completed.
 
 #### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
 
@@ -500,7 +513,6 @@ Format: `reminder delete INDEX`
 
 Examples:
 * `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
-
 
 ### Archive
 
@@ -609,12 +621,12 @@ Action | Format, Examples
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
 **Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
 **Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 c/`
-**Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Follow-up meeting d/2020-10-30 15:00 du/60`
+**Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Product Demo d/2020-10-30 15:00 du/60`
 **Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
 **Meeting Stats** | `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]` <br> e.g., `meeting stats 3`
-**Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send follow-up email d/2020-10-30 15:00`
-**Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Follow up call d/2020-11-28 13:00`
+**Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send email to follow up d/2020-10-30 15:00`
+**Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Call to follow up d/2020-11-28 13:00`
 **Reminder List** | `reminder list`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
 **Archive Add** | `archive add INDEX` <br> e.g., `archive add 1`

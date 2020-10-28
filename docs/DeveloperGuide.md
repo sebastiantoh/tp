@@ -238,7 +238,7 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
     * Better data cleanliness.
   * Cons:
     * Have to implement a separate class as well as implement validation of inputs.
-         
+
 * **Alternative 2:** Set the `Meeting` object to be associated to a `String` which acts as the message of a meeting.
   * Pros:
     * No need to implement validation of inputs for this `message` field.
@@ -1067,6 +1067,22 @@ This use case is similar to `Add a reminder` except that the user has the additi
     * 3a1. StonksBook shows an error message.
 
       Use case resumes at step 2.
+
+#### Use case: Filter reminders
+{:.no_toc}
+
+**MSS**
+
+1. User requests to list reminders based on completion status
+2. StonksBook shows a list of completed or pending reminders
+
+  Use case ends.
+
+**Extensions**
+
+* 2a. The list of reminders is empty.
+
+  Use case ends.
 
 #### Use case: Get help on available commands
 {:.no_toc}

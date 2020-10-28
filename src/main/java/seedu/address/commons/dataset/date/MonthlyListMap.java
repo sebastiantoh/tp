@@ -1,4 +1,4 @@
-package seedu.address.commons;
+package seedu.address.commons.dataset.date;
 
 import java.time.Month;
 import java.time.Year;
@@ -8,8 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import seedu.address.commons.dataset.DataSet;
+
+//@@author AaronnSeah
 /**
- * Stores a list of items of type T based on the key of < month, year >
+ * Stores a list of items of type T based on the key of < month, year >.
  */
 public class MonthlyListMap<T> {
 
@@ -23,9 +26,9 @@ public class MonthlyListMap<T> {
      * Adds {@code item} of type T to an item list
      * based on the key of {@code month} and {@code year}.
      *
-     * @param month a valid month number
-     * @param year a valid year number
-     * @param item item of type T
+     * @param month a valid month number.
+     * @param year a valid year number.
+     * @param item item of type T.
      */
     public void addItem(Month month, Year year, T item) {
         MonthAndYear key = new MonthAndYear(month, year);
@@ -40,9 +43,9 @@ public class MonthlyListMap<T> {
      * Removes {@code item} of type T from an item list
      * based on the key of {@code month} and {@code year} if exists.
      *
-     * @param month a valid month number
-     * @param year a valid year number
-     * @param item item of type T
+     * @param month a valid month number.
+     * @param year a valid year number.
+     * @param item item of type T.
      */
     public void removeItem(Month month, Year year, T item) {
         MonthAndYear key = new MonthAndYear(month, year);
@@ -60,9 +63,9 @@ public class MonthlyListMap<T> {
      * based on the key of {@code month} and {@code year}.
      * If the key of {@code month} and {@code year} does not exist, the number is 0.
      *
-     * @param month a valid month number
-     * @param year a valid year number
-     * @return the number of items in that month and year
+     * @param month a valid month number.
+     * @param year a valid year number.
+     * @return the number of items in that month and year.
      */
     public int getItemCount(Month month, Year year) {
         MonthAndYear key = new MonthAndYear(month, year);
@@ -74,9 +77,9 @@ public class MonthlyListMap<T> {
 
     /**
      * Gets the monthly item list for {@code month} and {@code year}.
-     * @param month valid month
-     * @param year  valid year
-     * @return list of items in its natural order
+     * @param month valid month.
+     * @param year  valid year.
+     * @return list of items in its natural order.
      */
     public List<T> getItems(Month month, Year year) {
         MonthAndYear key = new MonthAndYear(month, year);
@@ -93,12 +96,12 @@ public class MonthlyListMap<T> {
     /**
      * Gets the item counts in the item list for {@code month}, {@code year}
      * and the previous @{numberOfMonths} - 1 months.
-     * @param month valid month
-     * @param year  valid year
-     * @param numberOfMonths  non-negative integer
-     * @return MonthlyCountDataSet object, where the data is ordered by non-decreasing year and month
+     * @param month valid month.
+     * @param year  valid year.
+     * @param numberOfMonths  non-negative integer.
+     * @return MonthlyCountDataSet object, where the data is ordered by non-decreasing year and month.
      */
-    public MonthlyCountDataSet getMultipleMonthCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthCount(Month month, Year year, int numberOfMonths) {
         List<MonthlyCountData> result = new ArrayList<>();
 
         MonthAndYear currentMonthAndYear = new MonthAndYear(month, year);
@@ -114,15 +117,15 @@ public class MonthlyListMap<T> {
         }
 
         Collections.reverse(result);
-        return new MonthlyCountDataSet(result);
+        return new DataSet<>(result);
     }
 
     /**
      * Gets the month and year for
      * one month before {@code month} and {@code year}.
-     * @param month valid month
-     * @param year valid year
-     * @return MonthAndYear object that is one month before the {@code month} and {@code year}
+     * @param month valid month.
+     * @param year valid year.
+     * @return MonthAndYear object that is one month before the {@code month} and {@code year}.
      */
     private MonthAndYear getPreviousMonthAndYear(Month month, Year year) {
         Year yearResult = year;

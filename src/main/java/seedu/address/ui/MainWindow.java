@@ -7,15 +7,17 @@ import java.util.logging.Logger;
 import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.dataset.Data;
+import seedu.address.commons.dataset.DataSet;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -29,6 +31,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static final String[] DARK_THEME = new String[] {"view/DarkTheme.css", "view/Extensions.css"};
+    private static final String[] LIGHT_THEME = new String[] {"view/LightTheme.css", "view/LightExtensions.css"};
+    private boolean isDarkTheme;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -38,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private MeetingListPanel meetingListPanel;
     private ReminderListPanel reminderListPanel;
+    private SaleListPanel saleListPanel;
+    private ContactTagListPanel contactTagListPanel;
+    private SalesTagListPanel salesTagListPanel;
     private ChatBox chatBox;
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
@@ -60,15 +69,24 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane reminderListPanelPlaceholder;
 
     @FXML
+    private StackPane adHocPanelPlaceholder;
+
+    @FXML
+    private StackPane adHocSecondaryPanelPlaceholder;
+
+    @FXML
     private StackPane statusbarPlaceholder;
 
     @FXML
     private StackPane chatBoxPlaceholder;
 
+    @FXML
+    private Scene scene;
+
     private HostServices hostServices;
 
     /**
-     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic} and {@code HostServices}.
      */
     public MainWindow(Stage primaryStage, Logic logic, HostServices hostServices) {
         super(FXML, primaryStage);
@@ -79,6 +97,13 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        if (logic.getGuiSettings().getTheme() == null || logic.getGuiSettings().getTheme().equals("dark")) {
+            setTheme(true);
+            isDarkTheme = true;
+        } else {
+            setTheme(false);
+            isDarkTheme = false;
+        }
 
         setAccelerators();
 
@@ -137,6 +162,12 @@ public class MainWindow extends UiPart<Stage> {
         reminderListPanel = new ReminderListPanel(logic.getSortedReminderList());
         reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
+        saleListPanel = new SaleListPanel(logic.getSortedSaleList());
+        adHocPanelPlaceholder.getChildren().add(saleListPanel.getRoot());
+
+        contactTagListPanel = new ContactTagListPanel(logic.getContactTagList());
+        salesTagListPanel = new SalesTagListPanel(logic.getSalesTagList());
+
         chatBox = new ChatBox();
         chatBoxPlaceholder.getChildren().add(chatBox.getRoot());
 
@@ -159,6 +190,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private void setTheme(boolean isDarkTheme) {
+        scene.getStylesheets().clear();
+        if (isDarkTheme) {
+            scene.getStylesheets().addAll(DARK_THEME);
+        } else {
+            scene.getStylesheets().addAll(LIGHT_THEME);
+        }
+        this.isDarkTheme = isDarkTheme;
+    }
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -181,7 +221,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), (isDarkTheme ? "dark" : "light"));
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -193,7 +233,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens a statistics window.
      */
     @FXML
-    public void handleStatisticsResult(MonthlyCountDataSet statisticResult) {
+    public void handleStatisticsResult(DataSet<? extends Data> statisticResult) {
         this.statisticsWindow = new StatisticsWindow(statisticResult);
         this.statisticsWindow.getRoot()
                 .setOnCloseRequest(x -> this.openStatisticsWindows.remove(this.statisticsWindow));
@@ -233,11 +273,29 @@ public class MainWindow extends UiPart<Stage> {
                 handleStatisticsResult(commandResult.getStatisticResult());
             }
 
+            if (commandResult.getTheme() != null) {
+                if (commandResult.getTheme() == 0) {
+                    setTheme(true);
+                } else {
+                    setTheme(false);
+                }
+            }
+
             // Force refresh of the following UI components which are time sensitive
             // Overdue reminders should be displayed differently
             this.reminderListPanel.refresh();
             // Past meetings should be filtered out
             this.meetingListPanel.refresh();
+
+            if (commandResult.isSaleGuiShown()) {
+                adHocPanelPlaceholder.getChildren().setAll(saleListPanel.getRoot());
+                adHocSecondaryPanelPlaceholder.getChildren().clear();
+            }
+
+            if (commandResult.isTagGuiShown()) {
+                adHocPanelPlaceholder.getChildren().setAll(contactTagListPanel.getRoot());
+                adHocSecondaryPanelPlaceholder.getChildren().setAll(salesTagListPanel.getRoot());
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {

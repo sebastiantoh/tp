@@ -33,11 +33,11 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_CONTACT + "CONTACT_INDEX (must be a positive integer) "
             + PREFIX_MESSAGE + "MESSAGE "
-            + PREFIX_DATETIME + "START_DATETIME"
+            + PREFIX_DATETIME + "START_DATETIME "
             + PREFIX_DURATION + "DURATION\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CONTACT + "2 "
-            + PREFIX_MESSAGE + "Send follow-up email "
+            + PREFIX_MESSAGE + "Product Demo "
             + PREFIX_DATETIME + "2020-10-30 15:00 "
             + PREFIX_DURATION + "30";
 

@@ -7,12 +7,13 @@ import java.time.Month;
 import java.time.Year;
 import java.time.ZoneId;
 
-import seedu.address.commons.MonthlyCountDataSet;
+import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.dataset.date.MonthlyCountData;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Gets multiple monthly meeting counts
+ * Gets multiple monthly meeting counts.
  */
 public class MultipleMeetingStatsCommand extends StatsCommand {
 
@@ -30,12 +31,12 @@ public class MultipleMeetingStatsCommand extends StatsCommand {
     }
 
     /**
-     * Gets multiple monthly meeting counts for months between
+     * Gets the monthly meeting count for each month between
      * the current month and the previous numberOfMonths - 1 months inclusive.
      *
-     * @param model {@code Model} which the command should operate on
+     * @param model {@code Model} which the command should operate on.
      * @return CommandResult object storing the success message
-     * and the multiple monthly count result
+     * and the multiple monthly count result.
      */
     @Override
     public CommandResult execute(Model model) {
@@ -44,7 +45,7 @@ public class MultipleMeetingStatsCommand extends StatsCommand {
         Month currentMonth = LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth();
         Year currentYear = Year.now();
 
-        MonthlyCountDataSet result = model
+        DataSet<MonthlyCountData> result = model
                 .getMultipleMonthMeetingsCount(currentMonth, currentYear, numberOfMonths);
 
         result.setTitle(DATASET_TITLE);

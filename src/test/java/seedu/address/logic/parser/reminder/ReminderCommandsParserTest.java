@@ -15,7 +15,12 @@ public class ReminderCommandsParserTest {
 
     @Test
     public void parse_listCommand_returnsListCommand() {
-        assertParseSuccess(reminderCommandsParser, "reminder list", null, new ListCommand());
+        assertParseSuccess(reminderCommandsParser, "reminder list", null, new ListCommand(null));
+    }
+
+    @Test
+    public void parse_listCommandPendingStatus_returnsListCommand() {
+        assertParseSuccess(reminderCommandsParser, "reminder list", " st/pending", new ListCommand(false));
     }
 
     @Test

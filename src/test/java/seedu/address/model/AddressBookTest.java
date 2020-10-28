@@ -7,10 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.meeting.TypicalMeetings.LUNCH_CARL;
 import static seedu.address.testutil.meeting.TypicalMeetings.MEET_ALICE;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
-import static seedu.address.testutil.person.TypicalPersons.CARL;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 
 import java.time.Month;
@@ -33,6 +33,8 @@ import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TypicalContactTags;
+import seedu.address.testutil.TypicalDates;
+import seedu.address.testutil.TypicalDurations;
 import seedu.address.testutil.TypicalSaleTags;
 import seedu.address.testutil.person.PersonBuilder;
 import seedu.address.testutil.sale.TypicalSales;
@@ -170,25 +172,6 @@ public class AddressBookTest {
     }
 
     @Test
-    public void listTags_noSaleTags_success() {
-        addressBook.addPerson(ALICE);
-        assertEquals("No sale tags found! Listing contact tags:\n"
-                + "1. [friends]\n", addressBook.listTags());
-    }
-
-    @Test
-    public void listTags_withBothTags_success() {
-        addressBook.addPerson(ALICE);
-        addressBook.addPerson(CARL);
-        addressBook.addSale(TypicalSales.CAMERA);
-        assertEquals("Listing contact tags:\n"
-                + "1. [friends]\n"
-                + "\n"
-                + "Listing sale tags:\n"
-                + "2. [electronics]\n", addressBook.listTags());
-    }
-
-    @Test
     public void resetData_withDuplicateReminder_throwsDuplicateReminderException() {
         List<Reminder> newReminders = Arrays.asList(CALL_ALICE, CALL_ALICE);
         AddressBookStub newData = new AddressBookStub(Collections.emptyList(), Collections.emptyList(),
@@ -223,6 +206,18 @@ public class AddressBookTest {
         addressBook.addMeeting(MEET_ALICE);
         List<Meeting> expectedConflictingMeeting = List.of(MEET_ALICE);
         assertEquals(expectedConflictingMeeting, addressBook.getConflictingMeetings(MEET_ALICE));
+    }
+
+    @Test
+    public void getConflictingMeetings_hasConflicts_returnsSortedListOfConflictingMeetings() {
+        addressBook.addMeeting(LUNCH_CARL);
+        addressBook.addMeeting(MEET_ALICE);
+
+        Meeting meetingWhichSpansTenYear = new Meeting(ALICE, new Message("Long meeting with Alice"),
+                TypicalDates.TYPICAL_DATE_2, TypicalDurations.TYPICAL_DURATION_ONE_YEAR.multipliedBy(10));
+
+        List<Meeting> expectedConflictingMeeting = List.of(MEET_ALICE, LUNCH_CARL);
+        assertEquals(expectedConflictingMeeting, addressBook.getConflictingMeetings(meetingWhichSpansTenYear));
     }
 
     @Test

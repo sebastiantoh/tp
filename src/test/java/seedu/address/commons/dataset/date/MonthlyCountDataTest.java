@@ -1,4 +1,4 @@
-package seedu.address.commons;
+package seedu.address.commons.dataset.date;
 
 import static java.time.Month.AUGUST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,7 +9,6 @@ import java.time.Month;
 import java.time.Year;
 
 import org.junit.jupiter.api.Test;
-
 
 public class MonthlyCountDataTest {
 
@@ -32,7 +31,7 @@ public class MonthlyCountDataTest {
         MonthlyCountData monthlyCountData =
                 new MonthlyCountData(new MonthAndYear(AUGUST, Year.now()), 1);
 
-        assertEquals(expectedString, monthlyCountData.getMonthAndYearAsStr());
+        assertEquals(expectedString, monthlyCountData.getKeyAsStr());
     }
 
     @Test

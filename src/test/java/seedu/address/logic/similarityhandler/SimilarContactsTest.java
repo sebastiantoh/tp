@@ -1,4 +1,4 @@
-package seedu.address.commons;
+package seedu.address.logic.similarityhandler;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;

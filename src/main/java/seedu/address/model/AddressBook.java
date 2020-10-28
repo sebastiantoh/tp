@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyCountDataSet;
+import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.commons.dataset.tag.SaleTagCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
@@ -160,7 +162,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Tag t : editedPerson.getTags()) {
             contactTags.add(t);
         }
-
+        sales.updateSalesWithContact(editedPerson);
         meetings.updateMeetingsWithContact(editedPerson);
         reminders.updateRemindersWithContact(editedPerson);
     }
@@ -173,6 +175,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
         meetings.removeMeetingsWithContact(key);
         reminders.removeRemindersWithContact(key);
+        sales.removeSalesWithContact(key);
     }
 
     //// tag-level operations
@@ -288,13 +291,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         int count = 0;
         for (Sale s : sales.asUnmodifiableObservableList()) {
             if (s.getTags().contains(target)) {
-                Person buyer = persons.asUnmodifiableObservableList().stream()
-                        .filter(person -> person.getId().equals(s.getBuyerId()))
-                        .findAny()
-                        .orElse(null);
-                assert buyer != null;
-
-                output.append(String.format("%d. %s (Client: %s)\n", count + 1, s, buyer.getName()));
+                output.append(String.format("%d. %s\n", count + 1, s));
                 count += 1;
             }
         }
@@ -317,7 +314,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Sale s : sales.asUnmodifiableObservableList()) {
             if (s.getTags().contains(target)) {
                 Person buyer = persons.asUnmodifiableObservableList().stream()
-                        .filter(person -> person.getId().equals(s.getBuyerId()))
+                        .filter(person -> person.equals(s.getBuyer()))
                         .findAny()
                         .orElse(null);
                 assert buyer != null;
@@ -334,42 +331,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * List all the existing tags in StonksBook.
-     */
-    public String listTags() {
-        StringBuilder output = new StringBuilder();
-        ObservableList<Tag> contactTagList = contactTags.asUnmodifiableObservableList();
-        ObservableList<Tag> saleTagList = saleTags.asUnmodifiableObservableList();
-        if (contactTagList.size() == 0 && saleTagList.size() == 0) {
-            output.append("No tags found!");
-        } else if (contactTagList.size() == 0) {
-            output.append("No contact tags found! ").append("Listing sale tags:\n");
-            for (int i = 0; i < saleTagList.size(); i++) {
-                output.append(String.format("%d. %s\n", i + 1, saleTagList.get(i)));
-            }
-        } else if (saleTagList.size() == 0) {
-            output.append("No sale tags found! ").append("Listing contact tags:\n");
-            for (int i = 0; i < contactTagList.size(); i++) {
-                output.append(String.format("%d. %s\n", i + 1, contactTagList.get(i)));
-            }
-        } else {
-            output.append("Listing contact tags:\n");
-            for (int i = 0; i < contactTagList.size(); i++) {
-                output.append(String.format("%d. %s\n", i + 1, contactTagList.get(i)));
-            }
-            output.append("\nListing sale tags:\n");
-            for (int i = 0; i < saleTagList.size(); i++) {
-                output.append(String.format("%d. %s\n", i + 1 + contactTagList.size(), saleTagList.get(i)));
-            }
-        }
-        return output.toString();
-    }
-
-    /**
      * Returns true if all the tags of the provided {@code sale} item exist in StonksBook.
      */
-    public boolean saleTagsExist(Sale sale) {
-        for (Tag t : sale.getTags()) {
+    public boolean saleTagsExist(Set<Tag> tags) {
+        for (Tag t : tags) {
             if (!saleTags.contains(t)) {
                 return false;
             }
@@ -545,10 +510,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * Gets the monthly meeting count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
-    public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         return this.meetings.getMultipleMonthMeetingsCount(month, year, numberOfMonths);
     }
 
@@ -560,11 +525,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Gets multiple number of sale count for months between {@code month} and {@code year} and
+     * Gets the monthly sale count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
-    public MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
         return this.sales.getMultipleMonthSaleCount(month, year, numberOfMonths);
+    }
+
+    /**
+     * Gets a breakdown of the proportion of sales in each tag.
+     */
+    public DataSet<SaleTagCountData> getSaleTagCount() {
+        return this.sales.getSaleTagCount();
     }
 
     //// util methods

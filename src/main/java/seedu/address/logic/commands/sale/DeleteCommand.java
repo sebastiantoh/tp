@@ -1,9 +1,12 @@
 package seedu.address.logic.commands.sale;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_INDEX;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -22,61 +25,83 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "sale delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the sale identified by the index number used in the displayed sale list.\n"
-        + "Parameters: SALE_INDEX (must be a positive integer)\n"
-        + "Example: " + COMMAND_WORD + " 3";
+        + ": Deletes the sale(s) identified by the index number used in the displayed sale list.\n"
+        + "Parameters: " + PREFIX_SALE_INDEX + " SALE_INDEX... (must be a positive integer)\n"
+        + "Example: " + COMMAND_WORD + " " + PREFIX_SALE_INDEX + " 3";
 
-    public static final String MESSAGE_DELETE_SALE_SUCCESS = "Deleted Sale: %1$s";
+    public static final String MESSAGE_DELETE_SALE_SUCCESS = "Deleted Sale(s):";
 
     public static final String MESSAGE_NO_SALES_DISPLAYED = "No sales displayed, use `sale list` "
             + "to display sales before executing the `sale delete` command";
 
-    private final Index saleIndex;
+    private final List<Index> saleIndexes;
 
     /**
      * Creates an DeleteCommand that removes a sale from a specified contact.
-     * @param saleIndex Index of the sale to be removed.
+     * @param saleIndexes Indexes of the sales to be removed.
      */
-    public DeleteCommand(Index saleIndex) {
-        this.saleIndex = saleIndex;
+    public DeleteCommand(List<Index> saleIndexes) {
+        this.saleIndexes = saleIndexes;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Sale> sales = model.getFilteredSaleList();
+        List<Sale> sales = model.getSortedSaleList();
         List<Person> people = model.getSortedPersonList();
-        if (model.getSortedSaleList().size() > sales.size() && model.getFilteredSaleList().size() == 0) {
+
+        if (model.getSortedSaleList().size() == 0) {
             throw new CommandException(MESSAGE_NO_SALES_DISPLAYED);
         }
-        if (saleIndex.getZeroBased() >= sales.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX);
+
+        List<Index> invalidIndexes = saleIndexes
+                .parallelStream().filter(personIndex -> personIndex.getZeroBased() >= sales.size())
+                .collect(Collectors.toList());
+
+        if (!invalidIndexes.isEmpty()) {
+            throw new CommandException(MassSaleCommandUtil.generateInvalidIndexMessage(
+                    Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX, invalidIndexes));
         }
 
-        Sale saleToDelete = sales.get(saleIndex.getZeroBased());
-        Person personToEdit = people.stream()
-                .filter(person -> person.getId().equals(saleToDelete.getBuyerId()))
-                .findAny()
-                .orElse(null);
-        assert personToEdit != null;
+        List<Sale> deletedSales = new ArrayList<>();
+        List<Person> previousPersons = new ArrayList<>();
+        List<Person> editedPersons = new ArrayList<>();
+        for (Index saleIndex : saleIndexes) {
+            Sale saleToDelete = sales.get(saleIndex.getZeroBased());
+            Person personToEdit = people.stream()
+                    .filter(person -> person.equals(saleToDelete.getBuyer()))
+                    .findAny()
+                    .orElse(null);
+            assert personToEdit != null;
 
-        BigDecimal newTotalSalesAmount = personToEdit.getTotalSalesAmount().subtract(saleToDelete.getTotalCost());
+            BigDecimal newTotalSalesAmount = personToEdit.getTotalSalesAmount().subtract(saleToDelete.getTotalCost());
 
-        Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
-                personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
-                personToEdit.getRemark(), personToEdit.isArchived(), newTotalSalesAmount);
+            Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
+                    personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
+                    personToEdit.getRemark(), personToEdit.isArchived(), newTotalSalesAmount);
 
-        model.removeSale(saleToDelete);
-        model.setPerson(personToEdit, editedPerson);
+            deletedSales.add(saleToDelete);
+            previousPersons.add(personToEdit);
+            editedPersons.add(editedPerson);
+        }
 
-        return new CommandResult(String.format(MESSAGE_DELETE_SALE_SUCCESS, saleToDelete));
+        for (int i = 0; i < deletedSales.size(); i++) {
+            model.removeSale(deletedSales.get(i));
+            model.setPerson(previousPersons.get(i), editedPersons.get(i));
+        }
+
+        return new CommandResult(String.format(generateSuccessMessage(deletedSales)), false, true);
+    }
+
+    private String generateSuccessMessage(List<Sale> deletedSales) {
+        return MESSAGE_DELETE_SALE_SUCCESS + MassSaleCommandUtil.listAllSales(deletedSales);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof DeleteCommand // instanceof handles nulls
-            && saleIndex.equals(((DeleteCommand) other).saleIndex)); // state check
+            && saleIndexes.equals(((DeleteCommand) other).saleIndexes)); // state check
     }
 }
