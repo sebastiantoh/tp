@@ -326,7 +326,7 @@ Shows a list of sales.
    * all sales whose associated date is in the specified `MONTH` and `YEAR` are listed.
    
 e.g. you want to see the sales you have made in August 2020, you can do so as shown.
-1. Type `sale list m/8 y/2020` in the command box and press `Enter`.
+1. Type `sale list m/8 y/2020` in the **Command Box** and press <kbd>Enter</kbd>.
 <img src="images/salelistfirststep.png" alt="result for 'contact sort keyword'" width="400px">
 <img src="images/salelistsecondstep.png" alt="result for 'contact sort keyword'" width="400px">
 
