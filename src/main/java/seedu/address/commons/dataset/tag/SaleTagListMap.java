@@ -28,7 +28,7 @@ public class SaleTagListMap {
     /**
      * Adds {@code sale} to an sale list based on the key of {@code tag}.
      *
-     * @param sale a valid year sale.
+     * @param sale A valid sale to be added.
      */
     public void addSale(Sale sale) {
         Set<Tag> tags = sale.getTags();
@@ -46,7 +46,7 @@ public class SaleTagListMap {
     /**
      * Removes {@code sale} from an sale list based on the key of {@code key} if exists.
      *
-     * @param sale a valid year sale
+     * @param sale The sale to be removed.
      */
     public void removeSale(Sale sale) {
         Set<Tag> tags = sale.getTags();
@@ -67,8 +67,8 @@ public class SaleTagListMap {
      * Gets the number of items in an sale list based on the key of {@code key}.
      * If the key of {@code key} does not exist, the number is 0.
      *
-     * @param tag a valid month tag.
-     * @return the number of sales with that tag.
+     * @param tag A valid tag.
+     * @return The number of sales with that tag.
      */
     public int getSaleCount(Tag tag) {
         TagKey key = new TagKey(tag);
@@ -79,14 +79,26 @@ public class SaleTagListMap {
     }
 
     /**
-     * Gets the list of sales with a specific {@code tag}.
+     * Remove a tag from the saleTagListMap.
      *
-     * @param tag a valid month tag.
-     * @return list of sales in its natural order
+     * @param tag The tag to be removed.
      */
-    public List<Sale> getSales(Tag tag) {
+    public void removeTag(Tag tag) {
         TagKey key = new TagKey(tag);
-        return this.saleTagListMap.getOrDefault(key, Collections.emptyList());
+        saleTagListMap.remove(key);
+    }
+
+    /**
+     * Edit a tagKey to contain the newly edited tag.
+     *
+     * @param previousTag The tag to be replaced.
+     * @param newTag The newly edited tag to replace.
+     */
+    public void editTag(Tag previousTag, Tag newTag) {
+        TagKey tagKeyToEdit = saleTagListMap.keySet().stream()
+                .filter(tagKey -> tagKey.getTag().equals(previousTag))
+                .findFirst().orElseThrow();
+        tagKeyToEdit.setTag(newTag);
     }
 
     /**
@@ -109,7 +121,8 @@ public class SaleTagListMap {
         }));
 
         result.sort(Comparator.comparingInt(Data::getCount));
-        List<SaleTagCountData> topSaleTagCountData = result.stream().limit(5).collect(Collectors.toList());
+        List<SaleTagCountData> topSaleTagCountData = result.stream().limit(5).
+                collect(Collectors.toList());
         Collections.reverse(topSaleTagCountData);
 
         return new DataSet<>(topSaleTagCountData);
