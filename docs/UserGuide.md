@@ -346,20 +346,20 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
     - This is to identify the contact index corresponding to Alex Yeoh. Let us assume that Alex Yeoh is at the first
      index.
      
-<img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="400px">
+<img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
     
 2. The **Result Box** will display a message of the number of contacts listed.
  
-<img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="400px">
+<img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
  
 3. Type `meeting list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<img src="images/meeting-list/meeting-list.png" alt="Enter 'meeting list c/1' in the command box" width="400px">
+<img src="images/meeting-list/meeting-list.png" alt="Enter 'meeting list c/1' in the command box" width="900px">
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Meeting List** will
  show a list of upcoming meetings scheduled with Alex Yeoh.
 
-<img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="400px">
+<img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="900px">
 
 #### Adding a meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
