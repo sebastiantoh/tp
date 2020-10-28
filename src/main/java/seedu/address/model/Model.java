@@ -158,6 +158,11 @@ public interface Model {
     void deleteContactTag(Tag target);
 
     /**
+     * Returns true if deleting this tag {@code tagToDelete} will result in some Sales not having any tags.
+     */
+    boolean anySalesWithoutTags(Tag tagToDelete);
+
+    /**
      * Deletes the given tag from the sale tag list.
      * The tag must exist in StonksBook.
      */

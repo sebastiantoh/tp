@@ -9,12 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -88,37 +86,23 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getSortedPersonList();
+        MassSaleCommandUtil.arePersonIndexesValid(lastShownList, indexList);
 
-        List<Index> invalidIndexes = indexList
-                .parallelStream().filter(personIndex -> personIndex.getZeroBased() >= lastShownList.size())
-                .collect(Collectors.toList());
-
-        if (!invalidIndexes.isEmpty()) {
-            throw new CommandException(MassSaleCommandUtil.generateInvalidIndexMessage(
-                    Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEXES, invalidIndexes));
+        if (!model.saleTagsExist(tagList)) {
+            throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
         }
 
         List<Sale> duplicatedSales = new ArrayList<>();
         List<Sale> salesAdded = new ArrayList<>();
 
         for (Index index : indexList) {
-            Person personToEdit = lastShownList.get(index.getZeroBased());
-            Sale toAdd = new Sale(itemName, personToEdit, dateOfPurchase, quantity, unitPrice, tagList);
-
-            if (!model.saleTagsExist(toAdd.getTags())) {
-                throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
-            }
-            BigDecimal newTotalSalesAmount = toAdd.getTotalCost().add(personToEdit.getTotalSalesAmount());
-
-            Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
-                    personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
-                    personToEdit.getRemark(), personToEdit.isArchived(), newTotalSalesAmount);
+            Person buyer = lastShownList.get(index.getZeroBased());
+            Sale toAdd = new Sale(itemName, buyer, dateOfPurchase, quantity, unitPrice, tagList);
 
             if (model.hasSale(toAdd)) {
                 duplicatedSales.add(toAdd);
             } else {
                 model.addSale(toAdd);
-                model.setPerson(personToEdit, editedPerson);
                 salesAdded.add(toAdd);
             }
         }

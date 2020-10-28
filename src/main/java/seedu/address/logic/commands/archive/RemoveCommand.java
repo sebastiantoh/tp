@@ -42,7 +42,7 @@ public class RemoveCommand extends Command {
         Person personToUnarchive = lastShownList.get(targetIndex.getZeroBased());
 
         if (!personToUnarchive.isArchived()) {
-            throw new CommandException(Messages.MESSAGE_UNARCHIVE_INVALIID_LIST);
+            throw new CommandException(Messages.MESSAGE_UNARCHIVE_INVALID_LIST);
         }
 
         assert personToUnarchive.isArchived();
@@ -55,8 +55,7 @@ public class RemoveCommand extends Command {
                 personToUnarchive.getAddress(),
                 personToUnarchive.getTags(),
                 personToUnarchive.getRemark(),
-                false,
-                personToUnarchive.getTotalSalesAmount()
+                false
         );
         model.setPerson(personToUnarchive, unarchivedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);

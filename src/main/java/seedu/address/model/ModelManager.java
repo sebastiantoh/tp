@@ -194,6 +194,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean anySalesWithoutTags(Tag tagToDelete) {
+        return addressBook.anySalesWithoutTags(tagToDelete);
+    }
+
+    @Override
     public void deleteSaleTag(Tag target) {
         requireNonNull(target);
         addressBook.removeSaleTag(target);

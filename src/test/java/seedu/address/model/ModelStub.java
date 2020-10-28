@@ -110,6 +110,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean anySalesWithoutTags(Tag tagToDelete) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteSaleTag(Tag target) {
         throw new AssertionError("This method should not be called.");
     }

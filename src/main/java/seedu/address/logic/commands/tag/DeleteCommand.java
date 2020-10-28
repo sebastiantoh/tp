@@ -56,7 +56,11 @@ public class DeleteCommand extends Command {
         Tag tagToDelete;
         if (!isContact) {
             tagToDelete = saleTagList.get(targetIndex.getZeroBased());
-            model.deleteSaleTag(tagToDelete);
+            if (model.anySalesWithoutTags(tagToDelete)) {
+                throw new CommandException(Messages.MESSAGE_SALES_NO_TAGS);
+            } else {
+                model.deleteSaleTag(tagToDelete);
+            }
         } else {
             tagToDelete = contactTagList.get(targetIndex.getZeroBased());
             model.deleteContactTag(tagToDelete);

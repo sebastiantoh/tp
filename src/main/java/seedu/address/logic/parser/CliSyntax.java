@@ -12,7 +12,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_CONTACT_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_CONTACT_REMARK = new Prefix("r/");
-    public static final Prefix PREFIX_TOTAL_SALES = new Prefix("s/");
     public static final Prefix PREFIX_DESC_ORDER = new Prefix("desc");
 
     /* Prefix definitions for tags */

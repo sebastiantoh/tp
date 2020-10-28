@@ -3,7 +3,6 @@ package seedu.address.logic.commands.contact;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TOTAL_SALES;
 
 import java.util.Comparator;
 
@@ -64,8 +63,6 @@ public class SortCommand extends Command {
             this.comparator = Comparator.comparing(person -> person.getName().fullName.toLowerCase());
         } else if (sortingAttribute.equals(PREFIX_CONTACT_EMAIL)) {
             this.comparator = Comparator.comparing(person -> person.getEmail().value.toLowerCase());
-        } else if (sortingAttribute.equals(PREFIX_TOTAL_SALES)) {
-            this.comparator = Comparator.comparing(Person::getTotalSalesAmount);
         } else {
             throw new CommandException(MESSAGE_SORTING_ATTRIBUTE_INVALID);
         }
