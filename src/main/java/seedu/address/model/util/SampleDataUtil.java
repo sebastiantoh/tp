@@ -76,25 +76,25 @@ public class SampleDataUtil {
             LocalDateTime.of(2020, 9, 20, 14, 10),
             new Quantity("1200"), new UnitPrice(new BigDecimal("0.8")), getTagSet("stationery"));
     private static final Sale RULER = new Sale(new ItemName("Ruler"), BERNICE_YU,
-            LocalDateTime.of(2020, 11, 1, 19, 00),
+            LocalDateTime.of(2020, 11, 1, 19, 0),
             new Quantity("1200"), new UnitPrice(new BigDecimal("0.99")), getTagSet("stationery"));
     private static final Sale GUITAR = new Sale(new ItemName("guitar"), DAVID_LI,
-            LocalDateTime.of(2020, 11, 3, 19, 00),
+            LocalDateTime.of(2020, 11, 3, 19, 0),
             new Quantity("3"), new UnitPrice(new BigDecimal("4000.00")), getTagSet("music"));
     private static final Sale GUITAR_PICK = new Sale(new ItemName("guitar pick"), ROY_BALAKRISHNAN,
-            LocalDateTime.of(2020, 8, 3, 19, 00),
+            LocalDateTime.of(2020, 8, 3, 19, 0),
             new Quantity("4000"), new UnitPrice(new BigDecimal("1.00")), getTagSet("music"));
     private static final Sale GUITAR_STRAP = new Sale(new ItemName("guitar strap"), BERNICE_YU,
-            LocalDateTime.of(2020, 8, 3, 19, 00),
+            LocalDateTime.of(2020, 8, 3, 19, 0),
             new Quantity("4"), new UnitPrice(new BigDecimal("76.00")), getTagSet("music"));
     private static final Sale DRUM_SET = new Sale(new ItemName("drum set"), BERNICE_YU,
-            LocalDateTime.of(2020, 7, 3, 19, 00),
+            LocalDateTime.of(2020, 7, 3, 19, 0),
             new Quantity("2"), new UnitPrice(new BigDecimal("14530.40")), getTagSet("music"));
     private static final Sale DRUM_STICKS = new Sale(new ItemName("guitar"), ALEX_YEOH,
-            LocalDateTime.of(2020, 6, 3, 19, 00),
+            LocalDateTime.of(2020, 6, 3, 19, 0),
             new Quantity("400"), new UnitPrice(new BigDecimal("17.95")), getTagSet("music"));
     private static final Sale MICROPHONE = new Sale(new ItemName("microphone"), CHARLOTTE_OLIVEIRO,
-            LocalDateTime.of(2020, 9, 3, 19, 00),
+            LocalDateTime.of(2020, 9, 3, 19, 0),
             new Quantity("7"), new UnitPrice(new BigDecimal("123.60")), getTagSet("music"));
 
     public static Person[] getSamplePersons() {
@@ -126,15 +126,15 @@ public class SampleDataUtil {
                 LocalDateTime.of(2020, 11, 20, 12, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(CHARLOTTE_OLIVEIRO,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Product Demo"),
                 LocalDateTime.of(2020, 12, 20, 12, 0),
                 Duration.ofMinutes(90)));
         meetings.add(new Meeting(CHARLOTTE_OLIVEIRO,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Dinner"),
                 LocalDateTime.of(2020, 10, 20, 12, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(ALEX_YEOH,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Lunch to discuss pricing details"),
                 LocalDateTime.of(2020, 10, 20, 14, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(BERNICE_YU,
@@ -142,15 +142,15 @@ public class SampleDataUtil {
                 LocalDateTime.of(2020, 10, 20, 18, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(DAVID_LI,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Product Demo"),
                 LocalDateTime.of(2020, 10, 20, 20, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(BERNICE_YU,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Dinner"),
                 LocalDateTime.of(2020, 9, 20, 12, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(BERNICE_YU,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Lunch to finalize pricing"),
                 LocalDateTime.of(2020, 9, 13, 12, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(DAVID_LI,
@@ -158,43 +158,43 @@ public class SampleDataUtil {
                 LocalDateTime.of(2020, 8, 20, 12, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(ROY_BALAKRISHNAN,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Mini Product Demo to convince Roy"),
                 LocalDateTime.of(2020, 7, 20, 12, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(ROY_BALAKRISHNAN,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Lunch to discuss bulk purchase offer"),
                 LocalDateTime.of(2020, 7, 10, 12, 0),
-                Duration.ofMinutes(30)));
+                Duration.ofMinutes(90)));
         meetings.add(new Meeting(ROY_BALAKRISHNAN,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Lunch to discuss pricing details"),
                 LocalDateTime.of(2020, 7, 12, 12, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(ROY_BALAKRISHNAN,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Product Demo"),
                 LocalDateTime.of(2020, 7, 6, 12, 0),
-                Duration.ofMinutes(30)));
-        meetings.add(new Meeting(ROY_BALAKRISHNAN,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                Duration.ofMinutes(120)));
+        meetings.add(new Meeting(ALEX_YEOH,
+                new Message("Product Demo"),
                 LocalDateTime.of(2020, 7, 1, 12, 0),
                 Duration.ofMinutes(30)));
-        meetings.add(new Meeting(ROY_BALAKRISHNAN,
+        meetings.add(new Meeting(ALEX_YEOH,
                 new Message("Lunch to discuss new recurring purchase requirements"),
                 LocalDateTime.of(2020, 7, 2, 12, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(ROY_BALAKRISHNAN,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Dinner to discuss bulk purchase offer"),
                 LocalDateTime.of(2020, 7, 3, 12, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(ROY_BALAKRISHNAN,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Sales call"),
                 LocalDateTime.of(2020, 7, 4, 12, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(ROY_BALAKRISHNAN,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Lunch to discuss new alternatives"),
                 LocalDateTime.of(2020, 7, 24, 12, 0),
                 Duration.ofMinutes(30)));
         meetings.add(new Meeting(ROY_BALAKRISHNAN,
-                new Message("Lunch to discuss new recurring purchase requirements"),
+                new Message("Dinner to finalize pricing details"),
                 LocalDateTime.of(2020, 7, 27, 12, 0),
                 Duration.ofMinutes(30)));
         return meetings;
