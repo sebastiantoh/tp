@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SALES;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +19,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -83,17 +81,17 @@ public class EditCommand extends Command {
         List<Sale> lastShownList = model.getSortedSaleList();
         MassSaleCommandUtil.areSaleIndexesValid(lastShownList, saleIndexes);
 
-        // Check if new tags are valid
+        // Check if new tags are valid.
         if (editSaleDescriptor.getTags().isPresent()) {
             if (!model.saleTagsExist(editSaleDescriptor.getTags().get())) {
                 throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
             }
         }
 
-        // Check if new buyer is valid, and add to editSaleDescriptor if it is
+        // Check if new buyer is valid, and add to editSaleDescriptor if it is.
         if (personIndex != null) {
             List<Person> lastShownPeople = model.getSortedPersonList();
-            assert MassSaleCommandUtil.arePersonIndexesValid(lastShownPeople, new ArrayList<>(Arrays.asList(personIndex)));
+            MassSaleCommandUtil.arePersonIndexesValid(lastShownPeople, new ArrayList<>(Arrays.asList(personIndex)));
             Person newBuyer = lastShownPeople.get(personIndex.getZeroBased());
             editSaleDescriptor.setBuyer(newBuyer);
         }
@@ -114,14 +112,13 @@ public class EditCommand extends Command {
         }
 
         model.updateFilteredSaleList(PREDICATE_SHOW_ALL_SALES);
-
         String result = generateResultString(editedSales, invalidSales);
 
         return new CommandResult(result, false, true);
     }
 
     private String generateResultString(List<Sale> editedSales, List<Sale> invalidSales) {
-        String result = "";
+        String result;
 
         if (editedSales.size() > 0) {
             result = MESSAGE_EDIT_SALE_SUCCESS + MassSaleCommandUtil.listAllSales(editedSales);

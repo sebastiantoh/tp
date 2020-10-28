@@ -14,8 +14,6 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookInR
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 
-import java.math.BigDecimal;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;

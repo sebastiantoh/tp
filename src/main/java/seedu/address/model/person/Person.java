@@ -2,8 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;

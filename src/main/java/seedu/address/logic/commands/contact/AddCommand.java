@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;

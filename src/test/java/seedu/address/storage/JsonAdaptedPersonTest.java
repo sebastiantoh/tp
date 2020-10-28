@@ -5,7 +5,6 @@ import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +16,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.testutil.person.PersonBuilder;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -25,9 +23,6 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_TOTAL_SALES_AMOUNT_1 = "str";
-    private static final String INVALID_TOTAL_SALES_AMOUNT_2 = "-1";
-    private static final String INVALID_TOTAL_SALES_AMOUNT_3 = "-1";
 
     private static final Integer VALID_ID = BENSON.getId();
     private static final String VALID_NAME = BENSON.getName().toString();

@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_UNARCHIVED_PERSONS;
 
-import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
