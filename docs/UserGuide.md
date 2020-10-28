@@ -298,7 +298,7 @@ Let's say that you would like to find out who are the contacts tagged with frien
 
    <img src="images/tag-find/tag-find.png" alt="Enter 'tag delete ct/2'" width="900px"> 
 
-3. The **Result Box** will display a message noting that the command was successful, as well as a list of contacts who are tagged with frineds.
+3. The **Result Box** will display a message noting that the command was successful, as well as a list of contacts who are tagged with friends.
 
    <img src="images/tag-find/tag-find-result.png" alt="Enter 'tag delete ct/2'" width="900px"> 
 
@@ -742,5 +742,4 @@ Action | Format, Examples
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
 **Exit Application** | `exit`
-
 
