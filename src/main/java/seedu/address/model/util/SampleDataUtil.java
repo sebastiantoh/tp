@@ -62,13 +62,13 @@ public class SampleDataUtil {
      */
     private static final Sale NOTEBOOK = new Sale(new ItemName("Notebook"), ALEX_YEOH,
             LocalDateTime.of(2020, 11, 29, 15, 40),
-            new Quantity("10"), new UnitPrice(new BigDecimal("3.5")), new HashSet<Tag>());
+            new Quantity("10"), new UnitPrice(new BigDecimal("3.5")), getTagSet("stationery"));
     private static final Sale BLACK_PEN = new Sale(new ItemName("Black Pen"), BERNICE_YU,
             LocalDateTime.of(2020, 10, 6, 9, 50),
             new Quantity("300"), new UnitPrice(new BigDecimal("2.0")), getTagSet("stationery"));
     private static final Sale BINDER = new Sale(new ItemName("Binder"), ALEX_YEOH,
             LocalDateTime.of(2020, 11, 13, 11, 45),
-            new Quantity("250"), new UnitPrice(new BigDecimal("4.99")), new HashSet<Tag>());
+            new Quantity("250"), new UnitPrice(new BigDecimal("4.99")), getTagSet("stationery"));
     private static final Sale TAPE = new Sale(new ItemName("Scotch Tape"), ALEX_YEOH,
             LocalDateTime.of(2020, 10, 17, 15, 20),
             new Quantity("1000"), new UnitPrice(new BigDecimal("2.1")), getTagSet("crafts"));

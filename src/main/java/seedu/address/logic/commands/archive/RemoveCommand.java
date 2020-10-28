@@ -42,7 +42,7 @@ public class RemoveCommand extends Command {
         Person personToUnarchive = lastShownList.get(targetIndex.getZeroBased());
 
         if (!personToUnarchive.isArchived()) {
-            throw new CommandException(Messages.MESSAGE_UNARCHIVE_INVALIID_LIST);
+            throw new CommandException(Messages.MESSAGE_UNARCHIVE_INVALID_LIST);
         }
 
         assert personToUnarchive.isArchived();

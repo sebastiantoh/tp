@@ -235,6 +235,19 @@ public class UniqueSaleList implements Iterable<Sale> {
     }
 
     /**
+     * Returns true if deleting this tag {@code target} will result in some Sales not having any tags.
+     */
+    public boolean anySalesWithoutTags(Tag target) {
+        requireNonNull(target);
+        for (Sale s : internalList) {
+            if (s.getTags().contains(target) && s.getTags().size() == 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Gets the monthly sale list for {@code month} and {@code year}.
      */
     public List<Sale> getMonthlySaleList(Month month, Year year) {
