@@ -260,30 +260,35 @@ This list is sorted in ascending order based on the date the sale is made.
 **Format:** `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 
 * When used without any arguments, all sales will be shown.
-* When an contact index is specified, the list will only show sales associated with the contact at the specified index.
-* When both month and year are specified, the list will only show sales made in the specified month and year.
-* Only either contact index or month and year can be specified.
+* At most one optional parameter can be present.
+
+* `CONTACT_INDEX` refers to the index number
+  shown in the displayed contact list and
+  must be a positive integer 1, 2, 3, …​
+* `MONTH` must be an integer between 1 and 12 inclusive.
+* `YEAR` must be an integer greater than 0.
+
+* If no optional parameter is present:
+   * all sales are listed.
+
+* If optional parameter `CONTACT_INDEX` is present:
+   * all sales made to a contact with the specified index are listed.
+
+* If optional parameter `[m/MONTH y/YEAR]` is present:
+   * all sales whose associated date is in the specified `MONTH` and `YEAR` are listed.
 
 **Example:** Let's say you want to view all sales made to Bernice Yu. This is what you need to do:
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
-    - This is to identify the contact index corresponding to Bernice Yu.
-     
-    <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
+    - This is to identify the contact index corresponding to Bernice Yu.     
     
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
- show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.
+ show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example. 
  
-    <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
- 
-3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
-
-    <img src="images/meeting-list/meeting-list.png" alt="Enter 'meeting list c/1' in the command box" width="900px">
+3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.\
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu.
-
-    <img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="900px">
 
 
 #### Adding a sale to a customer: `sale add` [Kwek Min Yih]
@@ -306,18 +311,13 @@ Suppose you successfully sold 100 guitar tuners at a unit price of $10 with Bern
 Here's how you can add this new sale into StonksBook:
  
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
-     - This is to identify the contact index corresponding to Bernice Yu.
-      
-     <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
+     - This is to identify the contact index corresponding to Bernice Yu.      
      
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
-  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.
-  
-     <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
+  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.  
  
 3. Type `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music` in the **Command Box** and press <kbd>Enter</kbd>.
  
-    <img src="images/meeting-add/meeting-add.png" alt="Enter 'meeting add' in the command box" width="900px">
   
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  contain this newly created sale.
@@ -340,22 +340,14 @@ Here's how you can delete this sale in StonksBook:
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
     - This is to identify the contact index corresponding to Bernice Yu.
-     
-    <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
     
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.
  
-    <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
- 
 3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
-
-    <img src="images/meeting-list/meeting-list.png" alt="Enter 'meeting list c/1' in the command box" width="900px">
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu. Identify the index of the sale to be deleted. Let us assume it is at the third index.
-
-    <img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="900px">
 
 5. Type `sale delete s/4` in the command box, and press Enter to execute it.
  
@@ -363,48 +355,31 @@ Here's how you can delete this sale in StonksBook:
      
 6. You should see that the sale has been deleted from the sale list.
  
-    <img src="images/meeting-delete/meeting-delete-result.png" alt="Result for 'meeting delete'" width="900px">
-
 #### Editing an existing sale: `sale edit` [Kwek Min Yih]
 
 Edits an existing sale in StonksBook.
 
-Format: `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`
+**Format:** `sale edit s/SALE_INDEX… [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`
 
-* Edits the sale at the specified `SALE_INDEX`.
+* Edits the sale at the specified `SALE_INDEX`. 
+* The `SALE_INDEX` refers to the index number shown in the displayed meeting list, and must be a positive integer 1, 2, 3, …​
+* Multiple `SALE_INDEX` can be specified, meaning that you can edit multiple sales with the same command.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing a sale's tags, the existing tags of the sale will be removed i.e adding of tags is not cumulative.
-* You can remove all the sale’s tags by typing `t/` without specifying any tags after it.
 
-Examples:
-* `sale edit 2 n/B5 Notebook p/4.00 q/10` edits the name of the 2nd sale to be B5 Notebook, and assigns it a quantity of 10 with unit price $4.00.
-* `sale edit 3 t/` clears the tags of the 3rd sale.
-
-
-
-
-* At most one optional parameter can be present.
-
-* `CONTACT_INDEX` refers to the index number
-  shown in the displayed contact list and
-  must be a positive integer 1, 2, 3, …​
-* `MONTH` must be an integer between 1 and 12 inclusive.
-* `YEAR` must be an integer greater than 0.
-
-* If no optional parameter is present:
-   * all sales are listed.
-
-* If optional parameter `CONTACT_INDEX` is present:
-   * all sales made to a contact with the specified index are listed.
-
-* If optional parameter `[m/MONTH y/YEAR]` is present:
-   * all sales whose associated date is in the specified `MONTH` and `YEAR` are listed.
-
-Examples:
-* `sale list` lists all sales.
-* `sale list c/5` lists all sales made to the 5th contact in the contact list.
-* `sale list m/6 y/2020` lists all sales whose associated date is within June 2020.
+**Examples:**
+Suppose you have just received the good news that Bernice Yu would like to buy 20 Guitars instead of the 10 she previously specified. 
+Here's how you can edit her sale in StonksBook:
+ 
+1. Identify the index corresponding to the sale to be edited in the sale list. If you have a large list of
+  sales, it may be convenient to filter for all sales made to Bernice Yu. Assuming that Bernice Yu is the 2nd contact
+   currently displayed in the contact list, you can type `sale list c/2` and the sale list will update to show
+    only sales made to Bernice Yu.
+    
+2. Suppose the sale to be edited is at the third index in the meeting list. Then, type `sale edit s/3 q/20` in the command box, and press <kbd>Enter</kbd> to execute it.
+  
+3. You should see that the meeting has been updated to reflect this new scheduled date.
 
 ### Scheduled Meetings
 
