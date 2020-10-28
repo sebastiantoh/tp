@@ -3,12 +3,9 @@ package seedu.address.logic.commands.sale;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_INDEX;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -49,36 +46,18 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
 
         List<Sale> sales = model.getSortedSaleList();
-        List<Person> people = model.getSortedPersonList();
 
         if (model.getSortedSaleList().size() == 0) {
             throw new CommandException(MESSAGE_NO_SALES_DISPLAYED);
         }
 
-        List<Index> invalidIndexes = saleIndexes
-                .parallelStream().filter(personIndex -> personIndex.getZeroBased() >= sales.size())
-                .collect(Collectors.toList());
-
-        if (!invalidIndexes.isEmpty()) {
-            throw new CommandException(MassSaleCommandUtil.generateInvalidIndexMessage(
-                    Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX, invalidIndexes));
-        }
+        assert MassSaleCommandUtil.areSaleIndexesValid(sales, saleIndexes);
 
         List<Sale> deletedSales = new ArrayList<>();
         for (Index saleIndex : saleIndexes) {
             Sale saleToDelete = sales.get(saleIndex.getZeroBased());
-            Person buyer = people.stream()
-                    .filter(person -> person.equals(saleToDelete.getBuyer()))
-                    .findAny()
-                    .orElse(null);
-            assert buyer != null;
-
             deletedSales.add(saleToDelete);
-
-        }
-
-        for (int i = 0; i < deletedSales.size(); i++) {
-            model.removeSale(deletedSales.get(i));
+            model.removeSale(saleToDelete);
         }
 
         return new CommandResult(String.format(generateSuccessMessage(deletedSales)), false, true);

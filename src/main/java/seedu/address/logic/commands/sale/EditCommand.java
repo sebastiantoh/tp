@@ -80,16 +80,7 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Sale> lastShownList = model.getSortedSaleList();
-
-        List<Index> invalidIndexes = saleIndexes
-                .parallelStream().filter(personIndex -> personIndex.getZeroBased() >= lastShownList.size())
-                .collect(Collectors.toList());
-
-        // Check if indexes are provided
-        if (!invalidIndexes.isEmpty()) {
-            throw new CommandException(MassSaleCommandUtil.generateInvalidIndexMessage(
-                    Messages.MESSAGE_INVALID_SALE_DISPLAYED_INDEX, invalidIndexes));
-        }
+        assert MassSaleCommandUtil.areSaleIndexesValid(lastShownList, saleIndexes);
 
         // Check if new tags are valid
         if (editSaleDescriptor.getTags().isPresent()) {

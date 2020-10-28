@@ -88,14 +88,10 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getSortedPersonList();
+        assert MassSaleCommandUtil.arePersonIndexesValid(lastShownList, indexList);
 
-        List<Index> invalidIndexes = indexList
-                .parallelStream().filter(personIndex -> personIndex.getZeroBased() >= lastShownList.size())
-                .collect(Collectors.toList());
-
-        if (!invalidIndexes.isEmpty()) {
-            throw new CommandException(MassSaleCommandUtil.generateInvalidIndexMessage(
-                    Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEXES, invalidIndexes));
+        if (!model.saleTagsExist(tagList)) {
+            throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
         }
 
         List<Sale> duplicatedSales = new ArrayList<>();
@@ -104,10 +100,6 @@ public class AddCommand extends Command {
         for (Index index : indexList) {
             Person buyer = lastShownList.get(index.getZeroBased());
             Sale toAdd = new Sale(itemName, buyer, dateOfPurchase, quantity, unitPrice, tagList);
-
-            if (!model.saleTagsExist(toAdd.getTags())) {
-                throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
-            }
 
             if (model.hasSale(toAdd)) {
                 duplicatedSales.add(toAdd);
