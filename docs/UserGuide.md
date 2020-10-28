@@ -381,9 +381,9 @@ Deletes a sales item of specified index.
 **Examples**:
 * `sale delete s/4` deletes the 4th sale made in the list.
 
-### Scheduled Meetings
+### Meetings
 
-StonksBook allows you to manage your scheduled meetings within the application.
+StonksBook allows you to manage your meetings within the application.
 
 #### Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
 
@@ -394,7 +394,7 @@ Shows a list of all meetings. By default, the list only shows upcoming meetings.
 
 * When a contact index is specified, the list will only show meetings associated with the contact at the specified
  contact index.
-* You can show all meetings, including past meetings, by typing `a/`.
+* You can show all meetings, including past meetings, by including `a/`.
 
 **Example**:
 Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is what you need to do:
@@ -406,7 +406,7 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
     <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
     
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
- show only contacts with the name 'Alex'
+ show only contacts with the name 'Alex'.
  
     <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
  
@@ -421,7 +421,7 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
 
 #### Adding a meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
-Adds a scheduled meeting with the specified contact in StonksBook.
+Adds a meeting with the specified contact in StonksBook.
 
 <div markdown="block" class="alert alert-info">
 To prevent the situation in which you unknowingly scheduled conflicting meetings, StonksBook will not allow you to
@@ -430,7 +430,7 @@ To prevent the situation in which you unknowingly scheduled conflicting meetings
 
 **Format**: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 
-* Adds a scheduled meeting with the contact at the specified `CONTACT_INDEX`.
+* Adds a meeting with the contact at the specified `CONTACT_INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index must be a positive integer 1, 2, 3, …​
 * The start datetime must be in the format `yyyy-MM-dd HH:mm`
@@ -450,7 +450,7 @@ and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
   
     <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
  
- 3. Type `meeting add c/2 m/Lunch with Alex Yeoh d/2020-12-03 12:00 du/90` in the **Command Box** and press <kbd>Enter</kbd>.
+ 3. Type `meeting add c/1 m/Lunch with Alex Yeoh d/2020-12-03 12:00 du/90` in the **Command Box** and press <kbd>Enter</kbd>.
  
     <img src="images/meeting-add/meeting-add.png" alt="Enter 'meeting add' in the command box" width="900px">
   
@@ -561,8 +561,13 @@ Shows a list of all reminders created, sorted in ascending order based on the da
 
 * `STATUS` can be either `completed` or `pending`.
 
-**Examples**:
-* `reminder list st/completed` displays all reminders that have been marked as completed.
+**Example**:
+Let's say that you want to view all your pending reminders. Here's how you can do so:
+ 
+1. Type `reminder list st/pending` in the **Command Box** and press <kbd>Enter</kbd>. 
+
+2. The **Result Box** will display a message noting that the command was successful, and the **Reminder List** will
+ show a list of pending reminders.
 
 #### Adding reminders: `reminder add` \[Sebastian Toh Shi Jian\]
 
@@ -575,10 +580,22 @@ Adds a reminder scheduled on a particular date that is associated with the speci
 * The index must be a positive integer 1, 2, 3, …​
 * The datetime must be in the format `yyyy-MM-dd HH:mm`
 
-**Examples**:
-* `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact
- that is scheduled for 30th October 2020 3PM, with the message `Send email to follow up`
+**Example**:
+Let's say that you need to send a follow-up email to Bernice Yu on 30 October 2020, 3PM. Here's how you can add a reminder into StonksBook:
  
+ 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
+     - This is to identify the contact index corresponding to Bernice Yu and can be skipped if you already know the
+      index. Let us assume that Bernice Yu is at the second index.
+       
+ 2. The **Result Box** will display a message of the number of contacts listed.
+  
+ 3. Type `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00` in the **Command Box** and press <kbd>Enter</kbd>.
+   
+4. The **Result Box** will display a message noting that the command was successful, and the **Reminder List** will
+ contain this newly created reminder.
+    - You may have to scroll through your **Reminder List** to find this newly created reminder since reminders are
+     sorted in ascending order based on the date the reminder is scheduled.   
+    
 #### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified reminder from StonksBook.
@@ -590,7 +607,18 @@ Deletes the specified reminder from StonksBook.
 * The index must be a positive integer 1, 2, 3, …​
 
 **Examples**:
-* `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
+Let's say that a reminder in StonksBook is no longer applicable and you wish to delete it. Here's you can delete
+ a reminder from StonksBook:
+
+ 1. Type `reminder list` in the **Command Box** and press <kbd>Enter</kbd>. 
+     - This is to display all all reminders in the **Reminder List**, which is necessary to identify the index of
+      the reminder that is to be deleted. This step can be skipped if you already know the index. Let
+       us assume that the reminder is at the third index.
+
+ 2. Type `reminder delete 3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
+     
+ 3. The **Result Box** will display a message noting that the command was successful, and the reminder is deleted from
+  the **Reminder List**.
 
 #### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
 
