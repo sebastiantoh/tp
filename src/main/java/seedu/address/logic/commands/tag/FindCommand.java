@@ -19,14 +19,13 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "tag find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all the contacts or sales items associated with this tag. "
-            + "Note that all contacts or sales associated with this tag "
-            + "will be updated automatically with the updated tag.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Finds all the contacts or sales items associated with this tag.\n"
+            + "Parameters:  ct/INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " ct/1";
 
     private final Index targetIndex;
     private final boolean isContact;
+    private final boolean isClient;
 
     /**
      * Instantiates a FindCommand object depending on whether the user specified whether to find contacts or sales.
@@ -37,48 +36,58 @@ public class FindCommand extends Command {
 
         this.targetIndex = targetIndex;
         this.isContact = isContact;
+        this.isClient = false;
     }
 
     /**
-     * Instantiates a FindCommand object that finds sales.
+     * Instantiates a FindCommand object that finds clients who bought sales items associated with the given sales tag.
      */
-    public FindCommand(Index targetIndex) {
-        requireNonNull(targetIndex);
-
+    public FindCommand(Index targetIndex, boolean isContact, boolean isClient) {
         this.targetIndex = targetIndex;
-        this.isContact = false;
+        this.isContact = isContact;
+        this.isClient = isClient;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Tag> contactTagList = model.getAddressBook().getContactTagList();
-        List<Tag> saleTagList = model.getAddressBook().getSaleTagList();
+        List<Tag> contactTagList = model.getContactTagList();
+        List<Tag> saleTagList = model.getSaleTagList();
 
-        if (targetIndex.getOneBased() > contactTagList.size() + saleTagList.size() || targetIndex.getOneBased() < 0) {
+        if (isContact && targetIndex.getOneBased() > contactTagList.size()
+                || !isContact && targetIndex.getOneBased() > saleTagList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
         }
 
         Tag tagToFind;
-        if (targetIndex.getOneBased() > contactTagList.size()) {
-            tagToFind = saleTagList.get(targetIndex.getZeroBased() - contactTagList.size());
-            if (isContact) {
-                return new CommandResult(model.findContactsBySaleTag(tagToFind));
+        if (!isContact) {
+            tagToFind = saleTagList.get(targetIndex.getZeroBased());
+            if (isClient) {
+                return new CommandResult(model.findContactsBySaleTag(tagToFind), true, false);
+            } else {
+                return new CommandResult(model.findSalesBySaleTag(tagToFind), true, false);
             }
-            return new CommandResult(model.findSalesBySaleTag(tagToFind));
         } else {
             tagToFind = contactTagList.get(targetIndex.getZeroBased());
-            return new CommandResult(model.findByContactTag(tagToFind));
+            return new CommandResult(model.findByContactTag(tagToFind), true, false);
         }
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
             return true;
         }
 
-        return (obj instanceof FindCommand) && targetIndex.equals(((FindCommand) obj).targetIndex);
+        // instanceof handles nulls
+        if (!(other instanceof FindCommand)) {
+            return false;
+        }
+
+        // state check
+        FindCommand f = (FindCommand) other;
+        return targetIndex.equals((f.targetIndex)) && isContact == f.isContact;
     }
 }

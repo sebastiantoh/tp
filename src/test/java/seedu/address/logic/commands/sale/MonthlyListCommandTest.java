@@ -3,11 +3,9 @@ package seedu.address.logic.commands.sale;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.address.testutil.sale.TypicalSales.CAMERA;
 
 import java.time.Month;
 import java.time.Year;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,11 +32,9 @@ class MonthlyListCommandTest {
     @Test
     public void execute_valid_success() {
         MonthlyListCommand monthlyListCommand = new MonthlyListCommand(Month.NOVEMBER, Year.of(2020));
-        String expectedFormattedString = monthlyListCommand
-                .formatSaleListOutput(Collections.singletonList(CAMERA));
 
         String expectedResult = String.format(MonthlyListCommand.MESSAGE_SUCCESS,
-                1, Month.NOVEMBER, Year.of(2020), expectedFormattedString);
+                1, Month.NOVEMBER, Year.of(2020));
 
         CommandResult actualCommandResult = monthlyListCommand.execute(model);
         assertEquals(new CommandResult(expectedResult), actualCommandResult);

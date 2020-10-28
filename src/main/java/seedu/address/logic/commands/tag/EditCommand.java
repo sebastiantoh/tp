@@ -25,7 +25,7 @@ public class EditCommand extends Command {
             + "Note that all contacts or sales associated with this tag "
             + "will be updated automatically with the updated tag.\n"
             + "Parameters: INDEX (must be a positive integer) and new tag name\n"
-            + "Example: " + COMMAND_WORD + " 1 t/furniture";
+            + "Example: " + COMMAND_WORD + " st/1 t/furniture";
     public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in StonksBook.";
     public static final String MESSAGE_MISSING_FIELD = "A new tag name must be provided.";
     public static final String MESSAGE_NOT_EDITED = "The new tag name provided is the same as the original.";
@@ -33,47 +33,54 @@ public class EditCommand extends Command {
 
     private final Index targetIndex;
     private final EditTagDescriptor editTagDescriptor;
+    private final boolean isContact;
 
     /**
      *
      * @param targetIndex of the tag in the tag list to edit.
      * @param editTagDescriptor details to edit the tag with.
      */
-    public EditCommand(Index targetIndex, EditTagDescriptor editTagDescriptor) {
+    public EditCommand(Index targetIndex, EditTagDescriptor editTagDescriptor, boolean isContact) {
         this.targetIndex = targetIndex;
         this.editTagDescriptor = editTagDescriptor;
+        this.isContact = isContact;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tag> contactTagList = model.getAddressBook().getContactTagList();
-        List<Tag> saleTagList = model.getAddressBook().getSaleTagList();
+        List<Tag> contactTagList = model.getContactTagList();
+        List<Tag> saleTagList = model.getSaleTagList();
 
-        if (targetIndex.getOneBased() > contactTagList.size() + saleTagList.size() || targetIndex.getOneBased() < 0) {
+        if (isContact && targetIndex.getOneBased() > contactTagList.size()
+                || !isContact && targetIndex.getOneBased() > saleTagList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
         }
 
         Tag tagToEdit;
         Tag editedTag;
-        if (targetIndex.getOneBased() > contactTagList.size()) {
-            tagToEdit = saleTagList.get(targetIndex.getZeroBased() - contactTagList.size());
+        if (!isContact) {
+            tagToEdit = saleTagList.get(targetIndex.getZeroBased());
             editedTag = createEditedTag(tagToEdit, editTagDescriptor);
 
-            if (tagToEdit.isSameTag(editedTag) && model.hasSaleTag(editedTag)) {
+            if (tagToEdit.isSameTag(editedTag)) {
                 throw new CommandException(MESSAGE_NOT_EDITED);
+            } else if (model.hasSaleTag(editedTag)) {
+                throw new CommandException(MESSAGE_DUPLICATE_TAG);
             }
             model.editSaleTag(tagToEdit, editedTag);
         } else {
             tagToEdit = contactTagList.get(targetIndex.getZeroBased());
             editedTag = createEditedTag(tagToEdit, editTagDescriptor);
 
-            if (tagToEdit.isSameTag(editedTag) && model.hasContactTag(editedTag)) {
+            if (tagToEdit.isSameTag(editedTag)) {
                 throw new CommandException(MESSAGE_NOT_EDITED);
+            } else if (model.hasContactTag(editedTag)) {
+                throw new CommandException(MESSAGE_DUPLICATE_TAG);
             }
             model.editContactTag(tagToEdit, editedTag);
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag));
+        return new CommandResult(String.format(MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag), true, false);
     }
 
     /**
@@ -104,7 +111,7 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return targetIndex.equals(e.targetIndex)
-                && editTagDescriptor.equals(e.editTagDescriptor);
+                && editTagDescriptor.equals(e.editTagDescriptor) && isContact == e.isContact;
     }
 
     /**

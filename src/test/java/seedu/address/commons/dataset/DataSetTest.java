@@ -1,4 +1,4 @@
-package seedu.address.commons.statistic;
+package seedu.address.commons.dataset;
 
 import static java.time.Month.APRIL;
 import static java.time.Month.AUGUST;
@@ -10,18 +10,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.statistics.MonthlyCountData;
-import seedu.address.commons.statistics.MonthlyCountDataSet;
-import seedu.address.model.MonthAndYear;
+import seedu.address.commons.dataset.date.MonthAndYear;
+import seedu.address.commons.dataset.date.MonthlyCountData;
 
-class MonthlyCountDataSetTest {
+class DataSetTest {
+    private List<MonthlyCountData> monthlyCountDataList;
 
-    private final List<MonthlyCountData> monthlyCountDataList =
-            Collections.singletonList(new MonthlyCountData(new MonthAndYear(AUGUST, Year.now()), 1));
+    private DataSet<MonthlyCountData> monthlyCountDataSet;
 
-    private final MonthlyCountDataSet monthlyCountDataSet = new MonthlyCountDataSet(monthlyCountDataList);
+    @BeforeEach
+    public void setUp() {
+        monthlyCountDataList =
+                Collections.singletonList(new MonthlyCountData(new MonthAndYear(AUGUST, Year.now()), 1));
+        monthlyCountDataSet = new DataSet<>(monthlyCountDataList);
+    }
+
 
     @Test
     public void getTestAndSetTest_valid_success() {
@@ -33,19 +39,19 @@ class MonthlyCountDataSetTest {
     @Test
     public void getMonthlyCountDataList_valid_success() {
         List<MonthlyCountData> expected = new ArrayList<>(this.monthlyCountDataList);
-        assertEquals(expected, this.monthlyCountDataSet.getMonthlyCountDataList());
+        assertEquals(expected, this.monthlyCountDataSet.getDataList());
     }
 
     @Test
     public void equals_valid_success() {
         assertEquals(monthlyCountDataSet, monthlyCountDataSet);
 
-        MonthlyCountDataSet monthlyCountDataSet1 = new MonthlyCountDataSet(
-                this.monthlyCountDataSet.getMonthlyCountDataList());
+        DataSet<MonthlyCountData> monthlyCountDataSet1 = new DataSet<>(
+                this.monthlyCountDataSet.getDataList());
 
         MonthlyCountData monthlyCountData2 = new MonthlyCountData(
                 new MonthAndYear(APRIL, Year.now()), 1);
-        MonthlyCountDataSet monthlyCountDataSet2 = new MonthlyCountDataSet(
+        DataSet<MonthlyCountData> monthlyCountDataSet2 = new DataSet<>(
                 Collections.singletonList(monthlyCountData2));
 
         assertEquals(monthlyCountDataSet, monthlyCountDataSet1);
