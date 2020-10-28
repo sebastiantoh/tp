@@ -379,7 +379,7 @@ Here's how you can edit her sale in StonksBook:
     
 2. Suppose the sale to be edited is at the third index in the meeting list. Then, type `sale edit s/3 q/20` in the command box, and press <kbd>Enter</kbd> to execute it.
   
-3. You should see that the meeting has been updated to reflect this new scheduled date.
+3. You should see that the sale has been updated to reflect this new quantity.
 
 #### Viewing a breakdown of sales made in each tag: `sale breakdown` [Kwek Min Yih]
 
@@ -667,5 +667,4 @@ Action | Format, Examples
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
 **Exit Application** | `exit`
-
 
