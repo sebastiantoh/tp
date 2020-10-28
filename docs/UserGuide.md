@@ -130,9 +130,9 @@ Finds contacts whose names exactly match or is similar to any of the given keywo
 
 e.g. You want to find the contact Alex Yeoh but you only roughly remember the spellng the of the name as alx yo and you can do this as shown.
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
-<img src="images/contactfindfirststep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/contact-find/contactfindfirststep.png" alt="result for 'contact sort keyword'" width="900px">
 2. The contact list now contains contacts whose name is similar to alx yo.
-<img src="images/contactfindsecondstep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/contact-find/contactfindsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
 3. Alex Yeoh appears as the first contact on the list.
 
 **Examples**:
@@ -158,10 +158,10 @@ Sorts contacts based on the name, email address or the total sale amount associa
 
 e.g. You want to see the contacts who have paid you the most for your sales and you can do so as shown.
 1. Type `contact sort s/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
-<img src="images/contactsortfirststep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/contact-sort/contactsortfirststep.png" alt="result for 'contact sort keyword'" width="900px">
 2. The contact list is sorted by the total sales amount, from highest to lowest.
 3. Your top paying contacts will be at the top of the list.
-<img src="images/contactsortsecondstep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/contact-sort/contactsortsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
 
 
 **Examples**:
@@ -325,8 +325,8 @@ Shows a list of sales.
    
 e.g. you want to see the sales you have made in August 2020, you can do so as shown.
 1. Type `sale list m/8 y/2020` in the **Command Box** and press <kbd>Enter</kbd>.
-<img src="images/salelistfirststep.png" alt="result for 'contact sort keyword'" width="400px">
-<img src="images/salelistsecondstep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/sale-list/salelistfirststep.png" alt="result for 'contact sort keyword'" width="900px">
+<img src="images/sale-list/salelistsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
 
 **Examples**:
 * `sale list` lists all sales.
@@ -356,10 +356,10 @@ Analyses the sale data and visualises the statistical result.
 e.g. You can compare the number of meetings you have had in the past 6 months as shown.
 
 1. Type `sale stats 6` and press <kbd>Enter</kbd>.
-<img src="images/saleStatsFirstStep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/sale-stats/saleStatsFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
 
 2. A new window containing the bar chart pops up.
-<img src="images/saleStatsSecondStep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/sale-stats/saleStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
 
 **Examples**:
 * `sale stats 3` will return a bar chart containing the number of sale whose sale date is within
@@ -529,10 +529,10 @@ Analyses the meeting data and visualises the statistical result.
 e.g. You can compare the number of meetings you have had in the past 6 months as shown.
 
 1. Type `meeting stats 6` and press <kbd>Enter</kbd>.
-<img src="images/meetingStatsFirstStep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/meeting-stats/meetingStatsFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
 
 2. A new window containing the bar chart pops up.
-<img src="images/meetingStatsSecondStep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/meeting-stats/meetingStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
 
 **Examples**:
 * `meeting stats` will return the number of meetings whose start date is in the October 2020
@@ -661,13 +661,11 @@ usage for each available command as well as the link to the User Guide.
 
 You can access the help page quickly as shown.
 1. Type `help` in the **Command Box** and press <kbd>Enter</kbd>.
-<img src="images/helpFirstStep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/help/helpFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
 2. The help window pops up.
-<img src="images/helpSecondStep.png" alt="result for 'contact sort keyword'" width="400px">
+<img src="images/help/helpSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
 
 **Format**: `help`
-
-<img src="images/helpAllMockup.png" alt="result for 'help'" width="400px">
 
 #### Clearing all past interactions: `clear`
 Clears all past interactions with the StonksBook GUI within the session.
@@ -706,6 +704,7 @@ Action | Format, Examples
 **Sale Edit** | `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`  <br> e.g., `sale edit 2 n/B5 Notebook p/4.00 q/10`
 **Sale List** | `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`  <br> e.g., `sale delete c/3`
 **Sale Delete** | `sale delete s/SALE_INDEX` <br> e.g., `sale delete s/4`
+**Sale Stats** | `sale stats NUMBER_OF_MONTHS` <br> e.g., `sale stats 3`
 **Tag Add** | `tag add c/ (or s/) t/TAG` <br> e.g., `tag add c/ t/important`
 **Tag List** | `tag list`
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
