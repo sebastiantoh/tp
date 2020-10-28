@@ -257,7 +257,7 @@ StonksBook allows you to manage the sales you made within the application.
 Shows a list of sales. By default, all sales will be listed. 
 This list is sorted in ascending order based on the date the sale is made.
 
-Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
+**Format:** `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 
 * When used without any arguments, all sales will be shown.
 * When an contact index is specified, the list will only show sales associated with the contact at the specified index.
@@ -281,7 +281,7 @@ Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
     <img src="images/meeting-list/meeting-list.png" alt="Enter 'meeting list c/1' in the command box" width="900px">
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
- show a list of upcoming sales scheduled with Bernice Yu.
+ show a list of sales made to Bernice Yu.
 
     <img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="900px">
 
@@ -290,7 +290,7 @@ Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 
 Adds a sale to the specified contact in StonksBook.
 
-Format: `sale add c/CONTACT_INDEX… n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`
+**Format:** `sale add c/CONTACT_INDEX… n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`
 
 * Adds a sale made to the contact at the specified `CONTACT_INDEX`, with details such as the name of item sold, the unit price, and the quantity.
 * The `CONTACT_INDEX` refers to the index number shown in the displayed contact list, and must be a positive integer 1, 2, 3, …​
@@ -302,8 +302,6 @@ Format: `sale add c/CONTACT_INDEX… n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_P
 * The tags provided must exist in StonksBook first before you can associate the sales item to them.
 
 **Example:**
-* `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery` Adds a sale made to the contact that is ordered 4th on the displayed contact list. This is a sale of 2 Notebooks, each of price $6.00, made on 30 October at 3.00, with the tag "stationery".
-
 Suppose you successfully sold 100 guitar tuners at a unit price of $10 with Bernice Yu on 30 October 2020, 3pm. 
 Here's how you can add this new sale into StonksBook:
  
@@ -330,13 +328,42 @@ Here's how you can add this new sale into StonksBook:
 
 Deletes a specified sales item from StonksBook.
 
-Format: `sale delete s/SALE_INDEX…`
+**Format:** `sale delete s/SALE_INDEX…`
 
 * Deletes the sale(s) at specified `SALE_INDEX`.
 * The  `SALE_INDEX` refers to the index number shown in the displayed sale list, and must be a positive integer 1, 2, 3, …​
+* Multiple `SALE_INDEX` can be specified, meaning that you can delete multiple sales with the same command.
 
-Examples:
-* `sale delete s/4` deletes the 4th sale made in the list.
+**Examples:**
+Let's say that you have just received the unfortunate news from Bernice Yu who no longer wishes to buy 2 drum sets from you.
+Here's how you can delete this sale in StonksBook:
+
+1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
+    - This is to identify the contact index corresponding to Bernice Yu.
+     
+    <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
+    
+2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
+ show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.
+ 
+    <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
+ 
+3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <img src="images/meeting-list/meeting-list.png" alt="Enter 'meeting list c/1' in the command box" width="900px">
+
+4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
+ show a list of sales made to Bernice Yu. Identify the index of the sale to be deleted. Let us assume it is at the third index.
+
+    <img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="900px">
+
+5. Type `sale delete s/4` in the command box, and press Enter to execute it.
+ 
+    <img src="images/meeting-delete/meeting-delete.png" alt="Enter command 'meeting delete'" width="900px">
+     
+6. You should see that the sale has been deleted from the sale list.
+ 
+    <img src="images/meeting-delete/meeting-delete-result.png" alt="Result for 'meeting delete'" width="900px">
 
 #### Editing an existing sale: `sale edit` [Kwek Min Yih]
 
