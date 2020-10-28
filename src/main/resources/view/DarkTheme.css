@@ -3,6 +3,16 @@
     background-color: #383838; /* Used in the default.html file */
 }
 
+.big-icon {
+    -fx-icon-size: 16;
+    -fx-icon-color: white;
+}
+
+.small-icon {
+    -fx-icon-size: 13;
+    -fx-icon-color: white;
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";

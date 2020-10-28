@@ -717,9 +717,13 @@ Let's say that Alex Yeoh would like to hear from you sooner for the follow up an
 
 StonksBook allows you to archive contacts who are no longer active so that you can focus on contacts who can bring you the Stonks.
 
-#### Adding a contact to the archive: `archive add`
+#### Adding a contact to the archive: `archive add` \[Leong Jin Ming\]
 
 Adds the specified contact to the archive.
+
+<div markdown="block" class="alert alert-info">
+StonksBook will not archive a contact if it is already archived!
+</div>
 
 **Format**: `archive add INDEX`
 
@@ -728,9 +732,13 @@ Adds the specified contact to the archive.
 * The index must be a positive integer 1, 2, 3, …
 
 **Example**:
-* When the contact list is displayed on your StonksBook, entering `archive add 3` adds the third contact on your list to the archive.
+Suppose you want to archive your contact David Li, who is no longer doing business with you. Simply follow the steps below:
 
-#### Listing contacts in the archive: `archive list`
+1. Identify the index of the contact entry in the contact list. Here David Li is the third contact in the list. Alternatively you can use `contact find` to find the contact.
+2. Type `archive add 3` in the **Command Box** and press <kbd>Enter</kbd>.
+3. The contact entry will disappear from the contact list, and the **Result Box** will inform you that the command is successful.
+
+#### Listing contacts in the archive: `archive list` \[Leong Jin Ming\]
 
 Shows the list of your archived contacts.
 
@@ -739,23 +747,30 @@ Shows the list of your archived contacts.
 * When entered, if the contacts list is displayed it will be replaced with the archived contacts list.
 * You can edit and delete contacts in the archive using `contact edit` and `contact delete` when the archived contacts list is displayed.
 
-**Examples**:
-* Entering `archive list` displays all your archived contacts.
-* Entering `archive list` followed by `contact delete 2` deletes the second contact on your archived contacts list from StonksBook.
+**Example**:
+To see all your archived contacts, type `archive list` into the **Command Box** and press <kbd>Enter</kbd>. The **Result Box** will inform you that the command was successful, and the archived contacts list will appear.
 
-#### Removing contacts from the archive: `archive remove`
+#### Removing contacts from the archive: `archive remove` \[Leong Jin Ming\]
 
 Removes the specified contact from the archive. The specified contact will appear on your contact list again.
+
+<div markdown="block" class="alert alert-info">
+StonksBook will not remove a contact from the archive if it is not in the archive!
+</div>
 
 **Format**: `archive remove INDEX`
 
 * Removes the contact at the specified `INDEX` from the archive.
 * Does not delete the contact from StonksBook. To delete the contact use `contact delete`.
-* Can only be used when the archived contacts list is displayed.
 * The index must be a positive integer 1, 2, 3, …
 
 **Example**:
-* When the archived contacts list is displayed on your StonksBook, entering `archive remove 2` removes the fourth contact on your list from the archive back to your contacts list.
+Let's say your archived contact David Li wants to start buying electronics from you again, and so you would like to bring his contact entry back to the contacts list. Simply follow the steps below:
+
+1. Make sure you are on the archived contacts list. If not, simply use the `archive list` command to get all your archived contacts.
+2. Identify the index of your contact in the list. In this case, David is the second entry in your list.
+3. Type `archive remove 3` in the **Command Box** and press <kbd>Enter</kbd>.
+4. The contact entry will disappear from your archive, and the **Result Box** will inform you that the command is successful.
 
 ### Miscellaneous
 
@@ -767,8 +782,15 @@ Gives an approximate match (if exists) of the most similar command to an unknown
 * `contt ad` will return a suggestion of `contact add`
 * `contacta ` will return a suggestion of `contact add`
 
-#### Navigate between previous inputs within the session:
+#### Navigating between previous inputs within the session:
 Pressing the up and down keys retrieves the previous and next input respectively, if there is one.
+
+#### Switching between light and dark themes: `lightmode`/`darkmode`
+Changes the theme of the GUI to light and dark theme respectively. The default theme for StonksBook is dark, and the light theme looks like the following:
+
+<img src="images/lightTheme.png" alt="Light theme" width="900px">
+
+Format: `lightmode`/`darkmode`
 
 #### Viewing help: `help`
 Lists the command word, command description and example
@@ -834,4 +856,5 @@ Action | Format, Examples
 **Help** | `help`
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
+**Light/Dark Theme** | `lightmode`/`darkmode`
 **Exit Application** | `exit`
