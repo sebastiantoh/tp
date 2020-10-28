@@ -34,7 +34,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed meeting list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_CONTACT + "CONTACT_INDEX] "
+            + "[" + PREFIX_CONTACT + "CONTACT_INDEX (must be a positive integer)] "
             + "[" + PREFIX_MESSAGE + "MESSAGE] "
             + "[" + PREFIX_DATETIME + "DATETIME] "
             + "[" + PREFIX_DURATION + "DURATION]\n"

@@ -88,8 +88,8 @@ public class ModelManager implements Model {
         this.filteredSales = new FilteredList<>(this.addressBook.getSaleList());
         this.sortedSales = new SortedList<>(this.filteredSales, Comparator.naturalOrder());
 
-        this.sortedMeetings = new SortedList<>(this.addressBook.getMeetingList(), Comparator.naturalOrder());
         this.filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList(), PREDICATE_SHOW_UPCOMING_MEETINGS);
+        this.sortedMeetings = new SortedList<>(this.filteredMeetings, Comparator.naturalOrder());
 
         initialiseLatestContactId();
     }
