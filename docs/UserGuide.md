@@ -550,7 +550,7 @@ Pressing the up and down keys retrieves the previous and next input respectively
 #### Switching between light and dark themes: `lightmode`/`darkmode`
 Changes the theme of the GUI to light and dark theme respectively. The default theme for StonksBook is dark, and the light theme looks like the following:
 
-<img src="images/lightTheme.png" alt="Light theme" width="400px">
+<img src="images/lightTheme.png" alt="Light theme" width="900px">
 
 Format: `lightmode`/`darkmode`
 
