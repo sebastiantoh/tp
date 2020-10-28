@@ -1,5 +1,8 @@
 package seedu.address.commons.dataset.tag;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,6 +14,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.dataset.Data;
 import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 
@@ -31,6 +35,7 @@ public class SaleTagListMap {
      * @param sale A valid sale to be added.
      */
     public void addSale(Sale sale) {
+        requireNonNull(sale);
         Set<Tag> tags = sale.getTags();
 
         tags.forEach(tag -> {
@@ -49,6 +54,8 @@ public class SaleTagListMap {
      * @param sale The sale to be removed.
      */
     public void removeSale(Sale sale) {
+        requireNonNull(sale);
+
         Set<Tag> tags = sale.getTags();
 
         tags.forEach(tag -> {
@@ -71,6 +78,8 @@ public class SaleTagListMap {
      * @return The number of sales with that tag.
      */
     public int getSaleCount(Tag tag) {
+        requireNonNull(tag);
+
         TagKey key = new TagKey(tag);
         if (this.saleTagListMap.containsKey(key)) {
             return this.saleTagListMap.get(key).size();
@@ -84,6 +93,7 @@ public class SaleTagListMap {
      * @param tag The tag to be removed.
      */
     public void removeTag(Tag tag) {
+        requireNonNull(tag);
         TagKey key = new TagKey(tag);
         saleTagListMap.remove(key);
     }
@@ -95,6 +105,7 @@ public class SaleTagListMap {
      * @param newTag The newly edited tag to replace.
      */
     public void editTag(Tag previousTag, Tag newTag) {
+        requireAllNonNull(previousTag, newTag);
         TagKey tagKeyToEdit = saleTagListMap.keySet().stream()
                 .filter(tagKey -> tagKey.getTag().equals(previousTag))
                 .findFirst().orElseThrow();
@@ -118,7 +129,7 @@ public class SaleTagListMap {
         List<SaleTagCountData> result = new ArrayList<>();
 
         saleTagListMap.forEach(((tagKey, sales) -> {
-            result.add(new SaleTagCountData(tagKey, getSaleCount(tagKey.getTag())));
+            result.add(new SaleTagCountData(tagKey, sales.size()));
         }));
 
         result.sort(Comparator.comparingInt(Data::getCount));

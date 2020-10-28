@@ -184,6 +184,8 @@ public class UniqueSaleList implements Iterable<Sale> {
     public void setSaleTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
         int count = internalList.size();
+        saleTagListMap.editTag(target, editedTag);
+
         // Iterate through all sales and update their tags.
         for (int i = 0; i < count; i++) {
             Sale original = internalList.get(i);
@@ -201,7 +203,6 @@ public class UniqueSaleList implements Iterable<Sale> {
                 internalList.set(i, newSale);
                 monthlyListMap.removeItem(original.getMonth(), original.getYear(), original);
                 monthlyListMap.addItem(newSale.getMonth(), newSale.getYear(), newSale);
-                saleTagListMap.editTag(target, editedTag);
             }
         }
     }
@@ -211,8 +212,9 @@ public class UniqueSaleList implements Iterable<Sale> {
      */
     public void removeSaleTag(Tag toRemove) {
         requireNonNull(toRemove);
-        int count = internalList.size();
+        saleTagListMap.removeTag(toRemove);
 
+        int count = internalList.size();
         for (int i = 0; i < count; i++) {
             Sale original = internalList.get(i);
             Set<Tag> tags = new HashSet<>(original.getTags());
@@ -229,7 +231,6 @@ public class UniqueSaleList implements Iterable<Sale> {
                         original.getYear(), original);
                 monthlyListMap.addItem(newSale.getMonth(),
                         newSale.getYear(), newSale);
-                saleTagListMap.removeTag(toRemove);
             }
         }
     }
