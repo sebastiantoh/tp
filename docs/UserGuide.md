@@ -642,7 +642,7 @@ Lists the command word, command description and example
 usage for each available command as well as the link to the User Guide.
 
 You can access the help page quickly as shown.
-1. Type `help' in the commandbox and press `Enter`.
+1. Type `help` in the **Command Box** and press <kbd>Enter</kbd>.
 <img src="images/helpFirstStep.png" alt="result for 'contact sort keyword'" width="400px">
 2. The help window pops up.
 <img src="images/helpSecondStep.png" alt="result for 'contact sort keyword'" width="400px">
@@ -708,4 +708,3 @@ Action | Format, Examples
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
 **Exit Application** | `exit`
-
