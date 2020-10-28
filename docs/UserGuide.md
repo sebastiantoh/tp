@@ -507,8 +507,13 @@ Shows a list of all reminders created, sorted in ascending order based on the da
 
 * `STATUS` can be either `completed` or `pending`.
 
-**Examples**:
-* `reminder list st/completed` displays all reminders that have been marked as completed.
+**Example**:
+Let's say that you want to view all your pending reminders. Here's how you can do so:
+ 
+1. Type `reminder list st/pending` in the **Command Box** and press <kbd>Enter</kbd>. 
+
+2. The **Result Box** will display a message noting that the command was successful, and the **Reminder List** will
+ show a list of pending reminders.
 
 #### Adding reminders: `reminder add` \[Sebastian Toh Shi Jian\]
 
@@ -521,10 +526,22 @@ Adds a reminder scheduled on a particular date that is associated with the speci
 * The index must be a positive integer 1, 2, 3, …​
 * The datetime must be in the format `yyyy-MM-dd HH:mm`
 
-**Examples**:
-* `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact
- that is scheduled for 30th October 2020 3PM, with the message `Send email to follow up`
+**Example**:
+Let's say that you need to send a follow-up email to Bernice Yu on 30 October 2020, 3PM. Here's how you can add a reminder into StonksBook:
  
+ 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
+     - This is to identify the contact index corresponding to Bernice Yu and can be skipped if you already know the
+      index. Let us assume that Bernice Yu is at the second index.
+       
+ 2. The **Result Box** will display a message of the number of contacts listed.
+  
+ 3. Type `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00` in the **Command Box** and press <kbd>Enter</kbd>.
+   
+4. The **Result Box** will display a message noting that the command was successful, and the **Reminder List** will
+ contain this newly created reminder.
+    - You may have to scroll through your **Reminder List** to find this newly created reminder since reminders are
+     sorted in ascending order based on the date the reminder is scheduled.   
+    
 #### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified reminder from StonksBook.
@@ -536,7 +553,18 @@ Deletes the specified reminder from StonksBook.
 * The index must be a positive integer 1, 2, 3, …​
 
 **Examples**:
-* `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
+Let's say that a reminder in StonksBook is no longer applicable and you wish to delete it. Here's you can delete
+ a reminder from StonksBook:
+
+ 1. Type `reminder list` in the **Command Box** and press <kbd>Enter</kbd>. 
+     - This is to display all all reminders in the **Reminder List**, which is necessary to identify the index of
+      the reminder that is to be deleted. This step can be skipped if you already know the index. Let
+       us assume that the reminder is at the third index.
+
+ 2. Type `reminder delete 3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
+     
+ 3. The **Result Box** will display a message noting that the command was successful, and the reminder is deleted from
+  the **Reminder List**.
 
 #### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
 Edits an existing reminder in StonksBook.
@@ -549,9 +577,18 @@ Edits an existing reminder in StonksBook.
 * `STATUS` can be either `pending` or `completed`.
 
 **Examples**:
-* `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.
-* `reminder edit 3 m/Call to follow up d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Call to follow up" and "28th November 2020, 1PM" respectively.
+Let's say that you have just completed a reminder. Here's how you can mark a reminder as complete in StonksBook:
+ 
+1. Type `reminder list` in the **Command Box** and press <kbd>Enter</kbd>. 
+    - This is to display all reminders in the **Reminder List**, which is necessary to identify the index of
+     the reminder that is to be edited. This step can be skipped if you already know the index. Let us assume that
+      the reminder is at the third index.
 
+2. Type `reminder edit 3 st/completed` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
+
+3. The **Result Box** will display a message noting that the command was successful, and the reminder is updated in the 
+     the **Reminder List**.
+     
 ### Archive
 
 StonksBook allows you to archive contacts who are no longer active so that you can focus on contacts who can bring you the Stonks.
