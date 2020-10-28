@@ -103,11 +103,6 @@ public class EditCommand extends Command {
 
         for (Index saleIndex : saleIndexes) {
             Sale saleToEdit = lastShownList.get(saleIndex.getZeroBased());
-            Sale editedSale = createEditedSale(saleToEdit, editSaleDescriptor);
-            BigDecimal previousCost = saleToEdit.getTotalCost();
-            BigDecimal newCost = editedSale.getTotalCost();
-            Person initialBuyer = saleToEdit.getBuyer();
-            Person newBuyer = initialBuyer;
 
             if (personIndex != null) {
                 List<Person> lastShownPeople = model.getSortedPersonList();
@@ -115,35 +110,16 @@ public class EditCommand extends Command {
                     throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
                 }
 
-                initialBuyer = Person.changeSaleAmount(initialBuyer,
-                        initialBuyer.getTotalSalesAmount().subtract(previousCost));
-
-                newBuyer = lastShownPeople.get(personIndex.getZeroBased());
-
-                editSaleDescriptor.setBuyer(
-                        Person.changeSaleAmount(newBuyer, newBuyer.getTotalSalesAmount().add(newCost)));
-            } else {
-                BigDecimal changeToSalesAmount = newCost.subtract(previousCost);
-
-                newBuyer = Person.changeSaleAmount(initialBuyer,
-                        initialBuyer.getTotalSalesAmount().subtract(changeToSalesAmount));
-
+                Person newBuyer = lastShownPeople.get(personIndex.getZeroBased());
                 editSaleDescriptor.setBuyer(newBuyer);
             }
 
             // Re-edit sale with new buyer
-            editedSale = createEditedSale(saleToEdit, editSaleDescriptor);
+            Sale editedSale = createEditedSale(saleToEdit, editSaleDescriptor);
 
             if (!saleToEdit.isSameSale(editedSale) && model.hasSale(editedSale)) {
                 invalidSales.add(editedSale);
             } else {
-                if (initialBuyer.isSamePerson(newBuyer)) {
-                    model.setPerson(initialBuyer, newBuyer);
-                } else {
-                    model.setPerson(saleToEdit.getBuyer(), initialBuyer);
-                    model.setPerson(newBuyer, editedSale.getBuyer());
-                }
-
                 model.setSale(saleToEdit, editedSale);
                 editedSales.add(editedSale);
             }

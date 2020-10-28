@@ -55,8 +55,7 @@ public class RemoveCommand extends Command {
                 personToUnarchive.getAddress(),
                 personToUnarchive.getTags(),
                 personToUnarchive.getRemark(),
-                false,
-                personToUnarchive.getTotalSalesAmount()
+                false
         );
         model.setPerson(personToUnarchive, unarchivedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);

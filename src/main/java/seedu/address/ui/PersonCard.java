@@ -42,8 +42,7 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label remark;
-    @FXML
-    private Label totalSalesAmount;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -64,7 +63,6 @@ public class PersonCard extends UiPart<Region> {
             remark.setVisible(false);
             remark.setManaged(false);
         }
-        totalSalesAmount.setText(String.valueOf(person.getTotalSalesAmountString()));
     }
 
     @Override

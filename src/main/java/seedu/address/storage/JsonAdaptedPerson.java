@@ -36,7 +36,6 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String remark;
     private final boolean archived;
-    private final String totalSalesAmount;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,8 +44,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("id") Integer id, @JsonProperty("name") String name,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
             @JsonProperty("address") String address, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("remark") String remark, @JsonProperty("archived") boolean archived,
-            @JsonProperty("totalSalesAmount") String totalSalesAmount) {
+            @JsonProperty("remark") String remark, @JsonProperty("archived") boolean archived) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -57,7 +55,6 @@ class JsonAdaptedPerson {
         }
         this.remark = remark;
         this.archived = archived;
-        this.totalSalesAmount = totalSalesAmount;
     }
 
     /**
@@ -74,7 +71,6 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         remark = source.getRemark().value;
         archived = source.isArchived();
-        totalSalesAmount = source.getTotalSalesAmount().setScale(2).toPlainString();
     }
 
     /**
@@ -130,28 +126,8 @@ class JsonAdaptedPerson {
         }
         final Remark modelRemark = new Remark(remark);
 
-        if (totalSalesAmount == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Total Sales Amount"));
-        }
-        try {
-            BigDecimal test = new BigDecimal(totalSalesAmount);
-
-            String string = test.stripTrailingZeros().toPlainString();
-            int index = string.indexOf(".");
-            int noOfDecimalPlaces = index < 0 ? 0 : string.length() - index - 1;
-
-            if (noOfDecimalPlaces < 3 && !(test.compareTo(BigDecimal.ZERO) >= 0)) {
-                throw new NumberFormatException();
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalValueException("Total Sales Amount should be a positive decimal number, "
-                    + "with at most 2 decimal places.");
-        }
-
-        final BigDecimal modelTotalSalesAmount = new BigDecimal(totalSalesAmount);
-
         return new Person(id, modelName, modelPhone, modelEmail, modelAddress,
-                modelTags, modelRemark, archived, modelTotalSalesAmount);
+                modelTags, modelRemark, archived);
     }
 
 }

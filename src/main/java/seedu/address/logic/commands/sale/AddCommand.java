@@ -102,23 +102,17 @@ public class AddCommand extends Command {
         List<Sale> salesAdded = new ArrayList<>();
 
         for (Index index : indexList) {
-            Person personToEdit = lastShownList.get(index.getZeroBased());
-            Sale toAdd = new Sale(itemName, personToEdit, dateOfPurchase, quantity, unitPrice, tagList);
+            Person buyer = lastShownList.get(index.getZeroBased());
+            Sale toAdd = new Sale(itemName, buyer, dateOfPurchase, quantity, unitPrice, tagList);
 
             if (!model.saleTagsExist(toAdd.getTags())) {
                 throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
             }
-            BigDecimal newTotalSalesAmount = toAdd.getTotalCost().add(personToEdit.getTotalSalesAmount());
-
-            Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
-                    personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
-                    personToEdit.getRemark(), personToEdit.isArchived(), newTotalSalesAmount);
 
             if (model.hasSale(toAdd)) {
                 duplicatedSales.add(toAdd);
             } else {
                 model.addSale(toAdd);
-                model.setPerson(personToEdit, editedPerson);
                 salesAdded.add(toAdd);
             }
         }

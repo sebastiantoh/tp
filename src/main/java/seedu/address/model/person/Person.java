@@ -28,7 +28,6 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
     private final boolean archived;
-    private final BigDecimal totalSalesAmount;
 
     /**
      * Creates a person object with specified details.
@@ -41,7 +40,7 @@ public class Person {
      * @param remark Remark associated with the person.
      */
     public Person(Integer id, Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, Remark remark, boolean archived, BigDecimal totalSalesAmount) {
+                  Set<Tag> tags, Remark remark, boolean archived) {
         requireAllNonNull(name, phone, email, address, tags, remark);
         this.id = id;
         this.name = name;
@@ -51,7 +50,6 @@ public class Person {
         this.tags.addAll(tags);
         this.remark = remark;
         this.archived = archived;
-        this.totalSalesAmount = totalSalesAmount;
     }
 
     public Integer getId() {
@@ -86,16 +84,8 @@ public class Person {
         return remark;
     }
 
-    public BigDecimal getTotalSalesAmount() {
-        return totalSalesAmount;
-    }
-
     public boolean isArchived() {
         return archived;
-    }
-
-    public String getTotalSalesAmountString() {
-        return NumberFormat.getCurrencyInstance().format(totalSalesAmount);
     }
 
     /**
@@ -120,19 +110,6 @@ public class Person {
     }
 
     /**
-     * Creates and returns a new Person with the new specified {@code newSaleAmount}.
-     * @param personToEdit    Person to be edited.
-     * @param newSaleAmount   The new sale amount.
-     * @return A new Person with the new specified {@code newSaleAmount}.
-     */
-    public static Person changeSaleAmount(Person personToEdit, BigDecimal newSaleAmount) {
-        Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
-                personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
-                personToEdit.getRemark(), personToEdit.isArchived(), newSaleAmount);
-        return editedPerson;
-    }
-
-    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -153,7 +130,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, remark, totalSalesAmount);
+        return Objects.hash(name, phone, email, address, tags, remark);
     }
 
     @Override

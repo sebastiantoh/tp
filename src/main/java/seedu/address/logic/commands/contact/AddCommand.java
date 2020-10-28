@@ -76,7 +76,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
         int id = model.getLatestContactId() + 1;
 
-        Person toAdd = new Person(id, name, phone, email, address, tagList, remark, false, BigDecimal.ZERO);
+        Person toAdd = new Person(id, name, phone, email, address, tagList, remark, false);
 
         if (!model.contactTagsExist(toAdd)) {
             throw new CommandException(Messages.MESSAGE_CONTACT_TAGS_NOT_FOUND);

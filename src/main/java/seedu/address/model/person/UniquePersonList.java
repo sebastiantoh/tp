@@ -102,8 +102,7 @@ public class UniquePersonList implements Iterable<Person> {
                         original.getAddress(),
                         tags,
                         original.getRemark(),
-                        original.isArchived(),
-                        original.getTotalSalesAmount());
+                        original.isArchived());
                 internalList.set(i, p);
             }
         }
@@ -127,8 +126,7 @@ public class UniquePersonList implements Iterable<Person> {
                         original.getAddress(),
                         tags,
                         original.getRemark(),
-                        original.isArchived(),
-                        original.getTotalSalesAmount());
+                        original.isArchived());
                 internalList.set(i, p);
             }
         }
