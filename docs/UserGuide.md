@@ -131,7 +131,7 @@ Finds contacts whose names exactly match or is similar to any of the given keywo
 <img src="images/contactFindMockup.png" alt="result for 'contact find keyword'" width="400px">
 
 e.g. You want to find the contact Alex Yeoh but you only roughly remember the spellng the of the name as alx yo and you can do this as shown.
-1. type `contact find alx yo` in the command box and press `Enter`.
+1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
 <img src="images/contactfindfirststep.png" alt="result for 'contact sort keyword'" width="400px">
 2. the contact list now contains contacts whose name is similar to alx yo.
 <img src="images/contactfindsecondstep.png" alt="result for 'contact sort keyword'" width="400px">
@@ -708,5 +708,4 @@ Action | Format, Examples
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
 **Exit Application** | `exit`
-
 
