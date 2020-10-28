@@ -594,7 +594,7 @@ To see all your archived contacts, type `archive list` into the **Command Box** 
 Removes the specified contact from the archive. The specified contact will appear on your contact list again.
 
 <div markdown="block" class="alert alert-info">
-StonksBook will not remove a contact from the archive it is not in the archive!
+StonksBook will not remove a contact from the archive if it is not in the archive!
 </div>
 
 **Format**: `archive remove INDEX`
