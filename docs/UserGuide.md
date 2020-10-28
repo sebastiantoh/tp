@@ -255,7 +255,7 @@ StonksBook allows you to manage the sales you made within the application.
 #### Listing all sales: `sale list` [Kwek Min Yih]
 
 Shows a list of sales. By default, all sales will be listed. 
-This list is sorted in increasing order based on the date the sale is made.
+This list is sorted in ascending order based on the date the sale is made.
 
 Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 
@@ -264,7 +264,7 @@ Format: `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 * When both month and year are specified, the list will only show sales made in the specified month and year.
 * Only either contact index or month and year can be specified.
 
-Example: Let's say you want to view all sales made to Bernice Yu. This is what you need to do:
+**Example:** Let's say you want to view all sales made to Bernice Yu. This is what you need to do:
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
     - This is to identify the contact index corresponding to Bernice Yu.
@@ -290,18 +290,53 @@ Example: Let's say you want to view all sales made to Bernice Yu. This is what y
 
 Adds a sale to the specified contact in StonksBook.
 
-Format: `sale add c/CONTACT_INDEX n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`
+Format: `sale add c/CONTACT_INDEX… n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`
 
 * Adds a sale made to the contact at the specified `CONTACT_INDEX`, with details such as the name of item sold, the unit price, and the quantity.
-* The `CONTACT_INDEX` refers to the index number shown in the displayed contact list. The contact index must be a positive integer 1, 2, 3, …​
+* The `CONTACT_INDEX` refers to the index number shown in the displayed contact list, and must be a positive integer 1, 2, 3, …​
+* Multiple `CONTACT_INDEX` can be specified, meaning that you can add a sale to multiple contacts.
 * The `DATETIME_OF_PURCHASE` must be in the format `yyyy-MM-dd HH:mm`
 * The `UNIT_PRICE` must be a positive number with 2 decimal places, in format `DOLLARS.CENTS`.
 * The `QUANTITY` must be a positive integer 1, 2, 3, …​
 * It is compulsory to have a tag for the sales item. This is to ensure the ease of data analytics.
 * The tags provided must exist in StonksBook first before you can associate the sales item to them.
 
-Examples:
+**Example:**
 * `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery` Adds a sale made to the contact that is ordered 4th on the displayed contact list. This is a sale of 2 Notebooks, each of price $6.00, made on 30 October at 3.00, with the tag "stationery".
+
+Suppose you successfully sold 100 guitar tuners at a unit price of $10 with Bernice Yu on 30 October 2020, 3pm. 
+Here's how you can add this new sale into StonksBook:
+ 
+1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
+     - This is to identify the contact index corresponding to Bernice Yu.
+      
+     <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
+     
+2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
+  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.
+  
+     <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
+ 
+3. Type `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music` in the **Command Box** and press <kbd>Enter</kbd>.
+ 
+    <img src="images/meeting-add/meeting-add.png" alt="Enter 'meeting add' in the command box" width="900px">
+  
+4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
+ contain this newly created sale.
+    - You may have to scroll through your **Sale List** to find this newly created sale since sales are
+     sorted in ascending order based on the date the sale is scheduled.
+
+#### Deleting a sales item: `sale delete` [Kwek Min Yih]
+
+Deletes a specified sales item from StonksBook.
+
+Format: `sale delete s/SALE_INDEX…`
+
+* Deletes the sale(s) at specified `SALE_INDEX`.
+* The  `SALE_INDEX` refers to the index number shown in the displayed sale list, and must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `sale delete s/4` deletes the 4th sale made in the list.
 
 #### Editing an existing sale: `sale edit` [Kwek Min Yih]
 
@@ -343,18 +378,6 @@ Examples:
 * `sale list` lists all sales.
 * `sale list c/5` lists all sales made to the 5th contact in the contact list.
 * `sale list m/6 y/2020` lists all sales whose associated date is within June 2020.
-
-#### Deleting a sales item: `sale delete` [Kwek Min Yih]
-
-Deletes a sales item of specified index.
-
-Format: `sale delete s/SALE_INDEX`
-
-* In the list of sales, the sale of `SALE_INDEX` is deleted.
-* The  `SALE_INDEX` refers to the index number shown in the displayed sale list, and must be a positive integer 1, 2, 3, …​
-
-Examples:
-* `sale delete s/4` deletes the 4th sale made in the list.
 
 ### Scheduled Meetings
 
