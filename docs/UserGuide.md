@@ -510,7 +510,7 @@ Analyses the meeting data and visualises the statistical result.
      
 e.g. You can compare the number of meetings you have had in the past 6 months as shown.
 
-1. Type `meeting stats 6` and press `Enter`.
+1. Type `meeting stats 6` and press <kbd>Enter</kbd>.
 <img src="images/meetingStatsFirstStep.png" alt="result for 'contact sort keyword'" width="400px">
 
 2. A new window containing the bar chart pops up.
