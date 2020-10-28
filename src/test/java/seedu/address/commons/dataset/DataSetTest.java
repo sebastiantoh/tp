@@ -28,7 +28,6 @@ class DataSetTest {
         monthlyCountDataSet = new DataSet<>(monthlyCountDataList);
     }
 
-
     @Test
     public void getTestAndSetTest_valid_success() {
         String expectedTitle = "test 1";

@@ -1,5 +1,7 @@
 package seedu.address.commons.dataset.tag;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 
 import seedu.address.model.tag.Tag;
@@ -7,7 +9,12 @@ import seedu.address.model.tag.Tag;
 public class TagKey {
     private Tag tag;
 
+    /**
+     * Creates a TagKey with the specified {@code tag}.
+     * @param tag The tag to be stored in the TagKey.
+     */
     public TagKey(Tag tag) {
+        requireNonNull(tag);
         this.tag = tag;
     }
 
@@ -16,6 +23,7 @@ public class TagKey {
     }
 
     public void setTag(Tag tag) {
+        requireNonNull(tag);
         this.tag = tag;
     }
 

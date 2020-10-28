@@ -1,11 +1,15 @@
 package seedu.address.commons.dataset.tag;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -28,9 +32,10 @@ public class SaleTagListMap {
     /**
      * Adds {@code sale} to an sale list based on the key of {@code tag}.
      *
-     * @param sale a valid year sale.
+     * @param sale A valid sale to be added.
      */
     public void addSale(Sale sale) {
+        requireNonNull(sale);
         Set<Tag> tags = sale.getTags();
 
         tags.forEach(tag -> {
@@ -46,9 +51,11 @@ public class SaleTagListMap {
     /**
      * Removes {@code sale} from an sale list based on the key of {@code key} if exists.
      *
-     * @param sale a valid year sale
+     * @param sale The sale to be removed.
      */
     public void removeSale(Sale sale) {
+        requireNonNull(sale);
+
         Set<Tag> tags = sale.getTags();
 
         tags.forEach(tag -> {
@@ -63,30 +70,48 @@ public class SaleTagListMap {
         });
     }
 
+    // TODO: potentially remove
     /**
      * Gets the number of items in an sale list based on the key of {@code key}.
      * If the key of {@code key} does not exist, the number is 0.
      *
-     * @param tag a valid month tag.
-     * @return the number of sales with that tag.
+     * @param tag A valid tag.
+     * @return The number of sales with that tag.
      */
     public int getSaleCount(Tag tag) {
+        requireNonNull(tag);
         TagKey key = new TagKey(tag);
-        if (this.saleTagListMap.containsKey(key)) {
-            return this.saleTagListMap.get(key).size();
-        }
-        return 0;
+        assert this.saleTagListMap.containsKey(key);
+        return this.saleTagListMap.get(key).size();
     }
 
     /**
-     * Gets the list of sales with a specific {@code tag}.
+     * Remove a tag from the saleTagListMap.
      *
-     * @param tag a valid month tag.
-     * @return list of sales in its natural order
+     * @param tag The tag to be removed.
      */
-    public List<Sale> getSales(Tag tag) {
+    public void removeTag(Tag tag) {
+        requireNonNull(tag);
         TagKey key = new TagKey(tag);
-        return this.saleTagListMap.getOrDefault(key, Collections.emptyList());
+        saleTagListMap.remove(key);
+    }
+
+    /**
+     * Edit a tagKey to contain the newly edited tag.
+     *
+     * @param previousTag The tag to be replaced.
+     * @param newTag The newly edited tag to replace.
+     */
+    public void editTag(Tag previousTag, Tag newTag) {
+        requireAllNonNull(previousTag, newTag);
+        Optional<TagKey> possibleTagKeyToEdit = saleTagListMap.keySet().stream()
+                .filter(tagKey -> tagKey.getTag().equals(previousTag))
+                .findFirst();
+
+        assert possibleTagKeyToEdit.isPresent();
+
+        TagKey tagKeyToEdit = possibleTagKeyToEdit.get();
+        tagKeyToEdit.setTag(newTag);
     }
 
     /**
@@ -97,7 +122,8 @@ public class SaleTagListMap {
     }
 
     /**
-     * Gets the sale counts in the sale list for every {@code tag}.
+     * Gets the sale counts in the sale list for the top 5 {@code tag}.
+     * If tag does not have any sales assigned, it will not be included.
      *
      * @return A DataSet object containing SaleTagCountData.
      */
@@ -105,11 +131,13 @@ public class SaleTagListMap {
         List<SaleTagCountData> result = new ArrayList<>();
 
         saleTagListMap.forEach(((tagKey, sales) -> {
-            result.add(new SaleTagCountData(tagKey, getSaleCount(tagKey.getTag())));
+            result.add(new SaleTagCountData(tagKey, sales.size()));
         }));
 
         result.sort(Comparator.comparingInt(Data::getCount));
-        List<SaleTagCountData> topSaleTagCountData = result.stream().limit(5).collect(Collectors.toList());
+        List<SaleTagCountData> topSaleTagCountData = result.stream()
+                .filter(data -> data.getCount() > 0).limit(5)
+                .collect(Collectors.toList());
         Collections.reverse(topSaleTagCountData);
 
         return new DataSet<>(topSaleTagCountData);
