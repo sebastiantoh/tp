@@ -3,6 +3,7 @@ package seedu.address.model.sale;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Year;
@@ -12,6 +13,7 @@ import java.util.Comparator;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,7 +25,7 @@ public class Sale implements Comparable<Sale> {
 
     /** Identity fields */
     private final ItemName itemName;
-    private final int buyerId;
+    private final Person buyer;
 
     /** Data fields */
     private final LocalDateTime datetimeOfPurchase;
@@ -37,11 +39,11 @@ public class Sale implements Comparable<Sale> {
     /**
      * Every field must be present and not null.
      */
-    public Sale(ItemName itemName, int buyerId, LocalDateTime datetimeOfPurchase, Quantity quantity,
+    public Sale(ItemName itemName, Person buyer, LocalDateTime datetimeOfPurchase, Quantity quantity,
                 UnitPrice unitPrice, Set<Tag> tags) {
         requireAllNonNull(itemName, datetimeOfPurchase, quantity, unitPrice);
         this.itemName = itemName;
-        this.buyerId = buyerId;
+        this.buyer = buyer;
         this.quantity = quantity;
         this.datetimeOfPurchase = datetimeOfPurchase;
         this.unitPrice = unitPrice;
@@ -53,13 +55,16 @@ public class Sale implements Comparable<Sale> {
         return itemName;
     }
 
-
-    public int getBuyerId() {
-        return buyerId;
+    public Person getBuyer() {
+        return buyer;
     }
 
     public LocalDateTime getDatetimeOfPurchase() {
         return datetimeOfPurchase;
+    }
+
+    public String getFormattedDatetimeOfPurchase() {
+        return getDatetimeOfPurchase().format(DATE_TIME_FORMATTER);
     }
 
     public Quantity getQuantity() {
@@ -70,9 +75,18 @@ public class Sale implements Comparable<Sale> {
         return unitPrice;
     }
 
+    public String getUnitPriceString() {
+        return NumberFormat.getCurrencyInstance().format(unitPrice.amount);
+    }
+
     public BigDecimal getTotalCost() {
         return this.totalCost;
     }
+
+    public String getTotalCostString() {
+        return NumberFormat.getCurrencyInstance().format(totalCost);
+    }
+
 
     public Month getMonth() {
         return datetimeOfPurchase.getMonth();
@@ -101,7 +115,7 @@ public class Sale implements Comparable<Sale> {
 
         return otherSale != null
                 && otherSale.getItemName().equals(getItemName())
-                && otherSale.getBuyerId() == (getBuyerId())
+                && otherSale.getBuyer().equals(getBuyer())
                 && otherSale.getDatetimeOfPurchase().equals(getDatetimeOfPurchase())
                 && otherSale.getUnitPrice().equals(getUnitPrice())
                 && otherSale.getQuantity().equals(getQuantity());
@@ -123,7 +137,7 @@ public class Sale implements Comparable<Sale> {
 
         Sale otherSale = (Sale) other;
         return otherSale.getItemName().equals(getItemName())
-                && otherSale.getBuyerId() == (getBuyerId())
+                && otherSale.getBuyer().equals(getBuyer())
                 && otherSale.getDatetimeOfPurchase().equals(getDatetimeOfPurchase())
                 && otherSale.getUnitPrice().equals(getUnitPrice())
                 && otherSale.getQuantity().equals(getQuantity())
@@ -133,29 +147,30 @@ public class Sale implements Comparable<Sale> {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(itemName, buyerId, datetimeOfPurchase, quantity, unitPrice);
+        return Objects.hash(itemName, buyer, datetimeOfPurchase, quantity, unitPrice);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        // TODO: settle printing of buyer when implementing GUI
         builder.append(getItemName())
                 .append(" (Date of Purchase: ")
-                .append(getDatetimeOfPurchase().format(DATE_TIME_FORMATTER))
+                .append(getFormattedDatetimeOfPurchase())
                 .append(", Quantity: ")
                 .append(getQuantity())
                 .append(", Unit Price: ")
                 .append(getUnitPrice())
                 .append(", Tags: ")
                 .append(getTags())
+                .append(") (Client: ")
+                .append(getBuyer().getName().fullName)
                 .append(")");
         return builder.toString();
     }
 
     /**
      * Compares this sale to the specified Sale. A Sale is "less" than another Sale if and only if, from highest to
-     * lowest priority: has an earlier datetime of purchase, has a buyer that was added least recently,
+     * lowest priority: has an earlier datetime of purchase, has a lower lexicographical order of buyer name,
      * has a lower lexicographical order of item name.
      *
      * @param otherSale The other Sale to compare to
@@ -164,7 +179,7 @@ public class Sale implements Comparable<Sale> {
     @Override
     public int compareTo(Sale otherSale) {
         return Comparator.comparing(Sale::getDatetimeOfPurchase)
-                .thenComparing(s -> s.getBuyerId())
+                .thenComparing(s -> s.getBuyer().getName().fullName)
                 .thenComparing(s -> s.getItemName().name)
                 .compare(this, otherSale);
     }

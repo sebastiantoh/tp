@@ -15,6 +15,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_TOTAL_SALES = new Prefix("s/");
     public static final Prefix PREFIX_DESC_ORDER = new Prefix("desc");
 
+    /* Prefix definitions for tags */
+    public static final Prefix PREFIX_CONTACT_TAG = new Prefix("ct/");
+    public static final Prefix PREFIX_SALES_TAG = new Prefix("st/");
+
     /* Prefix definitions for sales */
     public static final Prefix PREFIX_SALE_CONTACT_INDEX = new Prefix("c/");
     public static final Prefix PREFIX_SALE_NAME = new Prefix("n/");
@@ -24,6 +28,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_SALE_INDEX = new Prefix("s/");
 
     public static final Prefix PREFIX_CONTACT = new Prefix("c/");
+    public static final Prefix PREFIX_CLIENT = new Prefix("cl/");
     public static final Prefix PREFIX_MESSAGE = new Prefix("m/");
     public static final Prefix PREFIX_DATETIME = new Prefix("d/");
     public static final Prefix PREFIX_DURATION = new Prefix("du/");

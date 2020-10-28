@@ -29,8 +29,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.statistics.MonthlyCountData;
-import seedu.address.commons.statistics.MonthlyCountDataSet;
+import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.dataset.date.MonthAndYear;
+import seedu.address.commons.dataset.date.MonthlyCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -332,7 +333,7 @@ public class ModelManagerTest {
         modelManager.addMeeting(MEET_ALICE);
         Month month = MEET_ALICE.getStartDate().getMonth();
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
-        MonthlyCountDataSet expectedResult = new MonthlyCountDataSet(Collections.singletonList(
+        DataSet<MonthlyCountData> expectedResult = new DataSet<>(Collections.singletonList(
                 new MonthlyCountData(new MonthAndYear(month, year), 1)));
         assertEquals(expectedResult, modelManager.getMultipleMonthMeetingsCount(month, year, 1));
     }

@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALES_TAG;
 
 import java.util.List;
 
@@ -22,45 +24,60 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the tag identified by the index number used in the displayed reminder list. "
             + "Note that all associations with this tag will be cleared.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + String.format("Parameters: (%s or %s) INDEX \n", PREFIX_CONTACT_TAG, PREFIX_SALES_TAG)
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CONTACT_TAG + "1";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    private final boolean isContact;
+
+    /**
+     * Instantiates a new DeleteCommand for tags.
+     */
+    public DeleteCommand(Index targetIndex, boolean isContact) {
         this.targetIndex = targetIndex;
+        this.isContact = isContact;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // Contact tags will be displayed in front of Sale tags.
-        List<Tag> contactTagList = model.getAddressBook().getContactTagList();
-        List<Tag> saleTagList = model.getAddressBook().getSaleTagList();
+        List<Tag> contactTagList = model.getContactTagList();
+        List<Tag> saleTagList = model.getSaleTagList();
 
-        if (targetIndex.getOneBased() > contactTagList.size() + saleTagList.size() || targetIndex.getOneBased() < 0) {
+        if (isContact && targetIndex.getOneBased() > contactTagList.size()
+                || !isContact && targetIndex.getOneBased() > saleTagList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
         }
 
         Tag tagToDelete;
-        if (targetIndex.getOneBased() > contactTagList.size()) {
-            tagToDelete = saleTagList.get(targetIndex.getZeroBased() - contactTagList.size());
+        if (!isContact) {
+            tagToDelete = saleTagList.get(targetIndex.getZeroBased());
             model.deleteSaleTag(tagToDelete);
         } else {
             tagToDelete = contactTagList.get(targetIndex.getZeroBased());
             model.deleteContactTag(tagToDelete);
         }
-        return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS, tagToDelete), true, false);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
             return true;
         }
 
-        return (obj instanceof DeleteCommand) && targetIndex.equals(((DeleteCommand) obj).targetIndex);
+        // instanceof handles nulls
+        if (!(other instanceof DeleteCommand)) {
+            return false;
+        }
+
+        // state check
+        DeleteCommand d = (DeleteCommand) other;
+        return targetIndex.equals(d.targetIndex) && isContact == d.isContact;
     }
 }

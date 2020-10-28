@@ -200,31 +200,34 @@ Examples:
 
 Edits an existing tag in StonksBook to the specified tag name. All entries previously associated with this tag will be updated to associated with the updated tag.
 
-Format: `tag edit INDEX t/NAME`
+Format: `tag edit (ct/ or st/)INDEX t/TAG`
 
-* Edits the name of the tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
+* Edits the name of the contact tag or sales tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the contact tags list or sales tags list displayed by the `tag list` command.
+* `ct/` stands for contact tag, `st/` stands for sales tag.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
-* The `NAME` and `INDEX` fields must be provided.
+* The `TAG` and `INDEX` fields must be provided.
 * All contacts or sales that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
 
 Examples:
 
-* `tag edit 1 n/friends` updates the name of the first tag to `close friends`.
+* `tag edit ct/1 t/friends` updates the name of the first contact tag to `friends`.
+* `tag edit st/1 t/electronics` updates the name of the first sales tag to `electronics`.
 
 #### Deleting a tag: `tag delete` \[Wang Luo\]
 
 Deletes the specified tag from the tag list. The tag information in all entries previously associated with this tag will also be cleared.
 
-Format: `tag delete INDEX`
+Format: `tag delete (st/ or ct/)INDEX`
 
-* Deletes the name of the tag at the specified `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
+* Deletes the the contact tag or sales tag at the specified `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `INDEX` field must be provided.
 * All contacts that have been previously associated with this tag will be updated so that their associations with this tag will be cleared.
 
 Examples:
 
-* `tag delete 1` deletes the first tag from the tag list.
+* `tag delete ct/1` deletes the first contact tag from the contact tags list.
+* `tag delete st/1` deletes the first sales tag from the sales tags list.
 
 #### Retrieving entries by tag: `tag find` \[Wang Luo\]
 
@@ -232,17 +235,17 @@ Displays all entries (including contacts, items, etc.) that are associated with 
 
 <img src="images/tagFindMockup.png" alt="result for 'tag find'" width="400px">
 
-Format: `tag find INDEX [c/]`
+Format: `tag find (ct/ or st/)INDEX [cl/]`
 
 * Displays all entries of associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `INDEX` field must be provided.
-* An additional `c/` field can be provided when performing searching on sales tags. This field results in all contacts who purchased sales items associated with this tag to be displayed. Adding this field will have no effect on the search results for contact tags.
+* An additional `cl/` field can be provided when performing searching on sales tags. This field results in all contacts who purchased sales items associated with this tag to be displayed. Adding this field will have no effect on the search results for contact tags.
 
 Examples:
-* `tag find 1` displays all contacts associated with the first tag displayed by the `tag list` command, assuming there are more than one contact tags.
-* `tag find 5` displays all sales associated with the seventh tag displayed by the `tag list` command, assuming there are less than five contact tags.
-* `tag find 5 c/` displays all contacts who have purchased items associated with the tenth tag, assuming there are less than five contact tags.
+* `tag find ct/1` displays all contacts associated with the first contact tag displayed by the `tag list` command.
+* `tag find st/2` displays all sales associated with the second sales tag displayed by the `tag list` command.
+* `tag find st/3 cl/` displays all contacts who have purchased items associated with the third sales tag.
 
 ### Sales
 

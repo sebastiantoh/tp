@@ -20,8 +20,13 @@ public class ChatBox extends UiPart<Region> {
     @FXML
     private ScrollPane scrollPane;
 
+    /**
+     * Initialises a ChatBox object.
+     */
     public ChatBox() {
         super(FXML);
+        dialogContainer.maxWidthProperty().bind(scrollPane.widthProperty().subtract(10));
+        dialogContainer.minWidthProperty().bind(scrollPane.widthProperty().subtract(10));
     }
 
     private void scrollToBottom() {
@@ -36,8 +41,8 @@ public class ChatBox extends UiPart<Region> {
     public void displayInputAndResponse(String commandText, String response) {
         requireNonNull(response);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(commandText),
-                DialogBox.getStonksBotDialog(response)
+                DialogBox.getUserDialog(commandText, dialogContainer.widthProperty()),
+                DialogBox.getStonksBotDialog(response, dialogContainer.widthProperty())
         );
         scrollToBottom();
     }

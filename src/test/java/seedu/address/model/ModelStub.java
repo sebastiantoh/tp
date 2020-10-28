@@ -5,11 +5,14 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.statistics.MonthlyCountDataSet;
+import seedu.address.commons.dataset.DataSet;
+import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.commons.dataset.tag.SaleTagCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -127,12 +130,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public String listTags() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean saleTagsExist(Sale sale) {
+    public boolean saleTagsExist(Set<Tag> tag) {
         return true;
     }
 
@@ -306,12 +304,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public DataSet<SaleTagCountData> getSaleTagCount() {
         throw new AssertionError("This method should not be called.");
     }
 
