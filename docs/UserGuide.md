@@ -159,7 +159,7 @@ Sorts contacts based on the name, email address or the total sale amount associa
 * The sorted result will last until other contact commands (except `contact delete`) are executed.
 
 e.g. You want to see the contacts who have paid you the most for your sales and you can do so as shown.
-1. Type `contact sort s/ desc` in the command box and press `Enter`.
+1. Type `contact sort s/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
 <img src="images/contactsortfirststep.png" alt="result for 'contact sort keyword'" width="400px">
 2. The contact list is sorted by the total sales amount, from highest to lowest.
 3. Your top paying contacts will be at the top of the list.
