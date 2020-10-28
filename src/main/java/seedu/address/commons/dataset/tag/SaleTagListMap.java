@@ -109,7 +109,8 @@ public class SaleTagListMap {
     }
 
     /**
-     * Gets the sale counts in the sale list for every {@code tag}.
+     * Gets the sale counts in the sale list for the top 5 {@code tag}.
+     * If tag does not have any sales assigned, it will not be included.
      *
      * @return A DataSet object containing SaleTagCountData.
      */
@@ -121,8 +122,9 @@ public class SaleTagListMap {
         }));
 
         result.sort(Comparator.comparingInt(Data::getCount));
-        List<SaleTagCountData> topSaleTagCountData = result.stream().limit(5).
-                collect(Collectors.toList());
+        List<SaleTagCountData> topSaleTagCountData = result.stream()
+                .filter(data -> data.getCount() > 0).limit(5)
+                .collect(Collectors.toList());
         Collections.reverse(topSaleTagCountData);
 
         return new DataSet<>(topSaleTagCountData);
