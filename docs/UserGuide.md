@@ -560,6 +560,10 @@ StonksBook allows you to archive contacts who are no longer active so that you c
 
 Adds the specified contact to the archive.
 
+<div markdown="block" class="alert alert-info">
+StonksBook will not archive a contact if it is already archived!
+</div>
+
 **Format**: `archive add INDEX`
 
 * Adds the contact at the specified `INDEX` to the archive.
@@ -572,10 +576,6 @@ Suppose you want to archive your contact David Li, who is no longer doing busine
 1. Identify the index of the contact entry in the contact list. Here David Li is the third contact in the list. Alternatively you can use `contact find` to find the contact.
 2. Type `archive add 3` in the **Command Box** and press <kbd>Enter</kbd>.
 3. The contact entry will disappear from the contact list, and the **Result Box** will inform you that the command is successful.
-
-<div markdown="block" class="alert alert-info">
-StonksBook will not archive a contact if it is already archived!
-</div>
 
 #### Listing contacts in the archive: `archive list` \[Leong Jin Ming\]
 
@@ -593,15 +593,15 @@ To see all your archived contacts, type `archive list` into the **Command Box** 
 
 Removes the specified contact from the archive. The specified contact will appear on your contact list again.
 
+<div markdown="block" class="alert alert-info">
+StonksBook will not remove a contact from the archive it is not in the archive!
+</div>
+
 **Format**: `archive remove INDEX`
 
 * Removes the contact at the specified `INDEX` from the archive.
 * Does not delete the contact from StonksBook. To delete the contact use `contact delete`.
 * The index must be a positive integer 1, 2, 3, …
-
-<div markdown="block" class="alert alert-info">
-StonksBook will not remove a contact from the archive it is not in the archive!
-</div>
 
 **Example**:
 Let's say your archived contact David Li wants to start buying electronics from you again, and so you would like to bring his contact entry back to the contacts list. Simply follow the steps below:
