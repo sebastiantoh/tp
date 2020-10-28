@@ -57,7 +57,7 @@ This section will provide a quick guide to get StonksBook up and running on your
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `contact add n/NAME`, `NAME` is a parameter which can be used as `contact add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -330,6 +330,37 @@ Examples:
 
 StonksBook allows you to manage your scheduled meetings within the application.
 
+#### Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
+
+Shows a list of all meetings. By default, the list only shows upcoming meetings. This list is sorted in increasing order based on the date the meeting is scheduled.
+
+**Format**: `meeting list [c/CONTACT_INDEX] [a/]`
+
+* When an index is specified, the list will only show meetings associated with the contact at the specified index.
+* You can show all meetings, including past meetings, by typing `a/`.
+
+**Example:**
+Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is what you need to do:
+
+1. Type `contact find alex` in the **Command Box** and press <kbd>Enter</kbd>. 
+    - This is to identify the contact index corresponding to Alex Yeoh. Let us assume that Alex Yeoh is at the first
+     index.
+     
+<img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="400px">
+    
+2. The **Result Box** will display a message of the number of contacts listed.
+ 
+<img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="400px">
+ 
+3. Type `meeting list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
+
+<img src="images/meeting-list/meeting-list.png" alt="Enter 'meeting list c/1' in the command box" width="400px">
+
+4. The **Result Box** will display a message noting that the command was successful, and the **Meeting List** will
+ show a list of upcoming meetings scheduled with Alex Yeoh.
+
+<img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="400px">
+
 #### Adding a meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
 Adds a scheduled meeting with the specified contact in StonksBook.
@@ -360,6 +391,29 @@ To prevent the situation in which you unknowingly scheduled conflicting meetings
  add a new meeting if it conflicts with some meeting in StonksBook!
 </div>
 
+#### Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
+
+Deletes the specified meeting from StonksBook.
+
+Format: `meeting delete INDEX`
+
+* Deletes the schedule at the specified `INDEX`.
+* The index refers to the index number shown in the displayed meetings list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Example:
+Let's say that you have just received an unfortunate email from John Doe who no longer wishes to meet with you on 15
+ December 2020, 12pm. Here's how you can delete this meeting in StonksBook:
+
+ 1. Identify the index corresponding to the meeting to be deleted in the meeting list. If you have a large list of
+    meetings, it may be convenient to filter for all meetings with John Doe. Assuming that John Doe is the 2nd contact
+    currently displayed in the contact list, you can type `meeting list c/2` and the meeting list will update to show
+    only upcoming meetings with John Doe.
+    
+ 2. Suppose the meeting to be deleted is at the third index in the meeting list. Then, type `meeting delete 3` in the command box, and press Enter to execute it.
+ 
+ 3. You should see that the meeting has been deleted from the meeting list.
+ 
 #### Editing a meeting: `meeting edit` \[Sebastian Toh Shi Jian\]
 Edits an existing meeting in StonksBook.
 
@@ -386,44 +440,6 @@ Let's say that you have just received an email from John Doe who wishes to resch
 Similar to when adding a meeting, StonksBook will not allow you to edit a meeting if it will conflicts with some meeting
  in StonksBook!
 </div>
-
-#### Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
-
-Shows a list of all meetings. By default, the list only shows upcoming meetings. This list is sorted in increasing order based on the date the meeting is scheduled.
-
-<img src="images/meetingListMockup.png" alt="result for 'meeting list'" width="400px">
-
-Format: `meeting list [c/CONTACT_INDEX] [a/]`
-
-* When an index is specified, the list will only show meetings associated with the contact at the specified index.
-* You can show all meetings, including past meetings, by typing `a/`.
-
-Examples:
-* `meeting list c/5 a/` displays a list of all meetings that you have had with the 5th contact currently
- displayed in StonksBook.
- 
-#### Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
-
-Deletes the specified meeting from StonksBook.
-
-Format: `meeting delete INDEX`
-
-* Deletes the schedule at the specified `INDEX`.
-* The index refers to the index number shown in the displayed meetings list.
-* The index must be a positive integer 1, 2, 3, …​
-
-Example:
-Let's say that you have just received an unfortunate email from John Doe who no longer wishes to meet with you on 15
- December 2020, 12pm. Here's how you can delete this meeting in StonksBook:
-
- 1. Identify the index corresponding to the meeting to be deleted in the meeting list. If you have a large list of
-    meetings, it may be convenient to filter for all meetings with John Doe. Assuming that John Doe is the 2nd contact
-    currently displayed in the contact list, you can type `meeting list c/2` and the meeting list will update to show
-    only upcoming meetings with John Doe.
-    
- 2. Suppose the meeting to be deleted is at the third index in the meeting list. Then, type `meeting delete 3` in the command box, and press Enter to execute it.
- 
- 3. You should see that the meeting has been deleted from the meeting list.
 
 #### Analysing meetings: `meeting stats`
 Analyses the meeting data and visualises the statistical result.
@@ -606,7 +622,7 @@ Format: `exit`
 
 Action | Format, Examples
 --------|------------------
-**Contact Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/birthday: 20 August`
+**Contact Add** | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]…` <br> e.g., `contact add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/birthday: 20 August`
 **Contact Delete** | `contact delete INDEX` <br> e.g., `contact delete 3`
 **Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
 **Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `contact find James Jake`
