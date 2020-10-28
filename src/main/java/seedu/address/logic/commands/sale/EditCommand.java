@@ -13,6 +13,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SALES;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -80,7 +81,7 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Sale> lastShownList = model.getSortedSaleList();
-        assert MassSaleCommandUtil.areSaleIndexesValid(lastShownList, saleIndexes);
+        MassSaleCommandUtil.areSaleIndexesValid(lastShownList, saleIndexes);
 
         // Check if new tags are valid
         if (editSaleDescriptor.getTags().isPresent()) {
@@ -89,23 +90,19 @@ public class EditCommand extends Command {
             }
         }
 
+        // Check if new buyer is valid, and add to editSaleDescriptor if it is
+        if (personIndex != null) {
+            List<Person> lastShownPeople = model.getSortedPersonList();
+            assert MassSaleCommandUtil.arePersonIndexesValid(lastShownPeople, new ArrayList<>(Arrays.asList(personIndex)));
+            Person newBuyer = lastShownPeople.get(personIndex.getZeroBased());
+            editSaleDescriptor.setBuyer(newBuyer);
+        }
+
         List<Sale> editedSales = new ArrayList<>();
         List<Sale> invalidSales = new ArrayList<>();
 
         for (Index saleIndex : saleIndexes) {
             Sale saleToEdit = lastShownList.get(saleIndex.getZeroBased());
-
-            if (personIndex != null) {
-                List<Person> lastShownPeople = model.getSortedPersonList();
-                if (personIndex.getZeroBased() >= lastShownPeople.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-                }
-
-                Person newBuyer = lastShownPeople.get(personIndex.getZeroBased());
-                editSaleDescriptor.setBuyer(newBuyer);
-            }
-
-            // Re-edit sale with new buyer
             Sale editedSale = createEditedSale(saleToEdit, editSaleDescriptor);
 
             if (!saleToEdit.isSameSale(editedSale) && model.hasSale(editedSale)) {
@@ -118,6 +115,12 @@ public class EditCommand extends Command {
 
         model.updateFilteredSaleList(PREDICATE_SHOW_ALL_SALES);
 
+        String result = generateResultString(editedSales, invalidSales);
+
+        return new CommandResult(result, false, true);
+    }
+
+    private String generateResultString(List<Sale> editedSales, List<Sale> invalidSales) {
         String result = "";
 
         if (editedSales.size() > 0) {
@@ -129,8 +132,7 @@ public class EditCommand extends Command {
         if (invalidSales.size() > 0) {
             result += "\n" + MESSAGE_DUPLICATE_SALE + MassSaleCommandUtil.listAllSales(invalidSales);
         }
-
-        return new CommandResult(result, false, true);
+        return result;
     }
 
     /**

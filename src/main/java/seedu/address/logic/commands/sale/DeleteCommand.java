@@ -51,14 +51,16 @@ public class DeleteCommand extends Command {
             throw new CommandException(MESSAGE_NO_SALES_DISPLAYED);
         }
 
-        assert MassSaleCommandUtil.areSaleIndexesValid(sales, saleIndexes);
+        MassSaleCommandUtil.areSaleIndexesValid(sales, saleIndexes);
 
         List<Sale> deletedSales = new ArrayList<>();
         for (Index saleIndex : saleIndexes) {
             Sale saleToDelete = sales.get(saleIndex.getZeroBased());
             deletedSales.add(saleToDelete);
-            model.removeSale(saleToDelete);
         }
+
+        // Need to remove sales after selecting all sales to be deleted, otherwise the indexing will be off
+        deletedSales.forEach(model::removeSale);
 
         return new CommandResult(String.format(generateSuccessMessage(deletedSales)), false, true);
     }

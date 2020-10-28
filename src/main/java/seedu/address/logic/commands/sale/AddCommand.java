@@ -88,7 +88,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getSortedPersonList();
-        assert MassSaleCommandUtil.arePersonIndexesValid(lastShownList, indexList);
+        MassSaleCommandUtil.arePersonIndexesValid(lastShownList, indexList);
 
         if (!model.saleTagsExist(tagList)) {
             throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
