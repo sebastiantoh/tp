@@ -172,47 +172,79 @@ Deletes the specified contact from StonksBook. All associated reminders and meet
 
 #### Adding a tag: `tag add` \[Wang Luo\]
 
-Adds a new customised tag of the specified name to either the contact tags or sales tags. If there is an existing tag with this name, this command will not result in any change in state.
+Adds a new customised contact tag or sales tag to StonksBook.
 
-**Format**: `tag add c/ (or s/) t/TAG`
+<div markdown="block" class="alert alert-info">
+StonksBook will not allow you to add a new contact tag (or sales tag) if there already exists a contact tag (or sales tag) of the same name.
+</div>
 
-* Adds a tag with the specified `TAG` as the tag name to the contact tag list or sales tag list.
-* If this tag name already exists in the tag list, there will be no change in the program state.
-* The type of tag is specified by the empty prefix `c/` or `s/`, where `c/` adds the tag to the contact tag list, whilst `s/` adds the tag to the sales tag list.
+**Format**: `tag add (ct/ or st/)TAG`
+
+* `ct/` stands for contact tag, `st/` stands for sales tag.
+* Adds a contact tag (if `ct/` is typed) or a sales tag (if `st/` is typed) with the specified `TAG` as the tag name to the contact tag list (or sales tag list).
 * The `TAG` field must be provided.
 
 **Examples**:
 
-* `tag add s/ t/electronics` adds the tag `electronics` to the sales tag list in StonksBook.
+Let's say that you want to add a new sales tag called electronics. Here are the steps to follow:
+
+1. Type `tag add st/electronics` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <img src="images/tag-add/tag-add.png" alt="Enter 'tag add st/electronics' in the Command Box" width="900px">
+    
+2. The **Result Box** will display a message noting that the command was successful, and the **Sales Tags** will now contain this new sales tag.
+
+    <img src="images/tag-add/tag-add-result.png" alt="Result for 'tag add st/electronics'" width="900px">
 
 #### Listing all tags: `tag list` \[Wang Luo\]
 
 Displays a list of all tags created so far.
 
-<img src="images/tagListMockup.png" alt="result for 'tag list'" width="400px">
-
 **Format**: `tag list`
 
 **Examples**:
 
-* `tag list` displays all tags available in StonksBook.
+Let's say that you want to see all the tags you have created so far. Here are the steps to follow:
+
+1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <img src="images/tag-list/tag-list.png" alt="Enter 'tag list'" width="900px">
+
+2. The **Result Box** will display a message noting that the command was successful, and the bottom right box will now display **Contact Tags** and **Sales Tags**.
+
+    <img src="images/tag-list/tag-list-result.png" alt="Result for 'tag list'" width="900px">
 
 #### Editing a tag: `tag edit` \[Wang Luo\]
 
-Edits an existing tag in StonksBook to the specified tag name. All entries previously associated with this tag will be updated to associated with the updated tag.
+Edits an existing tag in StonksBook to the specified tag name.
+
+<div markdown="block" class="alert alert-info">
+All entries (contacts or sales) previously associated with this tag will be updated to associate with the updated tag.
+</div>
 
 **Format**: `tag edit (ct/ or st/)INDEX t/TAG`
 
 * Edits the name of the contact tag or sales tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the contact tags list or sales tags list displayed by the `tag list` command.
-* `ct/` stands for contact tag, `st/` stands for sales tag.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `TAG` and `INDEX` fields must be provided.
 * All contacts or sales that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
 
 **Examples**:
 
-* `tag edit ct/1 t/friends` updates the name of the first contact tag to `friends`.
-* `tag edit st/1 t/electronics` updates the name of the first sales tag to `electronics`.
+Let's say that you decides to change the tag colleagues to teammates instead. Here are the steps to follow:
+
+1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
+    - This is to display the contact tags and sales tags in StonksBook.
+
+    <img src="images/tag-edit/tag-list-second.png" alt="Result for 'tag list'" width="900px">
+
+2. Type `tag edit ct/2 t/friends` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <img src="images/tag-edit/tag-edit.png" alt="Enter 'tag edit ct/2 t/friends'" width="900px">
+
+3. The **Result Box** will display a message noting that the command was successful, and the **Contact Tags** will now contain teammates instead of colleagues. Note that the tags are sorted alphabetically, hence, you may need to scroll up or down to see the updated tag. Also, note that the contact Bernice Yu is now tagged to teammates.
+
+    <img src="images/tag-edit/tag-edit-result.png" alt="Enter 'tag edit ct/2 t/friends'" width="900px"> 
 
 #### Deleting a tag: `tag delete` \[Wang Luo\]
 
@@ -227,14 +259,24 @@ Deletes the specified tag from the tag list. The tag information in all entries 
 
 **Examples**:
 
-* `tag delete ct/1` deletes the first contact tag from the contact tags list.
-* `tag delete st/1` deletes the first sales tag from the sales tags list.
+Let's say that you think one contact tag (colleagues) you created before is no longer relevant and you would like to get rid of it. Here are the steps to follow:
+
+1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
+    - This is to display the contact tags and sales tags in StonksBook, and the contact tag colleagues is found to be at index 2.
+
+    <img src="images/tag-edit/tag-list-second.png" alt="Result for 'tag list'" width="900px">
+
+2. Type `tag delete ct/2` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <img src="images/tag-delete/tag-delete.png" alt="Enter 'tag delete ct/2'" width="900px">
+
+3. The **Result Box** will display a message noting that the command was successful, and the **Contact Tags** will no longer contain the contact tag colleagues. Also note that Bernice Yu is no longer tagged with colleagues.
+
+    <img src="images/tag-delete/tag-delete-result.png" alt="Enter 'tag delete ct/2'" width="900px">
 
 #### Retrieving entries by tag: `tag find` \[Wang Luo\]
 
-Displays all entries (including contacts, items, etc.) that are associated with the specified tag.
-
-<img src="images/tagFindMockup.png" alt="result for 'tag find'" width="400px">
+Displays all entries (contacts or sales) that are associated with the specified tag.
 
 **Format**: `tag find (ct/ or st/)INDEX [cl/]`
 
@@ -244,9 +286,21 @@ Displays all entries (including contacts, items, etc.) that are associated with 
 * An additional `cl/` field can be provided when performing searching on sales tags. This field results in all contacts who purchased sales items associated with this tag to be displayed. Adding this field will have no effect on the search results for contact tags.
 
 **Examples**:
-* `tag find ct/1` displays all contacts associated with the first contact tag displayed by the `tag list` command.
-* `tag find st/2` displays all sales associated with the second sales tag displayed by the `tag list` command.
-* `tag find st/3 cl/` displays all contacts who have purchased items associated with the third sales tag.
+
+Let's say that you would like to find out who are the contacts tagged with friends. Here are the steps to follow:
+
+1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
+    - This is to display the contact tags and sales tags in StonksBook, and the contact tag friends is found to be at index 3.
+
+   <img src="images/tag-find/tag-list-third.png" alt="Result for 'tag list'" width="900px"> 
+
+2. Type `tag find ct/3` in the **Command Box** and press <kbd>Enter</kbd>. 
+
+   <img src="images/tag-find/tag-find.png" alt="Enter 'tag delete ct/2'" width="900px"> 
+
+3. The **Result Box** will display a message noting that the command was successful, as well as a list of contacts who are tagged with friends.
+
+   <img src="images/tag-find/tag-find-result.png" alt="Enter 'tag delete ct/2'" width="900px"> 
 
 ### Sales
 
@@ -539,6 +593,7 @@ Deletes the specified reminder from StonksBook.
 * `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
 
 #### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
+
 Edits an existing reminder in StonksBook.
 
 **Format**: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]`
@@ -549,8 +604,21 @@ Edits an existing reminder in StonksBook.
 * `STATUS` can be either `pending` or `completed`.
 
 **Examples**:
-* `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.
-* `reminder edit 3 m/Call to follow up d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Call to follow up" and "28th November 2020, 1PM" respectively.
+
+Let's say that Alex Yeoh would like to hear from you sooner for the follow up and you just sent the follow up email. Here are the steps to follow:
+
+1. Type `reminder list` in the **Command Box** and press <kbd>Enter</kbd>.
+    - This is to display all your reminders in StonksBook, and the reminder for follow up email for Alex Yeoh is found at index 1.
+
+   <img src="images/reminder-edit/reminder-list-first.png" alt="Enter 'reminder list'" width="900px"> 
+
+2. Type `reminder edit 1 d/2020-10-30 16:30 st/completed` in the **Command Box** and press <kbd>Enter</kbd>. 
+
+   <img src="images/reminder-edit/reminder-edit.png" alt="Enter 'reminder edit 1 d/2020-10-30 16:30 st/completed'" width="900px"> 
+
+3. The **Result Box** will display a message noting that the command was successful, as well as the details of the updated reminder.
+
+   <img src="images/reminder-edit/reminder-edit-result.png" alt="Result of 'reminder edit 1 d/2020-10-30 16:30 st/completed'" width="900px"> 
 
 ### Archive
 
@@ -674,5 +742,4 @@ Action | Format, Examples
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
 **Exit Application** | `exit`
-
 
