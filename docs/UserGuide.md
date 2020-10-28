@@ -352,7 +352,7 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
     <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
     
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
- show only contacts with the name 'Alex'
+ show only contacts with the name 'Alex'.
  
     <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
  
