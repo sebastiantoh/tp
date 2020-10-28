@@ -493,6 +493,17 @@ Examples:
 
 StonksBook allows you to manage your reminders within the application.
 
+#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
+
+Shows a list of all reminders created, sorted in increasing order based on the date the reminder is scheduled.
+
+Format: `reminder list [st/STATUS]`
+
+* `STATUS` can be either `completed` or `pending`.
+
+Examples:
+* `reminder list st/completed` displays all reminders that have been marked as completed.
+
 #### Adding reminders: `reminder add` \[Sebastian Toh Shi Jian\]
 
 Adds a reminder scheduled on a particular date that is associated with the specified contact to StonksBook.
@@ -507,6 +518,19 @@ Format: `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`
 Examples:
 * `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00` Adds a reminder associated with the 2nd contact
  that is scheduled for 30th October 2020 3PM, with the message `Send email to follow up`
+ 
+#### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
+
+Deletes the specified reminder from StonksBook.
+
+Format: `reminder delete INDEX`
+
+* Deletes the reminder at the specified `INDEX`.
+* The index refers to the index number shown in the displayed reminders list.
+* The index must be a positive integer 1, 2, 3, …​
+
+Examples:
+* `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
 
 #### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
 Edits an existing reminder in StonksBook.
@@ -521,30 +545,6 @@ Format: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STAT
 Examples:
 * `reminder edit 1 c/2` edits the 1st reminder to be associated with the second contact in the displayed contact list.
 * `reminder edit 3 m/ d/2020-11-28 13:00` edits the message and scheduled date of the 3rd reminder to be "Call to follow up" and "28th November 2020, 1PM" respectively.
-
-#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
-
-Shows a list of all reminders created, sorted in increasing order based on the date the reminder is scheduled.
-
-Format: `reminder list [st/STATUS]`
-
-* `STATUS` can be either `completed` or `pending`.
-
-Examples:
-* `reminder list st/completed` displays all reminders that have been marked as completed.
-
-#### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
-
-Deletes the specified reminder from StonksBook.
-
-Format: `reminder delete INDEX`
-
-* Deletes the reminder at the specified `INDEX`.
-* The index refers to the index number shown in the displayed reminders list.
-* The index must be a positive integer 1, 2, 3, …​
-
-Examples:
-* `reminder list` followed by `reminder delete 2` deletes the 2nd reminder in StonksBook.
 
 ### Archive
 
