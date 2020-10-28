@@ -31,6 +31,7 @@ public class Messages {
     public static final String MESSAGE_SALE_TAGS_NOT_FOUND = "The provided sales tag(s) do not exist yet.";
     public static final String MESSAGE_CONTACT_TAGS_NOT_FOUND = "The provided contact tag(s) do not exist yet.";
     public static final String MESSAGE_INVALID_REMINDER_STATUS = "The provided status is invalid.";
-    public static final String MESSAGE_SALES_NO_TAGS = "Removing this sales tag will result in sales not having any tags.";
+    public static final String MESSAGE_SALES_NO_TAGS =
+            "Removing this sales tag will result in sales not having any tags.";
 
 }
