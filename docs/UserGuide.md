@@ -338,7 +338,8 @@ Shows a list of all meetings. By default, the list only shows upcoming meetings.
 
 **Format**: `meeting list [c/CONTACT_INDEX] [a/]`
 
-* When an index is specified, the list will only show meetings associated with the contact at the specified index.
+* When a contact index is specified, the list will only show meetings associated with the contact at the specified
+ contact index.
 * You can show all meetings, including past meetings, by typing `a/`.
 
 **Example**:
