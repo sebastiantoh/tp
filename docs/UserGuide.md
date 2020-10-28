@@ -31,7 +31,7 @@ This section will provide a quick guide to get StonksBook up and running on your
 1. Copy the file to the folder you want to use as the _home folder_ for StonksBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   <img src="images/Ui.png" alt="Ui" width="400px">
+   <img src="images/Ui.png" alt="Ui" width="900px">
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -395,7 +395,7 @@ and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
  
  3. Type `meeting add c/2 m/Lunch with Alex Yeoh d/2020-12-03 12:00 du/90` in the **Command Box** and press <kbd>Enter</kbd>.
  
-    <img src="images/meeting-add/meeting add.png" alt="Enter 'meeting add' in the command box" width="900px">
+    <img src="images/meeting-add/meeting-add.png" alt="Enter 'meeting add' in the command box" width="900px">
   
 4. The **Result Box** will display a message noting that the command was successful, and the **Meeting List** will
  contain this newly created meeting.
@@ -426,7 +426,7 @@ Let's say that you have just received an unfortunate email from Alex Yeoh who no
 
  2. Type `meeting delete 3` in the command box, and press Enter to execute it.
  
-    <img src="images/meeting-delete/meeting delete.png" alt="Enter command 'meeting delete'" width="900px">
+    <img src="images/meeting-delete/meeting-delete.png" alt="Enter command 'meeting delete'" width="900px">
      
  3. You should see that the meeting has been deleted from the meeting list.
  
