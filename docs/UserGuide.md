@@ -526,8 +526,6 @@ Examples:
 
 Shows a list of all reminders created, sorted in increasing order based on the date the reminder is scheduled.
 
-<img src="images/reminderListMockup.png" alt="result for 'reminder list'" width="400px">
-
 Format: `reminder list [st/STATUS]`
 
 * `STATUS` can be either `completed` or `pending`.
