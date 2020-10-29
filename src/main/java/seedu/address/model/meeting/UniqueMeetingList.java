@@ -140,6 +140,10 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
 
         internalList.set(index, editedMeeting);
+        this.monthlyListMap.removeItem(target.getStartDate().getMonth(),
+                Year.of(target.getStartDate().getYear()), target);
+        this.monthlyListMap.addItem(editedMeeting.getStartDate().getMonth(),
+                Year.of(editedMeeting.getStartDate().getYear()), editedMeeting);
     }
 
     private void setMonthlyListMap(List<Meeting> list) {

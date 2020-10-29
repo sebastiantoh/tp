@@ -32,7 +32,8 @@ public class UnknownCommand extends Command {
     // of the command word and the value as the command word itself.
     private static final Map<String, String> SEARCH_WORDS_TO_COMMAND_WORDS =
             Stream.of(Arrays.asList(ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD,
-                    PurgeCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD),
+                    PurgeCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
+                    DarkThemeCommand.COMMAND_WORD, LightThemeCommand.COMMAND_WORD),
                     ALL_CONTACT_COMMAND_WORDS, ALL_ARCHIVE_COMMAND_WORDS, ALL_TAG_COMMAND_WORDS,
                     ALL_REMINDER_COMMAND_WORDS, ALL_MEETING_COMMAND_WORDS, ALL_SALE_COMMAND_WORDS)
                     .flatMap(Collection::stream)

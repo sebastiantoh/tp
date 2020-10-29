@@ -2,10 +2,10 @@
 Contact commands
 ----------------------
 contact add	                Adds a contact                                              contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMARK]…
-contact edit                Edits an existing contact                                   contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]…
-contact list                Lists all contacts                                          contact list
-contact find                Find contacts given search keyword(s)                       contact find KEYWORD [MORE_KEYWORDS]
 contact delete              Deletes a contact                                           contact delete INDEX
+contact edit                Edits an existing contact                                   contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]…
+contact find                Find contacts given search keyword(s)                       contact find KEYWORD [MORE_KEYWORDS]
+contact list                Lists all contacts                                          contact list
 contact sort                Sorts contact list                                          contact sort KEYWORD [ORDER]
 
 Archive commands
@@ -16,34 +16,40 @@ archive remove              Removes a contact from the archive                  
 
 Tag commands
 ----------------------
-tag list                    Lists all tags                                              tag list
-tag edit                    Edits an existing tag to the specified tag name.            tag edit INDEX n/NAME
 tag delete                  Deletes the specified tag                                   tag delete INDEX
+tag edit                    Edits an existing tag to the specified tag name.            tag edit INDEX n/NAME
 tag find                    Displays all entries related to the specified tag           tag find INDEX [MODEL]
+tag list                    Lists all tags                                              tag list
 
 Sale commands
 ----------------------
-sale add                    Adds a sale to a customer                                   sale add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY
-sale list                   Lists all sale items                                        sale list CONTACT_INDEX
+sale add                    Adds a sale to a customer                                   sale add c/CONTACT_INDEX n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG...
+sale breakdown              Outputs breakdown of sales categories                       sale breakdown NUMBER_OF_MONTHS
 sale delete	                Deletes a sale item of a customer                           sale delete c/CONTACT_INDEX s/SALE_INDEX
+sale edit                   Edits the details of the sale(s) identified                 sale add [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY]
+sale list                   Lists all sale items                                        sale list [CONTACT_INDEX] [m/MONTH y/YEAR]
+sale stats                  Outputs statistics on sales                                 sale stats NUMBER_OF_MONTHS
 
 Meeting commands
 ----------------------
 meeting add	                Adds a meeting with the specified contact                   meeting add CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION
+meeting delete              Deletes the specified meeting                               meeting delete INDEX
 meeting edit                Edits an existing meeting                                   meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [du/DURATION]
 meeting list                Lists all meetings.                                         meeting list [CONTACT_INDEX] [a/]
-meeting delete              Deletes the specified meeting                               meeting delete INDEX
-
+meeting stats               Outputs statistics on meetings                              meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]
 
 Reminder commands
 ----------------------
 reminder add                Adds a reminder with the specified contact                  reminder add CONTACT_INDEX m/MESSAGE d/DATETIME
+reminder delete	            Deletes the specified reminder                              reminder delete INDEX
 reminder edit               Edits an existing reminder                                  reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]
 reminder list               Lists all reminders                                         reminder list
-reminder delete	            Deletes the specified reminder                              reminder delete INDEX
 
 Other commands
 ----------------------
-Clear                       Clears chat bot history                                     clear
-Purge                       Clears all data                                             purge
-Exit                        exits program                                               exit
+clear                       Clears chat bot history                                     clear
+darkmode                    Changes the theme of the GUI to dark theme                  darkmode
+exit                        exits program                                               exit
+help                        Shows program usage instructions                            help
+lightmode                   Changes the theme of the GUI to light theme                 lightmode
+purge                       Clears all data                                             purge
