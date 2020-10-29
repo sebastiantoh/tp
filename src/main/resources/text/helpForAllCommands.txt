@@ -44,7 +44,7 @@ Reminder commands
 reminder add                Adds a reminder with the specified contact                  reminder add CONTACT_INDEX m/MESSAGE d/DATETIME
 reminder delete	            Deletes the specified reminder                              reminder delete INDEX
 reminder edit               Edits an existing reminder                                  reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]
-reminder list               Lists all reminders                                         reminder list
+reminder list               Lists all reminders                                         reminder list [st/STATUS]
 
 Other commands
 ----------------------

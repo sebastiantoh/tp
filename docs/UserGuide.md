@@ -900,7 +900,7 @@ Action | Format, Examples
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
 **Meeting Edit** | `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]` <br> e.g., `meeting edit 3 d/2020-12-15 12:00`
 **Meeting Stats** | `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]` <br> e.g., `meeting stats 3`
-**Reminder List** | `reminder list`
+**Reminder List** | `reminder list [st/STATUS]` <br> e.g., `reminder list st/completed`
 **Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send email to follow up d/2020-10-30 15:00`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
 **Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Call to follow up d/2020-11-28 13:00`
