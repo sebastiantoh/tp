@@ -1,4 +1,4 @@
-package seedu.address.commons.dataset;
+package seedu.address.model.dataset;
 
 import static java.time.Month.APRIL;
 import static java.time.Month.AUGUST;
@@ -13,8 +13,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.dataset.date.MonthAndYear;
-import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.model.dataset.date.MonthAndYear;
+import seedu.address.model.dataset.date.MonthlyCountData;
 
 class DataSetTest {
     private List<MonthlyCountData> monthlyCountDataList;

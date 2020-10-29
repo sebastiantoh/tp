@@ -1,4 +1,4 @@
-package seedu.address.commons.dataset.date;
+package seedu.address.model.dataset.date;
 
 import static java.time.Month.AUGUST;
 import static org.junit.jupiter.api.Assertions.assertEquals;

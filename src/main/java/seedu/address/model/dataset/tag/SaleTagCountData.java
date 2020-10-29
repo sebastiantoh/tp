@@ -1,8 +1,8 @@
-package seedu.address.commons.dataset.tag;
+package seedu.address.model.dataset.tag;
 
 import java.util.Objects;
 
-import seedu.address.commons.dataset.Data;
+import seedu.address.model.dataset.Data;
 
 /**
  * Store a data object for sale tag data statistic.

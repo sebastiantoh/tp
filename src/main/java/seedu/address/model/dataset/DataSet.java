@@ -1,4 +1,4 @@
-package seedu.address.commons.dataset;
+package seedu.address.model.dataset;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package seedu.address.commons.dataset.tag;
+package seedu.address.model.dataset.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -13,8 +13,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.commons.dataset.Data;
-import seedu.address.commons.dataset.DataSet;
+import seedu.address.model.dataset.Data;
+import seedu.address.model.dataset.DataSet;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 
