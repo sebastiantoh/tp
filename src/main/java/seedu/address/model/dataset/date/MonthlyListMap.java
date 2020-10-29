@@ -1,4 +1,4 @@
-package seedu.address.commons.dataset.date;
+package seedu.address.model.dataset.date;
 
 import java.time.Month;
 import java.time.Year;
@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import seedu.address.commons.dataset.DataSet;
+import seedu.address.model.dataset.DataSet;
 
 //@@author AaronnSeah
 /**
@@ -59,23 +59,6 @@ public class MonthlyListMap<T> {
     }
 
     /**
-     * Gets the number of items in an item list
-     * based on the key of {@code month} and {@code year}.
-     * If the key of {@code month} and {@code year} does not exist, the number is 0.
-     *
-     * @param month a valid month number.
-     * @param year a valid year number.
-     * @return the number of items in that month and year.
-     */
-    public int getItemCount(Month month, Year year) {
-        MonthAndYear key = new MonthAndYear(month, year);
-        if (this.monthlyListMap.containsKey(key)) {
-            return this.monthlyListMap.get(key).size();
-        }
-        return 0;
-    }
-
-    /**
      * Gets the monthly item list for {@code month} and {@code year}.
      * @param month valid month.
      * @param year  valid year.
@@ -85,6 +68,20 @@ public class MonthlyListMap<T> {
         MonthAndYear key = new MonthAndYear(month, year);
         return this.monthlyListMap.getOrDefault(key, Collections.emptyList());
     }
+
+    /**
+     * Gets the number of items in an item list
+     * based on the key of {@code month} and {@code year}.
+     * If the key of {@code month} and {@code year} does not exist, the number is 0.
+     *
+     * @param month a valid month number.
+     * @param year a valid year number.
+     * @return the number of items in that month and year.
+     */
+    public int getItemCount(Month month, Year year) {
+        return this.getItems(month, year).size();
+    }
+
 
     /**
      * Removes all entries in the monthlyList.
@@ -105,15 +102,13 @@ public class MonthlyListMap<T> {
         List<MonthlyCountData> result = new ArrayList<>();
 
         MonthAndYear currentMonthAndYear = new MonthAndYear(month, year);
-        result.add(new MonthlyCountData(currentMonthAndYear,
-                this.monthlyListMap.getOrDefault(currentMonthAndYear, Collections.emptyList()).size()));
+        result.add(new MonthlyCountData(currentMonthAndYear, getItemCount(month, year)));
 
         for (int i = 1; i < numberOfMonths; i++) {
             MonthAndYear previousMonthAndYear = getPreviousMonthAndYear(month, year);
-            result.add(new MonthlyCountData(previousMonthAndYear,
-                    this.monthlyListMap.getOrDefault(previousMonthAndYear, Collections.emptyList()).size()));
             month = previousMonthAndYear.getMonth();
             year = previousMonthAndYear.getYear();
+            result.add(new MonthlyCountData(previousMonthAndYear, getItemCount(month, year)));
         }
 
         Collections.reverse(result);

@@ -1,4 +1,4 @@
-package seedu.address.commons.dataset.date;
+package seedu.address.model.dataset.date;
 
 import static java.util.Objects.requireNonNull;
 

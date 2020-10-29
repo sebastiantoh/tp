@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.dataset.DataSet;
-import seedu.address.commons.dataset.date.MonthlyCountData;
-import seedu.address.commons.dataset.tag.SaleTagCountData;
+import seedu.address.model.dataset.DataSet;
+import seedu.address.model.dataset.date.MonthlyCountData;
+import seedu.address.model.dataset.tag.SaleTagCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;

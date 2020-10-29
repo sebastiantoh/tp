@@ -11,8 +11,8 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.dataset.Data;
-import seedu.address.commons.dataset.DataSet;
+import seedu.address.model.dataset.Data;
+import seedu.address.model.dataset.DataSet;
 
 /**
  * Controller for a statistics page

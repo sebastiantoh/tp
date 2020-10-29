@@ -3,12 +3,12 @@ package seedu.address.logic.commands.sale;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.dataset.DataSet;
-import seedu.address.commons.dataset.tag.SaleTagCountData;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.dataset.DataSet;
+import seedu.address.model.dataset.tag.SaleTagCountData;
 
 /**
  * Statistics on Sales

@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.dataset.DataSet;
-import seedu.address.commons.dataset.date.MonthlyCountData;
-import seedu.address.commons.dataset.date.MonthlyListMap;
-import seedu.address.commons.dataset.tag.SaleTagCountData;
-import seedu.address.commons.dataset.tag.SaleTagListMap;
+import seedu.address.model.dataset.DataSet;
+import seedu.address.model.dataset.date.MonthlyCountData;
+import seedu.address.model.dataset.date.MonthlyListMap;
+import seedu.address.model.dataset.tag.SaleTagCountData;
+import seedu.address.model.dataset.tag.SaleTagListMap;
 import seedu.address.model.person.Person;
 import seedu.address.model.sale.exceptions.DuplicateSaleException;
 import seedu.address.model.sale.exceptions.SaleNotFoundException;

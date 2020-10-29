@@ -1,4 +1,4 @@
-package seedu.address.commons.dataset.date;
+package seedu.address.model.dataset.date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

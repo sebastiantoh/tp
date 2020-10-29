@@ -1,8 +1,8 @@
-package seedu.address.commons.dataset.date;
+package seedu.address.model.dataset.date;
 
 import java.util.Objects;
 
-import seedu.address.commons.dataset.Data;
+import seedu.address.model.dataset.Data;
 
 //@@author AaronnSeah
 /**

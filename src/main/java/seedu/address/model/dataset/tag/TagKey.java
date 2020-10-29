@@ -1,4 +1,4 @@
-package seedu.address.commons.dataset.tag;
+package seedu.address.model.dataset.tag;
 
 import static java.util.Objects.requireNonNull;
 

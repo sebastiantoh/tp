@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.address.commons.dataset.Data;
-import seedu.address.commons.dataset.DataSet;
+import seedu.address.model.dataset.Data;
+import seedu.address.model.dataset.DataSet;
 
 /**
  * Represents the result of a command execution.

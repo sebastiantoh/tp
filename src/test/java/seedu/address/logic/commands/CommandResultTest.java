@@ -9,8 +9,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.dataset.DataSet;
-import seedu.address.commons.dataset.date.MonthlyCountData;
+import seedu.address.model.dataset.DataSet;
+import seedu.address.model.dataset.date.MonthlyCountData;
 
 public class CommandResultTest {
     @Test
