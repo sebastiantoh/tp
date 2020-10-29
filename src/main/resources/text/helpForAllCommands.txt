@@ -17,7 +17,7 @@ archive remove              Removes a contact from the archive                  
 Tag commands
 ----------------------
 tag delete                  Deletes the specified tag                                   tag delete INDEX
-tag edit                    Edits an existing tag to the specified tag name.            tag edit INDEX n/NAME
+tag edit                    Edits an existing tag to the specified tag name            tag edit INDEX n/NAME
 tag find                    Displays all entries related to the specified tag           tag find INDEX [MODEL]
 tag list                    Lists all tags                                              tag list
 
