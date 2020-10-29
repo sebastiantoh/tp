@@ -604,7 +604,7 @@ Similar to when adding a meeting, StonksBook will not allow you to edit a meetin
  in StonksBook!
 </div>
 
-**Format**: `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [du/DURATION]`
+**Format**: `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]`
 
 * Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -898,7 +898,7 @@ Action | Format, Examples
 **Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
 **Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Product Demo d/2020-10-30 15:00 du/60`
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
-**Meeting Edit** | `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [du/DURATION]` <br> e.g., `meeting edit 3 d/2020-12-15 12:00`
+**Meeting Edit** | `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]` <br> e.g., `meeting edit 3 d/2020-12-15 12:00`
 **Meeting Stats** | `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]` <br> e.g., `meeting stats 3`
 **Reminder List** | `reminder list`
 **Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send email to follow up d/2020-10-30 15:00`
