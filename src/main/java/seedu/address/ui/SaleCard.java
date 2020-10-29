@@ -30,6 +30,8 @@ public class SaleCard extends UiPart<Region> {
     private Label datetimeOfPurchase;
     @FXML
     private Label price;
+    @FXML
+    private HBox tagsBox;
 
     /**
      * Creates a {@code SaleCard} with the given {@code Sale} and index to display.
@@ -39,9 +41,15 @@ public class SaleCard extends UiPart<Region> {
         this.sale = sale;
         id.setText(displayedIndex + ". ");
         itemName.setText(setTitleText(sale));
-        sale.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (!sale.getTags().isEmpty()) {
+            sale.getTags().stream()
+                    .sorted(Comparator.comparing(tag -> tag.tagName))
+                    .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        } else {
+            tagsBox.setVisible(false);
+            tagsBox.setManaged(false);
+        }
+
         datetimeOfPurchase.setText(sale.getFormattedDatetimeOfPurchase());
         price.setText(setPriceText(sale));
     }

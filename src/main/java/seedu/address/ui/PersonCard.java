@@ -41,27 +41,43 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private HBox tagsBox;
+    @FXML
     private Label remark;
+    @FXML
+    private HBox remarkBox;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
+
+        assert !person.getName().fullName.isBlank();
+        assert !person.getPhone().value.isBlank();
+        assert !person.getEmail().value.isBlank();
+
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
+
+        if (!person.getTags().isEmpty()) {
+            person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        } else {
+            tagsBox.setVisible(false);
+            tagsBox.setManaged(false);
+        }
+
         if (!person.getRemark().isEmpty()) {
             remark.setText(person.getRemark().value);
         } else {
-            remark.setVisible(false);
-            remark.setManaged(false);
+            remarkBox.setVisible(false);
+            remarkBox.setManaged(false);
         }
     }
 
