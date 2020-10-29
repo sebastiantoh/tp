@@ -201,8 +201,10 @@ public class UniqueSaleList implements Iterable<Sale> {
                         original.getUnitPrice(),
                         tags);
                 internalList.set(i, newSale);
-                monthlyListMap.removeItem(original.getMonth(), original.getYear(), original);
-                monthlyListMap.addItem(newSale.getMonth(), newSale.getYear(), newSale);
+                monthlyListMap.removeItem(original.getMonth(),
+                        original.getYear(), original);
+                monthlyListMap.addItem(newSale.getMonth(),
+                        newSale.getYear(), newSale);
             }
         }
     }
