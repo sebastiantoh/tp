@@ -57,6 +57,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_SALE_FAILED = "No sales edited.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_SALE = "This sale already exists in the address book.";
+    public static final String MESSAGES_SALES_MISSING_TAGS = "All sales must contain at least one tag.";
 
     private final List<Index> saleIndexes;
     private final Index personIndex;
