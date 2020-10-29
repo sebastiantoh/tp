@@ -64,6 +64,7 @@ public class UniqueSaleList implements Iterable<Sale> {
 
         monthlyListMap.addItem(toAdd.getMonth(), toAdd.getYear(), toAdd);
         saleTagListMap.addSale(toAdd);
+
         return this;
     }
 
