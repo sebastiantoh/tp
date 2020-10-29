@@ -222,15 +222,4 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(new ArrayList<>(Arrays.asList(targetIndex)), descriptor, null);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_ITEM;
-        String userInput = " " + PREFIX_SALE_INDEX.toString() + targetIndex.getOneBased() + TAG_EMPTY;
-
-        EditSaleDescriptor descriptor = new EditSaleDescriptorBuilder().withTags().build();
-        EditCommand expectedCommand = new EditCommand(new ArrayList<>(Arrays.asList(targetIndex)), descriptor, null);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
 }
