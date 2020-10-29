@@ -25,11 +25,11 @@ tag list                    Lists all tags                                      
 Sale commands
 ----------------------
 sale add                    Adds a sale to a customer                                   sale add c/CONTACT_INDEX n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG...
-sale breakdown              Displays a breakdown of sales by sale tags                       sale breakdown NUMBER_OF_MONTHS
+sale breakdown              Displays a breakdown of sales by sale tags                  sale breakdown NUMBER_OF_MONTHS
 sale delete	                Deletes a sale item of a customer                           sale delete c/CONTACT_INDEX s/SALE_INDEX
 sale edit                   Edits an existing sale                                      sale add [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY]
 sale list                   Lists all sale items                                        sale list [CONTACT_INDEX] [m/MONTH y/YEAR]
-sale stats                  Displays statistics on monthly sales                                 sale stats NUMBER_OF_MONTHS
+sale stats                  Displays statistics on monthly sales                        sale stats NUMBER_OF_MONTHS
 
 Meeting commands
 ----------------------
@@ -37,7 +37,7 @@ meeting add	                Adds a meeting with the specified contact           
 meeting delete              Deletes the specified meeting                               meeting delete INDEX
 meeting edit                Edits an existing meeting                                   meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [du/DURATION]
 meeting list                Lists all meetings.                                         meeting list [CONTACT_INDEX] [a/]
-meeting stats               Displays statistics on meetings                              meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]
+meeting stats               Displays statistics on meetings                             meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]
 
 Reminder commands
 ----------------------
