@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MONTH;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NUMBER_OF_MONTHS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_REMINDER_STATUS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_YEAR;
+import static seedu.address.logic.commands.sale.EditCommand.MESSAGES_SALES_MISSING_TAGS;
 
 import java.math.BigDecimal;
 import java.time.DateTimeException;
@@ -169,6 +170,12 @@ public class ParserUtil {
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
+
+        // Prefix present with no tags specified (t/)
+        if (tags.size() == 1 && tags.contains("")) {
+            throw new ParseException(MESSAGES_SALES_MISSING_TAGS);
+        }
+
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
