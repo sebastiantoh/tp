@@ -36,7 +36,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_CONTACT + "CONTACT_INDEX (must be a positive integer)] "
             + "[" + PREFIX_MESSAGE + "MESSAGE] "
-            + "[" + PREFIX_DATETIME + "DATETIME] "
+            + "[" + PREFIX_DATETIME + "START_DATETIME] "
             + "[" + PREFIX_DURATION + "DURATION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATETIME + "2020-11-30 12:30 "
