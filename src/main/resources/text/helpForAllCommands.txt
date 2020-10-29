@@ -1,49 +1,55 @@
 
 Contact commands
 ----------------------
-contact add	                Adds a contact                                              contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMARK]…
-contact edit                Edits an existing contact                                   contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]…
 contact list                Lists all contacts                                          contact list
-contact find                Find contacts given search keyword(s)                       contact find KEYWORD [MORE_KEYWORDS]
 contact delete              Deletes a contact                                           contact delete INDEX
+contact add	                Adds a contact                                              contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMARK]
+contact edit                Edits an existing contact                                   contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]
+contact find                Find contacts given search keyword(s)                       contact find KEYWORD [MORE_KEYWORDS]
 contact sort                Sorts contact list                                          contact sort KEYWORD [ORDER]
 
 Archive commands
 ----------------------
-archive add                 Sends a contact to the archive                              archive add INDEX
 archive list                Lists all archived contacts                                 archive list
+archive add                 Sends a contact to the archive                              archive add INDEX
 archive remove              Removes a contact from the archive                          archive remove INDEX
 
 Tag commands
 ----------------------
 tag list                    Lists all tags                                              tag list
-tag edit                    Edits an existing tag to the specified tag name.            tag edit INDEX n/NAME
+tag add                     Adds a tag                                                  tag add (ct/ or st/)TAG
 tag delete                  Deletes the specified tag                                   tag delete INDEX
+tag edit                    Edits an existing tag to the specified tag name.            tag edit INDEX n/NAME
 tag find                    Displays all entries related to the specified tag           tag find INDEX [MODEL]
 
 Sale commands
 ----------------------
-sale add                    Adds a sale to a customer                                   sale add c/CONTACT_INDEX n/ITEM_NAME p/UNIT_PRICE q/QUANTITY
-sale list                   Lists all sale items                                        sale list CONTACT_INDEX
-sale delete	                Deletes a sale item of a customer                           sale delete c/CONTACT_INDEX s/SALE_INDEX
+sale list                   Lists all sale items                                        sale list [c/CONTACT_INDEX]
+sale add                    Adds a sale to a customer                                   sale add c/CONTACT_INDEX… n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY
+sale delete	                Deletes a sale item of a customer                           sale delete s/SALE_INDEX…
+sale edit                   Edits an existing sale.                                     sale edit c/CONTACT_INDEX… n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY
+sale breakdown              Displays a breakdown of sales by sale tags                  sale breakdown
+sale stats                  Displays an analysis of sales data                          sale stats NUMBER_OF_MONTHS
 
 Meeting commands
 ----------------------
-meeting add	                Adds a meeting with the specified contact                   meeting add CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION
-meeting edit                Edits an existing meeting                                   meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [du/DURATION]
 meeting list                Lists all meetings.                                         meeting list [CONTACT_INDEX] [a/]
+meeting add	                Adds a meeting with the specified contact                   meeting add CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION
 meeting delete              Deletes the specified meeting                               meeting delete INDEX
-
+meeting edit                Edits an existing meeting                                   meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [du/DURATION]
+meeting stats               Displays an analysis of meeting data                        meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]
 
 Reminder commands
 ----------------------
-reminder add                Adds a reminder with the specified contact                  reminder add CONTACT_INDEX m/MESSAGE d/DATETIME
-reminder edit               Edits an existing reminder                                  reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]
 reminder list               Lists all reminders                                         reminder list
+reminder add                Adds a reminder with the specified contact                  reminder add CONTACT_INDEX m/MESSAGE d/DATETIME
 reminder delete	            Deletes the specified reminder                              reminder delete INDEX
+reminder edit               Edits an existing reminder                                  reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]
 
 Other commands
 ----------------------
-Clear                       Clears chat bot history                                     clear
-Purge                       Clears all data                                             purge
-Exit                        exits program                                               exit
+lightmode                   Toggles light mode                                          lightmode
+darkmode                    Toggles dark mode                                           darkmode
+clear                       Clears chat bot history                                     clear
+purge                       Clears all data                                             purge
+exit                        exits program                                               exit
