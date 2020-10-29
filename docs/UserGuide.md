@@ -878,35 +878,37 @@ Exits the program.
 
 Action | Format, Examples
 --------|------------------
+**Contact List** | `contact list`
 **Contact Add** | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]…` <br> e.g., `contact add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/birthday: 20 August`
 **Contact Delete** | `contact delete INDEX` <br> e.g., `contact delete 3`
 **Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
 **Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `contact find James Jake`
 **Contact Sort** | `contact sort KEYWORD [ORDER]` <br> e.g., `contact sort n/ desc`
-**Contact List** | `contact list`
-**Sale Add** | `sale add c/CONTACT_INDEX d/DATETIME_OF_PURCHASE n/ITEM_NAME p/UNIT_PRICE q/QUANTITY [t/TAG]…` <br> e.g., `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`
-**Sale Edit** | `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`  <br> e.g., `sale edit 2 n/B5 Notebook p/4.00 q/10`
 **Sale List** | `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`  <br> e.g., `sale delete c/3`
+**Sale Add** | `sale add c/CONTACT_INDEX d/DATETIME_OF_PURCHASE n/ITEM_NAME p/UNIT_PRICE q/QUANTITY [t/TAG]…` <br> e.g., `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`
 **Sale Delete** | `sale delete s/SALE_INDEX` <br> e.g., `sale delete s/4`
+**Sale Edit** | `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`  <br> e.g., `sale edit 2 n/B5 Notebook p/4.00 q/10`
+**Sale Breakdown** | `sale breakdown`
 **Sale Stats** | `sale stats NUMBER_OF_MONTHS` <br> e.g., `sale stats 3`
-**Tag Add** | `tag add c/ (or s/) t/TAG` <br> e.g., `tag add c/ t/important`
 **Tag List** | `tag list`
-**Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
+**Tag Add** | `tag add (ct/ or st/)TAG` <br> e.g., `tag add ct/important`
 **Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
+**Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
 **Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 c/`
-**Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Product Demo d/2020-10-30 15:00 du/60`
 **Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
+**Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Product Demo d/2020-10-30 15:00 du/60`
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
+**Meeting Edit** | `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [du/DURATION]` <br> e.g., `meeting edit 3 d/2020-12-15 12:00`
 **Meeting Stats** | `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]` <br> e.g., `meeting stats 3`
-**Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send email to follow up d/2020-10-30 15:00`
-**Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Call to follow up d/2020-11-28 13:00`
 **Reminder List** | `reminder list`
+**Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send email to follow up d/2020-10-30 15:00`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
-**Archive Add** | `archive add INDEX` <br> e.g., `archive add 1`
+**Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Call to follow up d/2020-11-28 13:00`
 **Archive List** | `archive list`
+**Archive Add** | `archive add INDEX` <br> e.g., `archive add 1`
 **Archive Remove** | `archive remove INDEX` <br> e.g., `archive remove 2`
+**Light/Dark Theme** | `lightmode`/`darkmode`
 **Help** | `help`
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
-**Light/Dark Theme** | `lightmode`/`darkmode`
 **Exit Application** | `exit`
