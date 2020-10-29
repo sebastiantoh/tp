@@ -41,7 +41,6 @@ public class SaleCard extends UiPart<Region> {
         this.sale = sale;
         id.setText(displayedIndex + ". ");
         itemName.setText(setTitleText(sale));
-
         if (!sale.getTags().isEmpty()) {
             sale.getTags().stream()
                     .sorted(Comparator.comparing(tag -> tag.tagName))
