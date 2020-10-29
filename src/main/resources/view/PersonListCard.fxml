@@ -27,7 +27,7 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <HBox spacing="5" alignment="CENTER_LEFT">
+      <HBox fx:id="tagsBox" spacing="5" alignment="CENTER_LEFT">
         <FontIcon iconLiteral="fas-tags" styleClass="small-icon"/>
         <FlowPane fx:id="tags" />
       </HBox>

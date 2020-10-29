@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private HBox tagsBox;
+    @FXML
     private Label remark;
     @FXML
     private HBox remarkBox;
@@ -56,9 +58,16 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
+
+        if (!person.getTags().isEmpty()) {
+            person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        } else {
+            tagsBox.setVisible(false);
+            tagsBox.setManaged(false);
+        }
+
         if (!person.getRemark().isEmpty()) {
             remark.setText(person.getRemark().value);
         } else {
