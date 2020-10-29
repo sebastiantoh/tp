@@ -52,6 +52,11 @@ public class PersonCard extends UiPart<Region> {
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
+
+        assert !person.getName().fullName.isBlank();
+        assert !person.getPhone().value.isBlank();
+        assert !person.getEmail().value.isBlank();
+
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
