@@ -60,6 +60,8 @@ public class ReminderCard extends UiPart<Region> {
      * Sets the reminder card style to indicate an overdue reminder.
      */
     private void setStyleToIndicateOverdue() {
+        calendarIcon.getStyleClass().clear();
+        calendarIcon.setIconSize(16);
         calendarIcon.setIconColor(Paint.valueOf(RED));
 
         ObservableList<String> scheduledDateStyleClass = scheduledDate.getStyleClass();
@@ -72,10 +74,13 @@ public class ReminderCard extends UiPart<Region> {
      * Sets the reminder card style to indicate a completed reminder.
      */
     private void setStyleToIndicateCompleted() {
+        calendarIcon.getStyleClass().clear();
+        calendarIcon.setIconSize(16);
         calendarIcon.setIconColor(Paint.valueOf(GREEN));
 
         ObservableList<String> scheduledDateStyleClass = scheduledDate.getStyleClass();
         if (!scheduledDateStyleClass.contains(COMPLETED_DATE_STYLE_CLASS)) {
+            scheduledDateStyleClass.clear();
             scheduledDateStyleClass.add(COMPLETED_DATE_STYLE_CLASS);
         }
     }

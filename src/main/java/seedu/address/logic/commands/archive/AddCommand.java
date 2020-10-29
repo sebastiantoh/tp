@@ -40,7 +40,7 @@ public class AddCommand extends Command {
         Person personToArchive = lastShownList.get(targetIndex.getZeroBased());
 
         if (personToArchive.isArchived()) {
-            throw new CommandException(Messages.MESSAGE_ARCHIVE_INVALIID_LIST);
+            throw new CommandException(Messages.MESSAGE_ARCHIVE_INVALID_LIST);
         }
 
         assert !personToArchive.isArchived();
@@ -53,8 +53,7 @@ public class AddCommand extends Command {
                 personToArchive.getAddress(),
                 personToArchive.getTags(),
                 personToArchive.getRemark(),
-                !personToArchive.isArchived(),
-                personToArchive.getTotalSalesAmount()
+                !personToArchive.isArchived()
         );
         model.setPerson(personToArchive, archivedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);

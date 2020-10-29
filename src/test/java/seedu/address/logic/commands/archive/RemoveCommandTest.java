@@ -48,8 +48,7 @@ public class RemoveCommandTest {
                 personToRemove.getAddress(),
                 personToRemove.getTags(),
                 personToRemove.getRemark(),
-                !personToRemove.isArchived(),
-                personToRemove.getTotalSalesAmount()
+                !personToRemove.isArchived()
         );
         expectedModel.setPerson(personToRemove, removedPerson);
         expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_ARCHIVED_PERSONS);
@@ -72,7 +71,7 @@ public class RemoveCommandTest {
         RemoveCommand removeCommand = new RemoveCommand(INDEX_FIRST_ITEM);
         assertFalse(invalidPersonToArchive.isArchived());
 
-        assertCommandFailure(removeCommand, model, Messages.MESSAGE_UNARCHIVE_INVALIID_LIST);
+        assertCommandFailure(removeCommand, model, Messages.MESSAGE_UNARCHIVE_INVALID_LIST);
     }
 
     @Test

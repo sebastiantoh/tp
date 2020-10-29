@@ -32,7 +32,7 @@ class EditCommandTest {
         EditCommand.EditTagDescriptor descriptor = new EditCommand.EditTagDescriptor();
         descriptor.setTagName(MINIONS);
 
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor, true);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TAG_SUCCESS, tagToEdit, editedTag);
 
@@ -49,7 +49,7 @@ class EditCommandTest {
         EditCommand.EditTagDescriptor descriptor = new EditCommand.EditTagDescriptor();
         descriptor.setTagName(MINIONS);
 
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor, true);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TAG_DISPLAYED_INDEX);
     }
@@ -61,15 +61,19 @@ class EditCommandTest {
 
         EditCommand.EditTagDescriptor secondDescriptor = new EditCommand.EditTagDescriptor();
         secondDescriptor.setTagName(BANANAS);
-        EditCommand editFirstCommand = new EditCommand(INDEX_FIRST_ITEM, firstDescriptor);
-        EditCommand editSecondCommand = new EditCommand(INDEX_SECOND_ITEM, secondDescriptor);
+        EditCommand editFirstCommand = new EditCommand(INDEX_FIRST_ITEM, firstDescriptor, true);
+        EditCommand editSecondCommand = new EditCommand(INDEX_SECOND_ITEM, secondDescriptor, true);
+        EditCommand editThirdCommand = new EditCommand(INDEX_FIRST_ITEM, firstDescriptor, false);
 
         // same object -> returns true
         assertTrue(editFirstCommand.equals(editFirstCommand));
 
-        // same values -> returns true
-        EditCommand editFirstCommandCopy = new EditCommand(INDEX_FIRST_ITEM, firstDescriptor);
+        // same values and model types -> returns true
+        EditCommand editFirstCommandCopy = new EditCommand(INDEX_FIRST_ITEM, firstDescriptor, true);
         assertTrue(editFirstCommand.equals(editFirstCommandCopy));
+
+        // different model types -> returns false
+        assertFalse(editFirstCommand.equals(editThirdCommand));
 
         // different types -> returns false
         assertFalse(editFirstCommand.equals(1));

@@ -41,8 +41,7 @@ public class AddCommandTest {
                 personToArchive.getAddress(),
                 personToArchive.getTags(),
                 personToArchive.getRemark(),
-                !personToArchive.isArchived(),
-                personToArchive.getTotalSalesAmount()
+                !personToArchive.isArchived()
         );
         expectedModel.setPerson(personToArchive, archivedPerson);
 
@@ -64,7 +63,7 @@ public class AddCommandTest {
         AddCommand archiveCommand = new AddCommand(INDEX_FIRST_ITEM);
         assertTrue(invalidPersonToArchive.isArchived());
 
-        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_ARCHIVE_INVALIID_LIST);
+        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_ARCHIVE_INVALID_LIST);
     }
 
     @Test

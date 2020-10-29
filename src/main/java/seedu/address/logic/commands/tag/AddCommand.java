@@ -2,8 +2,8 @@ package seedu.address.logic.commands.tag;
 
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SALES_TAG;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -21,18 +21,17 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Adds a tag (for contacts or for sales) to the StonksBook. "
             + "Parameters: "
-            + "c/ (or s/) "
-            + PREFIX_TAG + "TAG\n"
+            + String.format("%s (or %s) TAG\n", PREFIX_CONTACT_TAG, PREFIX_SALES_TAG)
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_SALE + " "
-            + PREFIX_TAG + "fruits";
+            + PREFIX_SALES_TAG + "fruits";
 
     public static final String MESSAGE_CONTACT_SUCCESS = "New contact tag added: %1$s";
     public static final String MESSAGE_SALES_SUCCESS = "New sales tag added: %1$s";
     public static final String MESSAGE_DUPLICATE_CONTACT_TAG = "This contact tag already exists in StonksBook";
     public static final String MESSAGE_DUPLICATE_SALES_TAG = "This sales tag already exists in StonksBook";
     public static final String MESSAGE_CONFLICT_TYPES =
-            "Invalid tag type provided! Please use either c/ or s/, but not both.\n";
+            String.format("Invalid tag type provided! Please use either %s or %s, but not both.\n",
+                    PREFIX_CONTACT_TAG, PREFIX_SALES_TAG);
 
     private final Tag toAdd;
     private final boolean isContact;
@@ -55,13 +54,13 @@ public class AddCommand extends Command {
                 throw new CommandException(MESSAGE_DUPLICATE_CONTACT_TAG);
             }
             model.addContactTag(toAdd);
-            return new CommandResult(String.format(MESSAGE_CONTACT_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_CONTACT_SUCCESS, toAdd), true, false);
         } else {
             if (model.hasSaleTag(toAdd)) {
                 throw new CommandException(MESSAGE_DUPLICATE_SALES_TAG);
             }
             model.addSaleTag(toAdd);
-            return new CommandResult(String.format(MESSAGE_SALES_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_SALES_SUCCESS, toAdd), true, false);
         }
     }
 

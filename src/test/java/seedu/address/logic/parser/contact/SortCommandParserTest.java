@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESC_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TOTAL_SALES;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -47,20 +46,6 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_totalSalesOnly_success() {
-        String args = " " + PREFIX_TOTAL_SALES.getPrefix();
-        SortCommand expectedSortCommand = new SortCommand(PREFIX_TOTAL_SALES, false);
-        assertParseSuccess(sortCommandParser, args, expectedSortCommand);
-    }
-
-    @Test
-    public void parse_totalSalesAndDesc_success() {
-        String args = " " + PREFIX_TOTAL_SALES.getPrefix() + " " + PREFIX_DESC_ORDER;
-        SortCommand expectedSortCommand = new SortCommand(PREFIX_TOTAL_SALES, true);
-        assertParseSuccess(sortCommandParser, args, expectedSortCommand);
-    }
-
-    @Test
     public void parse_noInputs_failure() {
         String args = " ";
         assertParseFailure(sortCommandParser, args,
@@ -92,21 +77,6 @@ public class SortCommandParserTest {
     public void parse_moreThanOneAttribute_failure() {
         // email and name
         String args = " " + PREFIX_CONTACT_EMAIL + " " + PREFIX_CONTACT_NAME;
-        assertParseFailure(sortCommandParser, args,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-
-        // email and total sales
-        args = " " + PREFIX_CONTACT_EMAIL + " " + PREFIX_TOTAL_SALES;
-        assertParseFailure(sortCommandParser, args,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-
-        // name and total sales
-        args = " " + PREFIX_CONTACT_NAME + " " + PREFIX_TOTAL_SALES;
-        assertParseFailure(sortCommandParser, args,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-
-        // name and email and total sales
-        args = " " + PREFIX_CONTACT_NAME + " " + PREFIX_CONTACT_EMAIL + " " + PREFIX_TOTAL_SALES;
         assertParseFailure(sortCommandParser, args,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
