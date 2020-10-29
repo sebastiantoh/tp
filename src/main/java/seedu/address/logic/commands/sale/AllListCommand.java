@@ -13,6 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.sale.Sale;
 
+//@@author hakujitsu
 /**
  * Lists all sales belonging to a specified contact.
  */

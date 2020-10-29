@@ -65,6 +65,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
 
         if (!person.getTags().isEmpty()) {
+            //@@author pyokagan
             person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
