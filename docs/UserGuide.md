@@ -255,13 +255,13 @@ Let's say that you decides to change the tag colleagues to teammates instead. He
 
     <img src="images/tag-edit/tag-list-second.png" alt="Result for 'tag list'" width="900px">
 
-2. Type `tag edit ct/2 t/friends` in the **Command Box** and press <kbd>Enter</kbd>.
+2. Type `tag edit ct/2 t/teammates` in the **Command Box** and press <kbd>Enter</kbd>.
 
-    <img src="images/tag-edit/tag-edit.png" alt="Enter 'tag edit ct/2 t/friends'" width="900px">
+    <img src="images/tag-edit/tag-edit.png" alt="Enter 'tag edit ct/2 t/teammates'" width="900px">
 
 3. The **Result Box** will display a message noting that the command was successful, and the **Contact Tags** will now contain teammates instead of colleagues. Note that the tags are sorted alphabetically, hence, you may need to scroll up or down to see the updated tag. Also, note that the contact Bernice Yu is now tagged to teammates.
 
-    <img src="images/tag-edit/tag-edit-result.png" alt="Enter 'tag edit ct/2 t/friends'" width="900px"> 
+    <img src="images/tag-edit/tag-edit-result.png" alt="Enter 'tag edit ct/2 t/teammates'" width="900px"> 
 
 #### Deleting a tag: `tag delete` \[Wang Luo\]
 
