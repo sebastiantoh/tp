@@ -22,7 +22,7 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "contact sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the contacts."
-            + "valid arguments: n/ for name, e/ for email address, s/ for total sales amount"
+            + "valid arguments: n/ for name, e/ for email address\n"
             + "Parameters: KEYWORD [ORDER]\n"
             + "Example: contact sort n/ desc";
 

@@ -47,7 +47,7 @@ public class MonthlyListCommand extends ListCommand {
     public CommandResult execute(Model model) {
         List<Sale> monthlySaleList = model.getMonthlySaleList(month, year);
 
-        model.updateFilteredSaleList(sale -> monthlySaleList.contains(sale));
+        model.updateFilteredSaleList(monthlySaleList::contains);
         model.updateSortedSaleList(SORT_BY_DATE);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, monthlySaleList.size(), month, year), false, true);

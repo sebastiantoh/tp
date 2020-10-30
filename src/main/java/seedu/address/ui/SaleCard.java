@@ -42,6 +42,7 @@ public class SaleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         itemName.setText(setTitleText(sale));
         if (!sale.getTags().isEmpty()) {
+            //@@author hakujitsu
             sale.getTags().stream()
                     .sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

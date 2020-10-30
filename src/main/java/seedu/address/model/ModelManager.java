@@ -79,6 +79,7 @@ public class ModelManager implements Model {
         this.sortedSalesTags = new SortedList<>(this.addressBook.getSaleTagList(), Comparator.naturalOrder());
 
         this.sortedPersons = new SortedList<>(this.filteredPersons, DEFAULT_PERSON_COMPARATOR);
+        //@@author jmleong666
         this.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);
 
         this.filteredReminders =
