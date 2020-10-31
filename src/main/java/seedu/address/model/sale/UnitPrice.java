@@ -40,34 +40,32 @@ public class UnitPrice {
     }
 
     /**
-     * Returns true if given unit price is greater than 0 and less than 10 million
+     * Returns true if given unit price is greater than 0 and less than 10 million.
      */
     public static boolean isValidUnitPrice(BigDecimal test) {
-        String string = test.stripTrailingZeros().toPlainString();
-        int index = string.indexOf(".");
-        int noOfDecimalPlaces = index < 0 ? 0 : string.length() - index - 1;
+        requireNonNull(test);
 
-        return test.compareTo(BigDecimal.ZERO) > 0 && noOfDecimalPlaces < 3;
+        boolean validDecimalPlaces = test.scale() == 2;
+        boolean isPriceGreaterThanZero = test.compareTo(BigDecimal.ZERO) > 0;
+        boolean isPriceLessThanTenMillion = test.compareTo(new BigDecimal("10000000")) < 0;
+
+        return validDecimalPlaces && isPriceGreaterThanZero && isPriceLessThanTenMillion;
     }
 
     /**
-     * Returns true if a given params is a valid unit price.
+     * Returns true if a given params matches the validation string.
      */
     public static boolean isValidUnitPriceString(String test) {
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
         }
 
-        String[] priceSplit = test.split("\\.");
-        int dollars = Integer.parseInt(priceSplit[0]);
-        int cents = Integer.parseInt(priceSplit[1]);
-
-        boolean isCentsValid = cents >= 0 && cents < 100;
-        boolean isDollarsValid = dollars >= 0;
-        boolean isPriceGreaterThanZero = (cents + dollars) > 0;
-        boolean isPriceLessThanTenMillion = new BigDecimal(test).compareTo(new BigDecimal("10000000")) < 0;
-
-        return isCentsValid && isDollarsValid && isPriceGreaterThanZero && isPriceLessThanTenMillion;
+        try {
+            BigDecimal parsedUnitPrice = new BigDecimal(test);
+            return isValidUnitPrice(parsedUnitPrice);
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public String getUnitPriceString() {

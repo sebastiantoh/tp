@@ -60,19 +60,19 @@ public class SampleDataUtil {
      */
     private static final Sale NOTEBOOK = new Sale(new ItemName("Notebook"), ALEX_YEOH,
             LocalDateTime.of(2020, 11, 29, 15, 40),
-            new Quantity(10), new UnitPrice(new BigDecimal("3.5")), getTagSet("stationery"));
+            new Quantity(10), new UnitPrice(new BigDecimal("3.50")), getTagSet("stationery"));
     private static final Sale BLACK_PEN = new Sale(new ItemName("Black Pen"), BERNICE_YU,
             LocalDateTime.of(2020, 10, 6, 9, 50),
-            new Quantity(300), new UnitPrice(new BigDecimal("2.0")), getTagSet("stationery"));
+            new Quantity(300), new UnitPrice(new BigDecimal("2.00")), getTagSet("stationery"));
     private static final Sale BINDER = new Sale(new ItemName("Binder"), ALEX_YEOH,
             LocalDateTime.of(2020, 11, 13, 11, 45),
             new Quantity(250), new UnitPrice(new BigDecimal("4.99")), getTagSet("stationery"));
     private static final Sale TAPE = new Sale(new ItemName("Scotch Tape"), ALEX_YEOH,
             LocalDateTime.of(2020, 10, 17, 15, 20),
-            new Quantity(1000), new UnitPrice(new BigDecimal("2.1")), getTagSet("crafts"));
+            new Quantity(1000), new UnitPrice(new BigDecimal("2.10")), getTagSet("crafts"));
     private static final Sale ERASER = new Sale(new ItemName("Eraser"), CHARLOTTE_OLIVEIRO,
             LocalDateTime.of(2020, 9, 20, 14, 10),
-            new Quantity(1200), new UnitPrice(new BigDecimal("0.8")), getTagSet("stationery"));
+            new Quantity(1200), new UnitPrice(new BigDecimal("0.80")), getTagSet("stationery"));
     private static final Sale RULER = new Sale(new ItemName("Ruler"), BERNICE_YU,
             LocalDateTime.of(2020, 11, 1, 19, 0),
             new Quantity(1200), new UnitPrice(new BigDecimal("0.99")), getTagSet("stationery"));

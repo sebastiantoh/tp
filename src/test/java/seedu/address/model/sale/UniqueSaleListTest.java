@@ -88,7 +88,7 @@ public class UniqueSaleListTest {
     @Test
     public void setSale_editedSaleHasSameIdentity_success() {
         uniqueSaleList.add(APPLE);
-        Sale editedApple = new SaleBuilder(APPLE).withUnitPrice(new BigDecimal("5.6")).withQuantity(20).build();
+        Sale editedApple = new SaleBuilder(APPLE).withUnitPrice(new BigDecimal("5.60")).withQuantity(20).build();
         uniqueSaleList.setSale(APPLE, editedApple);
         UniqueSaleList expectedUniqueSaleList = new UniqueSaleList();
         expectedUniqueSaleList.add(editedApple);

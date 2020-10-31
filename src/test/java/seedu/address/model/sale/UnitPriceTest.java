@@ -50,12 +50,14 @@ public class UnitPriceTest {
         assertThrows(NullPointerException.class, () -> UnitPrice.isValidUnitPrice(null));
 
         // invalid quantity
-        assertFalse(UnitPrice.isValidUnitPrice(new BigDecimal("0"))); // sums to zero
         assertFalse(UnitPrice.isValidUnitPrice(new BigDecimal("1.999"))); // cents is greater than 99
         assertFalse(UnitPrice.isValidUnitPrice(new BigDecimal("-1.00"))); // dollars is negative
+        assertFalse(UnitPrice.isValidUnitPrice(new BigDecimal("0.00"))); // zero
+        assertFalse(UnitPrice.isValidUnitPrice(new BigDecimal("10000000"))); // ten million
 
         // valid quantity
-        assertTrue(UnitPrice.isValidUnitPrice(new BigDecimal("1.30")));
+        assertTrue(UnitPrice.isValidUnitPrice(new BigDecimal("0.01")));
         assertTrue(UnitPrice.isValidUnitPrice(new BigDecimal("2.53")));
+        assertTrue(UnitPrice.isValidUnitPrice(new BigDecimal("9999999.99")));
     }
 }

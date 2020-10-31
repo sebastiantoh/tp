@@ -332,6 +332,7 @@ public class ParserUtil {
     public static UnitPrice parseUnitPrice(String unitPrice) throws ParseException {
         requireNonNull(unitPrice);
         String trimmedUnitPrice = unitPrice.trim();
+
         if (!UnitPrice.isValidUnitPriceString(trimmedUnitPrice)) {
             throw new ParseException(UnitPrice.MESSAGE_CONSTRAINTS);
         }
