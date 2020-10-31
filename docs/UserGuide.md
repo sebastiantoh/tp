@@ -26,7 +26,7 @@ This is what StonksBook looks like:
 --------------------------------------------------------------------------------------------------------------------
 ## About this document
 
-Before continuing, it may be helpful to familiarise yourself with a few symbols that you will encounter in this User Guide:
+Before continuing, it may be helpful to familiarise yourself with a few symbols and the different text markups that you will encounter in this User Guide:
 
 These are the symbols used in this document: 
 
@@ -39,18 +39,18 @@ This provides you with additional information that you should take note of.
 
 :bulb: This provides you with helpful tips.
 
-The different text formattings and their meanings are explained in the table below: 
+The different text markups and their meanings are explained in the table below: 
 
-| Formatting                      | Meaning                                                           |
+| Markup                          | Meaning                                                           |
 |---------------------------------|-------------------------------------------------------------------|
 | `sample  text`                  | Represents technical terms related to StonksBook's implementation |
 | <kbd>Enter</kbd>                | Represents a keystroke that can be pressed on the keyboard        |
 
 
 Check out the list below on how to use this User Guide:
-- If you are a first-time user, start from [here](#quick-start) for instructions for downloading and setting up StonksBook.
-- If you are interested to learn about the various features StonksBook has, check out the Features section [here](#features).
-- If you are already familiar with StonksBook, but need a slight refresher, check out the Command Summary section [here](#command-summary).
+- If you are a first-time user, start from the[Quick Start](#quick-start) section for instructions on downloading and setting up StonksBook.
+- If you are interested to learn about the various features StonksBook has, check out the [Features](#features) section.
+- If you are already familiar with StonksBook, but need a slight refresher, check out the [Command Summary](#command-summary) section.
 
 --------------------------------------------------------------------------------------------------------------------
 
