@@ -64,12 +64,13 @@ I added the 'Reminders' feature, which allows users to manage their reminders wi
 - Came up with a standard for writing the user guide to ensure standardisation across work written by team members: [User Guide Standard](https://github.com/AY2021S1-CS2103T-T11-1/tp/issues/64#issuecomment-717080176)
 
 **Contributions to the developer guide**:
-- Wrote the sections for the implementation of the 'Meetings' and 'Remiders' feature in the developer guide: [#127](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/127)
+- Wrote the sections for the implementation of the 'Meetings' and 'Reminders' feature in the developer guide: [#127](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/127)
 - Added use cases, non-functional requirements to the developer guide: [#18](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/18)
 
 **Contributions to team-based tasks**:
 - Set up the GitHub team organisation and repository.
 - Managed the product release for version 1.3 on GitHub.
+- Wrote the 'Introduction' and 'About this document' section of the User Guide 
 
 **Review/mentoring contributions**:
 - Reviewed Pull Requests (with non-trivial review comments): [#67](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/67)
