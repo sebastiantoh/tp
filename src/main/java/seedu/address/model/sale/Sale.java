@@ -76,7 +76,7 @@ public class Sale implements Comparable<Sale> {
     }
 
     public String getUnitPriceString() {
-        return NumberFormat.getCurrencyInstance().format(unitPrice.amount);
+        return unitPrice.toString();
     }
 
     public BigDecimal getTotalCost() {
@@ -86,7 +86,6 @@ public class Sale implements Comparable<Sale> {
     public String getTotalCostString() {
         return NumberFormat.getCurrencyInstance().format(totalCost);
     }
-
 
     public Month getMonth() {
         return datetimeOfPurchase.getMonth();
