@@ -8,11 +8,10 @@ title: Sebastian Toh's Project Portfolio Page
 ### Overview
 
 As part of CS2103T: Software Engineering, my team of 4 software engineering students and I were tasked with enhancing an existing project, [Address Book Level 3 (AB3)](https://github.com/nus-cs2103-AY1920S1/addressbook-level3)
-, into a new product for our Software Engineering project. We chose to enhance it into a contact management application for salespeople, called StonksBook.
+, into a new product for our Software Engineering project. We chose to enhance it into a contact management application for salespeople, called **StonksBook**.
 
-StonksBook is an all-in-one application that seeks to boost the performance of salespeople by reducing their time spent on menial tasks.
-It allows salespeople to quickly and easily manage information regarding their clients, sales, meetings and reminders, all without having to 
-switch to another application. 
+**StonksBook** is an all-in-one contact management application targeted at salespeople. 
+From helping salespeople managing their clients to theirs sales information, StonksBook is sure to boost their performance and conversion rates, all while reducing the time they spend on menial tasks such as generating performance reports.
 
 ### Summary of Contributions
 

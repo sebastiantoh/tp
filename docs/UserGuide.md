@@ -9,15 +9,16 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
-StonksBook is a contact management application that is created for salesmen.
+**StonksBook** is an all-in-one contact management application targeted at salespeople. 
+From helping you managing your clients to your sales information, StonksBook is sure to boost your performance and conversion rates, all while reducing the time you spend on menial tasks such as generating performance reports.
 
-Many salesmen waste their time manually managing their contacts and sales data. They often require
- several different applications to carry out these tasks.
+Here are a few ways **StonksBook** can help you:
+- **Data Management**: Store and organise all your client and sales information easily.
+- **Personal Management**:  Track all and easily review all your reminders and meetings in a single application.
+- **Real-Time Insights**: Get real-time insights into your sales performance so you can further optimise and tweak your sales strategy. 
+- **Ease and Speed of Use**: No more fumbling through clunky user interfaces filled with obscure buttons which you do not even you use most of the time.
+StonksBook combines the best of a Command Line Interface (CLI) as well as a Graphical User Interface (GUI) - interact with the application by typing commands in the CLI and view the results in a clear GUI! 
 
- StonksBook aims to integrate the key tools used by salesmen into an all-in-one application that can empower them to
-  effectively curate their contact list. StonksBook also provides many tools that can boost one's sales peformance
-  through the use of sophisticated data analysis techniques.
-  
 This is what StonksBook looks like:
   
 <img src="images/LabelledUiDiagram.png" alt="LabelledUiDiagram">
