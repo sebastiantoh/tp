@@ -14,9 +14,9 @@ From helping you managing your clients to your sales information, StonksBook is 
 
 Here are a few ways **StonksBook** can help you:
 - **Data Management**: Store and organise all your client and sales information easily.
-- **Personal Management**:  Track all and easily review all your reminders and meetings in a single application.
+- **Personal Management**:  Track and easily review all your reminders and meetings in a single application.
 - **Real-Time Insights**: Get real-time insights into your sales performance so you can further optimise and tweak your sales strategy. 
-- **Ease and Speed of Use**: No more fumbling through clunky user interfaces filled with obscure buttons which you do not even you use most of the time.
+- **Ease and Speed of Use**: No more fumbling through clunky user interfaces filled with obscure buttons which you do not even you use most of the time!
 StonksBook combines the best of a Command Line Interface (CLI) as well as a Graphical User Interface (GUI) - interact with the application by typing commands in the CLI and view the results in a clear GUI! 
 
 This is what StonksBook looks like:
