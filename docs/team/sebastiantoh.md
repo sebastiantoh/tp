@@ -13,9 +13,7 @@ StonksBook is a desktop app for managing contacts, optimized for use via a Comma
 
 This section shows a summary of my coding, documentation, and other helpful contributions to the team project.
 
-**Code contributed**: 
-
-Please click this link to see a sample of my code: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=sebastiantoh&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=sebastiantoh&tabRepo=AY2021S1-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+**Code contributed**: Please click this link to see a sample of my code: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=sebastiantoh&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=sebastiantoh&tabRepo=AY2021S1-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 **Major enhancement**: 'Meetings' feature
 
@@ -50,9 +48,7 @@ I added the 'Reminders' feature, which allows users to manage their reminders wi
  coming up with the front-end as well as most of the back-end logic and storage of reminders. My teammate, Wang Luo, was
    responsible for implementing the filtering of reminders, as well as the ability to mark reminders as complete.
 
-**Minor enhancement**: 
-
-I modified the Graphical User Interface (GUI) to include an additional column which would support the display of
+**Minor enhancement**: I modified the Graphical User Interface (GUI) to include an additional column which would support the display of
  reminders and meetings.
    
 **Contributions to the user guide**:
@@ -61,8 +57,7 @@ I modified the Graphical User Interface (GUI) to include an additional column wh
  guide: [#9](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/9), [#18](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/18)
  , [#127](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/127), [#165](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/165)
  , [#169](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/169)
-- Came up with a standard for writing the user guide to ensure standardisation across work written by team members
-: [User Guide Standard](https://github.com/AY2021S1-CS2103T-T11-1/tp/issues/64#issuecomment-717080176)
+- Came up with a standard for writing the user guide to ensure standardisation across work written by team members: [User Guide Standard](https://github.com/AY2021S1-CS2103T-T11-1/tp/issues/64#issuecomment-717080176)
 
 **Contributions to the developer guide**:
 - Wrote the sections for the implementation of the 'Meetings' and 'Remiders' feature in the developer guide: [#127](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/127)
