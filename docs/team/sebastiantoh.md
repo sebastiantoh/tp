@@ -7,7 +7,12 @@ title: Sebastian Toh's Project Portfolio Page
 
 ### Overview
 
-StonksBook is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps.
+As part of CS2103T: Software Engineering, my team of 4 software engineering students and I were tasked with enhancing an existing project, [Address Book Level 3 (AB3)](https://github.com/nus-cs2103-AY1920S1/addressbook-level3)
+, into a new product for our Software Engineering project. We chose to enhance it into a contact management application for salespeople, called StonksBook.
+
+StonksBook is an all-in-one application that seeks to boost the performance of salespeople by reducing their time spent on menial tasks.
+It allows salespeople to quickly and easily manage information regarding their clients, sales, meetings and reminders, all without having to 
+switch to another application. 
 
 ### Summary of Contributions
 
