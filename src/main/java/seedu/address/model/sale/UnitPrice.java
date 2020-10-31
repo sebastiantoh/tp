@@ -75,7 +75,7 @@ public class UnitPrice {
 
     @Override
     public String toString() {
-         return NumberFormat.getCurrencyInstance().format(this.amount);
+        return NumberFormat.getCurrencyInstance().format(this.amount);
     }
 
     @Override
