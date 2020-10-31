@@ -31,8 +31,7 @@ Before continuing, it may be helpful to familiarise yourself with a few symbols 
 These are the symbols used in this document: 
 
 <div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
+**:information_source: Additional information:**<br>
 
 This provides you with additional information that you should take note of.
 </div>
@@ -48,7 +47,7 @@ The different text markups and their meanings are explained in the table below:
 
 
 Check out the list below on how to use this User Guide:
-- If you are a first-time user, start from the[Quick Start](#quick-start) section for instructions on downloading and setting up StonksBook.
+- If you are a first-time user, start from the [Quick Start](#quick-start) section for instructions on downloading and setting up StonksBook.
 - If you are interested to learn about the various features StonksBook has, check out the [Features](#features) section.
 - If you are already familiar with StonksBook, but need a slight refresher, check out the [Command Summary](#command-summary) section.
 
@@ -558,6 +557,7 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
 Adds a meeting with the specified contact in StonksBook.
 
 <div markdown="block" class="alert alert-info">
+**:information_source: Note on conflicting meetings:**<br>
 To prevent the situation in which you unknowingly scheduled conflicting meetings, StonksBook will not allow you to
  add a new meeting if it conflicts with some meeting in StonksBook!
 </div>
@@ -630,6 +630,7 @@ Let's say that you have just received an unfortunate email from Alex Yeoh who no
 Edits an existing meeting in StonksBook.
 
 <div markdown="block" class="alert alert-info">
+**:information_source: Note on conflicting meetings:**<br>
 Similar to when adding a meeting, StonksBook will not allow you to edit a meeting if it will conflicts with some meeting
  in StonksBook!
 </div>
