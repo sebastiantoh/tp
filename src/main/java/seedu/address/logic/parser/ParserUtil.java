@@ -17,6 +17,7 @@ import java.time.Month;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -44,7 +45,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -208,7 +209,7 @@ public class ParserUtil {
         String trimmedDateTime = dateTime.trim();
 
         try {
-            return LocalDateTime.parse(trimmedDateTime, DATE_TIME_FORMATTER);
+            return LocalDateTime.parse(trimmedDateTime, DATE_TIME_FORMATTER.withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INVALID_DATETIME);
         }

@@ -266,6 +266,21 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseDateTime_nonExistentDateTime_throwsParseException() {
+        // 31st November does not exist
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("2020-11-31 11:00"));
+
+        // 2019 is not a leap year
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("2019-02-29 11:00"));
+
+        // 32 January does not exist
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("2020-01-32 11:00"));
+
+        // 24:00 is not a valid time
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("2020-10-10 24:00"));
+    }
+
+    @Test
     public void parseDuration_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDuration(null));
     }

@@ -13,7 +13,7 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_SALES_LISTED_OVERVIEW = "%1$d sale items listed!";
     public static final String MESSAGE_INVALID_DATETIME =
-            "Dates should be specified in the format 'yyyy-MM-dd HH:mm'.";
+            "Dates should be specified in the format 'yyyy-MM-dd HH:mm' and should be a valid date!";
     public static final String MESSAGE_INVALID_DURATION =
             "Durations should be specified as a positive integer denoting the number of minutes.";
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid.";
