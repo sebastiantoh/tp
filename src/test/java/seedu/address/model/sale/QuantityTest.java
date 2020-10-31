@@ -31,10 +31,15 @@ public class QuantityTest {
         assertFalse(Quantity.isValidQuantity(" ")); // spaces only
         assertFalse(Quantity.isValidQuantity("^")); // only non-numeric characters
         assertFalse(Quantity.isValidQuantity("1.1")); // contains non-numeric characters
+        assertFalse(Quantity.isValidQuantity("-1")); // zero
+        assertFalse(Quantity.isValidQuantity("0")); // zero
+        assertFalse(Quantity.isValidQuantity("10000000")); // 10 million
+        assertFalse(Quantity.isValidQuantity("10000001")); // 10 million + 1
+
 
         // valid quantity
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("0")); // zero
-
+        assertTrue(Quantity.isValidQuantity("12345")); // numbers only
+        assertTrue(Quantity.isValidQuantity("1")); // one
+        assertTrue(Quantity.isValidQuantity("9999999")); // 10 million - 1
     }
 }
