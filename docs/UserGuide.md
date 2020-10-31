@@ -169,7 +169,7 @@ e.g. You want to see the contacts who have paid you the most for your sales and 
 
 **Examples**:
 * `contact sort e/ desc` sorts the contact list based on the email address in non-ascending order
-* `contact find n/`  sorts the contact list based on the contact name in non-descending order
+* `contact sort n/`  sorts the contact list based on the contact name in non-descending order
 
 #### Deleting a contact: `contact delete`
 Deletes the specified contact from StonksBook. All associated reminders and meetings will be deleted as well.
