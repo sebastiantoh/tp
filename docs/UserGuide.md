@@ -485,9 +485,9 @@ e.g. You can compare the number of meetings you have had in the past 6 months as
 * `sale stats 3` will return a bar chart containing the number of sale whose sale date is within
    June 2020, July 2020 and August 2020 respectively if the current month is August and the current year is 2020.
 
-### Scheduled Meetings
+### Meetings
 
-StonksBook allows you to manage your scheduled meetings within the application.
+StonksBook allows you to manage your meetings within the application.
 
 #### Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
 
