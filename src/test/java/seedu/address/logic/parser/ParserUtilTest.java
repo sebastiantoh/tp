@@ -1,11 +1,13 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -25,6 +27,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
+import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -364,6 +367,33 @@ public class ParserUtilTest {
         assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(String.valueOf(0)));
         assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(String.valueOf(10000000)));
         assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(String.valueOf(10000001)));
+    }
+
+    @Test
+    public void parseUnitPrice_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseUnitPrice(null));
+    }
+
+    @Test
+    public void parseUnitPrice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(""));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(" "));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice("^"));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(11)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(11.1)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(-1.00)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(-0.00)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(0.00)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(10000000.00)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(10000000.01)));
+    }
+
+    @Test
+    public void parseUnitPrice_validUnitPrice_returnsUnitPrice() throws Exception {
+        assertEquals(new UnitPrice(new BigDecimal("0.01")), ParserUtil.parseUnitPrice("0.01"));
+        assertEquals(new UnitPrice(new BigDecimal("1.00")), ParserUtil.parseUnitPrice("1.00"));
+        assertEquals(new UnitPrice(new BigDecimal("543.21")), ParserUtil.parseUnitPrice("543.21"));
+        assertEquals(new UnitPrice(new BigDecimal("9999999.99")), ParserUtil.parseUnitPrice("9999999.99"));
     }
 
     @Test
