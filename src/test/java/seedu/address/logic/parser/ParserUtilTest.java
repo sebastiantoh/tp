@@ -23,6 +23,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
 import seedu.address.model.tag.Tag;
 
@@ -43,6 +44,7 @@ public class ParserUtilTest {
     private static final String INVALID_DURATION_3 = "2 hours 30 minutes";
     private static final String INVALID_DURATION_4 = "30.5";
     private static final String INVALID_DURATION_5 = "0.00";
+    private static final String INVALID_ITEM_NAME = "@pple";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -56,6 +58,8 @@ public class ParserUtilTest {
 
     private static final String VALID_DURATION = "120";
     private static final Duration EXPECTED_DURATION = Duration.ofMinutes(120);
+
+    private static final String VALID_ITEM_NAME = "Apple";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -314,6 +318,29 @@ public class ParserUtilTest {
     public void parseYear_invalidValue_throwsParseException() {
         assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(-1)));
         assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(1000000000)));
+    }
+
+    @Test
+    public void parseItemName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseItemName(null));
+    }
+
+    @Test
+    public void parseItemName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseItemName(INVALID_ITEM_NAME));
+    }
+
+    @Test
+    public void parseItemName_validValueWithoutWhitespace_returnsItemName() throws Exception {
+        ItemName expectedItemName = new ItemName(VALID_ITEM_NAME);
+        assertEquals(expectedItemName, ParserUtil.parseItemName(VALID_ITEM_NAME));
+    }
+
+    @Test
+    public void parseItemName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String itemNameWithWhitespace = WHITESPACE + VALID_ITEM_NAME + WHITESPACE;
+        Name expectedItemName = new Name(VALID_ITEM_NAME);
+        assertEquals(expectedItemName, ParserUtil.parseName(itemNameWithWhitespace));
     }
 
     @Test
