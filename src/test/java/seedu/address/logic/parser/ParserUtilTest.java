@@ -23,6 +23,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.sale.Quantity;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -313,6 +314,29 @@ public class ParserUtilTest {
     public void parseYear_invalidValue_throwsParseException() {
         assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(-1)));
         assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(1000000000)));
+    }
+
+    @Test
+    public void parseQuantity_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantity(null));
+    }
+
+    @Test
+    public void parseQuantity_validQuantity_returnsQuantity() throws Exception {
+        assertEquals(new Quantity("1"), ParserUtil.parseQuantity("1"));
+        assertEquals(new Quantity("654321"), ParserUtil.parseQuantity("654321"));
+        assertEquals(new Quantity("9999999"), ParserUtil.parseQuantity("9999999"));
+    }
+
+    @Test
+    public void parseQuantity_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity("a"));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(" "));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity("^"));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(String.valueOf(-1)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(String.valueOf(0)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(String.valueOf(10000000)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(String.valueOf(10000001)));
     }
 
     @Test
