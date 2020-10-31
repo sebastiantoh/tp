@@ -33,7 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_DATETIME + "DATETIME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CONTACT + "2 "
-            + PREFIX_MESSAGE + "Send email to follow up"
+            + PREFIX_MESSAGE + "Send email to follow up "
             + PREFIX_DATETIME + "2020-10-30 15:00";
 
     public static final String MESSAGE_SUCCESS = "New reminder added: %1$s";
