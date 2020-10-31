@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Quantity {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity should be a positive integer, and it should not be blank";
+            "Quantity should be a positive integer less than 10 million, and should not be blank";
 
     /*
      * Quantity should be a non-blank, positive integer.
@@ -34,7 +34,14 @@ public class Quantity {
      * Returns true if a given string is a valid quantity.
      */
     public static boolean isValidQuantity(String test) {
-        return test.matches(VALIDATION_REGEX);
+        requireNonNull(test);
+        try {
+            int quantity = Integer.parseInt(test);
+            boolean isWithinRange = quantity > 0 && quantity < 10000000;
+            return test.matches(VALIDATION_REGEX) && isWithinRange;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override
