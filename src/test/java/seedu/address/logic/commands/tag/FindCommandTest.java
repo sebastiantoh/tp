@@ -50,7 +50,7 @@ class FindCommandTest {
 
         String expectedMessage = "Listing 1 sales items associated with: [electronics]\n"
                 + "1. Camera (Date of Purchase: Sun, 01 Nov 2020, 09:05, "
-                + "Quantity: 2, Unit Price: 1000.50, Tags: [[electronics]]) (Client: Carl Kurz)\n";
+                + "Quantity: 2, Unit Price: $1,000.50, Tags: [[electronics]]) (Client: Carl Kurz)\n";
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.findSalesBySaleTag(tagToFind);

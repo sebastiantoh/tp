@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 /**
  * Represents a Sale item's unit price in the address book.
@@ -74,11 +75,7 @@ public class UnitPrice {
 
     @Override
     public String toString() {
-        return this.amount.setScale(2).toPlainString();
-
-        // Dollar sign has been temporarily removed to pass test cases
-        // TODO: reinstate the following method after implementing GUI for sales
-        // return NumberFormat.getCurrencyInstance().format(this.amount);
+         return NumberFormat.getCurrencyInstance().format(this.amount);
     }
 
     @Override
