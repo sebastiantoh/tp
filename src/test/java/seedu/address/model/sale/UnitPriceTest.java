@@ -31,11 +31,17 @@ public class UnitPriceTest {
         assertFalse(UnitPrice.isValidUnitPriceString("^")); // only non-numeric characters
         assertFalse(UnitPrice.isValidUnitPriceString("11")); // without . character
         assertFalse(UnitPrice.isValidUnitPriceString("11.1")); // missing one decimal place
-        assertFalse(UnitPrice.isValidUnitPriceString("11.1")); // missing one decimal place
+        assertFalse(UnitPrice.isValidUnitPriceString("-1.00")); // negative zero
+        assertFalse(UnitPrice.isValidUnitPriceString("-0.00")); // negative zero
+        assertFalse(UnitPrice.isValidUnitPriceString("0.00")); // zero
+        assertFalse(UnitPrice.isValidUnitPriceString("10000000.00")); // ten million
+        assertFalse(UnitPrice.isValidUnitPriceString("10000000.01")); // ten million
 
         // valid quantity
-        assertTrue(UnitPrice.isValidUnitPriceString("1.00")); // numbers only
-        assertTrue(UnitPrice.isValidUnitPriceString("543.21")); // zero
+        assertTrue(UnitPrice.isValidUnitPriceString("0.01")); // 1 cent
+        assertTrue(UnitPrice.isValidUnitPriceString("1.00")); // 1 dollar
+        assertTrue(UnitPrice.isValidUnitPriceString("543.21")); // numbers only
+        assertTrue(UnitPrice.isValidUnitPriceString("9999999.99")); // ten million minus 1 cent
     }
 
     @Test

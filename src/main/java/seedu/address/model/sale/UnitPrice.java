@@ -13,7 +13,7 @@ public class UnitPrice {
     public static final String MESSAGE_CONSTRAINTS =
             "UnitPrice should be in the form \"DOLLARS.CENTS\", where DOLLARS represents a positive integer "
                     + "and CENTS represents a 2 digit positive integer. It should not be blank, "
-                    + "and the total unit price should be greater than zero";
+                    + "and the total unit price should be greater than zero and less than 10 million.";
 
     /*
      * UnitPrice should be in the form "DOLLARS.CENTS", where DOLLARS represents a positive integer
@@ -40,7 +40,7 @@ public class UnitPrice {
     }
 
     /**
-     * Returns true if given unit price is greater than 0.
+     * Returns true if given unit price is greater than 0 and less than 10 million
      */
     public static boolean isValidUnitPrice(BigDecimal test) {
         String string = test.stripTrailingZeros().toPlainString();
@@ -65,7 +65,9 @@ public class UnitPrice {
         boolean isCentsValid = cents >= 0 && cents < 100;
         boolean isDollarsValid = dollars >= 0;
         boolean isPriceGreaterThanZero = (cents + dollars) > 0;
-        return isCentsValid && isDollarsValid && isPriceGreaterThanZero;
+        boolean isPriceLessThanTenMillion = new BigDecimal(test).compareTo(new BigDecimal("10000000")) < 0;
+
+        return isCentsValid && isDollarsValid && isPriceGreaterThanZero && isPriceLessThanTenMillion;
     }
 
     public String getUnitPriceString() {
