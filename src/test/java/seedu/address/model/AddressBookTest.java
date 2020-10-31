@@ -13,6 +13,7 @@ import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 
+import java.text.NumberFormat;
 import java.time.Month;
 import java.time.Year;
 import java.util.Arrays;
@@ -149,8 +150,9 @@ public class AddressBookTest {
         addressBookCopy.addPerson(BENSON);
         addressBookCopy.addSale(TypicalSales.APPLE);
         assertEquals("Listing 1 sales items associated with: [fruits]\n"
-                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: $3.50, "
-                        + "Tags: [[fruits]]) (Client: Benson Meier)\n",
+                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: "
+                        + NumberFormat.getCurrencyInstance().format(3.50)
+                        + ", Tags: [[fruits]]) (Client: Benson Meier)\n",
                 addressBookCopy.findSalesBySaleTag(new Tag("fruits")));
     }
 
