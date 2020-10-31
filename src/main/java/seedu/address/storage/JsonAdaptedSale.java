@@ -33,7 +33,7 @@ class JsonAdaptedSale {
     private final String itemName;
     private final Integer buyerId;
     private final String datetimeOfPurchase;
-    private final String quantity;
+    private final Integer quantity;
     private final String unitPrice;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -44,7 +44,7 @@ class JsonAdaptedSale {
     public JsonAdaptedSale(@JsonProperty("itemName") String itemName,
                            @JsonProperty("buyerId") Integer buyerId,
                            @JsonProperty("datetimeOfPurchase") String datetimeOfPurchase,
-                           @JsonProperty("quantity") String quantity,
+                           @JsonProperty("quantity") Integer quantity,
                            @JsonProperty("unitPrice") String unitPrice,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.itemName = itemName;
@@ -64,7 +64,7 @@ class JsonAdaptedSale {
         itemName = source.getItemName().name;
         buyerId = source.getBuyer().getId();
         datetimeOfPurchase = source.getDatetimeOfPurchase().toString();
-        quantity = source.getQuantity().toString();
+        quantity = source.getQuantity().quantity;
         unitPrice = source.getUnitPrice().getUnitPriceString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

@@ -308,11 +308,19 @@ public class ParserUtil {
     public static Quantity parseQuantity(String quantity) throws ParseException {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
-        if (!Quantity.isValidQuantity(trimmedQuantity)) {
+        Integer parsedQuantity;
+
+        try {
+            parsedQuantity = Integer.parseInt(trimmedQuantity);
+        } catch (NumberFormatException e) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
 
-        return new Quantity(trimmedQuantity);
+        if (!Quantity.isValidQuantity(parsedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Quantity(parsedQuantity);
     }
 
     /**

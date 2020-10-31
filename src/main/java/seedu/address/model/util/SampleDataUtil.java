@@ -60,40 +60,40 @@ public class SampleDataUtil {
      */
     private static final Sale NOTEBOOK = new Sale(new ItemName("Notebook"), ALEX_YEOH,
             LocalDateTime.of(2020, 11, 29, 15, 40),
-            new Quantity("10"), new UnitPrice(new BigDecimal("3.5")), getTagSet("stationery"));
+            new Quantity(10), new UnitPrice(new BigDecimal("3.5")), getTagSet("stationery"));
     private static final Sale BLACK_PEN = new Sale(new ItemName("Black Pen"), BERNICE_YU,
             LocalDateTime.of(2020, 10, 6, 9, 50),
-            new Quantity("300"), new UnitPrice(new BigDecimal("2.0")), getTagSet("stationery"));
+            new Quantity(300), new UnitPrice(new BigDecimal("2.0")), getTagSet("stationery"));
     private static final Sale BINDER = new Sale(new ItemName("Binder"), ALEX_YEOH,
             LocalDateTime.of(2020, 11, 13, 11, 45),
-            new Quantity("250"), new UnitPrice(new BigDecimal("4.99")), getTagSet("stationery"));
+            new Quantity(250), new UnitPrice(new BigDecimal("4.99")), getTagSet("stationery"));
     private static final Sale TAPE = new Sale(new ItemName("Scotch Tape"), ALEX_YEOH,
             LocalDateTime.of(2020, 10, 17, 15, 20),
-            new Quantity("1000"), new UnitPrice(new BigDecimal("2.1")), getTagSet("crafts"));
+            new Quantity(1000), new UnitPrice(new BigDecimal("2.1")), getTagSet("crafts"));
     private static final Sale ERASER = new Sale(new ItemName("Eraser"), CHARLOTTE_OLIVEIRO,
             LocalDateTime.of(2020, 9, 20, 14, 10),
-            new Quantity("1200"), new UnitPrice(new BigDecimal("0.8")), getTagSet("stationery"));
+            new Quantity(1200), new UnitPrice(new BigDecimal("0.8")), getTagSet("stationery"));
     private static final Sale RULER = new Sale(new ItemName("Ruler"), BERNICE_YU,
             LocalDateTime.of(2020, 11, 1, 19, 0),
-            new Quantity("1200"), new UnitPrice(new BigDecimal("0.99")), getTagSet("stationery"));
+            new Quantity(1200), new UnitPrice(new BigDecimal("0.99")), getTagSet("stationery"));
     private static final Sale GUITAR = new Sale(new ItemName("guitar"), DAVID_LI,
             LocalDateTime.of(2020, 11, 3, 19, 0),
-            new Quantity("3"), new UnitPrice(new BigDecimal("4000.00")), getTagSet("music"));
+            new Quantity(3), new UnitPrice(new BigDecimal("4000.00")), getTagSet("music"));
     private static final Sale GUITAR_PICK = new Sale(new ItemName("guitar pick"), ROY_BALAKRISHNAN,
             LocalDateTime.of(2020, 8, 3, 19, 0),
-            new Quantity("4000"), new UnitPrice(new BigDecimal("1.00")), getTagSet("music"));
+            new Quantity(4000), new UnitPrice(new BigDecimal("1.00")), getTagSet("music"));
     private static final Sale GUITAR_STRAP = new Sale(new ItemName("guitar strap"), BERNICE_YU,
             LocalDateTime.of(2020, 8, 3, 19, 0),
-            new Quantity("4"), new UnitPrice(new BigDecimal("76.00")), getTagSet("music"));
+            new Quantity(4), new UnitPrice(new BigDecimal("76.00")), getTagSet("music"));
     private static final Sale DRUM_SET = new Sale(new ItemName("drum set"), BERNICE_YU,
             LocalDateTime.of(2020, 7, 3, 19, 0),
-            new Quantity("2"), new UnitPrice(new BigDecimal("14530.40")), getTagSet("music"));
+            new Quantity(2), new UnitPrice(new BigDecimal("14530.40")), getTagSet("music"));
     private static final Sale DRUM_STICKS = new Sale(new ItemName("guitar"), ALEX_YEOH,
             LocalDateTime.of(2020, 6, 3, 19, 0),
-            new Quantity("400"), new UnitPrice(new BigDecimal("17.95")), getTagSet("music"));
+            new Quantity(400), new UnitPrice(new BigDecimal("17.95")), getTagSet("music"));
     private static final Sale MICROPHONE = new Sale(new ItemName("microphone"), CHARLOTTE_OLIVEIRO,
             LocalDateTime.of(2020, 9, 3, 19, 0),
-            new Quantity("7"), new UnitPrice(new BigDecimal("123.60")), getTagSet("music"));
+            new Quantity(7), new UnitPrice(new BigDecimal("123.60")), getTagSet("music"));
 
     public static Person[] getSamplePersons() {
         return new Person[] {ALEX_YEOH, BERNICE_YU, CHARLOTTE_OLIVEIRO, DAVID_LI, IRFAN_IBRAHIM, ROY_BALAKRISHNAN};

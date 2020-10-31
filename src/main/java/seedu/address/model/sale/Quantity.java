@@ -15,8 +15,6 @@ public class Quantity {
     /*
      * Quantity should be a non-blank, positive integer.
      */
-    public static final String VALIDATION_REGEX = "^[\\d]+$";
-
     public final int quantity;
 
     /**
@@ -24,24 +22,18 @@ public class Quantity {
      *
      * @param quantity A valid quantity.
      */
-    public Quantity(String quantity) {
+    public Quantity(Integer quantity) {
         requireNonNull(quantity);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
-        this.quantity = Integer.parseInt(quantity);
+        this.quantity = quantity;
     }
 
     /**
      * Returns true if a given string is a valid quantity.
      */
-    public static boolean isValidQuantity(String test) {
+    public static boolean isValidQuantity(Integer test) {
         requireNonNull(test);
-        try {
-            int quantity = Integer.parseInt(test);
-            boolean isWithinRange = quantity > 0 && quantity < 10000000;
-            return test.matches(VALIDATION_REGEX) && isWithinRange;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        return test > 0 && test < 10000000;
     }
 
     @Override

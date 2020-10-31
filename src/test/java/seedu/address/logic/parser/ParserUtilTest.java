@@ -350,9 +350,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseQuantity_validQuantity_returnsQuantity() throws Exception {
-        assertEquals(new Quantity("1"), ParserUtil.parseQuantity("1"));
-        assertEquals(new Quantity("654321"), ParserUtil.parseQuantity("654321"));
-        assertEquals(new Quantity("9999999"), ParserUtil.parseQuantity("9999999"));
+        assertEquals(new Quantity(1), ParserUtil.parseQuantity("1"));
+        assertEquals(new Quantity(654321), ParserUtil.parseQuantity("654321"));
+        assertEquals(new Quantity(9999999), ParserUtil.parseQuantity("9999999"));
     }
 
     @Test
