@@ -85,6 +85,7 @@ Adds a contact to StonksBook.
 :bulb: Tip: A contact can have any number of tags (including 0)
 
 * The contact tags provided must exist in StonksBook before you can associate this contact with them.
+* Duplicate contacts cannot be added. A contact with the same name and same phone number/email address will be flagged as a duplicate.
 
 **Examples**:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
