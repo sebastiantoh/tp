@@ -375,13 +375,13 @@ Adds a sale to the specified contact in StonksBook.
 * The `CONTACT_INDEX` refers to the index number shown in the displayed contact list, and must be a positive integer 1, 2, 3, …​
 * Multiple `CONTACT_INDEX` can be specified, meaning that you can add a sale to multiple contacts.
 * The `DATETIME_OF_PURCHASE` must be in the format `yyyy-MM-dd HH:mm`
-* The `UNIT_PRICE` must be a positive number with 2 decimal places, in format `DOLLARS.CENTS`.
-* The `QUANTITY` must be a positive integer 1, 2, 3, …​
+* The `UNIT_PRICE` must be a positive number greater than 0 and less than 10 million with 2 decimal places, in format `DOLLARS.CENTS`.
+* The `QUANTITY` must be a positive integer greater than 0 and less than 10 million.
 * It is compulsory to have a tag for the sales item. This is to ensure the ease of data analytics.
 * The tags provided must exist in StonksBook first before you can associate the sales item to them.
 
 **Example:**
-Suppose you successfully sold 100 guitar tuners at a unit price of $10 with Bernice Yu on 30 October 2020, 3pm. 
+Suppose you successfully sold 100 guitar tuners at a unit price of $10.00 with Bernice Yu on 30 October 2020, 3pm. 
 Here's how you can add this new sale into StonksBook:
  
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
