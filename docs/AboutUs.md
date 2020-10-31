@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Aaron Seah
 
-<img src="images/team/aaronnseah.png" width="200px">
+<img src="images/aaronnseah.png" width="200px">
 
 [[github](http://github.com/aaronnseah)]
 [[portfolio](team/aaronnseah.md)]
@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Sebastian Toh
 
-<img src="images/team/sebastiantoh.png" width="200px">
+<img src="images/sebastiantoh.png" width="200px">
 
 [[github](http://github.com/sebastiantoh)]
 [[portfolio](team/sebastiantoh.md)]
@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Kwek Min Yih
 
-<img src="images/team/hakujitsu.png" width="200px">
+<img src="images/hakujitsu.png" width="200px">
 
 [[github](http://github.com/hakujitsu)]
 [[portfolio](team/hakujitsu.md)]
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Wang Luo
 
-<img src="images/team/asthenosphere.png" width="200px">
+<img src="images/asthenosphere.png" width="200px">
 
 [[github](https://github.com/Asthenosphere)]
 [[portfolio](team/asthenosphere.md)]
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Leong Jin Ming
 
-<img src="images/team/jmleong666.png" width="200px">
+<img src="images/jmleong666.png" width="200px">
 
 [[github](https://github.com/jmleong666)]
 [[portfolio](team/jmleong666.md)]
