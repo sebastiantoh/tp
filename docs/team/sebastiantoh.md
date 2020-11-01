@@ -21,35 +21,27 @@ This section shows a summary of my coding, documentation, and other helpful cont
 
 **Major enhancement**: 'Meetings' feature
 
-I added the 'Meetings' feature, which allows users to manage their meetings within StonksBook.
-
 * What it does: The 'Meetings' feature comes with a suite of commands that allows users to add, delete, edit as
  well as filter for meetings. To prevent the user from accidentally creating conflicting meetings, this feature also
   automatically checks if there are any conflicting meetings whenever a user attempts to add or modify a meeting
   
-* Justification: One goal of StonksBook was to provide an all-in-one application for salespeople so that they
- can track their meetings without needing to open a separate calendar application. Also, this integration also
-  allows users to see a history of meetings that they have had with a particular client quickly, which
-   facilitates the sales process, especially when the user wishes to recall when he last met with a particular
-    client. 
+* Justification: One goal of StonksBook is to provide an all-in-one application for salespeople so that they
+ can track their meetings without needing a separate application. This integration also allows users to quickly see a history of meetings that they have had with a particular client, which
+   facilitates the formulation of any sales strategy.
     
 * Highlights: This enhancement required a deep understanding of all aspects of the project and I am responsible for the
- front-end, back-end logic, storage of the meeting and unit testing of this enhancement. This enhancement also
-  required a thorough understanding of how to properly handle dates and durations.
+ front-end, back-end logic, storage and unit testing of this enhancement. This enhancement also required a thorough understanding of how to properly handle dates and durations.
 
 **Major enhancement**: 'Reminders' feature
-
-I added the 'Reminders' feature, which allows users to manage their reminders within StonksBook.
 
 * What it does: The 'Reminders' feature comes with a suite of commands that allows users to add, delete, edit as
  well as filter for reminders.
  
 * Justification: Similar to the 'Meetings' feature, we wanted to integrate some form of reminder tracking into
- StonksBook so that users can track their reminders without needing to open a separate application. Furthermore, we
-  wanted the ability to associate reminders to a specific contact, which is not available in most generic reminder-tracking application.
+ StonksBook so that users can track their reminders in StonksBook. Furthermore, we wanted the ability to associate reminders to a specific contact, which is not available in most generic reminder-tracking application.
   
 * Highlights: This enhancement required a deep understanding of all aspects of the project. I am responsible for the
- coming up with the front-end as well as most of the back-end logic and storage of reminders. My teammate, Wang Luo, was
+ coming up with the front-end as well as most of the back-end logic and storage of this enhancement. My teammate, Wang Luo, was
    responsible for implementing the filtering of reminders, as well as the ability to mark reminders as complete.
 
 **Minor enhancement**: I modified the Graphical User Interface (GUI) to include an additional column which would support the display of
