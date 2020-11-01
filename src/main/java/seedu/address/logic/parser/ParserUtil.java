@@ -50,6 +50,8 @@ public class ParserUtil {
     public static final DateTimeFormatter DATE_TIME_FORMATTER =
             new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd HH:mm")
                     .parseDefaulting(ChronoField.ERA, 1).toFormatter();
+    public static final int DURATION_LOWER_LIMIT_INCLUSIVE = 1;
+    public static final int DURATION_UPPER_LIMIT_INCLUSIVE = 1000000;
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -241,17 +243,21 @@ public class ParserUtil {
      * @throws ParseException if the given {@code duration} is not a positive integer.
      */
     public static Duration parseDuration(String duration) throws ParseException {
+
         requireNonNull(duration);
         String trimmedDuration = duration.trim();
-
+        System.out.println(trimmedDuration);
         try {
             long minutes = Long.parseLong(trimmedDuration);
-            if (minutes <= 0) {
+
+            if (minutes < DURATION_LOWER_LIMIT_INCLUSIVE) {
+                throw new ParseException(MESSAGE_INVALID_DURATION);
+            } else if (minutes > DURATION_UPPER_LIMIT_INCLUSIVE) {
                 throw new ParseException(MESSAGE_INVALID_DURATION);
             }
 
             return Duration.ofMinutes(minutes);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ArithmeticException e) {
             throw new ParseException(MESSAGE_INVALID_DURATION);
         }
     }

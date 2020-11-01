@@ -538,7 +538,7 @@ To prevent the situation in which you unknowingly scheduled conflicting meetings
 * The index refers to the index number shown in the displayed contact list.
 * The index must be a positive integer 1, 2, 3, …​
 * The start datetime must be in the format `yyyy-MM-dd HH:mm`
-* The duration is specified in minutes and must be a positive integer.
+* The duration is specified in minutes and must be a positive integer between 1 and 1000000 (inclusive).
 
 **Example**:
 Let's say that you successfully secured a lunch meeting with Alex Yeoh that is scheduled for 3 December 2020 12pm
