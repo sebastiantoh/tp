@@ -145,14 +145,13 @@ e.g. You want to find the contact Alex Yeoh but you only roughly remember the sp
 * `contact find alx david` returns David Li, Alex Yeoh
 
 #### Sorting contacts: `contact sort`
-Sorts contacts based on the name, email address or the total sale amount associated to the contact.
+Sorts contacts based on the name or email address associated to the contact.
 
 **Format**: `contact sort KEYWORD [ORDER]`
 
 * `KEYWORD` must exactly match to one of the following:
     * `n/` for name
     * `e/` for email address
-    * `s/` for total sales amount
 
 * If `ORDER` is present, `ORDER` must exactly match `desc`.
 
@@ -170,8 +169,7 @@ e.g. You want to see the contacts who have paid you the most for your sales and 
 
 **Examples**:
 * `contact sort e/ desc` sorts the contact list based on the email address in non-ascending order
-* `contact find n/`  sorts the contact list based on the contact name in non-descending order
-* `contact find s/ desc` sorts the contact list based on the total sales amount in non-ascending order
+* `contact sort n/`  sorts the contact list based on the contact name in non-descending order
 
 #### Deleting a contact: `contact delete`
 Deletes the specified contact from StonksBook. All associated reminders and meetings will be deleted as well.
@@ -463,7 +461,10 @@ Displays a breakdown of the top 5 tags and the number of sales with each tag.
 
 **Format:** `sale breakdown`
 
-* This will display a bar graph showing the top 5 tags and the number of sales with each tag in an external window.
+* This will display a bar graph showing the top 5 tags with the most sales, 
+and the number of sales belonging to each tag in an external window.
+* The bar graph in the external window will not automatically refresh upon updating of sales. 
+To see the new updated bar graph, close the current external window and run the `sale breakdown` command again.
 
 #### Analysing sales: `sale stats`
 Analyses the sale data and visualises the statistical result.
