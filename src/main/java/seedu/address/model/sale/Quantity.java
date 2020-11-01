@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Quantity {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity should be a positive integer less than 10 million, and should not be blank";
+            "Quantity should be a positive integer less than 10 million, and should not be blank.";
 
     /*
      * Quantity should be a non-blank, positive integer.
