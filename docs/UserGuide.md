@@ -945,7 +945,7 @@ Action | Format, Examples
 
 | Command                                                                              | Summary                                            | Example (if applicable)                                                                  |
 |--------------------------------------------------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------------|
-| `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION`                   | Adds a meeting with the specified contact          | `meeting add c/2 m/Product Demo d/2020-10-30 15:00 du/60`                                |
+| `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`                 | Adds a meeting with the specified contact          | `meeting add c/2 m/Product Demo d/2020-10-30 15:00 du/60`                                |
 | `meeting delete INDEX`                                                               | Deletes the specified meeting                      | `meeting delete 3`                                                                       |
 | `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]`  | Edits an existing meeting                          | `meeting edit 3 d/2020-12-15 12:00`                                                      |
 | `meeting list [c/CONTACT_INDEX] [a/]`                                                | Lists meetings based on provided parameters        | `meeting list c/1 a/`                                                                    |
