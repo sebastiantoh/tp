@@ -8,6 +8,8 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 
+import java.text.NumberFormat;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -50,7 +52,8 @@ class FindCommandTest {
 
         String expectedMessage = "Listing 1 sales items associated with: [electronics]\n"
                 + "1. Camera (Date of Purchase: Sun, 01 Nov 2020, 09:05, "
-                + "Quantity: 2, Unit Price: 1000.50, Tags: [[electronics]]) (Client: Carl Kurz)\n";
+                + "Quantity: 2, Unit Price: " + NumberFormat.getCurrencyInstance().format(1000.50)
+                + ", Tags: [[electronics]]) (Client: Carl Kurz)\n";
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.findSalesBySaleTag(tagToFind);

@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -23,6 +24,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.sale.ItemName;
+import seedu.address.model.sale.Quantity;
+import seedu.address.model.sale.UnitPrice;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -42,6 +46,7 @@ public class ParserUtilTest {
     private static final String INVALID_DURATION_3 = "2 hours 30 minutes";
     private static final String INVALID_DURATION_4 = "30.5";
     private static final String INVALID_DURATION_5 = "0.00";
+    private static final String INVALID_ITEM_NAME = "@pple";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -55,6 +60,8 @@ public class ParserUtilTest {
 
     private static final String VALID_DURATION = "120";
     private static final Duration EXPECTED_DURATION = Duration.ofMinutes(120);
+
+    private static final String VALID_ITEM_NAME = "Apple";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -313,6 +320,79 @@ public class ParserUtilTest {
     public void parseYear_invalidValue_throwsParseException() {
         assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(-1)));
         assertThrows(ParseException.class , () -> ParserUtil.parseYear(String.valueOf(1000000000)));
+    }
+
+    @Test
+    public void parseItemName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseItemName(null));
+    }
+
+    @Test
+    public void parseItemName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseItemName(INVALID_ITEM_NAME));
+    }
+
+    @Test
+    public void parseItemName_validValueWithoutWhitespace_returnsItemName() throws Exception {
+        ItemName expectedItemName = new ItemName(VALID_ITEM_NAME);
+        assertEquals(expectedItemName, ParserUtil.parseItemName(VALID_ITEM_NAME));
+    }
+
+    @Test
+    public void parseItemName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String itemNameWithWhitespace = WHITESPACE + VALID_ITEM_NAME + WHITESPACE;
+        Name expectedItemName = new Name(VALID_ITEM_NAME);
+        assertEquals(expectedItemName, ParserUtil.parseName(itemNameWithWhitespace));
+    }
+
+    @Test
+    public void parseQuantity_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseQuantity(null));
+    }
+
+    @Test
+    public void parseQuantity_validQuantity_returnsQuantity() throws Exception {
+        assertEquals(new Quantity(1), ParserUtil.parseQuantity("1"));
+        assertEquals(new Quantity(654321), ParserUtil.parseQuantity("654321"));
+        assertEquals(new Quantity(9999999), ParserUtil.parseQuantity("9999999"));
+    }
+
+    @Test
+    public void parseQuantity_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity("a"));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(" "));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity("^"));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(String.valueOf(-1)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(String.valueOf(0)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(String.valueOf(10000000)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseQuantity(String.valueOf(10000001)));
+    }
+
+    @Test
+    public void parseUnitPrice_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseUnitPrice(null));
+    }
+
+    @Test
+    public void parseUnitPrice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(""));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(" "));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice("^"));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(11)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(11.1)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(-1.00)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(-0.00)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(0.00)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(10000000.00)));
+        assertThrows(ParseException.class , () -> ParserUtil.parseUnitPrice(String.valueOf(10000000.01)));
+    }
+
+    @Test
+    public void parseUnitPrice_validUnitPrice_returnsUnitPrice() throws Exception {
+        assertEquals(new UnitPrice(new BigDecimal("0.01")), ParserUtil.parseUnitPrice("0.01"));
+        assertEquals(new UnitPrice(new BigDecimal("1.00")), ParserUtil.parseUnitPrice("1.00"));
+        assertEquals(new UnitPrice(new BigDecimal("543.21")), ParserUtil.parseUnitPrice("543.21"));
+        assertEquals(new UnitPrice(new BigDecimal("9999999.99")), ParserUtil.parseUnitPrice("9999999.99"));
     }
 
     @Test
