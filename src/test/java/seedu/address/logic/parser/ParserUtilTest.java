@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.DURATION_LOWER_LIMIT_INCLUSIVE;
+import static seedu.address.logic.parser.ParserUtil.DURATION_UPPER_LIMIT_INCLUSIVE;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
@@ -264,6 +266,7 @@ public class ParserUtilTest {
     @Test
     public void parseDateTime_validValueWithoutWhitespace_returnsLocalDateTime() throws Exception {
         assertEquals(EXPECTED_DATETIME, ParserUtil.parseDateTime(VALID_DATETIME));
+        assertEquals(LocalDateTime.of(1, 1, 1, 0, 0), ParserUtil.parseDateTime("0001-01-01 00:00"));
     }
 
     @Test
@@ -273,22 +276,56 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseDateTime_nonExistentDateTime_throwsParseException() {
+        // 31st November does not exist
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("2020-11-31 11:00"));
+
+        // 2019 is not a leap year
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("2019-02-29 11:00"));
+
+        // 32 January does not exist
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("2020-01-32 11:00"));
+
+        // 24:00 is not a valid time
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("2020-10-10 24:00"));
+
+        // 0000 is not a valid year
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("0000-01-01 00:00"));
+    }
+
+    @Test
     public void parseDuration_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDuration(null));
     }
 
     @Test
     public void parseDuration_invalidValue_throwsParseException() {
+        // EP: <= 0 minutes
         assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_1));
         assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_2));
         assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_3));
         assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_4));
         assertThrows(ParseException.class, () -> ParserUtil.parseDuration(INVALID_DURATION_5));
+
+        // EP: > 1000000 minutes
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration(String.format("%d",
+                DURATION_UPPER_LIMIT_INCLUSIVE + 1)));
     }
 
     @Test
     public void parseDuration_validValueWithoutWhitespace_returnsDuration() throws Exception {
+        // EP: 0 < minutes <= 1000000
         assertEquals(EXPECTED_DURATION, ParserUtil.parseDuration(VALID_DURATION));
+
+        // Boundary value
+        assertEquals(Duration.ofMinutes(DURATION_LOWER_LIMIT_INCLUSIVE),
+                ParserUtil.parseDuration(String.format("%d", DURATION_LOWER_LIMIT_INCLUSIVE)));
+
+        // Boundary values
+        assertEquals(Duration.ofMinutes(DURATION_UPPER_LIMIT_INCLUSIVE - 1),
+                ParserUtil.parseDuration(String.format("%d", DURATION_UPPER_LIMIT_INCLUSIVE - 1)));
+        assertEquals(Duration.ofMinutes(DURATION_UPPER_LIMIT_INCLUSIVE),
+                ParserUtil.parseDuration("" + DURATION_UPPER_LIMIT_INCLUSIVE));
     }
 
     @Test
