@@ -300,7 +300,8 @@ Displays all entries (contacts or sales) that are associated with the specified 
 * Displays all entries of associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `INDEX` field must be provided.
-* An additional `cl/` field can be provided when performing searching on sales tags. This field results in all contacts who purchased sales items associated with this tag to be displayed. Adding this field will have no effect on the search results for contact tags.
+* An additional `cl/` (stands for 'client') field can be provided when performing searching on sales tags, if provided, instead of displaying sales associated to this tag, StonksBook will display the clients who have purchased items with this tag.
+* If you are searching for contact tags using `ct/`, adding the `cl/` tag will have no effect on the search results.
 
 **Examples**:
 
@@ -317,7 +318,22 @@ Let's say that you would like to find out who are the contacts tagged with frien
 
 3. The **Result Box** will display a message noting that the command was successful, as well as a list of contacts who are tagged with friends.
 
-   <img src="images/tag-find/tag-find-result.png" alt="Enter 'tag delete ct/2'" width="900px"> 
+   <img src="images/tag-find/tag-find-result.png" alt="Result for 'tag delete ct/2'" width="900px"> 
+
+Now suppose that you would like to find out who purchased items that are tagged with music. Here are the steps to follow:
+
+1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
+    - This is to display the contact tags and sales tags in StonksBook, and the contact tag friends is found to be at index 3.
+
+   <img src="images/tag-find/tag-list-sale-second.png" alt="Result for 'tag list'" width="900px"> 
+
+2. Type `tag find st/2` in the **Command Box** and press <kbd>Enter</kbd>.
+
+   <img src="images/tag-find/tag-find-sale-cl.png" alt="Enter 'tag find st/2'" width="900px">
+
+3. The **Result Box** will display a message noting that the command was successful, as well as a list of clients who purchased items tagged with music.
+
+   <img src="images/tag-find/tag-find-sale-cl-result.png" alt="Result for 'tag find st/2'" width="900px">
 
 ### Sales
 
