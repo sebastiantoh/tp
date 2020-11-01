@@ -151,10 +151,17 @@ public class Person {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
-        builder.append(" Remark: ").append(getRemark());
+                .append(getAddress());
+
+        if (getTags().size() > 0) {
+            builder.append(" Tags: ");
+            getTags().forEach(builder::append);
+        }
+
+        if (!getRemark().isEmpty()) {
+            builder.append(" Remark: ").append(getRemark());
+        }
+
         return builder.toString();
     }
 
