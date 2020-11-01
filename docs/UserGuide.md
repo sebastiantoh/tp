@@ -461,7 +461,10 @@ Displays a breakdown of the top 5 tags and the number of sales with each tag.
 
 **Format:** `sale breakdown`
 
-* This will display a bar graph showing the top 5 tags and the number of sales with each tag in an external window.
+* This will display a bar graph showing the top 5 tags with the most sales, 
+and the number of sales belonging to each tag in an external window.
+* The bar graph in the external window will not automatically refresh upon updating of sales. 
+To see the new updated bar graph, close the current external window and run the `sale breakdown` command again.
 
 #### Analysing sales: `sale stats`
 Analyses the sale data and visualises the statistical result.
