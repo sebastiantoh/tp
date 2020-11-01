@@ -246,7 +246,7 @@ public class ParserUtil {
 
         requireNonNull(duration);
         String trimmedDuration = duration.trim();
-        
+
         try {
             long minutes = Long.parseLong(trimmedDuration);
 
