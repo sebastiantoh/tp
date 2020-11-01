@@ -132,7 +132,7 @@ public class AddressBookTest {
                 + "2. Benson Meier Phone: 98765432 Email: johnd@example.com "
                 + "Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends] Remark: Owes me $10\n"
                 + "3. Daniel Meier Phone: 87652533 Email: cornelia@example.com "
-                + "Address: 10th street Tags: [friends] Remark: \n",
+                + "Address: 10th street Tags: [friends]\n",
                 addressBook.findByContactTag(TypicalContactTags.FRIENDS));
     }
 
