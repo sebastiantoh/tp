@@ -31,7 +31,7 @@ public class UnitPriceTest {
         assertFalse(UnitPrice.isValidUnitPriceString("^")); // only non-numeric characters
         assertFalse(UnitPrice.isValidUnitPriceString("11")); // without . character
         assertFalse(UnitPrice.isValidUnitPriceString("11.1")); // missing one decimal place
-        assertFalse(UnitPrice.isValidUnitPriceString("-1.00")); // negative zero
+        assertFalse(UnitPrice.isValidUnitPriceString("-1.00")); // negative unit price
         assertFalse(UnitPrice.isValidUnitPriceString("-0.00")); // negative zero
         assertFalse(UnitPrice.isValidUnitPriceString("0.00")); // zero
         assertFalse(UnitPrice.isValidUnitPriceString("10000000.00")); // ten million
