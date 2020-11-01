@@ -926,11 +926,6 @@ Action | Format, Examples
 **Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
 **Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 c/`
-**Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
-**Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Product Demo d/2020-10-30 15:00 du/60`
-**Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
-**Meeting Edit** | `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]` <br> e.g., `meeting edit 3 d/2020-12-15 12:00`
-**Meeting Stats** | `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]` <br> e.g., `meeting stats 3`
 **Reminder List** | `reminder list [st/STATUS]` <br> e.g., `reminder list st/completed`
 **Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send email to follow up d/2020-10-30 15:00`
 **Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
@@ -943,3 +938,25 @@ Action | Format, Examples
 **Clear Chatbox** | `clear`
 **Delete All Data Entries** | `purge`
 **Exit Application** | `exit`
+
+### Contacts
+
+### Tags
+
+### Sales
+
+### Meetings
+
+| Command                                                                              | Summary                                            | Example (if applicable)                                                                  |
+|--------------------------------------------------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------------|
+| `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION`                   | Adds a meeting with the specified contact          | `meeting add c/2 m/Product Demo d/2020-10-30 15:00 du/60`                                |
+| `meeting delete INDEX`                                                               | Deletes the specified meeting                      | `meeting delete 3`                                                                       |
+| `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]`  | Edits an existing meeting                          | `meeting edit 3 d/2020-12-15 12:00`                                                      |
+| `meeting list [c/CONTACT_INDEX] [a/]`                                                | Lists meetings based on provided parameters        | `meeting list c/1 a/`                                                                    |
+| `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`                                  | Displays statistics on meetings                    | `meeting stats 3`                                                                       |
+
+### Reminders
+
+### Archive
+
+### Miscellaneous
