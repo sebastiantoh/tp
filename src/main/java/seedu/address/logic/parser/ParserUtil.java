@@ -16,8 +16,10 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -45,7 +47,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER =
+            new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd HH:mm")
+                    .parseDefaulting(ChronoField.ERA, 1).toFormatter();
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
