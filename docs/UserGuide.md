@@ -926,10 +926,6 @@ Action | Format, Examples
 **Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
 **Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
 **Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 c/`
-**Reminder List** | `reminder list [st/STATUS]` <br> e.g., `reminder list st/completed`
-**Reminder Add** | `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME` <br> e.g., `reminder add 2 m/Send email to follow up d/2020-10-30 15:00`
-**Reminder Delete** | `reminder delete INDEX` <br> e.g., `reminder delete 4`
-**Reminder Edit** | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME]` <br> e.g., `reminder edit 3 m/Call to follow up d/2020-11-28 13:00`
 **Archive List** | `archive list`
 **Archive Add** | `archive add INDEX` <br> e.g., `archive add 1`
 **Archive Remove** | `archive remove INDEX` <br> e.g., `archive remove 2`
@@ -953,9 +949,17 @@ Action | Format, Examples
 | `meeting delete INDEX`                                                               | Deletes the specified meeting                      | `meeting delete 3`                                                                       |
 | `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]`  | Edits an existing meeting                          | `meeting edit 3 d/2020-12-15 12:00`                                                      |
 | `meeting list [c/CONTACT_INDEX] [a/]`                                                | Lists meetings based on provided parameters        | `meeting list c/1 a/`                                                                    |
-| `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`                                  | Displays statistics on meetings                    | `meeting stats 3`                                                                       |
+| `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`                                  | Displays statistics on meetings                    | `meeting stats 3`                                                                        |
 
 ### Reminders
+
+| Command                                                                              | Summary                                            | Example (if applicable)                                                                  |
+|--------------------------------------------------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------------|
+| `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`                                  | Adds a reminder with the specified contact         | `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00`                            |
+| `reminder delete INDEX`                                                              | Deletes the specified reminder                     | `reminder delete 4`                                                                      |
+| `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]`         | Edits an existing reminder                         | `reminder edit 1 d/2020-10-30 16:30 st/completed`                                        |
+| `reminder list [st/STATUS]`                                                          | Lists reminders based on provided parameters       | `reminder list st/completed`                                                             |
+
 
 ### Archive
 
