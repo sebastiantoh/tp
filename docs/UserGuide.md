@@ -713,7 +713,7 @@ e.g. You can compare the number of meetings you have had in the past 6 months as
 
 StonksBook allows you to manage your reminders within the application.
 
-#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
+#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
 
 Shows a list of all reminders created, sorted in ascending order based on the date the reminder is scheduled.
 
@@ -741,15 +741,15 @@ Adds a reminder scheduled on a particular date that is associated with the speci
 * The datetime must be in the format `yyyy-MM-dd HH:mm`
 
 **Example**:
-Let's say that you need to send a follow-up email to Bernice Yu on 30 October 2020, 3PM. Here's how you can add a reminder into StonksBook:
+Let's say that you need to send a follow-up email to Bernice Yu on 30 November 2020, 3PM. Here's how you can add a reminder into StonksBook:
  
  1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
      - This is to identify the contact index corresponding to Bernice Yu and can be skipped if you already know the
-      index. Let us assume that Bernice Yu is at the second index.
+      index. Let us assume that Bernice Yu is at the first index.
        
  2. The **Result Box** will display a message of the number of contacts listed.
   
- 3. Type `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00` in the **Command Box** and press <kbd>Enter</kbd>.
+ 3. Type `reminder add c/1 m/Send email to follow up d/2020-11-30 15:00` in the **Command Box** and press <kbd>Enter</kbd>.
    
 4. The **Result Box** will display a message noting that the command was successful, and the **Reminder List** will
  contain this newly created reminder.
