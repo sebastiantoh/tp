@@ -298,7 +298,8 @@ Displays all entries (contacts or sales) that are associated with the specified 
 * Displays all entries of associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `INDEX` field must be provided.
-* An additional `cl/` field can be provided when performing searching on sales tags. This field results in all contacts who purchased sales items associated with this tag to be displayed. Adding this field will have no effect on the search results for contact tags.
+* An additional `cl/` (stands for 'client') field can be provided when performing searching on sales tags. If provided, instead of displaying sales associated to this tag, StonksBook will display the clients who have purchased items with this tag.
+* If you are searching for contact tags using `ct/`, adding the `cl/` tag will have no effect on the search results.
 
 **Examples**:
 
@@ -315,7 +316,22 @@ Let's say that you would like to find out who are the contacts tagged with frien
 
 3. The **Result Box** will display a message noting that the command was successful, as well as a list of contacts who are tagged with friends.
 
-   <img src="images/tag-find/tag-find-result.png" alt="Enter 'tag delete ct/2'" width="900px"> 
+   <img src="images/tag-find/tag-find-result.png" alt="Result for 'tag delete ct/2'" width="900px"> 
+
+Now suppose that you would like to find out who purchased items that are tagged with music. Here are the steps to follow:
+
+1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
+    - This is to display the contact tags and sales tags in StonksBook, and the contact tag friends is found to be at index 3.
+
+   <img src="images/tag-find/tag-list-sale-second.png" alt="Result for 'tag list'" width="900px"> 
+
+2. Type `tag find st/2` in the **Command Box** and press <kbd>Enter</kbd>.
+
+   <img src="images/tag-find/tag-find-sale-cl.png" alt="Enter 'tag find st/2'" width="900px">
+
+3. The **Result Box** will display a message noting that the command was successful, as well as a list of clients who purchased items tagged with music.
+
+   <img src="images/tag-find/tag-find-sale-cl-result.png" alt="Result for 'tag find st/2'" width="900px">
 
 ### Sales
 
@@ -893,9 +909,9 @@ Action | Format, Examples
 **Sale Stats** | `sale stats NUMBER_OF_MONTHS` <br> e.g., `sale stats 3`
 **Tag List** | `tag list`
 **Tag Add** | `tag add (ct/ or st/)TAG` <br> e.g., `tag add ct/important`
-**Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
-**Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
-**Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 c/`
+**Tag Delete** | `tag delete (ct/ or st/)INDEX` <br> e.g., `tag delete ct/1`
+**Tag Edit** | `tag edit (ct/ or st/)INDEX t/TAG` <br> e.g., `tag edit st/1 t/fruits`
+**Tag Find** | `tag find (ct/ or st/)INDEX [cl/]` <br> e.g., `tag find st/1 cl/`
 **Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
 **Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Product Demo d/2020-10-30 15:00 du/60`
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
