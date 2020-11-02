@@ -88,4 +88,26 @@ public class SortCommandParserTest {
         assertParseFailure(sortCommandParser, args,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_nameWithArgValue_failure() {
+        String args = " " + PREFIX_CONTACT_NAME + " some arg value";
+        assertParseFailure(sortCommandParser, args,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_emailWithArgValue_failure() {
+        String args = " " + PREFIX_CONTACT_EMAIL + " some arg value";
+        assertParseFailure(sortCommandParser, args,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_descWithArgValue_failure() {
+        String args = " " + PREFIX_CONTACT_NAME + " " + PREFIX_DESC_ORDER
+                + " some arg value";
+        assertParseFailure(sortCommandParser, args,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
 }
