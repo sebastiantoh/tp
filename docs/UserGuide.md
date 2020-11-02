@@ -908,9 +908,9 @@ Action | Format, Examples
 **Sale Stats** | `sale stats NUMBER_OF_MONTHS` <br> e.g., `sale stats 3`
 **Tag List** | `tag list`
 **Tag Add** | `tag add (ct/ or st/)TAG` <br> e.g., `tag add ct/important`
-**Tag Delete** | `tag delete INDEX` <br> e.g., `tag delete 1`
-**Tag Edit** | `tag edit INDEX n/NAME` <br> e.g., `tag edit 1 n/family`
-**Tag Find** | `tag find INDEX [MODEL]` <br> e.g., `tag find 1 c/`
+**Tag Delete** | `tag delete (ct/ or st/)INDEX` <br> e.g., `tag delete ct/1`
+**Tag Edit** | `tag edit (ct/ or st/)INDEX t/TAG` <br> e.g., `tag edit st/1 t/fruits`
+**Tag Find** | `tag find (ct/ or st/)INDEX [cl/]` <br> e.g., `tag find st/1 cl/`
 **Meeting List** | `meeting list [c/CONTACT_INDEX] [a/]`
 **Meeting Add** | `meeting add c/CONTACT_INDEX m/TITLE d/START_DATETIME du/DURATION` <br> e.g., `meeting add 2 m/Product Demo d/2020-10-30 15:00 du/60`
 **Meeting Delete** | `meeting delete INDEX` <br> e.g., `meeting delete 3`
