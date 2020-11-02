@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 /**
  * Represents a Sale item's unit price in the address book.
@@ -13,7 +14,7 @@ public class UnitPrice {
     public static final String MESSAGE_CONSTRAINTS =
             "UnitPrice should be in the form \"DOLLARS.CENTS\", where DOLLARS represents a positive integer "
                     + "and CENTS represents a 2 digit positive integer. It should not be blank, "
-                    + "and the total unit price should be greater than zero";
+                    + "and the total unit price should be greater than zero and less than 10 million.";
 
     /*
      * UnitPrice should be in the form "DOLLARS.CENTS", where DOLLARS represents a positive integer
@@ -40,32 +41,32 @@ public class UnitPrice {
     }
 
     /**
-     * Returns true if given unit price is greater than 0.
+     * Returns true if given unit price is greater than 0 and less than 10 million.
      */
     public static boolean isValidUnitPrice(BigDecimal test) {
-        String string = test.stripTrailingZeros().toPlainString();
-        int index = string.indexOf(".");
-        int noOfDecimalPlaces = index < 0 ? 0 : string.length() - index - 1;
+        requireNonNull(test);
 
-        return test.compareTo(BigDecimal.ZERO) > 0 && noOfDecimalPlaces < 3;
+        boolean validDecimalPlaces = test.scale() == 2;
+        boolean isPriceGreaterThanZero = test.compareTo(BigDecimal.ZERO) > 0;
+        boolean isPriceLessThanTenMillion = test.compareTo(new BigDecimal("10000000")) < 0;
+
+        return validDecimalPlaces && isPriceGreaterThanZero && isPriceLessThanTenMillion;
     }
 
     /**
-     * Returns true if a given params is a valid unit price.
+     * Returns true if a given params matches the validation string.
      */
     public static boolean isValidUnitPriceString(String test) {
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
         }
 
-        String[] priceSplit = test.split("\\.");
-        int dollars = Integer.parseInt(priceSplit[0]);
-        int cents = Integer.parseInt(priceSplit[1]);
-
-        boolean isCentsValid = cents >= 0 && cents < 100;
-        boolean isDollarsValid = dollars >= 0;
-        boolean isPriceGreaterThanZero = (cents + dollars) > 0;
-        return isCentsValid && isDollarsValid && isPriceGreaterThanZero;
+        try {
+            BigDecimal parsedUnitPrice = new BigDecimal(test);
+            return isValidUnitPrice(parsedUnitPrice);
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public String getUnitPriceString() {
@@ -74,11 +75,7 @@ public class UnitPrice {
 
     @Override
     public String toString() {
-        return this.amount.setScale(2).toPlainString();
-
-        // Dollar sign has been temporarily removed to pass test cases
-        // TODO: reinstate the following method after implementing GUI for sales
-        // return NumberFormat.getCurrencyInstance().format(this.amount);
+        return NumberFormat.getCurrencyInstance().format(this.amount);
     }
 
     @Override

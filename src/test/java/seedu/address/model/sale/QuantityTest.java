@@ -6,8 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Name;
-
 public class QuantityTest {
 
     @Test
@@ -17,7 +15,7 @@ public class QuantityTest {
 
     @Test
     public void constructor_invalidQuantity_throwsIllegalArgumentException() {
-        String invalidQuantity = "";
+        Integer invalidQuantity = -34;
         assertThrows(IllegalArgumentException.class, () -> new Quantity(invalidQuantity));
     }
 
@@ -27,14 +25,15 @@ public class QuantityTest {
         assertThrows(NullPointerException.class, () -> Quantity.isValidQuantity(null));
 
         // invalid quantity
-        assertFalse(Quantity.isValidQuantity("")); // empty string
-        assertFalse(Quantity.isValidQuantity(" ")); // spaces only
-        assertFalse(Quantity.isValidQuantity("^")); // only non-numeric characters
-        assertFalse(Quantity.isValidQuantity("1.1")); // contains non-numeric characters
+        assertFalse(Quantity.isValidQuantity(-1)); // negative number
+        assertFalse(Quantity.isValidQuantity(0)); // zero
+        assertFalse(Quantity.isValidQuantity(10000000)); // 10 million
+        assertFalse(Quantity.isValidQuantity(10000001)); // 10 million + 1
+
 
         // valid quantity
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("0")); // zero
-
+        assertTrue(Quantity.isValidQuantity(12345)); // numbers only
+        assertTrue(Quantity.isValidQuantity(1)); // one
+        assertTrue(Quantity.isValidQuantity(9999999)); // 10 million - 1
     }
 }

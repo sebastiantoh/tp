@@ -25,13 +25,13 @@ public class JsonAdaptedSaleTest {
     private static final String INVALID_ITEM_NAME = "@pple";
     private static final String INVALID_DATETIME_1 = "2020/10/10 10AM";
     private static final String INVALID_DATETIME_2 = "30/10/2020 12:12";
-    private static final String INVALID_QUANTITY = "+6";
+    private static final Integer INVALID_QUANTITY = 60000000;
     private static final String INVALID_UNIT_PRICE = "1.493";
 
     private static final String VALID_ITEM_NAME = BALL.getItemName().toString();
     private static final Person VALID_BUYER = ALICE;
     private static final String VALID_DATETIME = "2020-10-30T15:19";
-    private static final String VALID_QUANTITY = BALL.getQuantity().toString();
+    private static final Integer VALID_QUANTITY = BALL.getQuantity().quantity;
     private static final String VALID_UNIT_PRICE = BALL.getUnitPrice().getAmount().setScale(2).toPlainString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BALL.getTags().stream()
             .map(JsonAdaptedTag::new)

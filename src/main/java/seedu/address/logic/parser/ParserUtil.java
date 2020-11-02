@@ -16,7 +16,10 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -44,7 +47,11 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER =
+            new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd HH:mm")
+                    .parseDefaulting(ChronoField.ERA, 1).toFormatter();
+    public static final int DURATION_LOWER_LIMIT_INCLUSIVE = 1;
+    public static final int DURATION_UPPER_LIMIT_INCLUSIVE = 1000000;
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -208,7 +215,7 @@ public class ParserUtil {
         String trimmedDateTime = dateTime.trim();
 
         try {
-            return LocalDateTime.parse(trimmedDateTime, DATE_TIME_FORMATTER);
+            return LocalDateTime.parse(trimmedDateTime, DATE_TIME_FORMATTER.withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INVALID_DATETIME);
         }
@@ -236,17 +243,21 @@ public class ParserUtil {
      * @throws ParseException if the given {@code duration} is not a positive integer.
      */
     public static Duration parseDuration(String duration) throws ParseException {
+
         requireNonNull(duration);
         String trimmedDuration = duration.trim();
 
         try {
             long minutes = Long.parseLong(trimmedDuration);
-            if (minutes <= 0) {
+
+            if (minutes < DURATION_LOWER_LIMIT_INCLUSIVE) {
+                throw new ParseException(MESSAGE_INVALID_DURATION);
+            } else if (minutes > DURATION_UPPER_LIMIT_INCLUSIVE) {
                 throw new ParseException(MESSAGE_INVALID_DURATION);
             }
 
             return Duration.ofMinutes(minutes);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ArithmeticException e) {
             throw new ParseException(MESSAGE_INVALID_DURATION);
         }
     }
@@ -308,10 +319,19 @@ public class ParserUtil {
     public static Quantity parseQuantity(String quantity) throws ParseException {
         requireNonNull(quantity);
         String trimmedQuantity = quantity.trim();
-        if (!Quantity.isValidQuantity(trimmedQuantity)) {
+        Integer parsedQuantity;
+
+        try {
+            parsedQuantity = Integer.parseInt(trimmedQuantity);
+        } catch (NumberFormatException e) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
-        return new Quantity(trimmedQuantity);
+
+        if (!Quantity.isValidQuantity(parsedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Quantity(parsedQuantity);
     }
 
     /**
@@ -323,6 +343,7 @@ public class ParserUtil {
     public static UnitPrice parseUnitPrice(String unitPrice) throws ParseException {
         requireNonNull(unitPrice);
         String trimmedUnitPrice = unitPrice.trim();
+
         if (!UnitPrice.isValidUnitPriceString(trimmedUnitPrice)) {
             throw new ParseException(UnitPrice.MESSAGE_CONSTRAINTS);
         }

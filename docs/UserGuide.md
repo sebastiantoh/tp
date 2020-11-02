@@ -174,14 +174,13 @@ e.g. You want to find the contact Alex Yeoh but you only roughly remember the sp
 * `contact find alx david` returns David Li, Alex Yeoh
 
 #### Sorting contacts: `contact sort`
-Sorts contacts based on the name, email address or the total sale amount associated to the contact.
+Sorts contacts based on the name or email address associated to the contact.
 
 **Format**: `contact sort KEYWORD [ORDER]`
 
 * `KEYWORD` must exactly match to one of the following:
     * `n/` for name
     * `e/` for email address
-    * `s/` for total sales amount
 
 * If `ORDER` is present, `ORDER` must exactly match `desc`.
 
@@ -199,8 +198,7 @@ e.g. You want to see the contacts who have paid you the most for your sales and 
 
 **Examples**:
 * `contact sort e/ desc` sorts the contact list based on the email address in non-ascending order
-* `contact find n/`  sorts the contact list based on the contact name in non-descending order
-* `contact find s/ desc` sorts the contact list based on the total sales amount in non-ascending order
+* `contact sort n/`  sorts the contact list based on the contact name in non-descending order
 
 #### Deleting a contact: `contact delete`
 Deletes the specified contact from StonksBook. All associated reminders and meetings will be deleted as well.
@@ -406,13 +404,13 @@ Adds a sale to the specified contact in StonksBook.
 * The `CONTACT_INDEX` refers to the index number shown in the displayed contact list, and must be a positive integer 1, 2, 3, …​
 * Multiple `CONTACT_INDEX` can be specified, meaning that you can add a sale to multiple contacts.
 * The `DATETIME_OF_PURCHASE` must be in the format `yyyy-MM-dd HH:mm`
-* The `UNIT_PRICE` must be a positive number with 2 decimal places, in format `DOLLARS.CENTS`.
-* The `QUANTITY` must be a positive integer 1, 2, 3, …​
+* The `UNIT_PRICE` must be a positive number greater than 0 and less than 10 million with 2 decimal places, in format `DOLLARS.CENTS`.
+* The `QUANTITY` must be a positive integer greater than 0 and less than 10 million.
 * It is compulsory to have a tag for the sales item. This is to ensure the ease of data analytics.
 * The tags provided must exist in StonksBook first before you can associate the sales item to them.
 
 **Example:**
-Suppose you successfully sold 100 guitar tuners at a unit price of $10 with Bernice Yu on 30 October 2020, 3pm. 
+Suppose you successfully sold 100 guitar tuners at a unit price of $10.00 with Bernice Yu on 30 October 2020, 3pm. 
 Here's how you can add this new sale into StonksBook:
  
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
@@ -492,7 +490,10 @@ Displays a breakdown of the top 5 tags and the number of sales with each tag.
 
 **Format:** `sale breakdown`
 
-* This will display a bar graph showing the top 5 tags and the number of sales with each tag in an external window.
+* This will display a bar graph showing the top 5 tags with the most sales, 
+and the number of sales belonging to each tag in an external window.
+* The bar graph in the external window will not automatically refresh upon updating of sales. 
+To see the new updated bar graph, close the current external window and run the `sale breakdown` command again.
 
 #### Analysing sales: `sale stats`
 Analyses the sale data and visualises the statistical result.
@@ -514,9 +515,9 @@ e.g. You can compare the number of meetings you have had in the past 6 months as
 * `sale stats 3` will return a bar chart containing the number of sale whose sale date is within
    June 2020, July 2020 and August 2020 respectively if the current month is August and the current year is 2020.
 
-### Scheduled Meetings
+### Meetings
 
-StonksBook allows you to manage your scheduled meetings within the application.
+StonksBook allows you to manage your meetings within the application.
 
 #### Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
 
@@ -568,7 +569,7 @@ To prevent the situation in which you unknowingly scheduled conflicting meetings
 * The index refers to the index number shown in the displayed contact list.
 * The index must be a positive integer 1, 2, 3, …​
 * The start datetime must be in the format `yyyy-MM-dd HH:mm`
-* The duration is specified in minutes and must be a positive integer.
+* The duration is specified in minutes and must be a positive integer between 1 and 1000000 (inclusive).
 
 **Example**:
 Let's say that you successfully secured a lunch meeting with Alex Yeoh that is scheduled for 3 December 2020 12pm
