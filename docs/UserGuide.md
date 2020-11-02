@@ -631,7 +631,7 @@ Let's say that you have just received an unfortunate email from Alex Yeoh who no
       the meeting that is to be deleted. This step can be skipped if you already know the index. Let
        us assume that the meeting is at the third index.
     
-    <img src="images/meeting-delete/meeting-third-index.png" alt="Result for 'meeting list'" width="900px">
+    <img src="images/meeting-delete/meeting-third-index.png" alt="Meeting at the third index" width="900px">
 
  2. Type `meeting delete 3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
  
@@ -666,11 +666,17 @@ Let's say that you have just received an email from Bernice Yu who wishes to res
     - This is to display all upcoming meetings in the **Meeting List**, which is necessary to identify the index of
      the meeting that is to be edited. This step can be skipped if you already know the index. Let us assume that the meeting is at the third index.
 
+    <img src="images/meeting-edit/meeting-third-index.png" alt="Meeting at the third index" width="900px">
+    
 2. Type `meeting edit 3 d/2020-12-15 12:00` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
 
+    <img src="images/meeting-edit/meeting-edit.png" alt="Enter command 'meeting edit'" width="900px">
+    
 3. The **Result Box** will display a message noting that the command was successful, and the meeting is updated in the 
      the **Meeting List**.
 
+    <img src="images/meeting-edit/meeting-edit-result.png" alt="Result for 'meeting edit'" width="900px">
+    
 #### Analysing meetings: `meeting stats`
 Analyses the meeting data and visualises the statistical result.
 
@@ -725,9 +731,13 @@ Shows a list of all reminders created, sorted in ascending order based on the da
 Let's say that you want to view all your completed reminders. Here's how you can do so:
  
 1. Type `reminder list st/completed` in the **Command Box** and press <kbd>Enter</kbd>. 
+    
+    <img src="images/reminder-list/reminder-list.png" alt="Enter command 'reminder list'" width="900px">
 
 2. The **Result Box** will display a message noting that the command was successful, and the **Reminder List** will
  show a list of completed reminders.
+ 
+    <img src="images/reminder-list/reminder-list-result.png" alt="Result for 'reminder list'" width="900px">
 
 #### Adding reminders: `reminder add` \[Sebastian Toh Shi Jian\]
 
@@ -747,14 +757,22 @@ Let's say that you need to send a follow-up email to Bernice Yu on 30 November 2
      - This is to identify the contact index corresponding to Bernice Yu and can be skipped if you already know the
       index. Let us assume that Bernice Yu is at the first index.
        
+       <img src="images/reminder-add/contact-find-bernice.png" alt="Enter 'contact find bernice' in the command box" width="900px">
+            
  2. The **Result Box** will display a message of the number of contacts listed.
+    
+    <img src="images/reminder-add/contact-find-bernice-result.png" alt="Result for 'contact find bernice'" width="900px">
   
  3. Type `reminder add c/1 m/Send email to follow up d/2020-11-30 15:00` in the **Command Box** and press <kbd>Enter</kbd>.
+   
+   <img src="images/reminder-add/reminder-add.png" alt="Enter command 'reminder add'" width="900px">
    
 4. The **Result Box** will display a message noting that the command was successful, and the **Reminder List** will
  contain this newly created reminder.
     - You may have to scroll through your **Reminder List** to find this newly created reminder since reminders are
      sorted in ascending order based on the date the reminder is scheduled.   
+     
+     <img src="images/reminder-add/reminder-add-result.png" alt="Result for 'reminder add'" width="900px">
     
 #### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
 
@@ -775,10 +793,16 @@ Let's say that a reminder in StonksBook is no longer applicable and you wish to 
       the reminder that is to be deleted. This step can be skipped if you already know the index. Let
        us assume that the reminder is at the third index.
 
+    <img src="images/reminder-delete/reminder-third-index.png" alt="Reminder at third index" width="900px">
+    
  2. Type `reminder delete 3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
+     
+    <img src="images/reminder-delete/reminder-delete.png" alt="Enter command 'reminder delete'" width="900px">
      
  3. The **Result Box** will display a message noting that the command was successful, and the reminder is deleted from
   the **Reminder List**.
+  
+    <img src="images/reminder-delete/reminder-delete-result.png" alt="Result for 'reminder delete'" width="900px">
 
 #### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
 
