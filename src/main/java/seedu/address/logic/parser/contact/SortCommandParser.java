@@ -40,7 +40,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         if (presentSortingAttributeCounter != 1 || !argMultimap.getPreamble().isEmpty()
-            || this.hasArgValuesForAnyPresentPrefixes(argMultimap)) {
+            || this.hasArgValueForAnyPresentPrefixes(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
@@ -49,7 +49,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         return new SortCommand(sortingAttribute, isSecondArgumentDesc);
     }
 
-    private boolean hasArgValuesForAnyPresentPrefixes(ArgumentMultimap argMultimap) {
+    private boolean hasArgValueForAnyPresentPrefixes(ArgumentMultimap argMultimap) {
         boolean hasArgValueForName = argMultimap.getValue(PREFIX_CONTACT_NAME).isPresent()
                 && !argMultimap.getValue(PREFIX_CONTACT_NAME).get().isBlank();
 
