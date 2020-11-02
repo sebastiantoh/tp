@@ -173,14 +173,12 @@ e.g. You want to find the contact Alex Yeoh but you only roughly remember the sp
    
     <figure>
         <img src="images/contact-find/contactfindfirststep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
    
 2. The contact list now contains contacts whose name is similar to alx yo.
 
     <figure>
         <img src="images/contact-find/contactfindsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
     
 3. Alex Yeoh appears as the first contact on the list.
@@ -210,7 +208,6 @@ e.g. You want to see the contacts who have paid you the most for your sales and 
 
     <figure>
         <img src="images/contact-sort/contactsortfirststep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
     
 2. The contact list is sorted by the total sales amount, from highest to lowest.
@@ -218,7 +215,6 @@ e.g. You want to see the contacts who have paid you the most for your sales and 
 
     <figure>
         <img src="images/contact-sort/contactsortsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 **Examples**:
@@ -261,14 +257,12 @@ Let's say that you want to add a new sales tag called electronics. Here are the 
 
     <figure>
         <img src="images/tag-add/tag-add.png" alt="Enter 'tag add st/electronics' in the Command Box" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
     
 2. The **Result Box** will display a message noting that the command was successful, and the **Sales Tags** will now contain this new sales tag.
 
     <figure>
         <img src="images/tag-add/tag-add-result.png" alt="Result for 'tag add st/electronics'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 #### Listing all tags: `tag list` \[Wang Luo\]
@@ -285,14 +279,12 @@ Let's say that you want to see all the tags you have created so far. Here are th
 
     <figure>
         <img src="images/tag-list/tag-list.png" alt="Enter 'tag list'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 2. The **Result Box** will display a message noting that the command was successful, and the bottom right box will now display **Contact Tags** and **Sales Tags**.
 
     <figure>
         <img src="images/tag-list/tag-list-result.png" alt="Result for 'tag list'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 #### Editing a tag: `tag edit` \[Wang Luo\]
@@ -319,21 +311,18 @@ Let's say that you decides to change the tag colleagues to teammates instead. He
 
     <figure>
         <img src="images/tag-edit/tag-list-second.png" alt="Result for 'tag list'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 2. Type `tag edit ct/2 t/teammates` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
         <img src="images/tag-edit/tag-edit.png" alt="Enter 'tag edit ct/2 t/teammates'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 3. The **Result Box** will display a message noting that the command was successful, and the **Contact Tags** will now contain teammates instead of colleagues. Note that the tags are sorted alphabetically, hence, you may need to scroll up or down to see the updated tag. Also, note that the contact Bernice Yu is now tagged to teammates.
 
     <figure>
         <img src="images/tag-edit/tag-edit-result.png" alt="Enter 'tag edit ct/2 t/teammates'" width="900px"> 
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>    
 
 #### Deleting a tag: `tag delete` \[Wang Luo\]
@@ -356,21 +345,18 @@ Let's say that you think one contact tag (colleagues) you created before is no l
 
     <figure> 
         <img src="images/tag-edit/tag-list-second.png" alt="Result for 'tag list'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>  
 
 2. Type `tag delete ct/2` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure> 
         <img src="images/tag-delete/tag-delete.png" alt="Enter 'tag delete ct/2'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure> 
 
 3. The **Result Box** will display a message noting that the command was successful, and the **Contact Tags** will no longer contain the contact tag colleagues. Also note that Bernice Yu is no longer tagged with colleagues.
 
     <figure> 
         <img src="images/tag-delete/tag-delete-result.png" alt="Enter 'tag delete ct/2'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 #### Retrieving entries by tag: `tag find` \[Wang Luo\]
@@ -394,21 +380,18 @@ Let's say that you would like to find out who are the contacts tagged with frien
 
     <figure> 
         <img src="images/tag-find/tag-list-third.png" alt="Result for 'tag list'" width="900px"> 
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 2. Type `tag find ct/3` in the **Command Box** and press <kbd>Enter</kbd>. 
 
     <figure> 
         <img src="images/tag-find/tag-find.png" alt="Enter 'tag delete ct/2'" width="900px"> 
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
     
 3. The **Result Box** will display a message noting that the command was successful, as well as a list of contacts who are tagged with friends.
 
     <figure>  
         <img src="images/tag-find/tag-find-result.png" alt="Result for 'tag delete ct/2'" width="900px"> 
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>    
 
 Now suppose that you would like to find out who purchased items that are tagged with music. Here are the steps to follow:
@@ -418,21 +401,18 @@ Now suppose that you would like to find out who purchased items that are tagged 
 
     <figure>   
         <img src="images/tag-find/tag-list-sale-second.png" alt="Result for 'tag list'" width="900px"> 
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>  
 
 2. Type `tag find st/2` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>   
         <img src="images/tag-find/tag-find-sale-cl.png" alt="Enter 'tag find st/2'" width="900px"> 
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 3. The **Result Box** will display a message noting that the command was successful, as well as a list of clients who purchased items tagged with music.
 
     <figure>    
         <img src="images/tag-find/tag-find-sale-cl-result.png" alt="Result for 'tag find st/2'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 ### Sales
@@ -469,12 +449,10 @@ e.g. you want to see the sales you have made in August 2020, you can do so as sh
 
     <figure>    
         <img src="images/sale-list/salelistfirststep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
     
     <figure>    
         <img src="images/sale-list/salelistsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 **Example:** Let's say you want to view all sales made to Bernice Yu. This is what you need to do:
@@ -606,14 +584,12 @@ e.g. You can compare the number of meetings you have had in the past 6 months as
 
     <figure>    
         <img src="images/sale-stats/saleStatsFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 2. A new window containing the bar chart pops up.
 
     <figure>    
         <img src="images/sale-stats/saleStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 **Examples**:
@@ -644,7 +620,6 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
      
     <figure>    
         <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
     
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
@@ -652,14 +627,12 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
  
      <figure>    
         <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
      </figure>
  
 3. Type `meeting list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
 
      <figure>    
         <img src="images/meeting-list/meeting-list.png" alt="Enter 'meeting list c/1' in the command box" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
      </figure>
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Meeting List** will
@@ -667,7 +640,6 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
 
      <figure>    
         <img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
      </figure>
 
 #### Adding a meeting: `meeting add` \[Sebastian Toh Shi Jian\]
@@ -698,21 +670,18 @@ and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
 
      <figure>    
         <img src="images/meeting-list/contact-find-alex.png" alt="Enter 'contact find alex' in the command box" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
      </figure>
  
  2. The **Result Box** will display a message of the number of contacts listed.
   
      <figure>    
         <img src="images/meeting-list/contact-find-alex-result.png" alt="Result for 'contact find alex'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
      </figure>
  
  3. Type `meeting add c/1 m/Lunch with Alex Yeoh d/2020-12-03 12:00 du/90` in the **Command Box** and press <kbd>Enter</kbd>.
  
     <figure>    
         <img src="images/meeting-add/meeting-add.png" alt="Enter 'meeting add' in the command box" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
   
 4. The **Result Box** will display a message noting that the command was successful, and the **Meeting List** will
@@ -722,7 +691,6 @@ and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
  
     <figure>    
         <img src="images/meeting-add/meeting-add-result.png" alt="Result for 'meeting add'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>  
 
 #### Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
@@ -746,14 +714,12 @@ Let's say that you have just received an unfortunate email from Alex Yeoh who no
 
     <figure>    
         <img src="images/meeting-delete/meeting-third-index.png" alt="Meeting at the third index" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>      
 
  2. Type `meeting delete 3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
 
     <figure>    
         <img src="images/meeting-delete/meeting-delete.png" alt="Enter command 'meeting delete'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>      
      
  3. The **Result Box** will display a message noting that the command was successful, and the meeting is deleted from
@@ -761,7 +727,6 @@ Let's say that you have just received an unfortunate email from Alex Yeoh who no
 
     <figure>    
         <img src="images/meeting-delete/meeting-delete-result.png" alt="Result for 'meeting delete'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>   
  
 #### Editing a meeting: `meeting edit` \[Sebastian Toh Shi Jian\]
@@ -790,14 +755,12 @@ Let's say that you have just received an email from Bernice Yu who wishes to res
 
     <figure>    
         <img src="images/meeting-edit/meeting-third-index.png" alt="Meeting at the third index" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>   
      
 2. Type `meeting edit 3 d/2020-12-15 12:00` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
 
     <figure>    
         <img src="images/meeting-edit/meeting-edit.png" alt="Enter command 'meeting edit'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>  
     
 3. The **Result Box** will display a message noting that the command was successful, and the meeting is updated in the 
@@ -805,7 +768,6 @@ Let's say that you have just received an email from Bernice Yu who wishes to res
 
     <figure>    
         <img src="images/meeting-edit/meeting-edit-result.png" alt="Result for 'meeting edit'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>  
     
 #### Analysing meetings: `meeting stats`
@@ -837,14 +799,12 @@ e.g. You can compare the number of meetings you have had in the past 6 months as
 
     <figure>    
         <img src="images/meeting-stats/meetingStatsFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>  
 
 2. A new window containing the bar chart pops up.
 
     <figure>    
         <img src="images/meeting-stats/meetingStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 **Examples**:
@@ -873,7 +833,6 @@ Let's say that you want to view all your completed reminders. Here's how you can
 
     <figure>    
         <img src="images/reminder-list/reminder-list.png" alt="Enter command 'reminder list'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 2. The **Result Box** will display a message noting that the command was successful, and the **Reminder List** will
@@ -881,7 +840,6 @@ Let's say that you want to view all your completed reminders. Here's how you can
 
     <figure>
         <img src="images/reminder-list/reminder-list-result.png" alt="Result for 'reminder list'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 #### Adding reminders: `reminder add` \[Sebastian Toh Shi Jian\]
@@ -904,14 +862,12 @@ Let's say that you need to send a follow-up email to Bernice Yu on 30 November 2
        
     <figure>
         <img src="images/reminder-add/contact-find-bernice.png" alt="Enter 'contact find bernice' in the command box" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
     
  2. The **Result Box** will display a message of the number of contacts listed.
 
     <figure>
         <img src="images/reminder-add/contact-find-bernice-result.png" alt="Result for 'contact find bernice'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
     
   
@@ -919,7 +875,6 @@ Let's say that you need to send a follow-up email to Bernice Yu on 30 November 2
 
     <figure>
         <img src="images/reminder-add/reminder-add.png" alt="Enter command 'reminder add'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
    
 4. The **Result Box** will display a message noting that the command was successful, and the **Reminder List** will
@@ -929,7 +884,6 @@ Let's say that you need to send a follow-up email to Bernice Yu on 30 November 2
 
     <figure>
         <img src="images/reminder-add/reminder-add-result.png" alt="Result for 'reminder add'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure> 
     
 #### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
@@ -953,14 +907,12 @@ Let's say that a reminder in StonksBook is no longer applicable and you wish to 
 
     <figure>
         <img src="images/reminder-delete/reminder-third-index.png" alt="Reminder at third index" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure> 
 
  2. Type `reminder delete 3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
 
     <figure>
         <img src="images/reminder-delete/reminder-delete.png" alt="Enter command 'reminder delete'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>  
      
  3. The **Result Box** will display a message noting that the command was successful, and the reminder is deleted from
@@ -968,7 +920,6 @@ Let's say that a reminder in StonksBook is no longer applicable and you wish to 
 
     <figure>
         <img src="images/reminder-delete/reminder-delete-result.png" alt="Result for 'reminder delete'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 #### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
@@ -991,21 +942,18 @@ Let's say that Alex Yeoh would like to hear from you sooner for the follow up an
 
     <figure>
         <img src="images/reminder-edit/reminder-list-first.png" alt="Enter 'reminder list'" width="900px"> 
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 2. Type `reminder edit 1 d/2020-10-30 16:30 st/completed` in the **Command Box** and press <kbd>Enter</kbd>. 
 
     <figure> 
         <img src="images/reminder-edit/reminder-edit.png" alt="Enter 'reminder edit 1 d/2020-10-30 16:30 st/completed'" width="900px"> 
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 3. The **Result Box** will display a message noting that the command was successful, as well as the details of the updated reminder.
 
     <figure>  
         <img src="images/reminder-edit/reminder-edit-result.png" alt="Result of 'reminder edit 1 d/2020-10-30 16:30 st/completed'" width="900px"> 
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 ### Archive
@@ -1085,7 +1033,6 @@ Changes the theme of the GUI to light and dark theme respectively. The default t
 
 <figure>  
     <img src="images/lightTheme.png" alt="Light theme" width="900px">
-    <figcaption>Fig. {TODO} - {TODO}</figcaption>
 </figure>
 
 Format: `lightmode`/`darkmode`
@@ -1099,14 +1046,12 @@ You can access the help page quickly as shown.
 
     <figure>  
         <img src="images/help/helpFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
     
 2. The help window pops up.
 
     <figure>  
         <img src="images/help/helpSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
-        <figcaption>Fig. {TODO} - {TODO}</figcaption>
     </figure>
 
 **Format**: `help`
