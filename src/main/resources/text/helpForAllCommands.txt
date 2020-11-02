@@ -17,9 +17,9 @@ archive remove              Removes a contact from the archive                  
 Tag commands
 ----------------------
 tag add                     Adds a tag                                                  tag add (ct/ or st/)TAG
-tag delete                  Deletes the specified tag                                   tag delete INDEX
-tag edit                    Edits an existing tag to the specified tag name             tag edit INDEX n/NAME
-tag find                    Displays all entries related to the specified tag           tag find INDEX [MODEL]
+tag delete                  Deletes the specified contact or sales tag                  tag delete (ct/ or st/)INDEX
+tag edit                    Edits an existing tag to the specified new tag name         tag edit (ct/ or st/)INDEX t/TAG
+tag find                    Displays all entries related to the specified tag           tag find (ct/ or st/)INDEX [cl/]
 tag list                    Lists all tags                                              tag list
 
 Sale commands
