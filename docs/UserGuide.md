@@ -300,7 +300,7 @@ Displays all entries (contacts or sales) that are associated with the specified 
 * Displays all entries of associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
 * The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `INDEX` field must be provided.
-* An additional `cl/` (stands for 'client') field can be provided when performing searching on sales tags, if provided, instead of displaying sales associated to this tag, StonksBook will display the clients who have purchased items with this tag.
+* An additional `cl/` (stands for 'client') field can be provided when performing searching on sales tags. If provided, instead of displaying sales associated to this tag, StonksBook will display the clients who have purchased items with this tag.
 * If you are searching for contact tags using `ct/`, adding the `cl/` tag will have no effect on the search results.
 
 **Examples**:
