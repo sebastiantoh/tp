@@ -722,12 +722,12 @@ Shows a list of all reminders created, sorted in ascending order based on the da
 * `STATUS` can be either `completed` or `pending`.
 
 **Example**:
-Let's say that you want to view all your pending reminders. Here's how you can do so:
+Let's say that you want to view all your completed reminders. Here's how you can do so:
  
-1. Type `reminder list st/pending` in the **Command Box** and press <kbd>Enter</kbd>. 
+1. Type `reminder list st/completed` in the **Command Box** and press <kbd>Enter</kbd>. 
 
 2. The **Result Box** will display a message noting that the command was successful, and the **Reminder List** will
- show a list of pending reminders.
+ show a list of completed reminders.
 
 #### Adding reminders: `reminder add` \[Sebastian Toh Shi Jian\]
 
