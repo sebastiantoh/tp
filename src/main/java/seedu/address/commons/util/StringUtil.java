@@ -59,8 +59,16 @@ public class StringUtil {
         requireNonNull(s);
 
         try {
-            int value = Integer.parseInt(s);
-            return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
+            if (s.length() == 0) {
+                return false;
+            }
+            if (s.length() == 1 && s.charAt(0) == '0') {
+                return false;
+            }
+            for (int i = 0; i < s.length(); i++) {
+                Integer.parseInt(String.valueOf(s.charAt(i)));
+            }
+            return true;
         } catch (NumberFormatException nfe) {
             return false;
         }
