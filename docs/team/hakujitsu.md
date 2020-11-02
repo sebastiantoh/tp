@@ -5,7 +5,8 @@ title: Kwek Min Yih's Project Portfolio Page
 
  ## Project: StonksBook
 
- StonksBook is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+ StonksBook is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) 
+ while still having the benefits of a Graphical User Interface (GUI). 
  If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps.
 
  * **New Feature**: Sales Feature
@@ -35,10 +36,13 @@ title: Kwek Min Yih's Project Portfolio Page
  A summary of the analysis can be viewed here: "".
  
  New Feature: Ad Hoc Graphical User Interface (GUI)
- * What it does: switches the object list displayed in the component. 
-  * Justification: allows for the user to store information that does not correspond to any particular person field.
-  For example, they can use it to take note of the client's needs, wants and preferences.
-  * Highlights: This was a relatively simple feature to implement.
+ * What it does: The Ad Hoc GUI can display either the Sales Panel or Tag Panel, 
+ toggling between both depending on which command was most recently executed. 
+ For example, upon executing a Sale command, the Sale Panel will be displayed, and vice versa with the Tag Panel.
+ * Justification: This feature reduces the number of panels needed to display the different models.
+ It also allows for relevant information to be shown after every command execution, improving the general user experience.
+ * Highlights: This feature required changes to the existing CommandResult class, 
+ and affected existing Command classes for Sale and Tag.
  
  Enhancement: Addition of Remark field to Person class
  * What it does: allows the user to add miscellaneous remarks to contacts in the address book. 
@@ -53,7 +57,8 @@ title: Kwek Min Yih's Project Portfolio Page
  ### Contributions to the DG: Which sections did you contribute to the DG? Which UML diagrams did you add/updated?
  ### Contributions to team-based tasks :
  
- * I have handled release management for an informal milestone set by the team, v1.3a, intended to be a checkpoint within v1.3.
+ * I handled release management for an informal milestone set by the team, v1.3a, intended to be a checkpoint within v1.3.
+ * I handled the JAR release in Week 10.
  * I maintained the issue tracker by removing duplicate issues after the conclusion of the mock PE. 
  * I uploaded the labelled UI diagram in the User Guide.
  
