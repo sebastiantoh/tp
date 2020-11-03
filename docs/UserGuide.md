@@ -423,14 +423,14 @@ Here's how you can add this new sale into StonksBook:
  
 3. Type `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<img src="images/sale-add/salelistcontactthirdstep.png" alt="enter 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
+<img src="images/sale-add/saleaddthirdstep.png" alt="enter 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
   
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  contain this newly created sale.
     - You may have to scroll through your **Sale List** to find this newly created sale since sales are
      sorted in ascending order based on the date the sale is made.
 
-<img src="images/sale-add/salelistcontactfourthstep.png" alt="result for 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
+<img src="images/sale-add/saleaddfourthstep.png" alt="result for 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
 
 #### Deleting a sales item: `sale delete` \[Kwek Min Yih\]
 
