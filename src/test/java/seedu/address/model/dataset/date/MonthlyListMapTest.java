@@ -33,8 +33,12 @@ public class MonthlyListMapTest {
     public void addItem_validInputs_success() {
         Month month = MEET_ALICE.getStartDate().getMonth();
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
+
+        //Add item to empty list -> list size = 1
         this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
         assertEquals(1, this.meetingMonthlyListMap.getItemCount(month, year));
+
+        //Add item to list of size 1 -> list size = 2
         this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
         assertEquals(2, this.meetingMonthlyListMap.getItemCount(month, year));
     }
@@ -43,12 +47,18 @@ public class MonthlyListMapTest {
     public void removeItem_validInputs_success() {
         Month month = MEET_ALICE.getStartDate().getMonth();
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
+
+        //Remove existing item in a list of size 2 -> list size = 1
         this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
         this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
         this.meetingMonthlyListMap.removeItem(month, year, MEET_ALICE);
         assertEquals(1, this.meetingMonthlyListMap.getItemCount(month, year));
+
+        //Remove existing item in a list of size 1 -> list size = 0
         this.meetingMonthlyListMap.removeItem(month, year, MEET_ALICE);
         assertEquals(0, this.meetingMonthlyListMap.getItemCount(month, year));
+
+        //Remove existing item in a list of size 0 -> list size = 0
         this.meetingMonthlyListMap.removeItem(month, year, MEET_ALICE);
         assertEquals(0, this.meetingMonthlyListMap.getItemCount(month, year));
     }
@@ -58,55 +68,63 @@ public class MonthlyListMapTest {
         Month month = MEET_ALICE.getStartDate().getMonth();
         Year year = Year.of(MEET_ALICE.getStartDate().getYear());
         this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
-        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
-        assertEquals(2, this.meetingMonthlyListMap.getItemCount(month, year));
+
         this.meetingMonthlyListMap.clear();
         assertEquals(0, this.meetingMonthlyListMap.getItemCount(month, year));
     }
 
     @Test
     public void getMultipleMonthCount_valid_success() {
-        Month month = MEET_ALICE.getStartDate().getMonth();
-        Year year = Year.of(MEET_ALICE.getStartDate().getYear());
-        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
-        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
-        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
-        this.meetingMonthlyListMap.addItem(month, year, MEET_ALICE);
 
-        Month month1 = LUNCH_FIONA.getStartDate().getMonth();
-        Year year1 = Year.of(LUNCH_FIONA.getStartDate().getYear());
-        this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_FIONA);
-        this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_FIONA);
+        //Fill list accessed by key <aliceMonth, aliceYear> -> list size = 3
+        Month aliceMonth = MEET_ALICE.getStartDate().getMonth();
+        Year aliceYear = Year.of(MEET_ALICE.getStartDate().getYear());
+        this.meetingMonthlyListMap.addItem(aliceMonth, aliceYear, MEET_ALICE);
+        this.meetingMonthlyListMap.addItem(aliceMonth, aliceYear, MEET_ALICE);
+        this.meetingMonthlyListMap.addItem(aliceMonth, aliceYear, MEET_ALICE);
+
+        //Fill list accessed by key <fionaMonth, fionaYear> -> list size 2
+        Month fionaMonth = LUNCH_FIONA.getStartDate().getMonth();
+        Year fionaYear = Year.of(LUNCH_FIONA.getStartDate().getYear());
+        this.meetingMonthlyListMap.addItem(fionaMonth, fionaYear, LUNCH_FIONA);
+        this.meetingMonthlyListMap.addItem(fionaMonth, fionaYear, LUNCH_FIONA);
 
         DataSet<MonthlyCountData> actual = this.meetingMonthlyListMap
-                .getMultipleMonthCount(month, year, 3);
+                .getMultipleMonthCount(aliceMonth, aliceYear, 3);
+
         DataSet<MonthlyCountData> expected = new DataSet<MonthlyCountData>(Arrays.asList(
-                new MonthlyCountData(new MonthAndYear(month1, year1), 2),
-                new MonthlyCountData(new MonthAndYear(month.minus(1), year), 0),
-                new MonthlyCountData(new MonthAndYear(month, year), 4)));
+                new MonthlyCountData(new MonthAndYear(fionaMonth, fionaYear), 2),
+                new MonthlyCountData(new MonthAndYear(aliceMonth.minus(1), aliceYear), 0),
+                new MonthlyCountData(new MonthAndYear(aliceMonth, aliceYear), 3)));
+
         assertEquals(expected, actual);
     }
 
     @Test
     public void getMultipleMonthCount_validButMonthStartFromFeb_success() {
-        Month month = LUNCH_DANIEL.getStartDate().getMonth();
-        Year year = Year.of(LUNCH_DANIEL.getStartDate().getYear());
-        this.meetingMonthlyListMap.addItem(month, year, LUNCH_DANIEL);
-        this.meetingMonthlyListMap.addItem(month, year, LUNCH_DANIEL);
 
-        Month month1 = LUNCH_ELLE.getStartDate().getMonth();
-        Year year1 = Year.of(LUNCH_ELLE.getStartDate().getYear());
-        this.meetingMonthlyListMap.addItem(month1, year1, LUNCH_ELLE);
+        //Fill list accessed by key <danielMonth, danielYear> -> list size 2
+        Month danielMonth = LUNCH_DANIEL.getStartDate().getMonth();
+        Year danielYear = Year.of(LUNCH_DANIEL.getStartDate().getYear());
+        this.meetingMonthlyListMap.addItem(danielMonth, danielYear, LUNCH_DANIEL);
+        this.meetingMonthlyListMap.addItem(danielMonth, danielYear, LUNCH_DANIEL);
+
+        //Fill list accessed by key <elleMonth, elleYear> -> list size 2
+        Month elleMonth = LUNCH_ELLE.getStartDate().getMonth();
+        Year elleYear = Year.of(LUNCH_ELLE.getStartDate().getYear());
+        this.meetingMonthlyListMap.addItem(elleMonth, elleYear, LUNCH_ELLE);
 
         DataSet<MonthlyCountData> actual = this.meetingMonthlyListMap
-                .getMultipleMonthCount(month1, year1, 6);
+                .getMultipleMonthCount(elleMonth, elleYear, 6);
+
         DataSet<MonthlyCountData> expected = new DataSet<MonthlyCountData>(Arrays.asList(
-                new MonthlyCountData(new MonthAndYear(month.minus(4), year.minusYears(1)), 0),
-                new MonthlyCountData(new MonthAndYear(month.minus(3), year.minusYears(1)), 0),
-                new MonthlyCountData(new MonthAndYear(month.minus(2), year.minusYears(1)), 0),
-                new MonthlyCountData(new MonthAndYear(month.minus(1), year.minusYears(1)), 0),
-                new MonthlyCountData(new MonthAndYear(month, year), 2),
-                new MonthlyCountData(new MonthAndYear(month1, year1), 1)));
+                new MonthlyCountData(new MonthAndYear(danielMonth.minus(4), danielYear.minusYears(1)), 0),
+                new MonthlyCountData(new MonthAndYear(danielMonth.minus(3), danielYear.minusYears(1)), 0),
+                new MonthlyCountData(new MonthAndYear(danielMonth.minus(2), danielYear.minusYears(1)), 0),
+                new MonthlyCountData(new MonthAndYear(danielMonth.minus(1), danielYear.minusYears(1)), 0),
+                new MonthlyCountData(new MonthAndYear(danielMonth, danielYear), 2),
+                new MonthlyCountData(new MonthAndYear(elleMonth, elleYear), 1)));
+
         assertEquals(expected, actual);
     }
 

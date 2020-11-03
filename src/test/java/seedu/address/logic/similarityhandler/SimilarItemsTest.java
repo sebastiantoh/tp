@@ -23,8 +23,13 @@ public class SimilarItemsTest {
         SimilarContacts similarItems = new SimilarContacts(ALICE.getName().fullName);
         similarItems.getSimilarityMapper().put(ALICE, 0.3);
 
+        //null -> returns false
         assertFalse(similarItems.isInSimilarityMapper(null));
+
+        //non-existent item -> returns false
         assertFalse(similarItems.isInSimilarityMapper(IDA));
+
+        //existent Alice -> returns true
         assertTrue(similarItems.isInSimilarityMapper(ALICE));
     }
 
@@ -33,16 +38,21 @@ public class SimilarItemsTest {
         SimilarContacts similarItems = new SimilarContacts(ALICE.getName().fullName);
         similarItems.getSimilarityMapper().put(ALICE, 0.3);
 
+        //null -> -1
         assertEquals(-1, similarItems.getFromSimilarityMatrix(null));
+
+        //non-existent item -> -1
         assertEquals(-1, similarItems.getFromSimilarityMatrix(IDA));
+
+        //existent Alice -> 0.3
         assertEquals(0.3, similarItems.getFromSimilarityMatrix(ALICE));
     }
 
     @Test
     public void fillSimilarityMapper_validInput_oneResultFound() {
         SimilarContacts similarItems = new SimilarContacts(ALICE.getName().fullName);
-
         similarItems.fillSimilarityMapper(getTypicalPersons());
+
         assertEquals(1, similarItems.getSimilarityMapper().size());
         assertTrue(similarItems.getSimilarityMapper().containsKey(ALICE));
     }
@@ -50,8 +60,8 @@ public class SimilarItemsTest {
     @Test
     public void fillSimilarityMapper_emptyList_noResultFound() {
         SimilarContacts similarItems = new SimilarContacts(ALICE.getName().fullName);
-
         similarItems.fillSimilarityMapper(Collections.emptyList());
+
         assertTrue(similarItems.getSimilarityMapper().isEmpty());
     }
 
