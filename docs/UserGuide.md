@@ -337,7 +337,7 @@ Now suppose that you would like to find out who purchased items that are tagged 
 
 StonksBook allows you to manage the sales you made within the application. 
 
-#### Listing all sales: `sale list` [Kwek Min Yih]
+#### Listing all sales: `sale list` \[Kwek Min Yih\] \[Aaron Seah\]
 
 Shows a list of sales. By default, all sales will be listed. 
 This list is sorted in ascending order based on the date the sale is made.
@@ -347,11 +347,11 @@ This list is sorted in ascending order based on the date the sale is made.
 * When used without any arguments, all sales will be shown.
 * At most one optional parameter can be present.
 
-* `CONTACT_INDEX` refers to the index number
-  shown in the displayed contact list and
-  must be a positive integer 1, 2, 3, …​
-* `MONTH` must be an integer between 1 and 12 inclusive.
-* `YEAR` must be an integer greater than 0.
+| Parameter       | What it is                                       | Requirements                                   |
+|-----------------|--------------------------------------------------|------------------------------------------------|
+| `CONTACT_INDEX` | Index number of the contact whose sales are to be shown according to the displayed contact list | Must be a positive integer 1, 2, 3, …          |
+| `MONTH`         | Month                                            | Must be an integer between 1 and 12 inclusive. |
+| `YEAR`          | Year                                             | Must be an integer greater than 0.             |
 
 * If no optional parameter is present:
    * all sales are listed.
@@ -362,7 +362,7 @@ This list is sorted in ascending order based on the date the sale is made.
 * If optional parameter `[m/MONTH y/YEAR]` is present:
    * all sales whose associated date is in the specified `MONTH` and `YEAR` are listed.
    
-e.g. you want to see the sales you have made in August 2020, you can do so as shown.
+**Example:** Let's suppose you want to see the sales you have made in August 2020, you can do so as shown.
 1. Type `sale list m/8 y/2020` in the **Command Box** and press <kbd>Enter</kbd>.
 <img src="images/sale-list/salelistfirststep.png" alt="result for 'contact sort keyword'" width="900px">
 <img src="images/sale-list/salelistsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
@@ -381,20 +381,23 @@ e.g. you want to see the sales you have made in August 2020, you can do so as sh
  show a list of sales made to Bernice Yu.
 
 
-#### Adding a sale to a customer: `sale add` [Kwek Min Yih]
+#### Adding a sale to a customer: `sale add` \[Kwek Min Yih\] 
 
 Adds a sale to the specified contact in StonksBook.
 
 **Format:** `sale add c/CONTACT_INDEX… n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`
 
-* Adds a sale made to the contact at the specified `CONTACT_INDEX`, with details such as the name of item sold, the unit price, and the quantity.
-* The `CONTACT_INDEX` refers to the index number shown in the displayed contact list, and must be a positive integer 1, 2, 3, …​
+| Parameter              | What it is                                       | Requirements                                                                                                            |
+|------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| `CONTACT_INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                   |
+| `ITEM_NAME`            | Name of the item(s) sold                         | Contain only alphanumeric characters                                                                                    |
+| `DATETIME_OF_PURCHASE` | Datetime of when the sale was made               | Must be in the format `yyyy-MM-dd HH:mm`                                                                                |
+| `UNIT_PRICE`           | Unit price of each item sold                     | Must be a positive number greater than 0 and less than 10 million with 2 decimal places, in the format `DOLLARS.CENTS`. |
+| `QUANTITY`             | Quantity of items sold                           | Must be a positive integer greater than 0 and less than 10 million.                                                     |
+| `TAG`                  | Tag to be assigned to the sale                   | Must exist in StonksBook first before you can associate the sales item to them.                                         |
+
 * Multiple `CONTACT_INDEX` can be specified, meaning that you can add a sale to multiple contacts.
-* The `DATETIME_OF_PURCHASE` must be in the format `yyyy-MM-dd HH:mm`
-* The `UNIT_PRICE` must be a positive number greater than 0 and less than 10 million with 2 decimal places, in format `DOLLARS.CENTS`.
-* The `QUANTITY` must be a positive integer greater than 0 and less than 10 million.
 * It is compulsory to have a tag for the sales item. This is to ensure the ease of data analytics.
-* The tags provided must exist in StonksBook first before you can associate the sales item to them.
 
 **Example:**
 Suppose you successfully sold 100 guitar tuners at a unit price of $10.00 with Bernice Yu on 30 October 2020, 3pm. 
@@ -414,14 +417,16 @@ Here's how you can add this new sale into StonksBook:
     - You may have to scroll through your **Sale List** to find this newly created sale since sales are
      sorted in ascending order based on the date the sale is scheduled.
 
-#### Deleting a sales item: `sale delete` [Kwek Min Yih]
+#### Deleting a sales item: `sale delete` \[Kwek Min Yih\]
 
 Deletes a specified sales item from StonksBook.
 
 **Format:** `sale delete s/SALE_INDEX…`
 
-* Deletes the sale(s) at specified `SALE_INDEX`.
-* The  `SALE_INDEX` refers to the index number shown in the displayed sale list, and must be a positive integer 1, 2, 3, …​
+| Parameter    | What it is                                    | Requirements                          |
+|--------------|-----------------------------------------------|---------------------------------------|
+| `SALE_INDEX` | Index number shown in the displayed sale list | Must be a positive integer 1, 2, 3, … |
+
 * Multiple `SALE_INDEX` can be specified, meaning that you can delete multiple sales with the same command.
 
 **Examples:**
@@ -445,14 +450,21 @@ Here's how you can delete this sale in StonksBook:
      
 6. You should see that the sale has been deleted from the sale list.
  
-#### Editing an existing sale: `sale edit` [Kwek Min Yih]
+#### Editing an existing sale: `sale edit` \[Kwek Min Yih\]
 
 Edits an existing sale in StonksBook.
 
 **Format:** `sale edit s/SALE_INDEX… [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`
 
-* Edits the sale at the specified `SALE_INDEX`. 
-* The `SALE_INDEX` refers to the index number shown in the displayed meeting list, and must be a positive integer 1, 2, 3, …​
+| Parameter              | What it is                                       | Requirements                                                                                                            |
+|------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| `CONTACT_INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                   |
+| `ITEM_NAME`            | Name of the item(s) sold                         | Contain only alphanumeric characters                                                                                    |
+| `DATETIME_OF_PURCHASE` | Datetime of when the sale was made               | Must be in the format `yyyy-MM-dd HH:mm`                                                                                |
+| `UNIT_PRICE`           | Unit price of each item sold                     | Must be a positive number greater than 0 and less than 10 million with 2 decimal places, in the format `DOLLARS.CENTS`. |
+| `QUANTITY`             | Quantity of items sold                           | Must be a positive integer greater than 0 and less than 10 million.                                                     |
+| `TAG`                  | Tag to be assigned to the sale                   | Must exist in StonksBook first before you can associate the sales item to them.                                         |
+
 * Multiple `SALE_INDEX` can be specified, meaning that you can edit multiple sales with the same command.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -471,7 +483,7 @@ Here's how you can edit her sale in StonksBook:
   
 3. You should see that the sale has been updated to reflect this new quantity.
 
-#### Viewing a breakdown of sales made in each tag: `sale breakdown` [Kwek Min Yih]
+#### Viewing a breakdown of sales made in each tag: `sale breakdown` \[Kwek Min Yih\]
 
 Displays a breakdown of the top 5 tags and the number of sales with each tag.
 
@@ -482,7 +494,7 @@ and the number of sales belonging to each tag in an external window.
 * The bar graph in the external window will not automatically refresh upon updating of sales. 
 To see the new updated bar graph, close the current external window and run the `sale breakdown` command again.
 
-#### Analysing sales: `sale stats`
+#### Analysing sales: `sale stats` \[Aaron Seah\]
 Analyses the sale data and visualises the statistical result.
 
 **Format**: `sale stats NUMBER_OF_MONTHS`
