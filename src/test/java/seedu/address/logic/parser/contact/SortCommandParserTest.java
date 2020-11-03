@@ -60,14 +60,14 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_nonExistentAttribute_failure() {
+    public void parse_nonExistentContactAttribute_failure() {
         String args = " " + PREFIX_SALE_QUANTITY;
         assertParseFailure(sortCommandParser, args,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_noAttributeAndDesc_failure() {
+    public void parse_descOnly_failure() {
         String args = " " + PREFIX_DESC_ORDER;
         assertParseFailure(sortCommandParser, args,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));

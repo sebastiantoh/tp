@@ -36,20 +36,24 @@ public class MonthlyCountDataTest {
 
     @Test
     public void equals_valid_success() {
+
+        //same object -> return true
         assertEquals(monthlyCountData, monthlyCountData);
 
-        MonthlyCountData monthlyCountData1 = new MonthlyCountData(new MonthAndYear(AUGUST, Year.now()), 1);
-        assertEquals(monthlyCountData, monthlyCountData1);
-
-        monthlyCountData1 = new MonthlyCountData(new MonthAndYear(AUGUST, Year.of(2013)), 1);
-        assertNotEquals(monthlyCountData, monthlyCountData1);
-
-        monthlyCountData1 = new MonthlyCountData(new MonthAndYear(AUGUST, Year.now()), 2);
-        assertNotEquals(monthlyCountData, monthlyCountData1);
-
-        monthlyCountData1 = new MonthlyCountData(new MonthAndYear(Month.APRIL, Year.now()), 1);
-        assertNotEquals(monthlyCountData, monthlyCountData1);
-
+        //null -> return false
         assertNotEquals(monthlyCountData, null);
+
+        //same values -> return true
+        assertEquals(monthlyCountData, new MonthlyCountData(new MonthAndYear(AUGUST, Year.now()), 1));
+
+        //different year -> return false
+        assertNotEquals(monthlyCountData, new MonthlyCountData(new MonthAndYear(AUGUST, Year.of(2013)), 1));
+
+        //different count -> return false
+        assertNotEquals(monthlyCountData, new MonthlyCountData(new MonthAndYear(AUGUST, Year.now()), 2));
+
+        //different month -> return false
+        assertNotEquals(monthlyCountData, new MonthlyCountData(new MonthAndYear(Month.APRIL, Year.now()), 1));
+
     }
 }
