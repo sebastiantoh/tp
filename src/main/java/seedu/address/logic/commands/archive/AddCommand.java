@@ -16,7 +16,8 @@ import seedu.address.model.person.Person;
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "archive add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Moves a contact to the archive. Note that the sales, meetings or reminders linked to this contact will not be deleted.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Moves a contact to the archive. "
+            + "Note that the sales, meetings or reminders linked to this contact will not be deleted.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
