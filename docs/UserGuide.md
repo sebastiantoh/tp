@@ -496,7 +496,7 @@ Edits an existing sale in StonksBook.
 * Existing values will be updated to the input values.
 * When editing a sale's tags, the existing tags of the sale will be removed i.e adding of tags is not cumulative.
 
-**Examples:**
+**Example:**
 Suppose you have just received the good news that Bernice Yu would like to buy 1000 Black Pens instead of the 300 she previously specified. 
 Here's how you can edit her sale in StonksBook:
  
@@ -529,6 +529,8 @@ Displays a breakdown of the top 5 tags and the number of sales with each tag.
 and the number of sales belonging to each tag in an external window.
 * The bar graph in the external window will not automatically refresh upon updating of sales. 
 To see the new updated bar graph, close the current external window and run the `sale breakdown` command again.
+
+**Example:**
 
 1. Type `sale breakdown` in the **Command Box** and press <kbd>Enter</kbd>. 
 
