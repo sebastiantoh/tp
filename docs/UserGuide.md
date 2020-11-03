@@ -497,17 +497,27 @@ Edits an existing sale in StonksBook.
 * When editing a sale's tags, the existing tags of the sale will be removed i.e adding of tags is not cumulative.
 
 **Examples:**
-Suppose you have just received the good news that Bernice Yu would like to buy 20 Guitars instead of the 10 she previously specified. 
+Suppose you have just received the good news that Bernice Yu would like to buy 1000 Black Pens instead of the 300 she previously specified. 
 Here's how you can edit her sale in StonksBook:
  
 1. Identify the index corresponding to the sale to be edited in the sale list. If you have a large list of
   sales, it may be convenient to filter for all sales made to Bernice Yu. Assuming that Bernice Yu is the 2nd contact
-   currently displayed in the contact list, you can type `sale list c/2` and the sale list will update to show
-    only sales made to Bernice Yu.
+   currently displayed in the contact list, you can type `sale list c/2`.
+
+<img src="images/sale-edit/saleeditfirststep.png" alt="enter 'sale list c/2'" width="900px">
+
+2. The sale list will update to show only sales made to Bernice Yu.
+
+<img src="images/sale-edit/saleeditsecondstep.png" alt="result for 'sale list c/2'" width="900px">
     
-2. Suppose the sale to be edited is at the third index in the sale list. Then, type `sale edit s/3 q/20` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
+3. Suppose the sale to be edited is at the third index in the sale list. 
+Then, type `sale edit s/3 q/20` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
   
-3. You should see that the sale has been updated to reflect this new quantity.
+<img src="images/sale-edit/saleeditthirdstep.png" alt="enter 'sale edit s/3 q/20'" width="900px">
+
+4. You should see that the sale has been updated to reflect this new quantity.
+
+<img src="images/sale-edit/saleeditfourthstep.png" alt="result for 'sale edit s/3 q/20'" width="900px">
 
 #### Viewing a breakdown of sales made in each tag: `sale breakdown` \[Kwek Min Yih\]
 
