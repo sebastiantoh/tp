@@ -93,6 +93,10 @@ public class Person {
         tags.remove(tag);
     }
 
+    public boolean hasSameId(Person otherPerson) {
+        return this.id.equals(otherPerson.id);
+    }
+
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
@@ -117,12 +121,19 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Person) || other == null) {
             return false;
         }
 
         Person otherPerson = (Person) other;
-        return this.id.equals(otherPerson.id);
+
+        return otherPerson.getId().equals(getId())
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getRemark().equals(getRemark());
     }
 
     @Override
@@ -140,10 +151,17 @@ public class Person {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
-        builder.append(" Remark: ").append(getRemark());
+                .append(getAddress());
+
+        if (getTags().size() > 0) {
+            builder.append(" Tags: ");
+            getTags().forEach(builder::append);
+        }
+
+        if (!getRemark().isEmpty()) {
+            builder.append(" Remark: ").append(getRemark());
+        }
+
         return builder.toString();
     }
 
