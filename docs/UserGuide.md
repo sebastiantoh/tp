@@ -530,8 +530,11 @@ and the number of sales belonging to each tag in an external window.
 * The bar graph in the external window will not automatically refresh upon updating of sales. 
 To see the new updated bar graph, close the current external window and run the `sale breakdown` command again.
 
+1. Type `sale breakdown` in the **Command Box** and press <kbd>Enter</kbd>. 
 
 <img src="images/sale-breakdown/salebreakdownfirststep.png" alt="enter 'sale breakdown'" width="900px">
+
+2. A new window containing the bar chart pops up.
 
 <img src="images/sale-breakdown/salebreakdownsecondstep.png" alt="enter 'sale breakdown'" width="900px">
 
