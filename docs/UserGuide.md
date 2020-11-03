@@ -349,7 +349,7 @@ This list is sorted in ascending order based on the date the sale is made.
 
 | Parameter       | What it is                                       | Requirements                                   |
 |-----------------|--------------------------------------------------|------------------------------------------------|
-| `CONTACT_INDEX` | Index number of the contact whose sales are to be shown according to the displayed contact list | Must be a positive integer 1, 2, 3, …          |
+| `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …          |
 | `MONTH`         | Month                                            | Must be an integer between 1 and 12 inclusive. |
 | `YEAR`          | Year                                             | Must be an integer greater than 0.             |
 
@@ -371,14 +371,22 @@ This list is sorted in ascending order based on the date the sale is made.
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
     - This is to identify the contact index corresponding to Bernice Yu.     
-    
+
+<img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example. 
+
+<img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
  
 3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
 
+<img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
+
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu.
+
+<img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
 
 
 #### Adding a sale to a customer: `sale add` \[Kwek Min Yih\] 
@@ -390,7 +398,7 @@ Adds a sale to the specified contact in StonksBook.
 | Parameter              | What it is                                       | Requirements                                                                                                            |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | `CONTACT_INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                   |
-| `ITEM_NAME`            | Name of the item(s) sold                         | Contain only alphanumeric characters                                                                                    |
+| `ITEM_NAME`            | Name of the item(s) sold                         | Must contain only alphanumeric characters                                                                               |
 | `DATETIME_OF_PURCHASE` | Datetime of when the sale was made               | Must be in the format `yyyy-MM-dd HH:mm`                                                                                |
 | `UNIT_PRICE`           | Unit price of each item sold                     | Must be a positive number greater than 0 and less than 10 million with 2 decimal places, in the format `DOLLARS.CENTS`. |
 | `QUANTITY`             | Quantity of items sold                           | Must be a positive integer greater than 0 and less than 10 million.                                                     |
@@ -398,6 +406,9 @@ Adds a sale to the specified contact in StonksBook.
 
 * Multiple `CONTACT_INDEX` can be specified, meaning that you can add a sale to multiple contacts.
 * It is compulsory to have a tag for the sales item. This is to ensure the ease of data analytics.
+
+:bulb: Tip: After adding a sale, the **Sale List** will display all sales created. 
+You may need to scroll down to search for the sale you just created!
 
 **Example:**
 Suppose you successfully sold 100 guitar tuners at a unit price of $10.00 with Bernice Yu on 30 October 2020, 3pm. 
@@ -459,7 +470,7 @@ Edits an existing sale in StonksBook.
 | Parameter              | What it is                                       | Requirements                                                                                                            |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | `CONTACT_INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                   |
-| `ITEM_NAME`            | Name of the item(s) sold                         | Contain only alphanumeric characters                                                                                    |
+| `ITEM_NAME`            | Name of the item(s) sold                         | Must contain only alphanumeric characters                                                                               |
 | `DATETIME_OF_PURCHASE` | Datetime of when the sale was made               | Must be in the format `yyyy-MM-dd HH:mm`                                                                                |
 | `UNIT_PRICE`           | Unit price of each item sold                     | Must be a positive number greater than 0 and less than 10 million with 2 decimal places, in the format `DOLLARS.CENTS`. |
 | `QUANTITY`             | Quantity of items sold                           | Must be a positive integer greater than 0 and less than 10 million.                                                     |
