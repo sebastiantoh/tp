@@ -1,7 +1,7 @@
 ---
  layout: page
  title: Aaron Seah's Project Portfolio Page
- ---
+---
 
 ## Project: StonksBook
 
