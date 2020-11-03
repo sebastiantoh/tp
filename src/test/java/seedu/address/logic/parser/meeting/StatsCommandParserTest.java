@@ -40,7 +40,6 @@ public class StatsCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatsCommand.MESSAGE_USAGE));
     }
 
-
     @Test
     public void parse_invalidMonth_failure() {
         assertParseFailure(statsCommandParser, " m/13 y/2020",
