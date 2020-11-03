@@ -407,26 +407,30 @@ Adds a sale to the specified contact in StonksBook.
 * Multiple `CONTACT_INDEX` can be specified, meaning that you can add a sale to multiple contacts.
 * It is compulsory to have a tag for the sales item. This is to ensure the ease of data analytics.
 
-:bulb: Tip: After adding a sale, the **Sale List** will display all sales created. 
-You may need to scroll down to search for the sale you just created!
-
 **Example:**
 Suppose you successfully sold 100 guitar tuners at a unit price of $10.00 with Bernice Yu on 30 October 2020, 3pm. 
 Here's how you can add this new sale into StonksBook:
  
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
      - This is to identify the contact index corresponding to Bernice Yu.      
-     
+
+<img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
   show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.  
+
+<img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
  
 3. Type `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music` in the **Command Box** and press <kbd>Enter</kbd>.
- 
+
+<img src="images/sale-add/salelistcontactthirdstep.png" alt="enter 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
   
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  contain this newly created sale.
     - You may have to scroll through your **Sale List** to find this newly created sale since sales are
-     sorted in ascending order based on the date the sale is scheduled.
+     sorted in ascending order based on the date the sale is made.
+
+<img src="images/sale-add/salelistcontactfourthstep.png" alt="result for 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
 
 #### Deleting a sales item: `sale delete` \[Kwek Min Yih\]
 
@@ -441,9 +445,8 @@ Deletes a specified sales item from StonksBook.
 * Multiple `SALE_INDEX` can be specified, meaning that you can delete multiple sales with the same command.
 
 **Examples:**
-Let's say that you have just received the unfortunate news from Bernice Yu who no longer wishes to buy 2 drum sets from you.
+Let's say that you have just received the unfortunate news from Bernice Yu who no longer wishes to buy 300 black pens from you.
 Here's how you can delete this sale in StonksBook:
-
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
     - This is to identify the contact index corresponding to Bernice Yu.
