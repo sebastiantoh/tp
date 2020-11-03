@@ -12,7 +12,15 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to clear past interactions with the GUI.
   * What it does: allows the user to clear up the GUI.
   * Justification: This feature improves user experience by reducing clutter on the GUI.
-  
+
+* **New Feature**: Added the ability to switch between light/dark themes.
+  * What it does: allows users to switch between light/dark themes.
+  * Justification: This feature improves user experience by giving them the option to have a lighter/darker appearance for the GUI.
+
+* **New Feature**: Added the ability to navigate between previous inputs using the up and down keys.
+  * What it does: allows user to retrieve previous inputs.
+  * Justification: This feature improves user experience by allowing users to correct erroneous inputs or re-enter previous commands easily.
+
 * **New Feature**: Added the ability to add contacts to the archive.
   * What it does: allows user to stash away inactive contacts.
   * Justification: This feature allows users to focus on the more important or active contacts.
@@ -24,10 +32,6 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to remove contacts from the archive.
   * What it does: allows users to remove contacts from the archive so that they appear in the contact list again.
   * Justification: This feature allows users to return archived contacts to the contact list.
-
-* **New Feature**: Added the ability to switch between light/dark themes.
-  * What it does: allows users to switch between light/dark themes.
-  * Justification: This feature improves user experience by giving them the option to have a lighter/darker appearance for the GUI.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jmleong666&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=jmleong666&tabRepo=AY2021S1-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
