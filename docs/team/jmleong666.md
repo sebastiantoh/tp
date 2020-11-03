@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add contacts to the archive.
   * What it does: allows user to stash away inactive contacts.
-  * Justification: This feature allows users to focus on the more important or active contacts.
+  * Justification: This feature allows users to focus on more important or active contacts.
 
 * **New Feature**: Added the ability to list archived contacts.
   * What it does: allows user to see archived contacts.
@@ -31,7 +31,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to remove contacts from the archive.
   * What it does: allows users to remove contacts from the archive so that they appear in the contact list again.
-  * Justification: This feature allows users to return archived contacts to the contact list.
+  * Justification: This feature allows users to return archived contacts to the contact list when they become important again.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jmleong666&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=jmleong666&tabRepo=AY2021S1-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
