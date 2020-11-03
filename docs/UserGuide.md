@@ -447,20 +447,32 @@ Here's how you can delete this sale in StonksBook:
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
     - This is to identify the contact index corresponding to Bernice Yu.
-    
+
+<img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.
+
+<img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
  
 3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
+
+<img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu. Identify the index of the sale to be deleted. Let us assume it is at the third index.
 
+<img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
+
 5. Type `sale delete s/3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
- 
+
+<img src="images/sale-list/saledeletefifthstep.png" alt="enter 'sale delete s/3'" width="900px">
      
 6. You should see that the sale has been deleted from the sale list.
- 
+
+<img src="images/sale-list/saledeletesixthstep.png" alt="result for 'sale delete s/3'" width="900px">
+
+
 #### Editing an existing sale: `sale edit` \[Kwek Min Yih\]
 
 Edits an existing sale in StonksBook.
