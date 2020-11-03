@@ -466,11 +466,11 @@ Here's how you can delete this sale in StonksBook:
 
 5. Type `sale delete s/3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
 
-<img src="images/sale-list/saledeletefifthstep.png" alt="enter 'sale delete s/3'" width="900px">
+<img src="images/sale-delete/saledeletefifthstep.png" alt="enter 'sale delete s/3'" width="900px">
      
 6. You should see that the sale has been deleted from the sale list.
 
-<img src="images/sale-list/saledeletesixthstep.png" alt="result for 'sale delete s/3'" width="900px">
+<img src="images/sale-delete/saledeletesixthstep.png" alt="result for 'sale delete s/3'" width="900px">
 
 
 #### Editing an existing sale: `sale edit` \[Kwek Min Yih\]
