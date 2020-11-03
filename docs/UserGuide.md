@@ -788,6 +788,7 @@ Adds the specified contact to the archive.
 
 <div markdown="block" class="alert alert-info">
 StonksBook will not archive a contact if it is already archived!
+In addition, archiving a contact will not remove the sales, reminders and meetings linked to this contact.
 </div>
 
 **Format**: `archive add INDEX`
@@ -802,6 +803,7 @@ Suppose you want to archive your contact David Li, who is no longer doing busine
 1. Identify the index of the contact entry in the contact list. Here David Li is the third contact in the list. Alternatively you can use `contact find` to find the contact.
 2. Type `archive add 3` in the **Command Box** and press <kbd>Enter</kbd>.
 3. The contact entry will disappear from the contact list, and the **Result Box** will inform you that the command is successful.
+4. The sales, reminders and meetings linked to this contact will not be removed.
 
 #### Listing contacts in the archive: `archive list` \[Leong Jin Ming\]
 
