@@ -59,7 +59,7 @@ The following section summarises my coding, documentation and other contribution
     * Modify parser to accomodate single and double keyword commands.
     * Release management.
     
-* ***Review/mentoring contributions**:
+* **Review/mentoring contributions**:
 
     * Help team members locate bug and offer solutions.
     * Help a team member fix a non-trivial bug [#98](https://github.com/AY2021S1-CS2103T-T11-1/tp/issues/98).
