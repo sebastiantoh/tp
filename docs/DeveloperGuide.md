@@ -619,6 +619,7 @@ After `meeting edit ` of meeting m3 that starts on
 August 2020 to meeting m4 that starts on December 2020
 ![MeetingStatsObjectDiagram4](images/MeetingStatsObjectDiagram4.png)
 
+<img src="images/MeetingStatsObjectDiagram4.png" alt="fuck la" height="50px">
 
 
 ##### Data Retrieval
