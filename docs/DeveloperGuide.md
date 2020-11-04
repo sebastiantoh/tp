@@ -602,34 +602,27 @@ Given below is the class diagram for `MonthlyListMap` for the command `meeting s
 <img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="400px">
 
 Given below are object diagrams for `MonthlyListMap` for the command `meeting stats` to illustrate 
-how the `MonthlyListMap` will be kept up to date for adding, deleting, editing meetings.
+how the `MonthlyListMap` will be kept up to date after meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed.
 
 
 <img src="images/MeetingStatsObjectDiagram1.png" alt="result for meeting stats object diagram 1" height="400px">
 
-
 <img src="images/MeetingStatsObjectDiagram2.png" alt="result for meeting stats object diagram 2" height="400px">
 
-
 <img src="images/MeetingStatsObjectDiagram3.png" alt="result for meeting stats object diagram 3" height="400px">
-
 
 <img src="images/MeetingStatsObjectDiagram4.png" alt="result for meeting stats object diagram 4" height="400px">
 
 
 
 ##### Data Retrieval
-* `MonthlyListMap#getItemCount(Month month, Year year)` — Gets the number of items in an item list based on the key of month and year.
-* `MonthlyListMap#getItems(Month month, Year year)` — Gets the monthly item list for month and year.
 * `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` — Gets the item counts in the item list for the given month and year and the previous (numberOfMonths - 1) months.
-* `MonthlyListMap#getPreviousMonthAndYear(Month month, Year year)` —  Gets the month and year for one month before month and year.
+* `MonthlyListMap#getPreviousMonthAndYear(Month month, Year year)` —  Gets the month and year for the month before the given month and year.
 
-These operations except for 
-are exposed in the `Model` interface as
-`Model#getItemCount(Month month, Year year, int numberOfMonths)`,
- and `Model#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` respectively.
+`MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` operation is exposed in the `Model` interface as
+`Model#getMultipleMonthCount(Month month, Year year, int numberOfMonths)`
 
-The following sequence diagram shows how the undo operation works:
+The following sequence diagrams shows how the monthly statistics feature for `meeting stats` works:
 
 <img src="images/MeetingStatsSequenceDiagram.png" alt="result for meeting stats sequence diagram" height="200px">
 

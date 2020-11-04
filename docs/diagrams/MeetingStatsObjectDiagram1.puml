@@ -7,7 +7,7 @@ skinparam ClassAttributeFontColor #000000
 show members
 hide empty members
 
-title After initialisation of 2 meetings: m1 that starts on August 2020 and m2 that starts on December 2020
+title After "initialisation of 2 meetings: m1 that starts on August 2020 and m2 that starts on December 2020"
 
     class "<u>m1:MonthAndYear" {
         month: August
