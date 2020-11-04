@@ -1376,6 +1376,24 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.
 
+
+#### Use case: Display sale breakdown
+
+**MSS**
+
+1.  User requests to display sale breakdown.
+2.  StonksBook shows the sale breakdown in a pop-up window.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. No sale tags exist.
+
+    * 2a1. StonksBook shows an error message.
+
+  Use case ends.
+
 #### Use case: Add contact to archive
 
 **MSS**
