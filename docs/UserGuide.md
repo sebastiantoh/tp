@@ -151,7 +151,6 @@ Adds a contact to StonksBook.
 
 :bulb: Tip: A contact can have any number of tags (including 0)
 
-* The contact tags provided must exist in StonksBook before you can associate this contact with them.
 * Duplicate contacts cannot be added. A contact with the same name and same phone number/email address will be flagged as a duplicate.
 
 **Examples**:
@@ -159,12 +158,15 @@ Adds a contact to StonksBook.
 * `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal r/blacklisted`
 
 #### Deleting a contact: `contact delete`
-Deletes the specified contact from StonksBook. All associated reminders and meetings will be deleted as well.
+Deletes the specified contact from StonksBook. All associated sales, reminders and meetings will be deleted as well.
 
 **Format**: `contact delete INDEX`
+
+| Parameter      | What it is                                       | Requirements                               |
+|----------------|--------------------------------------------------|--------------------------------------------|
+| `INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …      |
+
 * Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index must be a positive integer 1, 2, 3, …​
 
 **Examples**:
 `contact list` followed by `contact delete 2` deletes the 2nd contact in StonksBook.
@@ -175,13 +177,22 @@ Edits an existing contact in StonksBook.
 
 **Format**: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]`
 
-* Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index must be a positive integer 1, 2, 3, …​
+| Parameter      | What it is                                       | Requirements                                                                                                                                                                                                                                                                     |
+|----------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                                                                                                                                                                            |
+| `NAME`         | Name of contact                                  | Must contain only alphabetical characters                                                                                                                                                                                                                                        |
+| `PHONE_NUMBER` | Phone number of contact                          | Must contain only numerical characters                                                                                                                                                                                                                                           |
+| `EMAIL`        | Email of contact                                 | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must <ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>|
+| `ADDRESS`      | Address of contact                               | Can take any value                                                                                                                                                                                                                                                               |
+| `TAG`          | Tag to be assigned to contact                    | Must exist in StonksBook first before you can associate the contact to them.                                                                                                                                                                                                     |
+| `REMARK`       | Remark related to contact                        | Can take any value                                                                                                                                                                                                                                                               |
+
+* Edits the contact at the specified `INDEX`. 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing a contact's tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
 * When editing a contact's remark, the previous remark will also be removed/overwritten.
 * You can remove all the contact’s tags/remark by typing `t/` or  `r/` respectively without specifying any tags/remark after it.
-* The contact tags provided must exist in StonksBook before you can associate this contact with them.
 
 **Examples**:
 * `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
