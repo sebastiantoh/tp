@@ -425,6 +425,7 @@ This feature consists of the following commands:
 * `sale delete` – Deletes a sale to the sale list.
 * `sale edit` – Edits a sale to the sale list.
 * `sale list` – Display the list of all sales in the user interface.
+* `sale breakdown` – Displays a breakdown of the top 5 tags and the number of sales with each tag.
 
 #### Parsing of commands within the `Logic` component
 
@@ -1470,9 +1471,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `contact delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the
-    list
-    size)<br>
+   1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
@@ -1524,8 +1523,7 @@ testers are expected to do more *exploratory* testing.
       However, after the entry of the command again, an error message appears, stating that a duplicate sale cannot be created.
       
    1. Test case: Enter `sale add c/1 n/Guitar Pick d/2020-10-30 16:00 p/30 q/20 t/music` <br>
-      Expected: No sale is added. An error message shows that the unit price format is incorrect,
-      and specifies the correct format.
+      Expected: No sale is edited. Error details shown in the status message. Sale list remains the same.
       
    1. Test case: `sale add`<br>
       Expected: No sale is added. Error details shown in the status message. Sale list remains the same.
@@ -1540,8 +1538,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Use `contact find` command with a search term that does not match any contact to clear the contact list.
 
     1. Test case: `sale add c/1 n/Guitar Case d/2020-10-30 16:00 p/25.00 q/20 t/music` <br>
-        Expected: No sale is added. An error message shows that the person index is invalid.
-  
+        Expected: No sale is added. Error details shown in the status message. Sale list remains the same.
 
 ### Deleting a sale
 
@@ -1562,7 +1559,36 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `sale delete`, `sale delete x`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
+      
+### Editing a sale
 
+1. Editing a sale while all sales are being shown
+
+   1. Prerequisites: List all sales using the `sale list` command.
+
+   1. Test case: Enter `sale edit s/1 n/Guitar Tuner`<br>
+      Expected: The first sale in the currently displayed list of sales is edited to have the item name "Guitar Tuner". 
+      The sale list should remain sorted in ascending order based on the datetime of purchase.
+      
+   1. Test case: Enter `sale edit s/1 s/2 s/3 q/25`<br>
+      Expected: The first, second and third sales in the currently displayed list of sales is edited to have a quantity of 25.
+      The sale list should remain sorted in ascending order based on the datetime of purchase.
+
+   1. Test case: Enter `sale edit s/1 p/30` <br>
+      Expected: No sale is edited. Error details shown in the status message. Sale list remains the same.
+      
+   1. Test case: `sale edit`<br>
+      Expected: No sale is edited. Error details shown in the status message. Sale list remains the same.
+
+   1. Other incorrect delete commands to try: `sale edit p/30.00` and `sale edit s/1 c/0` <br>
+      Expected: Similar to previous.
+      
+1. Editing a sale while no sales are shown
+
+    1. Prerequisites: Use the sale list command to list all sales belonging to a contact that does not have any sales.
+
+    1. Test case: `sale edit s/1 n/Bass Guitar` <br>
+        Expected: No sale is edited. Error details shown in the status message. Sale list remains the same.
 
 ### Displaying sale breakdown
 
@@ -1586,7 +1612,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `sale breakdown`<br>
       Expected: A popup window showing the sale breakdown appears. The top 5 sale tags appear in the bar chart.
-
 
 ### Adding a meeting
 
