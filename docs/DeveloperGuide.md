@@ -601,7 +601,7 @@ to keep the data in the `MonthlyListMap` up to date.
 
 This is the class diagram for Meeting stats.
 
-<img src="images/MeetingStatsClassDiagram.png" alt="fuck la" height="200px">
+<img src="images/MeetingStatsClassDiagram.png" alt="fuck la" height="400px">
 
 ![MeetingStatsClassDiagram](images/MeetingStatsClassDiagram.png)
 
@@ -619,7 +619,7 @@ After `meeting edit ` of meeting m3 that starts on
 August 2020 to meeting m4 that starts on December 2020
 ![MeetingStatsObjectDiagram4](images/MeetingStatsObjectDiagram4.png)
 
-<img src="images/MeetingStatsObjectDiagram4.png" alt="fuck la" height="50px">
+<img src="images/MeetingStatsObjectDiagram4.png" alt="fuck la" height="400px">
 
 
 ##### Data Retrieval
