@@ -597,11 +597,11 @@ The Data Manipulation operations are used to propagate changes to `MonthlyListMa
 when a meeting command `meeting add`, `meeting delete` or `meeting edit` is executed
 to keep the data in the `MonthlyListMap` up to date.
 
-Given below is the class diagram for `MonthlyListMap`.
+Given below is the class diagram for the Monthly Statistics Feature.
 
 <img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="400px">
 
-Given below are object diagrams for `MonthlyListMap` to illustrate 
+Given below are object diagrams for the Monthly Statistics Feature to illustrate 
 how `MonthlyListMap` will be kept up to date after meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed.
 
 
@@ -622,7 +622,7 @@ how `MonthlyListMap` will be kept up to date after meeting commands `meeting add
 `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` operation is exposed in the `Model` interface as
 `Model#getMultipleMonthCount(Month month, Year year, int numberOfMonths)`.
 
-The following sequence diagrams shows how the monthly statistics feature works:
+The following sequence diagrams shows how the Monthly Statistics Feature works:
 
 <img src="images/MeetingStatsSequenceDiagram.png" alt="result for meeting stats sequence diagram" height="200px">
 
