@@ -630,9 +630,6 @@ The following sequence diagrams shows how the monthly statistics feature for `me
 
 <img src="images/MeetingStatsSequenceDiagram3.png" alt="result for meeting stats sequence diagram 3" height="300px">
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The activation bar should not be visible within the loop frame. However, that is the case in the diagram above due to a limitation of PlantUML.
-</div>
-
 <img src="images/MeetingStatsSequenceDiagram4.png" alt="result for meeting stats sequence diagram 4" height="300px">
 
 <img src="images/MeetingStatsSequenceDiagram5.png" alt="result for meeting stats sequence diagram 5" height="200px">
