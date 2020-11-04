@@ -601,20 +601,20 @@ to keep the data in the `MonthlyListMap` up to date.
 
 This is the class diagram for Meeting stats.
 
-<img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="300px">
+<img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="400px">
 
 After initialisation with 2 meetings, m1 that starts on August 2020 and m2 that starts on December 2020:
 
-<img src="images/MeetingStatsObjectDiagram1.png" alt="result for meeting stats object diagram 1" height="300px">
+<img src="images/MeetingStatsObjectDiagram1.png" alt="result for meeting stats object diagram 1" height="400px">
 
 
-<img src="images/MeetingStatsObjectDiagram2.png" alt="result for meeting stats object diagram 2" height="300px">
+<img src="images/MeetingStatsObjectDiagram2.png" alt="result for meeting stats object diagram 2" height="400px">
 
 
-<img src="images/MeetingStatsObjectDiagram3.png" alt="result for meeting stats object diagram 3" height="300px">
+<img src="images/MeetingStatsObjectDiagram3.png" alt="result for meeting stats object diagram 3" height="400px">
 
 
-<img src="images/MeetingStatsObjectDiagram4.png" alt="result for meeting stats object diagram 4" height="300px">
+<img src="images/MeetingStatsObjectDiagram4.png" alt="result for meeting stats object diagram 4" height="400px">
 
 
 
