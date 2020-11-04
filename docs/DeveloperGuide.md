@@ -618,7 +618,6 @@ After initialisation with 2 meetings, m1 that starts on August 2020 and m2 that 
 
 
 
-
 ##### Data Retrieval
 * `MonthlyListMap#getItemCount(Month month, Year year)` — Gets the number of items in an item list based on the key of month and year.
 * `MonthlyListMap#getItems(Month month, Year year)` — Gets the monthly item list for month and year.
@@ -632,22 +631,21 @@ are exposed in the `Model` interface as
 
 The following sequence diagram shows how the undo operation works:
 
-![MeetingStatsDiagram1](images/MeetingStatsSequenceDiagram.png)
+<img src="images/MeetingStatsSequenceDiagram.png" alt="result for meeting stats sequence diagram" height="300px">
 
-![MeetingStatsDiagram1](images/ArchiveAddSequenceDiagramwtfla.png)
+<img src="images/MeetingStatsSequenceDiagram2.png" alt="result for meeting stats sequence diagram 2" height="300px">
 
+<img src="images/MeetingStatsSequenceDiagram3.png" alt="result for meeting stats sequence diagram 3" height="300px">
 
-![MeetingStatsDiagram2](images/MeetingStatsSequenceDiagram2.png)
+<img src="images/MeetingStatsSequenceDiagram4.png" alt="result for meeting stats sequence diagram 4" height="300px">
 
-![MeetingStatsDiagram3](images/MeetingStatsSequenceDiagram3.png)
+<img src="images/MeetingStatsSequenceDiagram5.png" alt="result for meeting stats sequence diagram 5" height="300px">
 
-![MeetingStatsDiagram4](images/MeetingStatsSequenceDiagram4.png)
-
-![MeetingStatsDiagram5](images/MeetingStatsSequenceDiagram5.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/MeetingStatsActivityDiagram.png)
+<img src="images/MeetingStatsActivityDiagram.png" alt="result for meeting stats activity diagram" height="300px">
+
 
 #### Design consideration:
 
