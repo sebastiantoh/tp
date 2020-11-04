@@ -425,7 +425,7 @@ This feature consists of the following commands:
 * `sale delete` – Deletes a sale to the sale list.
 * `sale edit` – Edits a sale to the sale list.
 * `sale list` – Display the list of all sales in the user interface.
-* `sale breakdown` – Displays a breakdown of the top 5 tags and the number of sales with each tag.
+* `sale breakdown` – Displays the number of sales belonging to the top 5 tags.
 
 #### Parsing of commands within the `Logic` component
 
@@ -437,20 +437,20 @@ For all sale-related commands, we have the `SaleCommandsParser` which serves as 
 
 These are the steps that will be taken when parsing a sale-related user command:
 1. An `AddressBookParser` will check if the command is sale-related. The `AddressBookParser` will then create a `SaleCommandsParser`.
-3. The `SaleCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
+2. The `SaleCommandsParser` will check what type of command it is and create the corresponding parsers if there are any arguments to parse:
     - `sale add` command: `AddCommandParser`
     - `sale delete` command: `DeleteCommandParser`
     - `sale edit` command: `EditCommandParser`
     - `sale list` command: `ListCommandParser`
-4. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
-5. Within the `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
+    - `sale breakdown` command: no parser is created as there are no arguments to parse.
+3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+4. Within the `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
 
 Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(sale add <args>)` API call.
 - Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user.
 - For example, if the full command was `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`, then `<args>` is equivalent to `c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`.
 
 ![SaleAddSequenceDiagram](images/SaleAddSequenceDiagram.png)
-
 
 #### Execution of commands within the `Logic` component
 
