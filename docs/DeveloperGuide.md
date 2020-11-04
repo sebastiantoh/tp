@@ -1231,7 +1231,30 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
 * 4a. The given sale index is invalid.
 
-    * 4a1. StonksBook shows an error message.
+    * 4a1. StonksBook shows an error message. No sale is deleted.
+
+      Use case resumes at step 2.
+      
+#### Use case: Delete multiple sales
+
+**MSS**
+
+1.  User requests to list sales.
+2.  StonksBook shows a list of sales.
+3.  User requests to delete multiple sales of a specified indexes.
+4.  StonksBook deletes the specified sales.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of sales is empty.
+
+  Use case ends.
+
+* 4a. Any of the given sale indexes are invalid.
+
+    * 4a1. StonksBook shows an error message. No sales are deleted.
 
       Use case resumes at step 2.
 
