@@ -56,6 +56,7 @@ This is what StonksBook looks like when started:
     <figcaption>Fig. 1 - Components of the GUI</figcaption>
 </figure>
 
+
 The user interface features several panels labelled above, that contain the **Contact List**, **Meeting List**, **Reminder List** and **Sale List**.
 The bottom right panel (which currently contains the **Sale List**) is the **Ad-Hoc Panel**, 
 which displays either the **Sale List** or **Tag List** depending on which command was executed most recently.
