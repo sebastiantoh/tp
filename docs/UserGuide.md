@@ -536,6 +536,7 @@ Adds a sale to the specified contact in StonksBook.
 
 * Multiple `CONTACT_INDEX` can be specified, meaning that you can add a sale to multiple contacts.
 * It is compulsory to have a tag for the sales item. This is to ensure the ease of data analytics.
+* Duplicate sales cannot be added. A sale with the same item name, contact, datetime of purchase, unit price and quantity will be flagged as a duplicate.
 
 **Example:**
 Suppose you successfully sold 100 guitar tuners at a unit price of $10.00 with Bernice Yu on 30 October 2020, 3pm. 
