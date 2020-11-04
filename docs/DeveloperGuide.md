@@ -1250,7 +1250,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Open the jar file by double-clicking it or running `java -jar stonksbook.jar` <br>
+        Expected: Shows the GUI with a set of sample contacts, sales, meetings and reminders. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -1287,6 +1288,55 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+
+### Adding a sale
+
+1. Adding a sale while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
+
+   1. Test case: Enter `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music`<br>
+      Expected: A new sale is created that is associated with the first contact in the currently displayed list of
+      persons, has item name "Guitar Tuner", has datetime of purchase 30 October 2020, 3pm, has unit price of $10.00, 
+      has quantity of 100 and has a sale tag "music". 
+      The sale list should remain sorted in ascending order based on the datetime of purchase.
+
+   1. Test case: Enter `sale add c/1 n/Guitar Case d/2020-10-30 16:00 p/30.00 q/20 t/music` twice<br>
+      Expected: After the entry of the command, a new sale is created. 
+      However, after the entry of the command again, an error message appears, stating that a duplicate sale cannot be created.
+      
+   1. Test case: Enter `sale add c/1 n/Guitar Pick d/2020-10-30 16:00 p/30 q/20 t/music` <br>
+      Expected: No sale is added. An error message shows that the unit price format is incorrect,
+      and specifies the correct format.
+      
+   1. Test case: `sale add`<br>
+      Expected: No sale is added. Error details shown in the status message. Sale list remains the same.
+
+   1. Other incorrect delete commands to try: `sale add c/1 d/2020-10-30 16:00 p/30.00 q/20 t/music`, 
+      `sale add c/1 n/Guitar Case p/30.00 q/20 t/music`, `sale add c/1 n/Guitar Case d/2020-10-30 16:00 p/30.00 q/20`, 
+      `sale add c/1 n/Guitar Case d/2020-10-30 16:00 q/20 t/music`<br>
+      Expected: Similar to previous.
+      
+1. Adding a sale while no persons are shown <br>
+
+    1. Prerequisites: Use `contact find` command with a search term that does not match any contact to clear the contact list.
+
+    1. Test case: `sale add c/1 n/Guitar Case d/2020-10-30 16:00 p/25.00 q/20 t/music` <br>
+        Expected: No sale is added. An error message shows that the person index is invalid.
+        
+1. Adding a sale while at least 3 contacts are present in the contact list.
+
+    1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
+    
+       1. Test case: Enter `sale add c/1 c/2 c/3 n/Guitar String d/2020-10-30 15:00 p/10.00 q/100 t/music`<br>
+          Expected: 3 new sales are created with item name "Guitar String", has datetime of purchase 30 October 2020, 3pm, 
+          has unit price of $10.00, has quantity of 100 and has a sale tag "music". 
+          They are associated with the first, second and third contacts in the currently displayed list of persons.
+          The sale list should remain sorted in ascending order based on the datetime of purchase.
+
+### Deleting a sale
+
 
 ### Adding a meeting
 
