@@ -1173,7 +1173,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
 * 3b. At least one of the given sales already exists.
 
-    * 3b1. StonksBook shows an error message highlighting the duplicate sale, but creates the remaining valid sales.
+    * 3b1. StonksBook shows an error message listing the duplicate sales. The remaining valid sales are created, but the duplicate sales are not.
 
       Use case ends.
 
@@ -1298,7 +1298,6 @@ This use case is similar to `Add a reminder` except that the user has the additi
 * 2a. The list of contacts is empty.
 
   Use case ends.
-  
 
 * 3a. No sale index is provided.
 
@@ -1329,7 +1328,53 @@ This use case is similar to `Add a reminder` except that the user has the additi
     * 3e1. StonksBook shows an error message, reminding the user of the correct format. The sale is not edited.
 
       Use case resumes at step 2.
+      
+#### Use case: Edit multiple sales
 
+**MSS**
+
+1.  User requests to list sales.
+2.  StonksBook shows a list of sales.
+3.  User requests to edit multiple sales.
+4.  StonksBook edits multiple sales.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+
+* 3a. No sale indexes are provided.
+
+    * 3a1. StonksBook shows an error message. No sales are edited.
+
+      Use case resumes at step 2.
+
+* 3b. Any of the given sale indexes are invalid.
+
+    * 3b1. StonksBook shows an error message. No sales are edited.
+
+      Use case resumes at step 2.
+
+* 3c. Any of the given sales already exists.
+
+    * 3c1. StonksBook shows an error message listing the duplicate sales. All sales besides the duplicate sales are edited.
+
+      Use case ends.
+      
+* 3d. No sale parameters are provided besides the sale index.
+
+    * 3d1. StonksBook shows an error message, reminding the user to provide at least one field to edit. No sales are edited.
+
+      Use case resumes at step 2.
+
+* 3e. Any of the given parameters (e.g. unit price, quantity) are not in the correct format.
+
+    * 3e1. StonksBook shows an error message, reminding the user of the correct format. No sales are edited.
+
+      Use case resumes at step 2.
 
 #### Use case: Add contact to archive
 
