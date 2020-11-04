@@ -601,7 +601,7 @@ to keep the data in the `MonthlyListMap` up to date.
 
 This is the class diagram for Meeting stats.
 
-<img src="images/MeetingStatsClassDiagram.png" alt="fuck la" width="400px">
+<img src="images/MeetingStatsClassDiagram.png" alt="fuck la" height="200px">
 
 ![MeetingStatsClassDiagram](images/MeetingStatsClassDiagram.png)
 
