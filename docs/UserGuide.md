@@ -71,8 +71,6 @@ Besides the **Ad-Hoc Panel**, the display is unchanged for all other lists.
     <figcaption>Fig. 2 - Components of the GUI</figcaption>
 </figure>
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -132,6 +130,11 @@ This section will provide a quick guide to get StonksBook up and running on your
 
 ### Contacts
 
+#### Listing all contacts: `contact list`
+Shows a list of all contacts in StonksBook.
+
+**Format**:`contact list`
+
 #### Adding a contact: `contact add`
 Adds a contact to StonksBook.
 
@@ -146,6 +149,17 @@ Adds a contact to StonksBook.
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal r/blacklisted`
 
+#### Deleting a contact: `contact delete`
+Deletes the specified contact from StonksBook. All associated reminders and meetings will be deleted as well.
+
+**Format**: `contact delete INDEX`
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index must be a positive integer 1, 2, 3, …​
+
+**Examples**:
+`contact list` followed by `contact delete 2` deletes the 2nd contact in StonksBook.
+`contact find Betsy` followed by `contact delete 1` deletes the 1st contact in the results of the find command.
 
 #### Editing a contact: `contact edit`
 Edits an existing contact in StonksBook.
@@ -163,11 +177,6 @@ Edits an existing contact in StonksBook.
 **Examples**:
 * `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
 * `contact edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be Betsy Crower and clears all existing tags.
-
-#### Listing all contacts: `contact list`
-Shows a list of all contacts in StonksBook.
-
-**Format**:`contact list`
 
 #### Locating contacts by name: `contact find`
 Finds contacts whose names exactly match or is similar to any of the given keywords.
@@ -240,18 +249,6 @@ e.g. You want to see the contacts who have paid you the most for your sales and 
 **Examples**:
 * `contact sort e/ desc` sorts the contact list based on the email address in non-ascending order
 * `contact sort n/`  sorts the contact list based on the contact name in non-descending order
-
-#### Deleting a contact: `contact delete`
-Deletes the specified contact from StonksBook. All associated reminders and meetings will be deleted as well.
-
-**Format**: `contact delete INDEX`
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index must be a positive integer 1, 2, 3, …​
-
-**Examples**:
-`contact list` followed by `contact delete 2` deletes the 2nd contact in StonksBook.
-`contact find Betsy` followed by `contact delete 1` deletes the 1st contact in the results of the find command.
 
 ### Tags
 
