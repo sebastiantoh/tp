@@ -1388,7 +1388,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
 **Extensions**
 
-* 2a. No sale tags exist.
+* 2a. No sale tags or sales exist.
 
     * 2a1. StonksBook shows an error message.
 
@@ -1562,6 +1562,31 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `sale delete`, `sale delete x`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
+
+
+### Displaying sale breakdown
+
+1. Display sale breakdown with no existing sale tags or sales.
+
+   1. Prerequisites: There are no existing sale tags or sales
+
+   1. Test case: `sale breakdown`<br>
+      Expected: No popup window showing sale breakdown appears. Error details shown in the status message. Status bar remains the same.
+
+1. Display sale breakdown with less than 5 existing sale tags.
+
+   1. Prerequisites: There are less than 5 existing sale tags.
+
+   1. Test case: `sale breakdown`<br>
+      Expected: A popup window showing the sale breakdown appears. All sale tags appear in the bar chart.
+
+1. Display sale breakdown with 5 or more sale tags
+
+   1. Prerequisites: There are 5 or more existing sale tags.
+
+   1. Test case: `sale breakdown`<br>
+      Expected: A popup window showing the sale breakdown appears. The top 5 sale tags appear in the bar chart.
+
 
 ### Adding a meeting
 
