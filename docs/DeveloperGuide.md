@@ -683,7 +683,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                        | I want to …​                                               | So that I can…​                                                                            |
+| Priority | As a …​                            | I want to …​                                               | So that I can…​                                                                            |
 | -------- | --------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `* *`    | well-connected salesman           | see a history of the number of contacts made with someone     | determine if this contact is worth investing more time to                                     |
 | `* *`    | forgetful salesman                | set reminders associated with contacts                        | keep track of crucial tasks to be done                                                        |
@@ -1124,19 +1124,56 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
 * 3a. The given contact index is invalid.
 
-    * 3a1. StonksBook shows an error message.
+    * 3a1. StonksBook shows an error message. No sale is created.
 
       Use case resumes at step 2.
 
-* 3b. The given sale already exists
+* 3b. The given sale already exists.
 
-    * 3b1. StonksBook shows an error message stating that the given sale already exists.
+    * 3b1. StonksBook shows an error message stating that the given sale already exists. No sale is created.
 
       Use case ends.
 
-* 3c. The given parameters (e.g. unit price, quantity) are not in the correct format.
+* 3c. Any of the given parameters (e.g. unit price, quantity) are not in the correct format.
 
-    * 3c1. StonksBook shows an error message, reminding the user of the correct format.
+    * 3c1. StonksBook shows an error message, reminding the user of the correct format. No sale is created.
+
+      Use case resumes at step 2.
+      
+      
+#### Use case: Add a sale to a multiple contacts
+{:.no_toc}
+
+**MSS**
+
+1.  User requests to list contacts.
+2.  StonksBook shows a list of contacts.
+3.  User requests to add a sale to multiple contacts in the list.
+4.  StonksBook adds a sale to the multiple contacts specified.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+
+* 3a. A least one of the given contact indexes are invalid.
+
+    * 3a1. StonksBook shows an error message highlighting the invalid contact indexes. No sales are created.
+
+      Use case resumes at step 2.
+
+* 3b. At least one of the given sales already exists.
+
+    * 3b1. StonksBook shows an error message highlighting the duplicate sale, but creates the remaining valid sales.
+
+      Use case ends.
+
+* 3c. Any of the given parameters (e.g. unit price, quantity) are not in the correct format.
+
+    * 3c1. StonksBook shows an error message, reminding the user of the correct format. No sales are created.
 
       Use case resumes at step 2.
 
