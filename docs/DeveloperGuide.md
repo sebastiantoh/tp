@@ -609,10 +609,6 @@ how `MonthlyListMap` will be kept up to date after meeting commands `meeting add
 
 <img src="images/MeetingStatsObjectDiagram2.png" alt="result for meeting stats object diagram 2" height="400px">
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The activation bar should not be visible within the loop frame. However, that is the case in the diagram above due to a limitation of PlantUML.
-
-</div>
-
 <img src="images/MeetingStatsObjectDiagram3.png" alt="result for meeting stats object diagram 3" height="400px">
 
 <img src="images/MeetingStatsObjectDiagram4.png" alt="result for meeting stats object diagram 4" height="400px">
@@ -633,6 +629,9 @@ The following sequence diagrams shows how the monthly statistics feature for `me
 <img src="images/MeetingStatsSequenceDiagram2.png" alt="result for meeting stats sequence diagram 2" height="180px">
 
 <img src="images/MeetingStatsSequenceDiagram3.png" alt="result for meeting stats sequence diagram 3" height="300px">
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The activation bar should not be visible within the loop frame. However, that is the case in the diagram above due to a limitation of PlantUML.
+</div>
 
 <img src="images/MeetingStatsSequenceDiagram4.png" alt="result for meeting stats sequence diagram 4" height="300px">
 
