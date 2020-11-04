@@ -138,7 +138,16 @@ Shows a list of all contacts in StonksBook.
 #### Adding a contact: `contact add`
 Adds a contact to StonksBook.
 
-**Format**: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMARK]…​`
+**Format**: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMARK]​`
+
+| Parameter      | What it is                    | Requirements                                                                                                                                                                                                                                                                     |
+|----------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `NAME`         | Name of contact               | Must contain only alphabetical characters                                                                                                                                                                                                                                        |
+| `PHONE_NUMBER` | Phone number of contact       | Must contain only numerical characters                                                                                                                                                                                                                                           |
+| `EMAIL`        | Email of contact              | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must <ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>|
+| `ADDRESS`      | Address of contact            | Can take any value                                                                                                                                                                                                                                                               |
+| `TAG`          | Tag to be assigned to contact | Must exist in StonksBook first before you can associate the contact to them.                                                                                                                                                                                                     |
+| `REMARK`       | Remark related to contact     | Can take any value                                                                                                                                                                                                                                                               |
 
 :bulb: Tip: A contact can have any number of tags (including 0)
 
@@ -508,7 +517,7 @@ Adds a sale to the specified contact in StonksBook.
 | Parameter              | What it is                                       | Requirements                                                                                                            |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | `CONTACT_INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                   |
-| `ITEM_NAME`            | Name of the item(s) sold                         | Must contain only alphanumeric characters                                                                               |
+| `ITEM_NAME`            | Name of the item(s) sold                         | Must contain only alphabetical characters                                                                               |
 | `DATETIME_OF_PURCHASE` | Datetime of when the sale was made               | Must be in the format `yyyy-MM-dd HH:mm`                                                                                |
 | `UNIT_PRICE`           | Unit price of each item sold                     | Must be a positive number greater than 0 and less than 10 million with 2 decimal places, in the format `DOLLARS.CENTS`. |
 | `QUANTITY`             | Quantity of items sold                           | Must be a positive integer greater than 0 and less than 10 million.                                                     |
@@ -612,7 +621,7 @@ Edits an existing sale in StonksBook.
 | Parameter              | What it is                                       | Requirements                                                                                                            |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | `CONTACT_INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                   |
-| `ITEM_NAME`            | Name of the item(s) sold                         | Must contain only alphanumeric characters                                                                               |
+| `ITEM_NAME`            | Name of the item(s) sold                         | Must contain only alphabetic characters                                                                               |
 | `DATETIME_OF_PURCHASE` | Datetime of when the sale was made               | Must be in the format `yyyy-MM-dd HH:mm`                                                                                |
 | `UNIT_PRICE`           | Unit price of each item sold                     | Must be a positive number greater than 0 and less than 10 million with 2 decimal places, in the format `DOLLARS.CENTS`. |
 | `QUANTITY`             | Quantity of items sold                           | Must be a positive integer greater than 0 and less than 10 million.                                                     |
