@@ -641,8 +641,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 #### Design consideration:
 
-##### Aspect: How Monthly Statistics executes
-
+##### Aspect: Whether to separate `MonthlyListMap` and `UniqueMeetingList`
 * **Alternative 1 (current choice):** Make `MonthlyListMap` a part of `UniqueMeetingList`.
   * Pros: Easy to implement and less error-prone as all changes to meeting objects are done by `UniqueMeetingList` methods
    and it is easy to propagate the changes to `MonthListMap` within them.
@@ -653,6 +652,7 @@ The following activity diagram summarizes what happens when a user executes the 
   * Cons: We must ensure that whenever the meeting objects in the `UniqueMeetingList` changes,
    the changes are reflected to the `MonthlyListMap` to keep the data reliable.
 
+##### Aspect: Whether to use month only or month and year to identify a unique month
 * **Alternative 1 (current choice):** Use month and year to identify a unique month.
   * Pros: Easy to identify a unique month.
   * Cons: Special care is needed to get the previous month when the current month is January as the year has to be decreased by 1 too. An additional parameter, year, for user to type.
