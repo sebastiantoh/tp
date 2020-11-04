@@ -132,7 +132,7 @@ public class UniqueSaleList implements Iterable<Sale> {
     public void updateSalesWithContact(Person buyer) {
         requireNonNull(buyer);
         List<Sale> salesToUpdate =
-                internalList.stream().filter(sale -> sale.getBuyer().getId() == buyer.getId())
+                internalList.stream().filter(sale -> sale.getBuyer().hasSameId(buyer))
                         .collect(Collectors.toList());
 
         for (Sale sale : salesToUpdate) {

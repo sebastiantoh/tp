@@ -10,6 +10,7 @@ package seedu.address.commons.core.index;
  */
 public class Index {
     private int zeroBasedIndex;
+    private String inputIndex;
 
     /**
      * Index can only be created by calling {@link Index#fromZeroBased(int)} or
@@ -21,6 +22,12 @@ public class Index {
         }
 
         this.zeroBasedIndex = zeroBasedIndex;
+        this.inputIndex = String.valueOf(zeroBasedIndex + 1);
+    }
+
+    private Index(int zeroBasedIndex, String inputIndex) {
+        this.zeroBasedIndex = zeroBasedIndex;
+        this.inputIndex = inputIndex;
     }
 
     public int getZeroBased() {
@@ -29,6 +36,10 @@ public class Index {
 
     public int getOneBased() {
         return zeroBasedIndex + 1;
+    }
+
+    public String getOneBasedInString() {
+        return inputIndex;
     }
 
     /**
@@ -43,6 +54,13 @@ public class Index {
      */
     public static Index fromOneBased(int oneBasedIndex) {
         return new Index(oneBasedIndex - 1);
+    }
+
+    /**
+     * Creates a new {@code Index} to handle large unsupported indexes.
+     */
+    public static Index tooLargeIndex(String inputIndex) {
+        return new Index(Integer.MAX_VALUE, inputIndex);
     }
 
     @Override

@@ -60,14 +60,14 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_nonExistentAttribute_failure() {
+    public void parse_nonExistentContactAttribute_failure() {
         String args = " " + PREFIX_SALE_QUANTITY;
         assertParseFailure(sortCommandParser, args,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_noAttributeAndDesc_failure() {
+    public void parse_descOnly_failure() {
         String args = " " + PREFIX_DESC_ORDER;
         assertParseFailure(sortCommandParser, args,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
@@ -85,6 +85,28 @@ public class SortCommandParserTest {
     public void parse_twoAttributesAndDesc_failure() {
         String args = " " + PREFIX_CONTACT_EMAIL + " " + PREFIX_CONTACT_NAME
                 + " " + PREFIX_DESC_ORDER;
+        assertParseFailure(sortCommandParser, args,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_nameWithArgValue_failure() {
+        String args = " " + PREFIX_CONTACT_NAME + " some arg value";
+        assertParseFailure(sortCommandParser, args,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_emailWithArgValue_failure() {
+        String args = " " + PREFIX_CONTACT_EMAIL + " some arg value";
+        assertParseFailure(sortCommandParser, args,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_descWithArgValue_failure() {
+        String args = " " + PREFIX_CONTACT_NAME + " " + PREFIX_DESC_ORDER
+                + " some arg value";
         assertParseFailure(sortCommandParser, args,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }

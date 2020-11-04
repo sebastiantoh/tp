@@ -24,6 +24,7 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +36,7 @@ import seedu.address.model.dataset.date.MonthlyCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
@@ -169,7 +171,7 @@ public class ModelManagerTest {
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different sortedList -> returns false
-        modelManager.updateSortedPersonList((x, y) -> y.getName().fullName.compareTo(x.getName().fullName));
+        modelManager.updateSortedPersonList(Comparator.comparing(Person::getId).reversed());
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

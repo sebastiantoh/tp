@@ -92,7 +92,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     public void updateMeetingsWithContact(Person contact) {
         requireNonNull(contact);
         List<Meeting> meetingsToUpdate =
-                internalList.stream().filter(meeting -> meeting.getPersonId() == contact.getId())
+                internalList.stream().filter(meeting -> meeting.getPerson().hasSameId(contact))
                         .collect(Collectors.toList());
 
         for (Meeting meeting : meetingsToUpdate) {

@@ -59,7 +59,7 @@ public class MassSaleCommandUtil {
         assert !invalidIndexes.isEmpty();
         StringBuilder listOfInvalidIndexes = new StringBuilder(message + ": ");
         for (Index invalidIndex : invalidIndexes) {
-            listOfInvalidIndexes.append(invalidIndex.getOneBased()).append(", ");
+            listOfInvalidIndexes.append(invalidIndex.getOneBasedInString()).append(", ");
         }
         String completedListOfInvalidIndexes = listOfInvalidIndexes.toString();
         return completedListOfInvalidIndexes.substring(0, completedListOfInvalidIndexes.length() - 2);
