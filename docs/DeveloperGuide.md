@@ -1485,17 +1485,38 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Listing sales
+
+1. Listing sales belonging to a specific contact
+
+   1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
+
+   1. Test case: Enter `sale list c/1`<br>
+      Expected: The Sale List displays all sales belonging to the first contact in the currently displayed list of contacts.
+      The sale list should remain sorted in ascending order based on the datetime of purchase.
+      
+   1. Test case: Enter `sale list`<br>
+      Expected: No change in sale list. Error details shown in the status message. Status bar remains the same.
+      
+   1. Test case: Enter `sale list c/0`<br>
+         Expected: No change in sale list. Error details shown in the status message. Status bar remains the same.
 
 ### Adding a sale
 
 1. Adding a sale while all contacts are being shown
 
-   1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
+   1. Prerequisites: List all contacts using the `contact list` command. At least 3 contacts in the list.
 
    1. Test case: Enter `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music`<br>
       Expected: A new sale is created that is associated with the first contact in the currently displayed list of
-      persons, has item name "Guitar Tuner", has datetime of purchase 30 October 2020, 3pm, has unit price of $10.00, 
+      contacts, has item name "Guitar Tuner", has datetime of purchase 30 October 2020, 3pm, has unit price of $10.00, 
       has quantity of 100 and has a sale tag "music". 
+      The sale list should remain sorted in ascending order based on the datetime of purchase.
+      
+   1. Test case: Enter `sale add c/1 c/2 c/3 n/Guitar String d/2020-10-30 15:00 p/10.00 q/100 t/music`<br>
+      Expected: 3 new sales are created with item name "Guitar String", has datetime of purchase 30 October 2020, 3pm, 
+      has unit price of $10.00, has quantity of 100 and has a sale tag "music". 
+      They are associated with the first, second and third contacts in the currently displayed list of persons.
       The sale list should remain sorted in ascending order based on the datetime of purchase.
 
    1. Test case: Enter `sale add c/1 n/Guitar Case d/2020-10-30 16:00 p/30.00 q/20 t/music` twice<br>
@@ -1514,22 +1535,13 @@ testers are expected to do more *exploratory* testing.
       `sale add c/1 n/Guitar Case d/2020-10-30 16:00 q/20 t/music`<br>
       Expected: Similar to previous.
       
-1. Adding a sale while no persons are shown <br>
+1. Adding a sale while no persons are shown
 
     1. Prerequisites: Use `contact find` command with a search term that does not match any contact to clear the contact list.
 
     1. Test case: `sale add c/1 n/Guitar Case d/2020-10-30 16:00 p/25.00 q/20 t/music` <br>
         Expected: No sale is added. An error message shows that the person index is invalid.
-        
-1. Adding a sale while at least 3 contacts are present in the contact list.
-
-    1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
-    
-       1. Test case: Enter `sale add c/1 c/2 c/3 n/Guitar String d/2020-10-30 15:00 p/10.00 q/100 t/music`<br>
-          Expected: 3 new sales are created with item name "Guitar String", has datetime of purchase 30 October 2020, 3pm, 
-          has unit price of $10.00, has quantity of 100 and has a sale tag "music". 
-          They are associated with the first, second and third contacts in the currently displayed list of persons.
-          The sale list should remain sorted in ascending order based on the datetime of purchase.
+  
 
 ### Deleting a sale
 
