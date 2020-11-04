@@ -19,13 +19,6 @@ Here are a few ways **StonksBook** can help you:
 - **Ease and Speed of Use**: No more fumbling through clunky user interfaces filled with obscure buttons which you do not even you use most of the time!
 StonksBook combines the best of a Command Line Interface (CLI) as well as a Graphical User Interface (GUI) - interact with the application by typing commands in the CLI and view the results in a clear GUI! 
 
-This is what StonksBook looks like:
-
-<figure>
-    <img src="images/LabelledUiDiagram.png" alt="LabelledUiDiagram">
-    <figcaption>Fig. 1 - Components of the GUI</figcaption>
-</figure>
-
 --------------------------------------------------------------------------------------------------------------------
 ## About this document
 
@@ -53,6 +46,32 @@ Check out the list below on how to use this User Guide:
 - If you are a first-time user, start from the [Quick start](#quick-start) section for instructions on downloading and setting up StonksBook.
 - If you are interested to learn about the various features StonksBook has, check out the [Features](#features) section.
 - If you are already familiar with StonksBook, but need a slight refresher, check out the [Command summary](#command-summary) section.
+--------------------------------------------------------------------------------------------------------------------
+## User Interface
+
+This is what StonksBook looks like when started:
+
+<figure>
+    <img src="images/LabelledUiDiagram.png" alt="LabelledUiDiagram">
+    <figcaption>Fig. 1 - Components of the GUI</figcaption>
+</figure>
+
+The user interface features several panels labelled above, that contain the **Contact List**, **Meeting List**, **Reminder List** and **Sale List**.
+The bottom right panel (which currently contains the **Sale List**) is the **Ad-Hoc Panel**, 
+which displays either the **Sale List** or **Tag List** depending on which command was executed most recently.
+If a sale command was executed most recently, the **Sale List** is shown, 
+whereas if a tag command was executed most recently, the **Tag List** is shown.
+
+The figure below displays the User Interface with the **Tag List** being shown. 
+The **Tag List** consists of two parts, the **Contact Tag List** and the **Sale Tag List**.
+Besides the **Ad-Hoc Panel**, the display is unchanged for all other lists.
+
+<figure>
+    <img src="images/LabelledUiDiagram2.png" alt="LabelledUiDiagram">
+    <figcaption>Fig. 2 - Components of the GUI</figcaption>
+</figure>
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1235,7 +1254,10 @@ Action | Format, Examples
 | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]`         | Edits an existing reminder                         | `reminder edit 1 d/2020-10-30 16:30 st/completed`                                        |
 | `reminder list [st/STATUS]`                                                          | Lists reminders based on provided parameters       | `reminder list st/completed`                                                             |
 
-
 ### Archive
 
 ### Miscellaneous
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix A: Glossary
