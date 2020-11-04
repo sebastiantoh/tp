@@ -1337,6 +1337,23 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a sale
 
+1. Deleting a sale while all sales are being shown
+
+   1. Prerequisites: List all sales using the `sale list` command. At least 5 sales in the sale list.
+
+   1. Test case: `sale delete s/1`<br>
+      Expected: First sale is deleted from the list. Details of the deleted sale shown in the status message.
+
+   1. Test case: `sale delete s/0`<br>
+      Expected: No sale is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `sale delete s/1 s/3 s/5`<br>
+      Expected: First, third and fifth sales are deleted from the list. 
+      Details of the deleted sales are shown in the status message.
+
+   1. Other incorrect delete commands to try: `sale delete`, `sale delete x`, `...` (where x is larger than the
+    list size)<br>
+      Expected: Similar to previous.
 
 ### Adding a meeting
 
