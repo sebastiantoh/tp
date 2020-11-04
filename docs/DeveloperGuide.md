@@ -602,12 +602,16 @@ Given below is the class diagram for `MonthlyListMap` for the command `meeting s
 <img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="400px">
 
 Given below are object diagrams for `MonthlyListMap` for the command `meeting stats` to illustrate 
-how the `MonthlyListMap` will be kept up to date after meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed.
+how `MonthlyListMap` will be kept up to date after meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed.
 
 
 <img src="images/MeetingStatsObjectDiagram1.png" alt="result for meeting stats object diagram 1" height="400px">
 
 <img src="images/MeetingStatsObjectDiagram2.png" alt="result for meeting stats object diagram 2" height="400px">
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The activation bar should not be visible within the loop frame. However, that is the case in the diagram above due to a limitation of PlantUML.
+
+</div>
 
 <img src="images/MeetingStatsObjectDiagram3.png" alt="result for meeting stats object diagram 3" height="400px">
 

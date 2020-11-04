@@ -24,14 +24,8 @@ MonthlyListMap --> MonthlyListMap
 deactivate MonthlyListMap
 
 MonthlyListMap --> MonthAndYear: getMonth()
-activate MonthAndYear
-MonthAndYear --> MonthlyListMap
-deactivate MonthAndYear
 
 MonthlyListMap --> MonthAndYear: getYear()
-activate MonthAndYear
-MonthAndYear --> MonthlyListMap
-deactivate MonthAndYear
 
 ref over MonthlyListMap: getMonthlyData
 
