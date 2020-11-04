@@ -634,7 +634,7 @@ The following sequence diagrams shows how the monthly statistics feature for `me
 
 <img src="images/MeetingStatsSequenceDiagram5.png" alt="result for meeting stats sequence diagram 5" height="200px">
 
-
+fuck off
 The following activity diagram summarizes what happens when a user executes the `meeting stats` command:
 
 <img src="images/MeetingStatsActivityDiagram.png" alt="result for meeting stats activity diagram" height="300px">
