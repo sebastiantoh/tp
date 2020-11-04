@@ -7,8 +7,9 @@ participant ":MonthlyData" as MonthlyData MODEL_COLOR
 
 end box
 
-box
+mainframe **sd** getMonthlyData
 
+box
 MonthlyListMap --> MonthlyListMap : getItems(month, year)
 activate MonthlyListMap
 
