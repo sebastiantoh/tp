@@ -643,70 +643,24 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ##### Aspect: How Monthly Statistics executes
 
-* **Alternative 1 (current choice):** Make `MonthlyListMap` as a part of `UniqueMeetingList`.
-  * Pros: Easy to implement and less error-prone as all changes to meetings are exposed by UniqueMeetingList methods
-   and it is easy to propagate the change to `MonthListMap` in the methods that are exposed by `UniqueMeetingList`.
-  * Cons: might be better object-oriented design to separate the two.
+* **Alternative 1 (current choice):** Make `MonthlyListMap` a part of `UniqueMeetingList`.
+  * Pros: Easy to implement and less error-prone as all changes to meeting objects are done by `UniqueMeetingList` methods
+   and it is easy to propagate the changes to `MonthListMap` within them.
+  * Cons: Might be better object-oriented design to separate the two.
 
 * **Alternative 2:** separate `MonthlyListMap` from `UniqueMeetingList`.
-  * Pros: might be better object-oriented design.
-  * Cons: We must ensure that whenever the meeting objects in the `UniqueMeetingList` are changed,
+  * Pros: Might be better object-oriented design.
+  * Cons: We must ensure that whenever the meeting objects in the `UniqueMeetingList` changes,
    the changes are reflected to the `MonthlyListMap` to keep the data reliable.
 
 * **Alternative 1 (current choice):** Use month and year to identify a unique month.
   * Pros: Easy to identify a unique month.
-  * Cons: Special care is needed to get the previous month when the current month is January as the year has to be decreased too. An additional parameter for user to type.
+  * Cons: Special care is needed to get the previous month when the current month is January as the year has to be decreased by 1 too. An additional parameter, year, for user to type.
 
 * **Alternative 2:** Use month only
   * Pros: One less parameter for user to type, easier to implement.
-  * Cons: Limits the functionality scope to cover only statistics for the curent year.
+  * Cons: Limits the functionality scope to statistics for the current year only.
   
- 
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### \[Proposed\] Undo/redo feature
 
