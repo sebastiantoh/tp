@@ -596,7 +596,7 @@ This feature will be demonstrated in the context of `meeting stats`.
 The Data Manipulation operations are used to propagate changes to `MonthlyListMap`
 when a meeting command `meeting add`, `meeting delete` or `meeting edit` is executed
 to keep the data in the `MonthlyListMap` up to date.
-fu
+
 Given below is the class diagram for `MonthlyListMap`.
 
 <img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="400px">
