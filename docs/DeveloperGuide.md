@@ -600,6 +600,9 @@ when meeting commands `meeting add`, `meeting delete` and `meeting edit` are exe
 to keep the data in the `MonthlyListMap` up to date.
 
 This is the class diagram for Meeting stats.
+
+<img src="images/MeetingStatsClassDiagram" width="400px">
+
 ![MeetingStatsClassDiagram](images/MeetingStatsClassDiagram.png)
 
 After initialisation with 2 meetings, m1 that starts on August 2020 and m2 that starts on December 2020:
@@ -632,6 +635,9 @@ are exposed in the `Model` interface as
 The following sequence diagram shows how the undo operation works:
 
 ![MeetingStatsDiagram1](images/MeetingStatsSequenceDiagram.png)
+
+![MeetingStatsDiagram1](images/ArchiveAddSequenceDiagramwtfla.png)
+
 
 ![MeetingStatsDiagram2](images/MeetingStatsSequenceDiagram2.png)
 
