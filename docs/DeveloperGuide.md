@@ -631,15 +631,15 @@ are exposed in the `Model` interface as
 
 The following sequence diagram shows how the undo operation works:
 
-<img src="images/MeetingStatsSequenceDiagram.png" alt="result for meeting stats sequence diagram" height="300px">
+<img src="images/MeetingStatsSequenceDiagram.png" alt="result for meeting stats sequence diagram" height="200px">
 
-<img src="images/MeetingStatsSequenceDiagram2.png" alt="result for meeting stats sequence diagram 2" height="300px">
+<img src="images/MeetingStatsSequenceDiagram2.png" alt="result for meeting stats sequence diagram 2" height="200px">
 
 <img src="images/MeetingStatsSequenceDiagram3.png" alt="result for meeting stats sequence diagram 3" height="300px">
 
 <img src="images/MeetingStatsSequenceDiagram4.png" alt="result for meeting stats sequence diagram 4" height="300px">
 
-<img src="images/MeetingStatsSequenceDiagram5.png" alt="result for meeting stats sequence diagram 5" height="300px">
+<img src="images/MeetingStatsSequenceDiagram5.png" alt="result for meeting stats sequence diagram 5" height="200px">
 
 
 The following activity diagram summarizes what happens when a user executes a new command:
