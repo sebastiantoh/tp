@@ -460,23 +460,28 @@ This list is sorted in ascending order based on the date the sale is made.
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
     - This is to identify the contact index corresponding to Bernice Yu.     
-
-<img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+<figure>
+    <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+</figure>
 
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example. 
+<figure>
+    <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
+</figure>
 
-<img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
- 
 3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
+<figure>
+    <img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
+</figure>
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu.
 
-<img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
-
+<figure>
+    <img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
+</figure>
 
 #### Adding a sale to a customer: `sale add` \[Kwek Min Yih\] 
 
@@ -503,23 +508,31 @@ Here's how you can add this new sale into StonksBook:
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
      - This is to identify the contact index corresponding to Bernice Yu.      
 
-<img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+<figure>
+    <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+</figure>
 
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
   show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.  
 
-<img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
- 
+<figure>
+    <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
+</figure>
+
 3. Type `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<img src="images/sale-add/saleaddthirdstep.png" alt="enter 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
+<figure>
+    <img src="images/sale-add/saleaddthirdstep.png" alt="enter 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
+</figure>
   
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  contain this newly created sale.
     - You may have to scroll through your **Sale List** to find this newly created sale since sales are
      sorted in ascending order based on the date the sale is made.
 
-<img src="images/sale-add/saleaddfourthstep.png" alt="result for 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
+<figure>
+    <img src="images/sale-add/saleaddfourthstep.png" alt="result for 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
+</figure>
 
 #### Deleting a sales item: `sale delete` \[Kwek Min Yih\]
 
@@ -540,30 +553,39 @@ Here's how you can delete this sale in StonksBook:
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
     - This is to identify the contact index corresponding to Bernice Yu.
 
-<img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
-
+<figure>
+    <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+</figure>
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.
 
-<img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
- 
+<figure>
+    <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
+</figure>
+
 3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
+<figure>
+    <img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
+</figure>
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu. Identify the index of the sale to be deleted. Let us assume it is at the third index.
 
-<img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
+<figure>
+    <img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
+</figure>
 
 5. Type `sale delete s/3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
 
-<img src="images/sale-delete/saledeletefifthstep.png" alt="enter 'sale delete s/3'" width="900px">
-     
+<figure>
+    <img src="images/sale-delete/saledeletefifthstep.png" alt="enter 'sale delete s/3'" width="900px">
+</figure>  
 6. You should see that the sale has been deleted from the sale list.
 
-<img src="images/sale-delete/saledeletesixthstep.png" alt="result for 'sale delete s/3'" width="900px">
-
+<figure>
+    <img src="images/sale-delete/saledeletesixthstep.png" alt="result for 'sale delete s/3'" width="900px">
+</figure>
 
 #### Editing an existing sale: `sale edit` \[Kwek Min Yih\]
 
@@ -593,24 +615,32 @@ Here's how you can edit her sale in StonksBook:
   sales, it may be convenient to filter for all sales made to Bernice Yu. Assuming that Bernice Yu is the 2nd contact
    currently displayed in the contact list, you can type `sale list c/2`.
 
-<img src="images/sale-edit/saleeditfirststep.png" alt="enter 'sale list c/2'" width="900px">
+<figure>
+    <img src="images/sale-edit/saleeditfirststep.png" alt="enter 'sale list c/2'" width="900px">
+</figure>
 
 2. The sale list will update to show only sales made to Bernice Yu.
 
-<img src="images/sale-edit/saleeditsecondstep.png" alt="result for 'sale list c/2'" width="900px">
+<figure>
+    <img src="images/sale-edit/saleeditsecondstep.png" alt="result for 'sale list c/2'" width="900px">
+</figure>
     
 3. Suppose the sale to be edited is at the third index in the sale list. 
 Then, type `sale edit s/3 q/20` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
   
+<figure>
 <img src="images/sale-edit/saleeditthirdstep.png" alt="enter 'sale edit s/3 q/20'" width="900px">
+</figure>
 
 4. You should see that the sale has been updated to reflect this new quantity.
 
-<img src="images/sale-edit/saleeditfourthstep.png" alt="result for 'sale edit s/3 q/20'" width="900px">
+<figure>
+    <img src="images/sale-edit/saleeditfourthstep.png" alt="result for 'sale edit s/3 q/20'" width="900px">
+</figure>
 
 #### Viewing a breakdown of sales made in each tag: `sale breakdown` \[Kwek Min Yih\]
 
-Displays a breakdown of the top 5 tags and the number of sales with each tag.
+Displays the number of sales belonging to the top 5 tags.
 
 **Format:** `sale breakdown`
 
@@ -623,12 +653,14 @@ To see the new updated bar graph, close the current external window and run the 
 
 1. Type `sale breakdown` in the **Command Box** and press <kbd>Enter</kbd>. 
 
-<img src="images/sale-breakdown/salebreakdownfirststep.png" alt="enter 'sale breakdown'" width="900px">
-
+<figure>
+    <img src="images/sale-breakdown/salebreakdownfirststep.png" alt="enter 'sale breakdown'" width="900px">
+</figure>
 2. A new window containing the bar chart pops up.
 
-<img src="images/sale-breakdown/salebreakdownsecondstep.png" alt="enter 'sale breakdown'" width="900px">
-
+<figure>
+    <img src="images/sale-breakdown/salebreakdownsecondstep.png" alt="enter 'sale breakdown'" width="900px">
+</figure>
 
 #### Analysing sales: `sale stats` \[Aaron Seah\]
 Analyses the sale data and visualises the statistical result.
@@ -1152,12 +1184,6 @@ Action | Format, Examples
 **Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
 **Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `contact find James Jake`
 **Contact Sort** | `contact sort KEYWORD [ORDER]` <br> e.g., `contact sort n/ desc`
-**Sale List** | `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`  <br> e.g., `sale delete c/3`
-**Sale Add** | `sale add c/CONTACT_INDEX d/DATETIME_OF_PURCHASE n/ITEM_NAME p/UNIT_PRICE q/QUANTITY [t/TAG]…` <br> e.g., `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`
-**Sale Delete** | `sale delete s/SALE_INDEX` <br> e.g., `sale delete s/4`
-**Sale Edit** | `sale edit SALE_INDEX [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`  <br> e.g., `sale edit 2 n/B5 Notebook p/4.00 q/10`
-**Sale Breakdown** | `sale breakdown`
-**Sale Stats** | `sale stats NUMBER_OF_MONTHS` <br> e.g., `sale stats 3`
 **Tag List** | `tag list`
 **Tag Add** | `tag add (ct/ or st/)TAG` <br> e.g., `tag add ct/important`
 **Tag Delete** | `tag delete (ct/ or st/)INDEX` <br> e.g., `tag delete ct/1`
@@ -1178,6 +1204,15 @@ Action | Format, Examples
 
 ### Sales
 
+| Command                                                                                                                    | Summary                                                  | Example (if applicable)                                                |
+|----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------|
+| `sale add c/CONTACT_INDEX… n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`                              | Adds a sale to the specified contact                     | `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music` |
+| `sale delete s/SALE_INDEX…`                                                                                                | Deletes the specified sale                               | `sale delete s/3`                                                      |
+| `sale edit s/SALE_INDEX… [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`    | Edits an existing sale                                   | `sale edit s/2 n/B5 Notebook p/4.00 q/10`                              |
+| `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`                                                                             | Lists sale based on provided parameters                  | `sale list c/1`                                                        |
+| `sale breakdown`                                                                                                           | Displays the number of sales belonging to the top 5 tags | `sale breakdown`                                                       |
+| `sale stats NUMBER_OF_MONTHS`                                                                                              | Displays statistics on sale                              | `sale stats 6`                                                         |
+
 ### Meetings
 
 | Command                                                                              | Summary                                            | Example (if applicable)                                                                  |
@@ -1192,7 +1227,7 @@ Action | Format, Examples
 
 | Command                                                                              | Summary                                            | Example (if applicable)                                                                  |
 |--------------------------------------------------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------------|
-| `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`                                  | Adds a reminder with the specified contact         | `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00`                            |
+| `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`                                  | Adds a reminder with the specified contact         | `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00`                          |
 | `reminder delete INDEX`                                                              | Deletes the specified reminder                     | `reminder delete 4`                                                                      |
 | `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]`         | Edits an existing reminder                         | `reminder edit 1 d/2020-10-30 16:30 st/completed`                                        |
 | `reminder list [st/STATUS]`                                                          | Lists reminders based on provided parameters       | `reminder list st/completed`                                                             |
