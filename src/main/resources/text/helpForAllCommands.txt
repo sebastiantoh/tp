@@ -33,18 +33,18 @@ sale stats                  Displays statistics on monthly sales                
 
 Meeting commands
 ----------------------
-meeting add	                Adds a meeting with the specified contact                   meeting add CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION
+meeting add	                Adds a meeting with the specified contact                   meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION
 meeting delete              Deletes the specified meeting                               meeting delete INDEX
 meeting edit                Edits an existing meeting                                   meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]
-meeting list                Lists all meetings.                                         meeting list [CONTACT_INDEX] [a/]
+meeting list                Lists meetings based on provided parameters                 meeting list [c/CONTACT_INDEX] [a/]
 meeting stats               Displays statistics on meetings                             meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]
 
 Reminder commands
 ----------------------
-reminder add                Adds a reminder with the specified contact                  reminder add CONTACT_INDEX m/MESSAGE d/DATETIME
+reminder add                Adds a reminder with the specified contact                  reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME
 reminder delete	            Deletes the specified reminder                              reminder delete INDEX
 reminder edit               Edits an existing reminder                                  reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]
-reminder list               Lists all reminders                                         reminder list [st/STATUS]
+reminder list               Lists reminders based on provided parameters                reminder list [st/STATUS]
 
 Other commands
 ----------------------
