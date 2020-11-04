@@ -1134,9 +1134,15 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case ends.
 
-* 3c. Any of the given parameters (e.g. unit price, quantity) are not in the correct format.
+* 3c. Any of the given parameters (e.g. contact index, unit price, quantity) are missing.
 
-    * 3c1. StonksBook shows an error message, reminding the user of the correct format. No sale is created.
+    * 3c1. StonksBook shows an error message, reminding the user of the correct command format. No sale is created.
+
+      Use case resumes at step 2.
+
+* 3d. Any of the given parameters (e.g. unit price, quantity) are not in the correct format.
+
+    * 3d1. StonksBook shows an error message, reminding the user of the correct format. No sale is created.
 
       Use case resumes at step 2.
       
@@ -1171,11 +1177,17 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case ends.
 
-* 3c. Any of the given parameters (e.g. unit price, quantity) are not in the correct format.
+* 3c. Any of the given parameters (e.g. contact indexes, unit price, quantity) are missing.
 
-    * 3c1. StonksBook shows an error message, reminding the user of the correct format. No sales are created.
+    * 3c1. StonksBook shows an error message, reminding the user of the correct command format. No sales are created.
 
       Use case resumes at step 2.
+
+* 3d. Any of the given parameters (e.g. unit price, quantity) are not in the correct format.
+
+    * 3d1. StonksBook shows an error message, reminding the user of the correct format. No sales are created.
+
+      Use case resumes at step 2.      
 
 #### Use case: List all sales
 {:.no_toc}
@@ -1218,7 +1230,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
 1.  User requests to list sales.
 2.  StonksBook shows a list of sales.
-3.  User requests to delete a sale of a specified index.
+3.  User requests to delete a sale.
 4.  StonksBook deletes the specified sale.
 
     Use case ends.
@@ -1229,9 +1241,15 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
   Use case ends.
 
-* 4a. The given sale index is invalid.
+* 4a. No sale index is provided.
 
     * 4a1. StonksBook shows an error message. No sale is deleted.
+
+      Use case resumes at step 2.
+
+* 4b. The given sale index is invalid.
+
+    * 4b1. StonksBook shows an error message. No sale is deleted.
 
       Use case resumes at step 2.
       
@@ -1241,7 +1259,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
 1.  User requests to list sales.
 2.  StonksBook shows a list of sales.
-3.  User requests to delete multiple sales of a specified indexes.
+3.  User requests to delete multiple sales.
 4.  StonksBook deletes the specified sales.
 
     Use case ends.
@@ -1252,11 +1270,66 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
   Use case ends.
 
-* 4a. Any of the given sale indexes are invalid.
+* 3a. No sale indexes are provided.
 
-    * 4a1. StonksBook shows an error message. No sales are deleted.
+    * 3a1. StonksBook shows an error message. No sale is deleted.
 
       Use case resumes at step 2.
+
+* 3b. Any of the given sale indexes are invalid.
+
+    * 3b1. StonksBook shows an error message. No sales are deleted.
+
+      Use case resumes at step 2.
+      
+#### Use case: Edit a sale
+
+**MSS**
+
+1.  User requests to list sales.
+2.  StonksBook shows a list of sales.
+3.  User requests to edit a sale.
+4.  StonksBook edits the sale.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+  
+
+* 3a. No sale index is provided.
+
+    * 3a1. StonksBook shows an error message. No sale is edited.
+
+      Use case resumes at step 2.
+
+* 3b. The given sale index is invalid.
+
+    * 3b1. StonksBook shows an error message. No sale is edited.
+
+      Use case resumes at step 2.
+
+* 3c. The given sale already exists.
+
+    * 3c1. StonksBook shows an error message stating that the given sale already exists. The sale is not edited.
+
+      Use case ends.
+      
+* 3d. No sale parameters are provided besides the sale index.
+
+    * 3d1. StonksBook shows an error message, reminding the user to provide at least one field to edit. The sale is not edited.
+
+      Use case resumes at step 2.
+
+* 3e. Any of the given parameters (e.g. unit price, quantity) are not in the correct format.
+
+    * 3e1. StonksBook shows an error message, reminding the user of the correct format. The sale is not edited.
+
+      Use case resumes at step 2.
+
 
 #### Use case: Add contact to archive
 
