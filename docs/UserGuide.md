@@ -793,17 +793,24 @@ In addition, archiving a contact will not remove the sales, reminders and meetin
 
 **Format**: `archive add INDEX`
 
-* Adds the contact at the specified `INDEX` to the archive.
+* Adds the contact at the specified `INDEX` to the archive. The sales, reminders and meetings linked to this contact will not be removed.
 * Can only be used when the contacts list is displayed.
 * The index must be a positive integer 1, 2, 3, …
 
 **Example**:
-Suppose you want to archive your contact David Li, who is no longer doing business with you. Simply follow the steps below:
+Suppose you want to archive your contact Alex Yeoh, who is no longer doing business with you. Simply follow the steps below:
 
-1. Identify the index of the contact entry in the contact list. Here David Li is the third contact in the list. Alternatively you can use `contact find` to find the contact.
-2. Type `archive add 3` in the **Command Box** and press <kbd>Enter</kbd>.
+1. Identify the index of the contact entry in the contact list. Here Alex Yeoh is the first contact in the list. Alternatively you can use `contact find` to find the contact.
+
+   <img src="images/archive-add/archive-add-prelude.png" alt=" Identify contact index " width="900px">
+
+2. Type `archive add 1` in the **Command Box** and press <kbd>Enter</kbd>.
+
+   <img src="images/archive-add/archive-add.png" alt=" Enter 'archive add 1' " width="900px">
+
 3. The contact entry will disappear from the contact list, and the **Result Box** will inform you that the command is successful.
-4. The sales, reminders and meetings linked to this contact will not be removed.
+
+   <img src="images/archive-add/archive-add-result.png" alt=" Result of 'archive add 1' " width="900px">
 
 #### Listing contacts in the archive: `archive list` \[Leong Jin Ming\]
 
@@ -832,12 +839,20 @@ StonksBook will not remove a contact from the archive if it is not in the archiv
 * The index must be a positive integer 1, 2, 3, …
 
 **Example**:
-Let's say your archived contact David Li wants to start buying electronics from you again, and so you would like to bring his contact entry back to the contacts list. Simply follow the steps below:
+Let's say your archived contact Alex Yeoh wants to start buying electronics from you again, and so you would like to bring his contact entry back to the contacts list. Simply follow the steps below:
 
 1. Make sure you are on the archived contacts list. If not, simply use the `archive list` command to get all your archived contacts.
-2. Identify the index of your contact in the list. In this case, David is the second entry in your list.
-3. Type `archive remove 3` in the **Command Box** and press <kbd>Enter</kbd>.
+
+   <img src="images/archive-remove/archive-remove-prelude.png" alt=" List archived contacts " width="900px">
+
+2. Identify the index of your contact in the list. In this case, Alex is the first entry in your list.
+3. Type `archive remove 1` in the **Command Box** and press <kbd>Enter</kbd>.
+
+   <img src="images/archive-remove/archive-remove.png" alt=" Enter 'archive remove 1' " width="900px">
+
 4. The contact entry will disappear from your archive, and the **Result Box** will inform you that the command is successful.
+
+   <img src="images/archive-remove/archive-remove-result.png" alt=" Result of 'archive remove 1' " width="900px">
 
 ### Miscellaneous
 
