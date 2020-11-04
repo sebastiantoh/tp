@@ -205,7 +205,7 @@ Sorts contacts based on the name or email address associated to the contact.
 * The sorted result will last until other contact commands (except `contact delete`) are executed.
 
 e.g. You want to see the contacts who have paid you the most for your sales and you can do so as shown.
-1. Type `contact sort s/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
+1. Type `contact sort n/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
         <img src="images/contact-sort/contactsortfirststep.png" alt="result for 'contact sort keyword'" width="900px">
@@ -1178,12 +1178,6 @@ Exits the program.
 
 Action | Format, Examples
 --------|------------------
-**Contact List** | `contact list`
-**Contact Add** | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]…` <br> e.g., `contact add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague r/birthday: 20 August`
-**Contact Delete** | `contact delete INDEX` <br> e.g., `contact delete 3`
-**Contact Edit** | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]…` <br> e.g., `edit 2 n/James Lee e/jameslee@example.com`
-**Contact Find** | `contact find KEYWORD [MORE_KEYWORDS]` <br> e.g., `contact find James Jake`
-**Contact Sort** | `contact sort KEYWORD [ORDER]` <br> e.g., `contact sort n/ desc`
 **Tag List** | `tag list`
 **Tag Add** | `tag add (ct/ or st/)TAG` <br> e.g., `tag add ct/important`
 **Tag Delete** | `tag delete (ct/ or st/)INDEX` <br> e.g., `tag delete ct/1`
@@ -1199,6 +1193,15 @@ Action | Format, Examples
 **Exit Application** | `exit`
 
 ### Contacts
+
+| Command                                                                                    | Summary                                                  | Example (if applicable)                                                                  |
+|--------------------------------------------------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------------------------|
+| `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]`                   | Adds a contact with the specified information            | `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| `contact delete INDEX`                                                                     | Deletes the specified contact                            | `contact delete 3`                                                                       |
+| `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]`    | Edits an existing contact                                | `contact edit 1 p/91234567 e/johndoe@example.com`                                        |
+| `contact list`                                                                             | Lists all contacts                                       | `contact list`                                                                           |
+| `contact find KEYWORD [MORE_KEYWORDS]`                                                     | Finds contacts with names matching the given keywords    | `contact find alx yo`                                                                    |
+| `contact sort KEYWORD [ORDER]`                                                             | Sorts contacts based on the parameter specified          | `contact sort n/ desc`                                                                   |
 
 ### Tags
 
