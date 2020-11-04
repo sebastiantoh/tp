@@ -601,25 +601,28 @@ to keep the data in the `MonthlyListMap` up to date.
 
 This is the class diagram for Meeting stats.
 
-<img src="images/MeetingStatsClassDiagram.png" alt="fuck la" height="400px">
-
-![MeetingStatsClassDiagram](images/MeetingStatsClassDiagram.png)
+<img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="400px">
 
 After initialisation with 2 meetings, m1 that starts on August 2020 and m2 that starts on December 2020:
-![MeetingStatsObjectDiagram1](images/MeetingStatsObjectDiagram1.png)
+
+<img src="images/MeetingStatsObjectDiagram1.png" alt="result for meeting stats object diagram 1" height="400px">
 
 After `meeting add ` of meeting m3 that starts on August 2020
-![MeetingStatsObjectDiagram2](images/MeetingStatsObjectDiagram2.png)
+
+<img src="images/MeetingStatsObjectDiagram2.png" alt="result for meeting stats object diagram 2" height="400px">
+
 
 After `meeting delete ` of meeting m2 that starts on December 2020
-![MeetingStatsObjectDiagram3](images/MeetingStatsObjectDiagram3.png)
+
+<img src="images/MeetingStatsObjectDiagram3.png" alt="result for meeting stats object diagram 3" height="400px">
+
 
 
 After `meeting edit ` of meeting m3 that starts on
 August 2020 to meeting m4 that starts on December 2020
-![MeetingStatsObjectDiagram4](images/MeetingStatsObjectDiagram4.png)
+<img src="images/MeetingStatsObjectDiagram4.png" alt="result for meeting stats object diagram 4" height="400px">
 
-<img src="images/MeetingStatsObjectDiagram4.png" alt="fuck la" height="400px">
+
 
 
 ##### Data Retrieval
