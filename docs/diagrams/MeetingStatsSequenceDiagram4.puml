@@ -4,7 +4,7 @@
 box Model MODEL_COLOR_T1
 participant ":MonthlyListMap" as MonthlyListMap MODEL_COLOR
 participant ":MonthlyData" as MonthlyData MODEL_COLOR
-participant ":MonthAndYear" as MonthAndYear MODEL_COLOR
+participant "m:MonthAndYear" as MonthAndYear MODEL_COLOR
 end box
 
 

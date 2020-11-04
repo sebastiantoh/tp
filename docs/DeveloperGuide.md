@@ -620,7 +620,7 @@ how `MonthlyListMap` will be kept up to date after meeting commands `meeting add
 * `MonthlyListMap#getPreviousMonthAndYear(Month month, Year year)` —  Gets the month and year for the month before the given month and year.
 
 `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` operation is exposed in the `Model` interface as
-`Model#getMultipleMonthCount(Month month, Year year, int numberOfMonths)`
+`Model#getMultipleMonthCount(Month month, Year year, int numberOfMonths)`.
 
 The following sequence diagrams shows how the monthly statistics feature works:
 
@@ -657,7 +657,7 @@ The following activity diagram summarizes what happens when a user executes the 
   * Pros: Easy to identify a unique month.
   * Cons: Special care is needed to get the previous month when the current month is January as the year has to be decreased by 1 too. An additional parameter, year, for user to type.
 
-* **Alternative 2:** Use month only
+* **Alternative 2:** Use month only.
   * Pros: One less parameter for user to type, easier to implement.
   * Cons: Limits the functionality scope to statistics for the current year only.
   
