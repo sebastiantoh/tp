@@ -576,7 +576,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 
 
-### Monthly Statistics Feature
+### Monthly Statistics Feature [Aaron Seah]
 
 #### Implementation
 
@@ -590,18 +590,18 @@ This feature will be demonstrated in the context of `meeting stats`.
 
 ##### Data Manipulation
 * `MonthlyListMap#addItem(Month month, Year year, T item)` — Adds item of type T to an item list based on the key of month and year.
-* `MonthlyListMap#removeItem(Month month, Year year, T item)` — Removes item of type T from an item list based on the key of month and year if exists.
-* `MonthlyListMap#clear()` — Removes all entries in the monthlyListMap.
+* `MonthlyListMap#removeItem(Month month, Year year, T item)` — Removes item of type T from an item list based on the key of month and year if the item exists.
+* `MonthlyListMap#clear()` — Removes all entries in the `MonthlyListMap`.
 
-The Data Manipulation operations are used to propagate changes to `MonthlyListListMap`
+The Data Manipulation operations are used to propagate changes to `MonthlyListMap`
 when a meeting command `meeting add`, `meeting delete` or `meeting edit` is executed
 to keep the data in the `MonthlyListMap` up to date.
 
-Given below is the class diagram for `MonthlyListMap` for the command `meeting stats`.
+Given below is the class diagram for `MonthlyListMap`.
 
 <img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="400px">
 
-Given below are object diagrams for `MonthlyListMap` for the command `meeting stats` to illustrate 
+Given below are object diagrams for `MonthlyListMap` to illustrate 
 how `MonthlyListMap` will be kept up to date after meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed.
 
 
@@ -616,7 +616,7 @@ how `MonthlyListMap` will be kept up to date after meeting commands `meeting add
 
 
 ##### Data Retrieval
-* `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` — Gets the item counts in the item list for the given month and year and the previous (numberOfMonths - 1) months.
+* `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` — Gets the item counts for the given month and year and the previous (numberOfMonths - 1) months.
 * `MonthlyListMap#getPreviousMonthAndYear(Month month, Year year)` —  Gets the month and year for the month before the given month and year.
 
 `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` operation is exposed in the `Model` interface as
