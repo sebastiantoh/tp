@@ -580,30 +580,30 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 #### Implementation
 
-The monthly statistics feature mechanism is facilitated by `MonthlyListMap` and `StatisticsWindow`.
-`MonthlyListMap` gets the monthly statistics data and
-`StatisticsWindow` populates the UI with the data.
+The monthly statistics mechanism is facilitated by `MonthlyListMap` and `StatisticsWindow`.
+`MonthlyListMap` gets the monthly statistics data and `StatisticsWindow` populates the UI with the data.
 
 The commands `meeting stats` and `sale stats` implement this feature.
-
 This feature will be demonstrated in the context of `meeting stats`.
 
-`MonthlyListMap` has two sets of operations, Data Manipulation and Data Retrieval:
+`MonthlyListMap` has two sets of operations: Data Manipulation and Data Retrieval.
 
 ##### Data Manipulation
-* `MonthlyListMap#addItem(Month month, Year year, T item)` — Adds item of type T to an item list based on the key of month and code year.
+* `MonthlyListMap#addItem(Month month, Year year, T item)` — Adds item of type T to an item list based on the key of month and year.
 * `MonthlyListMap#removeItem(Month month, Year year, T item)` — Removes item of type T from an item list based on the key of month and year if exists.
 * `MonthlyListMap#clear()` — Removes all entries in the monthlyListMap.
 
-These Data Manipulation operations are used to propagate changes to the meetings objects
-when meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed
+The Data Manipulation operations are used to propagate changes to `MonthlyListListMap`
+when a meeting command `meeting add`, `meeting delete` or `meeting edit` is executed
 to keep the data in the `MonthlyListMap` up to date.
 
-This is the class diagram for Meeting stats.
+Given below is the class diagram for `MonthlyListMap` for the command `meeting stats`.
 
 <img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="400px">
 
-After initialisation with 2 meetings, m1 that starts on August 2020 and m2 that starts on December 2020:
+Given below are object diagrams for `MonthlyListMap` for the command `meeting stats` to illustrate 
+how the `MonthlyListMap` will be kept up to date for adding, deleting, editing meetings.
+
 
 <img src="images/MeetingStatsObjectDiagram1.png" alt="result for meeting stats object diagram 1" height="400px">
 
