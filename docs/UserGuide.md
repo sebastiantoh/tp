@@ -1196,7 +1196,7 @@ Changes the theme of the GUI to light and dark theme respectively. The default t
 
 Format: `lightmode`/`darkmode`
 
-#### Viewing help: `help`
+#### Viewing help: `help` [Aaron Seah]
 Lists the command word, command description and example
 usage for each available command as well as the link to the User Guide.
 
