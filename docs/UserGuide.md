@@ -211,7 +211,8 @@ Finds contacts whose name exactly matches or is similar to any of the given keyw
 * Exact matches (if exist) will appear as the top results.
 
 **Example**:
-Let's say you want to find the contact with the name 'Alex Yeoh' but you cannot remember the correct spelling of the name. 
+
+Let's say you want to find the contact with the name 'Alex Yeoh' but you do not know the correct spelling of the name. 
 You decide to search for 'alx yo' which has a similar pronunciation.
 You can still find the contact with the name 'Alex Yeoh' as shown.
 
@@ -243,19 +244,20 @@ Sorts contacts based on the contact's name or email address.
 
 **Format**: `contact sort KEYWORD [ORDER]`
 
-* `KEYWORD` must exactly match to one of the following:
-    * `n/` for name
-    * `e/` for email address
+| Parameter      | What it is                                       | Requirements                                                                                                                                                                                                                                                                     |
+|----------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `KEYWORD`      | keyword for sorting contacts                     | Must be either `n/` or `e/`                                                                                                                                                                                                                                            |
+| `ORDER`        | sorting order                                    | Must be `desc`                                                                                                                                                                                                                                        |
 
-* If `ORDER` is present, `ORDER` must exactly match `desc` and the contacts will be sorted in reverse alphabetical order.
+* If `ORDER` is present, the contacts will be sorted in reverse alphabetical order.
+Otherwise, the contacts will be sorted in alphabetical order.
 
-* Otherwise, the contacts will be sorted in alphabetical order.
+* The sorting order is case-insensitive. e.g. A contact with the name 'Alex' is equivalent to a contact with the name 'alex' in the sorting process.
 
-* The sorting order is case insensitive. e.g. A contact with the name 'Alex' is equivalent to a contact with the name 'alex' in the sorting process.
-
-* The sorted result will only last until other contact commands except `contact delete` are executed.
+* The sorting effect will only last until another contact command except `contact delete` is executed.
 
 **Example**:
+
 Let's say you want to see your contacts in reverse alphabetical order based on their name.
 
 1. Type `contact sort n/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
@@ -264,15 +266,11 @@ Let's say you want to see your contacts in reverse alphabetical order based on t
         <img src="images/contact-sort/contactSortFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
     
-2. The **Contact List** is sorted in reverse alphabetical order based on the contact name.
+2. The contacts in the **Contact List** is sorted in reverse alphabetical order based on the contact name.
 
     <figure>
         <img src="images/contact-sort/contactSortSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
-
-**Examples**:
-* `contact sort e/ desc` sorts the contact list based on the email address in reverse alphabetical order
-* `contact sort n/`  sorts the contact list based on the contact name in alphabetical order
 
 ### Tags
 
@@ -462,19 +460,19 @@ StonksBook allows you to manage the sales you made within the application.
 
 #### Listing all sales: `sale list` \[Kwek Min Yih\] \[Aaron Seah\]
 
-Shows a list of sales. By default, all sales will be listed. 
-This list is sorted in ascending order based on the date the sale is made.
+Shows a list of sales.
 
 **Format:** `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
-
-* When used without any arguments, all sales will be shown.
-* At most one optional parameter can be present.
 
 | Parameter       | What it is                                       | Requirements                                   |
 |-----------------|--------------------------------------------------|------------------------------------------------|
 | `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …          |
 | `MONTH`         | Month                                            | Must be an integer between 1 and 12 inclusive. |
 | `YEAR`          | Year                                             | Must be an integer greater than 0.             |
+
+* At most one optional parameter can be present.
+
+* The list is sorted in ascending order based on the date the sale is made.
 
 * If no optional parameter is present:
    * all sales are listed.
@@ -485,17 +483,6 @@ This list is sorted in ascending order based on the date the sale is made.
 * If optional parameter `[m/MONTH y/YEAR]` is present:
    * all sales whose associated date is in the specified `MONTH` and `YEAR` are listed.
    
-**Example:** Let's suppose you want to see the sales you have made in August 2020, you can do so as shown.
-1. Type `sale list m/8 y/2020` in the **Command Box** and press <kbd>Enter</kbd>.
-
-    <figure>    
-        <img src="images/sale-list/salelistfirststep.png" alt="result for 'contact sort keyword'" width="900px">
-    </figure>
-    
-    <figure>    
-        <img src="images/sale-list/salelistsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
-    </figure>
-
 **Example:** Let's say you want to view all sales made to Bernice Yu. This is what you need to do:
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
@@ -703,16 +690,16 @@ To see the new updated bar graph, close the current external window and run the 
     <img src="images/sale-breakdown/salebreakdownsecondstep.png" alt="enter 'sale breakdown'" width="900px">
 </figure>
 
-#### Analysing sales: `sale stats` \[Aaron Seah\]
-Analyses the sale data and visualises the statistical result.
+#### Viewing monthly sale count: `sale stats` \[Aaron Seah\]
+Views the monthly sale count in the current month and previous months.
 
 **Format**: `sale stats NUMBER_OF_MONTHS`
 
-* `NUMBER_OF_MONTHS` refers to the number of months to be included in the result.
-* `NUMBER_OF_MONTHS` must be an integer between 2 and 6 inclusive.
+| Parameter              | What it is                                       | Requirements                                                                                                            |
+|------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| `NUMBER_OF_MONTHS`     | The number of months to consider in the result   | Must be a positive integer between 2 and 6 inclusive. 2, 3, .. , 6                                                                                  |
      
-**Example**:
-Let's say you want to compare the number of meetings you have had in the past 6 months.
+**Example**: Let's say you want to compare the number of sales you have made for each month in the past 5 months with the current month.
 You can do so as shown.
 
 1. Type `sale stats 6` and press <kbd>Enter</kbd>.
@@ -727,9 +714,6 @@ You can do so as shown.
         <img src="images/sale-stats/saleStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-**Examples**:
-* `sale stats 3` will return a bar chart containing the number of sale whose sale date is within
-   June 2020, July 2020 and August 2020 respectively if the current month is August and the current year is 2020.
 
 ### Meetings
 
@@ -905,17 +889,18 @@ Let's say that you have just received an email from Bernice Yu who wishes to res
         <img src="images/meeting-edit/meeting-edit-result.png" alt="Result for 'meeting edit'" width="900px">
     </figure>  
     
-#### Analysing meetings: `meeting stats` [Aaron Seah]
-Analyses the meeting data and visualises the statistical result.
+#### Viewing monthly meetings: `meeting stats` [Aaron Seah]
+Views the monthly meeting count in the current month and optionally in previous months.
 
 **Format**: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
 
 * At most one optional parameter can be present.
 
-* `NUMBER_OF_MONTHS` refers to the number of months to be included in the result.
-* `NUMBER_OF_MONTHS` must be an integer between 2 and 6 inclusive.
-* `MONTH` must be an integer between 1 and 12 inclusive.
-* `YEAR` must be an integer greater than 0.
+| Parameter              | What it is                                       | Requirements                                                                                                            |
+|------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| `NUMBER_OF_MONTHS`     | The number of months to consider in the result   | Must be a positive integer between 2 and 6 inclusive. 2, 3, .. , 6                                                                                  |
+| `MONTH`                | month                                            | Must be an integer between 1 and 12 inclusive. 1, 2, .. , 12                                                                                  |
+| `YEAR`                 | year                                             | Must be a positive integer 1, 2, 3 ...                                                                                 |
 
 * If no optional parameter is present:
    * The result is the number of meetings whose start date is in the current month and year
@@ -929,7 +914,7 @@ Analyses the meeting data and visualises the statistical result.
      the current month and year.
      
 **Example**:
-Let's say you want to compare the number of meetings you have had in the past 6 months.
+Let's say you want to compare the number of meetings you have had for each month in the past 5 months with the current month.
 You can do so as shown.
 
 1. Type `meeting stats 6` and press <kbd>Enter</kbd>.
@@ -944,7 +929,7 @@ You can do so as shown.
         <img src="images/meeting-stats/meetingStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-**Examples**:
+**Additonal Examples**:
 * `meeting stats` will return the number of meetings whose start date is in the October 2020
    if the current month is October and the current year is 2020.
 * `meeting stats m/8 y/2020` will return the number of meetings whose start date is in August 2020.
@@ -1207,12 +1192,11 @@ Changes the theme of the GUI to light and dark theme respectively. The default t
 Format: `lightmode`/`darkmode`
 
 #### Viewing help: `help` [Aaron Seah]
-Lists the command word, command description and example
-usage for each available command as well as the link to the User Guide.
+Lists the command word, command description and example usage for each available command as well as the link to the User Guide.
 
 **Example**:
 Let's say you want to recall some commands in StonksBook. 
-You can do so by acessing the help page as shown.
+You can do so by accessing the help page as shown.
 
 1. Type `help` in the **Command Box** and press <kbd>Enter</kbd>.
 
