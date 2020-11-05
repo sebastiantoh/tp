@@ -46,7 +46,9 @@ Check out the list below on how to use this User Guide:
 - If you are a first-time user, start from the [Quick start](#quick-start) section for instructions on downloading and setting up StonksBook.
 - If you are interested to learn about the various features StonksBook has, check out the [Features](#features) section.
 - If you are already familiar with StonksBook, but need a slight refresher, check out the [Command summary](#command-summary) section.
+
 --------------------------------------------------------------------------------------------------------------------
+
 ## User Interface
 
 This is what StonksBook looks like when started:
@@ -1248,6 +1250,8 @@ Exits the program.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
+This section provides a summary of all the commands available in StonksBook. 
 
 ### Contacts
 
