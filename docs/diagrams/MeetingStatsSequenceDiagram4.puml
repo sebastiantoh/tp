@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":MonthlyListMap" as MonthlyListMap MODEL_COLOR
+participant ":MonthlyData" as MonthlyData MODEL_COLOR
+participant "m:MonthAndYear" as MonthAndYear MODEL_COLOR
+end box
+
+
+mainframe **sd** getPreviousMonthlyData
+
+box
+
+MonthlyListMap --> MonthlyListMap : getPreviousMonthAndYear(month, year)
+activate MonthlyListMap
+
+create MonthAndYear
+MonthlyListMap --> MonthAndYear
+activate MonthAndYear
+MonthAndYear --> MonthlyListMap
+deactivate MonthAndYear
+MonthlyListMap --> MonthlyListMap
+deactivate MonthlyListMap
+
+MonthlyListMap --> MonthAndYear: getMonth()
+
+MonthlyListMap --> MonthAndYear: getYear()
+
+ref over MonthlyListMap: getMonthlyData
+
+end box
+
+@enduml

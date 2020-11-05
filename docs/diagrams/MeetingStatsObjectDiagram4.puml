@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam ClassAttributeFontColor #000000
+
+show members
+hide empty members
+
+title After "meeting edit meeting of m3 that starts on August 2020 \n to meeting m4 that starts on January 2021"
+
+    class "<u>m1:MonthAndYear" {
+        month: August
+        year: 2020
+    }
+
+    class "<u>m4:MonthAndYear" {
+        month: January
+        year: 2021
+    }
+
+    class "<u>m1:meeting" {
+
+    }
+
+
+    class "<u>m4:meeting" {
+
+    }
+
+    "__:UniqueMeetingList__" -- "__:MonthlyListMap__"
+    "__:MonthlyListMap__" -- "<u>m1:MonthAndYear"
+    "__:MonthlyListMap__" -- "<u>m4:MonthAndYear"
+
+    "<u>m1:MonthAndYear" -- "__i1:itemList__"
+    "__i1:itemList__" -- "<u>m1:meeting"
+
+    "<u>m4:MonthAndYear" -- "__i4:itemList__"
+    "__i4:itemList__" -- "<u>m4:meeting"
+@enduml
