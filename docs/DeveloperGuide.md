@@ -564,18 +564,6 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![ArchiveAddActivityDiagram](images/ArchiveAddActivityDiagram.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
 ### Monthly Statistics Feature [Aaron Seah]
 
 #### Implementation
@@ -604,7 +592,6 @@ Given below is the class diagram for the Monthly Statistics Feature.
 Given below are object diagrams for the Monthly Statistics Feature to illustrate 
 how `MonthlyListMap` will be kept up to date after meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed.
 
-
 <img src="images/MeetingStatsObjectDiagram1.png" alt="result for meeting stats object diagram 1" height="400px">
 
 <img src="images/MeetingStatsObjectDiagram2.png" alt="result for meeting stats object diagram 2" height="400px">
@@ -612,8 +599,6 @@ how `MonthlyListMap` will be kept up to date after meeting commands `meeting add
 <img src="images/MeetingStatsObjectDiagram3.png" alt="result for meeting stats object diagram 3" height="400px">
 
 <img src="images/MeetingStatsObjectDiagram4.png" alt="result for meeting stats object diagram 4" height="400px">
-
-
 
 ##### Data Retrieval
 * `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` — Gets the item counts for the given month and year and the previous (numberOfMonths - 1) months.
@@ -661,7 +646,6 @@ The following activity diagram summarizes what happens when a user executes the 
   * Pros: One less parameter for user to type, easier to implement.
   * Cons: Limits the functionality scope to statistics for the current year only.
   
-
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
