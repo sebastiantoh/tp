@@ -217,7 +217,7 @@ Finds contacts whose name exactly matches or is similar to any of the given keyw
 * Exact matches (if exist) will appear as the top results.
 
 <div markdown="block" class="alert alert-info">
-This feature gives an approximate result for contacts whose name is similar to any of the given keywords.
+:warning: This feature gives an approximate result for contacts whose name is similar to any of the given keywords.
 </div>
 
 **Example**:
@@ -1189,7 +1189,7 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 Gives a suggestion of the most similar command (if exists) to an unknown user input.
 
 <div markdown="block" class="alert alert-info">
-This feature gives an approximate result for the most similar command.
+:warning: This feature gives an approximate result for the most similar command.
 </div>
 
 **Example**:
