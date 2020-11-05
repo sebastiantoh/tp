@@ -253,27 +253,28 @@ Sorts contacts based on the name or email address associated to the contact.
 
 * If `ORDER` is present, `ORDER` must exactly match `desc`.
 
-* If `ORDER` is absent, contacts will be sorted in non-descending order. Otherwise, contacts will be sorted in non-ascending order.
+* If `ORDER` is absent, contacts will be sorted in alphabetical order. Otherwise, contacts will be sorted in reverse alphabetical order.
+
+* The sorting order is case insensitive.
 
 * The sorted result will last until other contact commands (except `contact delete`) are executed.
 
-e.g. You want to see the contacts who have paid you the most for your sales and you can do so as shown.
+e.g. You want to see your contacts in reverse alphabetical order by name.
 1. Type `contact sort n/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
         <img src="images/contact-sort/contactSortFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
     
-2. The contact list is sorted by the total sales amount, from highest to lowest.
-3. Your top paying contacts will be at the top of the list.
+2. The contact list is sorted in reverse alphabetical order by name.
 
     <figure>
         <img src="images/contact-sort/contactSortSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
 **Examples**:
-* `contact sort e/ desc` sorts the contact list based on the email address in non-ascending order
-* `contact sort n/`  sorts the contact list based on the contact name in non-descending order
+* `contact sort e/ desc` sorts the contact list based on the email address in reverse alphabetical order
+* `contact sort n/`  sorts the contact list based on the contact name in alphabetical order
 
 ### Tags
 
