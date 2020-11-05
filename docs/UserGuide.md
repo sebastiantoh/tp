@@ -112,6 +112,10 @@ This section will provide a quick guide to get StonksBook up and running on your
 
 ## Features
 
+This section introduces the various features available in StonksBook.
+
+Before we begin, do take note of the following information which applies to all of StonksBook's commands:
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
