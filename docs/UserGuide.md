@@ -132,6 +132,8 @@ This section will provide a quick guide to get StonksBook up and running on your
 
 ### Contacts
 
+StonksBook allows you to manage your contacts effectively and efficiently.
+
 #### Listing all contacts: `contact list`
 Shows a list of all contacts in StonksBook.
 
@@ -274,6 +276,8 @@ e.g. You want to see the contacts who have paid you the most for your sales and 
 
 ### Tags
 
+StonksBook allows you to create tags for your contacts as well as sales so that you can categorise them easily.
+
 #### Adding a tag: `tag add` \[Wang Luo\]
 
 Adds a new customised contact tag or sales tag to StonksBook.
@@ -286,7 +290,10 @@ StonksBook will not allow you to add a new contact tag (or sales tag) if there a
 
 * `ct/` stands for contact tag, `st/` stands for sales tag.
 * Adds a contact tag (if `ct/` is typed) or a sales tag (if `st/` is typed) with the specified `TAG` as the tag name to the contact tag list (or sales tag list).
-* The `TAG` field must be provided.
+
+| Parameter       | What it is                                       | Requirements                                                      |
+|-----------------|--------------------------------------------------|-------------------------------------------------------------------|
+| `TAG`           | Name of the new tag                              | Must contain only alphanumeric characters and should not be blank |
 
 **Examples**:
 
@@ -336,9 +343,12 @@ All entries (contacts or sales) previously associated with this tag will be upda
 
 **Format**: `tag edit (ct/ or st/)INDEX t/TAG`
 
-* Edits the name of the contact tag or sales tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the contact tags list or sales tags list displayed by the `tag list` command.
-* The `INDEX` must be a positive integer 1, 2, 3, ...
-* The `TAG` and `INDEX` fields must be provided.
+| Parameter       | What it is                                                             | Requirements                                                      |
+|-----------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `INDEX`         | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, …        |
+| `TAG`           | New name for the tag to be edited                                      | Must contain only alphanumeric characters and should not be blank |
+
+* Edits the name of the contact tag or sales tag at the specified `INDEX` to be the specified `NAME`.
 * All contacts or sales that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
 
 **Examples**:
@@ -404,9 +414,11 @@ Displays all entries (contacts or sales) that are associated with the specified 
 
 **Format**: `tag find (ct/ or st/)INDEX [cl/]`
 
-* Displays all entries of associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
-* The `INDEX` must be a positive integer 1, 2, 3, ...
-* The `INDEX` field must be provided.
+| Parameter       | What it is                                                             | Requirements                                                      |
+|-----------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `INDEX`         | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, …        |
+
+* Finds all contacts or sales associated with the tag at `INDEX`.
 * An additional `cl/` (stands for 'client') field can be provided when performing searching on sales tags. If provided, instead of displaying sales associated to this tag, StonksBook will display the clients who have purchased items with this tag.
 * If you are searching for contact tags using `ct/`, adding the `cl/` tag will have no effect on the search results.
 
@@ -961,7 +973,7 @@ e.g. You can compare the number of meetings you have had in the past 6 months as
 
 StonksBook allows you to manage your reminders within the application.
 
-#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
+#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
 
 Shows a list of all reminders created, sorted in ascending order based on the date the reminder is scheduled.
 
@@ -969,7 +981,7 @@ Shows a list of all reminders created, sorted in ascending order based on the da
 
 | Parameter        | What it is                                       | Requirements                                                           |
 |------------------|--------------------------------------------------|------------------------------------------------------------------------|
-| `STATUS`         | Status of the reminders                          | Must be either `completed` or `pending`                                  |
+| `STATUS`         | Status of the reminders                          | Must be either `completed` or `pending`                                |
 
 **Example**:
 Let's say that you want to view all your completed reminders. Here's how you can do so:
