@@ -147,7 +147,7 @@ Let's say you want to take a look at all your contacts in StonksBook. Here are t
 1. Type `contact list` in the **Command Box** and press <kbd>Enter</kbd>.
    
     <figure>
-        <img src="images/contact-list/contact-list.png" alt="type in 'contact list'" width="900px">
+        <img src="images/contact-list/contact-list.png" alt="enter 'contact list'" width="900px">
     </figure>
    
 2. The **Contact List** now displays all your existing contacts in StonksBook.
@@ -179,13 +179,17 @@ Adds a contact to StonksBook.
 
 Let's say you would like to add Betsy Crowe, who is a friend of yours, to your contact list. Here are the steps to follow:
 
-1. Type `contact add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate Street  t/friends` in the **Command Box** and press <kbd>Enter</kbd>.
+1. Type `contact add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate Street t/friends` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
-        <img src="images/contact-list/contact-list-result.png" alt="result for 'contact list'" width="900px">
+        <img src="images/contact-add/contact-add.png" alt="enter 'contact add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate Street t/friends'" width="900px">
     </figure>
 
+2. The **Result Box** will display a message noting that the command was successful, and the **Contact List** now contains Betsy Crowe.
 
+    <figure>
+        <img src="images/contact-add/contact-add-result.png" alt="result for 'contact add'" width="900px">
+    </figure>
 
 #### Deleting a contact: `contact delete`
 Deletes the specified contact from StonksBook. All associated sales, reminders and meetings will be deleted as well.
@@ -253,7 +257,7 @@ You can still find the contact with the name `Alex Yeoh` as shown.
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
    
     <figure>
-        <img src="images/contact-find/contactFindFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-find/contactFindFirstStep.png" alt="enter 'contact sort keyword'" width="900px">
     </figure>
    
 2. The **Contact List** now contains contacts whose name is similar to `alx yo`.
@@ -293,7 +297,7 @@ Let's say you want to see your contacts in reverse alphabetical order based on t
 1. Type `contact sort n/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
-        <img src="images/contact-sort/contactSortFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-sort/contactSortFirstStep.png" alt="enter 'contact sort keyword'" width="900px">
     </figure>
     
 2. The contacts in the **Contact List** is sorted in reverse alphabetical order based on the contact name.
@@ -330,13 +334,13 @@ Let's say that you want to add a new sales tag called electronics. Here are the 
 1. Type `tag add st/electronics` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
-        <img src="images/tag-add/tag-add.png" alt="Enter 'tag add st/electronics' in the Command Box" width="900px">
+        <img src="images/tag-add/tag-add.png" alt="enter 'tag add st/electronics' in the Command Box" width="900px">
     </figure>
     
 2. The **Result Box** will display a message noting that the command was successful, and the **Sales Tags** will now contain this new sales tag.
 
     <figure>
-        <img src="images/tag-add/tag-add-result.png" alt="Result for 'tag add st/electronics'" width="900px">
+        <img src="images/tag-add/tag-add-result.png" alt="result for 'tag add st/electronics'" width="900px">
     </figure>
 
 #### Listing all tags: `tag list` \[Wang Luo\]
@@ -352,13 +356,13 @@ Let's say that you want to see all the tags you have created so far. Here are th
 1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
-        <img src="images/tag-list/tag-list.png" alt="Enter 'tag list'" width="900px">
+        <img src="images/tag-list/tag-list.png" alt="enter 'tag list'" width="900px">
     </figure>
 
 2. The **Result Box** will display a message noting that the command was successful, and the bottom right box will now display **Contact Tags** and **Sales Tags**.
 
     <figure>
-        <img src="images/tag-list/tag-list-result.png" alt="Result for 'tag list'" width="900px">
+        <img src="images/tag-list/tag-list-result.png" alt="result for 'tag list'" width="900px">
     </figure>
 
 #### Editing a tag: `tag edit` \[Wang Luo\]
@@ -387,19 +391,19 @@ Let's say that you decides to change the tag colleagues to teammates instead. He
     - This is to display the contact tags and sales tags in StonksBook.
 
     <figure>
-        <img src="images/tag-edit/tag-list-second.png" alt="Result for 'tag list'" width="900px">
+        <img src="images/tag-edit/tag-list-second.png" alt="result for 'tag list'" width="900px">
     </figure>
 
 2. Type `tag edit ct/2 t/teammates` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
-        <img src="images/tag-edit/tag-edit.png" alt="Enter 'tag edit ct/2 t/teammates'" width="900px">
+        <img src="images/tag-edit/tag-edit.png" alt="enter 'tag edit ct/2 t/teammates'" width="900px">
     </figure>
 
 3. The **Result Box** will display a message noting that the command was successful, and the **Contact Tags** will now contain teammates instead of colleagues. Note that the tags are sorted alphabetically, hence, you may need to scroll up or down to see the updated tag. Also, note that the contact Bernice Yu is now tagged to teammates.
 
     <figure>
-        <img src="images/tag-edit/tag-edit-result.png" alt="Enter 'tag edit ct/2 t/teammates'" width="900px"> 
+        <img src="images/tag-edit/tag-edit-result.png" alt="result for 'tag edit ct/2 t/teammates'" width="900px"> 
     </figure>    
 
 #### Deleting a tag: `tag delete` \[Wang Luo\]
@@ -422,19 +426,19 @@ Let's say that you think one contact tag (colleagues) you created before is no l
     - This is to display the contact tags and sales tags in StonksBook, and the contact tag colleagues is found to be at index 2.
 
     <figure> 
-        <img src="images/tag-edit/tag-list-second.png" alt="Result for 'tag list'" width="900px">
+        <img src="images/tag-edit/tag-list-second.png" alt="result for 'tag list'" width="900px">
     </figure>  
 
 2. Type `tag delete ct/2` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure> 
-        <img src="images/tag-delete/tag-delete.png" alt="Enter 'tag delete ct/2'" width="900px">
+        <img src="images/tag-delete/tag-delete.png" alt="enter 'tag delete ct/2'" width="900px">
     </figure> 
 
 3. The **Result Box** will display a message noting that the command was successful, and the **Contact Tags** will no longer contain the contact tag colleagues. Also note that Bernice Yu is no longer tagged with colleagues.
 
     <figure> 
-        <img src="images/tag-delete/tag-delete-result.png" alt="Enter 'tag delete ct/2'" width="900px">
+        <img src="images/tag-delete/tag-delete-result.png" alt="result for 'tag delete ct/2'" width="900px">
     </figure>
 
 #### Retrieving entries by tag: `tag find` \[Wang Luo\]
@@ -459,19 +463,19 @@ Let's say that you would like to find out who are the contacts tagged with frien
     - This is to display the contact tags and sales tags in StonksBook, and the contact tag friends is found to be at index 3.
 
     <figure> 
-        <img src="images/tag-find/tag-list-third.png" alt="Result for 'tag list'" width="900px"> 
+        <img src="images/tag-find/tag-list-third.png" alt="result for 'tag list'" width="900px"> 
     </figure>
 
 2. Type `tag find ct/3` in the **Command Box** and press <kbd>Enter</kbd>. 
 
     <figure> 
-        <img src="images/tag-find/tag-find.png" alt="Enter 'tag delete ct/2'" width="900px"> 
+        <img src="images/tag-find/tag-find.png" alt="enter 'tag delete ct/2'" width="900px"> 
     </figure>
     
 3. The **Result Box** will display a message noting that the command was successful, as well as a list of contacts who are tagged with friends.
 
     <figure>  
-        <img src="images/tag-find/tag-find-result.png" alt="Result for 'tag delete ct/2'" width="900px"> 
+        <img src="images/tag-find/tag-find-result.png" alt="result for 'tag delete ct/2'" width="900px"> 
     </figure>    
 
 Now suppose that you would like to find out who purchased items that are tagged with music. Here are the steps to follow:
@@ -480,19 +484,19 @@ Now suppose that you would like to find out who purchased items that are tagged 
     - This is to display the contact tags and sales tags in StonksBook, and the contact tag friends is found to be at index 3.
 
     <figure>   
-        <img src="images/tag-find/tag-list-sale-second.png" alt="Result for 'tag list'" width="900px"> 
+        <img src="images/tag-find/tag-list-sale-second.png" alt="result for 'tag list'" width="900px"> 
     </figure>  
 
 2. Type `tag find st/2` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>   
-        <img src="images/tag-find/tag-find-sale-cl.png" alt="Enter 'tag find st/2'" width="900px"> 
+        <img src="images/tag-find/tag-find-sale-cl.png" alt="enter 'tag find st/2'" width="900px"> 
     </figure>
 
 3. The **Result Box** will display a message noting that the command was successful, as well as a list of clients who purchased items tagged with music.
 
     <figure>    
-        <img src="images/tag-find/tag-find-sale-cl-result.png" alt="Result for 'tag find st/2'" width="900px">
+        <img src="images/tag-find/tag-find-sale-cl-result.png" alt="result for 'tag find st/2'" width="900px">
     </figure>
 
 ### Sales
