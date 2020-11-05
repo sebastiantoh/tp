@@ -710,7 +710,7 @@ You can do so as shown.
     </figure>
 
 2. A new window containing a bar chart will appear. The bar chart will contain the monthly meeting count
-for each the previous 5 months: July 2020, August 2020, September 2020, October 2020, 
+for each the previous 5 months: June 2020, July 2020, August 2020, September 2020, October 2020, 
 followed by the current month and year November 2020.
 
     <figure>    
@@ -927,7 +927,7 @@ You can do so as shown.
     </figure>  
 
 2. A new window containing a bar chart will appear. The bar chart will contain the monthly meeting count
-for each the previous 5 months: July 2020, August 2020, September 2020, October 2020, 
+for each the previous 5 months: June 2020, July 2020, August 2020, September 2020, October 2020, 
 followed by the current month and year November 2020.
 
     <figure>    
