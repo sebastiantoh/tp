@@ -7,8 +7,9 @@ participant ":MonthlyData" as MonthlyData MODEL_COLOR
 
 end box
 
-box
+mainframe **sd** getMonthlyData
 
+box
 MonthlyListMap --> MonthlyListMap : getItems(month, year)
 activate MonthlyListMap
 
@@ -16,6 +17,7 @@ MonthlyListMap --> MonthlyListMap : list of meetings
 deactivate MonthlyListMap
 create MonthlyData
 MonthlyListMap --> MonthlyData : m, meetings list size
+note left: m refers to the MonthAndYear object m \nin the referencing sequence diagrams
 activate MonthlyData
 MonthlyData --> MonthlyListMap
 deactivate MonthlyData

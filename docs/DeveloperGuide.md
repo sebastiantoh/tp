@@ -576,143 +576,91 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 
 
-### Monthly Statistics Feature
+### Monthly Statistics Feature [Aaron Seah]
 
 #### Implementation
 
-The monthly statistics feature mechanism is facilitated by `MonthlyListMap` and `StatisticsWindow`.
-`MonthlyListMap` gets the monthly statistics data and
-`StatisticsWindow` populates the UI with the data.
+The monthly statistics mechanism is facilitated by `MonthlyListMap` and `StatisticsWindow`.
+`MonthlyListMap` gets the monthly statistics data and `StatisticsWindow` populates the UI with the data.
 
 The commands `meeting stats` and `sale stats` implement this feature.
-
 This feature will be demonstrated in the context of `meeting stats`.
 
-`MonthlyListMap` has two sets of operations, Data Manipulation and Data Retrieval:
+`MonthlyListMap` has two sets of operations: Data Manipulation and Data Retrieval.
 
 ##### Data Manipulation
-* `MonthlyListMap#addItem(Month month, Year year, T item)` — Adds item of type T to an item list based on the key of month and code year.
-* `MonthlyListMap#removeItem(Month month, Year year, T item)` — Removes item of type T from an item list based on the key of month and year if exists.
-* `MonthlyListMap#clear()` — Removes all entries in the monthlyListMap.
+* `MonthlyListMap#addItem(Month month, Year year, T item)` — Adds item of type T to an item list based on the key of month and year.
+* `MonthlyListMap#removeItem(Month month, Year year, T item)` — Removes item of type T from an item list based on the key of month and year if the item exists.
+* `MonthlyListMap#clear()` — Removes all entries in the `MonthlyListMap`.
 
-These Data Manipulation operations are used to propagate changes to the meetings objects
-when meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed
+The Data Manipulation operations are used to propagate changes to `MonthlyListMap`
+when a meeting command `meeting add`, `meeting delete` or `meeting edit` is executed
 to keep the data in the `MonthlyListMap` up to date.
 
-This is the class diagram for Meeting stats.
-![MeetingStatsClassDiagram](images/MeetingStatsClassDiagram.png)
+Given below is the class diagram for the Monthly Statistics Feature.
 
-After initialisation with 2 meetings, m1 that starts on August 2020 and m2 that starts on December 2020:
-![MeetingStatsObjectDiagram1](images/MeetingStatsObjectDiagram1.png)
+<img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="400px">
 
-After `meeting add ` of meeting m3 that starts on August 2020
-![MeetingStatsObjectDiagram2](images/MeetingStatsObjectDiagram2.png)
-
-After `meeting delete ` of meeting m2 that starts on December 2020
-![MeetingStatsObjectDiagram3](images/MeetingStatsObjectDiagram3.png)
+Given below are object diagrams for the Monthly Statistics Feature to illustrate 
+how `MonthlyListMap` will be kept up to date after meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed.
 
 
-After `meeting edit ` of meeting m3 that starts on
-August 2020 to meeting m4 that starts on December 2020
-![MeetingStatsObjectDiagram4](images/MeetingStatsObjectDiagram4.png)
+<img src="images/MeetingStatsObjectDiagram1.png" alt="result for meeting stats object diagram 1" height="400px">
+
+<img src="images/MeetingStatsObjectDiagram2.png" alt="result for meeting stats object diagram 2" height="400px">
+
+<img src="images/MeetingStatsObjectDiagram3.png" alt="result for meeting stats object diagram 3" height="400px">
+
+<img src="images/MeetingStatsObjectDiagram4.png" alt="result for meeting stats object diagram 4" height="400px">
 
 
 
 ##### Data Retrieval
-* `MonthlyListMap#getItemCount(Month month, Year year)` — Gets the number of items in an item list based on the key of month and year.
-* `MonthlyListMap#getItems(Month month, Year year)` — Gets the monthly item list for month and year.
-* `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` — Gets the item counts in the item list for the given month and year and the previous (numberOfMonths - 1) months.
-* `MonthlyListMap#getPreviousMonthAndYear(Month month, Year year)` —  Gets the month and year for one month before month and year.
+* `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` — Gets the item counts for the given month and year and the previous (numberOfMonths - 1) months.
+* `MonthlyListMap#getPreviousMonthAndYear(Month month, Year year)` —  Gets the month and year for the month before the given month and year.
 
-These operations except for 
-are exposed in the `Model` interface as
-`Model#getItemCount(Month month, Year year, int numberOfMonths)`,
- and `Model#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` respectively.
+`MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` operation is exposed in the `Model` interface as
+`Model#getMultipleMonthCount(Month month, Year year, int numberOfMonths)`.
 
-The following sequence diagram shows how the undo operation works:
+The following sequence diagrams shows how the Monthly Statistics Feature works:
 
-![MeetingStatsDiagram1](images/MeetingStatsSequenceDiagram.png)
+<img src="images/MeetingStatsSequenceDiagram.png" alt="result for meeting stats sequence diagram" height="200px">
 
-![MeetingStatsDiagram2](images/MeetingStatsSequenceDiagram2.png)
+<img src="images/MeetingStatsSequenceDiagram2.png" alt="result for meeting stats sequence diagram 2" height="150px">
 
-![MeetingStatsDiagram3](images/MeetingStatsSequenceDiagram3.png)
+<img src="images/MeetingStatsSequenceDiagram3.png" alt="result for meeting stats sequence diagram 3" height="300px">
 
-![MeetingStatsDiagram4](images/MeetingStatsSequenceDiagram4.png)
+<img src="images/MeetingStatsSequenceDiagram4.png" alt="result for meeting stats sequence diagram 4" height="300px">
 
-![MeetingStatsDiagram5](images/MeetingStatsSequenceDiagram5.png)
+<img src="images/MeetingStatsSequenceDiagram5.png" alt="result for meeting stats sequence diagram 5" height="200px">
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes the `meeting stats` command:
 
-![CommitActivityDiagram](images/MeetingStatsActivityDiagram.png)
+<img src="images/MeetingStatsActivityDiagram.png" alt="result for meeting stats activity diagram" height="300px">
+
 
 #### Design consideration:
 
-##### Aspect: How Monthly Statistics executes
-
-* **Alternative 1 (current choice):** Make `MonthlyListMap` as a part of `UniqueMeetingList`.
-  * Pros: Easy to implement and less error-prone as all changes to meetings are exposed by UniqueMeetingList methods
-   and it is easy to propagate the change to `MonthListMap` in the methods that are exposed by `UniqueMeetingList`.
-  * Cons: might be better object-oriented design to separate the two.
+##### Aspect: Whether to separate `MonthlyListMap` and `UniqueMeetingList`
+* **Alternative 1 (current choice):** Make `MonthlyListMap` a part of `UniqueMeetingList`.
+  * Pros: Easy to implement and less error-prone as all changes to meeting objects are done by `UniqueMeetingList` methods
+   and it is easy to propagate the changes to `MonthListMap` within them.
+  * Cons: Might be better object-oriented design to separate the two.
 
 * **Alternative 2:** separate `MonthlyListMap` from `UniqueMeetingList`.
-  * Pros: might be better object-oriented design.
-  * Cons: We must ensure that whenever the meeting objects in the `UniqueMeetingList` are changed,
+  * Pros: Might be better object-oriented design.
+  * Cons: We must ensure that whenever the meeting objects in the `UniqueMeetingList` changes,
    the changes are reflected to the `MonthlyListMap` to keep the data reliable.
 
+##### Aspect: Whether to use month only or month and year to identify a unique month
 * **Alternative 1 (current choice):** Use month and year to identify a unique month.
   * Pros: Easy to identify a unique month.
-  * Cons: Special care is needed to get the previous month when the current month is January as the year has to be decreased too. An additional parameter for user to type.
+  * Cons: Special care is needed to get the previous month when the current month is January as the year has to be decreased by 1 too. An additional parameter, year, for user to type.
 
-* **Alternative 2:** Use month only
+* **Alternative 2:** Use month only.
   * Pros: One less parameter for user to type, easier to implement.
-  * Cons: Limits the functionality scope to cover only statistics for the curent year.
+  * Cons: Limits the functionality scope to statistics for the current year only.
   
- 
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### \[Proposed\] Undo/redo feature
 

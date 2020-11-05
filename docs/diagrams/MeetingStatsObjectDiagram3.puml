@@ -7,7 +7,7 @@ skinparam ClassAttributeFontColor #000000
 show members
 hide empty members
 
-title After "Meeting remove meeting m2 that starts on December 2020"
+title After "meeting delete command meeting for m2 that starts on December 2020"
 
     class "<u>m1:MonthAndYear" {
         month: August
