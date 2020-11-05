@@ -691,7 +691,7 @@ To see the new updated bar graph, close the current external window and run the 
 </figure>
 
 #### Viewing monthly sale count: `sale stats` \[Aaron Seah\]
-Views the monthly sale count in the current month and previous months.
+Views the monthly sale count for the current month and previous months.
 
 **Format**: `sale stats NUMBER_OF_MONTHS`
 
@@ -893,7 +893,7 @@ Let's say that you have just received an email from Bernice Yu who wishes to res
     </figure>  
     
 #### Viewing monthly meetings: `meeting stats` \[Aaron Seah\]
-Views the monthly meeting count in the current month and optionally in previous months.
+Views the monthly meeting count for the current month and optionally for previous months.
 
 **Format**: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
 
