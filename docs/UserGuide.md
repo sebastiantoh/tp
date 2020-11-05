@@ -134,7 +134,7 @@ This section will provide a quick guide to get StonksBook up and running on your
 
 StonksBook allows you to manage your contacts effectively and efficiently.
 
-#### Listing all contacts: `contact list`
+#### Listing all contacts: `contact list` \[Wang Luo\]
 
 Shows a list of all contacts in StonksBook.
 
@@ -156,7 +156,7 @@ Let's say you want to take a look at all your contacts in StonksBook. Here are t
         <img src="images/contact-list/contact-list-result.png" alt="result for 'contact list'" width="900px">
     </figure>
     
-#### Adding a contact: `contact add`
+#### Adding a contact: `contact add` \[Wang Luo\]
 
 Adds a contact to StonksBook.
 
@@ -191,7 +191,7 @@ Let's say that you would like to add Betsy Crowe, who is a friend of yours, to y
         <img src="images/contact-add/contact-add-result.png" alt="result for 'contact add'" width="900px">
     </figure>
 
-#### Deleting a contact: `contact delete`
+#### Deleting a contact: `contact delete` \[Wang Luo\]
 
 Deletes the specified contact from StonksBook. All associated sales, reminders and meetings will be deleted as well.
 
@@ -240,7 +240,7 @@ Here are the steps to follow:
         <img src="images/contact-delete/contact-list.png" alt="result for 'contact list'" width="900px">
     </figure>
 
-#### Editing a contact: `contact edit`
+#### Editing a contact: `contact edit` \[Wang Luo\]
 
 Edits an existing contact in StonksBook.
 
