@@ -466,8 +466,8 @@ Shows a list of sales.
 | Parameter       | What it is                                       | Requirements                                   |
 |-----------------|--------------------------------------------------|------------------------------------------------|
 | `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …          |
-| `MONTH`         | Month                                            | Must be an integer between 1 and 12 inclusive. |
-| `YEAR`          | Year                                             | Must be an integer greater than 0.             |
+| `MONTH`         | Month                                            | Must be an integer between 1 and 12 inclusive |
+| `YEAR`          | Year                                             | Must be an integer greater than 0             |
 
 * `c/CONTACT_INDEX` and `m/MONTH y/YEAR` cannot be present at the same time.
 
@@ -1281,7 +1281,7 @@ Action | Format, Examples
 | `sale edit s/SALE_INDEX… [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`    | Edits an existing sale                                   | `sale edit s/2 n/B5 Notebook p/4.00 q/10`                              |
 | `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`                                                                             | Lists sale based on provided parameters                  | `sale list c/1`                                                        |
 | `sale breakdown`                                                                                                           | Displays the number of sales belonging to the top 5 tags | `sale breakdown`                                                       |
-| `sale stats NUMBER_OF_MONTHS`                                                                                              | Displays statistics on sale                              | `sale stats 6`                                                         |
+| `sale stats NUMBER_OF_MONTHS`                                                                                              | Displays monthly sale count                              | `sale stats 6`                                                         |
 
 ### Meetings
 
@@ -1291,7 +1291,7 @@ Action | Format, Examples
 | `meeting delete INDEX`                                                               | Deletes the specified meeting                      | `meeting delete 3`                                                                       |
 | `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]`  | Edits an existing meeting                          | `meeting edit 3 d/2020-12-15 12:00`                                                      |
 | `meeting list [c/CONTACT_INDEX] [a/]`                                                | Lists meetings based on provided parameters        | `meeting list c/1 a/`                                                                    |
-| `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`                                  | Displays statistics on meetings                    | `meeting stats 3`                                                                        |
+| `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`                                  | Displays monthly meeting count                     | `meeting stats 3`                                                                        |
 
 ### Reminders
 
