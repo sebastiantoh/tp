@@ -204,77 +204,76 @@ Edits an existing contact in StonksBook.
 * `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
 * `contact edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be Betsy Crower and clears all existing tags.
 
-#### Locating contacts by name: `contact find`
-Finds contacts whose names exactly match or is similar to any of the given keywords.
+#### Locating contacts by name: `contact find` \[Aaron Seah\]
+Finds contacts whose name exactly matches or is similar to any of the given keywords.
 
-**Format**: `contact find KEYWORD [MORE_KEYWORDS]`
+**Format**: `contact find KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. e.g hans will match Hans
+| Parameter      | What it is                                       | Requirements                                                                                                                                                                                                                                                                     |
+|----------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `KEYWORD`      | Keyword for finding contacts by name             | Can take any value                                                                                                                                                                                                                                         |
 
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 
-* You can only search based on the contact name.
+* The search is case-insensitive. e.g. keyword 'hans' will match the contact with the name 'Hans'.
 
-* Contacts matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
+* The contact list is ordered by non-ascending similarity to the given keywords.
 
-* keyword does not have to exactly match a contact name. e.g. alx will return Alex Yeoh
+* Exact matches (if exist) will appear as the top results.
 
-* The contact list is ordered by non-ascending similarity.
+**Example**:
+Let's say you want to find the contact with the name `Alex Yeoh` but you do not know the correct spelling of the name. 
+You decide to search for `alx yo` which has a similar pronunciation.
+You can still find the contact with the name `Alex Yeoh` as shown.
 
-* Exact matches (if exist) will appear as the first few results.
-
-e.g. You want to find the contact Alex Yeoh but you only roughly remember the spellng the of the name as alx yo and you can do this as shown.
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
    
     <figure>
-        <img src="images/contact-find/contactfindfirststep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-find/contactFindFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
    
-2. The contact list now contains contacts whose name is similar to alx yo.
+2. The **Contact List** now contains contacts whose name is similar to `alx yo`.
 
     <figure>
-        <img src="images/contact-find/contactfindsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-find/contactFindSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
     
-3. Alex Yeoh appears as the first contact on the list.
+3. The contact with the name `Alex Yeoh` appears as the first contact on the **Contact List**.
 
-**Examples**:
-* `contact find alex david` returns Alex Yeoh, David Li
-* `contact find alx` returns Alex Yeoh
-* `contact find alx david` returns David Li, Alex Yeoh
+    <figure>
+        <img src="images/contact-find/contactFindThirdStep.png" alt="result for 'contact sort keyword'" width="900px">
+    </figure>
 
-#### Sorting contacts: `contact sort`
-Sorts contacts based on the name or email address associated to the contact.
+#### Sorting contacts: `contact sort` \[Aaron Seah\]
+Sorts contacts based on the contact's name or email address.
 
 **Format**: `contact sort KEYWORD [ORDER]`
 
-* `KEYWORD` must exactly match to one of the following:
-    * `n/` for name
-    * `e/` for email address
+| Parameter      | What it is                                       | Requirements                                                                                                                                                                                                                                                                     |
+|----------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `KEYWORD`      | Keyword for sorting contacts                     | Must be either `n/` or `e/`                                                                                                                                                                                                                                            |
+| `ORDER`        | Sorting order                                    | Must be `desc`                                                                                                                                                                                                                                        |
 
-* If `ORDER` is present, `ORDER` must exactly match `desc`.
+* If `ORDER` is present, the contacts will be sorted in reverse alphabetical order.
+Otherwise, the contacts will be sorted in alphabetical order.
 
-* If `ORDER` is absent, contacts will be sorted in non-descending order. Otherwise, contacts will be sorted in non-ascending order.
+* The sorting order is case-insensitive. e.g. A contact with the name 'Alex' is equivalent to a contact with the name 'alex' in the sorting process.
 
-* The sorted result will last until other contact commands (except `contact delete`) are executed.
+* The sorting effect will only last until another contact command except `contact delete` is executed.
 
-e.g. You want to see the contacts who have paid you the most for your sales and you can do so as shown.
+**Example**:
+Let's say you want to see your contacts in reverse alphabetical order based on their name.
+
 1. Type `contact sort n/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
-        <img src="images/contact-sort/contactsortfirststep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-sort/contactSortFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
     
-2. The contact list is sorted by the total sales amount, from highest to lowest.
-3. Your top paying contacts will be at the top of the list.
+2. The contacts in the **Contact List** is sorted in reverse alphabetical order based on the contact name.
 
     <figure>
-        <img src="images/contact-sort/contactsortsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-sort/contactSortSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
-
-**Examples**:
-* `contact sort e/ desc` sorts the contact list based on the email address in non-ascending order
-* `contact sort n/`  sorts the contact list based on the contact name in non-descending order
 
 ### Tags
 
@@ -464,40 +463,29 @@ StonksBook allows you to manage the sales you made within the application.
 
 #### Listing all sales: `sale list` \[Kwek Min Yih\] \[Aaron Seah\]
 
-Shows a list of sales. By default, all sales will be listed. 
-This list is sorted in ascending order based on the date the sale is made.
+Shows a list of sales.
 
 **Format:** `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
-
-* When used without any arguments, all sales will be shown.
-* At most one optional parameter can be present.
 
 | Parameter       | What it is                                       | Requirements                                   |
 |-----------------|--------------------------------------------------|------------------------------------------------|
 | `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …          |
-| `MONTH`         | Month                                            | Must be an integer between 1 and 12 inclusive. |
-| `YEAR`          | Year                                             | Must be an integer greater than 0.             |
+| `MONTH`         | Month                                            | Must be an integer between 1 and 12 inclusive |
+| `YEAR`          | Year                                             | Must be an integer greater than 0             |
 
-* If no optional parameter is present:
+* `c/CONTACT_INDEX` and `m/MONTH y/YEAR` cannot be present at the same time.
+
+* If no parameter is present:
    * all sales are listed.
 
-* If optional parameter `CONTACT_INDEX` is present:
+* If `c/CONTACT_INDEX` is present:
    * all sales made to a contact with the specified index are listed.
 
-* If optional parameter `[m/MONTH y/YEAR]` is present:
+* If `m/MONTH y/YEAR` is present:
    * all sales whose associated date is in the specified `MONTH` and `YEAR` are listed.
    
-**Example:** Let's suppose you want to see the sales you have made in August 2020, you can do so as shown.
-1. Type `sale list m/8 y/2020` in the **Command Box** and press <kbd>Enter</kbd>.
-
-    <figure>    
-        <img src="images/sale-list/salelistfirststep.png" alt="result for 'contact sort keyword'" width="900px">
-    </figure>
-    
-    <figure>    
-        <img src="images/sale-list/salelistsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
-    </figure>
-
+* The list is sorted in ascending order based on the date the sale is made.
+   
 **Example:** Let's say you want to view all sales made to Bernice Yu. This is what you need to do:
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
@@ -705,15 +693,18 @@ To see the new updated bar graph, close the current external window and run the 
     <img src="images/sale-breakdown/salebreakdownsecondstep.png" alt="enter 'sale breakdown'" width="900px">
 </figure>
 
-#### Analysing sales: `sale stats` \[Aaron Seah\]
-Analyses the sale data and visualises the statistical result.
+#### Viewing monthly sale count: `sale stats` \[Aaron Seah\]
+Views the monthly sale count for the current month and previous months.
 
 **Format**: `sale stats NUMBER_OF_MONTHS`
 
-* `NUMBER_OF_MONTHS` refers to the number of months to be included in the result.
-* `NUMBER_OF_MONTHS` must be an integer between 2 and 6 inclusive.
+| Parameter              | What it is                                       | Requirements                                                                                                            |
+|------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| `NUMBER_OF_MONTHS`     | The number of monthly sale counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, ... , 6                                                                                  |
      
-e.g. You can compare the number of meetings you have had in the past 6 months as shown.
+**Example**: Let's say you want to compare the number of sales you have made for each month of the past 5 months and the current month.
+Let's assume that the current month and year is November 2020.
+You can do so as shown.
 
 1. Type `sale stats 6` and press <kbd>Enter</kbd>.
 
@@ -721,15 +712,14 @@ e.g. You can compare the number of meetings you have had in the past 6 months as
         <img src="images/sale-stats/saleStatsFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-2. A new window containing the bar chart pops up.
+2. A new window containing a bar chart will appear. The bar chart will contain the monthly meeting count
+for each the previous 5 months: June 2020, July 2020, August 2020, September 2020, October 2020, 
+followed by the current month and year November 2020.
 
     <figure>    
         <img src="images/sale-stats/saleStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-**Examples**:
-* `sale stats 3` will return a bar chart containing the number of sale whose sale date is within
-   June 2020, July 2020 and August 2020 respectively if the current month is August and the current year is 2020.
 
 ### Meetings
 
@@ -828,7 +818,7 @@ and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
  contain this newly created meeting.
     - You may have to scroll through your **Meeting List** to find this newly created meeting since meetings are
      sorted in ascending order based on the date the meeting is scheduled.
- 
+
     <figure>    
         <img src="images/meeting-add/meeting-add-result.png" alt="Result for 'meeting add'" width="900px">
     </figure>  
@@ -917,30 +907,33 @@ Let's say that you have just received an email from Bernice Yu who wishes to res
         <img src="images/meeting-edit/meeting-edit-result.png" alt="Result for 'meeting edit'" width="900px">
     </figure>  
     
-#### Analysing meetings: `meeting stats`
-Analyses the meeting data and visualises the statistical result.
+#### Viewing monthly meetings: `meeting stats` \[Aaron Seah\]
+Views the monthly meeting count for the current month and optionally for the previous months.
 
 **Format**: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
 
-* At most one optional parameter can be present.
+* `NUMBER_OF_MONTHS` and `m/MONTH y/YEAR` cannot be present at the same time.
 
-* `NUMBER_OF_MONTHS` refers to the number of months to be included in the result.
-* `NUMBER_OF_MONTHS` must be an integer between 2 and 6 inclusive.
-* `MONTH` must be an integer between 1 and 12 inclusive.
-* `YEAR` must be an integer greater than 0.
+| Parameter              | What it is                                       | Requirements                                                                                                            |
+|------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| `NUMBER_OF_MONTHS`     | The number of monthly meeting counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, ... , 6                                                                                  |
+| `MONTH`                | month                                            | Must be an integer between 1 and 12 inclusive. e.g. 1, 2, ... , 12                                                                                  |
+| `YEAR`                 | year                                             | Must be a positive integer 1, 2, 3 ...                                                                                 |
 
-* If no optional parameter is present:
-   * The result is the number of meetings whose start date is in the current month and year
+* If no parameter is present:
+   * The result is the number of meetings whose start date is in the current month and year.
 
-* If optional parameter `[m/MONTH y/YEAR]` is present:
-   * The result is the number of meetings whose start date is in the specified `MONTH` and `YEAR`
+* If `[m/MONTH y/YEAR]` is present:
+   * The result is the number of meetings whose start date is in the specified `MONTH` and `YEAR`.
 
-* If optional parameter `[NUMBER_OF_MONTHS]` is present:
-   * The result is a bar chart on the number of meetings
-     whose start date is within each of the previous `NUMBER_OF_MONTHS` - 1 months and
+* If `[NUMBER_OF_MONTHS]` is present:
+   * The result is a bar chart on the number of meetings in each of the previous `NUMBER_OF_MONTHS` - 1 months and
      the current month and year.
      
-e.g. You can compare the number of meetings you have had in the past 6 months as shown.
+**Example**:
+Let's say you want to compare the number of meetings you had for each of the past 5 months and the current month.
+Let's assume that the current month and year is November 2020.
+You can do so as shown.
 
 1. Type `meeting stats 6` and press <kbd>Enter</kbd>.
 
@@ -948,18 +941,20 @@ e.g. You can compare the number of meetings you have had in the past 6 months as
         <img src="images/meeting-stats/meetingStatsFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>  
 
-2. A new window containing the bar chart pops up.
+2. A new window containing a bar chart will appear. The bar chart will contain the monthly meeting count
+for each the previous 5 months: June 2020, July 2020, August 2020, September 2020, October 2020, 
+followed by the current month and year November 2020.
 
     <figure>    
         <img src="images/meeting-stats/meetingStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-**Examples**:
+**Additional Examples**:
 * `meeting stats` will return the number of meetings whose start date is in the October 2020
-   if the current month is October and the current year is 2020.
+   if the current month and year is October 2020.
 * `meeting stats m/8 y/2020` will return the number of meetings whose start date is in August 2020.
 * `meeting stats 3` will return a bar chart containing the number of meetings whose start date is within
-   June 2020, July 2020 and August 2020 respectively if the current month is August and the current year is 2020.
+   June 2020, July 2020 and August 2020 respectively if the current month and year is August 2020.
 
 ### Reminders
 
@@ -1190,8 +1185,24 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 
 ### Miscellaneous
 
-#### Error resolution suggestion
-Gives an approximate match (if exists) of the most similar command to an unknown user input.
+#### Error resolution suggestion: \[Aaron Seah\]
+Gives an approximate match (if exists) to the most similar command to an unknown user input.
+
+**Example**:
+Let's say you want to execute the `contact add` command but you mistyped the command as `cont add`.
+You will get a suggestion of `contact add` as shown.
+
+1. Type `cont add` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <figure>  
+        <img src="images/error-suggestion/suggestionFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
+    </figure>
+    
+2. A suggestion of `contact add` appears. 
+
+    <figure>  
+        <img src="images/error-suggestion/suggestionSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
+    </figure>
 
 **Examples**:
 * `contac add` will return a suggestion of `contact add`
@@ -1210,11 +1221,13 @@ Changes the theme of the GUI to light and dark theme respectively. The default t
 
 Format: `lightmode`/`darkmode`
 
-#### Viewing help: `help`
-Lists the command word, command description and example
-usage for each available command as well as the link to the User Guide.
+#### Viewing help: `help` \[Aaron Seah\]
+Lists the command word, command description and example usage for each available command as well as the link to the User Guide.
 
-You can access the help page quickly as shown.
+**Example**:
+Let's say you want to recall some commands in StonksBook. 
+You can do so by accessing the help page as shown.
+
 1. Type `help` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>  
@@ -1264,8 +1277,8 @@ This section provides a summary of all the commands available in StonksBook.
 | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]`                   | Adds a contact with the specified information            | `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
 | `contact delete INDEX`                                                                     | Deletes the specified contact                            | `contact delete 3`                                                                       |
 | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]`    | Edits an existing contact                                | `contact edit 1 p/91234567 e/johndoe@example.com`                                        |
-| `contact list`                                                                             | Lists all contacts                                       | -                                                                           |
-| `contact find KEYWORD [MORE_KEYWORDS]`                                                     | Finds contacts with names matching the given keywords    | `contact find alx yo`                                                                    |
+| `contact list`                                                                             | Lists all contacts                                       | `contact list`                                                                           |
+| `contact find KEYWORD [MORE_KEYWORDS]...`                                                     | Finds contacts with names matching the given keywords    | `contact find alx yo`                                                                    |
 | `contact sort KEYWORD [ORDER]`                                                             | Sorts contacts based on the parameter specified          | `contact sort n/ desc`                                                                   |
 
 ### Tags
@@ -1287,7 +1300,7 @@ This section provides a summary of all the commands available in StonksBook.
 | `sale edit s/SALE_INDEX… [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`    | Edits an existing sale                                   | `sale edit s/2 n/B5 Notebook p/4.00 q/10`                              |
 | `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`                                                                             | Lists sale based on provided parameters                  | `sale list c/1`                                                        |
 | `sale breakdown`                                                                                                           | Displays the number of sales belonging to the top 5 tags | `sale breakdown`                                                       |
-| `sale stats NUMBER_OF_MONTHS`                                                                                              | Displays statistics on sale                              | `sale stats 6`                                                         |
+| `sale stats NUMBER_OF_MONTHS`                                                                                              | Displays monthly sale count                              | `sale stats 6`                                                         |
 
 ### Meetings
 
@@ -1297,7 +1310,7 @@ This section provides a summary of all the commands available in StonksBook.
 | `meeting delete INDEX`                                                               | Deletes the specified meeting                      | `meeting delete 3`                                                                       |
 | `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]`  | Edits an existing meeting                          | `meeting edit 3 d/2020-12-15 12:00`                                                      |
 | `meeting list [c/CONTACT_INDEX] [a/]`                                                | Lists meetings based on provided parameters        | `meeting list c/1 a/`                                                                    |
-| `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`                                  | Displays statistics on meetings                    | `meeting stats 3`                                                                        |
+| `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`                                  | Displays monthly meeting count                     | `meeting stats 3`                                                                        |
 
 ### Reminders
 

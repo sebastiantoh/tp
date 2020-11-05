@@ -1,0 +1,13 @@
+@startuml
+start
+:User executes the `meeting stats 5` command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+: Get the meeting count for each of the previous 4 months and the current month;
+
+: Populate and open the statistics window;
+
+stop
+@enduml
