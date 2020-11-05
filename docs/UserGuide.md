@@ -936,10 +936,10 @@ followed by the current month and year November 2020.
 
 **Additional Examples**:
 * `meeting stats` will return the number of meetings whose start date is in the October 2020
-   if the current month is October and the current year is 2020.
+   if the current month and year is October 2020.
 * `meeting stats m/8 y/2020` will return the number of meetings whose start date is in August 2020.
 * `meeting stats 3` will return a bar chart containing the number of meetings whose start date is within
-   June 2020, July 2020 and August 2020 respectively if the current month is August and the current year is 2020.
+   June 2020, July 2020 and August 2020 respectively if the current month and year is August 2020.
 
 ### Reminders
 
