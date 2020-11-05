@@ -135,11 +135,29 @@ This section will provide a quick guide to get StonksBook up and running on your
 StonksBook allows you to manage your contacts effectively and efficiently.
 
 #### Listing all contacts: `contact list`
+
 Shows a list of all contacts in StonksBook.
 
 **Format**:`contact list`
 
+**Example**:
+
+Let's say you want to take a look at all your contacts in StonksBook. Here are the steps to follow:
+
+1. Type `contact list` in the **Command Box** and press <kbd>Enter</kbd>.
+   
+    <figure>
+        <img src="images/contact-list/contact-list.png" alt="type in 'contact list'" width="900px">
+    </figure>
+   
+2. The **Contact List** now displays all your existing contacts in StonksBook.
+
+    <figure>
+        <img src="images/contact-list/contact-list-result.png" alt="result for 'contact list'" width="900px">
+    </figure>
+    
 #### Adding a contact: `contact add`
+
 Adds a contact to StonksBook.
 
 **Format**: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMARK]​`
@@ -158,8 +176,16 @@ Adds a contact to StonksBook.
 * Duplicate contacts cannot be added. A contact with the same name and same phone number/email address will be flagged as a duplicate.
 
 **Examples**:
-* `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal r/blacklisted`
+
+Let's say you would like to add Betsy Crowe, who is a friend of yours, to your contact list. Here are the steps to follow:
+
+1. Type `contact add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate Street  t/friends` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <figure>
+        <img src="images/contact-list/contact-list-result.png" alt="result for 'contact list'" width="900px">
+    </figure>
+
+
 
 #### Deleting a contact: `contact delete`
 Deletes the specified contact from StonksBook. All associated sales, reminders and meetings will be deleted as well.
