@@ -216,6 +216,10 @@ Finds contacts whose name exactly matches or is similar to any of the given keyw
 
 * Exact matches (if exist) will appear as the top results.
 
+<div markdown="block" class="alert alert-info">
+This feature does not guarantee that all contacts whose name is similar to any of the given keywords will be in the result.
+</div>
+
 **Example**:
 Let's say you want to find the contact with the name `Alex Yeoh` but you do not know the correct spelling of the name. 
 You decide to search for `alx yo` which has a similar pronunciation.
@@ -1187,6 +1191,10 @@ Gives an approximate match (if exists) to the most similar command to an unknown
 **Example**:
 Let's say you want to execute the `contact add` command but you mistyped the command as `cont add`.
 You will get a suggestion of `contact add` as shown.
+
+<div markdown="block" class="alert alert-info">
+This feature does not guarantee that all contacts whose name is similar to any of the given keywords will be in the result.
+</div>
 
 1. Type `cont add` in the **Command Box** and press <kbd>Enter</kbd>.
 
