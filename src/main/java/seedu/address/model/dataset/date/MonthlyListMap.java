@@ -106,8 +106,6 @@ public class MonthlyListMap<T> {
 
         for (int i = 1; i < numberOfMonths; i++) {
             MonthAndYear previousMonthAndYear = getPreviousMonthAndYear(month, year);
-            result.add(new MonthlyCountData(previousMonthAndYear,
-                    this.monthlyListMap.getOrDefault(previousMonthAndYear, Collections.emptyList()).size()));
             month = previousMonthAndYear.getMonth();
             year = previousMonthAndYear.getYear();
             result.add(new MonthlyCountData(previousMonthAndYear, getItemCount(month, year)));
