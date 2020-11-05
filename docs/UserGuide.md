@@ -49,7 +49,7 @@ Check out the list below on how to use this User Guide:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## User Interface
+## User interface
 
 This is what StonksBook looks like when started:
 
@@ -1186,7 +1186,7 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 
 ### Miscellaneous
 
-#### Error resolution suggestion:
+#### Error resolution suggestion
 Gives an approximate match (if exists) of the most similar command to an unknown user input.
 
 **Examples**:
@@ -1194,7 +1194,7 @@ Gives an approximate match (if exists) of the most similar command to an unknown
 * `contt ad` will return a suggestion of `contact add`
 * `contacta ` will return a suggestion of `contact add`
 
-#### Navigating between previous inputs within the session:
+#### Navigating between previous inputs within the session
 Pressing the up and down keys retrieves the previous and next input respectively, if there is one.
 
 #### Switching between light and dark themes: `lightmode`/`darkmode`
