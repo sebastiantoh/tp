@@ -218,7 +218,11 @@ Finds contacts whose names exactly match or is similar to any of the given keywo
 
 * Exact matches (if exist) will appear as the first few results.
 
-e.g. You want to find the contact Alex Yeoh but you only roughly remember the spellng the of the name as alx yo and you can do this as shown.
+e.g. You want to find the contact Alex Yeoh but you only roughly r
+
+
+
+emember the spellng the of the name as alx yo and you can do this as shown.
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
    
     <figure>
