@@ -217,7 +217,9 @@ Finds contacts whose name exactly matches or is similar to any of the given keyw
 * Exact matches (if exist) will appear as the top results.
 
 <div markdown="block" class="alert alert-info">
-This feature does not guarantee that all contacts whose name is similar to any of the given keywords will be in the result.
+This feature gives an approximate result for contacts whose name is similar to any of the given keywords.
+This means that there is no guarantee that all contacts in the result will always be similar to some given keyword.
+This also means that there is no guarantee that all contacts not in the result are not similar to some given keyword.
 </div>
 
 **Example**:
@@ -1186,15 +1188,16 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 ### Miscellaneous
 
 #### Error resolution suggestion: \[Aaron Seah\]
-Gives an approximate match (if exists) to the most similar command to an unknown user input.
+Gives a suggestion of the most similar command (if exists) to an unknown user input.
+
+<div markdown="block" class="alert alert-info">
+This feature does not guarantee that the suggestion will always be the most similar command to the unknown user input.
+This feature also does not guarantee that whenever there is no suggestion given, there is no similar command to the unknown user input.
+</div>
 
 **Example**:
 Let's say you want to execute the `contact add` command but you mistyped the command as `cont add`.
 You will get a suggestion of `contact add` as shown.
-
-<div markdown="block" class="alert alert-info">
-This feature does not guarantee that all contacts whose name is similar to any of the given keywords will be in the result.
-</div>
 
 1. Type `cont add` in the **Command Box** and press <kbd>Enter</kbd>.
 
