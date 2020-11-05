@@ -708,7 +708,7 @@ You can do so as shown.
         <img src="images/sale-stats/saleStatsFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-2. A new window containing the bar chart pops up.
+2. A new window containing a bar chart will appear.
 
     <figure>    
         <img src="images/sale-stats/saleStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
@@ -923,7 +923,7 @@ You can do so as shown.
         <img src="images/meeting-stats/meetingStatsFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>  
 
-2. A new window containing the bar chart pops up.
+2. A new window containing a bar chart will appear.
 
     <figure>    
         <img src="images/meeting-stats/meetingStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
