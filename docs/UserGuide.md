@@ -112,6 +112,10 @@ This section will provide a quick guide to get StonksBook up and running on your
 
 ## Features
 
+This section introduces the various features available in StonksBook.
+
+Before we begin, do take note of the following information which applies to all of StonksBook's commands:
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -132,12 +136,32 @@ This section will provide a quick guide to get StonksBook up and running on your
 
 ### Contacts
 
-#### Listing all contacts: `contact list`
+StonksBook allows you to manage your contacts effectively and efficiently.
+
+#### Listing all contacts: `contact list` \[Wang Luo\]
+
 Shows a list of all contacts in StonksBook.
 
 **Format**:`contact list`
 
-#### Adding a contact: `contact add`
+**Example**:
+
+Let's say you want to take a look at all your contacts in StonksBook. Here are the steps to follow:
+
+1. Type `contact list` in the **Command Box** and press <kbd>Enter</kbd>.
+   
+    <figure>
+        <img src="images/contact-list/contact-list.png" alt="enter 'contact list'" width="900px">
+    </figure>
+   
+2. The **Contact List** now displays all your existing contacts in StonksBook.
+
+    <figure>
+        <img src="images/contact-list/contact-list-result.png" alt="result for 'contact list'" width="900px">
+    </figure>
+    
+#### Adding a contact: `contact add` \[Wang Luo\]
+
 Adds a contact to StonksBook.
 
 **Format**: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMARK]​`
@@ -146,7 +170,7 @@ Adds a contact to StonksBook.
 |----------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `NAME`         | Name of contact               | Must contain only alphabetical characters                                                                                                                                                                                                                                        |
 | `PHONE_NUMBER` | Phone number of contact       | Must contain only numerical characters                                                                                                                                                                                                                                           |
-| `EMAIL`        | Email of contact              | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must <ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>|
+| `EMAIL`        | Email of contact              | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must {::nomarkdown}<ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>{:/}|
 | `ADDRESS`      | Address of contact            | Can take any value                                                                                                                                                                                                                                                               |
 | `TAG`          | Tag to be assigned to contact | Must exist in StonksBook first before you can associate the contact to them.                                                                                                                                                                                                     |
 | `REMARK`       | Remark related to contact     | Can take any value                                                                                                                                                                                                                                                               |
@@ -156,10 +180,23 @@ Adds a contact to StonksBook.
 * Duplicate contacts cannot be added. A contact with the same name and same phone number/email address will be flagged as a duplicate.
 
 **Examples**:
-* `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal r/blacklisted`
 
-#### Deleting a contact: `contact delete`
+Let's say that you would like to add Betsy Crowe, who is a friend of yours, to your contact list. Here are the steps to follow:
+
+1. Type `contact add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate Street t/friends` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <figure>
+        <img src="images/contact-add/contact-add.png" alt="enter 'contact add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate Street t/friends'" width="900px">
+    </figure>
+
+2. The **Result Box** will display a message noting that the command was successful, and the **Contact List** now contains Betsy Crowe.
+
+    <figure>
+        <img src="images/contact-add/contact-add-result.png" alt="result for 'contact add'" width="900px">
+    </figure>
+
+#### Deleting a contact: `contact delete` \[Wang Luo\]
+
 Deletes the specified contact from StonksBook. All associated sales, reminders and meetings will be deleted as well.
 
 **Format**: `contact delete INDEX`
@@ -171,10 +208,44 @@ Deletes the specified contact from StonksBook. All associated sales, reminders a
 * Deletes the contact at the specified `INDEX`.
 
 **Examples**:
-`contact list` followed by `contact delete 2` deletes the 2nd contact in StonksBook.
-`contact find Betsy` followed by `contact delete 1` deletes the 1st contact in the results of the find command.
 
-#### Editing a contact: `contact edit`
+Let's say that Betsy Crowe no longer does business with you and you would like to remove him from your contact list.
+Here are the steps to follow:
+
+:bulb: Tip: You can learn more about the `contact find` command in [locating contacts by name](#locating-contacts-by-name-contact-find-aaron-seah).
+
+1. Type `contact find Betsy Crowe` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <figure>
+        <img src="images/contact-delete/contact-find.png" alt="enter 'contact find Betsy Crowe'" width="900px">
+    </figure>
+
+2. The person, Betsy Crowe, will now appear at the top of the **Contact List**.
+
+    <figure>
+        <img src="images/contact-delete/contact-find-result.png" alt="result for 'contact find Betsy Crowe'" width="900px">
+    </figure>
+
+3. Type `contact delete 1` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <figure>
+        <img src="images/contact-delete/contact-delete.png" alt="enter 'contact delete 1'" width="900px">
+    </figure>
+
+4. The **Result Box** will display a message noting that the command was successful, and the person, Betsy Crowe, is now deleted.
+
+    <figure>
+        <img src="images/contact-delete/contact-delete-result.png" alt="result for 'contact delete'" width="900px">
+    </figure>
+
+5. Type `contact list` in the **Command Box** and press <kbd>Enter</kbd> to return to display all contacts, note that Betsy Crowe is no longer in the **Contact List**.
+
+    <figure>
+        <img src="images/contact-delete/contact-list.png" alt="result for 'contact list'" width="900px">
+    </figure>
+
+#### Editing a contact: `contact edit` \[Wang Luo\]
+
 Edits an existing contact in StonksBook.
 
 **Format**: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]`
@@ -184,7 +255,7 @@ Edits an existing contact in StonksBook.
 | `INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                                                                                                                                                                            |
 | `NAME`         | Name of contact                                  | Must contain only alphabetical characters                                                                                                                                                                                                                                        |
 | `PHONE_NUMBER` | Phone number of contact                          | Must contain only numerical characters                                                                                                                                                                                                                                           |
-| `EMAIL`        | Email of contact                                 | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must <ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>|
+| `EMAIL`        | Email of contact                                 | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must {::nomarkdown}<ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>{:/}|
 | `ADDRESS`      | Address of contact                               | Can take any value                                                                                                                                                                                                                                                               |
 | `TAG`          | Tag to be assigned to contact                    | Must exist in StonksBook first before you can associate the contact to them.                                                                                                                                                                                                     |
 | `REMARK`       | Remark related to contact                        | Can take any value                                                                                                                                                                                                                                                               |
@@ -197,10 +268,35 @@ Edits an existing contact in StonksBook.
 * You can remove all the contact’s tags/remark by typing `t/` or  `r/` respectively without specifying any tags/remark after it.
 
 **Examples**:
-* `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
-* `contact edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be Betsy Crower and clears all existing tags.
+
+Let's say that Bernice Yu moved to a new address: 36 College Avenue East and you would like to update her address. Here are the steps to follow:
+
+1. Type `contact find Bernice Yu` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <figure>
+        <img src="images/contact-edit/contact-find.png" alt="enter 'contact find Bernice Yu'" width="900px">
+    </figure>
+
+2. The person, Bernice Yu, will now appear at the top of the **Contact List**.
+
+    <figure>
+        <img src="images/contact-edit/contact-find-result.png" alt="result for 'contact find Bernice Yu'" width="900px">
+    </figure>
+
+3. Type `contact edit 1 a/36 College Avenue East`in the **Command Box** and press <kbd>Enter</kbd>. 
+
+    <figure>
+        <img src="images/contact-edit/contact-edit.png" alt="enter 'contact edit 1 a/36 College Avenue East'" width="900px">
+    </figure>
+
+4. The **Result Box** will display a message noting that the command was successful, and Bernice Yu's address is now updated to 36 College Avenue East.
+
+    <figure>
+        <img src="images/contact-edit/contact-edit-result.png" alt="result for 'contact edit'" width="900px">
+    </figure>
 
 #### Locating contacts by name: `contact find` \[Aaron Seah\]
+
 Finds contacts whose name exactly matches or is similar to any of the given keywords.
 
 **Format**: `contact find KEYWORD [MORE_KEYWORDS]...`
@@ -221,6 +317,7 @@ Finds contacts whose name exactly matches or is similar to any of the given keyw
 </div>
 
 **Example**:
+
 Let's say you want to find the contact with the name `Alex Yeoh` but you do not know the correct spelling of the name. 
 You decide to search for `alx yo` which has a similar pronunciation.
 You can still find the contact with the name `Alex Yeoh` as shown.
@@ -228,7 +325,7 @@ You can still find the contact with the name `Alex Yeoh` as shown.
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
    
     <figure>
-        <img src="images/contact-find/contactFindFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-find/contactFindFirstStep.png" alt="enter 'contact sort keyword'" width="900px">
     </figure>
    
 2. The **Contact List** now contains contacts whose name is similar to `alx yo`.
@@ -244,6 +341,7 @@ You can still find the contact with the name `Alex Yeoh` as shown.
     </figure>
 
 #### Sorting contacts: `contact sort` \[Aaron Seah\]
+
 Sorts contacts based on the contact's name or email address.
 
 **Format**: `contact sort KEYWORD [ORDER]`
@@ -261,12 +359,13 @@ Otherwise, the contacts will be sorted in alphabetical order.
 * The sorting effect will only last until another contact command except `contact delete` is executed.
 
 **Example**:
+
 Let's say you want to see your contacts in reverse alphabetical order based on their name.
 
 1. Type `contact sort n/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
-        <img src="images/contact-sort/contactSortFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-sort/contactSortFirstStep.png" alt="enter 'contact sort keyword'" width="900px">
     </figure>
     
 2. The contacts in the **Contact List** is sorted in reverse alphabetical order based on the contact name.
@@ -276,6 +375,8 @@ Let's say you want to see your contacts in reverse alphabetical order based on t
     </figure>
 
 ### Tags
+
+StonksBook allows you to create tags for your contacts as well as sales so that you can categorise them easily.
 
 #### Adding a tag: `tag add` \[Wang Luo\]
 
@@ -289,7 +390,10 @@ StonksBook will not allow you to add a new contact tag (or sales tag) if there a
 
 * `ct/` stands for contact tag, `st/` stands for sales tag.
 * Adds a contact tag (if `ct/` is typed) or a sales tag (if `st/` is typed) with the specified `TAG` as the tag name to the contact tag list (or sales tag list).
-* The `TAG` field must be provided.
+
+| Parameter       | What it is                                       | Requirements                                                      |
+|-----------------|--------------------------------------------------|-------------------------------------------------------------------|
+| `TAG`           | Name of the new tag                              | Must contain only alphanumeric characters and should not be blank |
 
 **Examples**:
 
@@ -298,13 +402,13 @@ Let's say that you want to add a new sales tag called electronics. Here are the 
 1. Type `tag add st/electronics` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
-        <img src="images/tag-add/tag-add.png" alt="Enter 'tag add st/electronics' in the Command Box" width="900px">
+        <img src="images/tag-add/tag-add.png" alt="enter 'tag add st/electronics' in the Command Box" width="900px">
     </figure>
     
 2. The **Result Box** will display a message noting that the command was successful, and the **Sales Tags** will now contain this new sales tag.
 
     <figure>
-        <img src="images/tag-add/tag-add-result.png" alt="Result for 'tag add st/electronics'" width="900px">
+        <img src="images/tag-add/tag-add-result.png" alt="result for 'tag add st/electronics'" width="900px">
     </figure>
 
 #### Listing all tags: `tag list` \[Wang Luo\]
@@ -320,13 +424,13 @@ Let's say that you want to see all the tags you have created so far. Here are th
 1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
-        <img src="images/tag-list/tag-list.png" alt="Enter 'tag list'" width="900px">
+        <img src="images/tag-list/tag-list.png" alt="enter 'tag list'" width="900px">
     </figure>
 
 2. The **Result Box** will display a message noting that the command was successful, and the bottom right box will now display **Contact Tags** and **Sales Tags**.
 
     <figure>
-        <img src="images/tag-list/tag-list-result.png" alt="Result for 'tag list'" width="900px">
+        <img src="images/tag-list/tag-list-result.png" alt="result for 'tag list'" width="900px">
     </figure>
 
 #### Editing a tag: `tag edit` \[Wang Luo\]
@@ -339,9 +443,12 @@ All entries (contacts or sales) previously associated with this tag will be upda
 
 **Format**: `tag edit (ct/ or st/)INDEX t/TAG`
 
-* Edits the name of the contact tag or sales tag at the specified `INDEX` to be the specified `NAME`. The `INDEX` refers to the index number shown in the contact tags list or sales tags list displayed by the `tag list` command.
-* The `INDEX` must be a positive integer 1, 2, 3, ...
-* The `TAG` and `INDEX` fields must be provided.
+| Parameter       | What it is                                                             | Requirements                                                      |
+|-----------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `INDEX`         | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, …        |
+| `TAG`           | New name for the tag to be edited                                      | Must contain only alphanumeric characters and should not be blank |
+
+* Edits the name of the contact tag or sales tag at the specified `INDEX` to be the specified `NAME`.
 * All contacts or sales that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
 
 **Examples**:
@@ -352,19 +459,19 @@ Let's say that you decides to change the tag colleagues to teammates instead. He
     - This is to display the contact tags and sales tags in StonksBook.
 
     <figure>
-        <img src="images/tag-edit/tag-list-second.png" alt="Result for 'tag list'" width="900px">
+        <img src="images/tag-edit/tag-list-second.png" alt="result for 'tag list'" width="900px">
     </figure>
 
 2. Type `tag edit ct/2 t/teammates` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
-        <img src="images/tag-edit/tag-edit.png" alt="Enter 'tag edit ct/2 t/teammates'" width="900px">
+        <img src="images/tag-edit/tag-edit.png" alt="enter 'tag edit ct/2 t/teammates'" width="900px">
     </figure>
 
 3. The **Result Box** will display a message noting that the command was successful, and the **Contact Tags** will now contain teammates instead of colleagues. Note that the tags are sorted alphabetically, hence, you may need to scroll up or down to see the updated tag. Also, note that the contact Bernice Yu is now tagged to teammates.
 
     <figure>
-        <img src="images/tag-edit/tag-edit-result.png" alt="Enter 'tag edit ct/2 t/teammates'" width="900px"> 
+        <img src="images/tag-edit/tag-edit-result.png" alt="result for 'tag edit ct/2 t/teammates'" width="900px"> 
     </figure>    
 
 #### Deleting a tag: `tag delete` \[Wang Luo\]
@@ -373,9 +480,10 @@ Deletes the specified tag from the tag list. The tag information in all entries 
 
 **Format**: `tag delete (st/ or ct/)INDEX`
 
-* Deletes the the contact tag or sales tag at the specified `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
-* The `INDEX` must be a positive integer 1, 2, 3, ...
-* The `INDEX` field must be provided.
+| Parameter       | What it is                                                             | Requirements                                                      |
+|-----------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `INDEX`         | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, …        |
+
 * All contacts that have been previously associated with this tag will be updated so that their associations with this tag will be cleared.
 
 **Examples**:
@@ -386,19 +494,19 @@ Let's say that you think one contact tag (colleagues) you created before is no l
     - This is to display the contact tags and sales tags in StonksBook, and the contact tag colleagues is found to be at index 2.
 
     <figure> 
-        <img src="images/tag-edit/tag-list-second.png" alt="Result for 'tag list'" width="900px">
+        <img src="images/tag-edit/tag-list-second.png" alt="result for 'tag list'" width="900px">
     </figure>  
 
 2. Type `tag delete ct/2` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure> 
-        <img src="images/tag-delete/tag-delete.png" alt="Enter 'tag delete ct/2'" width="900px">
+        <img src="images/tag-delete/tag-delete.png" alt="enter 'tag delete ct/2'" width="900px">
     </figure> 
 
 3. The **Result Box** will display a message noting that the command was successful, and the **Contact Tags** will no longer contain the contact tag colleagues. Also note that Bernice Yu is no longer tagged with colleagues.
 
     <figure> 
-        <img src="images/tag-delete/tag-delete-result.png" alt="Enter 'tag delete ct/2'" width="900px">
+        <img src="images/tag-delete/tag-delete-result.png" alt="result for 'tag delete ct/2'" width="900px">
     </figure>
 
 #### Retrieving entries by tag: `tag find` \[Wang Luo\]
@@ -407,9 +515,11 @@ Displays all entries (contacts or sales) that are associated with the specified 
 
 **Format**: `tag find (ct/ or st/)INDEX [cl/]`
 
-* Displays all entries of associated with the tag at `INDEX`. The `INDEX` refers to the index number shown in the list displayed by the `tag list` command.
-* The `INDEX` must be a positive integer 1, 2, 3, ...
-* The `INDEX` field must be provided.
+| Parameter       | What it is                                                             | Requirements                                                      |
+|-----------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `INDEX`         | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, …        |
+
+* Finds all contacts or sales associated with the tag at `INDEX`.
 * An additional `cl/` (stands for 'client') field can be provided when performing searching on sales tags. If provided, instead of displaying sales associated to this tag, StonksBook will display the clients who have purchased items with this tag.
 * If you are searching for contact tags using `ct/`, adding the `cl/` tag will have no effect on the search results.
 
@@ -421,19 +531,19 @@ Let's say that you would like to find out who are the contacts tagged with frien
     - This is to display the contact tags and sales tags in StonksBook, and the contact tag friends is found to be at index 3.
 
     <figure> 
-        <img src="images/tag-find/tag-list-third.png" alt="Result for 'tag list'" width="900px"> 
+        <img src="images/tag-find/tag-list-third.png" alt="result for 'tag list'" width="900px"> 
     </figure>
 
 2. Type `tag find ct/3` in the **Command Box** and press <kbd>Enter</kbd>. 
 
     <figure> 
-        <img src="images/tag-find/tag-find.png" alt="Enter 'tag delete ct/2'" width="900px"> 
+        <img src="images/tag-find/tag-find.png" alt="enter 'tag delete ct/2'" width="900px"> 
     </figure>
     
 3. The **Result Box** will display a message noting that the command was successful, as well as a list of contacts who are tagged with friends.
 
     <figure>  
-        <img src="images/tag-find/tag-find-result.png" alt="Result for 'tag delete ct/2'" width="900px"> 
+        <img src="images/tag-find/tag-find-result.png" alt="result for 'tag delete ct/2'" width="900px"> 
     </figure>    
 
 Now suppose that you would like to find out who purchased items that are tagged with music. Here are the steps to follow:
@@ -442,19 +552,19 @@ Now suppose that you would like to find out who purchased items that are tagged 
     - This is to display the contact tags and sales tags in StonksBook, and the contact tag friends is found to be at index 3.
 
     <figure>   
-        <img src="images/tag-find/tag-list-sale-second.png" alt="Result for 'tag list'" width="900px"> 
+        <img src="images/tag-find/tag-list-sale-second.png" alt="result for 'tag list'" width="900px"> 
     </figure>  
 
 2. Type `tag find st/2` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>   
-        <img src="images/tag-find/tag-find-sale-cl.png" alt="Enter 'tag find st/2'" width="900px"> 
+        <img src="images/tag-find/tag-find-sale-cl.png" alt="enter 'tag find st/2'" width="900px"> 
     </figure>
 
 3. The **Result Box** will display a message noting that the command was successful, as well as a list of clients who purchased items tagged with music.
 
     <figure>    
-        <img src="images/tag-find/tag-find-sale-cl-result.png" alt="Result for 'tag find st/2'" width="900px">
+        <img src="images/tag-find/tag-find-sale-cl-result.png" alt="result for 'tag find st/2'" width="900px">
     </figure>
 
 ### Sales
@@ -486,32 +596,34 @@ Shows a list of sales.
    
 * The list is sorted in ascending order based on the date the sale is made.
    
-**Example:** Let's say you want to view all sales made to Bernice Yu. This is what you need to do:
+**Example:**
+
+Let's say you want to view all sales made to Bernice Yu. This is what you need to do:
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
     - This is to identify the contact index corresponding to Bernice Yu.     
-<figure>
-    <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+    </figure>
 
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example. 
-<figure>
-    <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
+    </figure>
 
 3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<figure>
-    <img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
+    </figure>
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu.
 
-<figure>
-    <img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
+    </figure>
 
 #### Adding a sale to a customer: `sale add` \[Kwek Min Yih\] 
 
@@ -533,37 +645,38 @@ Adds a sale to the specified contact in StonksBook.
 * Duplicate sales cannot be added. A sale with the same item name, contact, datetime of purchase, unit price and quantity will be flagged as a duplicate.
 
 **Example:**
+
 Suppose you successfully sold 100 guitar tuners at a unit price of $10.00 with Bernice Yu on 30 October 2020, 3pm. 
 Here's how you can add this new sale into StonksBook:
  
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
      - This is to identify the contact index corresponding to Bernice Yu.      
-
-<figure>
-    <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
-</figure>
+    
+    <figure>
+        <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+    </figure>
 
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
   show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.  
 
-<figure>
-    <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
+    </figure>
 
 3. Type `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<figure>
-    <img src="images/sale-add/saleaddthirdstep.png" alt="enter 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
-</figure>
+    <figure>
+        <img src="images/sale-add/saleaddthirdstep.png" alt="enter 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
+    </figure>
   
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  contain this newly created sale.
     - You may have to scroll through your **Sale List** to find this newly created sale since sales are
      sorted in ascending order based on the date the sale is made.
-
-<figure>
-    <img src="images/sale-add/saleaddfourthstep.png" alt="result for 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
-</figure>
+    
+    <figure>
+        <img src="images/sale-add/saleaddfourthstep.png" alt="result for 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
+    </figure>
 
 #### Deleting a sales item: `sale delete` \[Kwek Min Yih\]
 
@@ -578,45 +691,48 @@ Deletes a specified sales item from StonksBook.
 * Multiple `SALE_INDEX` can be specified, meaning that you can delete multiple sales with the same command.
 
 **Examples:**
+
 Let's say that you have just received the unfortunate news from Bernice Yu who no longer wishes to buy 300 black pens from you.
 Here's how you can delete this sale in StonksBook:
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
     - This is to identify the contact index corresponding to Bernice Yu.
-
-<figure>
-    <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
-</figure>
+    
+    <figure>
+        <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+    </figure>
+    
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.
 
-<figure>
-    <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
+    </figure>
 
 3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<figure>
-    <img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
+    </figure>
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu. Identify the index of the sale to be deleted. Let us assume it is at the third index.
 
-<figure>
-    <img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
+    </figure>
 
 5. Type `sale delete s/3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
 
-<figure>
-    <img src="images/sale-delete/saledeletefifthstep.png" alt="enter 'sale delete s/3'" width="900px">
-</figure>  
+    <figure>
+        <img src="images/sale-delete/saledeletefifthstep.png" alt="enter 'sale delete s/3'" width="900px">
+    </figure>  
+    
 6. You should see that the sale has been deleted from the sale list.
 
-<figure>
-    <img src="images/sale-delete/saledeletesixthstep.png" alt="result for 'sale delete s/3'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-delete/saledeletesixthstep.png" alt="result for 'sale delete s/3'" width="900px">
+    </figure>
 
 #### Editing an existing sale: `sale edit` \[Kwek Min Yih\]
 
@@ -639,6 +755,7 @@ Edits an existing sale in StonksBook.
 * When editing a sale's tags, the existing tags of the sale will be removed i.e adding of tags is not cumulative.
 
 **Example:**
+
 Suppose you have just received the good news that Bernice Yu would like to buy 1000 Black Pens instead of the 300 she previously specified. 
 Here's how you can edit her sale in StonksBook:
  
@@ -646,28 +763,28 @@ Here's how you can edit her sale in StonksBook:
   sales, it may be convenient to filter for all sales made to Bernice Yu. Assuming that Bernice Yu is the 2nd contact
    currently displayed in the contact list, you can type `sale list c/2`.
 
-<figure>
-    <img src="images/sale-edit/saleeditfirststep.png" alt="enter 'sale list c/2'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-edit/saleeditfirststep.png" alt="enter 'sale list c/2'" width="900px">
+    </figure>
 
 2. The sale list will update to show only sales made to Bernice Yu.
 
-<figure>
-    <img src="images/sale-edit/saleeditsecondstep.png" alt="result for 'sale list c/2'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-edit/saleeditsecondstep.png" alt="result for 'sale list c/2'" width="900px">
+    </figure>
     
 3. Suppose the sale to be edited is at the third index in the sale list. 
 Then, type `sale edit s/3 q/20` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
   
-<figure>
-<img src="images/sale-edit/saleeditthirdstep.png" alt="enter 'sale edit s/3 q/20'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-edit/saleeditthirdstep.png" alt="enter 'sale edit s/3 q/20'" width="900px">
+    </figure>
 
 4. You should see that the sale has been updated to reflect this new quantity.
 
-<figure>
-    <img src="images/sale-edit/saleeditfourthstep.png" alt="result for 'sale edit s/3 q/20'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-edit/saleeditfourthstep.png" alt="result for 'sale edit s/3 q/20'" width="900px">
+    </figure>
 
 #### Viewing a breakdown of sales made in each tag: `sale breakdown` \[Kwek Min Yih\]
 
@@ -684,14 +801,14 @@ To see the new updated bar graph, close the current external window and run the 
 
 1. Type `sale breakdown` in the **Command Box** and press <kbd>Enter</kbd>. 
 
-<figure>
-    <img src="images/sale-breakdown/salebreakdownfirststep.png" alt="enter 'sale breakdown'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-breakdown/salebreakdownfirststep.png" alt="enter 'sale breakdown'" width="900px">
+    </figure>
 2. A new window containing the bar chart pops up.
 
-<figure>
-    <img src="images/sale-breakdown/salebreakdownsecondstep.png" alt="enter 'sale breakdown'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-breakdown/salebreakdownsecondstep.png" alt="enter 'sale breakdown'" width="900px">
+    </figure>
 
 #### Viewing monthly sale count: `sale stats` \[Aaron Seah\]
 Views the monthly sale count for the current month and previous months.
@@ -702,7 +819,9 @@ Views the monthly sale count for the current month and previous months.
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | `NUMBER_OF_MONTHS`     | The number of monthly sale counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, ... , 6                                                                                  |
      
-**Example**: Let's say you want to compare the number of sales you have made for each month of the past 5 months and the current month.
+**Example**:
+
+Let's say you want to compare the number of sales you have made for each month of the past 5 months and the current month.
 Let's assume that the current month and year is November 2020.
 You can do so as shown.
 
@@ -741,6 +860,7 @@ Shows a list of all meetings. By default, the list only shows upcoming meetings.
 * You can show all meetings, including past meetings, by including `a/`.
 
 **Example**:
+
 Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is what you need to do:
 
 1. Type `contact find alex` in the **Command Box** and press <kbd>Enter</kbd>. 
@@ -791,6 +911,7 @@ To prevent the situation in which you unknowingly scheduled conflicting meetings
 | `DURATION`       | Duration of the meeting (in minutes)             | Must be a positive integer between 1 and 1000000 (inclusive)           |
 
 **Example**:
+
 Let's say that you successfully secured a lunch meeting with Alex Yeoh that is scheduled for 3 December 2020 12pm
 and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
  
@@ -834,6 +955,7 @@ Deletes the specified meeting from StonksBook.
 | `INDEX`          | Index number shown in the displayed meeting list | Must be a positive integer 1, 2, 3, …                                  |
 
 **Example**:
+
 Let's say that you have just received an unfortunate email from Alex Yeoh who no longer wishes to meet with you on 3
  December 2020, 12pm. Here's how you can delete this meeting in StonksBook:
 
@@ -883,6 +1005,7 @@ Similar to when adding a meeting, StonksBook will not allow you to edit a meetin
 * Existing values will be updated to the input values.
 
 **Example**:
+
 Let's say that you have just received an email from Bernice Yu who wishes to reschedule her lunch meeting with you to 15
  December 2020, 12pm. Here's how you can make this change in StonksBook:
  
@@ -931,6 +1054,7 @@ Views the monthly meeting count for the current month and optionally for the pre
      the current month and year.
      
 **Example**:
+
 Let's say you want to compare the number of meetings you had for each of the past 5 months and the current month.
 Let's assume that the current month and year is November 2020.
 You can do so as shown.
@@ -950,6 +1074,7 @@ followed by the current month and year November 2020.
     </figure>
 
 **Additional Examples**:
+
 * `meeting stats` will return the number of meetings whose start date is in the October 2020
    if the current month and year is October 2020.
 * `meeting stats m/8 y/2020` will return the number of meetings whose start date is in August 2020.
@@ -960,7 +1085,7 @@ followed by the current month and year November 2020.
 
 StonksBook allows you to manage your reminders within the application.
 
-#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
+#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
 
 Shows a list of all reminders created, sorted in ascending order based on the date the reminder is scheduled.
 
@@ -968,9 +1093,10 @@ Shows a list of all reminders created, sorted in ascending order based on the da
 
 | Parameter        | What it is                                       | Requirements                                                           |
 |------------------|--------------------------------------------------|------------------------------------------------------------------------|
-| `STATUS`         | Status of the reminders                          | Must be either `completed` or `pending`                                  |
+| `STATUS`         | Status of the reminders                          | Must be either `completed` or `pending`                                |
 
 **Example**:
+
 Let's say that you want to view all your completed reminders. Here's how you can do so:
  
 1. Type `reminder list st/completed` in the **Command Box** and press <kbd>Enter</kbd>. 
@@ -999,6 +1125,7 @@ Adds a reminder scheduled on a particular date that is associated with the speci
 | `DATETIME`       | Scheduled date and time of the reminder          | Must be in the format `yyyy-MM-dd HH:mm`                               |
 
 **Example**:
+
 Let's say that you need to send a follow-up email to Bernice Yu on 30 November 2020, 3PM. Here's how you can add a reminder into StonksBook:
  
  1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
@@ -1042,6 +1169,7 @@ Deletes the specified reminder from StonksBook.
 | `INDEX`          | Index number shown in the displayed reminder list | Must be a positive integer 1, 2, 3, …                                  |
 
 **Examples**:
+
 Let's say that a reminder in StonksBook is no longer applicable and you wish to delete it. Here's you can delete
  a reminder from StonksBook:
 
@@ -1067,7 +1195,7 @@ Let's say that a reminder in StonksBook is no longer applicable and you wish to 
         <img src="images/reminder-delete/reminder-delete-result.png" alt="Result for 'reminder delete'" width="900px">
     </figure>
 
-#### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
+#### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
 
 Edits an existing reminder in StonksBook.
 
@@ -1127,6 +1255,7 @@ In addition, archiving a contact will not remove the sales, reminders and meetin
 * The index must be a positive integer 1, 2, 3, …
 
 **Example**:
+
 Suppose you want to archive your contact Alex Yeoh, who is no longer doing business with you. Simply follow the steps below:
 
 1. Identify the index of the contact entry in the contact list. Here Alex Yeoh is the first contact in the list. Alternatively you can use `contact find` to find the contact.
@@ -1151,6 +1280,7 @@ Shows the list of your archived contacts.
 * You can edit and delete contacts in the archive using `contact edit` and `contact delete` when the archived contacts list is displayed.
 
 **Example**:
+
 To see all your archived contacts, type `archive list` into the **Command Box** and press <kbd>Enter</kbd>. The **Result Box** will inform you that the command was successful, and the archived contacts list will appear.
 
 #### Removing contacts from the archive: `archive remove` \[Leong Jin Ming\]
@@ -1168,6 +1298,7 @@ StonksBook will not remove a contact from the archive if it is not in the archiv
 * The index must be a positive integer 1, 2, 3, …
 
 **Example**:
+
 Let's say your archived contact Alex Yeoh wants to start buying electronics from you again, and so you would like to bring his contact entry back to the contacts list. Simply follow the steps below:
 
 1. Make sure you are on the archived contacts list. If not, simply use the `archive list` command to get all your archived contacts.
@@ -1185,7 +1316,7 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 
 ### Miscellaneous
 
-#### Error resolution suggestion: \[Aaron Seah\]
+#### Error resolution suggestion \[Aaron Seah\]
 Gives a suggestion of the most similar command (if exists) to an unknown user input.
 
 <div markdown="block" class="alert alert-info">
@@ -1193,6 +1324,7 @@ Gives a suggestion of the most similar command (if exists) to an unknown user in
 </div>
 
 **Example**:
+
 Let's say you want to execute the `contact add` command but you mistyped the command as `cont add`.
 You will get a suggestion of `contact add` as shown.
 
@@ -1209,6 +1341,7 @@ You will get a suggestion of `contact add` as shown.
     </figure>
 
 **Examples**:
+
 * `contac add` will return a suggestion of `contact add`
 * `contt ad` will return a suggestion of `contact add`
 * `contacta ` will return a suggestion of `contact add`
@@ -1219,16 +1352,21 @@ Pressing the up and down keys retrieves the previous and next input respectively
 #### Switching between light and dark themes: `lightmode`/`darkmode`
 Changes the theme of the GUI to light and dark theme respectively. The default theme for StonksBook is dark, and the light theme looks like the following:
 
+**Format**: `lightmode`/`darkmode`
+
 <figure>  
     <img src="images/lightTheme.png" alt="Light theme" width="900px">
 </figure>
 
-Format: `lightmode`/`darkmode`
+
 
 #### Viewing help: `help` \[Aaron Seah\]
 Lists the command word, command description and example usage for each available command as well as the link to the User Guide.
 
+**Format**: `help`
+
 **Example**:
+
 Let's say you want to recall some commands in StonksBook. 
 You can do so by accessing the help page as shown.
 
@@ -1244,8 +1382,6 @@ You can do so by accessing the help page as shown.
         <img src="images/help/helpSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-**Format**: `help`
-
 #### Clearing all past interactions: `clear`
 Clears all past interactions with the StonksBook GUI within the session.
 
@@ -1255,6 +1391,7 @@ Clears all past interactions with the StonksBook GUI within the session.
 Clears all data from StonksBook.
 
 **Format**: `purge`
+
 #### Exiting the program: `exit`
 
 Exits the program.
