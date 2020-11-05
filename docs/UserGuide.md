@@ -231,13 +231,7 @@ Here are the steps to follow:
 4. The **Result Box** will display a message noting that the command was successful, and the person, Betsy Crowe, is now removed from the **Contact List**.
 
     <figure>
-        <img src="images/contact-delete/contact-delete-result.png" alt="result for 'contact delete 1'" width="900px">
-    </figure>
-
-5. Type `contact list` in the **Command Box** and press <kbd>Enter</kbd> to display the full contact list, you can verify that Betsy Crowe is no longer in the list.
-
-    <figure>
-        <img src="images/contact-delete/contact-list.png" alt="result for 'contact list'" width="900px">
+        <img src="images/contact-delete/contact-delete-result.png" alt="result for 'contact delete'" width="900px">
     </figure>
 
 #### Editing a contact: `contact edit`
@@ -264,8 +258,32 @@ Edits an existing contact in StonksBook.
 * You can remove all the contact’s tags/remark by typing `t/` or  `r/` respectively without specifying any tags/remark after it.
 
 **Examples**:
-* `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
-* `contact edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be Betsy Crower and clears all existing tags.
+
+Let's say that Bernice Yu moved to a new address: 36 College Avenue East and you would like to update her address. Here are the steps to follow:
+
+1. Type `contact find Bernice Yu` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <figure>
+        <img src="images/contact-edit/contact-find.png" alt="enter 'contact find Bernice Yu'" width="900px">
+    </figure>
+
+2. The person, Bernice Yu, will now appear at the top of the **Contact List**.
+
+    <figure>
+        <img src="images/contact-edit/contact-find-result.png" alt="result for 'contact find Bernice Yu'" width="900px">
+    </figure>
+
+3. Type `contact edit 1 a/36 College Avenue East`in the **Command Box** and press <kbd>Enter</kbd>. 
+
+    <figure>
+        <img src="images/contact-edit/contact-edit.png" alt="enter 'contact edit 1 a/36 College Avenue East'" width="900px">
+    </figure>
+
+4. The **Result Box** will display a message noting that the command was successful, and Bernice Yu's address is now updated to 36 College Avenue East.
+
+    <figure>
+        <img src="images/contact-edit/contact-edit-result.png" alt="result for 'contact edit'" width="900px">
+    </figure>
 
 #### Locating contacts by name: `contact find` \[Aaron Seah\]
 
