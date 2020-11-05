@@ -1025,6 +1025,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 #### Use case: Edit a reminder
+{:.no_toc}
 
 This use case is similar to `Add a reminder` except that the user has the additional option to update the status of the reminder to indicate whether the reminder is completed.
 
@@ -1176,6 +1177,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
       Use case resumes at step 2.
 
 #### Use case: Delete a sale
+{:.no_toc}
 
 **MSS**
 
@@ -1199,6 +1201,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
       Use case resumes at step 2.
 
 #### Use case: Add contact to archive
+{:.no_toc}
 
 **MSS**
 
