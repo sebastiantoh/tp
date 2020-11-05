@@ -474,13 +474,13 @@ Shows a list of sales.
 
 * If no parameter is present:
    * all sales are listed.
-<br>
+
 * If `c/CONTACT_INDEX` is present:
    * all sales made to a contact with the specified index are listed.
-<br>
+
 * If `m/MONTH y/YEAR` is present:
    * all sales whose associated date is in the specified `MONTH` and `YEAR` are listed.
-<br>
+   
 * The list is sorted in ascending order based on the date the sale is made.
    
 **Example:** Let's say you want to view all sales made to Bernice Yu. This is what you need to do:
