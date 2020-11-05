@@ -222,7 +222,7 @@ e.g. You want to find the contact Alex Yeoh but you only roughly remember the sp
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
    
     <figure>
-        <img src="images/contact-find/contactFindFirstStepp.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-find/contactFindFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
    
 2. The contact list now contains contacts whose name is similar to alx yo.
@@ -257,14 +257,14 @@ e.g. You want to see the contacts who have paid you the most for your sales and 
 1. Type `contact sort n/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
-        <img src="images/contact-sort/contactsortfirststep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-sort/contactSortFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
     
 2. The contact list is sorted by the total sales amount, from highest to lowest.
 3. Your top paying contacts will be at the top of the list.
 
     <figure>
-        <img src="images/contact-sort/contactsortsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-sort/contactSortSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
 **Examples**:
