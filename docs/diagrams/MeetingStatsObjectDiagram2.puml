@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam ClassAttributeFontColor #000000
+
+show members
+hide empty members
+
+title After "meeting add command for meeting m3 that starts on August 2020"
+
+    class "<u>m1:MonthAndYear" {
+        month: August
+        year: 2020
+    }
+
+    class "<u>m2:MonthAndYear" {
+        month: December
+        year: 2020
+    }
+
+    class "<u>m1:meeting" {
+
+    }
+
+    class "<u>m2:meeting" {
+
+    }
+
+    class "<u>m3:meeting" {
+
+    }
+
+    "__:UniqueMeetingList__" -- "__:MonthlyListMap__"
+    "__:MonthlyListMap__" -- "<u>m1:MonthAndYear"
+    "__:MonthlyListMap__" -- "<u>m2:MonthAndYear"
+
+    "<u>m1:MonthAndYear" -- "__i1:itemList__"
+    "__i1:itemList__" -- "<u>m1:meeting"
+    "__i1:itemList__" -- "<u>m3:meeting"
+
+    "<u>m2:MonthAndYear" -- "__i2:itemList__"
+    "__i2:itemList__" -- "<u>m2:meeting"
+@enduml
