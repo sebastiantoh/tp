@@ -1167,6 +1167,18 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 #### Error resolution suggestion: [Aaron Seah]
 Gives an approximate match (if exists) of the most similar command to an unknown user input.
 
+1. Type `cont add` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <figure>  
+        <img src="images/error-suggestion/suggestionFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
+    </figure>
+    
+2. A suggestion of `contact add` appears. 
+
+    <figure>  
+        <img src="images/error-suggestion/suggestionSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
+    </figure>
+
 **Examples**:
 * `contac add` will return a suggestion of `contact add`
 * `contt ad` will return a suggestion of `contact add`
