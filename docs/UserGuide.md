@@ -177,7 +177,7 @@ Adds a contact to StonksBook.
 
 **Examples**:
 
-Let's say you would like to add Betsy Crowe, who is a friend of yours, to your contact list. Here are the steps to follow:
+Let's say that you would like to add Betsy Crowe, who is a friend of yours, to your contact list. Here are the steps to follow:
 
 1. Type `contact add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate Street t/friends` in the **Command Box** and press <kbd>Enter</kbd>.
 
@@ -192,6 +192,7 @@ Let's say you would like to add Betsy Crowe, who is a friend of yours, to your c
     </figure>
 
 #### Deleting a contact: `contact delete`
+
 Deletes the specified contact from StonksBook. All associated sales, reminders and meetings will be deleted as well.
 
 **Format**: `contact delete INDEX`
@@ -203,10 +204,44 @@ Deletes the specified contact from StonksBook. All associated sales, reminders a
 * Deletes the contact at the specified `INDEX`.
 
 **Examples**:
-`contact list` followed by `contact delete 2` deletes the 2nd contact in StonksBook.
-`contact find Betsy` followed by `contact delete 1` deletes the 1st contact in the results of the find command.
+
+Let's say that Betsy Crowe no longer does business with you and you would like to remove him from your contact list.
+Here are the steps to follow:
+
+:bulb: Tip: You can learn more about the contact find command in [locating contacts by name](#locating-contacts-by-name-contact-find-aaron-seah).
+
+1. Type `contact find Betsy Crowe` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <figure>
+        <img src="images/contact-delete/contact-find.png" alt="enter 'contact find Betsy Crowe'" width="900px">
+    </figure>
+
+2. The person, Betsy Crowe, will now appear at the top of the **Contact List**.
+
+    <figure>
+        <img src="images/contact-delete/contact-find-result.png" alt="result for 'contact find Betsy Crowe'" width="900px">
+    </figure>
+
+3. Type `contact delete 1` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <figure>
+        <img src="images/contact-delete/contact-delete.png" alt="enter 'contact delete 1'" width="900px">
+    </figure>
+
+4. The **Result Box** will display a message noting that the command was successful, and the person, Betsy Crowe, is now removed from the **Contact List**.
+
+    <figure>
+        <img src="images/contact-delete/contact-delete-result.png" alt="result for 'contact delete 1'" width="900px">
+    </figure>
+
+5. Type `contact list` in the **Command Box** and press <kbd>Enter</kbd> to display the full contact list, you can verify that Betsy Crowe is no longer in the list.
+
+    <figure>
+        <img src="images/contact-delete/contact-list.png" alt="result for 'contact list'" width="900px">
+    </figure>
 
 #### Editing a contact: `contact edit`
+
 Edits an existing contact in StonksBook.
 
 **Format**: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]`
@@ -233,6 +268,7 @@ Edits an existing contact in StonksBook.
 * `contact edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be Betsy Crower and clears all existing tags.
 
 #### Locating contacts by name: `contact find` \[Aaron Seah\]
+
 Finds contacts whose name exactly matches or is similar to any of the given keywords.
 
 **Format**: `contact find KEYWORD [MORE_KEYWORDS]...`
