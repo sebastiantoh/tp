@@ -699,7 +699,7 @@ Views the monthly sale count in the current month and previous months.
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | `NUMBER_OF_MONTHS`     | The number of monthly sale counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, .. , 6                                                                                  |
      
-**Example**: Let's say you want to compare the number of sales you have made for each month in the past 5 months and the current month.
+**Example**: Let's say you want to compare the number of sales you have made for each month of the past 5 months and the current month.
 Let's assume that the current month and year is November 2020.
 You can do so as shown.
 
@@ -709,7 +709,9 @@ You can do so as shown.
         <img src="images/sale-stats/saleStatsFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-2. A new window containing a bar chart will appear.
+2. A new window containing a bar chart will appear. The bar chart will contain the monthly meeting count
+for each the previous 5 months: July 2020, August 2020, September 2020, October 2020, 
+followed by the current month and year November 2020.
 
     <figure>    
         <img src="images/sale-stats/saleStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
@@ -808,7 +810,7 @@ and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
  contain this newly created meeting.
     - You may have to scroll through your **Meeting List** to find this newly created meeting since meetings are
      sorted in ascending order based on the date the meeting is scheduled.
- 
+
     <figure>    
         <img src="images/meeting-add/meeting-add-result.png" alt="Result for 'meeting add'" width="900px">
     </figure>  
@@ -915,7 +917,7 @@ Views the monthly meeting count in the current month and optionally in previous 
      the current month and year.
      
 **Example**:
-Let's say you want to compare the number of meetings you have had for each month in the past 5 months and the current month.
+Let's say you want to compare the number of meetings you have had for each of the past 5 months and the current month.
 Let's assume that the current month and year is November 2020.
 You can do so as shown.
 
@@ -925,7 +927,9 @@ You can do so as shown.
         <img src="images/meeting-stats/meetingStatsFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>  
 
-2. A new window containing a bar chart will appear.
+2. A new window containing a bar chart will appear. The bar chart will contain the monthly meeting count
+for each the previous 5 months: July 2020, August 2020, September 2020, October 2020, 
+followed by the current month and year November 2020.
 
     <figure>    
         <img src="images/meeting-stats/meetingStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
