@@ -150,7 +150,7 @@ Shows a list of all contacts in StonksBook.
 
 **Format**:`contact list`
 
-#### Locating contacts by name: `contact find`
+#### Locating contacts by name: `contact find` [Aaron Seah]
 Finds contacts whose names exactly match or is similar to any of the given keywords.
 
 **Format**: `contact find KEYWORD [MORE_KEYWORDS]`
@@ -189,7 +189,7 @@ e.g. You want to find the contact Alex Yeoh but you only roughly remember the sp
 * `contact find alx` returns Alex Yeoh
 * `contact find alx david` returns David Li, Alex Yeoh
 
-#### Sorting contacts: `contact sort`
+#### Sorting contacts: `contact sort` [Aaron Seah]
 Sorts contacts based on the name or email address associated to the contact.
 
 **Format**: `contact sort KEYWORD [ORDER]`
@@ -771,7 +771,7 @@ Let's say that you have just received an email from Bernice Yu who wishes to res
         <img src="images/meeting-edit/meeting-edit-result.png" alt="Result for 'meeting edit'" width="900px">
     </figure>  
     
-#### Analysing meetings: `meeting stats`
+#### Analysing meetings: `meeting stats` [Aaron Seah]
 Analyses the meeting data and visualises the statistical result.
 
 **Format**: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
@@ -1020,7 +1020,7 @@ Let's say your archived contact David Li wants to start buying electronics from 
 
 ### Miscellaneous
 
-#### Error resolution suggestion:
+#### Error resolution suggestion: [Aaron Seah]
 Gives an approximate match (if exists) of the most similar command to an unknown user input.
 
 **Examples**:
