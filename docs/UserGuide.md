@@ -697,7 +697,7 @@ Views the monthly sale count for the current month and previous months.
 
 | Parameter              | What it is                                       | Requirements                                                                                                            |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `NUMBER_OF_MONTHS`     | The number of monthly sale counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, .. , 6                                                                                  |
+| `NUMBER_OF_MONTHS`     | The number of monthly sale counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, ... , 6                                                                                  |
      
 **Example**: Let's say you want to compare the number of sales you have made for each month of the past 5 months and the current month.
 Let's assume that the current month and year is November 2020.
@@ -901,8 +901,8 @@ Views the monthly meeting count for the current month and optionally for the pre
 
 | Parameter              | What it is                                       | Requirements                                                                                                            |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `NUMBER_OF_MONTHS`     | The number of monthly meeting counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, .. , 6                                                                                  |
-| `MONTH`                | month                                            | Must be an integer between 1 and 12 inclusive. e.g. 1, 2, .. , 12                                                                                  |
+| `NUMBER_OF_MONTHS`     | The number of monthly meeting counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, ... , 6                                                                                  |
+| `MONTH`                | month                                            | Must be an integer between 1 and 12 inclusive. e.g. 1, 2, ... , 12                                                                                  |
 | `YEAR`                 | year                                             | Must be a positive integer 1, 2, 3 ...                                                                                 |
 
 * If no optional parameter is present:
