@@ -470,18 +470,18 @@ Shows a list of sales.
 | `MONTH`         | Month                                            | Must be an integer between 1 and 12 inclusive. |
 | `YEAR`          | Year                                             | Must be an integer greater than 0.             |
 
-* At most one optional parameter can be present.
+* `c/CONTACT_INDEX` and `m/MONTH y/YEAR` cannot be present at the same time.
 
-* The list is sorted in ascending order based on the date the sale is made.
-
-* If no optional parameter is present:
+* If no parameter is present:
    * all sales are listed.
 
-* If optional parameter `CONTACT_INDEX` is present:
+* If `c/CONTACT_INDEX` is present:
    * all sales made to a contact with the specified index are listed.
 
-* If optional parameter `[m/MONTH y/YEAR]` is present:
+* If `m/MONTH y/YEAR` is present:
    * all sales whose associated date is in the specified `MONTH` and `YEAR` are listed.
+   
+* The list is sorted in ascending order based on the date the sale is made.
    
 **Example:** Let's say you want to view all sales made to Bernice Yu. This is what you need to do:
 
@@ -897,7 +897,7 @@ Views the monthly meeting count for the current month and optionally for the pre
 
 **Format**: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
 
-* At most one optional parameter can be present.
+* `NUMBER_OF_MONTHS` and `m/MONTH y/YEAR` cannot be present at the same time.
 
 | Parameter              | What it is                                       | Requirements                                                                                                            |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
@@ -905,13 +905,13 @@ Views the monthly meeting count for the current month and optionally for the pre
 | `MONTH`                | month                                            | Must be an integer between 1 and 12 inclusive. e.g. 1, 2, ... , 12                                                                                  |
 | `YEAR`                 | year                                             | Must be a positive integer 1, 2, 3 ...                                                                                 |
 
-* If no optional parameter is present:
+* If no parameter is present:
    * The result is the number of meetings whose start date is in the current month and year.
 
-* If optional parameter `[m/MONTH y/YEAR]` is present:
+* If `[m/MONTH y/YEAR]` is present:
    * The result is the number of meetings whose start date is in the specified `MONTH` and `YEAR`.
 
-* If optional parameter `[NUMBER_OF_MONTHS]` is present:
+* If `[NUMBER_OF_MONTHS]` is present:
    * The result is a bar chart on the number of meetings in each of the previous `NUMBER_OF_MONTHS` - 1 months and
      the current month and year.
      
