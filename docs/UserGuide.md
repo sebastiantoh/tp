@@ -218,8 +218,6 @@ Finds contacts whose name exactly matches or is similar to any of the given keyw
 
 <div markdown="block" class="alert alert-info">
 This feature gives an approximate result for contacts whose name is similar to any of the given keywords.
-This means that there is no guarantee that all contacts in the result will always be similar to some given keyword.
-This also means that there is no guarantee that all contacts not in the result are not similar to some given keyword.
 </div>
 
 **Example**:
@@ -1191,8 +1189,7 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 Gives a suggestion of the most similar command (if exists) to an unknown user input.
 
 <div markdown="block" class="alert alert-info">
-This feature does not guarantee that the suggestion will always be the most similar command to the unknown user input.
-This feature also does not guarantee that whenever there is no suggestion given, there is no similar command to the unknown user input.
+This feature gives an approximate result for the most similar command.
 </div>
 
 **Example**:
