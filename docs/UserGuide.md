@@ -228,10 +228,16 @@ Here are the steps to follow:
         <img src="images/contact-delete/contact-delete.png" alt="enter 'contact delete 1'" width="900px">
     </figure>
 
-4. The **Result Box** will display a message noting that the command was successful, and the person, Betsy Crowe, is now removed from the **Contact List**.
+4. The **Result Box** will display a message noting that the command was successful, and the person, Betsy Crowe, is now deleted.
 
     <figure>
         <img src="images/contact-delete/contact-delete-result.png" alt="result for 'contact delete'" width="900px">
+    </figure>
+
+5. Type `contact list` in the **Command Box** and press <kbd>Enter</kbd> to return to display all contacts, note that Betsy Crowe is no longer in the **Contact List**.
+
+    <figure>
+        <img src="images/contact-delete/contact-list.png" alt="result for 'contact list'" width="900px">
     </figure>
 
 #### Editing a contact: `contact edit`
