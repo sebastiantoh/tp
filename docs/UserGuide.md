@@ -699,7 +699,7 @@ Views the monthly sale count in the current month and previous months.
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | `NUMBER_OF_MONTHS`     | The number of months to consider in the result   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, .. , 6                                                                                  |
      
-**Example**: Let's say you want to compare the number of sales you have made for each month in the past 5 months with the current month.
+**Example**: Let's say you want to compare the number of sales you have made for each month in the past 5 months and the current month.
 You can do so as shown.
 
 1. Type `sale stats 6` and press <kbd>Enter</kbd>.
@@ -914,7 +914,7 @@ Views the monthly meeting count in the current month and optionally in previous 
      the current month and year.
      
 **Example**:
-Let's say you want to compare the number of meetings you have had for each month in the past 5 months with the current month.
+Let's say you want to compare the number of meetings you have had for each month in the past 5 months and the current month.
 You can do so as shown.
 
 1. Type `meeting stats 6` and press <kbd>Enter</kbd>.
