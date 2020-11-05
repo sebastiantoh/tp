@@ -916,7 +916,7 @@ Views the monthly meeting count for the current month and optionally for previou
      the current month and year.
      
 **Example**:
-Let's say you want to compare the number of meetings you have had for each of the past 5 months and the current month.
+Let's say you want to compare the number of meetings you had for each of the past 5 months and the current month.
 Let's assume that the current month and year is November 2020.
 You can do so as shown.
 
