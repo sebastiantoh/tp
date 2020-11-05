@@ -909,11 +909,10 @@ Views the monthly meeting count for the current month and optionally for previou
    * The result is the number of meetings whose start date is in the current month and year.
 
 * If optional parameter `[m/MONTH y/YEAR]` is present:
-   * The result is the number of meetings whose start date is in the specified `MONTH` and `YEAR`
+   * The result is the number of meetings whose start date is in the specified `MONTH` and `YEAR`.
 
 * If optional parameter `[NUMBER_OF_MONTHS]` is present:
-   * The result is a bar chart on the number of meetings
-     whose start date is within each of the previous `NUMBER_OF_MONTHS` - 1 months and
+   * The result is a bar chart on the number of meetings in each of the previous `NUMBER_OF_MONTHS` - 1 months and
      the current month and year.
      
 **Example**:
