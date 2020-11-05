@@ -256,7 +256,6 @@ Otherwise, the contacts will be sorted in alphabetical order.
 * The sorting effect will only last until another contact command except `contact delete` is executed.
 
 **Example**:
-
 Let's say you want to see your contacts in reverse alphabetical order based on their name.
 
 1. Type `contact sort n/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
