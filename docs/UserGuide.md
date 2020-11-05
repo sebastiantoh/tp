@@ -199,7 +199,7 @@ Edits an existing contact in StonksBook.
 * `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
 * `contact edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be Betsy Crower and clears all existing tags.
 
-#### Locating contacts by name: `contact find` [Aaron Seah]
+#### Locating contacts by name: `contact find` \[Aaron Seah\]
 Finds contacts whose name exactly matches or is similar to any of the given keywords.
 
 **Format**: `contact find KEYWORD [MORE_KEYWORDS]...`
@@ -239,7 +239,7 @@ You can still find the contact with the name 'Alex Yeoh' as shown.
         <img src="images/contact-find/contactFindThirdStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-#### Sorting contacts: `contact sort` [Aaron Seah]
+#### Sorting contacts: `contact sort` \[Aaron Seah\]
 Sorts contacts based on the contact's name or email address.
 
 **Format**: `contact sort KEYWORD [ORDER]`
@@ -892,7 +892,7 @@ Let's say that you have just received an email from Bernice Yu who wishes to res
         <img src="images/meeting-edit/meeting-edit-result.png" alt="Result for 'meeting edit'" width="900px">
     </figure>  
     
-#### Viewing monthly meetings: `meeting stats` [Aaron Seah]
+#### Viewing monthly meetings: `meeting stats` \[Aaron Seah\]
 Views the monthly meeting count in the current month and optionally in previous months.
 
 **Format**: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
@@ -1162,7 +1162,7 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 
 ### Miscellaneous
 
-#### Error resolution suggestion: [Aaron Seah]
+#### Error resolution suggestion: \[Aaron Seah\]
 Gives an approximate match (if exists) of the most similar command to an unknown user input.
 
 **Example**:
@@ -1197,7 +1197,7 @@ Changes the theme of the GUI to light and dark theme respectively. The default t
 
 Format: `lightmode`/`darkmode`
 
-#### Viewing help: `help` [Aaron Seah]
+#### Viewing help: `help` \[Aaron Seah\]
 Lists the command word, command description and example usage for each available command as well as the link to the User Guide.
 
 **Example**:
