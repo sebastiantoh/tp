@@ -697,7 +697,7 @@ Views the monthly sale count in the current month and previous months.
 
 | Parameter              | What it is                                       | Requirements                                                                                                            |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `NUMBER_OF_MONTHS`     | The number of months to consider in the result   | Must be a positive integer between 2 and 6 inclusive. 2, 3, .. , 6                                                                                  |
+| `NUMBER_OF_MONTHS`     | The number of months to consider in the result   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, .. , 6                                                                                  |
      
 **Example**: Let's say you want to compare the number of sales you have made for each month in the past 5 months with the current month.
 You can do so as shown.
@@ -898,8 +898,8 @@ Views the monthly meeting count in the current month and optionally in previous 
 
 | Parameter              | What it is                                       | Requirements                                                                                                            |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `NUMBER_OF_MONTHS`     | The number of months to consider in the result   | Must be a positive integer between 2 and 6 inclusive. 2, 3, .. , 6                                                                                  |
-| `MONTH`                | month                                            | Must be an integer between 1 and 12 inclusive. 1, 2, .. , 12                                                                                  |
+| `NUMBER_OF_MONTHS`     | The number of months to consider in the result   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, .. , 6                                                                                  |
+| `MONTH`                | month                                            | Must be an integer between 1 and 12 inclusive. e.g. 1, 2, .. , 12                                                                                  |
 | `YEAR`                 | year                                             | Must be a positive integer 1, 2, 3 ...                                                                                 |
 
 * If no optional parameter is present:
