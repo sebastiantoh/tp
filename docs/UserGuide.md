@@ -204,6 +204,11 @@ Finds contacts whose name exactly matches or is similar to any of the given keyw
 
 **Format**: `contact find KEYWORD [MORE_KEYWORDS]...`
 
+| Parameter      | What it is                                       | Requirements                                                                                                                                                                                                                                                                     |
+|----------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `KEYWORD`      | Keyword for finding contacts by name             | Can take any value                                                                                                                                                                                                                                         |
+
+
 * The search is case-insensitive. e.g. keyword 'hans' will match the contact with the name 'Hans'.
 
 * The contact list is ordered by non-ascending similarity to the given keywords.
@@ -233,11 +238,6 @@ You can still find the contact with the name 'Alex Yeoh' as shown.
     <figure>
         <img src="images/contact-find/contactFindThirdStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
-
-**Additional Examples**:
-* `contact find alex david` returns Alex Yeoh, David Li
-* `contact find alx` returns Alex Yeoh
-* `contact find alx david` returns David Li, Alex Yeoh
 
 #### Sorting contacts: `contact sort` [Aaron Seah]
 Sorts contacts based on the contact's name or email address.
@@ -697,7 +697,7 @@ Views the monthly sale count in the current month and previous months.
 
 | Parameter              | What it is                                       | Requirements                                                                                                            |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `NUMBER_OF_MONTHS`     | The number of months to consider in the result   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, .. , 6                                                                                  |
+| `NUMBER_OF_MONTHS`     | The number of monthly sale counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, .. , 6                                                                                  |
      
 **Example**: Let's say you want to compare the number of sales you have made for each month in the past 5 months and the current month.
 You can do so as shown.
@@ -898,12 +898,12 @@ Views the monthly meeting count in the current month and optionally in previous 
 
 | Parameter              | What it is                                       | Requirements                                                                                                            |
 |------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `NUMBER_OF_MONTHS`     | The number of months to consider in the result   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, .. , 6                                                                                  |
+| `NUMBER_OF_MONTHS`     | The number of monthly meeting counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, .. , 6                                                                                  |
 | `MONTH`                | month                                            | Must be an integer between 1 and 12 inclusive. e.g. 1, 2, .. , 12                                                                                  |
 | `YEAR`                 | year                                             | Must be a positive integer 1, 2, 3 ...                                                                                 |
 
 * If no optional parameter is present:
-   * The result is the number of meetings whose start date is in the current month and year
+   * The result is the number of meetings whose start date is in the current month and year.
 
 * If optional parameter `[m/MONTH y/YEAR]` is present:
    * The result is the number of meetings whose start date is in the specified `MONTH` and `YEAR`
