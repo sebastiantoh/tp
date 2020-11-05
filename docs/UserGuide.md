@@ -204,9 +204,9 @@ Finds contacts whose name exactly matches or is similar to any of the given keyw
 
 **Format**: `contact find KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. e.g. keyword 'hans' will match contact with the name 'Hans'
+* The search is case-insensitive. e.g. keyword 'hans' will match the contact with the name 'Hans'.
 
-* The contact list is ordered by non-ascending similarity.
+* The contact list is ordered by non-ascending similarity to the given keywords.
 
 * Exact matches (if exist) will appear as the top results.
 
@@ -227,13 +227,13 @@ You can still find the contact with the name 'Alex Yeoh' as shown.
         <img src="images/contact-find/contactFindSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
     
-3. The contact with the name 'Alex Yeoh' appears as the first contact on the list.
+3. The contact with the name 'Alex Yeoh' appears as the first contact on the **Contact List**.
 
     <figure>
         <img src="images/contact-find/contactFindThirdStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-**Examples**:
+**Additional Examples**:
 * `contact find alex david` returns Alex Yeoh, David Li
 * `contact find alx` returns Alex Yeoh
 * `contact find alx david` returns David Li, Alex Yeoh
