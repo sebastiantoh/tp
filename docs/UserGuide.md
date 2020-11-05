@@ -222,13 +222,13 @@ e.g. You want to find the contact Alex Yeoh but you only roughly remember the sp
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
    
     <figure>
-        <img src="images/contact-find/contactfindfirststep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-find/contactFindFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
    
 2. The contact list now contains contacts whose name is similar to alx yo.
 
     <figure>
-        <img src="images/contact-find/contactfindsecondstep.png" alt="result for 'contact sort keyword'" width="900px">
+        <img src="images/contact-find/contactFindSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
     
 3. Alex Yeoh appears as the first contact on the list.
