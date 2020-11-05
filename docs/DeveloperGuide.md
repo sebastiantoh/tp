@@ -31,6 +31,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
+*Fig. 1 - Architecture Diagram*
+ 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
@@ -61,17 +63,23 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+*Fig. 2 - Class Diagram of the `Logic` Component*
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `contact delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
+*Fig. 3 - Interactions between Components for the `contact delete 1` Command*
+
 The sections below give more details of each component.
 
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+
+*Fig. 4 - Structure of the `UI` Component*
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -89,6 +97,8 @@ The `UI` component,
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
+*Fig. 5 - Structure of the `Logic` Component*
+
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -102,12 +112,16 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `contact delete 1` Command](images/DeleteSequenceDiagram.png)
 
+*Fig. 6 - Interactions Inside the `Logic` Component for the `contact delete 1` Command*
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
+
+*Fig. 7 - Structure of the `Model` Component*
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -125,13 +139,16 @@ The `Model`,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
+<br>
+*Fig. 8 - Alternative Class Diagram of the `Model` Component*
 </div>
 
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
+
+*Fig. 9 - Structure of the `Storage` Component*
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
