@@ -233,6 +233,10 @@ e.g. You want to find the contact Alex Yeoh but you only roughly remember the sp
     
 3. Alex Yeoh appears as the first contact on the list.
 
+    <figure>
+        <img src="images/contact-find/contactFindThirdStep.png" alt="result for 'contact sort keyword'" width="900px">
+    </figure>
+
 **Examples**:
 * `contact find alex david` returns Alex Yeoh, David Li
 * `contact find alx` returns Alex Yeoh
