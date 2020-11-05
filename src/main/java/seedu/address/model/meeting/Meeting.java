@@ -48,6 +48,10 @@ public class Meeting implements Comparable<Meeting> {
         return this.person;
     }
 
+    public int getPersonId() {
+        return this.person.getId();
+    }
+
     public Message getMessage() {
         return this.message;
     }
@@ -91,6 +95,14 @@ public class Meeting implements Comparable<Meeting> {
     public boolean isConflicting(Meeting otherMeeting) {
         return this.startDate.isBefore(otherMeeting.getEndDate()) && this.getEndDate()
                 .isAfter(otherMeeting.getStartDate());
+    }
+
+    /**
+     * Returns true if and only if the current meeting is over.
+     * A meeting is considered over if the meeting's end date is past the current time.
+     */
+    public boolean isOver() {
+        return LocalDateTime.now().isAfter(this.getEndDate());
     }
 
     @Override

@@ -14,8 +14,6 @@ import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookInR
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 
-import java.math.BigDecimal;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -40,8 +38,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().withName("Allison Pauline")
-                .withTotalSalesAmount(new BigDecimal("0.8")).build();
+        Person editedPerson = new PersonBuilder().withName("Allison Pauline").build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson)
                 .withName("Allison Pauline").build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);

@@ -9,8 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SALE_UNIT_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -34,9 +34,9 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "sale add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a sale of specified item name, unit price, "
-        + "quantity and tags (optional), to the specified contact.\n"
+        + "quantity and tags (optional), to the specified contact(s).\n"
         + "Parameters: "
-        + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX (must be a positive integer) "
+        + PREFIX_SALE_CONTACT_INDEX + "CONTACT_INDEX... (must be a positive integer) "
         + PREFIX_SALE_NAME + "ITEM_NAME "
         + PREFIX_SALE_DATE + "DATETIME_OF_PURCHASE "
         + PREFIX_SALE_UNIT_PRICE + "UNIT_PRICE "
@@ -50,10 +50,11 @@ public class AddCommand extends Command {
         + PREFIX_SALE_QUANTITY + "50 "
         + PREFIX_TAG + "fruits";
 
-    public static final String MESSAGE_SUCCESS = "New sale added: %1$s";
-    public static final String MESSAGE_DUPLICATE_SALE = "This sale already exists in StonksBook.";
+    public static final String MESSAGE_SUCCESS = "New sale(s) added: ";
+    public static final String MESSAGE_FAILED = "No sales added.";
+    public static final String MESSAGE_DUPLICATE_SALE = "The following sale(s) already exists in StonksBook.";
 
-    private final Index index;
+    private final List<Index> indexList;
     private final ItemName itemName;
     private final LocalDateTime dateOfPurchase;
     private final Quantity quantity;
@@ -62,17 +63,17 @@ public class AddCommand extends Command {
 
     /**
      * Creates an AddCommand that adds a Sale of specified parameters.
-     * @param index          The index of the Person to associate this sale to.
-     * @param itemName       The item name of the Sale.
-     * @param dateOfPurchase The date of purchase of the Sale.
-     * @param quantity       The quantity of the Sale.
-     * @param unitPrice      The unit price of the Sale.
-     * @param tagList        The tagList belonging to the Sale.
+     * @param indexList        The indexes of the Persons to associate this sale to.
+     * @param itemName         The item name of the Sale.
+     * @param dateOfPurchase   The date of purchase of the Sale.
+     * @param quantity         The quantity of the Sale.
+     * @param unitPrice        The unit price of the Sale.
+     * @param tagList          The tagList belonging to the Sale.
      */
-    public AddCommand(Index index, ItemName itemName, LocalDateTime dateOfPurchase,
+    public AddCommand(List<Index> indexList, ItemName itemName, LocalDateTime dateOfPurchase,
                       Quantity quantity, UnitPrice unitPrice, Set<Tag> tagList) {
-        requireAllNonNull(index, itemName, dateOfPurchase, quantity, unitPrice, tagList);
-        this.index = index;
+        requireAllNonNull(indexList, itemName, dateOfPurchase, quantity, unitPrice, tagList);
+        this.indexList = indexList;
         this.itemName = itemName;
         this.dateOfPurchase = dateOfPurchase;
         this.quantity = quantity;
@@ -85,31 +86,45 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getSortedPersonList();
+        MassSaleCommandUtil.arePersonIndexesValid(lastShownList, indexList);
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Sale toAdd = new Sale(itemName, personToEdit.getId(), dateOfPurchase, quantity, unitPrice, tagList);
-
-        if (!model.saleTagsExist(toAdd)) {
+        if (!model.saleTagsExist(tagList)) {
             throw new CommandException(Messages.MESSAGE_SALE_TAGS_NOT_FOUND);
         }
-        BigDecimal newTotalSalesAmount = toAdd.getTotalCost().add(personToEdit.getTotalSalesAmount());
 
-        Person editedPerson = new Person(personToEdit.getId(), personToEdit.getName(), personToEdit.getPhone(),
-                personToEdit.getEmail(), personToEdit.getAddress(), personToEdit.getTags(),
-                personToEdit.getRemark(), personToEdit.isArchived(), newTotalSalesAmount);
+        List<Sale> duplicatedSales = new ArrayList<>();
+        List<Sale> salesAdded = new ArrayList<>();
 
-        if (model.hasSale(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_SALE);
+        for (Index index : indexList) {
+            Person buyer = lastShownList.get(index.getZeroBased());
+            Sale toAdd = new Sale(itemName, buyer, dateOfPurchase, quantity, unitPrice, tagList);
+
+            if (model.hasSale(toAdd)) {
+                duplicatedSales.add(toAdd);
+            } else {
+                model.addSale(toAdd);
+                salesAdded.add(toAdd);
+            }
         }
 
-        model.addSale(toAdd);
-        model.setPerson(personToEdit, editedPerson);
+        if (duplicatedSales.isEmpty()) {
+            return new CommandResult(generateSuccessMessage(salesAdded), false, true);
+        }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(generateSuccessMessage(salesAdded)
+                + "\n" + generateDuplicateSaleMessage(duplicatedSales), false, true);
+    }
+
+    private String generateSuccessMessage(List<Sale> sales) {
+        if (sales.isEmpty()) {
+            return MESSAGE_FAILED;
+        }
+        return MESSAGE_SUCCESS + MassSaleCommandUtil.listAllSales(sales);
+    }
+
+    private String generateDuplicateSaleMessage(List<Sale> sales) {
+        assert !sales.isEmpty();
+        return MESSAGE_DUPLICATE_SALE + MassSaleCommandUtil.listAllSales(sales);
     }
 
     @Override
@@ -126,7 +141,7 @@ public class AddCommand extends Command {
 
         // state check
         AddCommand otherAddCommand = (AddCommand) other;
-        return index.equals(otherAddCommand.index)
+        return indexList.equals(otherAddCommand.indexList)
             && itemName.equals(otherAddCommand.itemName)
             && dateOfPurchase.equals(otherAddCommand.dateOfPurchase)
             && quantity.equals(otherAddCommand.quantity)

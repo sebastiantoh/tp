@@ -11,8 +11,9 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyCountDataSet;
-import seedu.address.commons.MonthlyListMap;
+import seedu.address.model.dataset.DataSet;
+import seedu.address.model.dataset.date.MonthlyCountData;
+import seedu.address.model.dataset.date.MonthlyListMap;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.person.Person;
@@ -81,6 +82,26 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
     }
 
+    /**
+     * Updates the contact details of all meetings within the list that are associated with {@code contact}.
+     * This is necessary when the contact details has been updated, but the meeting is still storing an outdated
+     * version of the contact details.
+     *
+     * @param contact The contact whose information has been updated.
+     */
+    public void updateMeetingsWithContact(Person contact) {
+        requireNonNull(contact);
+        List<Meeting> meetingsToUpdate =
+                internalList.stream().filter(meeting -> meeting.getPerson().hasSameId(contact))
+                        .collect(Collectors.toList());
+
+        for (Meeting meeting : meetingsToUpdate) {
+            Meeting updatedMeeting =
+                    new Meeting(contact, meeting.getMessage(), meeting.getStartDate(), meeting.getDuration());
+            this.setMeeting(meeting, updatedMeeting);
+        }
+    }
+
     public void setMeetings(UniqueMeetingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -119,6 +140,10 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
 
         internalList.set(index, editedMeeting);
+        this.monthlyListMap.removeItem(target.getStartDate().getMonth(),
+                Year.of(target.getStartDate().getYear()), target);
+        this.monthlyListMap.addItem(editedMeeting.getStartDate().getMonth(),
+                Year.of(editedMeeting.getStartDate().getYear()), editedMeeting);
     }
 
     private void setMonthlyListMap(List<Meeting> list) {
@@ -142,10 +167,10 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Gets multiple number of meeting count for months between {@code month} and {@code year} and
+     * Gets the monthly meeting count for each month between {@code month} and {@code year} and
      * the previous {@code numberOfMonths} - 1 months inclusive.
      */
-    public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         return this.monthlyListMap.getMultipleMonthCount(month, year, numberOfMonths);
     }
 

@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.Person;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
 import seedu.address.model.sale.Sale;
@@ -18,15 +19,15 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Sale objects.
  */
 public class SaleBuilder {
-    public static final int DEFAULT_BUYER_ID = BOB.getId();
+    public static final Person DEFAULT_BUYER = BOB;
     public static final BigDecimal DEFAULT_UNIT_PRICE = new BigDecimal("20.50");
     public static final String DEFAULT_ITEM_NAME = "Pizza";
-    public static final String DEFAULT_QUANTITY = "50";
+    public static final Integer DEFAULT_QUANTITY = 50;
     private static final LocalDateTime DEFAULT_DATETIME =
             LocalDateTime.of(2020, 10, 17, 15, 20);
 
     private ItemName name;
-    private Integer buyerId;
+    private Person buyer;
     private LocalDateTime datetimeOfPurchase;
     private Quantity quantity;
     private UnitPrice unitPrice;
@@ -37,7 +38,7 @@ public class SaleBuilder {
      */
     public SaleBuilder() {
         name = new ItemName(DEFAULT_ITEM_NAME);
-        buyerId = DEFAULT_BUYER_ID;
+        buyer = BOB;
         datetimeOfPurchase = DEFAULT_DATETIME;
         quantity = new Quantity(DEFAULT_QUANTITY);
         unitPrice = new UnitPrice(DEFAULT_UNIT_PRICE);
@@ -49,7 +50,7 @@ public class SaleBuilder {
      */
     public SaleBuilder(Sale saleToCopy) {
         name = saleToCopy.getItemName();
-        buyerId = saleToCopy.getBuyerId();
+        buyer = saleToCopy.getBuyer();
         datetimeOfPurchase = saleToCopy.getDatetimeOfPurchase();
         quantity = saleToCopy.getQuantity();
         unitPrice = saleToCopy.getUnitPrice();
@@ -67,8 +68,8 @@ public class SaleBuilder {
     /**
      * Sets the {@code Buyer} of the {@code Sale} that we are building.
      */
-    public SaleBuilder withBuyerId(int buyerId) {
-        this.buyerId = buyerId;
+    public SaleBuilder withBuyer(Person buyer) {
+        this.buyer = buyer;
         return this;
     }
 
@@ -83,7 +84,7 @@ public class SaleBuilder {
     /**
      * Sets the {@code Quantity} of the {@code Sale} that we are building.
      */
-    public SaleBuilder withQuantity(String quantity) {
+    public SaleBuilder withQuantity(Integer quantity) {
         this.quantity = new Quantity(quantity);
         return this;
     }
@@ -105,6 +106,6 @@ public class SaleBuilder {
     }
 
     public Sale build() {
-        return new Sale(name, buyerId, datetimeOfPurchase, quantity, unitPrice, tags);
+        return new Sale(name, buyer, datetimeOfPurchase, quantity, unitPrice, tags);
     }
 }

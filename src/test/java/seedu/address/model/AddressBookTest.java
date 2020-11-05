@@ -7,12 +7,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.meeting.TypicalMeetings.LUNCH_CARL;
 import static seedu.address.testutil.meeting.TypicalMeetings.MEET_ALICE;
 import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
-import static seedu.address.testutil.person.TypicalPersons.CARL;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 
+import java.text.NumberFormat;
 import java.time.Month;
 import java.time.Year;
 import java.util.Arrays;
@@ -33,6 +34,8 @@ import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 import seedu.address.model.sale.Sale;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TypicalContactTags;
+import seedu.address.testutil.TypicalDates;
+import seedu.address.testutil.TypicalDurations;
 import seedu.address.testutil.TypicalSaleTags;
 import seedu.address.testutil.person.PersonBuilder;
 import seedu.address.testutil.sale.TypicalSales;
@@ -130,7 +133,7 @@ public class AddressBookTest {
                 + "2. Benson Meier Phone: 98765432 Email: johnd@example.com "
                 + "Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends] Remark: Owes me $10\n"
                 + "3. Daniel Meier Phone: 87652533 Email: cornelia@example.com "
-                + "Address: 10th street Tags: [friends] Remark: \n",
+                + "Address: 10th street Tags: [friends]\n",
                 addressBook.findByContactTag(TypicalContactTags.FRIENDS));
     }
 
@@ -147,8 +150,9 @@ public class AddressBookTest {
         addressBookCopy.addPerson(BENSON);
         addressBookCopy.addSale(TypicalSales.APPLE);
         assertEquals("Listing 1 sales items associated with: [fruits]\n"
-                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: 3.50, "
-                        + "Tags: [[fruits]]) (Client: Benson Meier)\n",
+                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: "
+                        + NumberFormat.getCurrencyInstance().format(3.50)
+                        + ", Tags: [[fruits]]) (Client: Benson Meier)\n",
                 addressBookCopy.findSalesBySaleTag(new Tag("fruits")));
     }
 
@@ -167,25 +171,6 @@ public class AddressBookTest {
                         + "1. Benson Meier Phone: 98765432 Email: johnd@example.com "
                         + "Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends] Remark: Owes me $10\n",
                 addressBookCopy.findContactsBySaleTag(new Tag("fruits")));
-    }
-
-    @Test
-    public void listTags_noSaleTags_success() {
-        addressBook.addPerson(ALICE);
-        assertEquals("No sale tags found! Listing contact tags:\n"
-                + "1. [friends]\n", addressBook.listTags());
-    }
-
-    @Test
-    public void listTags_withBothTags_success() {
-        addressBook.addPerson(ALICE);
-        addressBook.addPerson(CARL);
-        addressBook.addSale(TypicalSales.CAMERA);
-        assertEquals("Listing contact tags:\n"
-                + "1. [friends]\n"
-                + "\n"
-                + "Listing sale tags:\n"
-                + "2. [electronics]\n", addressBook.listTags());
     }
 
     @Test
@@ -223,6 +208,18 @@ public class AddressBookTest {
         addressBook.addMeeting(MEET_ALICE);
         List<Meeting> expectedConflictingMeeting = List.of(MEET_ALICE);
         assertEquals(expectedConflictingMeeting, addressBook.getConflictingMeetings(MEET_ALICE));
+    }
+
+    @Test
+    public void getConflictingMeetings_hasConflicts_returnsSortedListOfConflictingMeetings() {
+        addressBook.addMeeting(LUNCH_CARL);
+        addressBook.addMeeting(MEET_ALICE);
+
+        Meeting meetingWhichSpansTenYear = new Meeting(ALICE, new Message("Long meeting with Alice"),
+                TypicalDates.TYPICAL_DATE_2, TypicalDurations.TYPICAL_DURATION_ONE_YEAR.multipliedBy(10));
+
+        List<Meeting> expectedConflictingMeeting = List.of(MEET_ALICE, LUNCH_CARL);
+        assertEquals(expectedConflictingMeeting, addressBook.getConflictingMeetings(meetingWhichSpansTenYear));
     }
 
     @Test

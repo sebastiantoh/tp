@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESC_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -27,7 +28,6 @@ import seedu.address.logic.commands.contact.FindCommand;
 import seedu.address.logic.commands.contact.ListCommand;
 import seedu.address.logic.commands.contact.SortCommand;
 import seedu.address.logic.commands.meeting.StatsCommand;
-import seedu.address.logic.parser.contact.SortCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.person.EditPersonDescriptorBuilder;
@@ -106,7 +106,7 @@ public class AddressBookParserTest {
     public void parseCommand_sort() throws Exception {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " " + PREFIX_CONTACT_NAME) instanceof SortCommand);
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " " + PREFIX_CONTACT_EMAIL + " "
-                + SortCommandParser.ORDER_KEYWORD) instanceof SortCommand);
+                + PREFIX_DESC_ORDER) instanceof SortCommand);
     }
 
     @Test
@@ -118,10 +118,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() throws ParseException {
         assertTrue(parser.parseCommand("unknown") instanceof UnknownCommand);
-        assertTrue(parser.parseCommand("unknown command") instanceof UnknownCommand);
         assertTrue(parser.parseCommand("hel") instanceof UnknownCommand);
         assertTrue(parser.parseCommand("tag lis") instanceof UnknownCommand);
-        assertTrue(parser.parseCommand("tag") instanceof UnknownCommand);
     }
 
     @Test

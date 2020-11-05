@@ -16,7 +16,8 @@ import seedu.address.model.person.Person;
 public class AddCommand extends Command {
     public static final String COMMAND_WORD = "archive add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Moves a contact to the archive.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Moves a contact to the archive. "
+            + "Note that the sales, meetings or reminders linked to this contact will not be deleted.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -40,7 +41,7 @@ public class AddCommand extends Command {
         Person personToArchive = lastShownList.get(targetIndex.getZeroBased());
 
         if (personToArchive.isArchived()) {
-            throw new CommandException(Messages.MESSAGE_ARCHIVE_INVALIID_LIST);
+            throw new CommandException(Messages.MESSAGE_ARCHIVE_INVALID_LIST);
         }
 
         assert !personToArchive.isArchived();
@@ -53,8 +54,7 @@ public class AddCommand extends Command {
                 personToArchive.getAddress(),
                 personToArchive.getTags(),
                 personToArchive.getRemark(),
-                !personToArchive.isArchived(),
-                personToArchive.getTotalSalesAmount()
+                !personToArchive.isArchived()
         );
         model.setPerson(personToArchive, archivedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_UNARCHIVED_PERSONS);

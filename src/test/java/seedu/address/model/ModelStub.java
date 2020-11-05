@@ -5,11 +5,14 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.dataset.DataSet;
+import seedu.address.model.dataset.date.MonthlyCountData;
+import seedu.address.model.dataset.tag.SaleTagCountData;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -107,6 +110,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean anySalesWithoutTags(Tag tagToDelete) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteSaleTag(Tag target) {
         throw new AssertionError("This method should not be called.");
     }
@@ -127,12 +135,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public String listTags() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean saleTagsExist(Sale sale) {
+    public boolean saleTagsExist(Set<Tag> tag) {
         return true;
     }
 
@@ -206,6 +209,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<Meeting> getFilteredMeetingList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Meeting> getSortedMeetingList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -261,6 +274,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void updateFilteredRemindersList(Predicate<Reminder> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasSale(Sale sale) {
         return false;
     }
@@ -286,12 +309,17 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public MonthlyCountDataSet getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthMeetingsCount(Month month, Year year, int numberOfMonths) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public MonthlyCountDataSet getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
+    public DataSet<MonthlyCountData> getMultipleMonthSaleCount(Month month, Year year, int numberOfMonths) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public DataSet<SaleTagCountData> getSaleTagCount() {
         throw new AssertionError("This method should not be called.");
     }
 

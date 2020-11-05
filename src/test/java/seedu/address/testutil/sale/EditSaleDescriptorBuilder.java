@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.sale.EditCommand.EditSaleDescriptor;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.model.person.Person;
 import seedu.address.model.sale.ItemName;
 import seedu.address.model.sale.Quantity;
 import seedu.address.model.sale.Sale;
@@ -35,7 +36,7 @@ public class EditSaleDescriptorBuilder {
     public EditSaleDescriptorBuilder(Sale sale) {
         descriptor = new EditSaleDescriptor();
         descriptor.setItemName(sale.getItemName());
-        descriptor.setBuyerId(sale.getBuyerId());
+        descriptor.setBuyer(sale.getBuyer());
         descriptor.setDatetimeOfPurchase(sale.getDatetimeOfPurchase());
         descriptor.setUnitPrice(sale.getUnitPrice());
         descriptor.setQuantity(sale.getQuantity());
@@ -53,8 +54,8 @@ public class EditSaleDescriptorBuilder {
     /**
      * Sets the {@code buyerId} of the {@code EditSaleDescriptor} that we are building.
      */
-    public EditSaleDescriptorBuilder withBuyer(int buyerId) {
-        descriptor.setBuyerId(buyerId);
+    public EditSaleDescriptorBuilder withBuyer(Person buyer) {
+        descriptor.setBuyer(buyer);
         return this;
     }
 
@@ -77,7 +78,7 @@ public class EditSaleDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditSaleDescriptor} that we are building.
      */
-    public EditSaleDescriptorBuilder withQuantity(String quantity) {
+    public EditSaleDescriptorBuilder withQuantity(Integer quantity) {
         descriptor.setQuantity(new Quantity(quantity));
         return this;
     }

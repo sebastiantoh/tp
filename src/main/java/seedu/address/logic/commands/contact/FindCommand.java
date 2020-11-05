@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.SimilarContacts;
-import seedu.address.commons.SimilarItems;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.similarityhandler.SimilarContacts;
+import seedu.address.logic.similarityhandler.SimilarItems;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -22,8 +22,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "contact find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names exactly"
-            + " matches the argument or partially matches some space-delimited word in the argument. "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + " matches the argument or partially matches some space-delimited word in the argument.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
@@ -34,21 +33,19 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Finds all the contacts whose names exactly matches the argument or
+     * Finds all contacts whose names exactly matches the argument or
      * partially matches some space-delimited word in the argument.
-     * The filtered contact list is sorted by non-ascending similarity.
-     * Contacts whose names exactly match the argument appear in the list first.
      *
+     * The filtered contact list is sorted by non-ascending similarity.
+     * Contacts whose names exactly match the argument appear at the top of the list.
      */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        //read the unfiltered list of contacts
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         List<Person> list = model.getFilteredPersonList();
 
-        //extract contacts whose name is similar / identical to the argument
         SimilarItems<Person> similarItems = new SimilarContacts(this.argument);
         similarItems.fillSimilarityMapper(list);
 

@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
@@ -76,7 +75,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
         int id = model.getLatestContactId() + 1;
 
-        Person toAdd = new Person(id, name, phone, email, address, tagList, remark, false, BigDecimal.ZERO);
+        Person toAdd = new Person(id, name, phone, email, address, tagList, remark, false);
 
         if (!model.contactTagsExist(toAdd)) {
             throw new CommandException(Messages.MESSAGE_CONTACT_TAGS_NOT_FOUND);

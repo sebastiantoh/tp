@@ -1,22 +1,24 @@
 {
-  "persons": [],
+  "persons": [
+    {
+      "id": 1,
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "tagged": [
+        "friends"
+      ],
+      "remark": "Likes chocolates",
+      "archived": false,
+      "totalSalesAmount": "0.80"
+    }
+  ],
   "contactTags": [],
   "saleTags": [],
   "reminders": [
     {
-      "person": {
-        "id": 1,
-        "name": "Alice Pauline",
-        "phone": "94351253",
-        "email": "alice@example.com",
-        "address": "123, Jurong West Ave 6, #08-111",
-        "tagged": [
-          "friends"
-        ],
-        "remark": "Likes chocolates",
-        "archived": false,
-        "totalSalesAmount" : "0.80"
-      },
+      "personId": 1,
       "scheduledDate": "2020-10-30T15:19"
     }
   ],

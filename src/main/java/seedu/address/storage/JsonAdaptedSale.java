@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.sale.ItemName;
@@ -32,7 +33,7 @@ class JsonAdaptedSale {
     private final String itemName;
     private final Integer buyerId;
     private final String datetimeOfPurchase;
-    private final String quantity;
+    private final Integer quantity;
     private final String unitPrice;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -43,7 +44,7 @@ class JsonAdaptedSale {
     public JsonAdaptedSale(@JsonProperty("itemName") String itemName,
                            @JsonProperty("buyerId") Integer buyerId,
                            @JsonProperty("datetimeOfPurchase") String datetimeOfPurchase,
-                           @JsonProperty("quantity") String quantity,
+                           @JsonProperty("quantity") Integer quantity,
                            @JsonProperty("unitPrice") String unitPrice,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.itemName = itemName;
@@ -61,9 +62,9 @@ class JsonAdaptedSale {
      */
     public JsonAdaptedSale(Sale source) {
         itemName = source.getItemName().name;
-        buyerId = source.getBuyerId();
+        buyerId = source.getBuyer().getId();
         datetimeOfPurchase = source.getDatetimeOfPurchase().toString();
-        quantity = source.getQuantity().toString();
+        quantity = source.getQuantity().quantity;
         unitPrice = source.getUnitPrice().getUnitPriceString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -75,7 +76,7 @@ class JsonAdaptedSale {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted sale.
      */
-    public Sale toModelType() throws IllegalValueException {
+    public Sale toModelType(ObservableList<Person> personList) throws IllegalValueException {
         final List<Tag> saleTags = new ArrayList<>();
 
         for (JsonAdaptedTag tag : tagged) {
@@ -94,7 +95,8 @@ class JsonAdaptedSale {
         if (this.buyerId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName()));
         }
-        final Integer modelBuyer = this.buyerId;
+        final Person modelBuyer = personList.stream().filter(person -> person.getId().equals(this.buyerId))
+                .findFirst().orElseThrow(() -> new IllegalValueException("Invalid buyer specified"));
 
         if (datetimeOfPurchase == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Datetime of Purchase"));

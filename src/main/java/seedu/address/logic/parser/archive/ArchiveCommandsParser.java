@@ -15,7 +15,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses the command word to create a Archive Command Object corresponding to the command word.
  */
 public class ArchiveCommandsParser implements GroupCommandsParser {
-    public static final List<String> ALL_CONTACT_COMMAND_WORDS = Arrays.asList(
+
+    public static final List<String> ALL_ARCHIVE_COMMAND_WORDS = Arrays.asList(
+            AddCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
             RemoveCommand.COMMAND_WORD
     );

@@ -26,6 +26,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -52,8 +54,9 @@ public class AddCommandParserTest {
         Set<Tag> tags = new HashSet<>();
         tags.add(new Tag(VALID_SALE_TAG_FRUITS));
 
-        AddCommand expectedCommand = new AddCommand(INDEX_SECOND_ITEM, new ItemName(VALID_ITEM_NAME_APPLE),
-                LocalDateTime.parse(VALID_DATE_APPLE, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+        AddCommand expectedCommand = new AddCommand(new ArrayList<>(Arrays.asList(INDEX_SECOND_ITEM)),
+                new ItemName(VALID_ITEM_NAME_APPLE), LocalDateTime.parse(VALID_DATE_APPLE,
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
                 new Quantity(VALID_QUANTITY_APPLE), new UnitPrice(new BigDecimal(VALID_UNIT_PRICE_APPLE)), tags);
 
         assertParseSuccess(parser, userInput, expectedCommand);

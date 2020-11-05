@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.meeting;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookInReverse;
 
 import java.time.LocalDate;
@@ -12,12 +12,12 @@ import java.time.ZoneId;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.MonthlyCountDataSet;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.dataset.DataSet;
+import seedu.address.model.dataset.date.MonthlyCountData;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,43 +28,43 @@ public class MultipleMeetingStatsCommandTest {
     private Model model = new ModelManager(getTypicalAddressBookInReverse(), new UserPrefs());
 
     @Test
-    public void execute_validInputs_success() throws CommandException {
+    public void execute_validInputs_success() {
         Model expectedModel = new ModelManager(this.model.getAddressBook(), new UserPrefs());
+
         Month currentMonth = LocalDate.now(ZoneId.of("Asia/Singapore")).getMonth();
         Year currentYear = Year.now();
         int numberOfMonths = 3;
-        MonthlyCountDataSet expectedResult =
+
+        DataSet<MonthlyCountData> expectedResult =
                 expectedModel.getMultipleMonthMeetingsCount(currentMonth, currentYear, numberOfMonths);
         expectedResult.setTitle(MultipleMeetingStatsCommand.DATASET_TITLE);
 
-        StatsCommand statsCommand = new MultipleMeetingStatsCommand(numberOfMonths);
         CommandResult expectedCommandResult = new CommandResult(
                 MultipleMeetingStatsCommand.MESSAGE_SUCCESS, expectedResult);
-        CommandResult actualResult = statsCommand.execute(model);
-        assertEquals(expectedCommandResult, actualResult);
-        assertEquals(expectedModel, model);
+
+        StatsCommand statsCommand = new MultipleMeetingStatsCommand(numberOfMonths);
+
+        assertCommandSuccess(statsCommand, model, expectedCommandResult, expectedModel);
     }
 
 
     @Test
     public void equals() {
-        StatsCommand firstCommand = new MultipleMeetingStatsCommand(1);
-        StatsCommand secondCommand = new MultipleMeetingStatsCommand(1);
-        StatsCommand thirdCommand = new MultipleMeetingStatsCommand(2);
+        MultipleMeetingStatsCommand command = new MultipleMeetingStatsCommand(1);
 
         // same object -> returns true
-        assertTrue(firstCommand.equals(firstCommand));
+        assertTrue(command.equals(command));
 
         // same values -> returns true
-        assertTrue(firstCommand.equals(secondCommand));
+        assertTrue(command.equals(new MultipleMeetingStatsCommand(1)));
 
         // different types -> returns false
-        assertFalse(firstCommand.equals(1));
+        assertFalse(command.equals(1));
 
         // null -> returns false
-        assertFalse(firstCommand.equals(null));
+        assertFalse(command.equals(null));
 
         // different numberOfMonths -> returns false
-        assertFalse(firstCommand.equals(thirdCommand));
+        assertFalse(command.equals(new MultipleMeetingStatsCommand(2)));
     }
 }

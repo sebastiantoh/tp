@@ -9,7 +9,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.MonthlyCountDataSet;
+import seedu.address.model.dataset.DataSet;
+import seedu.address.model.dataset.date.MonthlyCountData;
 
 public class CommandResultTest {
     @Test
@@ -19,7 +20,7 @@ public class CommandResultTest {
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false)));
-        assertTrue(commandResult.equals(new CommandResult("feedback", null)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", (Integer) null)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -42,11 +43,14 @@ public class CommandResultTest {
         // different clear value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true)));
 
+        // different theme value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", 1)));
+
         // different statistics result -> returns false
         assertFalse(commandResult.equals(new CommandResult(
-                "feedback", new MonthlyCountDataSet(Collections.emptyList()))));
+                "feedback", new DataSet<MonthlyCountData>(Collections.emptyList()))));
         assertFalse(new CommandResult(
-                "feedback", new MonthlyCountDataSet(Collections.emptyList())).equals(commandResult));
+                "feedback", new DataSet<MonthlyCountData>(Collections.emptyList())).equals(commandResult));
     }
 
     @Test
@@ -71,8 +75,12 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(),
                 new CommandResult("feedback", false, false, true).hashCode());
 
+        // different theme value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(),
+                new CommandResult("feedback", 1));
+
         // different statistic result -> returns different hashcode
         assertNotEquals(commandResult.hashCode(),
-                new CommandResult("feedback", new MonthlyCountDataSet(Collections.emptyList())).hashCode());
+                new CommandResult("feedback", new DataSet<MonthlyCountData>(Collections.emptyList())).hashCode());
     }
 }

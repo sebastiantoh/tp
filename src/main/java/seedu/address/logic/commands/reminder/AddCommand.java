@@ -26,15 +26,15 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "reminder add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder scheduled on a particular date that "
-        + "is associated with the specified contact. "
-        + "Parameters: "
-        + PREFIX_CONTACT + "CONTACT_INDEX (must be a positive integer) "
-        + PREFIX_MESSAGE + "MESSAGE "
-        + PREFIX_DATETIME + "DATETIME\n"
-        + "Example: " + COMMAND_WORD + " "
-        + PREFIX_CONTACT + "2 "
-        + PREFIX_MESSAGE + "Send follow-up email "
-        + PREFIX_DATETIME + "2020-10-30 15:00";
+            + "is associated with the specified contact. "
+            + "Parameters: "
+            + PREFIX_CONTACT + "CONTACT_INDEX (must be a positive integer) "
+            + PREFIX_MESSAGE + "MESSAGE "
+            + PREFIX_DATETIME + "DATETIME\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_CONTACT + "2 "
+            + PREFIX_MESSAGE + "Send email to follow up "
+            + PREFIX_DATETIME + "2020-10-30 15:00";
 
     public static final String MESSAGE_SUCCESS = "New reminder added: %1$s";
     public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in StonksBook.";

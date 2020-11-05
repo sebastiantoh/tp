@@ -1,0 +1,32 @@
+.past-meeting {
+    /* The past-meeting class should always override the default fx-opacity style */
+    -fx-opacity: 0.4 !important;
+}
+
+.overdue {
+    -fx-text-fill: #ff0266 !important; /* The overdue class should always override the default text-fill style */
+}
+
+.completed {
+    -fx-text-fill: #2EA44E !important; /* The completed class should always override the default text-fill style */
+}
+
+.error {
+    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+}
+
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: #e0dada;
+}
+
+.tag-selector {
+    -fx-border-width: 1;
+    -fx-border-color: white;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.tooltip-text {
+    -fx-text-fill: white;
+}

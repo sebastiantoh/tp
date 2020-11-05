@@ -3,7 +3,6 @@ package seedu.address.logic.commands.contact;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TOTAL_SALES;
 
 import java.util.Comparator;
 
@@ -15,22 +14,22 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * sorts the contacts by a particular contact attribute
- * in non-ascending or non-descending order
+ * Sorts the contacts by a particular contact attribute
+ * in non-ascending or non-descending order.
  */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "contact sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the contacts."
-            + "valid arguments: n/ for name, e/ for email address, s/ for total sales amount"
+            + "valid arguments: n/ for name, e/ for email address\n"
             + "Parameters: KEYWORD [ORDER]\n"
             + "Example: contact sort n/ desc";
 
     public static final String MESSAGE_SUCCESS = "sorted!";
 
     public static final String MESSAGE_SORTING_ATTRIBUTE_INVALID =
-            "The given attribute to sort by is not valid";
+            "The given attribute to sort by is not valid.";
 
     private final Prefix sortingAttribute;
 
@@ -40,7 +39,7 @@ public class SortCommand extends Command {
 
     /**
      * Creates a SortCommand to sort the contacts by {@code sortingAttribute}
-     * and the sort order determined by {@code isDesc}.
+     * and the sort order is determined by {@code isDesc}.
      *
      */
     public SortCommand(Prefix sortingAttribute, boolean isDesc) {
@@ -55,8 +54,8 @@ public class SortCommand extends Command {
      * in non-descending order otherwise.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return the success message of the SortCommand
-     * @throws CommandException if sorting attribute is not valid
+     * @return the success message of the SortCommand.
+     * @throws CommandException if sorting attribute is not valid.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -64,8 +63,6 @@ public class SortCommand extends Command {
             this.comparator = Comparator.comparing(person -> person.getName().fullName.toLowerCase());
         } else if (sortingAttribute.equals(PREFIX_CONTACT_EMAIL)) {
             this.comparator = Comparator.comparing(person -> person.getEmail().value.toLowerCase());
-        } else if (sortingAttribute.equals(PREFIX_TOTAL_SALES)) {
-            this.comparator = Comparator.comparing(Person::getTotalSalesAmount);
         } else {
             throw new CommandException(MESSAGE_SORTING_ATTRIBUTE_INVALID);
         }

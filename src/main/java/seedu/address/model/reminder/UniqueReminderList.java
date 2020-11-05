@@ -71,6 +71,26 @@ public class UniqueReminderList implements Iterable<Reminder> {
         }
     }
 
+    /**
+     * Updates the contact details of all reminders within the list that are associated with {@code contact}.
+     * This is necessary when the contact details has been updated, but the reminder is still storing an outdated
+     * version of the contact details.
+     *
+     * @param contact The contact whose information has been updated.
+     */
+    public void updateRemindersWithContact(Person contact) {
+        requireNonNull(contact);
+        List<Reminder> remindersToUpdate =
+                internalList.stream().filter(reminder -> reminder.getPerson().hasSameId(contact))
+                        .collect(Collectors.toList());
+
+        for (Reminder reminder : remindersToUpdate) {
+            Reminder updatedReminder =
+                    new Reminder(contact, reminder.getMessage(), reminder.getScheduledDate(), reminder.isCompleted());
+            this.setReminder(reminder, updatedReminder);
+        }
+    }
+
     public void setReminders(UniqueReminderList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

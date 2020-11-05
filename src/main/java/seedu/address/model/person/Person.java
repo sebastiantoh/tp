@@ -2,8 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -28,7 +26,6 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
     private final boolean archived;
-    private final BigDecimal totalSalesAmount;
 
     /**
      * Creates a person object with specified details.
@@ -41,7 +38,7 @@ public class Person {
      * @param remark Remark associated with the person.
      */
     public Person(Integer id, Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, Remark remark, boolean archived, BigDecimal totalSalesAmount) {
+                  Set<Tag> tags, Remark remark, boolean archived) {
         requireAllNonNull(name, phone, email, address, tags, remark);
         this.id = id;
         this.name = name;
@@ -51,7 +48,6 @@ public class Person {
         this.tags.addAll(tags);
         this.remark = remark;
         this.archived = archived;
-        this.totalSalesAmount = totalSalesAmount;
     }
 
     public Integer getId() {
@@ -86,16 +82,8 @@ public class Person {
         return remark;
     }
 
-    public BigDecimal getTotalSalesAmount() {
-        return totalSalesAmount;
-    }
-
     public boolean isArchived() {
         return archived;
-    }
-
-    public String getTotalSalesAmountString() {
-        return NumberFormat.getCurrencyInstance().format(totalSalesAmount);
     }
 
     /**
@@ -103,6 +91,10 @@ public class Person {
      */
     public void removeTag(Tag tag) {
         tags.remove(tag);
+    }
+
+    public boolean hasSameId(Person otherPerson) {
+        return this.id.equals(otherPerson.id);
     }
 
     /**
@@ -129,18 +121,25 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Person) || other == null) {
             return false;
         }
 
         Person otherPerson = (Person) other;
-        return this.id.equals(otherPerson.id);
+
+        return otherPerson.getId().equals(getId())
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getRemark().equals(getRemark());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, remark, totalSalesAmount);
+        return Objects.hash(name, phone, email, address, tags, remark);
     }
 
     @Override
@@ -152,10 +151,17 @@ public class Person {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
-        builder.append(" Remark: ").append(getRemark());
+                .append(getAddress());
+
+        if (getTags().size() > 0) {
+            builder.append(" Tags: ");
+            getTags().forEach(builder::append);
+        }
+
+        if (!getRemark().isEmpty()) {
+            builder.append(" Remark: ").append(getRemark());
+        }
+
         return builder.toString();
     }
 

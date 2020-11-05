@@ -20,6 +20,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
+import static seedu.address.testutil.person.TypicalPersons.ALICE;
+import static seedu.address.testutil.person.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -122,10 +124,10 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_NAME_BALL = "Ball";
     public static final String VALID_DATE_APPLE = "2020-10-30 15:00";
     public static final String VALID_DATE_BALL = "2020-09-22 12:40";
-    public static final String VALID_QUANTITY_APPLE = "10";
-    public static final String VALID_QUANTITY_BALL = "1";
+    public static final Integer VALID_QUANTITY_APPLE = 10;
+    public static final Integer VALID_QUANTITY_BALL = 1;
     public static final String VALID_UNIT_PRICE_APPLE = "3.50";
-    public static final String VALID_UNIT_PRICE_BALL = "0.8";
+    public static final String VALID_UNIT_PRICE_BALL = "0.80";
     public static final String VALID_SALE_TAG_EMPTY = "";
     public static final String VALID_SALE_TAG_FRUITS = "fruits";
 
@@ -139,6 +141,10 @@ public class CommandTestUtil {
     public static final String QUANTITY_DESC_APPLE = " " + PREFIX_SALE_QUANTITY + VALID_QUANTITY_APPLE;
     public static final String UNIT_PRICE_DESC_APPLE = " " + PREFIX_SALE_UNIT_PRICE + VALID_UNIT_PRICE_APPLE;
     public static final String SALE_TAG_FRUITS = " " + PREFIX_TAG + "fruits";
+    public static final String ITEM_NAME_DESC_BALL = " " + PREFIX_SALE_NAME + VALID_ITEM_NAME_BALL;
+    public static final String SALE_DATE_DESC_BALL = " " + PREFIX_SALE_DATE + VALID_DATE_BALL;
+    public static final String QUANTITY_DESC_BALL = " " + PREFIX_SALE_QUANTITY + VALID_QUANTITY_BALL;
+    public static final String UNIT_PRICE_DESC_BALL = " " + PREFIX_SALE_UNIT_PRICE + VALID_UNIT_PRICE_BALL;
 
     public static final String VALID_SALE_TAG = " " + PREFIX_TAG + VALID_SALE_TAG_FRUITS;
 
@@ -155,10 +161,10 @@ public class CommandTestUtil {
     }
 
     static {
-        DESC_APPLE = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_APPLE).withBuyer(1)
+        DESC_APPLE = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_APPLE).withBuyer(ALICE)
                 .withDatetimeOfPurchase(VALID_DATE_APPLE).withUnitPrice(VALID_UNIT_PRICE_APPLE)
                 .withQuantity(VALID_QUANTITY_APPLE).withTags(VALID_SALE_TAG_FRUITS).build();
-        DESC_BALL = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_BALL).withBuyer(2)
+        DESC_BALL = new EditSaleDescriptorBuilder().withItemName(VALID_ITEM_NAME_BALL).withBuyer(BENSON)
                 .withDatetimeOfPurchase(VALID_DATE_BALL).withUnitPrice(VALID_UNIT_PRICE_BALL)
                 .withQuantity(VALID_QUANTITY_BALL).withTags().build();
     }

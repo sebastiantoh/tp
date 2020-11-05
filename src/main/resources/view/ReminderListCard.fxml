@@ -27,11 +27,11 @@
         <Label fx:id="message" text="\$first" wrapText="true" styleClass="cell_big_label"/>
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <FontIcon fx:id="calendarIcon" iconLiteral="far-calendar-alt" iconColor="white" iconSize="16"/>
+        <FontIcon fx:id="calendarIcon" iconLiteral="far-calendar-alt" styleClass="big-icon"/>
         <Label fx:id="scheduledDate" styleClass="cell_small_label" text="\$scheduledDate" wrapText="true"/>
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <FontIcon iconLiteral="fas-user-circle" iconColor="white" iconSize="16"/>
+        <FontIcon iconLiteral="fas-user-circle" styleClass="big-icon"/>
         <Label fx:id="personName" styleClass="cell_small_label" text="\$personName" wrapText="true"/>
       </HBox>
     </VBox>
