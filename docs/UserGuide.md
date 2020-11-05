@@ -700,6 +700,7 @@ Views the monthly sale count in the current month and previous months.
 | `NUMBER_OF_MONTHS`     | The number of monthly sale counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, .. , 6                                                                                  |
      
 **Example**: Let's say you want to compare the number of sales you have made for each month in the past 5 months and the current month.
+Let's assume that the current month and year is November 2020.
 You can do so as shown.
 
 1. Type `sale stats 6` and press <kbd>Enter</kbd>.
@@ -915,6 +916,7 @@ Views the monthly meeting count in the current month and optionally in previous 
      
 **Example**:
 Let's say you want to compare the number of meetings you have had for each month in the past 5 months and the current month.
+Let's assume that the current month and year is November 2020.
 You can do so as shown.
 
 1. Type `meeting stats 6` and press <kbd>Enter</kbd>.
@@ -929,7 +931,7 @@ You can do so as shown.
         <img src="images/meeting-stats/meetingStatsSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-**Additonal Examples**:
+**Additional Examples**:
 * `meeting stats` will return the number of meetings whose start date is in the October 2020
    if the current month is October and the current year is 2020.
 * `meeting stats m/8 y/2020` will return the number of meetings whose start date is in August 2020.
