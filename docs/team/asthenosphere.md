@@ -43,7 +43,9 @@ The following section summarises my coding, documentation and other contribution
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the tag related commands `tag add`, `tag edit`, `tag delete`, `tag list` and `tag find`:
+    * Added documentation for contact related commands `contact add`, `contact edit`, `contact list` and `contact delete`:
+    [#232](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/232).
+    * Added documentation for tag related commands `tag add`, `tag edit`, `tag delete`, `tag list` and `tag find`:
     [#21](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/21), [#137](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/137),
     [#171](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/171).
     * Added documentation for `reminder list`: [#146](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/146).
