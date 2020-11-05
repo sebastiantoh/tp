@@ -1187,7 +1187,7 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 
 ### Miscellaneous
 
-#### Error resolution suggestion: \[Aaron Seah\]
+#### Error resolution suggestion \[Aaron Seah\]
 Gives an approximate match (if exists) to the most similar command to an unknown user input.
 
 **Example**:
@@ -1217,14 +1217,18 @@ Pressing the up and down keys retrieves the previous and next input respectively
 #### Switching between light and dark themes: `lightmode`/`darkmode`
 Changes the theme of the GUI to light and dark theme respectively. The default theme for StonksBook is dark, and the light theme looks like the following:
 
+**Format**: `lightmode`/`darkmode`
+
 <figure>  
     <img src="images/lightTheme.png" alt="Light theme" width="900px">
 </figure>
 
-Format: `lightmode`/`darkmode`
+
 
 #### Viewing help: `help` \[Aaron Seah\]
 Lists the command word, command description and example usage for each available command as well as the link to the User Guide.
+
+**Format**: `help`
 
 **Example**:
 Let's say you want to recall some commands in StonksBook. 
@@ -1242,8 +1246,6 @@ You can do so by accessing the help page as shown.
         <img src="images/help/helpSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-**Format**: `help`
-
 #### Clearing all past interactions: `clear`
 Clears all past interactions with the StonksBook GUI within the session.
 
@@ -1253,6 +1255,7 @@ Clears all past interactions with the StonksBook GUI within the session.
 Clears all data from StonksBook.
 
 **Format**: `purge`
+
 #### Exiting the program: `exit`
 
 Exits the program.
