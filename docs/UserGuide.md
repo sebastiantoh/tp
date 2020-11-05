@@ -46,8 +46,10 @@ Check out the list below on how to use this User Guide:
 - If you are a first-time user, start from the [Quick start](#quick-start) section for instructions on downloading and setting up StonksBook.
 - If you are interested to learn about the various features StonksBook has, check out the [Features](#features) section.
 - If you are already familiar with StonksBook, but need a slight refresher, check out the [Command summary](#command-summary) section.
+
 --------------------------------------------------------------------------------------------------------------------
-## User Interface
+
+## User interface
 
 This is what StonksBook looks like when started:
 
@@ -87,7 +89,7 @@ This section will provide a quick guide to get StonksBook up and running on your
    
     <figure>
         <img src="images/Ui.png" alt="Ui" width="900px">
-        <figcaption>Fig. 2 - The GUI</figcaption>
+        <figcaption>Fig. 3 - The GUI</figcaption>
     </figure>
 
 1. Type the command in the **Command Box** and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing
@@ -193,7 +195,6 @@ Edits an existing contact in StonksBook.
 * When editing a contact's tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
 * When editing a contact's remark, the previous remark will also be removed/overwritten.
 * You can remove all the contact’s tags/remark by typing `t/` or  `r/` respectively without specifying any tags/remark after it.
-* The contact tags provided must exist in StonksBook before you can associate this contact with them.
 
 **Examples**:
 * `contact edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st contact to be 91234567 and johndoe@example.com respectively.
@@ -727,6 +728,10 @@ Shows a list of all meetings. By default, the list only shows upcoming meetings.
 
 **Format**: `meeting list [c/CONTACT_INDEX] [a/]`
 
+| Parameter        | What it is                                       | Requirements                               |
+|------------------|--------------------------------------------------|--------------------------------------------|
+| `CONTACT_INDEX`  | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …      |
+
 * When a contact index is specified, the list will only show meetings associated with the contact at the specified
  contact index.
 * You can show all meetings, including past meetings, by including `a/`.
@@ -774,11 +779,12 @@ To prevent the situation in which you unknowingly scheduled conflicting meetings
 
 **Format**: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 
-* Adds a meeting with the contact at the specified `CONTACT_INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index must be a positive integer 1, 2, 3, …​
-* The start datetime must be in the format `yyyy-MM-dd HH:mm`
-* The duration is specified in minutes and must be a positive integer between 1 and 1000000 (inclusive).
+| Parameter        | What it is                                       | Requirements                                                           |
+|------------------|--------------------------------------------------|------------------------------------------------------------------------|
+| `CONTACT_INDEX`  | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                  |
+| `MESSAGE`        | Message associated with the meeting              | Must contain only alphanumeric characters and should not be blank      |
+| `START_DATETIME` | Date and time of the meeting                     | Must be in the format `yyyy-MM-dd HH:mm`                               |
+| `DURATION`       | Duration of the meeting (in minutes)             | Must be a positive integer between 1 and 1000000 (inclusive)           |
 
 **Example**:
 Let's say that you successfully secured a lunch meeting with Alex Yeoh that is scheduled for 3 December 2020 12pm
@@ -819,9 +825,9 @@ Deletes the specified meeting from StonksBook.
 
 **Format**: `meeting delete INDEX`
 
-* Deletes the schedule at the specified `INDEX`.
-* The index refers to the index number shown in the displayed meetings list.
-* The index must be a positive integer 1, 2, 3, …​
+| Parameter        | What it is                                       | Requirements                                                           |
+|------------------|--------------------------------------------------|------------------------------------------------------------------------|
+| `INDEX`          | Index number shown in the displayed meeting list | Must be a positive integer 1, 2, 3, …                                  |
 
 **Example**:
 Let's say that you have just received an unfortunate email from Alex Yeoh who no longer wishes to meet with you on 3
@@ -861,7 +867,14 @@ Similar to when adding a meeting, StonksBook will not allow you to edit a meetin
 
 **Format**: `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]`
 
-* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index must be a positive integer 1, 2, 3, …​
+| Parameter        | What it is                                       | Requirements                                                           |
+|------------------|--------------------------------------------------|------------------------------------------------------------------------|
+| `INDEX`          | Index number shown in the displayed meeting list | Must be a positive integer 1, 2, 3, …                                  |
+| `CONTACT_INDEX`  | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                  |
+| `MESSAGE`        | Message associated with the meeting              | Must contain only alphanumeric characters and should not be blank      |
+| `START_DATETIME` | Date and time of the meeting                     | Must be in the format `yyyy-MM-dd HH:mm`                               |
+| `DURATION`       | Duration of the meeting (in minutes)             | Must be a positive integer between 1 and 1000000 (inclusive)           |
+
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -949,7 +962,9 @@ Shows a list of all reminders created, sorted in ascending order based on the da
 
 **Format**: `reminder list [st/STATUS]`
 
-* `STATUS` can be either `completed` or `pending`.
+| Parameter        | What it is                                       | Requirements                                                           |
+|------------------|--------------------------------------------------|------------------------------------------------------------------------|
+| `STATUS`         | Status of the reminders                          | Must be either `completed` or `pending`                                  |
 
 **Example**:
 Let's say that you want to view all your completed reminders. Here's how you can do so:
@@ -973,10 +988,11 @@ Adds a reminder scheduled on a particular date that is associated with the speci
 
 **Format**: `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`
 
-* Adds a reminder associated with the contact at the specified `CONTACT_INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index must be a positive integer 1, 2, 3, …​
-* The datetime must be in the format `yyyy-MM-dd HH:mm`
+| Parameter        | What it is                                       | Requirements                                                           |
+|------------------|--------------------------------------------------|------------------------------------------------------------------------|
+| `CONTACT_INDEX`  | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                  |
+| `MESSAGE`        | Message associated with the reminder             | Must contain only alphanumeric characters and should not be blank      |
+| `DATETIME`       | Scheduled date and time of the reminder          | Must be in the format `yyyy-MM-dd HH:mm`                               |
 
 **Example**:
 Let's say that you need to send a follow-up email to Bernice Yu on 30 November 2020, 3PM. Here's how you can add a reminder into StonksBook:
@@ -1017,9 +1033,9 @@ Deletes the specified reminder from StonksBook.
 
 **Format**: `reminder delete INDEX`
 
-* Deletes the reminder at the specified `INDEX`.
-* The index refers to the index number shown in the displayed reminders list.
-* The index must be a positive integer 1, 2, 3, …​
+| Parameter        | What it is                                        | Requirements                                                           |
+|------------------|---------------------------------------------------|------------------------------------------------------------------------|
+| `INDEX`          | Index number shown in the displayed reminder list | Must be a positive integer 1, 2, 3, …                                  |
 
 **Examples**:
 Let's say that a reminder in StonksBook is no longer applicable and you wish to delete it. Here's you can delete
@@ -1053,10 +1069,16 @@ Edits an existing reminder in StonksBook.
 
 **Format**: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]`
 
-* Edits the reminder at the specified `INDEX`. The index refers to the index number shown in the displayed reminder list. The index must be a positive integer 1, 2, 3, …​
+| Parameter        | What it is                                        | Requirements                                                           |
+|------------------|---------------------------------------------------|------------------------------------------------------------------------|
+| `INDEX`          | Index number shown in the displayed reminder list | Must be a positive integer 1, 2, 3, …                                  |
+| `CONTACT_INDEX`  | Index number shown in the displayed contact list  | Must be a positive integer 1, 2, 3, …                                  |
+| `MESSAGE`        | Message associated with the reminder              | Must contain only alphanumeric characters and should not be blank      |
+| `DATETIME`       | Scheduled date and time of the reminder           | Must be in the format `yyyy-MM-dd HH:mm`                               |
+| `STATUS`         | Status of the reminder                            | Must be either `pending` or `completed`                                |
+
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* `STATUS` can be either `pending` or `completed`.
 
 **Examples**:
 
@@ -1183,7 +1205,7 @@ You will get a suggestion of `contact add` as shown.
 * `contt ad` will return a suggestion of `contact add`
 * `contacta ` will return a suggestion of `contact add`
 
-#### Navigating between previous inputs within the session:
+#### Navigating between previous inputs within the session
 Pressing the up and down keys retrieves the previous and next input respectively, if there is one.
 
 #### Switching between light and dark themes: `lightmode`/`darkmode`
@@ -1242,21 +1264,7 @@ Exits the program.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Tag List** | `tag list`
-**Tag Add** | `tag add (ct/ or st/)TAG` <br> e.g., `tag add ct/important`
-**Tag Delete** | `tag delete (ct/ or st/)INDEX` <br> e.g., `tag delete ct/1`
-**Tag Edit** | `tag edit (ct/ or st/)INDEX t/TAG` <br> e.g., `tag edit st/1 t/fruits`
-**Tag Find** | `tag find (ct/ or st/)INDEX [cl/]` <br> e.g., `tag find st/1 cl/`
-**Archive List** | `archive list`
-**Archive Add** | `archive add INDEX` <br> e.g., `archive add 1`
-**Archive Remove** | `archive remove INDEX` <br> e.g., `archive remove 2`
-**Light/Dark Theme** | `lightmode`/`darkmode`
-**Help** | `help`
-**Clear Chatbox** | `clear`
-**Delete All Data Entries** | `purge`
-**Exit Application** | `exit`
+This section provides a summary of all the commands available in StonksBook. 
 
 ### Contacts
 
@@ -1270,6 +1278,14 @@ Action | Format, Examples
 | `contact sort KEYWORD [ORDER]`                                                             | Sorts contacts based on the parameter specified          | `contact sort n/ desc`                                                                   |
 
 ### Tags
+
+| Command                                                                              | Summary                                             | Example (if applicable)                                                                  |
+|--------------------------------------------------------------------------------------|-----------------------------------------------------|------------------------------------------------------------------------------------------|
+| `tag add (ct/ or st/)TAG`                                                            | Adds a tag                                          | `tag add ct/important`                                                                   |
+| `tag delete (ct/ or st/)INDEX`                                                       | Deletes the specified contact or sales tag          | `tag delete ct/1`                                                                        |
+| `tag edit (ct/ or st/)INDEX t/TAG`                                                   | Edits an existing tag to the specified new tag name | `tag edit st/1 t/fruits`                                                                 |
+| `tag find (ct/ or st/)INDEX [cl/]`                                                   | Displays all entries related to the specified tag   | `tag find st/1 cl/`                                                                      |
+| `tag list`                                                                           | Lists all tags                                      | -                                                                               |
 
 ### Sales
 
@@ -1303,7 +1319,22 @@ Action | Format, Examples
 
 ### Archive
 
+| Command                                          | Summary                            | Example (if applicable)           |
+|--------------------------------------------------|------------------------------------|-----------------------------------|
+| `archive add INDEX`                              | Sends a contact to the archive     | `archive add 1`                   |
+| `archive list`                                   | Lists all archived contacts        | -                                 |
+| `archive remove INDEX`                           | Removes a contact from the archive | `archive remove 2`                |
+
 ### Miscellaneous
+
+| Command                         | Summary                                     | Example (if applicable)           |
+|---------------------------------|---------------------------------------------|-----------------------------------|
+| `clear`                         | Clears chat bot history                     | -                                 |
+| `darkmode`                      | Changes the theme of the GUI to dark theme  | -                                 |
+| `exit`                          | Exits program                               | -                                 |
+| `help`                          | Shows program usage instructions            | -                                 |
+| `lightmode`                     | Changes the theme of the GUI to light theme | -                                 |
+| `purge`                         | Clears all data                             | -                                 |
 
 --------------------------------------------------------------------------------------------------------------------
 

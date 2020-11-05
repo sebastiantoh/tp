@@ -50,7 +50,7 @@ Other commands
 ----------------------
 clear                       Clears chat bot history                                     clear
 darkmode                    Changes the theme of the GUI to dark theme                  darkmode
-exit                        exits program                                               exit
+exit                        Exits program                                               exit
 help                        Shows program usage instructions                            help
 lightmode                   Changes the theme of the GUI to light theme                 lightmode
 purge                       Clears all data                                             purge
