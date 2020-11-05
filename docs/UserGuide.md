@@ -150,7 +150,7 @@ Adds a contact to StonksBook.
 |----------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `NAME`         | Name of contact               | Must contain only alphabetical characters                                                                                                                                                                                                                                        |
 | `PHONE_NUMBER` | Phone number of contact       | Must contain only numerical characters                                                                                                                                                                                                                                           |
-| `EMAIL`        | Email of contact              | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must <ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>|
+| `EMAIL`        | Email of contact              | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must {::nomarkdown}<ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>{:/}|
 | `ADDRESS`      | Address of contact            | Can take any value                                                                                                                                                                                                                                                               |
 | `TAG`          | Tag to be assigned to contact | Must exist in StonksBook first before you can associate the contact to them.                                                                                                                                                                                                     |
 | `REMARK`       | Remark related to contact     | Can take any value                                                                                                                                                                                                                                                               |
@@ -188,7 +188,7 @@ Edits an existing contact in StonksBook.
 | `INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                                                                                                                                                                            |
 | `NAME`         | Name of contact                                  | Must contain only alphabetical characters                                                                                                                                                                                                                                        |
 | `PHONE_NUMBER` | Phone number of contact                          | Must contain only numerical characters                                                                                                                                                                                                                                           |
-| `EMAIL`        | Email of contact                                 | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must <ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>|
+| `EMAIL`        | Email of contact                                 | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must {::nomarkdown}<ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>{:/}|
 | `ADDRESS`      | Address of contact                               | Can take any value                                                                                                                                                                                                                                                               |
 | `TAG`          | Tag to be assigned to contact                    | Must exist in StonksBook first before you can associate the contact to them.                                                                                                                                                                                                     |
 | `REMARK`       | Remark related to contact                        | Can take any value                                                                                                                                                                                                                                                               |
@@ -490,28 +490,28 @@ Shows a list of sales.
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
     - This is to identify the contact index corresponding to Bernice Yu.     
-<figure>
-    <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+    </figure>
 
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example. 
-<figure>
-    <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
+    </figure>
 
 3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<figure>
-    <img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
+    </figure>
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu.
 
-<figure>
-    <img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
+    </figure>
 
 #### Adding a sale to a customer: `sale add` \[Kwek Min Yih\] 
 
@@ -538,32 +538,32 @@ Here's how you can add this new sale into StonksBook:
  
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
      - This is to identify the contact index corresponding to Bernice Yu.      
-
-<figure>
-    <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
-</figure>
+    
+    <figure>
+        <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+    </figure>
 
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
   show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.  
 
-<figure>
-    <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
+    </figure>
 
 3. Type `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<figure>
-    <img src="images/sale-add/saleaddthirdstep.png" alt="enter 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
-</figure>
+    <figure>
+        <img src="images/sale-add/saleaddthirdstep.png" alt="enter 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
+    </figure>
   
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  contain this newly created sale.
     - You may have to scroll through your **Sale List** to find this newly created sale since sales are
      sorted in ascending order based on the date the sale is made.
-
-<figure>
-    <img src="images/sale-add/saleaddfourthstep.png" alt="result for 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
-</figure>
+    
+    <figure>
+        <img src="images/sale-add/saleaddfourthstep.png" alt="result for 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
+    </figure>
 
 #### Deleting a sales item: `sale delete` \[Kwek Min Yih\]
 
@@ -583,40 +583,42 @@ Here's how you can delete this sale in StonksBook:
 
 1. Type `contact find bernice` in the **Command Box** and press <kbd>Enter</kbd>. 
     - This is to identify the contact index corresponding to Bernice Yu.
-
-<figure>
-    <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
-</figure>
+    
+    <figure>
+        <img src="images/sale-list/salelistcontactfirststep.png" alt="enter 'contact find bernice'" width="900px">
+    </figure>
+    
 2. The **Result Box** will display a message of the number of contacts listed and the **Contact List** updates to
  show only contacts with the name 'Bernice'. Identify the correct index that corresponds to Bernice Yu, which is 1 in this example.
 
-<figure>
-    <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactsecondstep.png" alt="result for 'contact find bernice'" width="900px">
+    </figure>
 
 3. Type `sale list c/1` in the **Command Box** and press <kbd>Enter</kbd>.
 
-<figure>
-    <img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactthirdstep.png" alt="enter 'sale list c/1'" width="900px">
+    </figure>
 
 4. The **Result Box** will display a message noting that the command was successful, and the **Sale List** will
  show a list of sales made to Bernice Yu. Identify the index of the sale to be deleted. Let us assume it is at the third index.
 
-<figure>
-    <img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
+    </figure>
 
 5. Type `sale delete s/3` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
 
-<figure>
-    <img src="images/sale-delete/saledeletefifthstep.png" alt="enter 'sale delete s/3'" width="900px">
-</figure>  
+    <figure>
+        <img src="images/sale-delete/saledeletefifthstep.png" alt="enter 'sale delete s/3'" width="900px">
+    </figure>  
+    
 6. You should see that the sale has been deleted from the sale list.
 
-<figure>
-    <img src="images/sale-delete/saledeletesixthstep.png" alt="result for 'sale delete s/3'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-delete/saledeletesixthstep.png" alt="result for 'sale delete s/3'" width="900px">
+    </figure>
 
 #### Editing an existing sale: `sale edit` \[Kwek Min Yih\]
 
@@ -646,28 +648,28 @@ Here's how you can edit her sale in StonksBook:
   sales, it may be convenient to filter for all sales made to Bernice Yu. Assuming that Bernice Yu is the 2nd contact
    currently displayed in the contact list, you can type `sale list c/2`.
 
-<figure>
-    <img src="images/sale-edit/saleeditfirststep.png" alt="enter 'sale list c/2'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-edit/saleeditfirststep.png" alt="enter 'sale list c/2'" width="900px">
+    </figure>
 
 2. The sale list will update to show only sales made to Bernice Yu.
 
-<figure>
-    <img src="images/sale-edit/saleeditsecondstep.png" alt="result for 'sale list c/2'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-edit/saleeditsecondstep.png" alt="result for 'sale list c/2'" width="900px">
+    </figure>
     
 3. Suppose the sale to be edited is at the third index in the sale list. 
 Then, type `sale edit s/3 q/20` in the **Command Box**, and press <kbd>Enter</kbd> to execute it.
   
-<figure>
-<img src="images/sale-edit/saleeditthirdstep.png" alt="enter 'sale edit s/3 q/20'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-edit/saleeditthirdstep.png" alt="enter 'sale edit s/3 q/20'" width="900px">
+    </figure>
 
 4. You should see that the sale has been updated to reflect this new quantity.
 
-<figure>
-    <img src="images/sale-edit/saleeditfourthstep.png" alt="result for 'sale edit s/3 q/20'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-edit/saleeditfourthstep.png" alt="result for 'sale edit s/3 q/20'" width="900px">
+    </figure>
 
 #### Viewing a breakdown of sales made in each tag: `sale breakdown` \[Kwek Min Yih\]
 
@@ -684,14 +686,14 @@ To see the new updated bar graph, close the current external window and run the 
 
 1. Type `sale breakdown` in the **Command Box** and press <kbd>Enter</kbd>. 
 
-<figure>
-    <img src="images/sale-breakdown/salebreakdownfirststep.png" alt="enter 'sale breakdown'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-breakdown/salebreakdownfirststep.png" alt="enter 'sale breakdown'" width="900px">
+    </figure>
 2. A new window containing the bar chart pops up.
 
-<figure>
-    <img src="images/sale-breakdown/salebreakdownsecondstep.png" alt="enter 'sale breakdown'" width="900px">
-</figure>
+    <figure>
+        <img src="images/sale-breakdown/salebreakdownsecondstep.png" alt="enter 'sale breakdown'" width="900px">
+    </figure>
 
 #### Viewing monthly sale count: `sale stats` \[Aaron Seah\]
 Views the monthly sale count for the current month and previous months.
