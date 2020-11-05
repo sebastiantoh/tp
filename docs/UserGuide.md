@@ -893,7 +893,7 @@ Let's say that you have just received an email from Bernice Yu who wishes to res
     </figure>  
     
 #### Viewing monthly meetings: `meeting stats` \[Aaron Seah\]
-Views the monthly meeting count for the current month and optionally for previous months.
+Views the monthly meeting count for the current month and optionally for the previous months.
 
 **Format**: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
 
