@@ -200,22 +200,20 @@ Edits an existing contact in StonksBook.
 * `contact edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be Betsy Crower and clears all existing tags.
 
 #### Locating contacts by name: `contact find` [Aaron Seah]
-Finds contacts with name that exactly matches or is similar to any of the given keywords.
+Finds contacts whose name exactly matches or is similar to any of the given keywords.
 
 **Format**: `contact find KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. e.g. hans will match Hans
-
-* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+* The search is case-insensitive. e.g. keyword 'hans' will match contact with the name 'Hans'
 
 * The contact list is ordered by non-ascending similarity.
 
 * Exact matches (if exist) will appear as the top results.
 
 **Example**:
-Let's say you want to find the contact Alex Yeoh but you cannot remember the correct spelling of the name. 
+Let's say you want to find the contact with the name 'Alex Yeoh' but you cannot remember the correct spelling of the name. 
 You decide to search for 'alx yo' which has a similar pronunciation.
-You can do this as shown.
+You can still find the contact with the name 'Alex Yeoh' as shown.
 
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
    
@@ -223,13 +221,13 @@ You can do this as shown.
         <img src="images/contact-find/contactFindFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
    
-2. The contact list now contains contacts whose name is similar to alx yo.
+2. The **Contact List** now contains contacts whose name is similar to 'alx yo'.
 
     <figure>
         <img src="images/contact-find/contactFindSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
     
-3. Alex Yeoh appears as the first contact on the list.
+3. The contact with the name 'Alex Yeoh' appears as the first contact on the list.
 
     <figure>
         <img src="images/contact-find/contactFindThirdStep.png" alt="result for 'contact sort keyword'" width="900px">
@@ -241,7 +239,7 @@ You can do this as shown.
 * `contact find alx david` returns David Li, Alex Yeoh
 
 #### Sorting contacts: `contact sort` [Aaron Seah]
-Sorts contacts based on the name or email address associated to the contact.
+Sorts contacts based on the contact's name or email address.
 
 **Format**: `contact sort KEYWORD [ORDER]`
 
@@ -249,13 +247,13 @@ Sorts contacts based on the name or email address associated to the contact.
     * `n/` for name
     * `e/` for email address
 
-* If `ORDER` is present, `ORDER` must exactly match `desc`.
+* If `ORDER` is present, `ORDER` must exactly match `desc` and the contacts will be sorted in reverse alphabetical order.
 
-* If `ORDER` is absent, contacts will be sorted in alphabetical order. Otherwise, contacts will be sorted in reverse alphabetical order.
+* Otherwise, the contacts will be sorted in alphabetical order.
 
-* The sorting order is case insensitive.
+* The sorting order is case insensitive. e.g. A contact with the name 'Alex' is equivalent to a contact with the name 'alex' in the sorting process.
 
-* The sorted result will last until other contact commands (except `contact delete`) are executed.
+* The sorted result will only last until other contact commands except `contact delete` are executed.
 
 **Example**:
 Let's say you want to see your contacts in reverse alphabetical order based on their name.
@@ -266,7 +264,7 @@ Let's say you want to see your contacts in reverse alphabetical order based on t
         <img src="images/contact-sort/contactSortFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
     
-2. The contact list is sorted in reverse alphabetical order by name.
+2. The **Contact List** is sorted in reverse alphabetical order based on the contact name.
 
     <figure>
         <img src="images/contact-sort/contactSortSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
@@ -1280,7 +1278,7 @@ Action | Format, Examples
 | `contact delete INDEX`                                                                     | Deletes the specified contact                            | `contact delete 3`                                                                       |
 | `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]`    | Edits an existing contact                                | `contact edit 1 p/91234567 e/johndoe@example.com`                                        |
 | `contact list`                                                                             | Lists all contacts                                       | `contact list`                                                                           |
-| `contact find KEYWORD [MORE_KEYWORDS]`                                                     | Finds contacts with names matching the given keywords    | `contact find alx yo`                                                                    |
+| `contact find KEYWORD [MORE_KEYWORDS]...`                                                     | Finds contacts with names matching the given keywords    | `contact find alx yo`                                                                    |
 | `contact sort KEYWORD [ORDER]`                                                             | Sorts contacts based on the parameter specified          | `contact sort n/ desc`                                                                   |
 
 ### Tags
