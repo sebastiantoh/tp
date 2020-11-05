@@ -200,25 +200,23 @@ Edits an existing contact in StonksBook.
 * `contact edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be Betsy Crower and clears all existing tags.
 
 #### Locating contacts by name: `contact find` [Aaron Seah]
-Finds contacts whose names exactly match or is similar to any of the given keywords.
+Finds contacts with name that exactly matches or is similar to any of the given keywords.
 
-**Format**: `contact find KEYWORD [MORE_KEYWORDS]`
+**Format**: `contact find KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. e.g hans will match Hans
+* The search is case-insensitive. e.g. hans will match Hans
 
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 
-* You can only search based on the contact name.
-
-* Contacts matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
-
-* keyword does not have to exactly match a contact name. e.g. alx will return Alex Yeoh
-
 * The contact list is ordered by non-ascending similarity.
 
-* Exact matches (if exist) will appear as the first few results.
+* Exact matches (if exist) will appear as the top results.
 
-e.g. You want to find the contact Alex Yeoh but you only roughly remember the spellng the of the name as alx yo and you can do this as shown.
+**Example**:
+Let's say you want to find the contact Alex Yeoh but you cannot remember the correct spelling of the name. 
+You decide to search for 'alx yo' which has a similar pronunciation.
+You can do this as shown.
+
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
    
     <figure>
@@ -259,7 +257,9 @@ Sorts contacts based on the name or email address associated to the contact.
 
 * The sorted result will last until other contact commands (except `contact delete`) are executed.
 
-e.g. You want to see your contacts in reverse alphabetical order by name.
+**Example**:
+Let's say you want to see your contacts in reverse alphabetical order based on their name.
+
 1. Type `contact sort n/ desc` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>
@@ -713,7 +713,9 @@ Analyses the sale data and visualises the statistical result.
 * `NUMBER_OF_MONTHS` refers to the number of months to be included in the result.
 * `NUMBER_OF_MONTHS` must be an integer between 2 and 6 inclusive.
      
-e.g. You can compare the number of meetings you have had in the past 6 months as shown.
+**Example**:
+Let's say you want to compare the number of meetings you have had in the past 6 months.
+You can do so as shown.
 
 1. Type `sale stats 6` and press <kbd>Enter</kbd>.
 
@@ -928,7 +930,9 @@ Analyses the meeting data and visualises the statistical result.
      whose start date is within each of the previous `NUMBER_OF_MONTHS` - 1 months and
      the current month and year.
      
-e.g. You can compare the number of meetings you have had in the past 6 months as shown.
+**Example**:
+Let's say you want to compare the number of meetings you have had in the past 6 months.
+You can do so as shown.
 
 1. Type `meeting stats 6` and press <kbd>Enter</kbd>.
 
@@ -1172,6 +1176,9 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 #### Error resolution suggestion: [Aaron Seah]
 Gives an approximate match (if exists) of the most similar command to an unknown user input.
 
+**Example**:
+Let's say you want to use the contact add command but you mistyped the command as cont add.
+
 1. Type `cont add` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>  
@@ -1205,7 +1212,10 @@ Format: `lightmode`/`darkmode`
 Lists the command word, command description and example
 usage for each available command as well as the link to the User Guide.
 
-You can access the help page quickly as shown.
+**Example**:
+Let's say you want to recall some commands in StonksBook. 
+You can do so by acessing the help page as shown.
+
 1. Type `help` in the **Command Box** and press <kbd>Enter</kbd>.
 
     <figure>  
