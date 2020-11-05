@@ -216,10 +216,9 @@ Finds contacts whose name exactly matches or is similar to any of the given keyw
 * Exact matches (if exist) will appear as the top results.
 
 **Example**:
-
-Let's say you want to find the contact with the name 'Alex Yeoh' but you do not know the correct spelling of the name. 
-You decide to search for 'alx yo' which has a similar pronunciation.
-You can still find the contact with the name 'Alex Yeoh' as shown.
+Let's say you want to find the contact with the name `Alex Yeoh` but you do not know the correct spelling of the name. 
+You decide to search for `alx yo` which has a similar pronunciation.
+You can still find the contact with the name `Alex Yeoh` as shown.
 
 1. Type `contact find alx yo` in the **Command Box** and press <kbd>Enter</kbd>.
    
@@ -227,13 +226,13 @@ You can still find the contact with the name 'Alex Yeoh' as shown.
         <img src="images/contact-find/contactFindFirstStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
    
-2. The **Contact List** now contains contacts whose name is similar to 'alx yo'.
+2. The **Contact List** now contains contacts whose name is similar to `alx yo`.
 
     <figure>
         <img src="images/contact-find/contactFindSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
     
-3. The contact with the name 'Alex Yeoh' appears as the first contact on the **Contact List**.
+3. The contact with the name `Alex Yeoh` appears as the first contact on the **Contact List**.
 
     <figure>
         <img src="images/contact-find/contactFindThirdStep.png" alt="result for 'contact sort keyword'" width="900px">
@@ -1162,10 +1161,11 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 ### Miscellaneous
 
 #### Error resolution suggestion: \[Aaron Seah\]
-Gives an approximate match (if exists) of the most similar command to an unknown user input.
+Gives an approximate match (if exists) to the most similar command to an unknown user input.
 
 **Example**:
-Let's say you want to use the contact add command but you mistyped the command as cont add.
+Let's say you want to execute the `contact add` command but you mistyped the command as `cont add`.
+You will get a suggestion of `contact add` as shown.
 
 1. Type `cont add` in the **Command Box** and press <kbd>Enter</kbd>.
 
