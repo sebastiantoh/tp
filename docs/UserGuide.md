@@ -212,7 +212,7 @@ Deletes the specified contact from StonksBook. All associated sales, reminders a
 Let's say that Betsy Crowe no longer does business with you and you would like to remove him from your contact list.
 Here are the steps to follow:
 
-:bulb: Tip: You can learn more about the contact find command in [locating contacts by name](#locating-contacts-by-name-contact-find-aaron-seah).
+:bulb: Tip: You can learn more about the `contact find` command in [locating contacts by name](#locating-contacts-by-name-contact-find-aaron-seah).
 
 1. Type `contact find Betsy Crowe` in the **Command Box** and press <kbd>Enter</kbd>.
 
@@ -1191,7 +1191,7 @@ Let's say that a reminder in StonksBook is no longer applicable and you wish to 
         <img src="images/reminder-delete/reminder-delete-result.png" alt="Result for 'reminder delete'" width="900px">
     </figure>
 
-#### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] and \[Wang Luo\]
+#### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
 
 Edits an existing reminder in StonksBook.
 
