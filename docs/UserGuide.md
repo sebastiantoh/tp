@@ -312,6 +312,10 @@ Finds contacts whose name exactly matches or is similar to any of the given keyw
 
 * Exact matches (if exist) will appear as the top results.
 
+<div markdown="block" class="alert alert-info">
+:information_source: This feature gives an approximate result for contacts whose name is similar to any of the given keywords.
+</div>
+
 **Example**:
 
 Let's say you want to find the contact with the name `Alex Yeoh` but you do not know the correct spelling of the name. 
@@ -1313,7 +1317,11 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 ### Miscellaneous
 
 #### Error resolution suggestion \[Aaron Seah\]
-Gives an approximate match (if exists) to the most similar command to an unknown user input.
+Gives a suggestion of the most similar command (if exists) to an unknown user input.
+
+<div markdown="block" class="alert alert-info">
+:information_source: This feature gives an approximate result for the most similar command.
+</div>
 
 **Example**:
 
