@@ -43,9 +43,9 @@ The different text markups and their meanings are explained in the table below:
 
 
 Check out the list below on how to use this User Guide:
-- If you are a first-time user, start from the [Quick start](#quick-start) section for instructions on downloading and setting up StonksBook.
-- If you are interested to learn about the various features StonksBook has, check out the [Features](#features) section.
-- If you are already familiar with StonksBook, but need a slight refresher, check out the [Command summary](#command-summary) section.
+- If you are a first-time user, start from the [Quick start](#4-quick-start) section for instructions on downloading and setting up StonksBook.
+- If you are interested to learn about the various features StonksBook has, check out the [Features](#5-features) section.
+- If you are already familiar with StonksBook, but need a slight refresher, check out the [Command summary](#7-command-summary) section.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -106,7 +106,7 @@ This section will provide a quick guide to get StonksBook up and running on your
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#5-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -212,7 +212,7 @@ Deletes the specified contact from StonksBook. All associated sales, reminders a
 Let's say that Betsy Crowe no longer does business with you and you would like to remove him from your contact list.
 Here are the steps to follow:
 
-:bulb: Tip: You can learn more about the `contact find` command in [locating contacts by name](#locating-contacts-by-name-contact-find-aaron-seah).
+:bulb: Tip: You can learn more about the `contact find` command in [locating contacts by name](#515-locating-contacts-by-name-contact-find-aaron-seah).
 
 1. Type `contact find Betsy Crowe` in the **Command Box** and press <kbd>Enter</kbd>.
 
