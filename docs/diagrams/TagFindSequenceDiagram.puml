@@ -77,15 +77,27 @@ activate FindCommand
 
 alt isSaleTag
 
-    FindCommand -> Model : findBySaleTag(tag)
-    activate Model
+    alt isSearchingForClient
 
-    Model --> FindCommand
-    deactivate Model
+        FindCommand -> Model : findContactsBySaleTag(tag)
+        activate Model
+
+        Model -> FindCommand
+        deactivate Model
+
+    else
+
+        FindCommand -> Model : findBySaleTag(tag)
+        activate Model
+
+        Model --> FindCommand
+        deactivate Model
+
+    end
 
 else
 
-    FindCommand -> Model : findByContact(tag)
+    FindCommand -> Model : findByContactTag(tag)
     activate Model
 
     Model --> FindCommand
