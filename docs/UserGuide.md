@@ -1346,10 +1346,10 @@ You will get a suggestion of `contact add` as shown.
 * `contt ad` will return a suggestion of `contact add`
 * `contacta ` will return a suggestion of `contact add`
 
-#### Navigating between previous inputs within the session
+#### Navigating between previous inputs within the session \[Leong Jin Ming\]
 Pressing the up and down keys retrieves the previous and next input respectively, if there is one.
 
-#### Switching between light and dark themes: `lightmode`/`darkmode`
+#### Switching between light and dark themes: `lightmode`/`darkmode` \[Leong Jin Ming\]
 Changes the theme of the GUI to light and dark theme respectively. The default theme for StonksBook is dark, and the light theme looks like the following:
 
 **Format**: `lightmode`/`darkmode`
@@ -1382,12 +1382,12 @@ You can do so by accessing the help page as shown.
         <img src="images/help/helpSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-#### Clearing all past interactions: `clear`
+#### Clearing all past interactions: `clear` \[Leong Jin Ming\]
 Clears all past interactions with the StonksBook GUI within the session.
 
 **Format**: `clear`
 
-#### Removing all data: `purge`
+#### Removing all data: `purge` \[Leong Jin Ming\]
 Clears all data from StonksBook.
 
 **Format**: `purge`
