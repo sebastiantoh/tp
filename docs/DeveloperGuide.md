@@ -166,6 +166,110 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Tags feature \[Wang Luo\]
+
+The tags feature allows the user to add, delete or update tags in StonksBook, as well as categorising contacts and sales using created tags.
+Tags are separated into contact tags and sales tags, and they are displayed in alphabetical order.
+
+The feature consists of the following commands:
+- `tag add` - Adds a tag to the contact tag list (or sales tag list).
+- `tag delete` - Deletes a tag from the contact tag list (or sales tag list), and update the associated contacts (or sales).
+- `tag edit` - Edits a contact tag (or sales tag), and update the associated contacts (or sales).
+- `tag list` - Displays the contact tag list and sales tag list in the graphical user interface.
+- `tag find` - Searches contacts (or sales) based on tags.
+
+#### Parsing of commands within the `Logic` component
+
+The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
+
+In order to handle the many commands in our application, we introduced an intermediate layer between `AddressBookParser` and the relevant command parsers, e.g. `AddCommandParser`.
+The intermediate layer will first determine which model type the command corresponds to, before dispatching it to the corresponding command parser.
+For all tag-related commands, we have the `TagCommandsParser` which serves as the intermediate class.
+
+These are the steps that will be taken when parsing a tag-related user command:
+1. An `AddressBookParser` will check if the command is tag-related. The `AddressBookParser` will then create a `TagCommandsParser`.
+2. The `TagCommandsParser` will check what type of command it is and create the corresponding parsers as follows:
+    - `tag add` command: `AddCommandParser`
+    - `tag delete` command: `DeleteCommandParser`
+    - `tag edit` command: `EditCommandParser`
+    - `tag list` command: `ListCommandParser`
+3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+4. Within `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
+
+Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(tag add <args>)` API call.
+- Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user.
+- For example, if the full command was `tag add st/electronics`, then `<args>` is equivalent to `st/electronics`.
+
+![Interactions Inside the Logic Component for the `tag add <args>` Command](images/TagAddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Execution of commands within the `Logic` component
+
+After the user input has been parsed into a `Command`, it is executed with `model` passed in as a parameter.
+
+First, relevant methods in `model` are called to retrieve related objects or check for the existence of the tag.
+In this case, if the user attempts to add a contact tag, the `hasContactTag(newTag)` method is called to ensure that the `newTag` does not already exists in contact tag list.
+Similarly, the `hasSaleTag(newTag)` method is called to check for the existence of the `newTag` in the sales tag list.
+
+Second, objects to be added or edited are created. For `AddCommand`, the new `Tag` object to be added is created.
+
+Next, relevant `model` methods are called to edit the lists of contact (or sales) `Tag` objects. For `AddCommand`, if the user adds a contact tag, `addContactTag` is
+ called to add the newly created tag to the `model`, if the user adds a sales tag, `addSaleTag` is called instead to add the newly created tag to `model`.
+
+Lastly, a `CommandResult` object containing the message to be displayed to the user is returned to `LogicManager`.
+
+The sequence diagram below illustrates how the `AddCommand` that is created from parsing `tag add <args>` is
+ executed.
+
+ ![TagExecuteAddSequenceDiagram](images/TagExecuteAddSequenceDiagram.png)
+
+#### Error handling within the `Logic` component
+
+The below activity diagram shows the overall process of the execution of `tag add <args>`.
+
+In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+- Incorrect command format is used (e.g. missing/incorrect prefixes)
+- Invalid index/values provided (e.g. non-positive and non-integer values are provided as index, non-alphanumeric
+ character included in message, unrecognised date formats, etc.)
+
+![The different outcomes of the program that can occur from the `tag add <args>` Command](images/TagAddActivityDiagram.png)
+
+##### Data Retrieval
+
+The following sequence diagram shows how the retrieval of contacts (or sales) with tags work.
+
+![TagFindSequenceDiagram](images/TagFindSequenceDiagram.png)
+
+The below activity diagram shows the overall process of executing `tag find <args>`.
+
+![TagFindActivityDiagram](images/TagFindActivityDiagram.png)
+
+#### Modelling `Tag`s
+
+Tags are modelled according to the class diagram below.
+
+![Class diagram used to model tags](images/TagClassDiagram.png)
+
+We enforce an association between `Sale` and `Tag` to aid data analytics in the `sale breakdown` command.
+
+#### Design consideration:
+
+##### Aspect: Whether a `Tag` should have a type attribute
+* **Alternative 1:**: Add a type attribute in `Tag` to indicate whether it is a contact tag or sales tag.
+  * Pros:
+    * Increased type safety and contact tags and sales tag are separated from each other.
+  * Cons:
+    * Decreased level of abstraction as contact tags and sales tags are extremely similar.
+
+* **Alternative 2 (current choice):** Type of `Tag` is determined by whether it is in contact tag list or sales tag list.
+  * Pros:
+    * `Tag` class does not need to know whether it belongs to contacts or sales, improved level of abstraction.
+    * Classes interacting with `Tag` via the contact list or sales list.
+  * Cons:
+    * Will have to implement two tag lists separately.
+
 ### Meetings feature \[Sebastian Toh Shi Jian\]
 
 The meetings feature allows the user to add, delete, or update meetings in StonksBook.
@@ -173,9 +277,9 @@ Meetings are displayed in increasing order based on the start date of the meetin
 
 The feature consists of the following commands:
 - `meeting add` - Adds a meeting to the meeting list.
-- `meeting delete` - Delete a meeting from the meeting list.
-- `meeting edit` - Edit a meeting from the meeting list.
-- `meeting list` - Display the list of all meetings in the user interface.
+- `meeting delete` - Deletes a meeting from the meeting list.
+- `meeting edit` - Edits a meeting from the meeting list.
+- `meeting list` - Displays the list of all meetings in the graphical user interface.
 
 #### Parsing of commands within the `Logic` component
 
@@ -208,7 +312,7 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 After the user input has been parsed into a `Command`, it is executed with `model` passed in as a parameter.
 
-First, relevant methods in `model` are called to retrieve related objects or check for the existence of the sale.
+First, relevant methods in `model` are called to retrieve related objects or check for the existence of the contact.
 In this case, `getSortedPersonList()` is called to retrieve the `id` of the contact that is to be associated with the
 meeting and `hasMeeting(newMeeting)` is called to ensure that `newMeeting` to be added does not already exist.
 
