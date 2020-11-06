@@ -1257,7 +1257,7 @@ In addition, archiving a contact will not remove the sales, reminders and meetin
 
 Suppose you want to archive your contact Alex Yeoh, who is no longer doing business with you. Simply follow the steps below:
 
-1. Identify the index of the contact entry in the contact list. Here Alex Yeoh is the first contact in the list. Alternatively you can use `contact find` to find the contact.
+1. Identify the index of the contact entry in the **Contact List**. Here Alex Yeoh is the first contact in the list. Alternatively you can use `contact find` to find the contact.
 
    <img src="images/archive-add/archive-add-prelude.png" alt=" Identify contact index " width="900px">
 
@@ -1275,7 +1275,7 @@ Shows the list of your archived contacts.
 
 **Format**: `archive list`
 
-* When entered, if the contacts list is displayed it will be replaced with the archived contacts list.
+* When entered, if the contact list is displayed it will be replaced with the archived contact list.
 * You can edit and delete contacts in the archive using `contact edit` and `contact delete` when the archived contacts list is displayed.
 
 **Example**:
@@ -1304,7 +1304,7 @@ Removes the specified contact from the archive. The specified contact will appea
 
 Let's say your archived contact Alex Yeoh wants to start buying electronics from you again, and so you would like to bring his contact entry back to the contacts list. Simply follow the steps below:
 
-1. Make sure you are on the archived contacts list. If not, simply use the `archive list` command to get all your archived contacts.
+1. Make sure you are on the archived contact list. If not, simply use the `archive list` command to get all your archived contacts.
 
    <figure>
        <img src="images/archive-remove/archive-remove-prelude.png" alt=" List archived contacts " width="900px">
