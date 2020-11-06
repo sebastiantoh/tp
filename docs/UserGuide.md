@@ -7,7 +7,7 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Introduction
+## 1. Introduction
 
 **StonksBook** is an all-in-one contact management application targeted at salespeople. 
 From helping you managing your clients to your sales information, StonksBook is sure to boost your performance and conversion rates, all while reducing the time you spend on menial tasks such as generating performance reports.
@@ -20,7 +20,7 @@ Here are a few ways **StonksBook** can help you:
 StonksBook combines the best of a Command Line Interface (CLI) as well as a Graphical User Interface (GUI) - interact with the application by typing commands in the CLI and view the results in a clear GUI! 
 
 --------------------------------------------------------------------------------------------------------------------
-## About this document
+## 2. About this document
 
 Before continuing, it may be helpful to familiarise yourself with a few symbols and the different text markups that you will encounter in this User Guide:
 
@@ -36,10 +36,10 @@ This provides you with additional information that you should take note of.
 
 The different text markups and their meanings are explained in the table below: 
 
-| Markup                          | Meaning                                                           |
-|---------------------------------|-------------------------------------------------------------------|
-| `sample  text`                  | Represents technical terms related to StonksBook's implementation |
-| <kbd>Enter</kbd>                | Represents a keystroke that can be pressed on the keyboard        |
+| Markup           | Meaning                                                           |
+| ---------------- | ----------------------------------------------------------------- |
+| `sample  text`   | Represents technical terms related to StonksBook's implementation |
+| <kbd>Enter</kbd> | Represents a keystroke that can be pressed on the keyboard        |
 
 
 Check out the list below on how to use this User Guide:
@@ -49,7 +49,7 @@ Check out the list below on how to use this User Guide:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## User interface
+## 3. User interface
 
 This is what StonksBook looks like when started:
 
@@ -75,7 +75,7 @@ Besides the **Ad-Hoc Panel**, the display is unchanged for all other lists.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 4. Quick start
 
 This section will provide a quick guide to get StonksBook up and running on your computer.
 
@@ -110,7 +110,7 @@ This section will provide a quick guide to get StonksBook up and running on your
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 5. Features
 
 This section introduces the various features available in StonksBook.
 
@@ -134,11 +134,11 @@ Before we begin, do take note of the following information which applies to all 
 
 </div>
 
-### Contacts
+### 5.1. Contacts
 
 StonksBook allows you to manage your contacts effectively and efficiently.
 
-#### Listing all contacts: `contact list` \[Wang Luo\]
+#### 5.1.1. Listing all contacts: `contact list` \[Wang Luo\]
 
 Shows a list of all contacts in StonksBook.
 
@@ -160,20 +160,20 @@ Let's say you want to take a look at all your contacts in StonksBook. Here are t
         <img src="images/contact-list/contact-list-result.png" alt="result for 'contact list'" width="900px">
     </figure>
     
-#### Adding a contact: `contact add` \[Wang Luo\]
+#### 5.1.2. Adding a contact: `contact add` \[Wang Luo\]
 
 Adds a contact to StonksBook.
 
 **Format**: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]… [r/REMARK]​`
 
-| Parameter      | What it is                    | Requirements                                                                                                                                                                                                                                                                     |
-|----------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `NAME`         | Name of contact               | Must contain only alphabetical characters                                                                                                                                                                                                                                        |
-| `PHONE_NUMBER` | Phone number of contact       | Must contain only numerical characters                                                                                                                                                                                                                                           |
-| `EMAIL`        | Email of contact              | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must {::nomarkdown}<ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>{:/}|
-| `ADDRESS`      | Address of contact            | Can take any value                                                                                                                                                                                                                                                               |
-| `TAG`          | Tag to be assigned to contact | Must exist in StonksBook first before you can associate the contact to them.                                                                                                                                                                                                     |
-| `REMARK`       | Remark related to contact     | Can take any value                                                                                                                                                                                                                                                               |
+| Parameter      | What it is                    | Requirements                                                                                                                                                                                                                                                                                                                                       |
+| -------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NAME`         | Name of contact               | Must contain only alphabetical characters                                                                                                                                                                                                                                                                                                          |
+| `PHONE_NUMBER` | Phone number of contact       | Must contain only numerical characters                                                                                                                                                                                                                                                                                                             |
+| `EMAIL`        | Email of contact              | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must {::nomarkdown}<ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>{:/} |
+| `ADDRESS`      | Address of contact            | Can take any value                                                                                                                                                                                                                                                                                                                                 |
+| `TAG`          | Tag to be assigned to contact | Must exist in StonksBook first before you can associate the contact to them.                                                                                                                                                                                                                                                                       |
+| `REMARK`       | Remark related to contact     | Can take any value                                                                                                                                                                                                                                                                                                                                 |
 
 :bulb: Tip: A contact can have any number of tags (including 0)
 
@@ -195,15 +195,15 @@ Let's say that you would like to add Betsy Crowe, who is a friend of yours, to y
         <img src="images/contact-add/contact-add-result.png" alt="result for 'contact add'" width="900px">
     </figure>
 
-#### Deleting a contact: `contact delete` \[Wang Luo\]
+#### 5.1.3. Deleting a contact: `contact delete` \[Wang Luo\]
 
 Deletes the specified contact from StonksBook. All associated sales, reminders and meetings will be deleted as well.
 
 **Format**: `contact delete INDEX`
 
-| Parameter      | What it is                                       | Requirements                               |
-|----------------|--------------------------------------------------|--------------------------------------------|
-| `INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …      |
+| Parameter | What it is                                       | Requirements                          |
+| --------- | ------------------------------------------------ | ------------------------------------- |
+| `INDEX`   | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, … |
 
 * Deletes the contact at the specified `INDEX`.
 
@@ -244,21 +244,21 @@ Here are the steps to follow:
         <img src="images/contact-delete/contact-list.png" alt="result for 'contact list'" width="900px">
     </figure>
 
-#### Editing a contact: `contact edit` \[Wang Luo\]
+#### 5.1.4. Editing a contact: `contact edit` \[Wang Luo\]
 
 Edits an existing contact in StonksBook.
 
 **Format**: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]`
 
-| Parameter      | What it is                                       | Requirements                                                                                                                                                                                                                                                                     |
-|----------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                                                                                                                                                                            |
-| `NAME`         | Name of contact                                  | Must contain only alphabetical characters                                                                                                                                                                                                                                        |
-| `PHONE_NUMBER` | Phone number of contact                          | Must contain only numerical characters                                                                                                                                                                                                                                           |
-| `EMAIL`        | Email of contact                                 | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must {::nomarkdown}<ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>{:/}|
-| `ADDRESS`      | Address of contact                               | Can take any value                                                                                                                                                                                                                                                               |
-| `TAG`          | Tag to be assigned to contact                    | Must exist in StonksBook first before you can associate the contact to them.                                                                                                                                                                                                     |
-| `REMARK`       | Remark related to contact                        | Can take any value                                                                                                                                                                                                                                                               |
+| Parameter      | What it is                                       | Requirements                                                                                                                                                                                                                                                                                                                                       |
+| -------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                                                                                                                                                                                                                                              |
+| `NAME`         | Name of contact                                  | Must contain only alphabetical characters                                                                                                                                                                                                                                                                                                          |
+| `PHONE_NUMBER` | Phone number of contact                          | Must contain only numerical characters                                                                                                                                                                                                                                                                                                             |
+| `EMAIL`        | Email of contact                                 | Must be in format `local-part@domain` <br> Local-part must only contain alphanumeric characters <br> Domain name must {::nomarkdown}<ul> <li> be at least 2 characters long </li> <li>start and end with alphanumeric characters </li> <li> consist of alphanumeric characters, a period or a hyphen for the characters in between </li> </ul>{:/} |
+| `ADDRESS`      | Address of contact                               | Can take any value                                                                                                                                                                                                                                                                                                                                 |
+| `TAG`          | Tag to be assigned to contact                    | Must exist in StonksBook first before you can associate the contact to them.                                                                                                                                                                                                                                                                       |
+| `REMARK`       | Remark related to contact                        | Can take any value                                                                                                                                                                                                                                                                                                                                 |
 
 * Edits the contact at the specified `INDEX`. 
 * At least one of the optional fields must be provided.
@@ -295,15 +295,15 @@ Let's say that Bernice Yu moved to a new address: 36 College Avenue East and you
         <img src="images/contact-edit/contact-edit-result.png" alt="result for 'contact edit'" width="900px">
     </figure>
 
-#### Locating contacts by name: `contact find` \[Aaron Seah\]
+#### 5.1.5. Locating contacts by name: `contact find` \[Aaron Seah\]
 
 Finds contacts whose name exactly matches or is similar to any of the given keywords.
 
 **Format**: `contact find KEYWORD [MORE_KEYWORDS]...`
 
-| Parameter      | What it is                                       | Requirements                                                                                                                                                                                                                                                                     |
-|----------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `KEYWORD`      | Keyword for finding contacts by name             | Can take any value                                                                                                                                                                                                                                         |
+| Parameter | What it is                           | Requirements       |
+| --------- | ------------------------------------ | ------------------ |
+| `KEYWORD` | Keyword for finding contacts by name | Can take any value |
 
 
 * The search is case-insensitive. e.g. keyword 'hans' will match the contact with the name 'Hans'.
@@ -340,16 +340,16 @@ You can still find the contact with the name `Alex Yeoh` as shown.
         <img src="images/contact-find/contactFindThirdStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-#### Sorting contacts: `contact sort` \[Aaron Seah\]
+#### 5.1.6. Sorting contacts: `contact sort` \[Aaron Seah\]
 
 Sorts contacts based on the contact's name or email address.
 
 **Format**: `contact sort KEYWORD [ORDER]`
 
-| Parameter      | What it is                                       | Requirements                                                                                                                                                                                                                                                                     |
-|----------------|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `KEYWORD`      | Keyword for sorting contacts                     | Must be either `n/` or `e/`                                                                                                                                                                                                                                            |
-| `ORDER`        | Sorting order                                    | Must be `desc`                                                                                                                                                                                                                                        |
+| Parameter | What it is                   | Requirements                |
+| --------- | ---------------------------- | --------------------------- |
+| `KEYWORD` | Keyword for sorting contacts | Must be either `n/` or `e/` |
+| `ORDER`   | Sorting order                | Must be `desc`              |
 
 * If `ORDER` is present, the contacts will be sorted in reverse alphabetical order.
 Otherwise, the contacts will be sorted in alphabetical order.
@@ -374,11 +374,11 @@ Let's say you want to see your contacts in reverse alphabetical order based on t
         <img src="images/contact-sort/contactSortSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-### Tags
+### 5.2. Tags
 
 StonksBook allows you to create tags for your contacts as well as sales so that you can categorise them easily.
 
-#### Listing all tags: `tag list` \[Wang Luo\]
+#### 5.2.1. Listing all tags: `tag list` \[Wang Luo\]
 
 Displays a list of all tags created so far.
 
@@ -400,7 +400,7 @@ Let's say that you want to see all the tags you have created so far. Here are th
         <img src="images/tag-list/tag-list-result.png" alt="result for 'tag list'" width="900px">
     </figure>
 
-#### Adding a tag: `tag add` \[Wang Luo\]
+#### 5.2.2. Adding a tag: `tag add` \[Wang Luo\]
 
 Adds a new customised contact tag or sales tag to StonksBook.
 
@@ -413,9 +413,9 @@ StonksBook will not allow you to add a new contact tag (or sales tag) if there a
 * `ct/` stands for contact tag, `st/` stands for sales tag.
 * Adds a contact tag (if `ct/` is typed) or a sales tag (if `st/` is typed) with the specified `TAG` as the tag name to the contact tag list (or sales tag list).
 
-| Parameter       | What it is                                       | Requirements                                                      |
-|-----------------|--------------------------------------------------|-------------------------------------------------------------------|
-| `TAG`           | Name of the new tag                              | Must contain only alphanumeric characters and should not be blank |
+| Parameter | What it is          | Requirements                                                      |
+| --------- | ------------------- | ----------------------------------------------------------------- |
+| `TAG`     | Name of the new tag | Must contain only alphanumeric characters and should not be blank |
 
 **Examples**:
 
@@ -433,15 +433,15 @@ Let's say that you want to add a new sales tag called electronics. Here are the 
         <img src="images/tag-add/tag-add-result.png" alt="result for 'tag add st/electronics'" width="900px">
     </figure>
 
-#### Deleting a tag: `tag delete` \[Wang Luo\]
+#### 5.2.3. Deleting a tag: `tag delete` \[Wang Luo\]
 
 Deletes the specified tag from the tag list. The tag information in all entries previously associated with this tag will also be cleared.
 
 **Format**: `tag delete (st/ or ct/)INDEX`
 
-| Parameter       | What it is                                                             | Requirements                                                      |
-|-----------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
-| `INDEX`         | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, …        |
+| Parameter | What it is                                                             | Requirements                                               |
+| --------- | ---------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `INDEX`   | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, … |
 
 * All contacts that have been previously associated with this tag will be updated so that their associations with this tag will be cleared.
 
@@ -468,7 +468,7 @@ Let's say that you think one contact tag (colleagues) you created before is no l
         <img src="images/tag-delete/tag-delete-result.png" alt="result for 'tag delete ct/2'" width="900px">
     </figure>
 
-#### Editing a tag: `tag edit` \[Wang Luo\]
+#### 5.2.4. Editing a tag: `tag edit` \[Wang Luo\]
 
 Edits an existing tag in StonksBook to the specified tag name.
 
@@ -478,10 +478,10 @@ All entries (contacts or sales) previously associated with this tag will be upda
 
 **Format**: `tag edit (ct/ or st/)INDEX t/TAG`
 
-| Parameter       | What it is                                                             | Requirements                                                      |
-|-----------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
-| `INDEX`         | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, …        |
-| `TAG`           | New name for the tag to be edited                                      | Must contain only alphanumeric characters and should not be blank |
+| Parameter | What it is                                                             | Requirements                                                      |
+| --------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `INDEX`   | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, …        |
+| `TAG`     | New name for the tag to be edited                                      | Must contain only alphanumeric characters and should not be blank |
 
 * Edits the name of the contact tag or sales tag at the specified `INDEX` to be the specified `NAME`.
 * All contacts or sales that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
@@ -509,15 +509,15 @@ Let's say that you decides to change the tag colleagues to teammates instead. He
         <img src="images/tag-edit/tag-edit-result.png" alt="result for 'tag edit ct/2 t/teammates'" width="900px"> 
     </figure>
 
-#### Retrieving entries by tag: `tag find` \[Wang Luo\]
+#### 5.2.5. Retrieving entries by tag: `tag find` \[Wang Luo\]
 
 Displays all entries (contacts or sales) that are associated with the specified tag.
 
 **Format**: `tag find (ct/ or st/)INDEX [cl/]`
 
-| Parameter       | What it is                                                             | Requirements                                                      |
-|-----------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
-| `INDEX`         | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, …        |
+| Parameter | What it is                                                             | Requirements                                               |
+| --------- | ---------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `INDEX`   | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, … |
 
 * Finds all contacts or sales associated with the tag at `INDEX`.
 * An additional `cl/` (stands for 'client') field can be provided when performing searching on sales tags. If provided, instead of displaying sales associated to this tag, StonksBook will display the clients who have purchased items with this tag.
@@ -567,19 +567,19 @@ Now suppose that you would like to find out who purchased items that are tagged 
         <img src="images/tag-find/tag-find-sale-cl-result.png" alt="result for 'tag find st/2'" width="900px">
     </figure>
 
-### Sales
+### 5.3. Sales
 
 StonksBook allows you to manage the sales you made within the application. 
 
-#### Listing all sales: `sale list` \[Kwek Min Yih\] \[Aaron Seah\]
+#### 5.3.1. Listing all sales: `sale list` \[Kwek Min Yih\] \[Aaron Seah\]
 
 Shows a list of sales.
 
 **Format:** `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`
 
-| Parameter       | What it is                                       | Requirements                                   |
-|-----------------|--------------------------------------------------|------------------------------------------------|
-| `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …          |
+| Parameter       | What it is                                       | Requirements                                  |
+| --------------- | ------------------------------------------------ | --------------------------------------------- |
+| `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …         |
 | `MONTH`         | Month                                            | Must be an integer between 1 and 12 inclusive |
 | `YEAR`          | Year                                             | Must be an integer greater than 0             |
 
@@ -625,14 +625,14 @@ Let's say you want to view all sales made to Bernice Yu. This is what you need t
         <img src="images/sale-list/salelistcontactfourthstep.png" alt="result for 'sale list c/1'" width="900px">
     </figure>
 
-#### Adding a sale to a customer: `sale add` \[Kwek Min Yih\] 
+#### 5.3.2. Adding a sale to a customer: `sale add` \[Kwek Min Yih\] 
 
 Adds a sale to the specified contact in StonksBook.
 
 **Format:** `sale add c/CONTACT_INDEX… n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`
 
 | Parameter              | What it is                                       | Requirements                                                                                                            |
-|------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| ---------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
 | `CONTACT_INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                   |
 | `ITEM_NAME`            | Name of the item(s) sold                         | Must contain only alphabetical characters                                                                               |
 | `DATETIME_OF_PURCHASE` | Datetime of when the sale was made               | Must be in the format `yyyy-MM-dd HH:mm`                                                                                |
@@ -678,14 +678,14 @@ Here's how you can add this new sale into StonksBook:
         <img src="images/sale-add/saleaddfourthstep.png" alt="result for 'sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music'" width="900px"> 
     </figure>
 
-#### Deleting a sales item: `sale delete` \[Kwek Min Yih\]
+#### 5.3.3. Deleting a sales item: `sale delete` \[Kwek Min Yih\]
 
 Deletes a specified sales item from StonksBook.
 
 **Format:** `sale delete s/SALE_INDEX…`
 
 | Parameter    | What it is                                    | Requirements                          |
-|--------------|-----------------------------------------------|---------------------------------------|
+| ------------ | --------------------------------------------- | ------------------------------------- |
 | `SALE_INDEX` | Index number shown in the displayed sale list | Must be a positive integer 1, 2, 3, … |
 
 * Multiple `SALE_INDEX` can be specified, meaning that you can delete multiple sales with the same command.
@@ -734,16 +734,16 @@ Here's how you can delete this sale in StonksBook:
         <img src="images/sale-delete/saledeletesixthstep.png" alt="result for 'sale delete s/3'" width="900px">
     </figure>
 
-#### Editing an existing sale: `sale edit` \[Kwek Min Yih\]
+#### 5.3.4. Editing an existing sale: `sale edit` \[Kwek Min Yih\]
 
 Edits an existing sale in StonksBook.
 
 **Format:** `sale edit s/SALE_INDEX… [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`
 
 | Parameter              | What it is                                       | Requirements                                                                                                            |
-|------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| ---------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
 | `CONTACT_INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                   |
-| `ITEM_NAME`            | Name of the item(s) sold                         | Must contain only alphabetic characters                                                                               |
+| `ITEM_NAME`            | Name of the item(s) sold                         | Must contain only alphabetic characters                                                                                 |
 | `DATETIME_OF_PURCHASE` | Datetime of when the sale was made               | Must be in the format `yyyy-MM-dd HH:mm`                                                                                |
 | `UNIT_PRICE`           | Unit price of each item sold                     | Must be a positive number greater than 0 and less than 10 million with 2 decimal places, in the format `DOLLARS.CENTS`. |
 | `QUANTITY`             | Quantity of items sold                           | Must be a positive integer greater than 0 and less than 10 million.                                                     |
@@ -786,7 +786,7 @@ Then, type `sale edit s/3 q/20` in the **Command Box**, and press <kbd>Enter</kb
         <img src="images/sale-edit/saleeditfourthstep.png" alt="result for 'sale edit s/3 q/20'" width="900px">
     </figure>
 
-#### Viewing a breakdown of sales made in each tag: `sale breakdown` \[Kwek Min Yih\]
+#### 5.3.5. Viewing a breakdown of sales made in each tag: `sale breakdown` \[Kwek Min Yih\]
 
 Displays the number of sales belonging to the top 5 tags.
 
@@ -810,14 +810,14 @@ To see the new updated bar graph, close the current external window and run the 
         <img src="images/sale-breakdown/salebreakdownsecondstep.png" alt="enter 'sale breakdown'" width="900px">
     </figure>
 
-#### Viewing monthly sale count: `sale stats` \[Aaron Seah\]
+#### 5.3.6. Viewing monthly sale count: `sale stats` \[Aaron Seah\]
 Views the monthly sale count for the current month and previous months.
 
 **Format**: `sale stats NUMBER_OF_MONTHS`
 
-| Parameter              | What it is                                       | Requirements                                                                                                            |
-|------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `NUMBER_OF_MONTHS`     | The number of monthly sale counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, ... , 6                                                                                  |
+| Parameter          | What it is                                                        | Requirements                                                             |
+| ------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `NUMBER_OF_MONTHS` | The number of monthly sale counts, inclusive of the current month | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, ... , 6 |
      
 **Example**:
 
@@ -840,20 +840,20 @@ followed by the current month and year November 2020.
     </figure>
 
 
-### Meetings
+### 5.4. Meetings
 
 StonksBook allows you to manage your meetings within the application.
 
-#### Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
+#### 5.4.1. Listing all meetings: `meeting list` \[Sebastian Toh Shi Jian\]
 
 Shows a list of all meetings. By default, the list only shows upcoming meetings. This list is sorted in ascending order
  based on the date the meeting is scheduled.
 
 **Format**: `meeting list [c/CONTACT_INDEX] [a/]`
 
-| Parameter        | What it is                                       | Requirements                               |
-|------------------|--------------------------------------------------|--------------------------------------------|
-| `CONTACT_INDEX`  | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …      |
+| Parameter       | What it is                                       | Requirements                          |
+| --------------- | ------------------------------------------------ | ------------------------------------- |
+| `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, … |
 
 * When a contact index is specified, the list will only show meetings associated with the contact at the specified
  contact index.
@@ -891,7 +891,7 @@ Suppose you want to view all upcoming meetings scheduled with Alex Yeoh. This is
         <img src="images/meeting-list/meeting-list-result.png" alt="Result for 'meeting list c/1'" width="900px">
      </figure>
 
-#### Adding a meeting: `meeting add` \[Sebastian Toh Shi Jian\]
+#### 5.4.2. Adding a meeting: `meeting add` \[Sebastian Toh Shi Jian\]
 
 Adds a meeting with the specified contact in StonksBook.
 
@@ -903,12 +903,12 @@ To prevent the situation in which you unknowingly scheduled conflicting meetings
 
 **Format**: `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`
 
-| Parameter        | What it is                                       | Requirements                                                           |
-|------------------|--------------------------------------------------|------------------------------------------------------------------------|
-| `CONTACT_INDEX`  | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                  |
-| `MESSAGE`        | Message associated with the meeting              | Must contain only alphanumeric characters and should not be blank      |
-| `START_DATETIME` | Date and time of the meeting                     | Must be in the format `yyyy-MM-dd HH:mm`                               |
-| `DURATION`       | Duration of the meeting (in minutes)             | Must be a positive integer between 1 and 1000000 (inclusive)           |
+| Parameter        | What it is                                       | Requirements                                                      |
+| ---------------- | ------------------------------------------------ | ----------------------------------------------------------------- |
+| `CONTACT_INDEX`  | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                             |
+| `MESSAGE`        | Message associated with the meeting              | Must contain only alphanumeric characters and should not be blank |
+| `START_DATETIME` | Date and time of the meeting                     | Must be in the format `yyyy-MM-dd HH:mm`                          |
+| `DURATION`       | Duration of the meeting (in minutes)             | Must be a positive integer between 1 and 1000000 (inclusive)      |
 
 **Example**:
 
@@ -944,15 +944,15 @@ and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
         <img src="images/meeting-add/meeting-add-result.png" alt="Result for 'meeting add'" width="900px">
     </figure>  
 
-#### Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
+#### 5.4.3. Deleting a meeting: `meeting delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified meeting from StonksBook.
 
 **Format**: `meeting delete INDEX`
 
-| Parameter        | What it is                                       | Requirements                                                           |
-|------------------|--------------------------------------------------|------------------------------------------------------------------------|
-| `INDEX`          | Index number shown in the displayed meeting list | Must be a positive integer 1, 2, 3, …                                  |
+| Parameter | What it is                                       | Requirements                          |
+| --------- | ------------------------------------------------ | ------------------------------------- |
+| `INDEX`   | Index number shown in the displayed meeting list | Must be a positive integer 1, 2, 3, … |
 
 **Example**:
 
@@ -981,7 +981,7 @@ Let's say that you have just received an unfortunate email from Alex Yeoh who no
         <img src="images/meeting-delete/meeting-delete-result.png" alt="Result for 'meeting delete'" width="900px">
     </figure>   
  
-#### Editing a meeting: `meeting edit` \[Sebastian Toh Shi Jian\]
+#### 5.4.4. Editing a meeting: `meeting edit` \[Sebastian Toh Shi Jian\]
 
 Edits an existing meeting in StonksBook.
 
@@ -993,13 +993,13 @@ Similar to when adding a meeting, StonksBook will not allow you to edit a meetin
 
 **Format**: `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]`
 
-| Parameter        | What it is                                       | Requirements                                                           |
-|------------------|--------------------------------------------------|------------------------------------------------------------------------|
-| `INDEX`          | Index number shown in the displayed meeting list | Must be a positive integer 1, 2, 3, …                                  |
-| `CONTACT_INDEX`  | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                  |
-| `MESSAGE`        | Message associated with the meeting              | Must contain only alphanumeric characters and should not be blank      |
-| `START_DATETIME` | Date and time of the meeting                     | Must be in the format `yyyy-MM-dd HH:mm`                               |
-| `DURATION`       | Duration of the meeting (in minutes)             | Must be a positive integer between 1 and 1000000 (inclusive)           |
+| Parameter        | What it is                                       | Requirements                                                      |
+| ---------------- | ------------------------------------------------ | ----------------------------------------------------------------- |
+| `INDEX`          | Index number shown in the displayed meeting list | Must be a positive integer 1, 2, 3, …                             |
+| `CONTACT_INDEX`  | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                             |
+| `MESSAGE`        | Message associated with the meeting              | Must contain only alphanumeric characters and should not be blank |
+| `START_DATETIME` | Date and time of the meeting                     | Must be in the format `yyyy-MM-dd HH:mm`                          |
+| `DURATION`       | Duration of the meeting (in minutes)             | Must be a positive integer between 1 and 1000000 (inclusive)      |
 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -1030,18 +1030,18 @@ Let's say that you have just received an email from Bernice Yu who wishes to res
         <img src="images/meeting-edit/meeting-edit-result.png" alt="Result for 'meeting edit'" width="900px">
     </figure>  
     
-#### Viewing monthly meetings: `meeting stats` \[Aaron Seah\]
+#### 5.4.5. Viewing monthly meetings: `meeting stats` \[Aaron Seah\]
 Views the monthly meeting count for the current month and optionally for the previous months.
 
 **Format**: `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`
 
 * `NUMBER_OF_MONTHS` and `m/MONTH y/YEAR` cannot be present at the same time.
 
-| Parameter              | What it is                                       | Requirements                                                                                                            |
-|------------------------|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `NUMBER_OF_MONTHS`     | The number of monthly meeting counts, inclusive of the current month   | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, ... , 6                                                                                  |
-| `MONTH`                | month                                            | Must be an integer between 1 and 12 inclusive. e.g. 1, 2, ... , 12                                                                                  |
-| `YEAR`                 | year                                             | Must be a positive integer 1, 2, 3 ...                                                                                 |
+| Parameter          | What it is                                                           | Requirements                                                             |
+| ------------------ | -------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `NUMBER_OF_MONTHS` | The number of monthly meeting counts, inclusive of the current month | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, ... , 6 |
+| `MONTH`            | month                                                                | Must be an integer between 1 and 12 inclusive. e.g. 1, 2, ... , 12       |
+| `YEAR`             | year                                                                 | Must be a positive integer 1, 2, 3 ...                                   |
 
 * If no parameter is present:
    * The result is the number of meetings whose start date is in the current month and year.
@@ -1081,19 +1081,19 @@ followed by the current month and year November 2020.
 * `meeting stats 3` will return a bar chart containing the number of meetings whose start date is within
    June 2020, July 2020 and August 2020 respectively if the current month and year is August 2020.
 
-### Reminders
+### 5.5. Reminders
 
 StonksBook allows you to manage your reminders within the application.
 
-#### Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
+#### 5.5.1. Listing reminders: `reminder list` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
 
 Shows a list of all reminders created, sorted in ascending order based on the date the reminder is scheduled.
 
 **Format**: `reminder list [st/STATUS]`
 
-| Parameter        | What it is                                       | Requirements                                                           |
-|------------------|--------------------------------------------------|------------------------------------------------------------------------|
-| `STATUS`         | Status of the reminders                          | Must be either `completed` or `pending`                                |
+| Parameter | What it is              | Requirements                            |
+| --------- | ----------------------- | --------------------------------------- |
+| `STATUS`  | Status of the reminders | Must be either `completed` or `pending` |
 
 **Example**:
 
@@ -1112,17 +1112,17 @@ Let's say that you want to view all your completed reminders. Here's how you can
         <img src="images/reminder-list/reminder-list-result.png" alt="Result for 'reminder list'" width="900px">
     </figure>
 
-#### Adding reminders: `reminder add` \[Sebastian Toh Shi Jian\]
+#### 5.5.2. Adding reminders: `reminder add` \[Sebastian Toh Shi Jian\]
 
 Adds a reminder scheduled on a particular date that is associated with the specified contact to StonksBook.
 
 **Format**: `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`
 
-| Parameter        | What it is                                       | Requirements                                                           |
-|------------------|--------------------------------------------------|------------------------------------------------------------------------|
-| `CONTACT_INDEX`  | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                  |
-| `MESSAGE`        | Message associated with the reminder             | Must contain only alphanumeric characters and should not be blank      |
-| `DATETIME`       | Scheduled date and time of the reminder          | Must be in the format `yyyy-MM-dd HH:mm`                               |
+| Parameter       | What it is                                       | Requirements                                                      |
+| --------------- | ------------------------------------------------ | ----------------------------------------------------------------- |
+| `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                             |
+| `MESSAGE`       | Message associated with the reminder             | Must contain only alphanumeric characters and should not be blank |
+| `DATETIME`      | Scheduled date and time of the reminder          | Must be in the format `yyyy-MM-dd HH:mm`                          |
 
 **Example**:
 
@@ -1158,15 +1158,15 @@ Let's say that you need to send a follow-up email to Bernice Yu on 30 November 2
         <img src="images/reminder-add/reminder-add-result.png" alt="Result for 'reminder add'" width="900px">
     </figure> 
     
-#### Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
+#### 5.5.3. Deleting a reminder: `reminder delete` \[Sebastian Toh Shi Jian\]
 
 Deletes the specified reminder from StonksBook.
 
 **Format**: `reminder delete INDEX`
 
-| Parameter        | What it is                                        | Requirements                                                           |
-|------------------|---------------------------------------------------|------------------------------------------------------------------------|
-| `INDEX`          | Index number shown in the displayed reminder list | Must be a positive integer 1, 2, 3, …                                  |
+| Parameter | What it is                                        | Requirements                          |
+| --------- | ------------------------------------------------- | ------------------------------------- |
+| `INDEX`   | Index number shown in the displayed reminder list | Must be a positive integer 1, 2, 3, … |
 
 **Examples**:
 
@@ -1195,19 +1195,19 @@ Let's say that a reminder in StonksBook is no longer applicable and you wish to 
         <img src="images/reminder-delete/reminder-delete-result.png" alt="Result for 'reminder delete'" width="900px">
     </figure>
 
-#### Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
+#### 5.5.4. Editing a reminder: `reminder edit` \[Sebastian Toh Shi Jian\] \[Wang Luo\]
 
 Edits an existing reminder in StonksBook.
 
 **Format**: `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]`
 
-| Parameter        | What it is                                        | Requirements                                                           |
-|------------------|---------------------------------------------------|------------------------------------------------------------------------|
-| `INDEX`          | Index number shown in the displayed reminder list | Must be a positive integer 1, 2, 3, …                                  |
-| `CONTACT_INDEX`  | Index number shown in the displayed contact list  | Must be a positive integer 1, 2, 3, …                                  |
-| `MESSAGE`        | Message associated with the reminder              | Must contain only alphanumeric characters and should not be blank      |
-| `DATETIME`       | Scheduled date and time of the reminder           | Must be in the format `yyyy-MM-dd HH:mm`                               |
-| `STATUS`         | Status of the reminder                            | Must be either `pending` or `completed`                                |
+| Parameter       | What it is                                        | Requirements                                                      |
+| --------------- | ------------------------------------------------- | ----------------------------------------------------------------- |
+| `INDEX`         | Index number shown in the displayed reminder list | Must be a positive integer 1, 2, 3, …                             |
+| `CONTACT_INDEX` | Index number shown in the displayed contact list  | Must be a positive integer 1, 2, 3, …                             |
+| `MESSAGE`       | Message associated with the reminder              | Must contain only alphanumeric characters and should not be blank |
+| `DATETIME`      | Scheduled date and time of the reminder           | Must be in the format `yyyy-MM-dd HH:mm`                          |
+| `STATUS`        | Status of the reminder                            | Must be either `pending` or `completed`                           |
 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -1235,11 +1235,11 @@ Let's say that Alex Yeoh would like to hear from you sooner for the follow up an
         <img src="images/reminder-edit/reminder-edit-result.png" alt="Result of 'reminder edit 1 d/2020-10-30 16:30 st/completed'" width="900px"> 
     </figure>
 
-### Archive
+### 5.6. Archive
 
 StonksBook allows you to archive contacts who are no longer active so that you can focus on contacts who can bring you the Stonks.
 
-#### Adding a contact to the archive: `archive add` \[Leong Jin Ming\]
+#### 5.6.1. Adding a contact to the archive: `archive add` \[Leong Jin Ming\]
 
 Adds the specified contact to the archive.
 
@@ -1270,7 +1270,7 @@ Suppose you want to archive your contact Alex Yeoh, who is no longer doing busin
 
    <img src="images/archive-add/archive-add-result.png" alt=" Result of 'archive add 1' " width="900px">
 
-#### Listing contacts in the archive: `archive list` \[Leong Jin Ming\]
+#### 5.6.2. Listing contacts in the archive: `archive list` \[Leong Jin Ming\]
 
 Shows the list of your archived contacts.
 
@@ -1283,7 +1283,7 @@ Shows the list of your archived contacts.
 
 To see all your archived contacts, type `archive list` into the **Command Box** and press <kbd>Enter</kbd>. The **Result Box** will inform you that the command was successful, and the archived contacts list will appear.
 
-#### Removing contacts from the archive: `archive remove` \[Leong Jin Ming\]
+#### 5.6.3. Removing contacts from the archive: `archive remove` \[Leong Jin Ming\]
 
 Removes the specified contact from the archive. The specified contact will appear on your contact list again.
 
@@ -1314,9 +1314,9 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 
    <img src="images/archive-remove/archive-remove-result.png" alt=" Result of 'archive remove 1' " width="900px">
 
-### Miscellaneous
+### 5.7. Miscellaneous
 
-#### Error resolution suggestion \[Aaron Seah\]
+#### 5.7.1. Error resolution suggestion \[Aaron Seah\]
 Gives a suggestion of the most similar command (if exists) to an unknown user input.
 
 <div markdown="block" class="alert alert-info">
@@ -1346,10 +1346,10 @@ You will get a suggestion of `contact add` as shown.
 * `contt ad` will return a suggestion of `contact add`
 * `contacta ` will return a suggestion of `contact add`
 
-#### Navigating between previous inputs within the session \[Leong Jin Ming\]
+#### 5.7.2. Navigating between previous inputs within the session \[Leong Jin Ming\]
 Pressing the up and down keys retrieves the previous and next input respectively, if there is one.
 
-#### Switching between light and dark themes: `lightmode`/`darkmode` \[Leong Jin Ming\]
+#### 5.7.3. Switching between light and dark themes: `lightmode`/`darkmode` \[Leong Jin Ming\]
 Changes the theme of the GUI to light and dark theme respectively. The default theme for StonksBook is dark, and the light theme looks like the following:
 
 **Format**: `lightmode`/`darkmode`
@@ -1360,7 +1360,7 @@ Changes the theme of the GUI to light and dark theme respectively. The default t
 
 
 
-#### Viewing help: `help` \[Aaron Seah\]
+#### 5.7.4. Viewing help: `help` \[Aaron Seah\]
 Lists the command word, command description and example usage for each available command as well as the link to the User Guide.
 
 **Format**: `help`
@@ -1382,17 +1382,17 @@ You can do so by accessing the help page as shown.
         <img src="images/help/helpSecondStep.png" alt="result for 'contact sort keyword'" width="900px">
     </figure>
 
-#### Clearing all past interactions: `clear` \[Leong Jin Ming\]
+#### 5.7.5. Clearing all past interactions: `clear` \[Leong Jin Ming\]
 Clears all past interactions with the StonksBook GUI within the session.
 
 **Format**: `clear`
 
-#### Removing all data: `purge` \[Leong Jin Ming\]
+#### 5.7.6. Removing all data: `purge` \[Leong Jin Ming\]
 Clears all data from StonksBook.
 
 **Format**: `purge`
 
-#### Exiting the program: `exit`
+#### 5.7.7. Exiting the program: `exit`
 
 Exits the program.
 
@@ -1400,87 +1400,87 @@ Exits the program.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous StonksBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 7. Command summary
 
 This section provides a summary of all the commands available in StonksBook. 
 
-### Contacts
+### 7.1. Contacts
 
-| Command                                                                                    | Summary                                                  | Example (if applicable)                                                                  |
-|--------------------------------------------------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------------------------|
-| `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]`                   | Adds a contact with the specified information            | `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| `contact delete INDEX`                                                                     | Deletes the specified contact                            | `contact delete 3`                                                                       |
-| `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]`    | Edits an existing contact                                | `contact edit 1 p/91234567 e/johndoe@example.com`                                        |
-| `contact list`                                                                             | Lists all contacts                                       | `contact list`                                                                           |
-| `contact find KEYWORD [MORE_KEYWORDS]...`                                                     | Finds contacts with names matching the given keywords    | `contact find alx yo`                                                                    |
-| `contact sort KEYWORD [ORDER]`                                                             | Sorts contacts based on the parameter specified          | `contact sort n/ desc`                                                                   |
+| Command                                                                                  | Summary                                               | Example (if applicable)                                                                  |
+| ---------------------------------------------------------------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[r/REMARK]`                | Adds a contact with the specified information         | `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| `contact delete INDEX`                                                                   | Deletes the specified contact                         | `contact delete 3`                                                                       |
+| `contact edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​[r/REMARK]` | Edits an existing contact                             | `contact edit 1 p/91234567 e/johndoe@example.com`                                        |
+| `contact list`                                                                           | Lists all contacts                                    | `contact list`                                                                           |
+| `contact find KEYWORD [MORE_KEYWORDS]...`                                                | Finds contacts with names matching the given keywords | `contact find alx yo`                                                                    |
+| `contact sort KEYWORD [ORDER]`                                                           | Sorts contacts based on the parameter specified       | `contact sort n/ desc`                                                                   |
 
-### Tags
+### 7.2. Tags
 
-| Command                                                                              | Summary                                             | Example (if applicable)                                                                  |
-|--------------------------------------------------------------------------------------|-----------------------------------------------------|------------------------------------------------------------------------------------------|
-| `tag add (ct/ or st/)TAG`                                                            | Adds a tag                                          | `tag add ct/important`                                                                   |
-| `tag delete (ct/ or st/)INDEX`                                                       | Deletes the specified contact or sales tag          | `tag delete ct/1`                                                                        |
-| `tag edit (ct/ or st/)INDEX t/TAG`                                                   | Edits an existing tag to the specified new tag name | `tag edit st/1 t/fruits`                                                                 |
-| `tag find (ct/ or st/)INDEX [cl/]`                                                   | Displays all entries related to the specified tag   | `tag find st/1 cl/`                                                                      |
-| `tag list`                                                                           | Lists all tags                                      | -                                                                               |
+| Command                            | Summary                                             | Example (if applicable)  |
+| ---------------------------------- | --------------------------------------------------- | ------------------------ |
+| `tag add (ct/ or st/)TAG`          | Adds a tag                                          | `tag add ct/important`   |
+| `tag delete (ct/ or st/)INDEX`     | Deletes the specified contact or sales tag          | `tag delete ct/1`        |
+| `tag edit (ct/ or st/)INDEX t/TAG` | Edits an existing tag to the specified new tag name | `tag edit st/1 t/fruits` |
+| `tag find (ct/ or st/)INDEX [cl/]` | Displays all entries related to the specified tag   | `tag find st/1 cl/`      |
+| `tag list`                         | Lists all tags                                      | -                        |
 
-### Sales
+### 7.3. Sales
 
-| Command                                                                                                                    | Summary                                                  | Example (if applicable)                                                |
-|----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------|
-| `sale add c/CONTACT_INDEX… n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`                              | Adds a sale to the specified contact                     | `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music` |
-| `sale delete s/SALE_INDEX…`                                                                                                | Deletes the specified sale                               | `sale delete s/3`                                                      |
-| `sale edit s/SALE_INDEX… [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…`    | Edits an existing sale                                   | `sale edit s/2 n/B5 Notebook p/4.00 q/10`                              |
-| `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`                                                                             | Lists sale based on provided parameters                  | `sale list c/1`                                                        |
-| `sale breakdown`                                                                                                           | Displays the number of sales belonging to the top 5 tags | `sale breakdown`                                                       |
-| `sale stats NUMBER_OF_MONTHS`                                                                                              | Displays monthly sale count                              | `sale stats 6`                                                         |
+| Command                                                                                                                 | Summary                                                  | Example (if applicable)                                                |
+| ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `sale add c/CONTACT_INDEX… n/ITEM_NAME d/DATETIME_OF_PURCHASE p/UNIT_PRICE q/QUANTITY t/TAG…`                           | Adds a sale to the specified contact                     | `sale add c/1 n/Guitar Tuner d/2020-10-30 15:00 p/10.00 q/100 t/music` |
+| `sale delete s/SALE_INDEX…`                                                                                             | Deletes the specified sale                               | `sale delete s/3`                                                      |
+| `sale edit s/SALE_INDEX… [c/CONTACT_INDEX] [n/ITEM_NAME] [d/DATETIME_OF_PURCHASE] [p/UNIT_PRICE] [q/QUANTITY] [t/TAG]…` | Edits an existing sale                                   | `sale edit s/2 n/B5 Notebook p/4.00 q/10`                              |
+| `sale list [c/CONTACT_INDEX] [m/MONTH y/YEAR]`                                                                          | Lists sale based on provided parameters                  | `sale list c/1`                                                        |
+| `sale breakdown`                                                                                                        | Displays the number of sales belonging to the top 5 tags | `sale breakdown`                                                       |
+| `sale stats NUMBER_OF_MONTHS`                                                                                           | Displays monthly sale count                              | `sale stats 6`                                                         |
 
-### Meetings
+### 7.4. Meetings
 
-| Command                                                                              | Summary                                            | Example (if applicable)                                                                  |
-|--------------------------------------------------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------------|
-| `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`                 | Adds a meeting with the specified contact          | `meeting add c/2 m/Product Demo d/2020-10-30 15:00 du/60`                                |
-| `meeting delete INDEX`                                                               | Deletes the specified meeting                      | `meeting delete 3`                                                                       |
-| `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]`  | Edits an existing meeting                          | `meeting edit 3 d/2020-12-15 12:00`                                                      |
-| `meeting list [c/CONTACT_INDEX] [a/]`                                                | Lists meetings based on provided parameters        | `meeting list c/1 a/`                                                                    |
-| `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`                                  | Displays monthly meeting count                     | `meeting stats 3`                                                                        |
+| Command                                                                             | Summary                                     | Example (if applicable)                                   |
+| ----------------------------------------------------------------------------------- | ------------------------------------------- | --------------------------------------------------------- |
+| `meeting add c/CONTACT_INDEX m/MESSAGE d/START_DATETIME du/DURATION`                | Adds a meeting with the specified contact   | `meeting add c/2 m/Product Demo d/2020-10-30 15:00 du/60` |
+| `meeting delete INDEX`                                                              | Deletes the specified meeting               | `meeting delete 3`                                        |
+| `meeting edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/START_DATETIME] [du/DURATION]` | Edits an existing meeting                   | `meeting edit 3 d/2020-12-15 12:00`                       |
+| `meeting list [c/CONTACT_INDEX] [a/]`                                               | Lists meetings based on provided parameters | `meeting list c/1 a/`                                     |
+| `meeting stats [NUMBER_OF_MONTHS] [m/MONTH y/YEAR]`                                 | Displays monthly meeting count              | `meeting stats 3`                                         |
 
-### Reminders
+### 7.5. Reminders
 
-| Command                                                                              | Summary                                            | Example (if applicable)                                                                  |
-|--------------------------------------------------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------------|
-| `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`                                  | Adds a reminder with the specified contact         | `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00`                          |
-| `reminder delete INDEX`                                                              | Deletes the specified reminder                     | `reminder delete 4`                                                                      |
-| `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]`         | Edits an existing reminder                         | `reminder edit 1 d/2020-10-30 16:30 st/completed`                                        |
-| `reminder list [st/STATUS]`                                                          | Lists reminders based on provided parameters       | `reminder list st/completed`                                                             |
+| Command                                                                      | Summary                                      | Example (if applicable)                                         |
+| ---------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------------------- |
+| `reminder add c/CONTACT_INDEX m/MESSAGE d/DATETIME`                          | Adds a reminder with the specified contact   | `reminder add c/2 m/Send email to follow up d/2020-10-30 15:00` |
+| `reminder delete INDEX`                                                      | Deletes the specified reminder               | `reminder delete 4`                                             |
+| `reminder edit INDEX [c/CONTACT_INDEX] [m/MESSAGE] [d/DATETIME] [st/STATUS]` | Edits an existing reminder                   | `reminder edit 1 d/2020-10-30 16:30 st/completed`               |
+| `reminder list [st/STATUS]`                                                  | Lists reminders based on provided parameters | `reminder list st/completed`                                    |
 
-### Archive
+### 7.6. Archive
 
-| Command                                          | Summary                            | Example (if applicable)           |
-|--------------------------------------------------|------------------------------------|-----------------------------------|
-| `archive add INDEX`                              | Sends a contact to the archive     | `archive add 1`                   |
-| `archive list`                                   | Lists all archived contacts        | -                                 |
-| `archive remove INDEX`                           | Removes a contact from the archive | `archive remove 2`                |
+| Command                | Summary                            | Example (if applicable) |
+| ---------------------- | ---------------------------------- | ----------------------- |
+| `archive add INDEX`    | Sends a contact to the archive     | `archive add 1`         |
+| `archive list`         | Lists all archived contacts        | -                       |
+| `archive remove INDEX` | Removes a contact from the archive | `archive remove 2`      |
 
-### Miscellaneous
+### 7.7. Miscellaneous
 
-| Command                         | Summary                                     | Example (if applicable)           |
-|---------------------------------|---------------------------------------------|-----------------------------------|
-| `clear`                         | Clears chat bot history                     | -                                 |
-| `darkmode`                      | Changes the theme of the GUI to dark theme  | -                                 |
-| `exit`                          | Exits program                               | -                                 |
-| `help`                          | Shows program usage instructions            | -                                 |
-| `lightmode`                     | Changes the theme of the GUI to light theme | -                                 |
-| `purge`                         | Clears all data                             | -                                 |
+| Command     | Summary                                     | Example (if applicable) |
+| ----------- | ------------------------------------------- | ----------------------- |
+| `clear`     | Clears chat bot history                     | -                       |
+| `darkmode`  | Changes the theme of the GUI to dark theme  | -                       |
+| `exit`      | Exits program                               | -                       |
+| `help`      | Shows program usage instructions            | -                       |
+| `lightmode` | Changes the theme of the GUI to light theme | -                       |
+| `purge`     | Clears all data                             | -                       |
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Appendix A: Glossary
+## 8. Appendix A: Glossary
