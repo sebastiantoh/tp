@@ -1361,7 +1361,7 @@ Changes the theme of the GUI to light and dark theme respectively. The default t
 
 **Example**: Let's say you want to apply light theme to StonksBook so that you can see the interface better in the day. Simply follow the steps below:
 
-1. Type in `lightmode` in the **Command Box** and press <kbd>Enter</kbd>.
+1. Type `lightmode` in the **Command Box** and press <kbd>Enter</kbd>.
 
    <figure>
        <img src="images/lightmode/lightmode.png" alt=" Enter 'lightmode' " width="900px">
