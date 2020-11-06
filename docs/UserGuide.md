@@ -378,6 +378,28 @@ Let's say you want to see your contacts in reverse alphabetical order based on t
 
 StonksBook allows you to create tags for your contacts as well as sales so that you can categorise them easily.
 
+#### Listing all tags: `tag list` \[Wang Luo\]
+
+Displays a list of all tags created so far.
+
+**Format**: `tag list`
+
+**Examples**:
+
+Let's say that you want to see all the tags you have created so far. Here are the steps to follow:
+
+1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
+
+    <figure>
+        <img src="images/tag-list/tag-list.png" alt="enter 'tag list'" width="900px">
+    </figure>
+
+2. The **Result Box** will display a message noting that the command was successful, and the bottom right box will now display **Contact Tags** and **Sales Tags**.
+
+    <figure>
+        <img src="images/tag-list/tag-list-result.png" alt="result for 'tag list'" width="900px">
+    </figure>
+
 #### Adding a tag: `tag add` \[Wang Luo\]
 
 Adds a new customised contact tag or sales tag to StonksBook.
@@ -411,26 +433,39 @@ Let's say that you want to add a new sales tag called electronics. Here are the 
         <img src="images/tag-add/tag-add-result.png" alt="result for 'tag add st/electronics'" width="900px">
     </figure>
 
-#### Listing all tags: `tag list` \[Wang Luo\]
+#### Deleting a tag: `tag delete` \[Wang Luo\]
 
-Displays a list of all tags created so far.
+Deletes the specified tag from the tag list. The tag information in all entries previously associated with this tag will also be cleared.
 
-**Format**: `tag list`
+**Format**: `tag delete (st/ or ct/)INDEX`
+
+| Parameter       | What it is                                                             | Requirements                                                      |
+|-----------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `INDEX`         | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, …        |
+
+* All contacts that have been previously associated with this tag will be updated so that their associations with this tag will be cleared.
 
 **Examples**:
 
-Let's say that you want to see all the tags you have created so far. Here are the steps to follow:
+Let's say that you think one contact tag (colleagues) you created before is no longer relevant and you would like to get rid of it. Here are the steps to follow:
 
 1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
+    - This is to display the contact tags and sales tags in StonksBook, and the contact tag colleagues is found to be at index 2.
 
-    <figure>
-        <img src="images/tag-list/tag-list.png" alt="enter 'tag list'" width="900px">
-    </figure>
+    <figure> 
+        <img src="images/tag-edit/tag-list-second.png" alt="result for 'tag list'" width="900px">
+    </figure>  
 
-2. The **Result Box** will display a message noting that the command was successful, and the bottom right box will now display **Contact Tags** and **Sales Tags**.
+2. Type `tag delete ct/2` in the **Command Box** and press <kbd>Enter</kbd>.
 
-    <figure>
-        <img src="images/tag-list/tag-list-result.png" alt="result for 'tag list'" width="900px">
+    <figure> 
+        <img src="images/tag-delete/tag-delete.png" alt="enter 'tag delete ct/2'" width="900px">
+    </figure> 
+
+3. The **Result Box** will display a message noting that the command was successful, and the **Contact Tags** will no longer contain the contact tag colleagues. Also note that Bernice Yu is no longer tagged with colleagues.
+
+    <figure> 
+        <img src="images/tag-delete/tag-delete-result.png" alt="result for 'tag delete ct/2'" width="900px">
     </figure>
 
 #### Editing a tag: `tag edit` \[Wang Luo\]
@@ -472,41 +507,6 @@ Let's say that you decides to change the tag colleagues to teammates instead. He
 
     <figure>
         <img src="images/tag-edit/tag-edit-result.png" alt="result for 'tag edit ct/2 t/teammates'" width="900px"> 
-    </figure>    
-
-#### Deleting a tag: `tag delete` \[Wang Luo\]
-
-Deletes the specified tag from the tag list. The tag information in all entries previously associated with this tag will also be cleared.
-
-**Format**: `tag delete (st/ or ct/)INDEX`
-
-| Parameter       | What it is                                                             | Requirements                                                      |
-|-----------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
-| `INDEX`         | Index number shown in the displayed contact tag list or sales tag list | Must be provided and must be a positive integer 1, 2, 3, …        |
-
-* All contacts that have been previously associated with this tag will be updated so that their associations with this tag will be cleared.
-
-**Examples**:
-
-Let's say that you think one contact tag (colleagues) you created before is no longer relevant and you would like to get rid of it. Here are the steps to follow:
-
-1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
-    - This is to display the contact tags and sales tags in StonksBook, and the contact tag colleagues is found to be at index 2.
-
-    <figure> 
-        <img src="images/tag-edit/tag-list-second.png" alt="result for 'tag list'" width="900px">
-    </figure>  
-
-2. Type `tag delete ct/2` in the **Command Box** and press <kbd>Enter</kbd>.
-
-    <figure> 
-        <img src="images/tag-delete/tag-delete.png" alt="enter 'tag delete ct/2'" width="900px">
-    </figure> 
-
-3. The **Result Box** will display a message noting that the command was successful, and the **Contact Tags** will no longer contain the contact tag colleagues. Also note that Bernice Yu is no longer tagged with colleagues.
-
-    <figure> 
-        <img src="images/tag-delete/tag-delete-result.png" alt="result for 'tag delete ct/2'" width="900px">
     </figure>
 
 #### Retrieving entries by tag: `tag find` \[Wang Luo\]
