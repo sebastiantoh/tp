@@ -688,7 +688,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![ArchiveAddActivityDiagram](images/ArchiveAddActivityDiagram.png)
 
-#### Design Consideration
+#### Design Consideration:
 
 ##### Aspect: How to implement the archive
 * **Alternative 1 (current choice):** Add a flag to the `Person` model to indicate whether the contact is archived.
@@ -932,8 +932,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | efficient salesman                | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
 | `* *`    | visual user                       | quickly identify overdue reminders                            | work on it without further delay                                                              |
-| `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                          |
-| `* *`    | well-connected salesman           | archive contacts who are no longer active                     | I can focus on contacts that are more likely to respond                                       |
+| `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                                     |
+| `* *`    | well-connected salesman           | archive contacts who are no longer active                     | focus on contacts that are more likely to respond                                             |
+| `* *`    | salesman                          | remove contacts from the archive                              | focus on inactive contacts who are now active again                                           |
 
 ### Use cases
 
