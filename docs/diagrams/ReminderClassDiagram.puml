@@ -6,21 +6,22 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Class AddressBook
 
-Package Reminder <<Rectangle>>{
+Package Reminder\n <<Rectangle>>{
     Class Reminder
     Class UniqueReminderList
 }
 
-AddressBook *--> "1" UniqueReminderList
-UniqueReminderList --> "*" Reminder
 
-Package Person {
+AddressBook *--> "     1" UniqueReminderList
+UniqueReminderList --> "    *" Reminder
+
+Package Person\n {
     Class Person
 }
 
-Reminder *--> "1" Person
+Reminder *--> "                   1" Person
 Reminder *--> "1" Message
 Reminder *--> "1" LocalDateTime
-Reminder *--> "1" Completed
+Reminder *--> "            1" Completed
 
 @enduml
