@@ -657,6 +657,9 @@ These are the steps that will be taken when parsing an archive-related user comm
 Given below is a sequence diagram for interactions inside the Logic component for the `execute("archive add 1")` API call.
 ![ArchiveAddSequenceDiagram](images/ArchiveAddSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 #### Execution of commands within the `Logic` component
 
 Since the execution of the `RemoveCommand` is similar to the `AddCommand`, we shall only look at the execution of the latter.
@@ -684,6 +687,26 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 - The incorrect list is being displayed
 
 ![ArchiveAddActivityDiagram](images/ArchiveAddActivityDiagram.png)
+
+#### Design Consideration:
+
+##### Aspect: How to implement the archive
+* **Alternative 1 (current choice):** Add a flag to the `Person` model to indicate whether the contact is archived.
+  * Pros:
+    * Less time consuming to implement.
+    * Easier to impose restrictions, e.g. cannot add sale to an archived `Person`, etc.
+    * Makes use of the filtering of the `FilteredPersonList`.
+  * Cons:
+    * Distinction between contacts and archived contacts is not clear in the implementation.
+
+* **Alternative 2:** Introduce a list of archived `Person`s to the `AddressBook` model.
+  * Pros:
+    * Clear distinction between contacts and archived contacts in the implementation.
+  * Cons:
+    * More time consuming to implement.
+    * Needs extra checking to identify archived contacts, which brings us to Alternative 1.
+
+Alternative 1 was chosen to give more flexibility to the implementation and other design considerations (such as whether to archive the sales associated with the `Person`) and also due to time constraints.
 
 ### Monthly Statistics Feature [Aaron Seah]
 
@@ -847,9 +870,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -912,8 +932,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | efficient salesman                | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
 | `* *`    | visual user                       | quickly identify overdue reminders                            | work on it without further delay                                                              |
-| `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                          |
-| `* *`    | well-connected salesman           | archive contacts who are no longer active                     | I can focus on contacts that are more likely to respond                                       |
+| `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                                     |
+| `* *`    | well-connected salesman           | archive contacts who are no longer active                     | focus on contacts that are more likely to respond                                             |
+| `* *`    | salesman                          | remove contacts from the archive                              | focus on inactive contacts who are now active again                                           |
 
 ### Use cases
 
@@ -1412,6 +1433,26 @@ This use case is similar to `Add a reminder` except that the user has the additi
 2.  StonksBook shows a list of contacts.
 3.  User requests to add a specific person in the list to archive.
 4.  StonksBook adds the person to archive.
+
+  Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+      
+#### Use case: Remove contact from archive
+{:.no_toc}
+
+**MSS**
+
+1.  User requests to list archived contacts.
+2.  StonksBook shows a list of archived contacts.
+3.  User requests to remove a specific person in the list from the archive.
+4.  StonksBook removes the person from the archive.
 
   Use case ends.
 
