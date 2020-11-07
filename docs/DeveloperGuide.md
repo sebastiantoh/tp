@@ -929,7 +929,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User requests to delete a specific person in the list
 4.  StonksBook deletes the person
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1107,7 +1107,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to add a meeting associated with a specific contact in the list
 4. StonksBook adds a meeting associated with the contact
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1153,7 +1153,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all meetings
 2. StonksBook shows a list of all meetings
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1177,7 +1177,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to delete a specific meeting in the list
 4. StonksBook deletes the meeting
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1201,7 +1201,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to add a reminder associated with a specific contact in the list
 4. StonksBook adds a reminder associated with the contact
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1240,7 +1240,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 1. User requests to list all reminders
 2. StonksBook shows a list of all reminders
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1258,7 +1258,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 3. User requests to delete a specific reminder in the list
 4. StonksBook deletes the reminder
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1280,7 +1280,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 1. User requests to list reminders based on completion status
 2. StonksBook shows a list of completed or pending reminders
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1306,7 +1306,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 1.  User requests for help for a command.
 2.  StonksBook lists the command description and example usage.
 
-  Use case ends.
+    Use case ends.
 
 #### Use case: Add a sale to a contact
 {:.no_toc}
@@ -1413,7 +1413,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 3.  User requests to add a specific person in the list to archive.
 4.  StonksBook adds the person to archive.
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1433,7 +1433,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 3.  User requests to remove a specific person in the list from the archive.
 4.  StonksBook removes the person from the archive.
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
