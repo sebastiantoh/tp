@@ -31,7 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-*Fig. 1 - Architecture Diagram*
+*Fig. 1 - Architecture diagram*
  
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -63,7 +63,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
-*Fig. 2 - Class Diagram of the `Logic` Component*
+*Fig. 2 - Class diagram of the `Logic` component*
 
 **How the architecture components interact with each other**
 
@@ -71,7 +71,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-*Fig. 3 - Interactions between Components for the `contact delete 1` Command*
+*Fig. 3 - Interactions between components for the `contact delete 1` command*
 
 The sections below give more details of each component.
 
@@ -79,7 +79,7 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-*Fig. 4 - Structure of the `UI` Component*
+*Fig. 4 - Structure of the `UI` component*
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -97,7 +97,7 @@ The `UI` component,
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
-*Fig. 5 - Structure of the `Logic` Component*
+*Fig. 5 - Structure of the `Logic` component*
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -112,7 +112,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `contact delete 1` Command](images/DeleteSequenceDiagram.png)
 
-*Fig. 6 - Interactions Inside the `Logic` Component for the `contact delete 1` Command*
+*Fig. 6 - Interactions inside the `Logic` component for the `contact delete 1` command*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -121,7 +121,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-*Fig. 7 - Structure of the `Model` Component*
+*Fig. 7 - Structure of the `Model` component*
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -140,7 +140,7 @@ The `Model`,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 <br>
-*Fig. 8 - Alternative Class Diagram of the `Model` Component*
+*Fig. 8 - Alternative class diagram of the `Model` component*
 </div>
 
 
@@ -148,7 +148,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-*Fig. 9 - Structure of the `Storage` Component*
+*Fig. 9 - Structure of the `Storage` component*
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -202,7 +202,7 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `tag add <args>` Command](images/TagAddSequenceDiagram.png)
 
-*Fig. 10 - Interactions Inside the `Logic` Component for the `tag add <args>` Command*
+*Fig. 10 - Interactions inside the `Logic` component for the `tag add <args>` command*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -227,7 +227,7 @@ The sequence diagram below illustrates how the `AddCommand` that is created from
 
  ![TagExecuteAddSequenceDiagram](images/TagExecuteAddSequenceDiagram.png)
 
-*Fig. 11 - Sequence Diagram illustrating the execution of `AddCommand`*
+*Fig. 11 - Sequence diagram illustrating the execution of `AddCommand`*
 
 #### Error handling within the `Logic` component
 
@@ -240,7 +240,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![The different outcomes of the program that can occur from the `tag add <args>` Command](images/TagAddActivityDiagram.png)
 
-*Fig. 12 - The different outcomes of the program that can occur from the `tag add <args>` Command*
+*Fig. 12 - The different outcomes of the program that can occur from the `tag add <args>` command*
 
 ##### Data Retrieval
 
@@ -317,7 +317,7 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `meeting add <args>` Command](images/MeetingAddSequenceDiagram.png)
 
-*Fig. 16 - Interactions Inside the `Logic` Component for the `meeting add <args>` Command*
+*Fig. 16 - Interactions inside the `Logic` component for the `meeting add <args>` command*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -342,7 +342,7 @@ The sequence diagram below illustrates how the `AddCommand` that is created from
 
  ![MeetingExecuteAddSequenceDiagram](images/MeetingExecuteAddSequenceDiagram.png)
 
-*Fig. 17 - Sequence Diagram illustrating the execution of `AddCommand`* 
+*Fig. 17 - Sequence diagram illustrating the execution of `AddCommand`* 
 
 #### Error handling within the `Logic` component
 
@@ -355,7 +355,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![The different outcomes of the program that can occur from the `meeting add <args>` Command](images/MeetingAddActivityDiagram.png)
 
-*Fig. 18 - The different outcomes of the program that can occur from the `meeting add <args>` Command* 
+*Fig. 18 - The different outcomes of the program that can occur from the `meeting add <args>` command* 
 
 #### Modelling `Meeting`s
 
@@ -469,7 +469,7 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `reminder delete 1` Command](images/ReminderDeleteSequenceDiagram.png)
 
-*Fig. 20 - Interactions Inside the `Logic` Component for the `reminder delete 1` Command* 
+*Fig. 20 - Interactions inside the `Logic` component for the `reminder delete 1` command* 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandsParser` and `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
  reaches the end of diagram.
@@ -505,7 +505,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![DeleteReminderActivityDiagram](images/ReminderDeleteActivityDiagram.png)
 
-*Fig. 22 - The different outcomes of the program that can occur from the `reminder delete 1` Command*
+*Fig. 22 - The different outcomes of the program that can occur from the `reminder delete 1` command*
 
 #### Modelling `Reminder`s
 
@@ -599,7 +599,7 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![SaleAddSequenceDiagram](images/SaleAddSequenceDiagram.png)
 
-*Fig. 24 - Interactions Inside the `Logic` Component for the `sale add <args>` Command*
+*Fig. 24 - Interactions inside the `Logic` component for the `sale add <args>` command*
 
 #### Execution of commands within the `Logic` component
 
@@ -618,7 +618,7 @@ Lastly, a `CommandResult` object containing the message to be displayed to the u
 
 ![SaleExecuteAddSequenceDiagram](images/SaleExecuteAddSequenceDiagram.png)
 
-*Fig. 25 - Sequence Diagram illustrating the execution of `AddCommand`*
+*Fig. 25 - Sequence diagram illustrating the execution of `AddCommand`*
 
 #### Error Handling within the `Logic` component
 
@@ -631,7 +631,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![AddSaleActivityDiagram](images/AddSaleActivityDiagram.png)
 
-*Fig. 26 - The different outcomes of the program that can occur from the `sale add <args>` Command*
+*Fig. 26 - The different outcomes of the program that can occur from the `sale add <args>` command*
 
 #### Modelling `Sale`s
 
@@ -691,7 +691,7 @@ These are the steps that will be taken when parsing an archive-related user comm
 Given below is a sequence diagram for interactions inside the Logic component for the `execute("archive add 1")` API call.
 ![ArchiveAddSequenceDiagram](images/ArchiveAddSequenceDiagram.png)
 
-*Fig. 28 - Interactions Inside the `Logic` Component for the `archive add 1` Command*
+*Fig. 28 - Interactions inside the `Logic` component for the `archive add 1` command*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -726,7 +726,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![ArchiveAddActivityDiagram](images/ArchiveAddActivityDiagram.png)
 
-*Fig. 30 - The different outcomes of the program that can occur from the `archive add 1` Command*
+*Fig. 30 - The different outcomes of the program that can occur from the `archive add 1` command*
 
 #### Design Consideration:
 
