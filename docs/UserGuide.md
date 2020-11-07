@@ -855,8 +855,7 @@ Shows a list of all meetings. By default, the list only shows upcoming meetings.
 | --------------- | ------------------------------------------------ | ------------------------------------- |
 | `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, … |
 
-* When a contact index is specified, the list will only show meetings associated with the contact at the specified
- contact index.
+* When a contact index is specified, the list will only show meetings associated with the specified contact.
 * You can show all meetings, including past meetings, by including `a/`.
 
 **Example**:
@@ -912,8 +911,8 @@ To prevent the situation in which you unknowingly scheduled conflicting meetings
 
 **Example**:
 
-Let's say that you successfully secured a lunch meeting with Alex Yeoh that is scheduled for 3 December 2020 12pm
-and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
+Let's say that you successfully secured a lunch meeting with Alex Yeoh that is scheduled for 3 December 2020, 12pm,
+which lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
  
  1. Type `contact find alex` in the **Command Box** and press <kbd>Enter</kbd>. 
      - This is to identify the contact index corresponding to Alex Yeoh and can be skipped if you already know the
@@ -1006,7 +1005,7 @@ Similar to when adding a meeting, StonksBook will not allow you to edit a meetin
 
 **Example**:
 
-Let's say that you have just received an email from Bernice Yu who wishes to reschedule her lunch meeting with you to 15
+Let's say that you have just received an email from Charlotte Oliveiro who wishes to bring forward the product demo to 15
  December 2020, 12pm. Here's how you can make this change in StonksBook:
  
 1. Type `meeting list` in the **Command Box** and press <kbd>Enter</kbd>. 
