@@ -599,6 +599,7 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![SaleAddSequenceDiagram](images/SaleAddSequenceDiagram.png)
 
+*Fig. 24 - Interactions Inside the `Logic` Component for the `sale add <args>` Command*
 
 #### Execution of commands within the `Logic` component
 
@@ -617,6 +618,7 @@ Lastly, a `CommandResult` object containing the message to be displayed to the u
 
 ![SaleExecuteAddSequenceDiagram](images/SaleExecuteAddSequenceDiagram.png)
 
+*Fig. 25 - Sequence Diagram illustrating the execution of `AddCommand`*
 
 #### Error Handling within the `Logic` component
 
@@ -629,11 +631,15 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![AddSaleActivityDiagram](images/AddSaleActivityDiagram.png)
 
+*Fig. 26 - The different outcomes of the program that can occur from the `sale add <args>` Command*
+
 #### Modelling `Sale`s
 
 `Sale` is modelled according to the class diagram below.
 
 ![SaleClassDiagram](images/SaleClassDiagram.png)
+
+*Fig. 27 - Class diagram used to model sales*
 
 `Sale` objects are saved within a `UniqueSaleList` stored in `AddressBook`.
 There is a composition relationship between `Sale` and its attributes, as we want the attributes (e.g. `ItemName`, `UnitPrice`) to exist dependently on the `Sale` object it belongs to.
@@ -685,6 +691,8 @@ These are the steps that will be taken when parsing an archive-related user comm
 Given below is a sequence diagram for interactions inside the Logic component for the `execute("archive add 1")` API call.
 ![ArchiveAddSequenceDiagram](images/ArchiveAddSequenceDiagram.png)
 
+*Fig. 28 - Interactions Inside the `Logic` Component for the `archive add 1` Command*
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -704,6 +712,8 @@ Finally, a `CommandResult` object containing the message to be displayed to the 
 
 ![ArchiveExecuteAddSequenceDiagram](images/ArchiveExecuteAddSequenceDiagram.png)
 
+*Fig. 29 - Sequence diagram illustrating the execution of the `AddCommand`*
+
 #### Error Handling within the `Logic` component
 
 The below activity diagram shows the overall process of execution of `archive add 1`.
@@ -715,6 +725,8 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 - The incorrect list is being displayed
 
 ![ArchiveAddActivityDiagram](images/ArchiveAddActivityDiagram.png)
+
+*Fig. 30 - The different outcomes of the program that can occur from the `archive add 1` Command*
 
 #### Design Consideration:
 
@@ -761,16 +773,26 @@ Given below is the class diagram for the Monthly Statistics Feature.
 
 <img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="400px">
 
+*Fig. 31 - Class diagram for the Monthly Statistics Feature*
+
 Given below are object diagrams for the Monthly Statistics Feature to illustrate 
 how `MonthlyListMap` will be kept up to date after meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed.
 
 <img src="images/MeetingStatsObjectDiagram1.png" alt="result for meeting stats object diagram 1" height="400px">
 
+*Fig. 32 - Object diagram after initialisation of meetings, `m1` and `m2`*
+
 <img src="images/MeetingStatsObjectDiagram2.png" alt="result for meeting stats object diagram 2" height="400px">
+
+*Fig. 33 - Object diagram after adding meeting `m3`*
 
 <img src="images/MeetingStatsObjectDiagram3.png" alt="result for meeting stats object diagram 3" height="400px">
 
+*Fig. 34 - Object diagram after deleting meeting `m2`*
+
 <img src="images/MeetingStatsObjectDiagram4.png" alt="result for meeting stats object diagram 4" height="400px">
+
+*Fig. 35 - Object diagram after editing meeting `m3`*
 
 ##### Data Retrieval
 * `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` — Gets the item counts for the given month and year and the previous (numberOfMonths - 1) months.
@@ -783,18 +805,29 @@ The following sequence diagrams shows how the Monthly Statistics Feature works:
 
 <img src="images/MeetingStatsSequenceDiagram.png" alt="result for meeting stats sequence diagram" height="200px">
 
+*Fig. 36 - Sequence diagram illustrating interactions between `Logic` and `Model`*
+
 <img src="images/MeetingStatsSequenceDiagram2.png" alt="result for meeting stats sequence diagram 2" height="150px">
+
+*Fig. 37 - Sequence diagram illustrating interactions between `ModelManager`, `AddressBook` and `UniqueMeetingList`*
 
 <img src="images/MeetingStatsSequenceDiagram3.png" alt="result for meeting stats sequence diagram 3" height="300px">
 
+*Fig. 38 - Sequence diagram illustrating interactions between `UniqueMeetingList`, `MonthlyListMap`, `MonthAndYear` and `MonthlyListDataSet`*
+
 <img src="images/MeetingStatsSequenceDiagram4.png" alt="result for meeting stats sequence diagram 4" height="300px">
 
+*Fig. 39 - Sequence diagram for `getPreviousMonthlyData`*
+
 <img src="images/MeetingStatsSequenceDiagram5.png" alt="result for meeting stats sequence diagram 5" height="200px">
+
+*Fig. 40 - Sequence diagram for `getMonthlyData`*
 
 The following activity diagram summarizes what happens when a user executes the `meeting stats` command:
 
 <img src="images/MeetingStatsActivityDiagram.png" alt="result for meeting stats activity diagram" height="300px">
 
+*Fig. 41 - Activity diagram summarising what happens when a user executes the `meeting stats` command*
 
 #### Design consideration:
 
