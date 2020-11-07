@@ -6,22 +6,22 @@ skinparam classBackgroundColor MODEL_COLOR
 
 
 Class AddressBook
-Package Meeting <<Rectangle>>{
+Package Meeting\n <<Rectangle>>{
 
     Class Meeting
     Class UniqueMeetingList
 
-    AddressBook *--> "1" UniqueMeetingList
-    UniqueMeetingList --> "*" Meeting
+    AddressBook *--> "    1" UniqueMeetingList
+    UniqueMeetingList --> "    *" Meeting
 }
 
-Package Person {
+Package Person\n {
     Class Person
 }
 
-Meeting *--> "1" Message
+Meeting *--> "  1" Message
 Meeting *--> "1" LocalDateTime
-Meeting *--> "1" Duration
-Meeting *--> "1" Person
+Meeting *--> "              1" Duration
+Meeting *--> "           1" Person
 
 @enduml
