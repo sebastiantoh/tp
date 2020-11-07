@@ -202,6 +202,8 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `tag add <args>` Command](images/TagAddSequenceDiagram.png)
 
+*Fig. 10 - Interactions Inside the `Logic` Component for the `tag add <args>` Command*
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -225,6 +227,8 @@ The sequence diagram below illustrates how the `AddCommand` that is created from
 
  ![TagExecuteAddSequenceDiagram](images/TagExecuteAddSequenceDiagram.png)
 
+*Fig. 11 - Sequence Diagram illustrating the execution of `AddCommand`*
+
 #### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `tag add <args>`.
@@ -236,21 +240,29 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![The different outcomes of the program that can occur from the `tag add <args>` Command](images/TagAddActivityDiagram.png)
 
+*Fig. 12 - The different outcomes of the program that can occur from the `tag add <args>` Command*
+
 ##### Data Retrieval
 
 The following sequence diagram shows how the retrieval of contacts (or sales) with tags work.
 
 ![TagFindSequenceDiagram](images/TagFindSequenceDiagram.png)
 
+*Fig. 13 - Sequence diagram illustrating the retrieval of contacts (or sales)*
+
 The below activity diagram shows the overall process of executing `tag find <args>`.
 
 ![TagFindActivityDiagram](images/TagFindActivityDiagram.png)
+
+*Fig. 14 - Activity diagram illustrating the process of executing `tag find <args>`*
 
 #### Modelling `Tag`s
 
 Tags are modelled according to the class diagram below.
 
 ![Class diagram used to model tags](images/TagClassDiagram.png)
+
+*Fig. 15 - Class diagram used to model tags*
 
 We enforce an association between `Sale` and `Tag` to aid data analytics in the `sale breakdown` command.
 
@@ -305,6 +317,8 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `meeting add <args>` Command](images/MeetingAddSequenceDiagram.png)
 
+*Fig. 16 - Interactions Inside the `Logic` Component for the `meeting add <args>` Command*
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -328,6 +342,8 @@ The sequence diagram below illustrates how the `AddCommand` that is created from
 
  ![MeetingExecuteAddSequenceDiagram](images/MeetingExecuteAddSequenceDiagram.png)
 
+*Fig. 17 - Sequence Diagram illustrating the execution of `AddCommand`* 
+
 #### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `meeting add <args>`.
@@ -339,11 +355,15 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![The different outcomes of the program that can occur from the `meeting add <args>` Command](images/MeetingAddActivityDiagram.png)
 
+*Fig. 18 - The different outcomes of the program that can occur from the `meeting add <args>` Command* 
+
 #### Modelling `Meeting`s
 
 Meetings are modelled according to the class diagram below.
 
 ![Class diagram used to model meetings](images/MeetingClassDiagram.png)
+
+*Fig. 19 - Class diagram used to model meetings* 
 
 `LocalDateTime` and `Duration` are classes from Java's `java.time` package.
 
@@ -449,6 +469,8 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `reminder delete 1` Command](images/ReminderDeleteSequenceDiagram.png)
 
+*Fig. 20 - Interactions Inside the `Logic` Component for the `reminder delete 1` Command* 
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandsParser` and `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
  reaches the end of diagram.
 </div>
@@ -471,6 +493,8 @@ The sequence diagram below illustrates how the `DeleteCommand` that is created f
 
 ![ReminderExecuteDeleteSequenceDiagram](images/ReminderExecuteDeleteSequenceDiagram.png)
 
+*Fig. 21 - Sequence diagram illustrating the execution of the `DeleteCommand`* 
+
 #### Error Handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `reminder delete 1`.
@@ -481,11 +505,15 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![DeleteReminderActivityDiagram](images/ReminderDeleteActivityDiagram.png)
 
+*Fig. 22 - The different outcomes of the program that can occur from the `reminder delete 1` Command*
+
 #### Modelling `Reminder`s
 
 `Reminder` is modelled according to the class diagram below.
 
 ![ReminderClassDiagram](images/ReminderClassDiagram.png)
+
+*Fig. 23 - Class diagram used to model reminders*
 
 `Reminder` objects are saved within a `UniqueReminderList` stored in `AddressBook`.
 
