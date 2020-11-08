@@ -1600,7 +1600,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.
 
-* 3b. Any of the given sale indexes are invalid.
+* 3b. Any of the given sale indices are invalid.
 
     * 3b1. StonksBook shows an error message. No sales are edited.
 
