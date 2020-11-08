@@ -58,6 +58,7 @@ This is what StonksBook looks like when started:
     <figcaption>Fig. 1 - Components of the GUI</figcaption>
 </figure>
 
+
 The user interface features several panels labelled above, that contain the **Contact List**, **Meeting List**, **Reminder List** and **Sale List**.
 The bottom right panel (which currently contains the **Sale List**) is the **Ad-Hoc Panel**, 
 which displays either the **Sale List** or **Tag List** depending on which command was executed most recently.
@@ -209,7 +210,7 @@ Deletes the specified contact from StonksBook. All associated sales, reminders a
 
 **Example**:
 
-Let's say that Betsy Crowe no longer does business with you and you would like to remove him from your contact list.
+Let's say that Betsy Crowe no longer does business with you and you would like to remove her from your contact list.
 Here are the steps to follow:
 
 :bulb: Tip: You can learn more about the `contact find` command in [locating contacts by name](#515-locating-contacts-by-name-contact-find-aaron-seah).
