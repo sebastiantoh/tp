@@ -193,6 +193,7 @@ These are the steps that will be taken when parsing a tag-related user command:
     - `tag delete` command: `DeleteCommandParser`
     - `tag edit` command: `EditCommandParser`
     - `tag list` command: `ListCommandParser`
+    - `tag find` command: `FindCommandParser`
 3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
 4. Within `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
 
@@ -909,6 +910,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | efficient salesman                | add sales to contacts                                         | make better sales decisions to my clients                                                     |
 | `* * *`  | salesman                          | delete sales belonging to contacts                            | ensure updated and correct sales information                                                  |
 | `* * *`  | efficient salesman                | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
+| `* * *`  | successful salesman               | categorise my sales                                           | search for sales made by their categories                                                     |
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
 | `* *`    | visual user                       | quickly identify overdue reminders                            | work on it without further delay                                                              |
 | `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                                     |
