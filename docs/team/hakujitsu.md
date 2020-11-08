@@ -47,17 +47,23 @@ title: Kwek Min Yih's Project Portfolio Page
  For example, they can use it to take note of the client's needs, wants and preferences.
  * Highlights: This was a relatively simple feature to implement.
  
- ### Contributions to documentation: Which sections did you contribute to the UG?
+ ### Contributions to documentation
  
+ - User guide:
+     - Wrote the section to explain the user interface.
+     - Wrote the sections for `sale list`, `sale add`, `sale delete`, `sale edit` and `sale breakdown`commands in the User Guide.
+ - Developer guide: 
+     - Wrote the sections for the implementation and use cases related to the 'Sale' feature in the Developer Guide,
+     and added all UML diagrams seen in those sections.
  
- ### Contributions to the DG: Which sections did you contribute to the DG? Which UML diagrams did you add/updated?
  ### Contributions to team-based tasks :
  
- * I handled release management for an informal milestone set by the team, v1.3a, intended to be a checkpoint within v1.3.
- * I handled the JAR release in Week 10.
- * I maintained the issue tracker by removing duplicate issues after the conclusion of the mock PE. 
- * I wrote an explanation of the user interface in the User Guide.
- * I added the parameter tables for Person related commands.
+ * Handled release management for an informal milestone set by the team, v1.3a, intended to be a checkpoint within v1.3.
+ * Handled the JAR release in Week 10.
+ * Maintained the issue tracker by removing duplicate issues after the conclusion of the mock PE. 
+ * Wrote an explanation of the user interface in the User Guide.
+ * Added the parameter tables for Person related commands.
+ * Managed the user stories section of the Developer Guide.
  
  ### Review/mentoring contributions: Links to PRs reviewed, instances of helping team members in other ways
   Here is a list of PRs reviewed by me with non-trivial comments: 
