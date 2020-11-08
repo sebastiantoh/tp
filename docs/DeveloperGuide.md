@@ -84,7 +84,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -193,6 +193,7 @@ These are the steps that will be taken when parsing a tag-related user command:
     - `tag delete` command: `DeleteCommandParser`
     - `tag edit` command: `EditCommandParser`
     - `tag list` command: `ListCommandParser`
+    - `tag find` command: `FindCommandParser`
 3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
 4. Within `Parser#parse`, static methods in `ParserUtil` may be called to parse the arguments.
 
@@ -952,6 +953,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | efficient salesman                | add sales to contacts                                         | make better sales decisions to my clients                                                     |
 | `* * *`  | salesman                          | delete sales belonging to contacts                            | ensure updated and correct sales information                                                  |
 | `* * *`  | efficient salesman                | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
+| `* * *`  | successful salesman               | categorise my sales                                           | search for sales made by their categories                                                     |
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
 | `* *`    | visual user                       | quickly identify overdue reminders                            | work on it without further delay                                                              |
 | `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                                     |
@@ -1725,32 +1727,174 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Listing contacts
 
-### Deleting a person
+1. Listing contacts in StonksBook
 
-1. Deleting a person while all persons are being shown
+   1. Test case: Enter `contact list`<br>
+      Expected: The contact list displays all contacts currently in StonksBook. Archived or deleted contacts will not be displayed.
+      
+   1. Test case: Enter `contact list random`<br>
+         Expected: No change in the contact list. StonksBook should ignore additional fields that come after `contact list`.
 
-   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
+### Adding a contact
+
+1. Adding a contact while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `contact list` command. The contact John Doe does not exist yet.
+
+   1. Test case: Enter `contact add n/John Doe e/john.doe@gmail.com p/12345678 a/Singapore`<br>
+      Expected: A new contact is created in StonksBook, with name "John Doe", email "john.doe@gmail.com", phone number "12345678" and address "Singapore".
+      The contact list should remain sorted in alphabetical order.
+      However, after the entry of this command again, an error message appears, stating that this contact already exists in StonksBook.
+      
+   1. Test case: Enter `contact add 1` <br>
+      Expected: No contact is added. Error details shown in the Result Box. Contact list remains the same.
+      
+   1. Other incorrect delete commands to try: `contact add` <br>
+      Expected: Similar to previous.
+
+### Deleting a contact
+
+1. Deleting a person while all contacts are being shown
+
+   1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
 
    1. Test case: `contact delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the Result Box.
 
    1. Test case: `contact delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No contact is deleted. Error details shown in the Result Box. No change in the contact list.
 
    1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Editing a contact
 
-### Saving data
+1. Editing a contact while all contacts are being shown
 
-1. Dealing with missing/corrupted data files
+   1. Prerequisites: List all contacts using the `contact list` command.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Test case: Enter `contact edit 1 n/John Doe e/john.doe@gmail.com`<br>
+      Expected: The first contact in the currently displayed list of contacts is edited to have the name "John Doe" and email "john.doe@gmail.com". 
+      The contact list should remain sorted in alphabetical order.
+      
+   1. Test case: Enter `contact edit 1` <br>
+      Expected: No contact is edited. Error details shown in the Result Box. Contact list remains the same.
+      
+   1. Other incorrect delete commands to try: `contact edit` and `contact edit random` <br>
+      Expected: Similar to previous.
+      
+1. Editing a contact while no sales are shown
 
-1. _{ more test cases …​ }_
+    1. Prerequisites: Use the `contact find` command to find a name that does not match any contacts in StonksBook.
+       A blank contact list should be displayed.
+
+    1. Test case: `contact edit 1 n/Hartin Menz` <br>
+        Expected: No contact is edited. Error details shown in the Result Box. Contact list remains the same.
+
+### Listing tags
+
+1. Listing contact tags and sales tags in StonksBook
+
+    1. Test case: Enter `tag list`<br>
+       Expected: If the GUI is not currently displaying tags at the bottom right, upon executing this command, the sales panel
+       will be replaced with the contact tag list and Sales Tag List. The contact tag list displays all tags for contacts, whereas
+       the Sales Tag List displays all tags related to sales.
+
+    1. Test case: Enter `tag list random`<br>
+       Expected: StonksBook should ignore any additional fields following `tag list` and the outcome should be the same as simply
+       entering `tag list`.
+
+### Adding a tag
+
+1. Adding a tag when all tags are being shown
+
+    1. Prerequisites: List all tags using the `tag list` command. Existing contact tags include: `colleagues`, `friends`,
+       and existing sales tags include `music`, `stationery`.
+
+    1. Test case: Enter `tag add ct/family`<br>
+       Expected: A new contact tag with name `family` is created, the contact tag list should now display this tag.
+       The contact tag list should remain sorted in alphabetical order.
+       However, after the entry of the command again, an error message appears, stating that the contact tag `friends` already exists.
+
+    1. Test case: Enter `tag add st/electronics`<br>
+       Expected: A new sales tag with name `electronics` is created, the sales tag list should now display this tag.
+       The sales tag list should remain sorted in alphabetical order.
+       However, after the entry of the command again, an error message appears, stating that the sales tag `electronics` already exists.
+
+    1. Test case: Enter `tag add`<br>
+       Expected: No tag is added. An error message appears, stating that the command format is invalid.
+
+    1. Other invalid add commands to try: `tag add family`<br>
+       Expected: Similar to previous.
+
+### Deleting a tag
+
+1. Deleting a tag when all tags are being shown
+
+    1. Prerequisites: List all tags using the `tag list` command. Existing contact tags include: `colleagues`, `friends`,
+       and existing sales tags include `music`, `stationery`.
+
+    1. Test case: Enter `tag delete ct/1`<br>
+       Expected: The first contact tag `colleagues` is deleted from the contact tag list.
+       The contact tag list should remain sorted in alphabetical order.
+       In addition, all contacts who were previously tagged with `colleagues` will no longer be associated to this tag.
+
+    1. Test case: Enter `tag delete st/1`<br>
+       Expected: The first sales tag `music` is deleted from the sales tag list.
+       The contact tag list should remain sorted in alphabetical order.
+       In addition, all sales that were previously tagged with `music` will no longer be associated to this tag.
+
+    1. Test case: Enter `tag delete`<br>
+       Expected: No tag is added. An error message appears, stating that the command format is invalid.
+
+    1. Other invalid add commands to try: `tag delete family`<br>
+       Expected: Similar to previous.
+
+### Editing a tag
+
+1. Editing a tag when all tags are being shown
+
+    1. Prerequisites: List all tags using the `tag list` command. Existing contact tags include: `colleagues`, `friends`,
+       and existing sales tags include `music`, `stationery`.
+
+    1. Test case: Enter `tag edit ct/1 t/teammates`<br>
+       Expected: The second contact tag in the contact tag list is edited from `colleagues` to `teammates`.
+       The contact tag list should remain sorted in alphabetical order.
+       In addition, all contacts who were previously tagged with `colleagues` will now be tagged with `teammates`.
+
+    1. Test case: Enter `tag edit st/1 t/instruments`<br>
+       Expected: The first sales tag in the sales tag list is edited from `music` to `instruments`.
+       The contact tag list should remain sorted in alphabetical order.
+       In addition, all sales that were previously tagged with `music` will now be tagged with `instruments`.
+
+    1. Test case: Enter `tag edit`<br>
+       Expected: No tag is edited. An error message appears, stating that the command format is invalid.
+
+    1. Other invalid add commands to try: `tag edit family`<br>
+       Expected: Similar to previous.
+
+### Finding data by tag
+
+1. Finding contacts or sales data by tag
+
+    1. Prerequisites: List all tags using the `tag list` command. Existing contact tags include: `colleagues`, `friends`,
+       and existing sales tags include `music`, `stationery`.
+
+    1. Test case: Enter `tag find ct/2`<br>
+       Expected: Finds all contacts who are tagged with the second contact tag `friends`.
+       A list of contacts will be displayed by StonksBook.
+
+    1. Test case: Enter `tag find st/1`<br>
+       Expected: Finds all sales that are tagged with the first sales tag `music`.
+       A list of sales will be displayed by StonksBook.
+
+    1. Test case: Enter `tag find`<br>
+       Expected: No tag is edited. An error message appears, stating that the command format is invalid.
+
+    1. Other invalid add commands to try: `tag find family`<br>
+       Expected: Similar to previous.
 
 ### Listing sales
 
@@ -1759,14 +1903,14 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
 
    1. Test case: Enter `sale list c/1`<br>
-      Expected: The Sale List displays all sales belonging to the first contact in the currently displayed list of contacts.
+      Expected: The sale list displays all sales belonging to the first contact in the currently displayed list of contacts.
       The sale list should remain sorted in ascending order based on the datetime of purchase.
       
    1. Test case: Enter `sale list`<br>
-      Expected: No change in sale list. Error details shown in the status message. Status bar remains the same.
+      Expected: No change in the sale list. Error details shown in the Result Box.
       
    1. Test case: Enter `sale list c/0`<br>
-         Expected: No change in sale list. Error details shown in the status message. Status bar remains the same.
+         Expected: No change in the sale list. Error details shown in the Result Box.
 
 ### Adding a sale
 
@@ -1791,10 +1935,10 @@ testers are expected to do more *exploratory* testing.
       However, after the entry of the command again, an error message appears, stating that a duplicate sale cannot be created.
       
    1. Test case: Enter `sale add c/1 n/Guitar Pick d/2020-10-30 16:00 p/30 q/20 t/music` <br>
-      Expected: No sale is edited. Error details shown in the status message. Sale list remains the same.
+      Expected: No sale is edited. Error details shown in the Result Box. Sale list remains the same.
       
    1. Test case: `sale add`<br>
-      Expected: No sale is added. Error details shown in the status message. Sale list remains the same.
+      Expected: No sale is added. Error details shown in the Result Box. Sale list remains the same.
 
    1. Other incorrect delete commands to try: `sale add c/1 d/2020-10-30 16:00 p/30.00 q/20 t/music`, 
       `sale add c/1 n/Guitar Case p/30.00 q/20 t/music`, `sale add c/1 n/Guitar Case d/2020-10-30 16:00 p/30.00 q/20`, 
@@ -1806,7 +1950,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Use `contact find` command with a search term that does not match any contact to clear the contact list.
 
     1. Test case: `sale add c/1 n/Guitar Case d/2020-10-30 16:00 p/25.00 q/20 t/music` <br>
-        Expected: No sale is added. Error details shown in the status message. Sale list remains the same.
+        Expected: No sale is added. Error details shown in the Result Box. Sale list remains the same.
 
 ### Deleting a sale
 
@@ -1815,14 +1959,14 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all sales using the `sale list` command. At least 5 sales in the sale list.
 
    1. Test case: `sale delete s/1`<br>
-      Expected: First sale is deleted from the list. Details of the deleted sale shown in the status message.
+      Expected: First sale is deleted from the list. Details of the deleted sale shown in the Result Box.
 
    1. Test case: `sale delete s/0`<br>
-      Expected: No sale is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No sale is deleted. Error details shown in the Result Box.
 
    1. Test case: `sale delete s/1 s/3 s/5`<br>
       Expected: First, third and fifth sales are deleted from the list. 
-      Details of the deleted sales are shown in the status message.
+      Details of the deleted sales are shown in the Result Box.
 
    1. Other incorrect delete commands to try: `sale delete`, `sale delete x`, `...` (where x is larger than the
     list size)<br>
@@ -1843,10 +1987,10 @@ testers are expected to do more *exploratory* testing.
       The sale list should remain sorted in ascending order based on the datetime of purchase.
 
    1. Test case: Enter `sale edit s/1 p/30` <br>
-      Expected: No sale is edited. Error details shown in the status message. Sale list remains the same.
+      Expected: No sale is edited. Error details shown in the Result Box. Sale list remains the same.
       
    1. Test case: `sale edit`<br>
-      Expected: No sale is edited. Error details shown in the status message. Sale list remains the same.
+      Expected: No sale is edited. Error details shown in the Result Box. Sale list remains the same.
 
    1. Other incorrect delete commands to try: `sale edit p/30.00` and `sale edit s/1 c/0` <br>
       Expected: Similar to previous.
@@ -1856,18 +2000,18 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Use the sale list command to list all sales belonging to a contact that does not have any sales.
 
     1. Test case: `sale edit s/1 n/Bass Guitar` <br>
-        Expected: No sale is edited. Error details shown in the status message. Sale list remains the same.
+        Expected: No sale is edited. Error details shown in the Result Box. Sale list remains the same.
 
 ### Displaying sale breakdown
 
-1. Display sale breakdown with no existing sale tags or sales.
+1. Displaying sale breakdown with no existing sale tags or sales.
 
    1. Prerequisites: There are no existing sale tags or sales
 
    1. Test case: `sale breakdown`<br>
-      Expected: No popup window showing sale breakdown appears. Error details shown in the status message. Status bar remains the same.
+      Expected: No popup window showing sale breakdown appears. Error details shown in the Result Box.
 
-1. Display sale breakdown with less than 5 existing sale tags.
+1. Displaying sale breakdown with less than 5 existing sale tags.
 
    1. Prerequisites: There are less than 5 existing sale tags.
 
@@ -1893,7 +2037,7 @@ testers are expected to do more *exploratory* testing.
       should remain sorted in ascending order based on the scheduled date.
 
    1. Test case: `meeting add`<br>
-      Expected: No meeting is added. Error details shown in the status message.
+      Expected: No meeting is added. Error details shown in the Result Box.
 
    1. Other incorrect delete commands to try: `meeting add c/-1 m/Lunch with Bob d/2020-10-30 12:00 du/60`, `meeting
     add c/1 m/ d/2020-10-30 12:00 du/60`, `meeting add c/1 m/Lunch with Bob d/30/10/2020 12pm du/60`, `meeting add c
@@ -1907,10 +2051,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all meetings using the `meeting list` command. Multiple meetings in the list.
 
    1. Test case: `meeting delete 1`<br>
-      Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message.
+      Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the Result Box.
 
    1. Test case: `meeting delete 0`<br>
-      Expected: No meeting is deleted. Error details shown in the status message. 
+      Expected: No meeting is deleted. Error details shown in the Result Box. 
 
    1. Other incorrect delete commands to try: `meeting delete`, `meeting delete x`, `...` (where x is larger than the
     list size)<br>
@@ -1929,7 +2073,7 @@ testers are expected to do more *exploratory* testing.
        Expected: First meeting's start date is set to 12 December 2020, 12pm. The meeting list should remain sorted in ascending order based on the start date of meetings.
         
     1. Test case: `meeting edit`<br>
-       Expected: No meeting is edited. Error details shown in the status message.
+       Expected: No meeting is edited. Error details shown in the Result Box.
        
     1. Other incorrect edit commands to try: `meeting edit m/Product demo`, `meeting edit x du/120` (where x is larger than the list size)<br>
        Expected: Similar to previous. 
@@ -1950,7 +2094,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Meeting list shows only all upcoming meetings regardless of contact.
     
     1. Test case: `meeting list c/x` (where x is larger than the contact list size)<br>
-       Expected: No change to meeting list. Error details shown in the status message.
+       Expected: No change to meeting list. Error details shown in the Result Box.
        
 ### Adding a reminder
 
@@ -1964,7 +2108,7 @@ testers are expected to do more *exploratory* testing.
       should remain sorted in ascending order based on the scheduled date.
 
    1. Test case: `reminder add`<br>
-      Expected: No reminder is added. Error details shown in the status message.
+      Expected: No reminder is added. Error details shown in the Result Box.
 
    1. Other incorrect delete commands to try: `reminder add c/-1 m/Follow up with Bob d/2020-10-30 12:00`, `reminder
     add c/1 m/ d/2020-10-30 12:00`, `reminder add c/1 m/Follow up with Bob d/30/10/2020 12pm`<br>
@@ -1977,10 +2121,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all reminder using the `reminder list` command. Multiple reminder in the list.
 
    1. Test case: `reminder delete 1`<br>
-      Expected: First reminder is deleted from the list. Details of the deleted reminder shown in the status message.
+      Expected: First reminder is deleted from the list. Details of the deleted reminder shown in the Result Box.
 
    1. Test case: `reminder delete 0`<br>
-      Expected: No reminder is deleted. Error details shown in the status message. 
+      Expected: No reminder is deleted. Error details shown in the Result Box. 
 
    1. Other incorrect delete commands to try: `reminder delete`, `reminder delete x`, `...` (where x is larger than the
     list size)<br>
@@ -1999,7 +2143,7 @@ testers are expected to do more *exploratory* testing.
        Expected: First reminder's scheduled date is set to 12 December 2020, 12pm. The reminder list should remain sorted in ascending order based on the scheduled date of reminders.
         
     1. Test case: `reminder edit`<br>
-       Expected: No reminder is edited. Error details shown in the status message.
+       Expected: No reminder is edited. Error details shown in the Result Box.
        
     1. Other incorrect edit commands to try: `reminder edit m/Call Bob`, `reminder edit x m/Call Bob` (where x is larger than the list size)<br>
        Expected: Similar to previous.
@@ -2011,10 +2155,10 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
 
    1. Test case: `archive add 1`<br>
-      Expected: First contact is removed from the list (not deleted). Details of the archived contact shown in the status message.
+      Expected: First contact is removed from the list (not deleted). Details of the archived contact shown in the Result Box.
 
    1. Test case: `archive add 0`<br>
-      Expected: No contact is added to archive. Error details shown in the status message.
+      Expected: No contact is added to archive. Error details shown in the Result Box.
 
    1. Other incorrect add commands to try: `archive add`, `archive add a`, `archive add x` (where x is an integer larger than the list size)<br>
       Expected: Similar to previous.
@@ -2026,25 +2170,24 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all archived contacts using the `archive list` command. Multiple contacts in the list.
 
    1. Test case: `archive remove 1`<br>
-      Expected: First contact is removed from the list (not deleted). Details of the unarchived contact shown in the status message.
+      Expected: First contact is removed from the list (not deleted). Details of the unarchived contact shown in the Result Box.
 
    1. Test case: `archive add 0`<br>
-      Expected: No contact is removed from archive. Error details shown in the status message.
+      Expected: No contact is removed from archive. Error details shown in the Result Box.
 
    1. Other incorrect add commands to try: `archive remove`, `archive remove a`, `archive remove x` (where x is an integer larger than the list size)<br>
       Expected: Similar to previous.
 
-
 ### Finding contacts
 
-1. Find a contact
+1. Finding a contact
 
    1. Test case: `contact find alx yu`<br>
       Expected: 2 contacts, 'Alex Yeoh' and 'Bernice Yu' should appear in the contact list.
 
 ### Sorting contacts
 
-1. Sort contacts with a non-empty contact list
+1. Sorting contacts with a non-empty contact list
 
    1. Test case: `contact sort n/ desc`
       Expected: Contact list now sorted reverse alphabetical order based on the name.
@@ -2052,7 +2195,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Viewing monthly sale count
 
-1. Sale count for non-empty sale list
+1. Viewing sale count for non-empty sale list
 
    1. Test case: `sale stats 5`
       Expected: A new window opens with a bar chart. The X-axis will have 5 months, the past 4 months and the current month.
@@ -2064,7 +2207,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Viewing monthly meeting count
 
-1. Meeting count for non-empty meeting list
+1. Viewing meeting count for non-empty meeting list
 
    1. Test case: `meeting stats 5`
       Expected: A new window opens with a bar chart. The X-axis will have 5 months, the past 4 months and the current month.
@@ -2087,3 +2230,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `help`
       Expected: A new window appears with the help information.
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. Open the file [stonksbook.json](../data/stonksbook.json) and delete the `id`s of at least one contact. After which start the application.
+      Expected: The StonksBook opened should display an empty GUI, where no data exists in the application.
