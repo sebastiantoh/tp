@@ -2047,7 +2047,7 @@ testers are expected to do more *exploratory* testing.
 1. Sort contacts with a non-empty contact list
 
    1. Test case: `contact sort n/ desc`
-      Expected: contact list now sorted reverse alphabetical order based on the name.
+      Expected: Contact list now sorted reverse alphabetical order based on the name.
 
 
 ### Viewing monthly sale count
@@ -2055,23 +2055,23 @@ testers are expected to do more *exploratory* testing.
 1. Sale count for non-empty sale list
 
    1. Test case: `sale stats 5`
-      Expected: a new window opens with a bar chart. x axis will have 5 months, the past 4 months and the current month.
-      The y axis will contain the sale count in a month.
+      Expected: A new window opens with a bar chart. The X-axis will have 5 months, the past 4 months and the current month.
+      The Y-axis will contain the sale count in a month.
       
    1. Other incorrect add commands to try: `sale stats 1` <br>
-      Expected: error message saying that the number of months must be in the range 2 to 6.
+      Expected: Error message saying that the number of months must be in the range 2 to 6.
       
 
 ### Viewing monthly meeting count
 
-1. meeting count for non-empty meeting list
+1. Meeting count for non-empty meeting list
 
    1. Test case: `meeting stats 5`
-      Expected: a new window opens with a bar chart. x axis will have 5 months, the past 4 months and the current month.
-      The y axis will contain the meeting count in a month.
+      Expected: A new window opens with a bar chart. The X-axis will have 5 months, the past 4 months and the current month.
+      The Y-axis will contain the meeting count in a month.
   
    1. Other incorrect add commands to try: `meeting stats 1` <br>
-      Expected: error message saying that the number of months must be in the range 2 to 6.
+      Expected: Error message saying that the number of months must be in the range 2 to 6.
 
 
 ### Suggesting for error resolution
@@ -2079,11 +2079,11 @@ testers are expected to do more *exploratory* testing.
 1. Unknown user input
 
    1. Test case: `contat add`
-      Expected: a suggestion of contact add should be given in the command box.
+      Expected: A suggestion of contact add should be given in the command box.
 
 ### Viewing help
 
 1. Getting help page
 
    1. Test case: `help`
-      Expected: a new window appears with the help information.
+      Expected: A new window appears with the help information.
