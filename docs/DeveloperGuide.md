@@ -672,13 +672,42 @@ to allow for greater input validation and attribute specific functionality.
   * Pros:
     * No need to import any packages.
   * Cons:
-    * Will likely result in accurate currency calculations due to float rounding errors.
+    * Will likely result in inaccurate currency calculations due to float rounding errors.
 
 * **Alternative 3:** Store dollars and cents independently as integers
   * Pros:
     * Accurate currency calculations are possible.
   * Cons:
     * Cumbersome currency calculations due to converting every hundred cents to dollars.
+
+Alternative 1 was chosen as it was the most appropriate given the size of inputs we wanted to handle, and ensured accuracy.
+
+
+##### Aspect: How to implement the relationship between Sale and Person
+* **Alternative 1:**: Store the Person id in the Sale model and storage.
+  * Pros:
+    * Less storage space needed.
+  * Cons:
+    * Difficult to retrieve Person attributes without using `Model`.
+
+* **Alternative 2:**: Store the Person in model and storage.
+  * Pros:
+    * Easier to retrieve Person attributes, without any need to use `Model`.
+  * Cons:
+    * Need to update Sale whenever corresponding Person is updated.
+    * Large amount of duplicate data stored in the JSON file
+    
+* **Alternative 3:**: Store the person in model, but store Person id in storage
+  * Pros:
+    * Easier to retrieve Person attributes, without any need to use `Model`.
+    * Less storage space needed.
+  * Cons:
+    * Need to update Sale whenever corresponding Person is updated.
+    
+    
+Alternative 3 was chosen as it is the most balanced option, reducing duplicate data stored in JSON file and 
+making retrieval of Person attributes easier. 
+A similar consideration was made when implementing `Meeting` and `Reminder`. 
 
 ### Archive feature \[Leong Jin Ming\]
 
