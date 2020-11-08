@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":MeetingCommandsParser" as MeetingCommandsParser LOGIC_COLOR
 participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
-participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "<<class>>\n:ParserUtil" as ParserUtil LOGIC_COLOR
 participant "a:AddCommand" as AddCommand LOGIC_COLOR
 end box
 

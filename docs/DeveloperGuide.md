@@ -495,7 +495,7 @@ The sequence diagram below illustrates how the `DeleteCommand` that is created f
 
 *Fig. 21 - Sequence diagram illustrating the execution of the `DeleteCommand`* 
 
-#### Error Handling within the `Logic` component
+#### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `reminder delete 1`.
 
@@ -620,7 +620,7 @@ Lastly, a `CommandResult` object containing the message to be displayed to the u
 
 *Fig. 25 - Sequence diagram illustrating the execution of `AddCommand`*
 
-#### Error Handling within the `Logic` component
+#### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of execution of `sale add <args>`.
 
@@ -645,7 +645,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 There is a composition relationship between `Sale` and its attributes, as we want the attributes (e.g. `ItemName`, `UnitPrice`) to exist dependently on the `Sale` object it belongs to.
 The attributes are abstracted out into different classes, instead of being stored as values within Sale, to allow for greater input validation and attribute specific functionality.
 
-#### Design Consideration:
+#### Design consideration:
 
 ##### Aspect: How to implement currency related fields
 * **Alternative 1 (current choice):**: Use BigDecimal to store currency related fields.
@@ -714,7 +714,7 @@ Finally, a `CommandResult` object containing the message to be displayed to the 
 
 *Fig. 29 - Sequence diagram illustrating the execution of the `AddCommand`*
 
-#### Error Handling within the `Logic` component
+#### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of execution of `archive add 1`.
 
@@ -728,7 +728,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 *Fig. 30 - The different outcomes of the program that can occur from the `archive add 1` command*
 
-#### Design Consideration:
+#### Design consideration:
 
 ##### Aspect: How to implement the archive
 * **Alternative 1 (current choice):** Add a flag to the `Person` model to indicate whether the contact is archived.
@@ -929,7 +929,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User requests to delete a specific person in the list
 4.  StonksBook deletes the person
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1107,7 +1107,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to add a meeting associated with a specific contact in the list
 4. StonksBook adds a meeting associated with the contact
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1153,7 +1153,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all meetings
 2. StonksBook shows a list of all meetings
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1177,7 +1177,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to delete a specific meeting in the list
 4. StonksBook deletes the meeting
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1201,7 +1201,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to add a reminder associated with a specific contact in the list
 4. StonksBook adds a reminder associated with the contact
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1240,7 +1240,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 1. User requests to list all reminders
 2. StonksBook shows a list of all reminders
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1258,7 +1258,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 3. User requests to delete a specific reminder in the list
 4. StonksBook deletes the reminder
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1280,7 +1280,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 1. User requests to list reminders based on completion status
 2. StonksBook shows a list of completed or pending reminders
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1306,7 +1306,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 1.  User requests for help for a command.
 2.  StonksBook lists the command description and example usage.
 
-  Use case ends.
+    Use case ends.
 
 #### Use case: Add a sale to a contact
 {:.no_toc}
@@ -1413,7 +1413,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 3.  User requests to add a specific person in the list to archive.
 4.  StonksBook adds the person to archive.
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1433,7 +1433,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 3.  User requests to remove a specific person in the list from the archive.
 4.  StonksBook removes the person from the archive.
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1526,7 +1526,7 @@ testers are expected to do more *exploratory* testing.
       should remain sorted in ascending order based on the scheduled date.
 
    1. Test case: `meeting add`<br>
-      Expected: No meeting is added. Error details shown in the status message. Status bar remains the same.
+      Expected: No meeting is added. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `meeting add c/-1 m/Lunch with Bob d/2020-10-30 12:00 du/60`, `meeting
     add c/1 m/ d/2020-10-30 12:00 du/60`, `meeting add c/1 m/Lunch with Bob d/30/10/2020 12pm du/60`, `meeting add c
@@ -1543,12 +1543,48 @@ testers are expected to do more *exploratory* testing.
       Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message.
 
    1. Test case: `meeting delete 0`<br>
-      Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No meeting is deleted. Error details shown in the status message. 
 
    1. Other incorrect delete commands to try: `meeting delete`, `meeting delete x`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
 
+### Editing a meeting
+
+1. Editing a meeting while all meetings are being shown.
+
+    1. Prerequisites: List all meetings using the `meeting list` command. Multiple meetings in the list.
+    
+    1. Test case: `meeting edit 1 du/90`<br>
+       Expected: First meeting's duration is set to 90 minutes. 
+       
+    1. Test case: `meeting edit 1 d/2020-12-12 12:00`<br>
+       Expected: First meeting's start date is set to 12 December 2020, 12pm. The meeting list should remain sorted in ascending order based on the start date of meetings.
+        
+    1. Test case: `meeting edit`<br>
+       Expected: No meeting is edited. Error details shown in the status message.
+       
+    1. Other incorrect edit commands to try: `meeting edit m/Product demo`, `meeting edit x du/120` (where x is larger than the list size)<br>
+       Expected: Similar to previous. 
+
+### Filtering meetings
+
+1. Filtering for meetings with a specific contact while all meetings are currently being shown.
+    
+    1. Prerequisites: Contact list is not empty.
+    
+    1. Test case: `meeting list c/1`<br>
+       Expected: Meeting list shows only all upcoming meetings with the specified contact at index 1.
+       
+    1. Test case: `meeting list c/1 a/`<br>
+       Expected: Meeting list shows only all meetings (including past meetings) with the specified contact at index 1.
+       
+    1. Test case: `meeting list`<br>
+       Expected: Meeting list shows only all upcoming meetings regardless of contact.
+    
+    1. Test case: `meeting list c/x` (where x is larger than the contact list size)<br>
+       Expected: No change to meeting list. Error details shown in the status message.
+       
 ### Adding a reminder
 
 1. Adding a reminder while all persons are being shown
@@ -1561,7 +1597,7 @@ testers are expected to do more *exploratory* testing.
       should remain sorted in ascending order based on the scheduled date.
 
    1. Test case: `reminder add`<br>
-      Expected: No meeting is reminder. Error details shown in the status message. Status bar remains the same.
+      Expected: No reminder is added. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `reminder add c/-1 m/Follow up with Bob d/2020-10-30 12:00`, `reminder
     add c/1 m/ d/2020-10-30 12:00`, `reminder add c/1 m/Follow up with Bob d/30/10/2020 12pm`<br>
@@ -1577,8 +1613,26 @@ testers are expected to do more *exploratory* testing.
       Expected: First reminder is deleted from the list. Details of the deleted reminder shown in the status message.
 
    1. Test case: `reminder delete 0`<br>
-      Expected: No reminder is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No reminder is deleted. Error details shown in the status message. 
 
    1. Other incorrect delete commands to try: `reminder delete`, `reminder delete x`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
+      
+### Editing a reminder
+
+1. Editing a reminder while all reminder are being shown.
+
+    1. Prerequisites: List all reminders using the `reminder list` command. Multiple reminders in the list.
+    
+    1. Test case: `reminder edit 1 m/Call Bob`<br>
+       Expected: First reminder's message is set to "Call Bob". 
+       
+    1. Test case: `reminder edit 1 d/2020-12-12 12:00`<br>
+       Expected: First reminder's scheduled date is set to 12 December 2020, 12pm. The reminder list should remain sorted in ascending order based on the scheduled date of reminders.
+        
+    1. Test case: `reminder edit`<br>
+       Expected: No reminder is edited. Error details shown in the status message.
+       
+    1. Other incorrect edit commands to try: `reminder edit m/Call Bob`, `reminder edit x m/Call Bob` (where x is larger than the list size)<br>
+       Expected: Similar to previous. 
