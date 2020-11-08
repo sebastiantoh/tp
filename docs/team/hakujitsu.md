@@ -75,32 +75,8 @@ title: Kwek Min Yih's Project Portfolio Page
   [#162](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/162),
  
  ### Contributions beyond the project team:
- 
- ### Evidence of helping others e.g. responses you posted in our forum, bugs you reported in other team's products,
- ### Evidence of technical leadership e.g. sharing useful information in the forum
-
-
-
-
-
-
- * **Project management**:
-   * 
-
- * **Enhancements to existing features**:
-   * Added Remarks to Person class
-   * 
-
- * **Documentation**:
-   * User Guide:
-     *
-   * Developer Guide:
-     *
-
- * **Community**:
-   *
-
- * **Tools**:
-   *
-
- * _{you can add/remove categories in the list above}_
+  Here is a list of issues reported by me for other project teams: [#1](https://github.com/hakujitsu/ped/issues/1), 
+  [#2](https://github.com/hakujitsu/ped/issues/2), [#3](https://github.com/hakujitsu/ped/issues/3), 
+  [#4](https://github.com/hakujitsu/ped/issues/4), [#5](https://github.com/hakujitsu/ped/issues/5), 
+  [#6](https://github.com/hakujitsu/ped/issues/6), [#7](https://github.com/hakujitsu/ped/issues/7),
+  [#4](https://github.com/hakujitsu/ped/issues/8)
