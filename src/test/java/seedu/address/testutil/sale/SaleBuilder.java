@@ -22,7 +22,7 @@ public class SaleBuilder {
     public static final Person DEFAULT_BUYER = BOB;
     public static final BigDecimal DEFAULT_UNIT_PRICE = new BigDecimal("20.50");
     public static final String DEFAULT_ITEM_NAME = "Pizza";
-    public static final String DEFAULT_QUANTITY = "50";
+    public static final Integer DEFAULT_QUANTITY = 50;
     private static final LocalDateTime DEFAULT_DATETIME =
             LocalDateTime.of(2020, 10, 17, 15, 20);
 
@@ -84,7 +84,7 @@ public class SaleBuilder {
     /**
      * Sets the {@code Quantity} of the {@code Sale} that we are building.
      */
-    public SaleBuilder withQuantity(String quantity) {
+    public SaleBuilder withQuantity(Integer quantity) {
         this.quantity = new Quantity(quantity);
         return this;
     }

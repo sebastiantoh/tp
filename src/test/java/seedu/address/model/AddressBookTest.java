@@ -13,6 +13,7 @@ import static seedu.address.testutil.person.TypicalPersons.ALICE;
 import static seedu.address.testutil.person.TypicalPersons.BENSON;
 import static seedu.address.testutil.reminder.TypicalReminders.CALL_ALICE;
 
+import java.text.NumberFormat;
 import java.time.Month;
 import java.time.Year;
 import java.util.Arrays;
@@ -132,7 +133,7 @@ public class AddressBookTest {
                 + "2. Benson Meier Phone: 98765432 Email: johnd@example.com "
                 + "Address: 311, Clementi Ave 2, #02-25 Tags: [owesMoney][friends] Remark: Owes me $10\n"
                 + "3. Daniel Meier Phone: 87652533 Email: cornelia@example.com "
-                + "Address: 10th street Tags: [friends] Remark: \n",
+                + "Address: 10th street Tags: [friends]\n",
                 addressBook.findByContactTag(TypicalContactTags.FRIENDS));
     }
 
@@ -149,8 +150,9 @@ public class AddressBookTest {
         addressBookCopy.addPerson(BENSON);
         addressBookCopy.addSale(TypicalSales.APPLE);
         assertEquals("Listing 1 sales items associated with: [fruits]\n"
-                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: 3.50, "
-                        + "Tags: [[fruits]]) (Client: Benson Meier)\n",
+                        + "1. Apple (Date of Purchase: Fri, 30 Oct 2020, 15:00, Quantity: 10, Unit Price: "
+                        + NumberFormat.getCurrencyInstance().format(3.50)
+                        + ", Tags: [[fruits]]) (Client: Benson Meier)\n",
                 addressBookCopy.findSalesBySaleTag(new Tag("fruits")));
     }
 

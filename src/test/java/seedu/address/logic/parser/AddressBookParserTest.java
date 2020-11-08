@@ -118,10 +118,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() throws ParseException {
         assertTrue(parser.parseCommand("unknown") instanceof UnknownCommand);
-        assertTrue(parser.parseCommand("unknown command") instanceof UnknownCommand);
         assertTrue(parser.parseCommand("hel") instanceof UnknownCommand);
         assertTrue(parser.parseCommand("tag lis") instanceof UnknownCommand);
-        assertTrue(parser.parseCommand("tag") instanceof UnknownCommand);
     }
 
     @Test

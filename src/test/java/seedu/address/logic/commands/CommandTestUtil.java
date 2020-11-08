@@ -124,8 +124,8 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_NAME_BALL = "Ball";
     public static final String VALID_DATE_APPLE = "2020-10-30 15:00";
     public static final String VALID_DATE_BALL = "2020-09-22 12:40";
-    public static final String VALID_QUANTITY_APPLE = "10";
-    public static final String VALID_QUANTITY_BALL = "1";
+    public static final Integer VALID_QUANTITY_APPLE = 10;
+    public static final Integer VALID_QUANTITY_BALL = 1;
     public static final String VALID_UNIT_PRICE_APPLE = "3.50";
     public static final String VALID_UNIT_PRICE_BALL = "0.80";
     public static final String VALID_SALE_TAG_EMPTY = "";

@@ -37,26 +37,31 @@ deactivate AddCommandParser
 SaleCommandsParser -> AddCommandParser : parse(<args>)
 activate AddCommandParser
 
-
-AddCommandParser --> ParserUtil : parseItemName(str)
+AddCommandParser --> ParserUtil : parseItemName("Notebook")
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
-AddCommandParser --> ParserUtil : parseDateTime(str)
+AddCommandParser --> ParserUtil : parseDateTime("2020-10-30 15:00")
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
-AddCommandParser --> ParserUtil : parseQuantity(str)
+AddCommandParser --> ParserUtil : parseQuantity("2")
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
-AddCommandParser --> ParserUtil : parseUnitPrice(str)
+AddCommandParser --> ParserUtil : parseUnitPrice("6.00")
+activate ParserUtil
+
+ParserUtil --> AddCommandParser
+deactivate ParserUtil
+
+AddCommandParser --> ParserUtil : parseTags("stationery")
 activate ParserUtil
 
 ParserUtil --> AddCommandParser

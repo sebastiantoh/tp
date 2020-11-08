@@ -78,7 +78,7 @@ public class EditSaleDescriptorBuilder {
     /**
      * Sets the {@code Address} of the {@code EditSaleDescriptor} that we are building.
      */
-    public EditSaleDescriptorBuilder withQuantity(String quantity) {
+    public EditSaleDescriptorBuilder withQuantity(Integer quantity) {
         descriptor.setQuantity(new Quantity(quantity));
         return this;
     }
