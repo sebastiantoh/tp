@@ -220,7 +220,7 @@ Here are the steps to follow:
         <img src="images/contact-delete/contact-find.png" alt="enter 'contact find Betsy Crowe'" width="900px">
     </figure>
 
-2. The person, Betsy Crowe, will now appear at the top of the **Contact List**.
+2. The contact, Betsy Crowe, will now appear at the top of the **Contact List**.
 
     <figure>
         <img src="images/contact-delete/contact-find-result.png" alt="result for 'contact find Betsy Crowe'" width="900px">
@@ -232,7 +232,7 @@ Here are the steps to follow:
         <img src="images/contact-delete/contact-delete.png" alt="enter 'contact delete 1'" width="900px">
     </figure>
 
-4. The **Result Box** will display a message noting that the command was successful, and the person, Betsy Crowe, is now deleted.
+4. The **Result Box** will display a message noting that the command was successful, and the contact, Betsy Crowe, is now deleted.
 
     <figure>
         <img src="images/contact-delete/contact-delete-result.png" alt="result for 'contact delete'" width="900px">
@@ -277,7 +277,7 @@ Let's say that Bernice Yu moved to a new address: 36 College Avenue East and you
         <img src="images/contact-edit/contact-find.png" alt="enter 'contact find Bernice Yu'" width="900px">
     </figure>
 
-2. The person, Bernice Yu, will now appear at the top of the **Contact List**.
+2. The contact, Bernice Yu, will now appear at the top of the **Contact List**.
 
     <figure>
         <img src="images/contact-edit/contact-find-result.png" alt="result for 'contact find Bernice Yu'" width="900px">
