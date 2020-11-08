@@ -924,6 +924,8 @@ The following activity diagram summarizes what happens when a user executes the 
 **Value proposition**: Effectively curate sales-optimised contact list and conveniently conduct data analysis to gain business insights and boost sales performance.
 
 
+<div style="page-break-after: always;"></div>
+
 ### 6.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
