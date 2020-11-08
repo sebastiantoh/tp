@@ -1603,3 +1603,33 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `reminder delete`, `reminder delete x`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
+
+### Adding a contact to archive
+
+1. Adding a contact to archive when all contacts are listed
+
+   1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
+
+   1. Test case: `archive add 1`<br>
+      Expected: First contact is removed from the list (not deleted). Details of the archived contact shown in the status message.
+
+   1. Test case: `archive add 0`<br>
+      Expected: No contact is added to archive. Error details shown in the status message.
+
+   1. Other incorrect add commands to try: `archive add`, `archive add a`, `archive add x` (where x is an integer larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Removing a contact to archive
+
+1. Adding a contact to archive when all archived contacts are listed
+
+   1. Prerequisites: List all archived contacts using the `archive list` command. Multiple contacts in the list.
+
+   1. Test case: `archive remove 1`<br>
+      Expected: First contact is removed from the list (not deleted). Details of the unarchived contact shown in the status message.
+
+   1. Test case: `archive add 0`<br>
+      Expected: No contact is removed from archive. Error details shown in the status message.
+
+   1. Other incorrect add commands to try: `archive remove`, `archive remove a`, `archive remove x` (where x is an integer larger than the list size)<br>
+      Expected: Similar to previous.
