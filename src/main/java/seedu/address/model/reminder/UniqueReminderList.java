@@ -81,7 +81,7 @@ public class UniqueReminderList implements Iterable<Reminder> {
     public void updateRemindersWithContact(Person contact) {
         requireNonNull(contact);
         List<Reminder> remindersToUpdate =
-                internalList.stream().filter(reminder -> reminder.getPersonId() == contact.getId())
+                internalList.stream().filter(reminder -> reminder.getPerson().hasSameId(contact))
                         .collect(Collectors.toList());
 
         for (Reminder reminder : remindersToUpdate) {

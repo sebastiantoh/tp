@@ -33,20 +33,19 @@ public class MonthAndYearTest {
 
     @Test
     public void equals_valid_success() {
+        //same object -> return true
         assertEquals(monthAndYear, monthAndYear);
 
-        MonthAndYear monthAndYear1 = new MonthAndYear(Month.AUGUST, Year.of(2010));
-        assertEquals(monthAndYear, monthAndYear1);
+        //same values -> return true
+        assertEquals(monthAndYear, new MonthAndYear(Month.AUGUST, Year.of(2010)));
 
-        monthAndYear1 = new MonthAndYear(Month.APRIL, Year.of(2010));
-        assertNotEquals(monthAndYear, monthAndYear1);
-
-        monthAndYear1 = new MonthAndYear(Month.AUGUST, Year.of(1990));
-        assertNotEquals(monthAndYear, monthAndYear1);
-
-        monthAndYear1 = new MonthAndYear(Month.APRIL, Year.of(1990));
-        assertNotEquals(monthAndYear, monthAndYear1);
-
+        //null -> return false
         assertNotEquals(monthAndYear, null);
+
+        //different month -> return false
+        assertNotEquals(monthAndYear, new MonthAndYear(Month.APRIL, Year.of(2010)));
+
+        //different year -> return false
+        assertNotEquals(monthAndYear, new MonthAndYear(Month.AUGUST, Year.of(1990)));
     }
 }

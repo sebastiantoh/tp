@@ -13,7 +13,7 @@ if () then ([command is in valid format])
         if () then ([is contact tag])
             :Show all contacts associated with this contact tag;
         else ([else])
-            if () then ([user specified additional contact flag])
+            if () then ([user specified additional client flag])
                 :Show all contacts who purchased items under this sales tag;
             else ([else])
                 :Show all sales items associated with this sales tag;

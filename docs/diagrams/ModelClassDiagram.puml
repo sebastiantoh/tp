@@ -28,12 +28,12 @@ Package Model <<Rectangle>> {
         Class Tag
     }
 
-    Package Meeting {
+    Package Meeting\n {
         Class Meeting
         Class UniqueMeetingList
     }
 
-    Package Reminder {
+    Package Reminder\n {
         Class Reminder
         Class UniqueReminderList
     }
@@ -68,15 +68,15 @@ Person *--> Address
 Person *--> "*" Tag
 
 AddressBook *--> "1" UniqueMeetingList
-UniqueMeetingList --> "*" Meeting
-Meeting *--> Person
+UniqueMeetingList --> "                    *" Meeting
+Meeting *--> "    1" Person
 Meeting : Message message
 Meeting : LocalDateTime startDate
 Meeting : Duration duration
 
 AddressBook *--> "1" UniqueReminderList
-UniqueReminderList --> "*" Reminder
-Reminder *--> Person
+UniqueReminderList --> "              *" Reminder
+Reminder *--> "   1" Person
 Reminder : Message message
 Reminder : LocalDateTime scheduledDate
 
@@ -94,7 +94,7 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"1" Person : filtered list
+ModelManager -->"*" Person : filtered list
 
 show Reminder fields
 show Meeting fields

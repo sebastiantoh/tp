@@ -84,7 +84,7 @@ public class MonthlyListMap<T> {
 
 
     /**
-     * Removes all entries in the monthlyList.
+     * Removes all entries in the monthlyListMap.
      */
     public void clear() {
         this.monthlyListMap.clear();

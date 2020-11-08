@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+UniqueMeetingList *--> "1" MonthlyListMap
+
+MonthlyListMap "1" --> "*" ItemList
+(MonthlyListMap, ItemList) ..... MonthAndYear
+ItemList "1" --> "*" item
+
+'MonthlyCountDataSet --> "*" MonthlyCountData
+
+@enduml

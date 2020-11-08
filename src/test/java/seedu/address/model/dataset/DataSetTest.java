@@ -1,6 +1,5 @@
 package seedu.address.model.dataset;
 
-import static java.time.Month.APRIL;
 import static java.time.Month.AUGUST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -43,22 +42,20 @@ class DataSetTest {
 
     @Test
     public void equals_valid_success() {
+        //same object -> return true
         assertEquals(monthlyCountDataSet, monthlyCountDataSet);
 
-        DataSet<MonthlyCountData> monthlyCountDataSet1 = new DataSet<>(
-                this.monthlyCountDataSet.getDataList());
+        //same values -> return true
+        assertEquals(monthlyCountDataSet, new DataSet<>(
+                this.monthlyCountDataSet.getDataList()));
 
-        MonthlyCountData monthlyCountData2 = new MonthlyCountData(
-                new MonthAndYear(APRIL, Year.now()), 1);
-        DataSet<MonthlyCountData> monthlyCountDataSet2 = new DataSet<>(
-                Collections.singletonList(monthlyCountData2));
+        //different list -> returns false
+        assertNotEquals(monthlyCountDataSet, new DataSet<>(Collections.emptyList()));
 
-        assertEquals(monthlyCountDataSet, monthlyCountDataSet1);
-
-        assertNotEquals(monthlyCountDataSet, monthlyCountDataSet2);
-
-        monthlyCountDataSet1.setTitle("test 1");
-        assertNotEquals(monthlyCountDataSet1, monthlyCountDataSet);
+        //different title -> returns false
+        DataSet<MonthlyCountData> monthlyCountDataSetTest = new DataSet<>(Collections.emptyList());
+        monthlyCountDataSetTest.setTitle("test 1");
+        assertNotEquals(monthlyCountDataSetTest, monthlyCountDataSet);
 
     }
 }

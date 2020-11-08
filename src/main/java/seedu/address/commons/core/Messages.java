@@ -25,8 +25,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_MEETING_DISPLAYED_INDEX = "The meeting index provided is invalid.";
     public static final String MESSAGE_INVALID_SALE_DISPLAYED_INDEX = "The sale index(es) provided is invalid.";
     public static final String MESSAGE_EMPTY_DATASET = "There are no available statistics as there are no sale tags.";
-    public static final String MESSAGE_UNARCHIVE_INVALID_LIST = "Please list all archived persons first!";
-    public static final String MESSAGE_ARCHIVE_INVALID_LIST = "Please list all contacts first!";
+    public static final String MESSAGE_UNARCHIVE_INVALID_LIST = "The person is not archived!";
+    public static final String MESSAGE_ARCHIVE_INVALID_LIST = "The person is already archived!";
     public static final String MESSAGE_INVALID_MONTH =
             "Month must be an integer value in between 1 and 12 inclusive.";
     public static final String MESSAGE_INVALID_YEAR = "Year must be an non negative integer.";

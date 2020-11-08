@@ -30,7 +30,6 @@ public class SortCommandParser implements Parser<SortCommand> {
         Prefix sortingAttribute = null;
 
         int presentSortingAttributeCounter = 0;
-
         if (argMultimap.getValue(PREFIX_CONTACT_NAME).isPresent()) {
             sortingAttribute = PREFIX_CONTACT_NAME;
             presentSortingAttributeCounter++;
@@ -40,12 +39,26 @@ public class SortCommandParser implements Parser<SortCommand> {
             presentSortingAttributeCounter++;
         }
 
-        if (presentSortingAttributeCounter != 1 || !argMultimap.getPreamble().isEmpty()) {
+        if (presentSortingAttributeCounter != 1 || !argMultimap.getPreamble().isEmpty()
+            || this.hasArgValueForAnyPresentPrefixes(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
         boolean isSecondArgumentDesc = argMultimap.getValue(PREFIX_DESC_ORDER).isPresent();
 
         return new SortCommand(sortingAttribute, isSecondArgumentDesc);
+    }
+
+    private boolean hasArgValueForAnyPresentPrefixes(ArgumentMultimap argMultimap) {
+        boolean hasArgValueForName = argMultimap.getValue(PREFIX_CONTACT_NAME).isPresent()
+                && !argMultimap.getValue(PREFIX_CONTACT_NAME).get().isBlank();
+
+        boolean hasArgValueForEmail = argMultimap.getValue(PREFIX_CONTACT_EMAIL).isPresent()
+                && !argMultimap.getValue(PREFIX_CONTACT_EMAIL).get().isBlank();
+
+        boolean hasArgValueForDesc = argMultimap.getValue(PREFIX_DESC_ORDER).isPresent()
+                && !argMultimap.getValue(PREFIX_DESC_ORDER).get().isBlank();
+
+        return hasArgValueForName || hasArgValueForEmail || hasArgValueForDesc;
     }
 }

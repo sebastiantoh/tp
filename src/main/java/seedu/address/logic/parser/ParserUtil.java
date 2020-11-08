@@ -10,6 +10,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_YEAR;
 import static seedu.address.logic.commands.sale.EditCommand.MESSAGES_SALES_MISSING_TAGS;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -72,6 +73,14 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
+
+        // checks if the index is too big, i.e. greater than Integer.MAX_VALUE
+        try {
+            new BigInteger(trimmedIndex).intValueExact();
+        } catch (NumberFormatException | ArithmeticException e) {
+            return Index.tooLargeIndex(oneBasedIndex);
+        }
+
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
