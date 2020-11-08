@@ -1500,7 +1500,3 @@ This section provides a summary of all the commands available in StonksBook.
 | `help`      | Shows program usage instructions            | -                       |
 | `lightmode` | Changes the theme of the GUI to light theme | -                       |
 | `purge`     | Clears all data                             | -                       |
-
---------------------------------------------------------------------------------------------------------------------
-
-## 8. Appendix A: Glossary
