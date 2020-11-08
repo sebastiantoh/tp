@@ -31,7 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-*Fig. 1 - Architecture Diagram*
+*Fig. 1 - Architecture diagram*
  
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -63,7 +63,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
-*Fig. 2 - Class Diagram of the `Logic` Component*
+*Fig. 2 - Class diagram of the `Logic` component*
 
 **How the architecture components interact with each other**
 
@@ -71,7 +71,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-*Fig. 3 - Interactions between Components for the `contact delete 1` Command*
+*Fig. 3 - Interactions between components for the `contact delete 1` command*
 
 The sections below give more details of each component.
 
@@ -79,7 +79,7 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-*Fig. 4 - Structure of the `UI` Component*
+*Fig. 4 - Structure of the `UI` component*
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -97,7 +97,7 @@ The `UI` component,
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
-*Fig. 5 - Structure of the `Logic` Component*
+*Fig. 5 - Structure of the `Logic` component*
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -112,7 +112,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `contact delete 1` Command](images/DeleteSequenceDiagram.png)
 
-*Fig. 6 - Interactions Inside the `Logic` Component for the `contact delete 1` Command*
+*Fig. 6 - Interactions inside the `Logic` component for the `contact delete 1` command*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -121,7 +121,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-*Fig. 7 - Structure of the `Model` Component*
+*Fig. 7 - Structure of the `Model` component*
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -140,7 +140,7 @@ The `Model`,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 <br>
-*Fig. 8 - Alternative Class Diagram of the `Model` Component*
+*Fig. 8 - Alternative class diagram of the `Model` component*
 </div>
 
 
@@ -148,7 +148,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-*Fig. 9 - Structure of the `Storage` Component*
+*Fig. 9 - Structure of the `Storage` component*
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T11-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -202,6 +202,8 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `tag add <args>` Command](images/TagAddSequenceDiagram.png)
 
+*Fig. 10 - Interactions inside the `Logic` component for the `tag add <args>` command*
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -225,6 +227,8 @@ The sequence diagram below illustrates how the `AddCommand` that is created from
 
  ![TagExecuteAddSequenceDiagram](images/TagExecuteAddSequenceDiagram.png)
 
+*Fig. 11 - Sequence diagram illustrating the execution of `AddCommand`*
+
 #### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `tag add <args>`.
@@ -236,21 +240,29 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![The different outcomes of the program that can occur from the `tag add <args>` Command](images/TagAddActivityDiagram.png)
 
+*Fig. 12 - The different outcomes of the program that can occur from the `tag add <args>` command*
+
 ##### Data Retrieval
 
 The following sequence diagram shows how the retrieval of contacts (or sales) with tags work.
 
 ![TagFindSequenceDiagram](images/TagFindSequenceDiagram.png)
 
+*Fig. 13 - Sequence diagram illustrating the retrieval of contacts (or sales)*
+
 The below activity diagram shows the overall process of executing `tag find <args>`.
 
 ![TagFindActivityDiagram](images/TagFindActivityDiagram.png)
+
+*Fig. 14 - Activity diagram illustrating the process of executing `tag find <args>`*
 
 #### Modelling `Tag`s
 
 Tags are modelled according to the class diagram below.
 
 ![Class diagram used to model tags](images/TagClassDiagram.png)
+
+*Fig. 15 - Class diagram used to model tags*
 
 We enforce an association between `Sale` and `Tag` to aid data analytics in the `sale breakdown` command.
 
@@ -305,6 +317,8 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `meeting add <args>` Command](images/MeetingAddSequenceDiagram.png)
 
+*Fig. 16 - Interactions inside the `Logic` component for the `meeting add <args>` command*
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -328,6 +342,8 @@ The sequence diagram below illustrates how the `AddCommand` that is created from
 
  ![MeetingExecuteAddSequenceDiagram](images/MeetingExecuteAddSequenceDiagram.png)
 
+*Fig. 17 - Sequence diagram illustrating the execution of `AddCommand`* 
+
 #### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `meeting add <args>`.
@@ -339,11 +355,15 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![The different outcomes of the program that can occur from the `meeting add <args>` Command](images/MeetingAddActivityDiagram.png)
 
+*Fig. 18 - The different outcomes of the program that can occur from the `meeting add <args>` command* 
+
 #### Modelling `Meeting`s
 
 Meetings are modelled according to the class diagram below.
 
 ![Class diagram used to model meetings](images/MeetingClassDiagram.png)
+
+*Fig. 19 - Class diagram used to model meetings* 
 
 `LocalDateTime` and `Duration` are classes from Java's `java.time` package.
 
@@ -449,6 +469,8 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![Interactions Inside the Logic Component for the `reminder delete 1` Command](images/ReminderDeleteSequenceDiagram.png)
 
+*Fig. 20 - Interactions inside the `Logic` component for the `reminder delete 1` command* 
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandsParser` and `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
  reaches the end of diagram.
 </div>
@@ -471,7 +493,9 @@ The sequence diagram below illustrates how the `DeleteCommand` that is created f
 
 ![ReminderExecuteDeleteSequenceDiagram](images/ReminderExecuteDeleteSequenceDiagram.png)
 
-#### Error Handling within the `Logic` component
+*Fig. 21 - Sequence diagram illustrating the execution of the `DeleteCommand`* 
+
+#### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `reminder delete 1`.
 
@@ -481,11 +505,15 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![DeleteReminderActivityDiagram](images/ReminderDeleteActivityDiagram.png)
 
+*Fig. 22 - The different outcomes of the program that can occur from the `reminder delete 1` command*
+
 #### Modelling `Reminder`s
 
 `Reminder` is modelled according to the class diagram below.
 
 ![ReminderClassDiagram](images/ReminderClassDiagram.png)
+
+*Fig. 23 - Class diagram used to model reminders*
 
 `Reminder` objects are saved within a `UniqueReminderList` stored in `AddressBook`.
 
@@ -571,6 +599,7 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 
 ![SaleAddSequenceDiagram](images/SaleAddSequenceDiagram.png)
 
+*Fig. 24 - Interactions inside the `Logic` component for the `sale add <args>` command*
 
 #### Execution of commands within the `Logic` component
 
@@ -589,8 +618,9 @@ Lastly, a `CommandResult` object containing the message to be displayed to the u
 
 ![SaleExecuteAddSequenceDiagram](images/SaleExecuteAddSequenceDiagram.png)
 
+*Fig. 25 - Sequence diagram illustrating the execution of `AddCommand`*
 
-#### Error Handling within the `Logic` component
+#### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of execution of `sale add <args>`.
 
@@ -601,17 +631,21 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![AddSaleActivityDiagram](images/AddSaleActivityDiagram.png)
 
+*Fig. 26 - The different outcomes of the program that can occur from the `sale add <args>` command*
+
 #### Modelling `Sale`s
 
 `Sale` is modelled according to the class diagram below.
 
 ![SaleClassDiagram](images/SaleClassDiagram.png)
 
+*Fig. 27 - Class diagram used to model sales*
+
 `Sale` objects are saved within a `UniqueSaleList` stored in `AddressBook`.
 There is a composition relationship between `Sale` and its attributes, as we want the attributes (e.g. `ItemName`, `UnitPrice`) to exist dependently on the `Sale` object it belongs to.
 The attributes are abstracted out into different classes, instead of being stored as values within Sale, to allow for greater input validation and attribute specific functionality.
 
-#### Design Consideration:
+#### Design consideration:
 
 ##### Aspect: How to implement currency related fields
 * **Alternative 1 (current choice):**: Use BigDecimal to store currency related fields.
@@ -657,6 +691,11 @@ These are the steps that will be taken when parsing an archive-related user comm
 Given below is a sequence diagram for interactions inside the Logic component for the `execute("archive add 1")` API call.
 ![ArchiveAddSequenceDiagram](images/ArchiveAddSequenceDiagram.png)
 
+*Fig. 28 - Interactions inside the `Logic` component for the `archive add 1` command*
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 #### Execution of commands within the `Logic` component
 
 Since the execution of the `RemoveCommand` is similar to the `AddCommand`, we shall only look at the execution of the latter.
@@ -673,7 +712,9 @@ Finally, a `CommandResult` object containing the message to be displayed to the 
 
 ![ArchiveExecuteAddSequenceDiagram](images/ArchiveExecuteAddSequenceDiagram.png)
 
-#### Error Handling within the `Logic` component
+*Fig. 29 - Sequence diagram illustrating the execution of the `AddCommand`*
+
+#### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of execution of `archive add 1`.
 
@@ -684,6 +725,28 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 - The incorrect list is being displayed
 
 ![ArchiveAddActivityDiagram](images/ArchiveAddActivityDiagram.png)
+
+*Fig. 30 - The different outcomes of the program that can occur from the `archive add 1` command*
+
+#### Design consideration:
+
+##### Aspect: How to implement the archive
+* **Alternative 1 (current choice):** Add a flag to the `Person` model to indicate whether the contact is archived.
+  * Pros:
+    * Less time consuming to implement.
+    * Easier to impose restrictions, e.g. cannot add sale to an archived `Person`, etc.
+    * Makes use of the filtering of the `FilteredPersonList`.
+  * Cons:
+    * Distinction between contacts and archived contacts is not clear in the implementation.
+
+* **Alternative 2:** Introduce a list of archived `Person`s to the `AddressBook` model.
+  * Pros:
+    * Clear distinction between contacts and archived contacts in the implementation.
+  * Cons:
+    * More time consuming to implement.
+    * Needs extra checking to identify archived contacts, which brings us to Alternative 1.
+
+Alternative 1 was chosen to give more flexibility to the implementation and other design considerations (such as whether to archive the sales associated with the `Person`) and also due to time constraints.
 
 ### Monthly Statistics Feature [Aaron Seah]
 
@@ -710,16 +773,26 @@ Given below is the class diagram for the Monthly Statistics Feature.
 
 <img src="images/MeetingStatsClassDiagram.png" alt="result for meeting stats class diagram" height="400px">
 
+*Fig. 31 - Class diagram for the Monthly Statistics Feature*
+
 Given below are object diagrams for the Monthly Statistics Feature to illustrate 
 how `MonthlyListMap` will be kept up to date after meeting commands `meeting add`, `meeting delete` and `meeting edit` are executed.
 
 <img src="images/MeetingStatsObjectDiagram1.png" alt="result for meeting stats object diagram 1" height="400px">
 
+*Fig. 32 - Object diagram after initialisation of meetings, `m1` and `m2`*
+
 <img src="images/MeetingStatsObjectDiagram2.png" alt="result for meeting stats object diagram 2" height="400px">
+
+*Fig. 33 - Object diagram after adding meeting `m3`*
 
 <img src="images/MeetingStatsObjectDiagram3.png" alt="result for meeting stats object diagram 3" height="400px">
 
+*Fig. 34 - Object diagram after deleting meeting `m2`*
+
 <img src="images/MeetingStatsObjectDiagram4.png" alt="result for meeting stats object diagram 4" height="400px">
+
+*Fig. 35 - Object diagram after editing meeting `m3`*
 
 ##### Data Retrieval
 * `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` — Gets the item counts for the given month and year and the previous (numberOfMonths - 1) months.
@@ -732,18 +805,29 @@ The following sequence diagrams shows how the Monthly Statistics Feature works:
 
 <img src="images/MeetingStatsSequenceDiagram.png" alt="result for meeting stats sequence diagram" height="200px">
 
+*Fig. 36 - Sequence diagram illustrating interactions between `Logic` and `Model`*
+
 <img src="images/MeetingStatsSequenceDiagram2.png" alt="result for meeting stats sequence diagram 2" height="150px">
+
+*Fig. 37 - Sequence diagram illustrating interactions between `ModelManager`, `AddressBook` and `UniqueMeetingList`*
 
 <img src="images/MeetingStatsSequenceDiagram3.png" alt="result for meeting stats sequence diagram 3" height="300px">
 
+*Fig. 38 - Sequence diagram illustrating interactions between `UniqueMeetingList`, `MonthlyListMap`, `MonthAndYear` and `MonthlyListDataSet`*
+
 <img src="images/MeetingStatsSequenceDiagram4.png" alt="result for meeting stats sequence diagram 4" height="300px">
 
+*Fig. 39 - Sequence diagram for `getPreviousMonthlyData`*
+
 <img src="images/MeetingStatsSequenceDiagram5.png" alt="result for meeting stats sequence diagram 5" height="200px">
+
+*Fig. 40 - Sequence diagram for `getMonthlyData`*
 
 The following activity diagram summarizes what happens when a user executes the `meeting stats` command:
 
 <img src="images/MeetingStatsActivityDiagram.png" alt="result for meeting stats activity diagram" height="300px">
 
+*Fig. 41 - Activity diagram summarising what happens when a user executes the `meeting stats` command*
 
 #### Design consideration:
 
@@ -766,91 +850,6 @@ The following activity diagram summarizes what happens when a user executes the 
 * **Alternative 2:** Use month only.
   * Pros: One less parameter for user to type, easier to implement.
   * Cons: Limits the functionality scope to statistics for the current year only.
-  
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -912,8 +911,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | efficient salesman                | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
 | `* *`    | visual user                       | quickly identify overdue reminders                            | work on it without further delay                                                              |
-| `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                          |
-| `* *`    | well-connected salesman           | archive contacts who are no longer active                     | I can focus on contacts that are more likely to respond                                       |
+| `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                                     |
+| `* *`    | well-connected salesman           | archive contacts who are no longer active                     | focus on contacts that are more likely to respond                                             |
+| `* *`    | salesman                          | remove contacts from the archive                              | focus on inactive contacts who are now active again                                           |
 
 ### Use cases
 
@@ -929,7 +929,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  User requests to delete a specific person in the list
 4.  StonksBook deletes the person
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1107,7 +1107,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to add a meeting associated with a specific contact in the list
 4. StonksBook adds a meeting associated with the contact
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1153,7 +1153,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all meetings
 2. StonksBook shows a list of all meetings
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1177,7 +1177,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to delete a specific meeting in the list
 4. StonksBook deletes the meeting
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1201,7 +1201,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to add a reminder associated with a specific contact in the list
 4. StonksBook adds a reminder associated with the contact
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1240,7 +1240,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 1. User requests to list all reminders
 2. StonksBook shows a list of all reminders
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1258,7 +1258,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 3. User requests to delete a specific reminder in the list
 4. StonksBook deletes the reminder
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1280,7 +1280,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 1. User requests to list reminders based on completion status
 2. StonksBook shows a list of completed or pending reminders
 
-  Use case ends.
+    Use case ends.
 
 **Extensions**
 
@@ -1306,7 +1306,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 1.  User requests for help for a command.
 2.  StonksBook lists the command description and example usage.
 
-  Use case ends.
+    Use case ends.
 
 #### Use case: Add a sale to a contact
 {:.no_toc}
@@ -1413,7 +1413,27 @@ This use case is similar to `Add a reminder` except that the user has the additi
 3.  User requests to add a specific person in the list to archive.
 4.  StonksBook adds the person to archive.
 
-  Use case ends.
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+    * 3a1. StonksBook shows an error message.
+
+      Use case resumes at step 2.
+      
+#### Use case: Remove contact from archive
+{:.no_toc}
+
+**MSS**
+
+1.  User requests to list archived contacts.
+2.  StonksBook shows a list of archived contacts.
+3.  User requests to remove a specific person in the list from the archive.
+4.  StonksBook removes the person from the archive.
+
+    Use case ends.
 
 **Extensions**
 
@@ -1506,7 +1526,7 @@ testers are expected to do more *exploratory* testing.
       should remain sorted in ascending order based on the scheduled date.
 
    1. Test case: `meeting add`<br>
-      Expected: No meeting is added. Error details shown in the status message. Status bar remains the same.
+      Expected: No meeting is added. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `meeting add c/-1 m/Lunch with Bob d/2020-10-30 12:00 du/60`, `meeting
     add c/1 m/ d/2020-10-30 12:00 du/60`, `meeting add c/1 m/Lunch with Bob d/30/10/2020 12pm du/60`, `meeting add c
@@ -1523,12 +1543,48 @@ testers are expected to do more *exploratory* testing.
       Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message.
 
    1. Test case: `meeting delete 0`<br>
-      Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No meeting is deleted. Error details shown in the status message. 
 
    1. Other incorrect delete commands to try: `meeting delete`, `meeting delete x`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
 
+### Editing a meeting
+
+1. Editing a meeting while all meetings are being shown.
+
+    1. Prerequisites: List all meetings using the `meeting list` command. Multiple meetings in the list.
+    
+    1. Test case: `meeting edit 1 du/90`<br>
+       Expected: First meeting's duration is set to 90 minutes. 
+       
+    1. Test case: `meeting edit 1 d/2020-12-12 12:00`<br>
+       Expected: First meeting's start date is set to 12 December 2020, 12pm. The meeting list should remain sorted in ascending order based on the start date of meetings.
+        
+    1. Test case: `meeting edit`<br>
+       Expected: No meeting is edited. Error details shown in the status message.
+       
+    1. Other incorrect edit commands to try: `meeting edit m/Product demo`, `meeting edit x du/120` (where x is larger than the list size)<br>
+       Expected: Similar to previous. 
+
+### Filtering meetings
+
+1. Filtering for meetings with a specific contact while all meetings are currently being shown.
+    
+    1. Prerequisites: Contact list is not empty.
+    
+    1. Test case: `meeting list c/1`<br>
+       Expected: Meeting list shows only all upcoming meetings with the specified contact at index 1.
+       
+    1. Test case: `meeting list c/1 a/`<br>
+       Expected: Meeting list shows only all meetings (including past meetings) with the specified contact at index 1.
+       
+    1. Test case: `meeting list`<br>
+       Expected: Meeting list shows only all upcoming meetings regardless of contact.
+    
+    1. Test case: `meeting list c/x` (where x is larger than the contact list size)<br>
+       Expected: No change to meeting list. Error details shown in the status message.
+       
 ### Adding a reminder
 
 1. Adding a reminder while all persons are being shown
@@ -1541,7 +1597,7 @@ testers are expected to do more *exploratory* testing.
       should remain sorted in ascending order based on the scheduled date.
 
    1. Test case: `reminder add`<br>
-      Expected: No meeting is reminder. Error details shown in the status message. Status bar remains the same.
+      Expected: No reminder is added. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `reminder add c/-1 m/Follow up with Bob d/2020-10-30 12:00`, `reminder
     add c/1 m/ d/2020-10-30 12:00`, `reminder add c/1 m/Follow up with Bob d/30/10/2020 12pm`<br>
@@ -1557,8 +1613,26 @@ testers are expected to do more *exploratory* testing.
       Expected: First reminder is deleted from the list. Details of the deleted reminder shown in the status message.
 
    1. Test case: `reminder delete 0`<br>
-      Expected: No reminder is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No reminder is deleted. Error details shown in the status message. 
 
    1. Other incorrect delete commands to try: `reminder delete`, `reminder delete x`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
+      
+### Editing a reminder
+
+1. Editing a reminder while all reminder are being shown.
+
+    1. Prerequisites: List all reminders using the `reminder list` command. Multiple reminders in the list.
+    
+    1. Test case: `reminder edit 1 m/Call Bob`<br>
+       Expected: First reminder's message is set to "Call Bob". 
+       
+    1. Test case: `reminder edit 1 d/2020-12-12 12:00`<br>
+       Expected: First reminder's scheduled date is set to 12 December 2020, 12pm. The reminder list should remain sorted in ascending order based on the scheduled date of reminders.
+        
+    1. Test case: `reminder edit`<br>
+       Expected: No reminder is edited. Error details shown in the status message.
+       
+    1. Other incorrect edit commands to try: `reminder edit m/Call Bob`, `reminder edit x m/Call Bob` (where x is larger than the list size)<br>
+       Expected: Similar to previous. 

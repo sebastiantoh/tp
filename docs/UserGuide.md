@@ -855,8 +855,7 @@ Shows a list of all meetings. By default, the list only shows upcoming meetings.
 | --------------- | ------------------------------------------------ | ------------------------------------- |
 | `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, … |
 
-* When a contact index is specified, the list will only show meetings associated with the contact at the specified
- contact index.
+* When a contact index is specified, the list will only show meetings associated with the specified contact.
 * You can show all meetings, including past meetings, by including `a/`.
 
 **Example**:
@@ -912,8 +911,8 @@ To prevent the situation in which you unknowingly scheduled conflicting meetings
 
 **Example**:
 
-Let's say that you successfully secured a lunch meeting with Alex Yeoh that is scheduled for 3 December 2020 12pm
-and lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
+Let's say that you successfully secured a lunch meeting with Alex Yeoh that is scheduled for 3 December 2020, 12pm,
+which lasts 90 minutes. Here's how you can add this new meeting into StonksBook:
  
  1. Type `contact find alex` in the **Command Box** and press <kbd>Enter</kbd>. 
      - This is to identify the contact index corresponding to Alex Yeoh and can be skipped if you already know the
@@ -1006,7 +1005,7 @@ Similar to when adding a meeting, StonksBook will not allow you to edit a meetin
 
 **Example**:
 
-Let's say that you have just received an email from Bernice Yu who wishes to reschedule her lunch meeting with you to 15
+Let's say that you have just received an email from Charlotte Oliveiro who wishes to bring forward the product demo to 15
  December 2020, 12pm. Here's how you can make this change in StonksBook:
  
 1. Type `meeting list` in the **Command Box** and press <kbd>Enter</kbd>. 
@@ -1244,21 +1243,24 @@ StonksBook allows you to archive contacts who are no longer active so that you c
 Adds the specified contact to the archive.
 
 <div markdown="block" class="alert alert-info">
-StonksBook will not archive a contact if it is already archived!
+:information_source: StonksBook will not archive a contact if it is already archived!
 In addition, archiving a contact will not remove the sales, reminders and meetings linked to this contact.
 </div>
 
 **Format**: `archive add INDEX`
 
-* Adds the contact at the specified `INDEX` to the archive. The sales, reminders and meetings linked to this contact will not be removed.
-* Can only be used when the contacts list is displayed.
-* The index must be a positive integer 1, 2, 3, …
+| Parameter       | What it is                                        | Requirements                                                      |
+| --------------- | ------------------------------------------------- | ----------------------------------------------------------------- |
+| INDEX           | Index number shown on the displayed contact list  | Must be a positive integer 1, 2, 3, ...                           |
+
+* Adds the contact at the specified `INDEX` to the archive.
+* The sales, reminders and meetings linked to this contact will not be removed.
 
 **Example**:
 
 Suppose you want to archive your contact Alex Yeoh, who is no longer doing business with you. Simply follow the steps below:
 
-1. Identify the index of the contact entry in the contact list. Here Alex Yeoh is the first contact in the list. Alternatively you can use `contact find` to find the contact.
+1. Identify the index of the contact entry in the **Contact List**. Here Alex Yeoh is the first contact in the list. Alternatively you can use `contact find` to find the contact.
 
    <img src="images/archive-add/archive-add-prelude.png" alt=" Identify contact index " width="900px">
 
@@ -1276,7 +1278,7 @@ Shows the list of your archived contacts.
 
 **Format**: `archive list`
 
-* When entered, if the contacts list is displayed it will be replaced with the archived contacts list.
+* When entered, if the contact list is displayed it will be replaced with the archived contact list.
 * You can edit and delete contacts in the archive using `contact edit` and `contact delete` when the archived contacts list is displayed.
 
 **Example**:
@@ -1288,31 +1290,41 @@ To see all your archived contacts, type `archive list` into the **Command Box** 
 Removes the specified contact from the archive. The specified contact will appear on your contact list again.
 
 <div markdown="block" class="alert alert-info">
-StonksBook will not remove a contact from the archive if it is not in the archive!
+:information_source: StonksBook will not remove a contact from the archive if it is not in the archive!
 </div>
 
 **Format**: `archive remove INDEX`
 
+
+| Parameter       | What it is                                        | Requirements                                                      |
+| --------------- | ------------------------------------------------- | ----------------------------------------------------------------- |
+| INDEX           | Index number shown on the displayed contact list  | Must be a positive integer 1, 2, 3, ...                           |
+
 * Removes the contact at the specified `INDEX` from the archive.
 * Does not delete the contact from StonksBook. To delete the contact use `contact delete`.
-* The index must be a positive integer 1, 2, 3, …
 
 **Example**:
 
 Let's say your archived contact Alex Yeoh wants to start buying electronics from you again, and so you would like to bring his contact entry back to the contacts list. Simply follow the steps below:
 
-1. Make sure you are on the archived contacts list. If not, simply use the `archive list` command to get all your archived contacts.
+1. Make sure you are on the archived contact list. If not, simply use the `archive list` command to get all your archived contacts.
 
-   <img src="images/archive-remove/archive-remove-prelude.png" alt=" List archived contacts " width="900px">
+   <figure>
+       <img src="images/archive-remove/archive-remove-prelude.png" alt=" List archived contacts " width="900px">
+   </figure>
 
 2. Identify the index of your contact in the list. In this case, Alex is the first entry in your list.
 3. Type `archive remove 1` in the **Command Box** and press <kbd>Enter</kbd>.
 
-   <img src="images/archive-remove/archive-remove.png" alt=" Enter 'archive remove 1' " width="900px">
+   <figure>
+       <img src="images/archive-remove/archive-remove.png" alt=" Enter 'archive remove 1' " width="900px">
+   </figure>
 
 4. The contact entry will disappear from your archive, and the **Result Box** will inform you that the command is successful.
 
-   <img src="images/archive-remove/archive-remove-result.png" alt=" Result of 'archive remove 1' " width="900px">
+   <figure>
+       <img src="images/archive-remove/archive-remove-result.png" alt=" Result of 'archive remove 1' " width="900px">
+   </figure>
 
 ### 5.7. Miscellaneous
 
@@ -1350,15 +1362,23 @@ You will get a suggestion of `contact add` as shown.
 Pressing the up and down keys retrieves the previous and next input respectively, if there is one.
 
 #### 5.7.3. Switching between light and dark themes: `lightmode`/`darkmode` \[Leong Jin Ming\]
-Changes the theme of the GUI to light and dark theme respectively. The default theme for StonksBook is dark, and the light theme looks like the following:
+Changes the theme of the GUI to light and dark theme respectively. The default theme for StonksBook is the dark theme.
 
 **Format**: `lightmode`/`darkmode`
 
-<figure>  
-    <img src="images/lightTheme.png" alt="Light theme" width="900px">
-</figure>
+**Example**: Let's say you want to apply light theme to StonksBook so that you can see the interface better in the day. Simply follow the steps below:
 
+1. Type `lightmode` in the **Command Box** and press <kbd>Enter</kbd>.
 
+   <figure>
+       <img src="images/lightmode/lightmode.png" alt=" Enter 'lightmode' " width="900px">
+   </figure>
+
+2. Your StonksBook is now in light theme. The **Result Box** will inform you that the theme application is successful.
+
+   <figure>
+       <img src="images/lightmode/lightmode-result.png" alt=" Result of 'lightmode' " width="900px">
+   </figure>
 
 #### 5.7.4. Viewing help: `help` \[Aaron Seah\]
 Lists the command word, command description and example usage for each available command as well as the link to the User Guide.
@@ -1480,7 +1500,3 @@ This section provides a summary of all the commands available in StonksBook.
 | `help`      | Shows program usage instructions            | -                       |
 | `lightmode` | Changes the theme of the GUI to light theme | -                       |
 | `purge`     | Clears all data                             | -                       |
-
---------------------------------------------------------------------------------------------------------------------
-
-## 8. Appendix A: Glossary
