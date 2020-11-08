@@ -1526,7 +1526,7 @@ testers are expected to do more *exploratory* testing.
       should remain sorted in ascending order based on the scheduled date.
 
    1. Test case: `meeting add`<br>
-      Expected: No meeting is added. Error details shown in the status message. Status bar remains the same.
+      Expected: No meeting is added. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `meeting add c/-1 m/Lunch with Bob d/2020-10-30 12:00 du/60`, `meeting
     add c/1 m/ d/2020-10-30 12:00 du/60`, `meeting add c/1 m/Lunch with Bob d/30/10/2020 12pm du/60`, `meeting add c
@@ -1543,12 +1543,48 @@ testers are expected to do more *exploratory* testing.
       Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message.
 
    1. Test case: `meeting delete 0`<br>
-      Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No meeting is deleted. Error details shown in the status message. 
 
    1. Other incorrect delete commands to try: `meeting delete`, `meeting delete x`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
 
+### Editing a meeting
+
+1. Editing a meeting while all meetings are being shown.
+
+    1. Prerequisites: List all meetings using the `meeting list` command. Multiple meetings in the list.
+    
+    1. Test case: `meeting edit 1 du/90`<br>
+       Expected: First meeting's duration is set to 90 minutes. 
+       
+    1. Test case: `meeting edit 1 d/2020-12-12 12:00`<br>
+       Expected: First meeting's start date is set to 12 December 2020, 12pm. The meeting list should remain sorted in ascending order based on the start date of meetings.
+        
+    1, Test case: `meeting edit`<br>
+       Expected: No meeting is edited. Error details shown in the status message.
+       
+    1. Other incorrect edit commands to try: `meeting edit m/Product demo`, `meeting edit x du/120` (where x is larger than the list size)<br>
+       Expected: Similar to previous. 
+
+### Filtering meetings
+
+1. Filtering for meetings with a specific contact while all meetings are currently being shown.
+    
+    1. Prerequisites: Contact list is not empty.
+    
+    1. Test case: `meeting list c/1`<br>
+       Expected: Meeting list shows only all upcoming meetings with the specified contact at index 1.
+       
+    1. Test case: `meeting list c/1 a/`<br>
+       Expected: Meeting list shows only all meetings (including past meetings) with the specified contact at index 1.
+       
+    1. Test case: `meeting list`<br>
+       Expected: Meeting list shows only all upcoming meetings regardless of contact.
+    
+    1. Test case: `meeting list c/x` (where x is larger than the contact list size)<br>
+       Expected: No change to meeting list. Error details shown in the status message.
+       
 ### Adding a reminder
 
 1. Adding a reminder while all persons are being shown
@@ -1561,7 +1597,7 @@ testers are expected to do more *exploratory* testing.
       should remain sorted in ascending order based on the scheduled date.
 
    1. Test case: `reminder add`<br>
-      Expected: No meeting is reminder. Error details shown in the status message. Status bar remains the same.
+      Expected: No reminder is added. Error details shown in the status message.
 
    1. Other incorrect delete commands to try: `reminder add c/-1 m/Follow up with Bob d/2020-10-30 12:00`, `reminder
     add c/1 m/ d/2020-10-30 12:00`, `reminder add c/1 m/Follow up with Bob d/30/10/2020 12pm`<br>
@@ -1577,8 +1613,26 @@ testers are expected to do more *exploratory* testing.
       Expected: First reminder is deleted from the list. Details of the deleted reminder shown in the status message.
 
    1. Test case: `reminder delete 0`<br>
-      Expected: No reminder is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No reminder is deleted. Error details shown in the status message. 
 
    1. Other incorrect delete commands to try: `reminder delete`, `reminder delete x`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
+      
+### Editing a reminder
+
+1. Editing a reminder while all reminder are being shown.
+
+    1. Prerequisites: List all reminders using the `reminder list` command. Multiple reminders in the list.
+    
+    1. Test case: `reminder edit 1 m/Call Bob`<br>
+       Expected: First reminder's message is set to "Call Bob". 
+       
+    1. Test case: `reminder edit 1 d/2020-12-12 12:00`<br>
+       Expected: First reminder's scheduled date is set to 12 December 2020, 12pm. The reminder list should remain sorted in ascending order based on the scheduled date of reminders.
+        
+    1, Test case: `reminder edit`<br>
+       Expected: No reminder is edited. Error details shown in the status message.
+       
+    1. Other incorrect edit commands to try: `reminder edit m/Call Bob`, `reminder edit x m/Call Bob` (where x is larger than the list size)<br>
+       Expected: Similar to previous. 
