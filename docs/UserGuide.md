@@ -179,7 +179,7 @@ Adds a contact to StonksBook.
 
 * Duplicate contacts cannot be added. A contact with the same name and same phone number/email address will be flagged as a duplicate.
 
-**Examples**:
+**Example**:
 
 Let's say that you would like to add Betsy Crowe, who is a friend of yours, to your contact list. Here are the steps to follow:
 
@@ -207,7 +207,7 @@ Deletes the specified contact from StonksBook. All associated sales, reminders a
 
 * Deletes the contact at the specified `INDEX`.
 
-**Examples**:
+**Example**:
 
 Let's say that Betsy Crowe no longer does business with you and you would like to remove him from your contact list.
 Here are the steps to follow:
@@ -220,7 +220,7 @@ Here are the steps to follow:
         <img src="images/contact-delete/contact-find.png" alt="enter 'contact find Betsy Crowe'" width="900px">
     </figure>
 
-2. The person, Betsy Crowe, will now appear at the top of the **Contact List**.
+2. The contact, Betsy Crowe, will now appear at the top of the **Contact List**.
 
     <figure>
         <img src="images/contact-delete/contact-find-result.png" alt="result for 'contact find Betsy Crowe'" width="900px">
@@ -232,7 +232,7 @@ Here are the steps to follow:
         <img src="images/contact-delete/contact-delete.png" alt="enter 'contact delete 1'" width="900px">
     </figure>
 
-4. The **Result Box** will display a message noting that the command was successful, and the person, Betsy Crowe, is now deleted.
+4. The **Result Box** will display a message noting that the command was successful, and the contact, Betsy Crowe, is now deleted.
 
     <figure>
         <img src="images/contact-delete/contact-delete-result.png" alt="result for 'contact delete'" width="900px">
@@ -249,6 +249,8 @@ Here are the steps to follow:
 Edits an existing contact in StonksBook.
 
 **Format**: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]`
+
+<div style="page-break-after: always;"></div>
 
 | Parameter      | What it is                                       | Requirements                                                                                                                                                                                                                                                                                                                                       |
 | -------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -267,7 +269,7 @@ Edits an existing contact in StonksBook.
 * When editing a contact's remark, the previous remark will also be removed/overwritten.
 * You can remove all the contact’s tags/remark by typing `t/` or  `r/` respectively without specifying any tags/remark after it.
 
-**Examples**:
+**Example**:
 
 Let's say that Bernice Yu moved to a new address: 36 College Avenue East and you would like to update her address. Here are the steps to follow:
 
@@ -277,7 +279,7 @@ Let's say that Bernice Yu moved to a new address: 36 College Avenue East and you
         <img src="images/contact-edit/contact-find.png" alt="enter 'contact find Bernice Yu'" width="900px">
     </figure>
 
-2. The person, Bernice Yu, will now appear at the top of the **Contact List**.
+2. The contact, Bernice Yu, will now appear at the top of the **Contact List**.
 
     <figure>
         <img src="images/contact-edit/contact-find-result.png" alt="result for 'contact find Bernice Yu'" width="900px">
@@ -300,6 +302,8 @@ Let's say that Bernice Yu moved to a new address: 36 College Avenue East and you
 Finds contacts whose name exactly matches or is similar to any of the given keywords.
 
 **Format**: `contact find KEYWORD [MORE_KEYWORDS]...`
+
+<div style="page-break-after: always;"></div>
 
 | Parameter | What it is                           | Requirements       |
 | --------- | ------------------------------------ | ------------------ |
@@ -346,6 +350,8 @@ Sorts contacts based on the contact's name or email address.
 
 **Format**: `contact sort KEYWORD [ORDER]`
 
+<div style="page-break-after: always;"></div>
+
 | Parameter | What it is                   | Requirements                |
 | --------- | ---------------------------- | --------------------------- |
 | `KEYWORD` | Keyword for sorting contacts | Must be either `n/` or `e/` |
@@ -384,7 +390,7 @@ Displays a list of all tags created so far.
 
 **Format**: `tag list`
 
-**Examples**:
+**Example**:
 
 Let's say that you want to see all the tags you have created so far. Here are the steps to follow:
 
@@ -417,7 +423,7 @@ StonksBook will not allow you to add a new contact tag (or sales tag) if there a
 | --------- | ------------------- | ----------------------------------------------------------------- |
 | `TAG`     | Name of the new tag | Must contain only alphanumeric characters and should not be blank |
 
-**Examples**:
+**Example**:
 
 Let's say that you want to add a new sales tag called electronics. Here are the steps to follow:
 
@@ -445,7 +451,7 @@ Deletes the specified tag from the tag list. The tag information in all entries 
 
 * All contacts that have been previously associated with this tag will be updated so that their associations with this tag will be cleared.
 
-**Examples**:
+**Example**:
 
 Let's say that you think one contact tag (colleagues) you created before is no longer relevant and you would like to get rid of it. Here are the steps to follow:
 
@@ -486,7 +492,7 @@ All entries (contacts or sales) previously associated with this tag will be upda
 * Edits the name of the contact tag or sales tag at the specified `INDEX` to be the specified `NAME`.
 * All contacts or sales that have been previously associated with this tag will be updated automatically to be associated with the updated tag.
 
-**Examples**:
+**Example**:
 
 Let's say that you decides to change the tag colleagues to teammates instead. Here are the steps to follow:
 
@@ -523,7 +529,7 @@ Displays all entries (contacts or sales) that are associated with the specified 
 * An additional `cl/` (stands for 'client') field can be provided when performing searching on sales tags. If provided, instead of displaying sales associated to this tag, StonksBook will display the clients who have purchased items with this tag.
 * If you are searching for contact tags using `ct/`, adding the `cl/` tag will have no effect on the search results.
 
-**Examples**:
+**Example**:
 
 Let's say that you would like to find out who are the contacts tagged with friends. Here are the steps to follow:
 
@@ -581,7 +587,7 @@ Shows a list of sales.
 | --------------- | ------------------------------------------------ | --------------------------------------------- |
 | `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …         |
 | `MONTH`         | Month                                            | Must be an integer between 1 and 12 inclusive |
-| `YEAR`          | Year                                             | Must be an integer greater than 0             |
+| `YEAR`          | Year                                             | Must be a positive integer 1, 2, 3, …         |
 
 * `c/CONTACT_INDEX` and `m/MONTH y/YEAR` cannot be present at the same time.
 
@@ -690,7 +696,7 @@ Deletes a specified sales item from StonksBook.
 
 * Multiple `SALE_INDEX` can be specified, meaning that you can delete multiple sales with the same command.
 
-**Examples:**
+**Example:**
 
 Let's say that you have just received the unfortunate news from Bernice Yu who no longer wishes to buy 300 black pens from you.
 Here's how you can delete this sale in StonksBook:
@@ -814,6 +820,8 @@ To see the new updated bar graph, close the current external window and run the 
 Views the monthly sale count for the current month and previous months.
 
 **Format**: `sale stats NUMBER_OF_MONTHS`
+
+<div style="page-break-after: always;"></div>
 
 | Parameter          | What it is                                                        | Requirements                                                             |
 | ------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------ |
@@ -1167,13 +1175,13 @@ Deletes the specified reminder from StonksBook.
 | --------- | ------------------------------------------------- | ------------------------------------- |
 | `INDEX`   | Index number shown in the displayed reminder list | Must be a positive integer 1, 2, 3, … |
 
-**Examples**:
+**Example**:
 
 Let's say that a reminder in StonksBook is no longer applicable and you wish to delete it. Here's you can delete
  a reminder from StonksBook:
 
  1. Type `reminder list` in the **Command Box** and press <kbd>Enter</kbd>. 
-     - This is to display all all reminders in the **Reminder List**, which is necessary to identify the index of
+     - This is to display all reminders in the **Reminder List**, which is necessary to identify the index of
       the reminder that is to be deleted. This step can be skipped if you already know the index. Let
        us assume that the reminder is at the third index.
 
@@ -1211,7 +1219,7 @@ Edits an existing reminder in StonksBook.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-**Examples**:
+**Example**:
 
 Let's say that Alex Yeoh would like to hear from you sooner for the follow up and you just sent the follow up email. Here are the steps to follow:
 
@@ -1328,7 +1336,7 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 
 ### 5.7. Miscellaneous
 
-#### 5.7.1. Error resolution suggestion \[Aaron Seah\]
+#### 5.7.1. Suggesting for error resolution \[Aaron Seah\]
 Gives a suggestion of the most similar command (if exists) to an unknown user input.
 
 <div markdown="block" class="alert alert-info">
