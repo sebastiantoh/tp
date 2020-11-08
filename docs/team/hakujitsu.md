@@ -8,8 +8,6 @@ title: Kwek Min Yih's Project Portfolio Page
  StonksBook is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) 
  while still having the benefits of a Graphical User Interface (GUI). 
  If you can type fast, StonksBook can get your contact management tasks done faster than traditional GUI apps.
-
- * **New Feature**: Sales Feature
  
  ## Summary of Contributions
 
@@ -29,11 +27,11 @@ title: Kwek Min Yih's Project Portfolio Page
      * A GUI that contains the list of sales.
  * Justification: This feature is crucial in StonksBook as creating and managing sales is a core functionality of the application, 
  and forms the foundation of the sales analytics features.
- * Highlights: 
- This enhancement was a very large and challenging feature to implement.
- It affected commands to be added in future, namely the command to view sales statistics. 
- It required an in-depth analysis of design alternatives, as the relationship between Person and Sale needed to be considered carefully.
- A summary of the analysis can be viewed here: "".
+ * Highlights: This enhancement was a very large and challenging feature to implement.
+     * The amount of work was greater than implementing the Person feature in the AddressBook, as it not only consisted of 
+     functionalities belonging to Person but also additional features, such as the sale breakdown function.
+     * It affected commands to be added in future, namely the command to view sales statistics. 
+     * It required an in-depth analysis of design alternatives, as the relationship between Person and Sale needed to be considered carefully.
  
  New Feature: Ad Hoc Graphical User Interface (GUI)
  * What it does: The Ad Hoc GUI can display either the Sales Panel or Tag Panel, 
@@ -41,8 +39,7 @@ title: Kwek Min Yih's Project Portfolio Page
  For example, upon executing a Sale command, the Sale Panel will be displayed, and vice versa with the Tag Panel.
  * Justification: This feature reduces the number of panels needed to display the different models.
  It also allows for relevant information to be shown after every command execution, improving the general user experience.
- * Highlights: This feature required changes to the existing CommandResult class, 
- and affected existing Command classes for Sale and Tag.
+ * Highlights: This feature required changes to the existing CommandResult class, and affected existing Command classes for Sale and Tag.
  
  Enhancement: Addition of Remark field to Person class
  * What it does: allows the user to add miscellaneous remarks to contacts in the address book. 
@@ -50,17 +47,17 @@ title: Kwek Min Yih's Project Portfolio Page
  For example, they can use it to take note of the client's needs, wants and preferences.
  * Highlights: This was a relatively simple feature to implement.
  
- 
-
- 
  ### Contributions to documentation: Which sections did you contribute to the UG?
+ 
+ 
  ### Contributions to the DG: Which sections did you contribute to the DG? Which UML diagrams did you add/updated?
  ### Contributions to team-based tasks :
  
  * I handled release management for an informal milestone set by the team, v1.3a, intended to be a checkpoint within v1.3.
  * I handled the JAR release in Week 10.
  * I maintained the issue tracker by removing duplicate issues after the conclusion of the mock PE. 
- * I uploaded the labelled UI diagram in the User Guide.
+ * I wrote an explanation of the user interface in the User Guide.
+ * I added the parameter tables for Person related commands.
  
  ### Review/mentoring contributions: Links to PRs reviewed, instances of helping team members in other ways
   Here is a list of PRs reviewed by me with non-trivial comments: 
@@ -72,6 +69,7 @@ title: Kwek Min Yih's Project Portfolio Page
   [#162](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/162),
  
  ### Contributions beyond the project team:
+ 
  ### Evidence of helping others e.g. responses you posted in our forum, bugs you reported in other team's products,
  ### Evidence of technical leadership e.g. sharing useful information in the forum
 
