@@ -4,15 +4,14 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant "<<class>>\nMassSaleCommandUtil" as MassSaleCommandUtil LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "editedPerson:Person" as Person MODEL_COLOR
 participant "newSale:Sale" as Sale MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
-
 
 LogicManager -> AddCommand : execute(model)
 activate AddCommand
@@ -23,38 +22,66 @@ activate Model
 Model --> AddCommand
 deactivate Model
 
-create Person
-AddCommand --> Person
-activate Person
+AddCommand --> MassSaleCommandUtil : arePersonIndexesValid(lastShownList, indexList)
+activate MassSaleCommandUtil
 
-Person --> AddCommand :editedPerson
-deactivate Person
+MassSaleCommandUtil --> AddCommand
+deactivate MassSaleCommandUtil
 
-create Sale
-AddCommand --> Sale
-activate Sale
-
-Sale --> AddCommand : sale
-deactivate Sale
-
-AddCommand -> Model : hasSale(newSale)
+AddCommand -> Model : saleTagsExist(tagList)
 activate Model
 
 Model --> AddCommand
 deactivate Model
 
-AddCommand -> Model : addSale(newSale)
-activate Model
+loop until all specified Sales are processed
+    create Sale
+    AddCommand --> Sale
+    activate Sale
 
-Model --> AddCommand
-deactivate Model
+    Sale --> AddCommand : sale
+    deactivate Sale
 
+    AddCommand -> Model : hasSale(newSale)
+    activate Model
 
-AddCommand -> Model : setPerson(editedPerson)
-activate Model
+    Model --> AddCommand
+    deactivate Model
 
-Model --> AddCommand
-deactivate Model
+    alt sale is not a duplicate
+        AddCommand -> Model : addSale(newSale)
+        activate Model
+
+        Model --> AddCommand
+        deactivate Model
+    end
+end
+
+alt there are duplicate sales
+    AddCommand -> AddCommand : generateDuplicateSaleMessage(sales)
+    activate AddCommand
+
+    AddCommand -> MassSaleCommandUtil : listAllSales(sales)
+    activate MassSaleCommandUtil
+
+    MassSaleCommandUtil --> AddCommand
+    deactivate MassSaleCommandUtil
+
+    AddCommand --> AddCommand
+    deactivate AddCommand
+end
+
+AddCommand -> AddCommand : generateSuccessMessage(sales)
+activate AddCommand
+
+AddCommand -> MassSaleCommandUtil : listAllSales(sales)
+activate MassSaleCommandUtil
+
+MassSaleCommandUtil --> AddCommand
+deactivate MassSaleCommandUtil
+
+AddCommand --> AddCommand
+deactivate AddCommand
 
 create CommandResult
 AddCommand -> CommandResult

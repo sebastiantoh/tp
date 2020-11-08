@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam ClassAttributeFontColor #000000
+
+show members
+hide empty members
+
+title After "meeting delete command meeting for m2 that starts on December 2020"
+
+    class "<u>m1:MonthAndYear" {
+        month: August
+        year: 2020
+    }
+
+
+
+    class "<u>m1:meeting" {
+
+    }
+
+
+    class "<u>m3:meeting" {
+
+    }
+
+    "__:UniqueMeetingList__" -- "__:MonthlyListMap__"
+    "__:MonthlyListMap__" -- "<u>m1:MonthAndYear"
+
+    "<u>m1:MonthAndYear" -- "__i1:itemList__"
+    "__i1:itemList__" -- "<u>m1:meeting"
+    "__i1:itemList__" -- "<u>m3:meeting"
+
+@enduml
