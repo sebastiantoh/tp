@@ -45,14 +45,14 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components:
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -541,7 +541,7 @@ We enforce a composition relationship between `Reminder` and its attribute as we
      reminders in the user interface.
     * Will have to be more careful in implementation of reminder commands to allow for an optional field.
 
-A similar consideration was made when implementing [`Meeting`s](#aspect-whether-it-should-be-necessary-to-enforce-a-message-field-in-a-meeting-object).
+A similar consideration was made when implementing [`Meeting`s](#4251-aspect-whether-it-should-be-necessary-to-enforce-a-message-field-in-a-meeting-object).
 This further strengthened our choice to go for Alternative 1 given that the cost of having to validate the inputs
  would be spread over multiple features.
 
@@ -562,8 +562,7 @@ This further strengthened our choice to go for Alternative 1 given that the cost
    * Cons:
      * Parsing and deserializing the data may pose some difficulties.
 
-A similar consideration was made when implementing [`Meeting`s](#aspect-how-to-serialize-the-start-date-and-duration
--of-a-meeting).
+A similar consideration was made when implementing [`Meeting`s](#4253-aspect-how-to-serialize-the-start-date-and-duration-of-a-meeting).
 Alternative 1 was chosen so as to have a consistent and standardised way of handling date and time handled within our code base.
 
 ### 4.4. Sale feature [Kwek Min Yih]
