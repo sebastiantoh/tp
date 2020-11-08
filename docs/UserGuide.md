@@ -587,7 +587,7 @@ Shows a list of sales.
 | --------------- | ------------------------------------------------ | --------------------------------------------- |
 | `CONTACT_INDEX` | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …         |
 | `MONTH`         | Month                                            | Must be an integer between 1 and 12 inclusive |
-| `YEAR`          | Year                                             | Must be an integer greater than 0             |
+| `YEAR`          | Year                                             | Must be a positive integer 1, 2, 3, …         |
 
 * `c/CONTACT_INDEX` and `m/MONTH y/YEAR` cannot be present at the same time.
 
@@ -1336,7 +1336,7 @@ Let's say your archived contact Alex Yeoh wants to start buying electronics from
 
 ### 5.7. Miscellaneous
 
-#### 5.7.1. Error resolution suggestion \[Aaron Seah\]
+#### 5.7.1. Suggesting for error resolution \[Aaron Seah\]
 Gives a suggestion of the most similar command (if exists) to an unknown user input.
 
 <div markdown="block" class="alert alert-info">
