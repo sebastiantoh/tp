@@ -79,4 +79,4 @@ title: Kwek Min Yih's Project Portfolio Page
   [#2](https://github.com/hakujitsu/ped/issues/2), [#3](https://github.com/hakujitsu/ped/issues/3), 
   [#4](https://github.com/hakujitsu/ped/issues/4), [#5](https://github.com/hakujitsu/ped/issues/5), 
   [#6](https://github.com/hakujitsu/ped/issues/6), [#7](https://github.com/hakujitsu/ped/issues/7),
-  [#4](https://github.com/hakujitsu/ped/issues/8)
+  [#8](https://github.com/hakujitsu/ped/issues/8)
