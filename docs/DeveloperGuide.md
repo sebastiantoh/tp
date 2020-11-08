@@ -1517,13 +1517,13 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
   Use case ends.
 
-* 3a. No sale indexes are provided.
+* 3a. No sale indices are provided.
 
     * 3a1. StonksBook shows an error message. No sale is deleted.
 
       Use case resumes at step 2.
 
-* 3b. Any of the given sale indexes are invalid.
+* 3b. Any of the given sale indices are invalid.
 
     * 3b1. StonksBook shows an error message. No sales are deleted.
 
@@ -1593,13 +1593,13 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
   Use case ends.
 
-* 3a. No sale indexes are provided.
+* 3a. No sale indices are provided.
 
     * 3a1. StonksBook shows an error message. No sales are edited.
 
       Use case resumes at step 2.
 
-* 3b. Any of the given sale indexes are invalid.
+* 3b. Any of the given sale indices are invalid.
 
     * 3b1. StonksBook shows an error message. No sales are edited.
 
