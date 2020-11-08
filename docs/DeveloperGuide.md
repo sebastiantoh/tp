@@ -1561,7 +1561,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `meeting edit 1 d/2020-12-12 12:00`<br>
        Expected: First meeting's start date is set to 12 December 2020, 12pm. The meeting list should remain sorted in ascending order based on the start date of meetings.
         
-    1, Test case: `meeting edit`<br>
+    1. Test case: `meeting edit`<br>
        Expected: No meeting is edited. Error details shown in the status message.
        
     1. Other incorrect edit commands to try: `meeting edit m/Product demo`, `meeting edit x du/120` (where x is larger than the list size)<br>
@@ -1631,7 +1631,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `reminder edit 1 d/2020-12-12 12:00`<br>
        Expected: First reminder's scheduled date is set to 12 December 2020, 12pm. The reminder list should remain sorted in ascending order based on the scheduled date of reminders.
         
-    1, Test case: `reminder edit`<br>
+    1. Test case: `reminder edit`<br>
        Expected: No reminder is edited. Error details shown in the status message.
        
     1. Other incorrect edit commands to try: `reminder edit m/Call Bob`, `reminder edit x m/Call Bob` (where x is larger than the list size)<br>
