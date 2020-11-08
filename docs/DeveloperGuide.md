@@ -448,7 +448,8 @@ These are the steps that will be taken when parsing a sale-related user command:
 
 Given below is a sequence diagram for interactions inside the `Logic` component for the `execute(sale add <args>)` API call.
 - Note that the command is truncated for brevity and `<args>` is used as a placeholder to encapsulate the remaining arguments supplied by the user.
-- For example, if the full command was `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`, then `<args>` is equivalent to `c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`.
+- For example, if the full command was `sale add c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`, 
+then `<args>` is equivalent to `c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/stationery`.
 
 ![SaleAddSequenceDiagram](images/SaleAddSequenceDiagram.png)
 
@@ -457,10 +458,12 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 After command has been parsed into an `AddCommand`, it is executed with `model` passed in as a parameter.
 
 First, relevant methods in `model` are called to retrieve related objects or check for the existence of the sale.
-In this case, `getSortedPersonList()` is called to retrieve the `id` of the buyer and `hasSale(newSale)` is called to ensure that the `sale` to be added does not already exist.
+In this case, `getSortedPersonList()` is called to retrieve the `id` of the buyer and 
+`hasSale(newSale)` is called to ensure that the `sale` to be added does not already exist.
 
 Second, objects to be added or edited are created.
-For `AddCommand`, the new `Sale` object to be added is created, and a new `editedPerson` object is created containing an updated `totalSalesAmount` variable.
+For `AddCommand`, the new `Sale` object to be added is created, 
+and a new `editedPerson` object is created containing an updated `totalSalesAmount` variable.
 
 Next, relevant `model` methods are called to edit the lists of `Sale` and `Person` objects,
 with `setPerson()` and `addSale()` being used to replace an existing `Person` object and add a new `Sale` object respectively.
@@ -474,10 +477,15 @@ Lastly, a `CommandResult` object containing the message to be displayed to the u
 
 The below activity diagram shows the overall process of execution of `sale add <args>`.
 
-In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
+In order to ensure data cleanliness and that the inputs by the users are valid, exceptions are thrown at various stages if:
 * Incorrect command format is used (e.g. missing/incorrect prefixes)
 * Invalid index/values provided (e.g. alphabetical characters provided for numerical fields such as `Quantity`)
-* Sale object provided already exists
+
+In the occasion that the Sale object provided already exists, an exception is not thrown. 
+This is because the `sale add <args>` command has the ability to add sales to multiple contacts.
+Throwing an exception would halt the execution of the command, which may cause the other sales specified in the command to not be added.
+Instead, sales identified as duplicates are not added to StonksBook, stored in a list.
+This list of duplicate sales is printed to the user along with a corresponding error message.
 
 ![AddSaleActivityDiagram](images/AddSaleActivityDiagram.png)
 
@@ -488,8 +496,10 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 ![SaleClassDiagram](images/SaleClassDiagram.png)
 
 `Sale` objects are saved within a `UniqueSaleList` stored in `AddressBook`.
-There is a composition relationship between `Sale` and its attributes, as we want the attributes (e.g. `ItemName`, `UnitPrice`) to exist dependently on the `Sale` object it belongs to.
-The attributes are abstracted out into different classes, instead of being stored as values within Sale, to allow for greater input validation and attribute specific functionality.
+There is a composition relationship between `Sale` and its attributes, 
+as we want the attributes (e.g. `ItemName`, `UnitPrice`) to exist dependently on the `Sale` object it belongs to.
+The attributes are abstracted out into different classes, instead of being stored as values within Sale, 
+to allow for greater input validation and attribute specific functionality.
 
 #### Design Consideration:
 
