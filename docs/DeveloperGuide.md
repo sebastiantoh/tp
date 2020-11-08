@@ -242,7 +242,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 *Fig. 12 - The different outcomes of the program that can occur from the `tag add <args>` command*
 
-##### Data Retrieval
+##### Data retrieval
 
 The following sequence diagram shows how the retrieval of contacts (or sales) with tags work.
 
@@ -565,7 +565,7 @@ A similar consideration was made when implementing [`Meeting`s](#aspect-how-to-s
 -of-a-meeting).
 Alternative 1 was chosen so as to have a consistent and standardised way of handling date and time handled within our code base.
 
-### Sale Feature [Kwek Min Yih]
+### Sale feature [Kwek Min Yih]
 
 The Sales feature allows users to add and manage Sales made to contacts in StonksBook. Sales are ordered from most to least recently made.
 
@@ -748,7 +748,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 Alternative 1 was chosen to give more flexibility to the implementation and other design considerations (such as whether to archive the sales associated with the `Person`) and also due to time constraints.
 
-### Monthly Statistics Feature [Aaron Seah]
+### Monthly statistics feature [Aaron Seah]
 
 #### Implementation
 
@@ -760,7 +760,7 @@ This feature will be demonstrated in the context of `meeting stats`.
 
 `MonthlyListMap` has two sets of operations: Data Manipulation and Data Retrieval.
 
-##### Data Manipulation
+##### Data manipulation
 * `MonthlyListMap#addItem(Month month, Year year, T item)` — Adds item of type T to an item list based on the key of month and year.
 * `MonthlyListMap#removeItem(Month month, Year year, T item)` — Removes item of type T from an item list based on the key of month and year if the item exists.
 * `MonthlyListMap#clear()` — Removes all entries in the `MonthlyListMap`.
@@ -794,7 +794,7 @@ how `MonthlyListMap` will be kept up to date after meeting commands `meeting add
 
 *Fig. 35 - Object diagram after editing meeting `m3`*
 
-##### Data Retrieval
+##### Data retrieval
 * `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` — Gets the item counts for the given month and year and the previous (numberOfMonths - 1) months.
 * `MonthlyListMap#getPreviousMonthAndYear(Month month, Year year)` —  Gets the month and year for the month before the given month and year.
 
@@ -1618,7 +1618,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `reminder delete`, `reminder delete x`, `...` (where x is larger than the
     list size)<br>
       Expected: Similar to previous.
-      
+
 ### Editing a reminder
 
 1. Editing a reminder while all reminder are being shown.
@@ -1635,4 +1635,34 @@ testers are expected to do more *exploratory* testing.
        Expected: No reminder is edited. Error details shown in the status message.
        
     1. Other incorrect edit commands to try: `reminder edit m/Call Bob`, `reminder edit x m/Call Bob` (where x is larger than the list size)<br>
-       Expected: Similar to previous. 
+       Expected: Similar to previous.
+
+### Adding a contact to archive
+
+1. Adding a contact to archive when all contacts are listed
+
+   1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
+
+   1. Test case: `archive add 1`<br>
+      Expected: First contact is removed from the list (not deleted). Details of the archived contact shown in the status message.
+
+   1. Test case: `archive add 0`<br>
+      Expected: No contact is added to archive. Error details shown in the status message.
+
+   1. Other incorrect add commands to try: `archive add`, `archive add a`, `archive add x` (where x is an integer larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Removing a contact to archive
+
+1. Adding a contact to archive when all archived contacts are listed
+
+   1. Prerequisites: List all archived contacts using the `archive list` command. Multiple contacts in the list.
+
+   1. Test case: `archive remove 1`<br>
+      Expected: First contact is removed from the list (not deleted). Details of the unarchived contact shown in the status message.
+
+   1. Test case: `archive add 0`<br>
+      Expected: No contact is removed from archive. Error details shown in the status message.
+
+   1. Other incorrect add commands to try: `archive remove`, `archive remove a`, `archive remove x` (where x is an integer larger than the list size)<br>
+      Expected: Similar to previous.
