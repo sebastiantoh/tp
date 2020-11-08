@@ -1727,8 +1727,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -1744,15 +1742,108 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Listing tags
 
-### Saving data
+1. Listing contact tags and sales tags in StonksBook
 
-1. Dealing with missing/corrupted data files
+    1. Test case: Enter `tag list`<br>
+       Expected: If the GUI is not currently displaying tags at the bottom right, upon executing this command, the sales panel
+       will be replaced with the contact tag list and Sales Tag List. The contact tag list displays all tags for contacts, whereas
+       the Sales Tag List displays all tags related to sales.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: Enter `tag list random`<br>
+       Expected: StonksBook should ignore any additional fields following `tag list` and the outcome should be the same as simply
+       entering `tag list`.
 
-1. _{ more test cases …​ }_
+### Adding a tag
+
+1. Adding a tag when all tags are being shown
+
+    1. Prerequisites: List all tags using the `tag list` command. Existing contact tags include: `colleagues`, `friends`,
+       and existing sales tags include `music`, `stationery`.
+
+    1. Test case: Enter `tag add ct/family`<br>
+       Expected: A new contact tag with name `family` is created, the contact tag list should now display this tag.
+       The contact tag list should remain sorted in alphabetical order.
+       However, after the entry of the command again, an error message appears, stating that the contact tag `friends` already exists.
+
+    1. Test case: Enter `tag add st/electronics`<br>
+       Expected: A new sales tag with name `electronics` is created, the sales tag list should now display this tag.
+       The sales tag list should remain sorted in alphabetical order.
+       However, after the entry of the command again, an error message appears, stating that the sales tag `electronics` already exists.
+
+    1. Test case: Enter `tag add`<br>
+       Expected: No tag is added. An error message appears, stating that the command format is invalid.
+
+    1. Other invalid add commands to try: `tag add family`<br>
+       Expected: Similar to previous.
+
+### Deleting a tag
+
+1. Deleting a tag when all tags are being shown
+
+    1. Prerequisites: List all tags using the `tag list` command. Existing contact tags include: `colleagues`, `friends`,
+       and existing sales tags include `music`, `stationery`.
+
+    1. Test case: Enter `tag delete ct/1`<br>
+       Expected: The first contact tag `colleagues` is deleted from the contact tag list.
+       The contact tag list should remain sorted in alphabetical order.
+       In addition, all contacts who were previously tagged with `colleagues` will no longer be associated to this tag.
+
+    1. Test case: Enter `tag delete st/1`<br>
+       Expected: The first sales tag `music` is deleted from the sales tag list.
+       The contact tag list should remain sorted in alphabetical order.
+       In addition, all sales that were previously tagged with `music` will no longer be associated to this tag.
+
+    1. Test case: Enter `tag delete`<br>
+       Expected: No tag is added. An error message appears, stating that the command format is invalid.
+
+    1. Other invalid add commands to try: `tag delete family`<br>
+       Expected: Similar to previous.
+
+### Editing a tag
+
+1. Editing a tag when all tags are being shown
+
+    1. Prerequisites: List all tags using the `tag list` command. Existing contact tags include: `colleagues`, `friends`,
+       and existing sales tags include `music`, `stationery`.
+
+    1. Test case: Enter `tag edit ct/1 t/teammates`<br>
+       Expected: The second contact tag in the contact tag list is edited from `colleagues` to `teammates`.
+       The contact tag list should remain sorted in alphabetical order.
+       In addition, all contacts who were previously tagged with `colleagues` will now be tagged with `teammates`.
+
+    1. Test case: Enter `tag edit st/1 t/instruments`<br>
+       Expected: The first sales tag in the sales tag list is edited from `music` to `instruments`.
+       The contact tag list should remain sorted in alphabetical order.
+       In addition, all sales that were previously tagged with `music` will now be tagged with `instruments`.
+
+    1. Test case: Enter `tag edit`<br>
+       Expected: No tag is edited. An error message appears, stating that the command format is invalid.
+
+    1. Other invalid add commands to try: `tag edit family`<br>
+       Expected: Similar to previous.
+
+### Finding data by tag
+
+1. Finding contacts or sales data by tag
+
+    1. Prerequisites: List all tags using the `tag list` command. Existing contact tags include: `colleagues`, `friends`,
+       and existing sales tags include `music`, `stationery`.
+
+    1. Test case: Enter `tag find ct/2`<br>
+       Expected: Finds all contacts who are tagged with the second contact tag `friends`.
+       A list of contacts will be displayed by StonksBook.
+
+    1. Test case: Enter `tag find st/1`<br>
+       Expected: Finds all sales that are tagged with the first sales tag `music`.
+       A list of sales will be displayed by StonksBook.
+
+    1. Test case: Enter `tag find`<br>
+       Expected: No tag is edited. An error message appears, stating that the command format is invalid.
+
+    1. Other invalid add commands to try: `tag find family`<br>
+       Expected: Similar to previous.
 
 ### Listing sales
 
@@ -1765,10 +1856,10 @@ testers are expected to do more *exploratory* testing.
       The sale list should remain sorted in ascending order based on the datetime of purchase.
       
    1. Test case: Enter `sale list`<br>
-      Expected: No change in sale list. Error details shown in the status message. Status bar remains the same.
+      Expected: No change in the sale list. Error details shown in the status message. Status bar remains the same.
       
    1. Test case: Enter `sale list c/0`<br>
-         Expected: No change in sale list. Error details shown in the status message. Status bar remains the same.
+         Expected: No change in the sale list. Error details shown in the status message. Status bar remains the same.
 
 ### Adding a sale
 
@@ -2035,3 +2126,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect add commands to try: `archive remove`, `archive remove a`, `archive remove x` (where x is an integer larger than the list size)<br>
       Expected: Similar to previous.
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. Open the file [stonksbook.json](../data/stonksbook.json) and delete the `id`s of at least one contact. After which start the application.
+      Expected: The StonksBook opened should display an empty GUI, where no data exists in the application.
