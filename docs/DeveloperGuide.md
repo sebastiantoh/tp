@@ -495,7 +495,7 @@ The sequence diagram below illustrates how the `DeleteCommand` that is created f
 
 *Fig. 21 - Sequence diagram illustrating the execution of the `DeleteCommand`* 
 
-#### Error Handling within the `Logic` component
+#### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `reminder delete 1`.
 
@@ -620,7 +620,7 @@ Lastly, a `CommandResult` object containing the message to be displayed to the u
 
 *Fig. 25 - Sequence diagram illustrating the execution of `AddCommand`*
 
-#### Error Handling within the `Logic` component
+#### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of execution of `sale add <args>`.
 
@@ -645,7 +645,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 There is a composition relationship between `Sale` and its attributes, as we want the attributes (e.g. `ItemName`, `UnitPrice`) to exist dependently on the `Sale` object it belongs to.
 The attributes are abstracted out into different classes, instead of being stored as values within Sale, to allow for greater input validation and attribute specific functionality.
 
-#### Design Consideration:
+#### Design consideration:
 
 ##### Aspect: How to implement currency related fields
 * **Alternative 1 (current choice):**: Use BigDecimal to store currency related fields.
@@ -714,7 +714,7 @@ Finally, a `CommandResult` object containing the message to be displayed to the 
 
 *Fig. 29 - Sequence diagram illustrating the execution of the `AddCommand`*
 
-#### Error Handling within the `Logic` component
+#### Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of execution of `archive add 1`.
 
@@ -728,7 +728,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 *Fig. 30 - The different outcomes of the program that can occur from the `archive add 1` command*
 
-#### Design Consideration:
+#### Design consideration:
 
 ##### Aspect: How to implement the archive
 * **Alternative 1 (current choice):** Add a flag to the `Person` model to indicate whether the contact is archived.
