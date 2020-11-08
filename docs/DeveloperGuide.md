@@ -1903,7 +1903,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
 
    1. Test case: Enter `sale list c/1`<br>
-      Expected: The Sale List displays all sales belonging to the first contact in the currently displayed list of contacts.
+      Expected: The sale list displays all sales belonging to the first contact in the currently displayed list of contacts.
       The sale list should remain sorted in ascending order based on the datetime of purchase.
       
    1. Test case: Enter `sale list`<br>
