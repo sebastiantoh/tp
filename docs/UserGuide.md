@@ -210,7 +210,7 @@ Deletes the specified contact from StonksBook. All associated sales, reminders a
 
 **Example**:
 
-Let's say that Betsy Crowe no longer does business with you and you would like to remove him from your contact list.
+Let's say that Betsy Crowe no longer does business with you and you would like to remove her from your contact list.
 Here are the steps to follow:
 
 :bulb: Tip: You can learn more about the `contact find` command in [locating contacts by name](#515-locating-contacts-by-name-contact-find-aaron-seah).
