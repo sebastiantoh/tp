@@ -5,29 +5,29 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-## **Introduction**
+## 1. **Introduction**
 
-### Software overview
+### 1.1. Software overview
 
 StonksBook is a sales-optimised contact management application. It is targeted at salesmen who are seeking an all-in-one application that can empower them to effectively curate their contact list.
 StonksBook also provides many tools that can boost one's sales peformance through the use of sophisticated data analysis techniques.
 
-### Purpose & scope
+### 1.2. Purpose & scope
 
 This document describes the software architecture and software design decisions for the implementation
 of StonksBook. The intended audience of this document is the developers, designers, and software testers of StonksBook.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 2. **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 3. **Design**
 
-### Architecture
+### 3.1. Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -45,14 +45,14 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components:
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -75,7 +75,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2. UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -93,7 +93,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 3.3. Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -117,7 +117,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 3.4. Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -144,7 +144,7 @@ The `Model`,
 </div>
 
 
-### Storage component
+### 3.5. Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -156,17 +156,17 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
-### Common classes
+### 3.6. Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Tags feature \[Wang Luo\]
+### 4.1. Tags feature \[Wang Luo\]
 
 The tags feature allows the user to add, delete or update tags in StonksBook, as well as categorising contacts and sales using created tags.
 Tags are separated into contact tags and sales tags, and they are displayed in alphabetical order.
@@ -178,7 +178,7 @@ The feature consists of the following commands:
 - `tag list` - Displays the contact tag list and sales tag list in the graphical user interface.
 - `tag find` - Searches contacts (or sales) based on tags.
 
-#### Parsing of commands within the `Logic` component
+#### 4.1.1. Parsing of commands within the `Logic` component
 
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
 
@@ -208,7 +208,7 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Execution of commands within the `Logic` component
+#### 4.1.2. Execution of commands within the `Logic` component
 
 After the user input has been parsed into a `Command`, it is executed with `model` passed in as a parameter.
 
@@ -230,7 +230,7 @@ The sequence diagram below illustrates how the `AddCommand` that is created from
 
 *Fig. 11 - Sequence diagram illustrating the execution of `AddCommand`*
 
-#### Error handling within the `Logic` component
+#### 4.1.3. Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `tag add <args>`.
 
@@ -243,7 +243,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 *Fig. 12 - The different outcomes of the program that can occur from the `tag add <args>` command*
 
-##### Data retrieval
+##### 4.1.3.1. Data retrieval
 
 The following sequence diagram shows how the retrieval of contacts (or sales) with tags work.
 
@@ -257,7 +257,7 @@ The below activity diagram shows the overall process of executing `tag find <arg
 
 *Fig. 14 - Activity diagram illustrating the process of executing `tag find <args>`*
 
-#### Modelling `Tag`s
+#### 4.1.4. Modelling `Tag`s
 
 Tags are modelled according to the class diagram below.
 
@@ -267,9 +267,9 @@ Tags are modelled according to the class diagram below.
 
 We enforce an association between `Sale` and `Tag` to aid data analytics in the `sale breakdown` command.
 
-#### Design consideration:
+#### 4.1.5. Design consideration:
 
-##### Aspect: Whether a `Tag` should have a type attribute
+##### 4.1.5.1. Aspect: Whether a `Tag` should have a type attribute
 * **Alternative 1:**: Add a type attribute in `Tag` to indicate whether it is a contact tag or sales tag.
   * Pros:
     * Increased type safety and contact tags and sales tag are separated from each other.
@@ -283,7 +283,7 @@ We enforce an association between `Sale` and `Tag` to aid data analytics in the 
   * Cons:
     * Will have to implement two tag lists separately.
 
-### Meetings feature \[Sebastian Toh Shi Jian\]
+### 4.2. Meetings feature \[Sebastian Toh Shi Jian\]
 
 The meetings feature allows the user to add, delete, or update meetings in StonksBook.
 Meetings are displayed in increasing order based on the start date of the meeting.
@@ -294,7 +294,7 @@ The feature consists of the following commands:
 - `meeting edit` - Edits a meeting from the meeting list.
 - `meeting list` - Displays the list of all meetings in the graphical user interface.
 
-#### Parsing of commands within the `Logic` component
+#### 4.2.1. Parsing of commands within the `Logic` component
 
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
 
@@ -323,7 +323,7 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetingCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Execution of commands within the `Logic` component
+#### 4.2.2. Execution of commands within the `Logic` component
 
 After the user input has been parsed into a `Command`, it is executed with `model` passed in as a parameter.
 
@@ -345,7 +345,7 @@ The sequence diagram below illustrates how the `AddCommand` that is created from
 
 *Fig. 17 - Sequence diagram illustrating the execution of `AddCommand`* 
 
-#### Error handling within the `Logic` component
+#### 4.2.3. Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `meeting add <args>`.
 
@@ -358,7 +358,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 *Fig. 18 - The different outcomes of the program that can occur from the `meeting add <args>` command* 
 
-#### Modelling `Meeting`s
+#### 4.2.4. Modelling `Meeting`s
 
 Meetings are modelled according to the class diagram below.
 
@@ -371,9 +371,9 @@ Meetings are modelled according to the class diagram below.
 We enforce a composition relationship between `Meeting` and its attribute as we do not want `Meeting` to exist when either of its attributes no longer exist.
 With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted as well. Similarly, we also enforce that all `Meeting`s must be associated with a non-empty `Message`.
 
-#### Design consideration:
+#### 4.2.5. Design consideration:
 
-##### Aspect: Whether it should be necessary to enforce a `message` field in a `Meeting` object
+##### 4.2.5.1. Aspect: Whether it should be necessary to enforce a `message` field in a `Meeting` object
 * **Alternative 1 (current choice):**: Create a `Message` class which enforces a non-empty message association to a `Meeting` object.
   * Pros:
     * Easier implementation of meeting commands since every field is necessary.
@@ -391,7 +391,7 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
 Alternative 1 is chosen as we found that the importance of enforcing data cleanliness far outweighs the associated
  cost that is required to implement this enforcement.
 
-##### Aspect: What fields should be stored to represent a `Meeting`
+##### 4.2.5.2. Aspect: What fields should be stored to represent a `Meeting`
 
 * **Alternative 1 (current choice):** Store just the start date of a meeting, along with its duration.
   * Pros:
@@ -416,7 +416,7 @@ Alternative 1 is chosen as it is the most user-friendly option. It also makes ma
 Because only future meetings are displayed by default, the slight performance dip associated with alternative 1 may
  not actually be an issue as we do not foresee the list of future meetings to be very large.
 
-##### Aspect: How to serialize the start date and duration of a `Meeting`
+##### 4.2.5.3. Aspect: How to serialize the start date and duration of a `Meeting`
 * **Alternative 1 (current choice):** Deserialize them according to ISO-8601 format.
    * Pros:
      * Unambiguous and well-defined method of representing dates and times
@@ -436,7 +436,7 @@ Because only future meetings are displayed by default, the slight performance di
 Alternative 1 is chosen as it is a well-established international standard which would facilitate the integration of
  other libraries if necessary.
 
-### Reminders feature \[Sebastian Toh Shi Jian\]
+### 4.3. Reminders feature \[Sebastian Toh Shi Jian\]
 The reminders feature allows the user to add, delete, or update reminders in StonksBook.
 Reminders are displayed in increasing order based on the scheduled date of the reminder.
 
@@ -446,7 +446,7 @@ The feature consists of the following commands:
 - `reminder edit` - Edit a reminder from the reminder list.
 - `reminder list` - Display the list of all reminders in the user interface.
 
-#### Parsing of commands within the `Logic` component
+#### 4.3.1. Parsing of commands within the `Logic` component
 
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
 
@@ -476,7 +476,7 @@ Given below is a sequence diagram for interactions inside the `Logic` component 
  reaches the end of diagram.
 </div>
 
-#### Execution of commands within the `Logic` component
+#### 4.3.2. Execution of commands within the `Logic` component
 
 After the user input has been parsed into a `Command`, it is executed with `model` passed in as a parameter.
 
@@ -496,7 +496,7 @@ The sequence diagram below illustrates how the `DeleteCommand` that is created f
 
 *Fig. 21 - Sequence diagram illustrating the execution of the `DeleteCommand`* 
 
-#### Error handling within the `Logic` component
+#### 4.3.3. Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of the execution of `reminder delete 1`.
 
@@ -508,7 +508,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 *Fig. 22 - The different outcomes of the program that can occur from the `reminder delete 1` command*
 
-#### Modelling `Reminder`s
+#### 4.3.4. Modelling `Reminder`s
 
 `Reminder` is modelled according to the class diagram below.
 
@@ -522,9 +522,9 @@ We enforce a composition relationship between `Reminder` and its attribute as we
  either of its attributes no longer exist. With that, whenever a `Person` is deleted, all associated `Reminder`s are
   deleted as well. Similarly, we also enforce that all `Reminder`s must be associated with a non-empty `Message`.
 
-#### Design consideration:
+#### 4.3.5. Design consideration:
 
-##### Aspect: Whether it should be necessary to enforce a `message` field in a `Reminder` object
+##### 4.3.5.1. Aspect: Whether it should be necessary to enforce a `message` field in a `Reminder` object
 * **Alternative 1 (current choice):**: Create a `Message` class which enforces a non-empty message association to a
  `Reminder` object.
   * Pros:
@@ -541,11 +541,11 @@ We enforce a composition relationship between `Reminder` and its attribute as we
      reminders in the user interface.
     * Will have to be more careful in implementation of reminder commands to allow for an optional field.
 
-A similar consideration was made when implementing [`Meeting`s](#aspect-whether-it-should-be-necessary-to-enforce-a-message-field-in-a-meeting-object).
+A similar consideration was made when implementing [`Meeting`s](#4251-aspect-whether-it-should-be-necessary-to-enforce-a-message-field-in-a-meeting-object).
 This further strengthened our choice to go for Alternative 1 given that the cost of having to validate the inputs
  would be spread over multiple features.
 
-##### Aspect: How to serialize the scheduled date of a `Reminder`
+##### 4.3.5.2. Aspect: How to serialize the scheduled date of a `Reminder`
 * **Alternative 1 (current choice):** Deserialize the date according to ISO-8601 format.
    * Pros:
      * Unambiguous and well-defined method of representing dates and times
@@ -562,11 +562,10 @@ This further strengthened our choice to go for Alternative 1 given that the cost
    * Cons:
      * Parsing and deserializing the data may pose some difficulties.
 
-A similar consideration was made when implementing [`Meeting`s](#aspect-how-to-serialize-the-start-date-and-duration
--of-a-meeting).
+A similar consideration was made when implementing [`Meeting`s](#4253-aspect-how-to-serialize-the-start-date-and-duration-of-a-meeting).
 Alternative 1 was chosen so as to have a consistent and standardised way of handling date and time handled within our code base.
 
-### Sale feature [Kwek Min Yih]
+### 4.4. Sale feature [Kwek Min Yih]
 
 The Sales feature allows users to add and manage Sales made to contacts in StonksBook. Sales are ordered from most to least recently made.
 
@@ -577,7 +576,7 @@ This feature consists of the following commands:
 * `sale list` – Display the list of all sales in the user interface.
 * `sale breakdown` – Displays the number of sales belonging to the top 5 tags.
 
-#### Parsing of commands within the `Logic` component
+#### 4.4.1. Parsing of commands within the `Logic` component
 
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
 
@@ -606,7 +605,7 @@ then `<args>` is equivalent to `c/4 n/Notebook d/2020-10-30 15:00 p/6.00 q/2 t/s
 
 *Fig. 24 - Interactions inside the `Logic` component for the `sale add <args>` command*
 
-#### Execution of commands within the `Logic` component
+#### 4.4.2. Execution of commands within the `Logic` component
 
 After command has been parsed into an `AddCommand`, it is executed with `model` passed in as a parameter.
 
@@ -628,7 +627,7 @@ The message is generated by private methods in `AddCommand`, which call the `lis
 
 *Fig. 25 - Sequence diagram illustrating the execution of `AddCommand`*
 
-#### Error handling within the `Logic` component
+#### 4.4.3. Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of execution of `sale add <args>`.
 
@@ -646,7 +645,7 @@ This list of duplicate sales is printed to the user along with a corresponding e
 
 *Fig. 26 - The different outcomes of the program that can occur from the `sale add <args>` command*
 
-#### Modelling `Sale`s
+#### 4.4.4. Modelling `Sale`s
 
 `Sale` is modelled according to the class diagram below.
 
@@ -660,9 +659,9 @@ as we want the attributes (e.g. `ItemName`, `UnitPrice`) to exist dependently on
 The attributes are abstracted out into different classes, instead of being stored as values within Sale, 
 to allow for greater input validation and attribute specific functionality.
 
-#### Design consideration:
+#### 4.4.5. Design consideration:
 
-##### Aspect: How to implement currency related fields
+##### 4.4.5.1. Aspect: How to implement currency related fields
 * **Alternative 1 (current choice):**: Use BigDecimal to store currency related fields.
   * Pros:
     * Accurate currency calculations are possible.
@@ -684,7 +683,7 @@ to allow for greater input validation and attribute specific functionality.
 Alternative 1 was chosen as it was the most appropriate given the size of inputs we wanted to handle, and ensured accuracy.
 
 
-##### Aspect: How to implement the relationship between Sale and Person
+##### 4.4.5.2. Aspect: How to implement the relationship between Sale and Person
 * **Alternative 1:**: Store the Person id in the Sale model and storage.
   * Pros:
     * Less storage space needed.
@@ -710,7 +709,7 @@ Alternative 3 was chosen as it is the most balanced option, reducing duplicate d
 making retrieval of Person attributes easier. 
 A similar consideration was made when implementing `Meeting` and `Reminder`. 
 
-### Archive feature \[Leong Jin Ming\]
+### 4.5. Archive feature \[Leong Jin Ming\]
 
 The Archive feature allows users to archive contacts who are no longer active.
 
@@ -719,7 +718,7 @@ This feature consists of the following commands:
 * `archive list` — Lists all contacts in the archive.
 * `archive remove` — Removes a contact from the archive.
 
-#### Parsing of commands within the `Logic` component
+#### 4.5.1. Parsing of commands within the `Logic` component
 
 Much like other core features, we introduced an intermediate layer between the `AddressBookParser` and the archive command parsers, which in this case is the `ArchiveCommandsParser`.
 
@@ -740,7 +739,7 @@ Given below is a sequence diagram for interactions inside the Logic component fo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommandsParser` and `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Execution of commands within the `Logic` component
+#### 4.5.2. Execution of commands within the `Logic` component
 
 Since the execution of the `RemoveCommand` is similar to the `AddCommand`, we shall only look at the execution of the latter.
 
@@ -758,7 +757,7 @@ Finally, a `CommandResult` object containing the message to be displayed to the 
 
 *Fig. 29 - Sequence diagram illustrating the execution of the `AddCommand`*
 
-#### Error handling within the `Logic` component
+#### 4.5.3. Error handling within the `Logic` component
 
 The below activity diagram shows the overall process of execution of `archive add 1`.
 
@@ -772,9 +771,9 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 *Fig. 30 - The different outcomes of the program that can occur from the `archive add 1` command*
 
-#### Design consideration:
+#### 4.5.4. Design consideration:
 
-##### Aspect: How to implement the archive
+##### 4.5.4.1. Aspect: How to implement the archive
 * **Alternative 1 (current choice):** Add a flag to the `Person` model to indicate whether the contact is archived.
   * Pros:
     * Less time consuming to implement.
@@ -792,9 +791,9 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 Alternative 1 was chosen to give more flexibility to the implementation and other design considerations (such as whether to archive the sales associated with the `Person`) and also due to time constraints.
 
-### Monthly statistics feature [Aaron Seah]
+### 4.6. Monthly statistics feature [Aaron Seah]
 
-#### Implementation
+#### 4.6.1. Implementation
 
 The monthly statistics mechanism is facilitated by `MonthlyListMap` and `StatisticsWindow`.
 `MonthlyListMap` gets the monthly statistics data and `StatisticsWindow` populates the UI with the data.
@@ -804,7 +803,7 @@ This feature will be demonstrated in the context of `meeting stats`.
 
 `MonthlyListMap` has two sets of operations: Data Manipulation and Data Retrieval.
 
-##### Data manipulation
+##### 4.6.1.1. Data manipulation
 * `MonthlyListMap#addItem(Month month, Year year, T item)` — Adds item of type T to an item list based on the key of month and year.
 * `MonthlyListMap#removeItem(Month month, Year year, T item)` — Removes item of type T from an item list based on the key of month and year if the item exists.
 * `MonthlyListMap#clear()` — Removes all entries in the `MonthlyListMap`.
@@ -838,7 +837,7 @@ how `MonthlyListMap` will be kept up to date after meeting commands `meeting add
 
 *Fig. 35 - Object diagram after editing meeting `m3`*
 
-##### Data retrieval
+##### 4.6.1.2. Data retrieval
 * `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` — Gets the item counts for the given month and year and the previous (numberOfMonths - 1) months.
 * `MonthlyListMap#getPreviousMonthAndYear(Month month, Year year)` —  Gets the month and year for the month before the given month and year.
 
@@ -873,9 +872,9 @@ The following activity diagram summarizes what happens when a user executes the 
 
 *Fig. 41 - Activity diagram summarising what happens when a user executes the `meeting stats` command*
 
-#### Design consideration:
+#### 4.6.2. Design consideration:
 
-##### Aspect: Whether to separate `MonthlyListMap` and `UniqueMeetingList`
+##### 4.6.2.1. Aspect: Whether to separate `MonthlyListMap` and `UniqueMeetingList`
 * **Alternative 1 (current choice):** Make `MonthlyListMap` a part of `UniqueMeetingList`.
   * Pros: Easy to implement and less error-prone as all changes to meeting objects are done by `UniqueMeetingList` methods
    and it is easy to propagate the changes to `MonthListMap` within them.
@@ -886,7 +885,7 @@ The following activity diagram summarizes what happens when a user executes the 
   * Cons: We must ensure that whenever the meeting objects in the `UniqueMeetingList` changes,
    the changes are reflected to the `MonthlyListMap` to keep the data reliable.
 
-##### Aspect: Whether to use month only or month and year to identify a unique month
+##### 4.6.2.2. Aspect: Whether to use month only or month and year to identify a unique month
 * **Alternative 1 (current choice):** Use month and year to identify a unique month.
   * Pros: Easy to identify a unique month.
   * Cons: Special care is needed to get the previous month when the current month is January as the year has to be decreased by 1 too. An additional parameter, year, for user to type.
@@ -897,7 +896,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -907,9 +906,9 @@ The following activity diagram summarizes what happens when a user executes the 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 6. **Appendix: Requirements**
 
-### Product scope
+### 6.1. Product scope
 
 **Target user profile**:
 
@@ -925,7 +924,9 @@ The following activity diagram summarizes what happens when a user executes the 
 **Value proposition**: Effectively curate sales-optimised contact list and conveniently conduct data analysis to gain business insights and boost sales performance.
 
 
-### User stories
+<div style="page-break-after: always;"></div>
+
+### 6.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -960,11 +961,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | well-connected salesman           | archive contacts who are no longer active                     | focus on contacts that are more likely to respond                                             |
 | `* *`    | salesman                          | remove contacts from the archive                              | focus on inactive contacts who are now active again                                           |
 
-### Use cases
+### 6.3. Use cases
 
 (For all use cases below, the **System** is the `StonksBook` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case: Delete a person
+#### 6.3.1. Use case: Delete a person
 {:.no_toc}
 
 **MSS**
@@ -988,7 +989,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Add a tag
+#### 6.3.2. Use case: Add a tag
 {:.no_toc}
 
 **MSS**
@@ -1004,7 +1005,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: View all tags
+#### 6.3.3. Use case: View all tags
 {:.no_toc}
 
 **MSS**
@@ -1020,7 +1021,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Update a tag
+#### 6.3.4. Use case: Update a tag
 {:.no_toc}
 
 **MSS**
@@ -1044,7 +1045,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-#### Use case: Delete a tag
+#### 6.3.5. Use case: Delete a tag
 {:.no_toc}
 
 **MSS**
@@ -1068,7 +1069,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-#### Use case: Retrieve entries by tag
+#### 6.3.6. Use case: Retrieve entries by tag
 {:.no_toc}
 
 **MSS**
@@ -1096,7 +1097,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3b1. StonksBook displays items of the specified model under the given tag.
 
-#### Use case: Clear past interactions
+#### 6.3.7. Use case: Clear past interactions
 {:.no_toc}
 
 **MSS**
@@ -1105,7 +1106,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Clear all data
+#### 6.3.8. Use case: Clear all data
 {:.no_toc}
 
 **MSS**
@@ -1120,7 +1121,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-#### Use case: Find a contact
+#### 6.3.9. Use case: Find a contact
 {:.no_toc}
 
 **MSS**
@@ -1142,7 +1143,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-#### Use case: Add a meeting
+#### 6.3.10. Use case: Add a meeting
 {:.no_toc}
 
 **MSS**
@@ -1190,7 +1191,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case resumes at step 2.
 
-#### Use case: View all meetings
+#### 6.3.11. Use case: View all meetings
 {:.no_toc}
 
 **MSS**
@@ -1212,7 +1213,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-#### Use case: Delete a meeting
+#### 6.3.12. Use case: Delete a meeting
 {:.no_toc}
 
 **MSS**
@@ -1236,7 +1237,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Add a reminder
+#### 6.3.13. Use case: Add a reminder
 {:.no_toc}
 
 **MSS**
@@ -1272,12 +1273,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Edit a reminder
+#### 6.3.14. Use case: Edit a reminder
 {:.no_toc}
 
 This use case is similar to `Add a reminder` except that the user has the additional option to update the status of the reminder to indicate whether the reminder is completed.
 
-#### Use case: View all reminders
+#### 6.3.15. Use case: View all reminders
 {:.no_toc}
 
 **MSS**
@@ -1293,7 +1294,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
   Use case ends.
 
-#### Use case: Delete a reminder
+#### 6.3.16. Use case: Delete a reminder
 {:.no_toc}
 
 **MSS**
@@ -1317,7 +1318,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.
 
-#### Use case: Filter reminders
+#### 6.3.17. Use case: Filter reminders
 {:.no_toc}
 
 **MSS**
@@ -1333,7 +1334,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
   Use case ends.
 
-#### Use case: Get help on available commands
+#### 6.3.18. Use case: Get help on available commands
 {:.no_toc}
 
 **MSS**
@@ -1343,7 +1344,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
     Use case ends.
 
-#### Use case: Get help for a command
+#### 6.3.19. Use case: Get help for a command
 {:.no_toc}
 
 **MSS**
@@ -1353,7 +1354,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
     Use case ends.
 
-#### Use case: Add a sale to a contact
+#### 6.3.20. Use case: Add a sale to a contact
 {:.no_toc}
 
 **MSS**
@@ -1396,7 +1397,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
       Use case resumes at step 2.
       
       
-#### Use case: Add a sale to a multiple contacts
+#### 6.3.21. Use case: Add a sale to a multiple contacts
 {:.no_toc}
 
 **MSS**
@@ -1438,7 +1439,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.      
 
-#### Use case: List all sales
+#### 6.3.22. Use case: List all sales
 {:.no_toc}
 
 **MSS**
@@ -1449,7 +1450,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
     Use case ends.
 
 
-#### Use case: List all sales belonging to a contact
+#### 6.3.23. Use case: List all sales belonging to a contact
 {:.no_toc}
 
 **MSS**
@@ -1473,7 +1474,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.
 
-#### Use case: Delete a sale
+#### 6.3.24. Use case: Delete a sale
 {:.no_toc}
 
 **MSS**
@@ -1503,7 +1504,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.
       
-#### Use case: Delete multiple sales
+#### 6.3.25. Use case: Delete multiple sales
 
 **MSS**
 
@@ -1532,7 +1533,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.
       
-#### Use case: Edit a sale
+#### 6.3.26. Use case: Edit a sale
 
 **MSS**
 
@@ -1579,7 +1580,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.
       
-#### Use case: Edit multiple sales
+#### 6.3.27. Use case: Edit multiple sales
 
 **MSS**
 
@@ -1627,7 +1628,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
       Use case resumes at step 2.
 
 
-#### Use case: Display sale breakdown
+#### 6.3.28. Use case: Display sale breakdown
 
 **MSS**
 
@@ -1644,7 +1645,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
   Use case ends.
 
-#### Use case: Add contact to archive
+#### 6.3.29. Use case: Add contact to archive
 {:.no_toc}
 
 **MSS**
@@ -1664,7 +1665,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.
       
-#### Use case: Remove contact from archive
+#### 6.3.30. Use case: Remove contact from archive
 {:.no_toc}
 
 **MSS**
@@ -1684,7 +1685,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
       Use case resumes at step 2.
 
-### Non-Functional Requirements
+### 6.4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -1695,14 +1696,14 @@ This use case is similar to `Add a reminder` except that the user has the additi
 7.  Should be able to function without having to rely on being connected to a network.
 8.  The data should be stored locally and should be in a human editable text file.
 
-### Glossary
+### 6.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 7. **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -1711,7 +1712,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 7.1. Launch and shutdown
 
 1. Initial launch
 
@@ -1727,7 +1728,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Listing contacts
+### 7.2. Listing contacts
 
 1. Listing contacts in StonksBook
 
@@ -1737,7 +1738,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: Enter `contact list random`<br>
          Expected: No change in the contact list. StonksBook should ignore additional fields that come after `contact list`.
 
-### Adding a contact
+### 7.3. Adding a contact
 
 1. Adding a contact while all contacts are being shown
 
@@ -1754,7 +1755,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `contact add` <br>
       Expected: Similar to previous.
 
-### Deleting a contact
+### 7.4. Deleting a contact
 
 1. Deleting a person while all contacts are being shown
 
@@ -1769,7 +1770,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Editing a contact
+### 7.5. Editing a contact
 
 1. Editing a contact while all contacts are being shown
 
@@ -1793,7 +1794,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `contact edit 1 n/Hartin Menz` <br>
         Expected: No contact is edited. Error details shown in the Result Box. Contact list remains the same.
 
-### Listing tags
+### 7.6. Listing tags
 
 1. Listing contact tags and sales tags in StonksBook
 
@@ -1806,7 +1807,7 @@ testers are expected to do more *exploratory* testing.
        Expected: StonksBook should ignore any additional fields following `tag list` and the outcome should be the same as simply
        entering `tag list`.
 
-### Adding a tag
+### 7.7. Adding a tag
 
 1. Adding a tag when all tags are being shown
 
@@ -1829,7 +1830,7 @@ testers are expected to do more *exploratory* testing.
     1. Other invalid add commands to try: `tag add family`<br>
        Expected: Similar to previous.
 
-### Deleting a tag
+### 7.8. Deleting a tag
 
 1. Deleting a tag when all tags are being shown
 
@@ -1852,7 +1853,7 @@ testers are expected to do more *exploratory* testing.
     1. Other invalid add commands to try: `tag delete family`<br>
        Expected: Similar to previous.
 
-### Editing a tag
+### 7.9. Editing a tag
 
 1. Editing a tag when all tags are being shown
 
@@ -1875,7 +1876,7 @@ testers are expected to do more *exploratory* testing.
     1. Other invalid add commands to try: `tag edit family`<br>
        Expected: Similar to previous.
 
-### Finding data by tag
+### 7.10. Finding data by tag
 
 1. Finding contacts or sales data by tag
 
@@ -1896,7 +1897,7 @@ testers are expected to do more *exploratory* testing.
     1. Other invalid add commands to try: `tag find family`<br>
        Expected: Similar to previous.
 
-### Listing sales
+### 7.11. Listing sales
 
 1. Listing sales belonging to a specific contact
 
@@ -1912,7 +1913,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: Enter `sale list c/0`<br>
          Expected: No change in the sale list. Error details shown in the Result Box.
 
-### Adding a sale
+### 7.12. Adding a sale
 
 1. Adding a sale while all contacts are being shown
 
@@ -1952,7 +1953,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `sale add c/1 n/Guitar Case d/2020-10-30 16:00 p/25.00 q/20 t/music` <br>
         Expected: No sale is added. Error details shown in the Result Box. Sale list remains the same.
 
-### Deleting a sale
+### 7.13. Deleting a sale
 
 1. Deleting a sale while all sales are being shown
 
@@ -1972,7 +1973,7 @@ testers are expected to do more *exploratory* testing.
     list size)<br>
       Expected: Similar to previous.
       
-### Editing a sale
+### 7.14. Editing a sale
 
 1. Editing a sale while all sales are being shown
 
@@ -2002,7 +2003,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `sale edit s/1 n/Bass Guitar` <br>
         Expected: No sale is edited. Error details shown in the Result Box. Sale list remains the same.
 
-### Displaying sale breakdown
+### 7.15. Displaying sale breakdown
 
 1. Displaying sale breakdown with no existing sale tags or sales.
 
@@ -2025,7 +2026,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `sale breakdown`<br>
       Expected: A popup window showing the sale breakdown appears. The top 5 sale tags appear in the bar chart.
 
-### Adding a meeting
+### 7.16. Adding a meeting
 
 1. Adding a meeting while all persons are being shown
 
@@ -2044,7 +2045,7 @@ testers are expected to do more *exploratory* testing.
     /1 m/Lunch with Bob d/2020-10-30 12:00 du/30min`<br>
       Expected: Similar to previous.
 
-### Deleting a meeting
+### 7.17. Deleting a meeting
 
 1. Deleting a meeting while all meetings are being shown
 
@@ -2060,7 +2061,7 @@ testers are expected to do more *exploratory* testing.
     list size)<br>
       Expected: Similar to previous.
 
-### Editing a meeting
+### 7.18. Editing a meeting
 
 1. Editing a meeting while all meetings are being shown.
 
@@ -2078,7 +2079,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit commands to try: `meeting edit m/Product demo`, `meeting edit x du/120` (where x is larger than the list size)<br>
        Expected: Similar to previous. 
 
-### Filtering meetings
+### 7.19. Filtering meetings
 
 1. Filtering for meetings with a specific contact while all meetings are currently being shown.
     
@@ -2096,7 +2097,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `meeting list c/x` (where x is larger than the contact list size)<br>
        Expected: No change to meeting list. Error details shown in the Result Box.
        
-### Adding a reminder
+### 7.20. Adding a reminder
 
 1. Adding a reminder while all persons are being shown
 
@@ -2114,7 +2115,7 @@ testers are expected to do more *exploratory* testing.
     add c/1 m/ d/2020-10-30 12:00`, `reminder add c/1 m/Follow up with Bob d/30/10/2020 12pm`<br>
       Expected: Similar to previous.
 
-### Deleting a reminder
+### 7.21. Deleting a reminder
 
 1. Deleting a reminder while all reminder are being shown
 
@@ -2130,7 +2131,7 @@ testers are expected to do more *exploratory* testing.
     list size)<br>
       Expected: Similar to previous.
 
-### Editing a reminder
+### 7.22. Editing a reminder
 
 1. Editing a reminder while all reminder are being shown.
 
@@ -2148,7 +2149,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit commands to try: `reminder edit m/Call Bob`, `reminder edit x m/Call Bob` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### Adding a contact to archive
+### 7.23. Adding a contact to archive
 
 1. Adding a contact to archive when all contacts are listed
 
@@ -2163,7 +2164,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add commands to try: `archive add`, `archive add a`, `archive add x` (where x is an integer larger than the list size)<br>
       Expected: Similar to previous.
 
-### Removing a contact to archive
+### 7.24. Removing a contact to archive
 
 1. Adding a contact to archive when all archived contacts are listed
 
@@ -2178,14 +2179,14 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add commands to try: `archive remove`, `archive remove a`, `archive remove x` (where x is an integer larger than the list size)<br>
       Expected: Similar to previous.
 
-### Finding contacts
+### 7.25. Finding contacts
 
 1. Finding a contact
 
    1. Test case: `contact find alx yu`<br>
       Expected: 2 contacts, 'Alex Yeoh' and 'Bernice Yu' should appear in the contact list.
 
-### Sorting contacts
+### 7.26. Sorting contacts
 
 1. Sorting contacts with a non-empty contact list
 
@@ -2193,7 +2194,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Contact list now sorted reverse alphabetical order based on the name.
 
 
-### Viewing monthly sale count
+### 7.27. Viewing monthly sale count
 
 1. Viewing sale count for non-empty sale list
 
@@ -2205,7 +2206,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Error message saying that the number of months must be in the range 2 to 6.
       
 
-### Viewing monthly meeting count
+### 7.28. Viewing monthly meeting count
 
 1. Viewing meeting count for non-empty meeting list
 
@@ -2217,21 +2218,21 @@ testers are expected to do more *exploratory* testing.
       Expected: Error message saying that the number of months must be in the range 2 to 6.
 
 
-### Suggesting for error resolution
+### 7.29. Suggesting for error resolution
 
 1. Unknown user input
 
    1. Test case: `contat add`
       Expected: A suggestion of contact add should be given in the command box.
 
-### Viewing help
+### 7.30. Viewing help
 
 1. Getting help page
 
    1. Test case: `help`
       Expected: A new window appears with the help information.
 
-### Saving data
+### 7.31. Saving data
 
 1. Dealing with missing/corrupted data files
 
