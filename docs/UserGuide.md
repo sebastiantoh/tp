@@ -250,6 +250,8 @@ Edits an existing contact in StonksBook.
 
 **Format**: `contact edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [r/REMARK]`
 
+<div style="page-break-after: always;"></div>
+
 | Parameter      | What it is                                       | Requirements                                                                                                                                                                                                                                                                                                                                       |
 | -------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `INDEX`        | Index number shown in the displayed contact list | Must be a positive integer 1, 2, 3, …                                                                                                                                                                                                                                                                                                              |
@@ -301,6 +303,8 @@ Finds contacts whose name exactly matches or is similar to any of the given keyw
 
 **Format**: `contact find KEYWORD [MORE_KEYWORDS]...`
 
+<div style="page-break-after: always;"></div>
+
 | Parameter | What it is                           | Requirements       |
 | --------- | ------------------------------------ | ------------------ |
 | `KEYWORD` | Keyword for finding contacts by name | Can take any value |
@@ -345,6 +349,8 @@ You can still find the contact with the name `Alex Yeoh` as shown.
 Sorts contacts based on the contact's name or email address.
 
 **Format**: `contact sort KEYWORD [ORDER]`
+
+<div style="page-break-after: always;"></div>
 
 | Parameter | What it is                   | Requirements                |
 | --------- | ---------------------------- | --------------------------- |
@@ -815,6 +821,8 @@ Views the monthly sale count for the current month and previous months.
 
 **Format**: `sale stats NUMBER_OF_MONTHS`
 
+<div style="page-break-after: always;"></div>
+
 | Parameter          | What it is                                                        | Requirements                                                             |
 | ------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | `NUMBER_OF_MONTHS` | The number of monthly sale counts, inclusive of the current month | Must be a positive integer between 2 and 6 inclusive. e.g. 2, 3, ... , 6 |
@@ -1173,7 +1181,7 @@ Let's say that a reminder in StonksBook is no longer applicable and you wish to 
  a reminder from StonksBook:
 
  1. Type `reminder list` in the **Command Box** and press <kbd>Enter</kbd>. 
-     - This is to display all all reminders in the **Reminder List**, which is necessary to identify the index of
+     - This is to display all reminders in the **Reminder List**, which is necessary to identify the index of
       the reminder that is to be deleted. This step can be skipped if you already know the index. Let
        us assume that the reminder is at the third index.
 
