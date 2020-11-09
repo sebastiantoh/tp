@@ -25,7 +25,7 @@ The following section summarises my coding, documentation and other contribution
   * Justification: One goal of StonksBook is to boost the efficiency of salesmen so that they do not need to waste time managing past records.
   Therefore, the tag system allows users to categorise past records and retrieve them easily later. Moreover, batch operations further enhanced
   productivity as the user no longer needs to update these items one by one himself or herself.
-
+    <div style="page-break-after: always;"></div>
   * Highlights: This feature required an in-depth understanding of almost all aspects of the project as I was responsible for the front-end,
   back-end logic and commands, as well as storage and unit testing for this feature. In addition, as both the contacts and sales models make use
   of this tag system, it also required a deep understanding of how the different models are implemented by the other team members.
@@ -39,7 +39,8 @@ The following section summarises my coding, documentation and other contribution
   
   * Highlights: This feature required a deep understanding of the implementation of the 'Reminders' model by my teammate, Sebastian, in order to enhance it.
 
-* **Code contributed**: Click on this link to see a sample of the code that I contributed: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=Asthenosphere&sort=totalCommits%20dsc&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Asthenosphere&tabRepo=AY2021S1-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code).
+* **Code contributed**: Click on this link to see a sample of the code that I contributed:
+[RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=Asthenosphere&sort=totalCommits%20dsc&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Asthenosphere&tabRepo=AY2021S1-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code).
 
 * **Documentation**:
   * User Guide:
@@ -53,6 +54,8 @@ The following section summarises my coding, documentation and other contribution
     * Added implementation details of the 'Contacts' features: [#247](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/247).
     * Added implementation details of the 'Tags' feature: [#137](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/137).
     * Added manual testing details for the 'Contacts' and 'Tags' features: [#247](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/247).
+    * Added user stories and use cases for the 'Tags' feature: [#20](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/20).
+
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#125](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/125),
