@@ -75,8 +75,10 @@ public class ModelManager implements Model {
         this.allPersons = this.addressBook.getPersonList();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        this.sortedContactTags = new SortedList<>(this.addressBook.getContactTagList(), Comparator.naturalOrder());
-        this.sortedSalesTags = new SortedList<>(this.addressBook.getSaleTagList(), Comparator.naturalOrder());
+        this.sortedContactTags = new SortedList<>(this.addressBook.getContactTagList(),
+                Comparator.comparing(t -> t.getTagName().toLowerCase()));
+        this.sortedSalesTags = new SortedList<>(this.addressBook.getSaleTagList(),
+                Comparator.comparing(t -> t.getTagName().toLowerCase()));
 
         this.sortedPersons = new SortedList<>(this.filteredPersons, DEFAULT_PERSON_COMPARATOR);
         //@@author jmleong666
