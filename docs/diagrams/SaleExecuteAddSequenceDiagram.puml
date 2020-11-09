@@ -4,7 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant "a:AddCommand" as AddCommand LOGIC_COLOR
-participant "<<class>>\nMassSaleCommandUtil" as MassSaleCommandUtil LOGIC_COLOR
+participant "<<class>>\n:MassSaleCommandUtil" as MassSaleCommandUtil LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
