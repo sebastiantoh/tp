@@ -870,19 +870,19 @@ The following sequence diagrams shows how the Monthly Statistics Feature works:
 
 *Fig. 36 - Sequence diagram illustrating interactions between `Logic` and `Model`*
 
-<img src="images/MeetingStatsSequenceDiagram22.png" alt="result for meeting stats sequence diagram 2" height="150px">
+<img src="images/MeetingStatsSequenceDiagram2.png" alt="result for meeting stats sequence diagram 2" height="150px">
 
 *Fig. 37 - Sequence diagram illustrating interactions between `ModelManager`, `AddressBook` and `UniqueMeetingList`*
 
-<img src="images/MeetingStatsSequenceDiagram32.png" alt="result for meeting stats sequence diagram 3" height="300px">
+<img src="images/MeetingStatsSequenceDiagram3.png" alt="result for meeting stats sequence diagram 3" height="300px">
 
 *Fig. 38 - Sequence diagram illustrating interactions between `UniqueMeetingList`, `MonthlyListMap`, `MonthAndYear` and `MonthlyListDataSet`*
 
-<img src="images/MeetingStatsSequenceDiagram42.png" alt="result for meeting stats sequence diagram 4" height="300px">
+<img src="images/MeetingStatsSequenceDiagram4.png" alt="result for meeting stats sequence diagram 4" height="300px">
 
 *Fig. 39 - Sequence diagram for `getPreviousMonthlyData`*
 
-<img src="images/MeetingStatsSequenceDiagram52.png" alt="result for meeting stats sequence diagram 5" height="200px">
+<img src="images/MeetingStatsSequenceDiagram5.png" alt="result for meeting stats sequence diagram 5" height="200px">
 
 *Fig. 40 - Sequence diagram for `getMonthlyData`*
 
