@@ -63,6 +63,7 @@ title: Kwek Min Yih's Project Portfolio Page
  * Maintained the issue tracker by removing duplicate issues after the conclusion of the mock PE. 
  * Wrote an explanation of the user interface in the User Guide.
  * Added the parameter tables for Person related commands.
+ * Update DeleteSequenceDiagram with updated implementation.
  * Managed the user stories section of the Developer Guide.
  
  ### Review/mentoring contributions: Links to PRs reviewed, instances of helping team members in other ways
