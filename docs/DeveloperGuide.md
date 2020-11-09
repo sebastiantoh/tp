@@ -237,7 +237,7 @@ The below activity diagram shows the overall process of the execution of `tag ad
 In order to ensure data cleanliness and that the inputs by the users are valid, errors are thrown at various stages if:
 - Incorrect command format is used (e.g. missing/incorrect prefixes)
 - Invalid index/values provided (e.g. non-positive and non-integer values are provided as index, non-alphanumeric
- character included in message, unrecognised date formats, etc.)
+ character included in the tag name.)
 
 ![The different outcomes of the program that can occur from the `tag add <args>` Command](images/TagAddActivityDiagram.png)
 
@@ -282,6 +282,9 @@ We enforce an association between `Sale` and `Tag` to aid data analytics in the 
     * Classes interacting with `Tag` via the contact list or sales list.
   * Cons:
     * Will have to implement two tag lists separately.
+
+Alternative 2 is chosen as we found the importance of abstraction and scalability outweighs the additional work in
+implementing two independent tag lists.
 
 ### 4.2. Meetings feature \[Sebastian Toh Shi Jian\]
 
