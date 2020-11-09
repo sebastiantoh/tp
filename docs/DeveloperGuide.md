@@ -251,6 +251,9 @@ The following sequence diagram shows how the retrieval of contacts (or sales) wi
 
 *Fig. 13 - Sequence diagram illustrating the retrieval of contacts (or sales)*
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagCommandsParser` and `FindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 The below activity diagram shows the overall process of executing `tag find <args>`.
 
 ![TagFindActivityDiagram](images/TagFindActivityDiagram.png)
@@ -347,6 +350,10 @@ The sequence diagram below illustrates how the `AddCommand` that is created from
  ![MeetingExecuteAddSequenceDiagram](images/MeetingExecuteAddSequenceDiagram.png)
 
 *Fig. 17 - Sequence diagram illustrating the execution of `AddCommand`* 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+ reaches the end of diagram.
+</div> 
 
 #### 4.2.3. Error handling within the `Logic` component
 
@@ -498,6 +505,10 @@ The sequence diagram below illustrates how the `DeleteCommand` that is created f
 ![ReminderExecuteDeleteSequenceDiagram](images/ReminderExecuteDeleteSequenceDiagram.png)
 
 *Fig. 21 - Sequence diagram illustrating the execution of the `DeleteCommand`* 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+ reaches the end of diagram.
+</div> 
 
 #### 4.3.3. Error handling within the `Logic` component
 
