@@ -69,9 +69,9 @@ title: Kwek Min Yih's Project Portfolio Page
  ### Review/mentoring contributions: Links to PRs reviewed, instances of helping team members in other ways
   Here is a list of PRs reviewed by me with non-trivial comments: 
   [#68](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/68), 
-  [#77](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/77), 
+  [#77](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/77),
+  [#114](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/114),  
   [#148](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/148), 
-  [#144](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/114), 
   [#153](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/153),
   [#162](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/162),
  
