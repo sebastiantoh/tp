@@ -12,20 +12,20 @@ mainframe **sd** getPreviousMonthlyData
 
 box
 
-MonthlyListMap --> MonthlyListMap : getPreviousMonthAndYear(month, year)
+MonthlyListMap -> MonthlyListMap : getPreviousMonthAndYear(month, year)
 activate MonthlyListMap
 
 create MonthAndYear
-MonthlyListMap --> MonthAndYear
+MonthlyListMap -> MonthAndYear
 activate MonthAndYear
 MonthAndYear --> MonthlyListMap
 deactivate MonthAndYear
 MonthlyListMap --> MonthlyListMap
 deactivate MonthlyListMap
 
-MonthlyListMap --> MonthAndYear: getMonth()
+MonthlyListMap -> MonthAndYear: getMonth()
 
-MonthlyListMap --> MonthAndYear: getYear()
+MonthlyListMap -> MonthAndYear: getYear()
 
 ref over MonthlyListMap: getMonthlyData
 
