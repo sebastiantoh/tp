@@ -21,7 +21,7 @@ create MeetingCommandsParser
 AddressBookParser -> MeetingCommandsParser
 activate MeetingCommandsParser
 
-MeetingCommandsParser -> AddressBookParser
+MeetingCommandsParser --> AddressBookParser
 deactivate MeetingCommandsParser
 
 AddressBookParser -> MeetingCommandsParser : parse("meeting add", <args>)
@@ -31,31 +31,31 @@ create AddCommandParser
 MeetingCommandsParser -> AddCommandParser
 activate AddCommandParser
 
-AddCommandParser -> MeetingCommandsParser
+AddCommandParser --> MeetingCommandsParser
 deactivate AddCommandParser
 
 MeetingCommandsParser -> AddCommandParser : parse(<args>)
 activate AddCommandParser
 
-AddCommandParser --> ParserUtil : parseIndex(str)
+AddCommandParser -> ParserUtil : parseIndex(str)
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
-AddCommandParser --> ParserUtil : parseMessage(str)
+AddCommandParser -> ParserUtil : parseMessage(str)
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
-AddCommandParser --> ParserUtil : parseDateTime(str)
+AddCommandParser -> ParserUtil : parseDateTime(str)
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
-AddCommandParser --> ParserUtil : parseDuration(str)
+AddCommandParser -> ParserUtil : parseDuration(str)
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
