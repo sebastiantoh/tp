@@ -495,7 +495,7 @@ All entries (contacts or sales) previously associated with this tag will be upda
 
 **Example**:
 
-Let's say that you decides to change the tag colleagues to teammates instead. Here are the steps to follow:
+Let's say that you decide to change the tag colleagues to teammates instead. Here are the steps to follow:
 
 1. Type `tag list` in the **Command Box** and press <kbd>Enter</kbd>.
     - This is to display the contact tags and sales tags in StonksBook.
@@ -995,7 +995,7 @@ Edits an existing meeting in StonksBook.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note on conflicting meetings:**<br>
-Similar to when adding a meeting, StonksBook will not allow you to edit a meeting if it will conflicts with some meeting
+Similar to when adding a meeting, StonksBook will not allow you to edit a meeting if it will conflict with some meeting
  in StonksBook!
 </div>
 
@@ -1031,8 +1031,7 @@ Let's say that you have just received an email from Charlotte Oliveiro who wishe
         <img src="images/meeting-edit/meeting-edit.png" alt="Enter command 'meeting edit'" width="900px">
     </figure>  
     
-3. The **Result Box** will display a message noting that the command was successful, and the meeting is updated in the 
-     the **Meeting List**.
+3. The **Result Box** will display a message noting that the command was successful, and the meeting is updated in the **Meeting List**.
 
     <figure>    
         <img src="images/meeting-edit/meeting-edit-result.png" alt="Result for 'meeting edit'" width="900px">
