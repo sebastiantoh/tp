@@ -10,7 +10,7 @@ title: Developer Guide
 ### 1.1. Software overview
 
 StonksBook is a sales-optimised contact management application. It is targeted at salesmen who are seeking an all-in-one application that can empower them to effectively curate their contact list.
-StonksBook also provides many tools that can boost one's sales peformance through the use of sophisticated data analysis techniques.
+StonksBook also provides many tools that can boost one's sales performance through the use of sophisticated data analysis techniques.
 
 ### 1.2. Purpose & scope
 
@@ -270,7 +270,7 @@ We enforce an association between `Sale` and `Tag` to aid data analytics in the 
 #### 4.1.5. Design consideration:
 
 ##### 4.1.5.1. Aspect: Whether a `Tag` should have a type attribute
-* **Alternative 1:**: Add a type attribute in `Tag` to indicate whether it is a contact tag or sales tag.
+* **Alternative 1:** Add a type attribute in `Tag` to indicate whether it is a contact tag or sales tag.
   * Pros:
     * Increased type safety and contact tags and sales tag are separated from each other.
   * Cons:
@@ -377,7 +377,7 @@ With that, whenever a `Person` is deleted, all associated `Meeting`s are deleted
 #### 4.2.5. Design consideration:
 
 ##### 4.2.5.1. Aspect: Whether it should be necessary to enforce a `message` field in a `Meeting` object
-* **Alternative 1 (current choice):**: Create a `Message` class which enforces a non-empty message association to a `Meeting` object.
+* **Alternative 1 (current choice):** Create a `Message` class which enforces a non-empty message association to a `Meeting` object.
   * Pros:
     * Easier implementation of meeting commands since every field is necessary.
     * Better data cleanliness.
@@ -528,7 +528,7 @@ We enforce a composition relationship between `Reminder` and its attribute as we
 #### 4.3.5. Design consideration:
 
 ##### 4.3.5.1. Aspect: Whether it should be necessary to enforce a `message` field in a `Reminder` object
-* **Alternative 1 (current choice):**: Create a `Message` class which enforces a non-empty message association to a
+* **Alternative 1 (current choice):** Create a `Message` class which enforces a non-empty message association to a
  `Reminder` object.
   * Pros:
     * Easier implementation of reminder commands since every field is necessary.
@@ -665,7 +665,7 @@ to allow for greater input validation and attribute specific functionality.
 #### 4.4.5. Design consideration:
 
 ##### 4.4.5.1. Aspect: How to implement currency related fields
-* **Alternative 1 (current choice):**: Use BigDecimal to store currency related fields.
+* **Alternative 1 (current choice):** Use BigDecimal to store currency related fields.
   * Pros:
     * Accurate currency calculations are possible.
   * Cons:
@@ -687,20 +687,20 @@ Alternative 1 was chosen as it was the most appropriate given the size of inputs
 
 
 ##### 4.4.5.2. Aspect: How to implement the relationship between Sale and Person
-* **Alternative 1:**: Store the Person id in the Sale model and storage.
+* **Alternative 1:** Store the Person id in the Sale model and storage.
   * Pros:
     * Less storage space needed.
   * Cons:
     * Difficult to retrieve Person attributes without using `Model`.
 
-* **Alternative 2:**: Store the Person in model and storage.
+* **Alternative 2:** Store the Person in model and storage.
   * Pros:
     * Easier to retrieve Person attributes, without any need to use `Model`.
   * Cons:
     * Need to update Sale whenever corresponding Person is updated.
     * Large amount of duplicate data stored in the JSON file
     
-* **Alternative 3:**: Store the person in model, but store Person id in storage
+* **Alternative 3:** Store the person in model, but store Person id in storage
   * Pros:
     * Easier to retrieve Person attributes, without any need to use `Model`.
     * Less storage space needed.
@@ -1204,7 +1204,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. A index is specified, but the given index is invalid
+* 1a. An index is specified, but the given index is invalid
 
     * 1a1. StonksBook shows an error message.
 
@@ -1398,7 +1398,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
       Use case resumes at step 2.
       
       
-#### 6.3.21. Use case: Add a sale to a multiple contacts
+#### 6.3.21. Use case: Add a sale to multiple contacts
 {:.no_toc}
 
 **MSS**
@@ -2029,13 +2029,13 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.16. Adding a meeting
 
-1. Adding a meeting while all persons are being shown
+1. Adding a meeting while all contacts are being shown
 
-   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
+   1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
 
    1. Test case: `meeting add c/1 m/Lunch with Bob d/2020-10-30 12:00 du/60`<br>
       Expected: A new meeting is created that is associated with the first contact in the currently displayed list of
-      persons, has message "Lunch with Bob", and is scheduled from 30 October 2020, 12pm to 1pm. The meeting list
+      contacts, has message "Lunch with Bob", and is scheduled from 30 October 2020, 12pm to 1pm. The meeting list
       should remain sorted in ascending order based on the scheduled date.
 
    1. Test case: `meeting add`<br>
@@ -2100,13 +2100,13 @@ testers are expected to do more *exploratory* testing.
        
 ### 7.20. Adding a reminder
 
-1. Adding a reminder while all persons are being shown
+1. Adding a reminder while all contacts are being shown
 
-   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
+   1. Prerequisites: List all contacts using the `contact list` command. Multiple contacts in the list.
 
    1. Test case: `reminder add c/1 m/Follow up with Bob d/2020-10-30 12:00`<br>
       Expected: A new reminder is created that is associated with the first contact in the currently displayed list of
-      persons, has message "Follow up with Bob", and is scheduled on 30 October 2020, 12pm. The reminder list
+      contacts, has message "Follow up with Bob", and is scheduled on 30 October 2020, 12pm. The reminder list
       should remain sorted in ascending order based on the scheduled date.
 
    1. Test case: `reminder add`<br>
@@ -2118,7 +2118,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.21. Deleting a reminder
 
-1. Deleting a reminder while all reminder are being shown
+1. Deleting a reminder while all reminders are being shown
 
    1. Prerequisites: List all reminder using the `reminder list` command. Multiple reminder in the list.
 
@@ -2134,7 +2134,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.22. Editing a reminder
 
-1. Editing a reminder while all reminder are being shown.
+1. Editing a reminder while all reminders are being shown.
 
     1. Prerequisites: List all reminders using the `reminder list` command. Multiple reminders in the list.
     
