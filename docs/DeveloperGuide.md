@@ -251,6 +251,9 @@ The following sequence diagram shows how the retrieval of contacts (or sales) wi
 
 *Fig. 13 - Sequence diagram illustrating the retrieval of contacts (or sales)*
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TagCommandsParser` and `FindCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 The below activity diagram shows the overall process of executing `tag find <args>`.
 
 ![TagFindActivityDiagram](images/TagFindActivityDiagram.png)

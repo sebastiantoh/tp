@@ -21,7 +21,7 @@ create TagCommandsParser
 AddressBookParser -> TagCommandsParser
 activate TagCommandsParser
 
-TagCommandsParser -> AddressBookParser
+TagCommandsParser --> AddressBookParser
 deactivate TagCommandsParser
 
 AddressBookParser -> TagCommandsParser : parse("tag add", <args>)
@@ -31,13 +31,13 @@ create AddCommandParser
 TagCommandsParser -> AddCommandParser
 activate AddCommandParser
 
-AddCommandParser -> TagCommandsParser
+AddCommandParser --> TagCommandsParser
 deactivate AddCommandParser
 
 TagCommandsParser -> AddCommandParser : parse(<args>)
 activate AddCommandParser
 
-AddCommandParser --> ParserUtil : parseTag(str)
+AddCommandParser -> ParserUtil : parseTag(str)
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
