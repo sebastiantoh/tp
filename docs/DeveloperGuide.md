@@ -2234,5 +2234,5 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. Open the file [stonksbook.json](../data/stonksbook.json) and delete the `id`s of at least one contact. After which start the application.
+   1. Open the file `stonksbook.json` which is located in the `data` folder and delete the `id`s of at least one contact. After which start the application.
       Expected: The StonksBook opened should display an empty GUI, where no data exists in the application.
