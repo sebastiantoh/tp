@@ -21,7 +21,7 @@ alt isContact
     AddCommand -> Tag
     activate Tag
 
-    Tag -> AddCommand
+    Tag --> AddCommand
     deactivate Tag
 
     AddCommand -> Model : hasContactTag(newTag)
@@ -39,7 +39,7 @@ else else
     AddCommand -> Tag
     activate Tag
 
-    Tag -> AddCommand
+    Tag --> AddCommand
     deactivate Tag
 
     AddCommand -> Model : hasSaleTag(newTag)

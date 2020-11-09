@@ -20,7 +20,7 @@ create ReminderCommandsParser
 AddressBookParser -> ReminderCommandsParser
 activate ReminderCommandsParser
 
-ReminderCommandsParser -> AddressBookParser
+ReminderCommandsParser --> AddressBookParser
 deactivate ReminderCommandsParser
 
 AddressBookParser -> ReminderCommandsParser : parse("reminder edit", <args>)
@@ -30,19 +30,19 @@ create EditCommandParser
 ReminderCommandsParser -> EditCommandParser
 activate EditCommandParser
 
-EditCommandParser -> ReminderCommandsParser
+EditCommandParser --> ReminderCommandsParser
 deactivate EditCommandParser
 
 ReminderCommandsParser -> EditCommandParser : parse(<args>)
 activate EditCommandParser
 
-EditCommandParser --> ParserUtil : parseIndex(1)
+EditCommandParser -> ParserUtil : parseIndex(1)
 activate ParserUtil
 
 ParserUtil --> EditCommandParser
 deactivate ParserUtil
 
-EditCommandParser --> ParserUtil : parseCompletionStatus(str)
+EditCommandParser -> ParserUtil : parseCompletionStatus(str)
 activate ParserUtil
 
 ParserUtil --> EditCommandParser
