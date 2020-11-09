@@ -20,7 +20,7 @@ MonthlyListMap -> MonthAndYear
 activate MonthAndYear
 MonthAndYear --> MonthlyListMap
 deactivate MonthAndYear
-MonthlyListMap -> MonthlyListMap
+MonthlyListMap --> MonthlyListMap
 deactivate MonthlyListMap
 
 MonthlyListMap -> MonthAndYear: getMonth()
