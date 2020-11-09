@@ -930,36 +930,34 @@ The following activity diagram summarizes what happens when a user executes the 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                            | I want to …​                                               | So that I can…​                                                                            |
+| Priority | As a …​                            | I want to …​                                                   | So that I can…​                                                                            |
 | -------- | --------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `* *`    | well-connected salesman           | see a history of the number of contacts made with someone     | determine if this contact is worth investing more time to                                     |
-| `* *`    | forgetful salesman                | set reminders associated with contacts                        | keep track of crucial tasks to be done                                                        |
-| `* *`    | efficient salesman                | set meeting / call time with contacts                         | plan my meetings without another app                                                          |
 | `* * *`  | new salesman                      | add contacts                                                  | expand my contact list                                                                        |
 | `* *`    | normal user who makes mistakes    | update contacts                                               | quickly and conveniently append any mistakes made.                                            |
 | `* * *`  | careless user                     | delete contacts                                               | avoid having wrong data                                                                       |
-| `* *`    | visual salesman                   | have chatbot GUI                                              | visually keep track of my actions                                                             |
-| `* *`    | busy salesman                     | clear past interactions with the app                          | remove the clutter on the GUI                                                                 |
-| `* *`    | careless typer                    | be notified of an erroneous input                             | easily identify my mistakes                                                                   |
 | `* *`    | well-connected salesman           | associate remarks to contacts                                 | remember key information about this contact and distinguish between contacts with same names  |
-| `* *`    | efficient salesman                | see the relevant sales information to the contact information | make sales decisions without referring to other app                                           |
+| `* * *`  | user                              | have my contact list sorted alphabetically by default         | easily find the contacts I am interested in manually                                          |
+| `* *`    | efficient user                    | sort my contact list by certain attributes                    | easily find people of interest according to the sorted result                                    |
 | `* * *`  | well-connected salesman           | categorise my contacts                                        | navigate through a large list of contacts with ease.                                          |
 | `* *`    | efficient salesman                | search contacts who are in certain groups                     | identify contacts belong to a sales group easily                                              |
 | `* *`    | well-connected salesman           | search for contacts based on fuzzy match                      | easily find the contacts I am interested in                                                   |
-| `* *`    | forgetful salesman                | see the command list with a single command                    | easily recall how to use the app                                                              |
-| `* * *`  | user                              | have my contact list sorted alphabetically be default         | easily find the contacts I am interested in manually                                          |
-| `* *`    | careless user                     | be suggested the right command when I input wrongly           | correct my mistakes easily                                                                    |
-| `* *`    | efficient user                    | sort my contact list by certain attributes                    | easily find people of interest according the sorted result                                    |
-| `* *`    | forgetful user                    | see the command list with a single command                    | recall how to use quickly                                                                     |
-| `* * *`  | efficient salesman                | add sales to contacts                                         | make better sales decisions to my clients                                                     |
-| `* * *`  | salesman                          | delete sales belonging to contacts                            | ensure updated and correct sales information                                                  |
-| `* * *`  | efficient salesman                | list all sales of a contact                                   | see all sales made to a contact easily                                                        |
-| `* * *`  | successful salesman               | categorise my sales                                           | search for sales made by their categories                                                     |
-| `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
-| `* *`    | visual user                       | quickly identify overdue reminders                            | work on it without further delay                                                              |
-| `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                                     |
 | `* *`    | well-connected salesman           | archive contacts who are no longer active                     | focus on contacts that are more likely to respond                                             |
 | `* *`    | salesman                          | remove contacts from the archive                              | focus on inactive contacts who are now active again                                           |
+| `* *`    | efficient salesman                | create, view and manage sales related to contacts             | make sales decisions without referring to other app                                           |
+| `* *`    | busy salesman                     | perform operations on multiple sales or contacts at once      | save time                                                                                     |
+| `* * *`  | performance driven salesman       | see the proportion of sales across sales categories           | identify the proportion of sales made and tweak sales strategies to boost the high ones       |
+| `* *`    | forgetful salesman                | set reminders associated with contacts                        | keep track of crucial tasks to be done                                                        |
+| `* *`    | visual user                       | quickly identify overdue reminders                            | work on it without further delay                                                              |
+| `* *`    | efficient salesman                | set meeting / call time with contacts                         | plan my meetings without another app                                                          |
+| `* *`    | efficient salesman                | be notified when I attempt to schedule a clashing meeting     | schedule meetings without worrying for accidental clashes                                     |
+| `* *`    | careless typer                    | be notified of an erroneous input                             | easily identify my mistakes                                                                   |
+| `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
+| `* *`    | visual salesman                   | have chatbot GUI                                              | visually keep track of my actions                                                             |
+| `* *`    | user who enjoys customisation     | switch to a light theme                                       | my eyes will not be strained when working late in the night                                   |
+| `* *`    | busy salesman                     | clear past interactions with the app                          | remove the clutter on the GUI                                                                 |
+| `* *`    | forgetful salesman                | see the command list with a single command                    | easily recall how to use the app                                                              |
+| `* *`    | careless user                     | be suggested the right command when I input wrongly           | correct my mistakes easily                                                                    |
+| `* *`    | fast typer with low accuracy      | retrieve my previous command with a single keystroke          | I can correct my typos easily                                                                 |
 
 ### 6.3. Use cases
 
