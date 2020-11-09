@@ -57,6 +57,7 @@ public abstract class UniqueTagList implements Iterable<Tag> {
             return;
         }
         internalList.add(toAdd);
+        internalList.sort(Comparator.comparing(t -> t.getTagName().toLowerCase()));
     }
 
     /**
