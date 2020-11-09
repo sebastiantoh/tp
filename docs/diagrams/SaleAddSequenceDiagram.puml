@@ -21,7 +21,7 @@ create SaleCommandsParser
 AddressBookParser -> SaleCommandsParser
 activate SaleCommandsParser
 
-SaleCommandsParser -> AddressBookParser
+SaleCommandsParser --> AddressBookParser
 deactivate SaleCommandsParser
 
 AddressBookParser -> SaleCommandsParser : parse("sale add", <args>)
@@ -31,37 +31,37 @@ create AddCommandParser
 SaleCommandsParser -> AddCommandParser
 activate AddCommandParser
 
-AddCommandParser -> SaleCommandsParser
+AddCommandParser --> SaleCommandsParser
 deactivate AddCommandParser
 
 SaleCommandsParser -> AddCommandParser : parse(<args>)
 activate AddCommandParser
 
-AddCommandParser --> ParserUtil : parseItemName("Notebook")
+AddCommandParser -> ParserUtil : parseItemName("Notebook")
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
-AddCommandParser --> ParserUtil : parseDateTime("2020-10-30 15:00")
+AddCommandParser -> ParserUtil : parseDateTime("2020-10-30 15:00")
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
-AddCommandParser --> ParserUtil : parseQuantity("2")
+AddCommandParser -> ParserUtil : parseQuantity("2")
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
-AddCommandParser --> ParserUtil : parseUnitPrice("6.00")
+AddCommandParser -> ParserUtil : parseUnitPrice("6.00")
 activate ParserUtil
 
 ParserUtil --> AddCommandParser
 deactivate ParserUtil
 
-AddCommandParser --> ParserUtil : parseTags("stationery")
+AddCommandParser -> ParserUtil : parseTags("stationery")
 activate ParserUtil
 
 ParserUtil --> AddCommandParser

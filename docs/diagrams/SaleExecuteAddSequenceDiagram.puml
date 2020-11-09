@@ -22,7 +22,7 @@ activate Model
 Model --> AddCommand
 deactivate Model
 
-AddCommand --> MassSaleCommandUtil : arePersonIndexesValid(lastShownList, indexList)
+AddCommand -> MassSaleCommandUtil : arePersonIndexesValid(lastShownList, indexList)
 activate MassSaleCommandUtil
 
 MassSaleCommandUtil --> AddCommand
@@ -36,7 +36,7 @@ deactivate Model
 
 loop until all specified Sales are processed
     create Sale
-    AddCommand --> Sale
+    AddCommand -> Sale
     activate Sale
 
     Sale --> AddCommand : sale
