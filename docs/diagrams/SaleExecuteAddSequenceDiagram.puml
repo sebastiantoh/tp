@@ -22,7 +22,7 @@ activate Model
 Model --> AddCommand
 deactivate Model
 
-AddCommand --> MassSaleCommandUtil : arePersonIndexesValid(lastShownList, indexList)
+AddCommand -> MassSaleCommandUtil : arePersonIndexesValid(lastShownList, indexList)
 activate MassSaleCommandUtil
 
 MassSaleCommandUtil --> AddCommand
@@ -36,7 +36,7 @@ deactivate Model
 
 loop until all specified Sales are processed
     create Sale
-    AddCommand --> Sale
+    AddCommand -> Sale
     activate Sale
 
     Sale --> AddCommand : sale
@@ -48,7 +48,7 @@ loop until all specified Sales are processed
     Model --> AddCommand
     deactivate Model
 
-    alt sale is not a duplicate
+    opt sale is not a duplicate
         AddCommand -> Model : addSale(newSale)
         activate Model
 
@@ -57,7 +57,7 @@ loop until all specified Sales are processed
     end
 end
 
-alt there are duplicate sales
+opt there are duplicate sales
     AddCommand -> AddCommand : generateDuplicateSaleMessage(sales)
     activate AddCommand
 
