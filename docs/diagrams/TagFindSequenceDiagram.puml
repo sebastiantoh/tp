@@ -26,7 +26,7 @@ create TagCommandsParser
 AddressBookParser -> TagCommandsParser
 activate TagCommandsParser
 
-TagCommandsParser -> AddressBookParser
+TagCommandsParser --> AddressBookParser
 deactivate TagCommandsParser
 
 AddressBookParser -> TagCommandsParser : parse("tag find", <args>)
@@ -36,13 +36,13 @@ create FindCommandParser
 TagCommandsParser -> FindCommandParser
 activate FindCommandParser
 
-FindCommandParser -> TagCommandsParser
+FindCommandParser --> TagCommandsParser
 deactivate FindCommandParser
 
 TagCommandsParser -> FindCommandParser : parse(<args>)
 activate FindCommandParser
 
-FindCommandParser --> ParserUtil : parseIndex(str)
+FindCommandParser -> ParserUtil : parseIndex(str)
 activate ParserUtil
 
 ParserUtil --> FindCommandParser
@@ -82,10 +82,10 @@ alt isSaleTag
         FindCommand -> Model : findContactsBySaleTag(tag)
         activate Model
 
-        Model -> FindCommand
+        Model --> FindCommand
         deactivate Model
 
-    else
+    else else
 
         FindCommand -> Model : findBySaleTag(tag)
         activate Model
@@ -95,7 +95,7 @@ alt isSaleTag
 
     end
 
-else
+else else
 
     FindCommand -> Model : findByContactTag(tag)
     activate Model

@@ -24,7 +24,7 @@ create ContactCommandsParser
 AddressBookParser -> ContactCommandsParser
 activate ContactCommandsParser
 
-ContactCommandsParser -> AddressBookParser
+ContactCommandsParser --> AddressBookParser
 deactivate ContactCommandsParser
 
 AddressBookParser -> ContactCommandsParser : parse("contact delete 1")
