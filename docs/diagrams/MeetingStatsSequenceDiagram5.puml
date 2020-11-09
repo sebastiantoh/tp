@@ -13,7 +13,7 @@ box
 MonthlyListMap -> MonthlyListMap : getItems(month, year)
 activate MonthlyListMap
 
-MonthlyListMap -> MonthlyListMap : list of meetings
+MonthlyListMap --> MonthlyListMap : list of meetings
 deactivate MonthlyListMap
 create MonthlyData
 MonthlyListMap -> MonthlyData : m, meetings list size
