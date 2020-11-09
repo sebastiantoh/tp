@@ -13,10 +13,11 @@ If you can type fast, StonksBook can get your contact management tasks done fast
 
 Given below are my contributions to the project.
 
-### Code contributed:
+**Code contributed**
+
 Click [here](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=hakujitsu) to view the code I contributed.
 
-### Enhancements implemented:
+**Enhancements implemented**
  
 New Feature: Sales
 * What it does: allows the user to manage sales within the application. The following functionalities are implemented:
@@ -47,7 +48,7 @@ Enhancement: Addition of Remark field to Person class
 For example, they can use it to take note of the client's needs, wants and preferences.
 * Highlights: This was a relatively simple feature to implement.
  
-### Contributions to documentation 
+**Contributions to documentation**
 - User guide:
     - Wrote the section to explain the user interface.
     - Wrote the sections for `sale list`, `sale add`, `sale delete`, `sale edit` and `sale breakdown`commands in the User Guide.
@@ -55,7 +56,8 @@ For example, they can use it to take note of the client's needs, wants and prefe
     - Wrote the sections for the implementation and use cases related to the 'Sale' feature in the Developer Guide,
       and added all UML diagrams seen in those sections.
  
-### Contributions to team-based tasks
+**Contributions to team-based tasks**
+
 * Handled release management for an informal milestone set by the team, v1.3a, intended to be a checkpoint within v1.3.
 * Handled the JAR release in Week 10.
 * Maintained the issue tracker by removing duplicate issues after the conclusion of the mock PE. 
@@ -64,7 +66,7 @@ For example, they can use it to take note of the client's needs, wants and prefe
 * Update DeleteSequenceDiagram with updated implementation.
 * Managed the user stories section of the Developer Guide.
  
-### Review/mentoring contributions
+**Review/mentoring contributions**
 
 Here is a list of PRs reviewed by me with non-trivial comments: 
   [#68](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/68), 
@@ -74,7 +76,7 @@ Here is a list of PRs reviewed by me with non-trivial comments:
   [#153](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/153),
   [#162](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/162),
  
-### Contributions beyond the project team:
+**Contributions beyond the project team**
 Here is a list of issues reported by me for other project teams: [#1](https://github.com/hakujitsu/ped/issues/1), 
   [#2](https://github.com/hakujitsu/ped/issues/2), [#3](https://github.com/hakujitsu/ped/issues/3), 
   [#4](https://github.com/hakujitsu/ped/issues/4), [#5](https://github.com/hakujitsu/ped/issues/5), 
