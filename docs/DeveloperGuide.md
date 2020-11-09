@@ -1793,7 +1793,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `contact edit` and `contact edit random` <br>
       Expected: Similar to previous.
       
-1. Editing a contact while no sales are shown
+1. Editing a contact while no contacts are shown
 
     1. Prerequisites: Use the `contact find` command to find a name that does not match any contacts in StonksBook.
        A blank contact list should be displayed.
@@ -1915,7 +1915,7 @@ testers are expected to do more *exploratory* testing.
       The sale list should remain sorted in ascending order based on the datetime of purchase.
       
    1. Test case: Enter `sale list`<br>
-      Expected: No change in the sale list. Error details shown in the Result Box.
+      Expected: The sale list will display all sales.
       
    1. Test case: Enter `sale list c/0`<br>
          Expected: No change in the sale list. Error details shown in the Result Box.
