@@ -114,7 +114,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 *Fig. 6 - Interactions inside the `Logic` component for the `contact delete 1` command*
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ContactCommandParser`, `DeleteCommandParser` and `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### 3.4. Model component
@@ -962,7 +962,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | careless typer                    | be notified of an erroneous input                             | easily identify my mistakes                                                                   |
 | `* *`    | careless user                     | be notified if a similar record already exists                | ensure no duplicate records are created                                                       |
 | `* *`    | visual salesman                   | have chatbot GUI                                              | visually keep track of my actions                                                             |
-| `* *`    | user who enjoys customisation     | switch to a light theme                                       | my eyes will not be strained when working late in the night                                   |
+| `*`      | user who enjoys customisation     | switch to a light theme                                       | my eyes will not be strained when working late in the night                                   |
 | `* *`    | busy salesman                     | clear past interactions with the app                          | remove the clutter on the GUI                                                                 |
 | `* *`    | forgetful salesman                | see the command list with a single command                    | easily recall how to use the app                                                              |
 | `* *`    | careless user                     | be suggested the right command when I input wrongly           | correct my mistakes easily                                                                    |

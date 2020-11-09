@@ -4,6 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ContactCommandsParser" as ContactCommandsParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -19,14 +20,24 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand("contact delete 1")
 activate AddressBookParser
 
+create ContactCommandsParser
+AddressBookParser -> ContactCommandsParser
+activate ContactCommandsParser
+
+ContactCommandsParser -> AddressBookParser
+deactivate ContactCommandsParser
+
+AddressBookParser -> ContactCommandsParser : parse("contact delete 1")
+activate ContactCommandsParser
+
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+ContactCommandsParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> ContactCommandsParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+ContactCommandsParser -> DeleteCommandParser : parse("1")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -36,11 +47,17 @@ activate DeleteCommand
 DeleteCommand --> DeleteCommandParser : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> AddressBookParser : d
+DeleteCommandParser --> ContactCommandsParser : d
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteCommandParser -[hidden]-> AddressBookParser
 destroy DeleteCommandParser
+
+ContactCommandsParser --> AddressBookParser : d
+deactivate ContactCommandsParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ContactCommandsParser -[hidden]-> AddressBookParser
+destroy ContactCommandsParser
 
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
@@ -63,6 +80,9 @@ deactivate CommandResult
 
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCommand -[hidden]-> AddressBookParser
+destroy DeleteCommand
 
 [<--LogicManager
 deactivate LogicManager
