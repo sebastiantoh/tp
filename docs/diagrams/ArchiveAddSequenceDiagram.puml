@@ -20,7 +20,7 @@ create ArchiveCommandsParser
 AddressBookParser -> ArchiveCommandsParser
 activate ArchiveCommandsParser
 
-ArchiveCommandsParser -> AddressBookParser
+ArchiveCommandsParser --> AddressBookParser
 deactivate ArchiveCommandsParser
 
 AddressBookParser -> ArchiveCommandsParser : parse("archive add", "1")
@@ -30,7 +30,7 @@ create AddCommandParser
 ArchiveCommandsParser -> AddCommandParser
 activate AddCommandParser
 
-AddCommandParser -> ArchiveCommandsParser
+AddCommandParser --> ArchiveCommandsParser
 deactivate AddCommandParser
 
 ArchiveCommandsParser -> AddCommandParser : parse("1")
