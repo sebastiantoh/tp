@@ -100,16 +100,23 @@ public class EditCommand extends Command {
      * edited with {@code editMeetingDescriptor}.
      */
     private static Meeting createEditedMeeting(Model model, Meeting meetingToEdit,
-                                               EditMeetingDescriptor editMeetingDescriptor) {
+                                               EditMeetingDescriptor editMeetingDescriptor) throws CommandException {
         assert model != null;
         assert meetingToEdit != null;
         assert editMeetingDescriptor != null;
 
-        List<Person> lastShownPersonsList = model.getSortedPersonList();
+        Person updatedPerson = meetingToEdit.getPerson();
+        if (editMeetingDescriptor.getContactIndex().isPresent()) {
+            Index contactIndex = editMeetingDescriptor.getContactIndex().get();
+            List<Person> lastShownPeople = model.getSortedPersonList();
 
-        Person updatedPerson =
-                editMeetingDescriptor.getContactIndex().map(index -> lastShownPersonsList.get(index.getZeroBased()))
-                        .orElse(meetingToEdit.getPerson());
+            if (editMeetingDescriptor.getContactIndex().get().getZeroBased() >= lastShownPeople.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+
+            updatedPerson = lastShownPeople.get(contactIndex.getZeroBased());
+        }
+
         Message updatedMessage = editMeetingDescriptor.getMessage().orElse(meetingToEdit.getMessage());
         LocalDateTime updatedStartDate =
                 editMeetingDescriptor.getStartDate().orElse(meetingToEdit.getStartDate());

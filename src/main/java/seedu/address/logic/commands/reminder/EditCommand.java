@@ -86,16 +86,25 @@ public class EditCommand extends Command {
      * edited with {@code editReminderDescriptor}.
      */
     private static Reminder createEditedReminder(Model model, Reminder reminderToEdit,
-                                                 EditReminderDescriptor editReminderDescriptor) {
+                                                 EditReminderDescriptor editReminderDescriptor)
+            throws CommandException {
         assert model != null;
         assert reminderToEdit != null;
         assert editReminderDescriptor != null;
 
-        List<Person> lastShownPersonsList = model.getSortedPersonList();
 
-        Person updatedPerson =
-                editReminderDescriptor.getContactIndex().map(index -> lastShownPersonsList.get(index.getZeroBased()))
-                        .orElse(reminderToEdit.getPerson());
+        Person updatedPerson = reminderToEdit.getPerson();
+        if (editReminderDescriptor.getContactIndex().isPresent()) {
+            Index contactIndex = editReminderDescriptor.getContactIndex().get();
+            List<Person> lastShownPeople = model.getSortedPersonList();
+
+            if (editReminderDescriptor.getContactIndex().get().getZeroBased() >= lastShownPeople.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+
+            updatedPerson = lastShownPeople.get(contactIndex.getZeroBased());
+        }
+
         Message updatedMessage = editReminderDescriptor.getMessage().orElse(reminderToEdit.getMessage());
         LocalDateTime updatedScheduledDate =
                 editReminderDescriptor.getScheduledDate().orElse(reminderToEdit.getScheduledDate());
