@@ -26,9 +26,10 @@ The following section summarises my coding, documentation and other contribution
   Therefore, the tag system allows users to categorise past records and retrieve them easily later. Moreover, batch operations further enhanced
   productivity as the user no longer needs to update these items one by one himself or herself.
     <div style="page-break-after: always;"></div>
+
   * Highlights: This feature required an in-depth understanding of almost all aspects of the project as I was responsible for the front-end,
   back-end logic and commands, as well as storage and unit testing for this feature. In addition, as both the contacts and sales models make use
-  of this tag system, it also required a deep understanding of how the different models are implemented by the other team members.
+  of this tag system, it also required a deep understanding of how the different models are implemented by the other team members.<br>
 
 * **Major enhancement**: Enhanced the 'Reminders' feature
   * What it does: The 'Reminders' model has been enhanced to include a completion status so that users can focus on pending reminders of higher priority.
@@ -54,8 +55,7 @@ The following section summarises my coding, documentation and other contribution
     * Added implementation details of the 'Contacts' features: [#247](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/247).
     * Added implementation details of the 'Tags' feature: [#137](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/137).
     * Added manual testing details for the 'Contacts' and 'Tags' features: [#247](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/247).
-    * Added user stories and use cases for the 'Tags' feature: [#20](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/20).
-
+    * Added user stories and use cases for the 'Tags' feature: [#20](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/20). <br>
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#125](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/125),
