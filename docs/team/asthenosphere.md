@@ -54,9 +54,6 @@ The following section summarises my coding, documentation and other contribution
     * Added implementation details of the 'Tags' feature: [#137](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/137).
     * Added manual testing details for the 'Contacts' and 'Tags' features: [#247](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/247).
 
-* **Contributions to team-based tasks**
-  * Updated the architecture diagrams to stonksbook.
-
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#125](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/125),
   [#166](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/166), [#215](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/215),
