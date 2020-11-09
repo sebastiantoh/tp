@@ -85,7 +85,7 @@ alt isSaleTag
         Model -> FindCommand
         deactivate Model
 
-    else
+    else else
 
         FindCommand -> Model : findBySaleTag(tag)
         activate Model
@@ -95,7 +95,7 @@ alt isSaleTag
 
     end
 
-else
+else else
 
     FindCommand -> Model : findByContactTag(tag)
     activate Model

@@ -33,7 +33,7 @@ alt isContact
     Model --> AddCommand
     deactivate Model
 
-else
+else else
 
     create Tag
     AddCommand -> Tag
