@@ -20,7 +20,7 @@ create ReminderCommandsParser
 AddressBookParser -> ReminderCommandsParser
 activate ReminderCommandsParser
 
-ReminderCommandsParser -> AddressBookParser
+ReminderCommandsParser --> AddressBookParser
 deactivate ReminderCommandsParser
 
 AddressBookParser -> ReminderCommandsParser : parse("reminder delete", 1)
@@ -30,13 +30,13 @@ create DeleteCommandParser
 ReminderCommandsParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser -> ReminderCommandsParser
+DeleteCommandParser --> ReminderCommandsParser
 deactivate DeleteCommandParser
 
 ReminderCommandsParser -> DeleteCommandParser : parse(1)
 activate DeleteCommandParser
 
-DeleteCommandParser --> ParserUtil : parseIndex(1)
+DeleteCommandParser -> ParserUtil : parseIndex(1)
 activate ParserUtil
 
 ParserUtil --> DeleteCommandParser
