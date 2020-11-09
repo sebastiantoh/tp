@@ -178,7 +178,7 @@ Adds a contact to StonksBook.
 
 :bulb: Tip: A contact can have any number of tags (including 0)
 
-* Duplicate contacts cannot be added. A contact with the same name and same phone number/email address will be flagged as a duplicate.
+* Duplicate contacts cannot be added. A contact with the same name (case sensitive) and same phone number/email address will be flagged as a duplicate.
 
 **Example**:
 
@@ -649,7 +649,7 @@ Adds a sale to the specified contact in StonksBook.
 
 * Multiple `CONTACT_INDEX` can be specified, meaning that you can add a sale to multiple contacts.
 * It is compulsory to have a tag for the sales item. This is to ensure the ease of data analytics.
-* Duplicate sales cannot be added. A sale with the same item name, contact, datetime of purchase, unit price and quantity will be flagged as a duplicate.
+* Duplicate sales cannot be added. A sale with the same item name (not case sensitive), contact, datetime of purchase, unit price and quantity will be flagged as a duplicate.
 
 **Example:**
 
