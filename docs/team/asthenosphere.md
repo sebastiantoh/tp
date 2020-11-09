@@ -50,10 +50,13 @@ The following section summarises my coding, documentation and other contribution
     [#171](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/171).
     * Added documentation for `reminder list`: [#146](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/146).
   * Developer Guide:
+    * Added implementation details of the 'Contacts' features: [#247](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/247).
     * Added implementation details of the 'Tags' feature: [#137](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/137).
+    * Added manual testing details for the 'Contacts' and 'Tags' features: [#247](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/247).
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#125](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/125),
-  [#166](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/166), [#215](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/215).
+  [#166](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/166), [#215](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/215),
+  [#242](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/242).
   * Reported bugs and suggestions for other teams in the class: [#1](https://github.com/Asthenosphere/ped/issues/1),
   [#3](https://github.com/Asthenosphere/ped/issues/3), [#4](https://github.com/Asthenosphere/ped/issues/4), [#5](https://github.com/Asthenosphere/ped/issues/5), [#6](https://github.com/Asthenosphere/ped/issues/6).

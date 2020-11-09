@@ -9,14 +9,18 @@ start
 
 if () then ([command is in valid format])
     if () then ([index and arguments are valid])
-        :Create a new Sale object;
-        if () then ([sale already exists])
-            :Show duplicate sale warning;
-        else ([else])
-            :Add Sale to sale list;
-            :Edit the buyer of the Sale object;
-            :Show success message;
+        repeat
+            :Create new Sale object;
+            if () then ([sale already exists])
+                :Mark sale as duplicate;
+            else ([else])
+                :Add Sale to StonksBook;
+            endif
+        repeat while () is ([more sales to add])
+        if () then ([user tried to add duplicate sales])
+            :Show duplicate sales error message with list of duplicate sales;
         endif
+        :Show all added sales;
     else ([else])
         :Show error message with correct required values;
     endif
