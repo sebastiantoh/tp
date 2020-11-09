@@ -20,22 +20,24 @@ The following section summarises my coding, documentation and other contribution
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=aaronnseah&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Enhancements implemented**:
-    * sorting of contacts by name or email address in non ascending or non descending order.
-        * ensure that the sort order does not affect other features negatively.
-    * find contacts by name that approximately matches the given search key word.
-        * non-trivial as dynamic programming solution is used. 
+    * Sorting of contacts by name or email address in alphabetical or reverse alphabetical order.
+        * Ensure that the sort order does not affect other features negatively.
+    * Find contacts by name that approximately matches the given search key word.
+        * Non-trivial as dynamic programming solution is used. 
         * Several custom class logic needed to support this feature.
-        * had to tailor current filtering and ordering logic to implement the filtering and order needed for this feature (most similar matches appear first)
-    * meeting statistics with bar chat GUI.
-    * listing of sale items in a month and year.
-    * sale statistics with bar chart GUI.
-        * custom generic class to store monthly meetings and sale items.
-        * custom class to generate bar chart GUI.
-    * provide suggestions to invalid user input.
-        * hard to give relatively good approximations to both single and double command keywords.
+        * Had to tailor current filtering and ordering logic to implement the filtering and order needed for this feature (most similar matches appear first).
+    * Meeting statistics with bar chart GUI.
+    * Listing of sale items in a month and year.
+    <br><br><br>
+
+    * Sale statistics with bar chart GUI.
+        * Custom generic class to store monthly meetings and sale items.
+        * Custom class to generate bar chart GUI.
+    * Provide suggestions to invalid user input.
+        * Hard to give relatively good approximations to both single and double command keywords.
         
-    * help page with all command description and clickable link to User Guide.
-        * static generation of help window content via a text file that stores the command description
+    * Help page with all command description and clickable link to User Guide.
+        * Static generation of help window content via a text file that stores the command description.
     
 * **Documentation**:
     * UG:
