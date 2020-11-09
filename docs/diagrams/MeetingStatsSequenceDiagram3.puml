@@ -18,7 +18,7 @@ activate MonthlyListMap
 
 
 create MonthAndYear
-MonthlyListMap --> MonthAndYear : currentMonth, currentYear
+MonthlyListMap -> MonthAndYear : currentMonth, currentYear
 activate MonthAndYear
 MonthAndYear --> MonthlyListMap
 deactivate MonthAndYear
@@ -33,7 +33,7 @@ loop numberOfMonths - 1 times
 end
 
 create MonthlyListDataSet
-MonthlyListMap --> MonthlyListDataSet : list of monthlyData
+MonthlyListMap -> MonthlyListDataSet : list of monthlyData
 activate MonthlyListDataSet
 MonthlyListDataSet --> MonthlyListMap
 deactivate MonthlyListDataSet
