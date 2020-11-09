@@ -2208,7 +2208,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Sorting contacts with a non-empty contact list
 
-   1. Test case: `contact sort n/ desc`
+   1. Test case: `contact sort n/ desc`  <br>
       Expected: Contact list now sorted reverse alphabetical order based on the name.
 
 
@@ -2216,7 +2216,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Viewing sale count for non-empty sale list
 
-   1. Test case: `sale stats 5`
+   1. Test case: `sale stats 5` <br>
       Expected: A new window opens with a bar chart. The X-axis will have 5 months, the past 4 months and the current month.
       The Y-axis will contain the sale count in a month.
       
@@ -2228,7 +2228,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Viewing meeting count for non-empty meeting list
 
-   1. Test case: `meeting stats 5`
+   1. Test case: `meeting stats 5`  <br>
       Expected: A new window opens with a bar chart. The X-axis will have 5 months, the past 4 months and the current month.
       The Y-axis will contain the meeting count in a month.
   
@@ -2240,14 +2240,14 @@ testers are expected to do more *exploratory* testing.
 
 1. Unknown user input
 
-   1. Test case: `contat add`
+   1. Test case: `contat add`  <br>
       Expected: A suggestion of contact add should be given in the command box.
 
 ### 7.30. Viewing help
 
 1. Getting help page
 
-   1. Test case: `help`
+   1. Test case: `help` <br>
       Expected: A new window appears with the help information.
 
 ### 7.31. Saving data
