@@ -1523,6 +1523,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
       Use case resumes at step 2.
       
 #### 6.3.25. Use case: Delete multiple sales
+{:.no_toc}
 
 **MSS**
 
@@ -1552,6 +1553,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
       Use case resumes at step 2.
       
 #### 6.3.26. Use case: Edit a sale
+{:.no_toc}
 
 **MSS**
 
@@ -1599,6 +1601,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
       Use case resumes at step 2.
       
 #### 6.3.27. Use case: Edit multiple sales
+{:.no_toc}
 
 **MSS**
 
@@ -1647,6 +1650,7 @@ This use case is similar to `Add a reminder` except that the user has the additi
 
 
 #### 6.3.28. Use case: Display sale breakdown
+{:.no_toc}
 
 **MSS**
 
