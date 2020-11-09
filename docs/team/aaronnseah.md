@@ -31,6 +31,7 @@ The following section summarises my coding, documentation and other contribution
     * Sale statistics with bar chart GUI.
         * Custom generic class to store monthly meetings and sale items.
         * Custom class to generate bar chart GUI.
+    <br><br><br>
     * Provide suggestions to invalid user input.
         * Hard to give relatively good approximations to both single and double command keywords.
         
