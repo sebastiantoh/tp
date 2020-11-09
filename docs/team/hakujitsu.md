@@ -56,7 +56,7 @@ If you can type fast, StonksBook can get your contact management tasks done fast
     * Update DeleteSequenceDiagram with updated implementation.
     * Managed the user stories section of the Developer Guide.
 * **Review/mentoring contributions**
-    * Here is a list of PRs reviewed by me with non-trivial comments: [#68](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/68), [#77](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/77), [#114](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/114), [#148](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/148), [#153](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/153), [#162](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/162),
+    * Here is a list of PRs reviewed by me with non-trivial comments: [#68](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/68), [#77](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/77), [#114](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/114), [#148](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/148), [#153](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/153), [#162](https://github.com/AY2021S1-CS2103T-T11-1/tp/pull/162)
 * **Contributions beyond the project team**
     * Here is a list of issues reported by me for other project teams: [#1](https://github.com/hakujitsu/ped/issues/1), 
   [#2](https://github.com/hakujitsu/ped/issues/2), [#3](https://github.com/hakujitsu/ped/issues/3), 
