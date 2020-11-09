@@ -863,7 +863,7 @@ how `MonthlyListMap` will be kept up to date after meeting commands `meeting add
 
 `MonthlyListMap#getMultipleMonthCount(Month month, Year year, int numberOfMonths)` operation is exposed in the `Model` interface as
 `Model#getMultipleMonthCount(Month month, Year year, int numberOfMonths)`.
-
+fuck
 The following sequence diagrams shows how the Monthly Statistics Feature works:
 
 <img src="images/MeetingStatsSequenceDiagram.png" alt="result for meeting stats sequence diagram" height="200px">
