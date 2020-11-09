@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 public class PurgeCommand extends Command {
 
     public static final String COMMAND_WORD = "purge";
-    public static final String MESSAGE_SUCCESS = "Address book has been purged!";
+    public static final String MESSAGE_SUCCESS = "StonksBook has been purged!";
 
 
     @Override
